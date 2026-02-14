@@ -3,346 +3,197 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lady Stretch Сыктывкар | Бережная растяжка и фитнес</title>
-    <meta name="description" content="Мягкий фитнес и аэройога в Сыктывкаре. Твой час тишины и легкости.">
-
-    <script type="text/javascript">
-        (function(m,e,t,r,i,k,a){
-            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();
-            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=106320674', 'ym');
-        ym(106320674, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+    <title>Lady Stretch | Сыктывкар 2026</title>
+    
+    <script>
+       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+       m[i].l=1*new Date();
+       for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+       k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+       ym(106320674, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true });
     </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/106320674" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Cormorant+Garamond:ital,wght@0,600;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Cormorant+Garamond:wght@600&display=swap" rel="stylesheet">
 
     <style>
-        :root {
-            --purple: #5D3E8E;
-            --text: #2D1B3E;
-            --glass-bg: rgba(255, 255, 255, 0.1);
-            --glass-border: rgba(255, 255, 255, 0.2);
-            --radius: 12px; /* Apple Style скругление */
-            --glow: 0 10px 30px rgba(93, 62, 142, 0.12);
-        }
-
+        :root { --purple: #5D3E8E; --glass: rgba(255, 255, 255, 0.15); --radius: 12px; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Inter', sans-serif; color: var(--text); background: #fff; overflow-x: hidden; line-height: 1.6; }
-        h1, h2, h3 { font-family: 'Cormorant Garamond', serif; text-transform: uppercase; font-weight: 600; }
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
-
-        /* --- UI COMPONENTS: GLASS --- */
-        .glass {
-            background: var(--glass-bg);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid var(--glass-border);
-        }
-
-        /* --- HEADER --- */
+        body { font-family: 'Inter', sans-serif; background: #fff; color: #1a1a1a; overflow-x: hidden; }
+        
+        /* HEADER */
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
             padding: 15px 5%; display: flex; justify-content: space-between; align-items: center;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            transition: background 0.4s;
+            background: rgba(255,255,255,0.1); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
-        header.scrolled { background: rgba(255, 255, 255, 0.85); box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
-        .logo img { height: 32px; border-radius: 6px; }
-
         .btn-menu {
-            padding: 10px 22px; border-radius: var(--radius);
-            background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.4);
-            color: var(--purple); font-size: 11px; font-weight: 800; letter-spacing: 2px;
-            cursor: pointer; transition: 0.3s;
+            background: var(--glass); border: 1px solid rgba(255,255,255,0.3);
+            padding: 10px 20px; border-radius: var(--radius); color: #fff; cursor: pointer; font-weight: 700; font-size: 12px;
         }
-        .btn-menu:hover { background: #fff; }
 
-        /* --- MENU OVERLAY --- */
-        .menu-overlay {
-            position: fixed; top: 0; right: 0; width: 350px; height: 100%;
-            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px);
-            z-index: 2000; transform: translateX(100%); transition: 0.5s cubic-bezier(0.77, 0, 0.175, 1);
-            padding: 80px 40px; display: flex; flex-direction: column;
-            box-shadow: -10px 0 30px rgba(0,0,0,0.05);
+        /* SIDE NAV */
+        #side-nav {
+            position: fixed; top: 0; right: -300px; width: 300px; height: 100%;
+            background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
+            z-index: 2000; transition: 0.4s; padding: 60px 30px; display: flex; flex-direction: column; gap: 20px;
         }
-        .menu-overlay.active { transform: translateX(0); }
-        .menu-overlay a { font-size: 1.2rem; font-weight: 600; margin: 15px 0; color: var(--purple); text-transform: uppercase; letter-spacing: 1px; }
-        .menu-overlay a:hover { padding-left: 8px; }
-        .close-menu { position: absolute; top: 25px; right: 25px; background: none; border: none; font-size: 32px; cursor: pointer; color: var(--purple); }
+        #side-nav.active { right: 0; }
+        #side-nav a { text-decoration: none; color: var(--purple); font-size: 1.2rem; font-weight: 700; text-transform: uppercase; }
 
-        /* --- HERO --- */
+        /* HERO */
         .hero {
             height: 100vh; position: relative; display: flex; align-items: center; justify-content: center;
-            color: #fff; overflow: hidden;
+            color: #fff; text-align: center; background: #000;
         }
-        .hero video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
-        .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 1; }
+        .hero video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.7; }
+        .hero-content { position: relative; z-index: 2; }
+        .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 7vw, 5rem); margin-bottom: 25px; }
 
-        .marquee-glass {
-            position: absolute; top: 100px; width: 100%; z-index: 10;
-            background: rgba(255,255,255,0.1); border-top: 1px solid rgba(255,255,255,0.1);
-            border-bottom: 1px solid rgba(255,255,255,0.1); padding: 12px 0; backdrop-filter: blur(10px);
-        }
-        .marquee-track { display: flex; white-space: nowrap; animation: scroll 40s linear infinite; }
-        .marquee-track span { padding: 0 40px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-weight: 500; }
-        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
-        .hero-content { position: relative; z-index: 2; text-align: center; max-width: 900px; padding: 0 20px; }
-        .hero h1 { font-size: clamp(2.5rem, 8vw, 5.5rem); letter-spacing: 8px; margin-bottom: 30px; }
-
-        /* --- BUTTONS --- */
+        /* BUTTONS */
         .btn-glass {
-            display: inline-block; padding: 18px 40px; border-radius: var(--radius);
-            background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.4);
-            color: #fff; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
-            backdrop-filter: blur(10px); transition: 0.3s; cursor: pointer;
+            display: inline-block; padding: 18px 35px; border-radius: var(--radius);
+            background: var(--glass); border: 1px solid rgba(255,255,255,0.4);
+            color: #fff; font-size: 13px; font-weight: 700; text-decoration: none; backdrop-filter: blur(10px); transition: 0.3s;
         }
-        .btn-glass:hover { background: #fff; color: var(--purple); transform: translateY(-3px); }
-        
-        .btn-purple {
-            background: var(--purple); color: #fff; box-shadow: 0 10px 20px rgba(93, 62, 142, 0.2);
-        }
+        .btn-glass:hover { background: #fff; color: var(--purple); }
 
-        /* --- DIRECTIONS (CLEAN GRID) --- */
-        .section { padding: 100px 5%; max-width: 1300px; margin: 0 auto; }
-        .grid-directions {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 50px;
-        }
+        /* DIRECTIONS BLOCK */
+        .directions { padding: 80px 5%; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
         .dir-card {
-            height: 450px; border-radius: var(--radius); position: relative; overflow: hidden;
-            display: flex; align-items: center; justify-content: center;
+            height: 400px; border-radius: var(--radius); position: relative; overflow: hidden;
+            display: flex; align-items: center; justify-content: center; text-decoration: none;
         }
-        .dir-card img { position: absolute; width: 100%; height: 100%; object-fit: cover; transition: 0.6s; z-index: 1; }
-        .dir-card:hover img { transform: scale(1.08); }
-        .dir-label {
-            position: relative; z-index: 2; background: rgba(255,255,255,0.25);
-            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-            padding: 15px 35px; border-radius: var(--radius); border: 1px solid rgba(255,255,255,0.4);
-            color: #fff; font-size: 1.4rem; font-family: 'Cormorant Garamond', serif;
+        .dir-card img { position: absolute; width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .dir-card:hover img { transform: scale(1.1); }
+        .dir-card span {
+            position: relative; z-index: 2; background: rgba(255,255,255,0.2);
+            padding: 10px 25px; border-radius: var(--radius); color: #fff; font-size: 1.5rem; backdrop-filter: blur(10px);
+            font-family: 'Cormorant Garamond', serif; border: 1px solid rgba(255,255,255,0.3);
         }
 
-        /* --- ABOUT & INTERACTIVE --- */
-        .about-wrap {
-            background: #fcfcfc; border-radius: 40px 40px 0 0; padding: 100px 5%; margin-top: -40px; position: relative; z-index: 5;
-            text-align: center;
+        /* ABOUT & INTERACTIVE */
+        .about { padding: 80px 5%; text-align: center; background: #f9f9f9; border-radius: 30px 30px 0 0; margin-top: -30px; position: relative; }
+        .about h2 { font-family: 'Cormorant Garamond', serif; font-size: 3rem; color: var(--purple); margin-bottom: 20px; }
+        .about p { max-width: 700px; margin: 0 auto 40px; line-height: 1.6; color: #444; }
+        .interactive-btns { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+        .btn-outline {
+            padding: 15px 30px; border-radius: var(--radius); border: 1px solid var(--purple);
+            color: var(--purple); text-decoration: none; font-weight: 700; transition: 0.3s;
         }
-        .about-wrap h2 { font-size: 3.5rem; color: var(--purple); margin-bottom: 30px; }
-        .about-wrap p { max-width: 800px; margin: 0 auto 50px; font-size: 1.1rem; color: #555; }
-        
-        .interactive-grid { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
-        .btn-action {
-            padding: 20px 45px; border-radius: var(--radius); background: #fff;
-            border: 1px solid var(--purple); color: var(--purple); font-weight: 700;
-            text-transform: uppercase; font-size: 12px; transition: 0.3s;
-        }
-        .btn-action:hover { background: var(--purple); color: #fff; }
+        .btn-outline:hover { background: var(--purple); color: #fff; }
 
-        /* --- FOOTER --- */
-        footer { background: #fff; padding: 80px 5%; border-top: 1px solid #eee; }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 50px; max-width: 1200px; margin: 0 auto; }
-        .footer-col h4 { font-size: 11px; letter-spacing: 1px; color: var(--purple); margin-bottom: 25px; }
-        .footer-col a { display: block; margin-bottom: 12px; font-size: 14px; opacity: 0.7; }
-        .footer-col a:hover { opacity: 1; color: var(--purple); }
+        /* FOOTER */
+        footer { padding: 60px 5%; background: #fff; border-top: 1px solid #eee; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 30px; }
+        .footer-col h4 { color: var(--purple); margin-bottom: 15px; font-size: 14px; }
+        .footer-col a { display: block; color: #888; text-decoration: none; margin-bottom: 8px; font-size: 14px; }
 
-        /* --- AI CHAT WIDGET --- */
-        #ls-ai-button {
-            position: fixed; bottom: 30px; right: 30px; width: 65px; height: 65px;
-            background: var(--purple); color: #fff; border: none; border-radius: 50%;
-            font-size: 28px; cursor: pointer; z-index: 1001; box-shadow: 0 10px 25px rgba(93, 62, 142, 0.4);
-            display: flex; align-items: center; justify-content: center;
-        }
-        #ls-ai-chat {
-            display: none; position: fixed; bottom: 110px; right: 30px; width: 360px; height: 580px;
-            background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(25px);
-            border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.1); z-index: 1000; flex-direction: column; overflow: hidden;
-        }
-        .chat-header { background: var(--purple); color: #fff; padding: 20px; font-weight: 600; display: flex; justify-content: space-between; }
-        .chat-messages { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
-        .msg { padding: 12px 16px; border-radius: 15px; font-size: 14px; max-width: 80%; }
-        .msg-user { background: var(--purple); color: #fff; align-self: flex-end; border-bottom-right-radius: 4px; }
-        .msg-assistant { background: #fff; color: var(--text); align-self: flex-start; border-bottom-left-radius: 4px; border: 1px solid #eee; }
-        .chat-input-area { padding: 20px; background: rgba(255,255,255,0.5); display: flex; gap: 10px; border-top: 1px solid #eee; }
-        .chat-input-area input { flex: 1; padding: 12px; border-radius: 20px; border: 1px solid #ddd; outline: none; }
-
-        @media (max-width: 768px) {
-            .menu-overlay { width: 100%; }
-            .hero h1 { font-size: 3rem; letter-spacing: 4px; }
-            .about-wrap h2 { font-size: 2.5rem; }
-            #ls-ai-chat { width: 100%; height: 100%; bottom: 0; right: 0; border-radius: 0; }
-        }
+        /* AI CHAT */
+        #ai-btn { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: var(--purple); border-radius: 50%; border: none; cursor: pointer; z-index: 3000; font-size: 24px; color: #fff; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        #ai-window { display: none; position: fixed; bottom: 100px; right: 30px; width: 340px; height: 500px; background: #fff; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); z-index: 3000; flex-direction: column; overflow: hidden; }
+        .ai-header { padding: 15px; background: var(--purple); color: #fff; font-weight: 700; display: flex; justify-content: space-between; }
+        .ai-msgs { flex: 1; padding: 15px; overflow-y: auto; font-size: 14px; }
+        .ai-input { padding: 15px; border-top: 1px solid #eee; display: flex; gap: 10px; }
+        .ai-input input { flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 10px; outline: none; }
     </style>
 </head>
 <body>
 
-    <div class="menu-overlay" id="menuOverlay">
-        <button class="close-menu" onclick="toggleMenu()">&times;</button>
+    <nav id="side-nav">
+        <div style="text-align:right; font-size: 30px; cursor:pointer" onclick="toggleMenu()">&times;</div>
         <a href="index.html">Главная</a>
         <a href="directions.html">Направления</a>
         <a href="test.html">Фитнес-тест</a>
         <a href="future-packages.html">Абонементы 2026</a>
-        <div style="margin-top: auto; border-top: 1px solid #eee; padding-top: 20px;">
-            <p style="font-size: 12px; color: var(--purple);">+7 908 715-55-57</p>
-        </div>
-    </div>
+        <a href="https://vk.com/ladystretch_syktyvkar">Мы ВКонтакте</a>
+    </nav>
 
-    <header id="header">
-        <div class="logo"><img src="logo_header_final.png" alt="Lady Stretch"></div>
+    <header>
+        <div class="logo"><img src="logo_header_final.png" alt="LS" height="30"></div>
         <button class="btn-menu" onclick="toggleMenu()">MENU</button>
     </header>
 
     <section class="hero">
         <video autoplay muted loop playsinline><source src="hero-video.mp4" type="video/mp4"></video>
-        <div class="hero-overlay"></div>
-        
-        <div class="marquee-glass">
-            <div class="marquee-track">
-                <span>ЗАПИШИСЬ УЖЕ СЕЙЧАС</span><span>ВЫБЕРИ ТРЕНИРОВКУ</span><span>ПОДАРИ СЕБЕ СЧАСТЬЕ</span><span>ТВОЕ ТЕЛО НЕ ТЮРЬМА</span>
-                <span>ЗАПИШИСЬ УЖЕ СЕЙЧАС</span><span>ВЫБЕРИ ТРЕНИРОВКУ</span><span>ПОДАРИ СЕБЕ СЧАСТЬЕ</span><span>ТВОЕ ТЕЛО НЕ ТЮРЬМА</span>
-            </div>
-        </div>
-
         <div class="hero-content">
             <h1>Бережная растяжка</h1>
-            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-                <a href="https://clck.ru/3RDNsC" target="_blank" class="btn-glass btn-purple">Начать тренировки</a>
-                <a href="future-packages.html" class="btn-glass">Абонементы 2026</a>
-            </div>
+            <a href="https://clck.ru/3RDNsC" class="btn-glass">Записаться на пробное</a>
         </div>
     </section>
 
-    <section class="section">
-        <h2 style="text-align: center; color: var(--purple);">Направления</h2>
-        <div class="grid-directions">
-            <a href="directions.html" class="dir-card">
-                <img src="directions-main.jpg" alt="Аэройога">
-                <div class="dir-label">Аэройога</div>
-            </a>
-            <a href="directions.html" class="dir-card">
-                <img src="studio-photo.jpg" alt="Растяжка">
-                <div class="dir-label">Шпагат</div>
-            </a>
-            <a href="directions.html" class="dir-card">
-                <img src="directions-main.jpg" alt="Спина">
-                <div class="dir-label">Здоровая спина</div>
-            </a>
-        </div>
+    <section class="directions">
+        <a href="directions.html" class="dir-card"><img src="directions-main.jpg"><span>Аэройога</span></a>
+        <a href="directions.html" class="dir-card"><img src="studio-photo.jpg"><span>Шпагат</span></a>
+        <a href="directions.html" class="dir-card"><img src="directions-main.jpg"><span>Здоровая спина</span></a>
     </section>
 
-    <div class="about-wrap">
+    <section class="about">
         <h2>О студии</h2>
-        <p>Мы верим, что фитнес должен быть в радость, а не в наказание. Lady Stretch — это твое место силы в Сыктывкаре, где мы бережно работаем с твоим телом.</p>
-        
-        <div class="interactive-grid">
-            <a href="test.html" class="btn-action">Пройти фитнес-тест</a>
-            <a href="future-packages.html" class="btn-action">Предсказание 2026</a>
+        <p>LADY STRETCH Сыктывкар — это пространство, где твоё тело отдыхает от суеты. Никакого стресса, только бережный подход и профессиональные тренеры.</p>
+        <div class="interactive-btns">
+            <a href="test.html" class="btn-outline">Пройти тест</a>
+            <a href="future-packages.html" class="btn-outline">Твое предсказание 2026</a>
         </div>
-    </div>
+    </section>
 
     <footer>
-        <div class="footer-grid">
-            <div class="footer-col">
-                <img src="logo_header_final.png" alt="LS" style="height: 25px; margin-bottom: 20px;">
-                <p style="font-size: 13px; opacity: 0.6;">Сыктывкар, 2026. <br>Твоя легкость — наша работа.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Навигация</h4>
-                <a href="directions.html">Направления</a>
-                <a href="test.html">Фитнес-тест</a>
-                <a href="future-packages.html">Абонементы</a>
-            </div>
-            <div class="footer-col">
-                <h4>Документы</h4>
-                <a href="privacy.html">Конфиденциальность</a>
-                <a href="offer.html">Договор оферты</a>
-            </div>
-            <div class="footer-col">
-                <h4>Связаться</h4>
-                <a href="https://t.me/ladystretch11" target="_blank">Telegram</a>
-                <a href="https://vk.com/ladystretch_syktyvkar" target="_blank">ВКонтакте</a>
-                <p style="font-size: 12px; margin-top: 15px;">+7 908 715-55-57</p>
-            </div>
+        <div class="footer-col">
+            <h4>LADY STRETCH</h4>
+            <p style="font-size: 12px; color: #aaa;">Сыктывкар, 2026</p>
         </div>
-        <p style="text-align: center; margin-top: 60px; font-size: 10px; opacity: 0.4;">ИП Худяков Николай Сергеевич | ИНН 111801576622</p>
+        <div class="footer-col">
+            <h4>Навигация</h4>
+            <a href="directions.html">Направления</a>
+            <a href="test.html">Тест</a>
+            <a href="future-packages.html">Цены</a>
+        </div>
+        <div class="footer-col">
+            <h4>Соцсети</h4>
+            <a href="https://vk.com/ladystretch_syktyvkar">ВКонтакте</a>
+            <a href="https://t.me/ladystretch11">Telegram</a>
+        </div>
+        <div class="footer-col" style="font-size: 10px; color: #ccc;">
+            ИП Худяков Н.С.<br>ИНН 111801576622
+        </div>
     </footer>
 
-    <button id="ls-ai-button" onclick="toggleChat()">💬</button>
-    <div id="ls-ai-chat">
-        <div class="chat-header">
-            <span>Lady Stretch AI</span>
-            <span style="cursor:pointer" onclick="toggleChat()">&times;</span>
+    <button id="ai-btn" onclick="toggleChat()">💬</button>
+    <div id="ai-window">
+        <div class="ai-header">LS Assistant <span style="cursor:pointer" onclick="toggleChat()">&times;</span></div>
+        <div class="ai-msgs" id="msgs"><div>Привет! Я ИИ Lady Stretch. Рассказать про абонементы или помочь найти студию?</div></div>
+        <div class="ai-input">
+            <input type="text" id="ai-in" placeholder="Спроси меня...">
+            <button onclick="askAI()" style="border:none; background:var(--purple); color:#fff; padding:10px; border-radius:10px; cursor:pointer">OK</button>
         </div>
-        <div class="chat-messages" id="chatMessages">
-            <div class="msg msg-assistant">Привет! Я помогу выбрать тренировку или отвечу на вопросы по расписанию. Что тебя интересует? 😊</div>
-        </div>
-        <div class="chat-input-area">
-            <input type="text" id="chatInput" placeholder="Ваш вопрос..." autocomplete="off">
-            <button onclick="sendMessage()" style="background:var(--purple); color:#fff; border:none; width:40px; height:40px; border-radius:50%; cursor:pointer;">➤</button>
-        </div>
-        <a href="https://vk.com/im?sel=-221142875" target="_blank" style="display:block; text-align:center; padding:10px; font-size:12px; color:var(--purple); background:#f9f9f9;">Нужна помощь человека? Пиши в ВК</a>
     </div>
 
     <script>
-        // Header scroll
-        window.addEventListener('scroll', () => {
-            const header = document.getElementById('header');
-            if (window.scrollY > 50) header.classList.add('scrolled');
-            else header.classList.remove('scrolled');
-        });
-
-        // Menu Toggle
-        function toggleMenu() {
-            document.getElementById('menuOverlay').classList.toggle('active');
+        function toggleMenu() { document.getElementById('side-nav').classList.toggle('active'); }
+        function toggleChat() { 
+            const win = document.getElementById('ai-window');
+            win.style.display = win.style.display === 'flex' ? 'none' : 'flex';
         }
-
-        // AI Chat Logic
-        const API_URL = 'https://d5d8t5f83og17j8u7ue7.y5sm01em.apigw.yandexcloud.net/ask';
-        
-        function toggleChat() {
-            const chat = document.getElementById('ls-ai-chat');
-            chat.style.display = chat.style.display === 'flex' ? 'none' : 'flex';
-        }
-
-        async function sendMessage() {
-            const input = document.getElementById('chatInput');
-            const messages = document.getElementById('chatMessages');
-            const text = input.value.trim();
-            
-            if (!text) return;
-
-            // User msg
-            messages.innerHTML += `<div class="msg msg-user">${text}</div>`;
-            input.value = '';
-            messages.scrollTop = messages.scrollHeight;
-
-            // Assistant placeholder
-            const loadingId = 'loading-' + Date.now();
-            messages.innerHTML += `<div class="msg msg-assistant" id="${loadingId}">Думаю...</div>`;
-            
+        async function askAI() {
+            const inp = document.getElementById('ai-in');
+            const msgs = document.getElementById('msgs');
+            if(!inp.value) return;
+            msgs.innerHTML += `<div style="text-align:right; margin-bottom:10px;"><b>Вы:</b> ${inp.value}</div>`;
+            const userText = inp.value;
+            inp.value = '';
             try {
-                const response = await fetch(API_URL, {
+                const res = await fetch('https://d5d8t5f83og17j8u7ue7.y5sm01em.apigw.yandexcloud.net/ask', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ text })
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({text: userText})
                 });
-                const data = await response.json();
-                document.getElementById(loadingId).textContent = data.answer || "Затрудняюсь ответить, напишите нам в ВК!";
-            } catch (e) {
-                document.getElementById(loadingId).textContent = "Ошибка связи. Попробуйте позже или напишите в соцсети.";
+                const data = await res.json();
+                msgs.innerHTML += `<div style="margin-bottom:10px;"><b>AI:</b> ${data.answer}</div>`;
+            } catch(e) {
+                msgs.innerHTML += `<div style="color:red">Ошибка. Пиши нам в ВК!</div>`;
             }
-            messages.scrollTop = messages.scrollHeight;
+            msgs.scrollTop = msgs.scrollHeight;
         }
-
-        document.getElementById('chatInput').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') sendMessage();
-        });
     </script>
 </body>
 </html>
