@@ -14,430 +14,392 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lady Stretch Сыктывкар | Премиум студия растяжки</title>
+    <title>Lady Stretch Сыктывкар | Premium Fitness</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,500&display=swap" rel="stylesheet">
 
     <style>
-        :root {
-            --purple: #5D3E8E;
-            --dark: #1a1a1a;
+        :root { 
+            --bg: #ffffff; 
+            --text: #1a1a1a; 
+            --purple: #5D3E8E; 
             --glass-bg: rgba(255, 255, 255, 0.1);
-            --glass-border: rgba(255, 255, 255, 0.3);
-            --blur: blur(20px);
-            --transition: all 0.4s ease;
+            --glass-border: rgba(255, 255, 255, 0.25);
+            --glass-blur: blur(15px);
+            --radius: 12px; /* Менее скругленные углы */
+            --glow: 0 8px 32px rgba(93, 62, 142, 0.15);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; color: var(--dark); background: #fff; overflow-x: hidden; }
-        
-        /* Стили скроллбара */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #f1f1f1; }
-        ::-webkit-scrollbar-thumb { background: var(--purple); border-radius: 4px; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
-        /* --- КНОПКИ (PREMIUM GLASS) --- */
-        .btn {
-            display: inline-block;
-            padding: 18px 40px;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: var(--transition);
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            border-radius: 4px; /* Чуть скругленные углы, но строгие */
-        }
-        
-        /* Прозрачная кнопка (на видео) */
-        .btn-glass {
-            color: #fff;
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.5);
-            backdrop-filter: blur(10px);
-        }
-        .btn-glass:hover {
-            background: #fff;
-            color: var(--purple);
-            box-shadow: 0 0 30px rgba(255,255,255,0.4);
+        body { 
+            margin: 0; 
+            font-family: 'Inter', sans-serif; 
+            background: #fff; 
+            color: var(--text); 
+            overflow-x: hidden; 
         }
 
-        /* Кнопка действия (фиолетовая) */
-        .btn-primary {
-            background: var(--purple);
-            color: #fff;
-            border: 1px solid var(--purple);
-            box-shadow: 0 10px 20px rgba(93, 62, 142, 0.2);
-        }
-        .btn-primary:hover {
-            background: transparent;
-            color: var(--purple);
-            transform: translateY(-3px);
+        h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; text-transform: uppercase; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+
+        /* --- GLASSPHORPHISM CLASS --- */
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glow);
         }
 
-        /* --- HEADER --- */
+        /* --- HEADER (СТЕКЛО) --- */
         header {
-            position: fixed; top: 0; width: 100%; z-index: 100;
-            padding: 20px 5%;
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+            padding: 15px 5%;
             display: flex; justify-content: space-between; align-items: center;
-            background: rgba(255,255,255,0.05); /* Почти невидимый, стекло при скролле можно добавить JS */
-            backdrop-filter: blur(5px);
+            /* Стеклянный фон */
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(255,255,255,0.1);
+            transition: 0.3s;
         }
-        .logo img { height: 35px; filter: brightness(0) invert(1); } /* Белый лого на видео */
-        
-        /* Если скроллим вниз - хедер белеет (реализовано через класс .scrolled) */
-        header.scrolled { background: rgba(255,255,255,0.95); box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
-        header.scrolled .logo img { filter: none; }
-        header.scrolled .menu-trigger { color: var(--dark); border-color: var(--dark); }
+        header.scrolled { background: rgba(255, 255, 255, 0.85); box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
 
-        .menu-trigger {
-            background: none; border: none; 
-            color: #fff; border-bottom: 1px solid #fff;
-            font-size: 14px; text-transform: uppercase; letter-spacing: 2px;
-            padding-bottom: 5px; cursor: pointer; transition: 0.3s;
+        .logo img { height: 35px; }
+
+        .btn-menu {
+            padding: 10px 20px;
+            font-size: 12px; font-weight: 600; letter-spacing: 1px;
+            text-transform: uppercase; color: var(--purple);
+            border-radius: var(--radius);
+            cursor: pointer; border: none;
+            /* Стекло для кнопки меню */
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.4);
+            transition: 0.3s;
         }
+        .btn-menu:hover { background: #fff; box-shadow: 0 0 15px rgba(255,255,255,0.5); }
 
-        /* --- HERO SECTION --- */
+        /* --- HERO --- */
         .hero {
-            height: 100vh;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #000;
-            overflow: hidden;
+            height: 100vh; display: flex; align-items: center; justify-content: center;
+            position: relative; overflow: hidden; color: #fff;
         }
         .hero video {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.6;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover; z-index: -1;
+        }
+        .hero-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.3); z-index: 0;
         }
         
-        /* Бегущая строка СВЕРХУ (как просил) */
-        .marquee-top {
-            position: absolute; top: 100px; width: 100%; z-index: 20;
-            border-top: 1px solid rgba(255,255,255,0.3);
-            border-bottom: 1px solid rgba(255,255,255,0.3);
-            padding: 10px 0;
-            background: rgba(0,0,0,0.2); backdrop-filter: blur(5px);
+        /* Бегущая строка (Стекло) */
+        .marquee-wrapper {
+            position: absolute; top: 90px; width: 100%; z-index: 10;
+            padding: 10px 0; overflow: hidden;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            border-top: 1px solid rgba(255,255,255,0.2);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
         }
-        .marquee-content { display: flex; white-space: nowrap; animation: scroll 40s linear infinite; }
-        .marquee-content span { color: #fff; padding: 0 40px; font-size: 12px; text-transform: uppercase; letter-spacing: 3px; }
+        .marquee-content { display: flex; white-space: nowrap; animation: scroll 30s linear infinite; }
+        .marquee-content span { padding: 0 40px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #fff; }
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        .hero-text {
-            position: relative; z-index: 10; text-align: center; color: #fff; padding: 0 20px;
+        .hero-text { position: relative; z-index: 2; text-align: center; padding: 0 20px; }
+        .hero h1 {
+            font-size: clamp(3rem, 7vw, 6rem); line-height: 1; margin-bottom: 10px;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
-        .hero-text h1 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(3rem, 6vw, 6rem);
-            font-weight: 500;
-            font-style: italic;
-            margin-bottom: 40px;
-            line-height: 1;
-            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-        .btn-group { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
-
-        /* --- SECTIONS (DIRECTIONS & ABOUT) --- */
-        .split-section {
-            display: flex;
-            align-items: center;
-            min-height: 80vh;
-            padding: 100px 5%;
-            gap: 80px;
-            position: relative;
-        }
-        .split-text { flex: 1; }
-        .split-img { 
-            flex: 1.2; height: 600px; position: relative; 
-            border-radius: 8px; overflow: hidden;
-        }
-        .split-img img { 
-            width: 100%; height: 100%; object-fit: cover; 
-            transition: transform 1.5s ease; 
-        }
-        .split-section:hover .split-img img { transform: scale(1.05); }
-
-        .label { 
-            color: var(--purple); font-weight: 700; text-transform: uppercase; 
-            font-size: 11px; letter-spacing: 2px; margin-bottom: 20px; display: block;
-        }
-        h2 { 
-            font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; 
-            line-height: 1.1; margin-bottom: 30px; font-weight: 600;
-        }
-        p.desc { 
-            font-size: 1.1rem; line-height: 1.6; color: #555; margin-bottom: 40px; max-width: 500px;
+        .hero p {
+            font-size: 14px; letter-spacing: 4px; text-transform: uppercase;
+            margin-bottom: 40px; opacity: 0.9;
         }
 
-        .bg-gray { background: #f9f9f9; flex-direction: row-reverse; }
+        /* --- КНОПКИ (ВСЕ СТЕКЛЯННЫЕ) --- */
+        .btn-glass {
+            display: inline-block;
+            padding: 16px 35px;
+            font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: var(--radius); /* Уменьшенное скругление */
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .btn-glass:hover {
+            background: #fff; color: var(--purple);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255,255,255,0.2);
+        }
+        .btn-glass.dark { /* Для светлого фона */
+            background: rgba(93, 62, 142, 0.8); border: 1px solid rgba(93, 62, 142, 0.3);
+        }
+        .btn-glass.dark:hover { background: var(--purple); color: #fff; }
+
+        /* --- НАПРАВЛЕНИЯ (GRID + GLASS) --- */
+        .section { padding: 100px 5%; position: relative; }
+        .section-title {
+            text-align: center; font-size: 3rem; margin-bottom: 50px; color: var(--purple);
+        }
+        
+        .directions-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;
+            max-width: 1200px; margin: 0 auto;
+        }
+        .dir-card {
+            position: relative; height: 350px; border-radius: var(--radius); overflow: hidden;
+            display: flex; align-items: flex-end; padding: 20px;
+            background: #f0f0f0; transition: 0.4s;
+        }
+        .dir-card img {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover; transition: 0.4s;
+        }
+        /* Стеклянная плашка внутри карточки */
+        .dir-info {
+            position: relative; z-index: 2; width: 100%;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 20px; border-radius: var(--radius);
+            border: 1px solid rgba(255,255,255,0.6);
+            transform: translateY(10px); opacity: 0.9; transition: 0.3s;
+        }
+        .dir-info h3 { font-size: 1.5rem; color: var(--purple); margin-bottom: 5px; }
+        .dir-card:hover img { transform: scale(1.1); }
+        .dir-card:hover .dir-info { background: rgba(255, 255, 255, 0.95); opacity: 1; transform: translateY(0); }
+
+        /* --- О СТУДИИ (Твой запрос с кнопками) --- */
+        .about-section {
+            display: flex; align-items: center; gap: 60px; max-width: 1200px; margin: 0 auto;
+        }
+        .about-img { flex: 1; height: 500px; border-radius: var(--radius); overflow: hidden; position: relative; }
+        .about-img img { width: 100%; height: 100%; object-fit: cover; }
+        .about-content { flex: 1; }
+        .about-content h2 { font-size: 3rem; color: var(--purple); margin-bottom: 20px; }
+        .about-content p { font-size: 1.1rem; line-height: 1.6; color: #555; margin-bottom: 30px; }
+        
+        .about-buttons { display: flex; gap: 15px; flex-wrap: wrap; }
+        /* Специальный стиль для этих кнопок */
+        .btn-special {
+            padding: 15px 30px; border-radius: var(--radius); text-transform: uppercase; font-weight: 600; font-size: 12px;
+            background: rgba(93, 62, 142, 0.05); border: 1px solid var(--purple); color: var(--purple);
+            backdrop-filter: blur(5px);
+        }
+        .btn-special:hover { background: var(--purple); color: #fff; }
 
         /* --- FOOTER --- */
         footer {
-            background: #fff;
-            padding: 80px 5% 40px;
-            border-top: 1px solid #eaeaea;
+            background: #f9f9f9; padding: 60px 5%; border-top: 1px solid #eee; margin-top: 50px;
         }
         .footer-grid {
-            display: grid;
-            grid-template-columns: 1.5fr 1fr 1fr 1.5fr; /* Настраиваемая сетка */
-            gap: 40px;
-            margin-bottom: 60px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px;
+            max-width: 1200px; margin: 0 auto;
         }
-        .footer-col h4 {
-            font-size: 12px; font-weight: 700; text-transform: uppercase; 
-            letter-spacing: 1px; color: var(--purple); margin-bottom: 25px;
+        .f-col h4 { font-size: 12px; color: var(--purple); margin-bottom: 20px; letter-spacing: 1px; }
+        .f-col a { display: block; margin-bottom: 10px; font-size: 14px; color: #333; }
+        .f-col a:hover { color: var(--purple); padding-left: 5px; }
+
+        /* --- AI WIDGET STYLES (Твои стили, чуть подправлены под radius) --- */
+        #ls-ai-button {
+            position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px;
+            background: var(--purple); color: white; border: none; border-radius: 50%; /* Чат оставляем круглым, это стандарт */
+            font-size: 28px; cursor: pointer; box-shadow: 0 10px 25px rgba(93,62,142,0.5);
+            z-index: 1001; display: flex; align-items: center; justify-content: center;
+            transition: transform 0.3s ease; animation: ls-pulse 3s infinite;
         }
-        .footer-link {
-            display: block; color: var(--dark); text-decoration: none; 
-            margin-bottom: 15px; font-size: 14px; opacity: 0.7; transition: 0.3s;
-        }
-        .footer-link:hover { opacity: 1; color: var(--purple); transform: translateX(5px); }
+        @keyframes ls-pulse { 0% {box-shadow: 0 0 0 0 rgba(93,62,142,0.4);} 70% {box-shadow: 0 0 0 15px rgba(93,62,142,0);} 100% {box-shadow: 0 0 0 0 rgba(93,62,142,0);} }
         
-        .req-text { font-size: 13px; line-height: 1.8; color: #666; }
-        .copyright {
-            border-top: 1px solid #eee; padding-top: 30px; 
-            text-align: center; font-size: 12px; color: #999; text-transform: uppercase;
+        #ls-ai-chat {
+            display: none; position: fixed; bottom: 90px; right: 20px; width: 350px; height: 550px;
+            /* Стекло для чата */
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            z-index: 1000; flex-direction: column; overflow: hidden;
         }
 
-        /* --- MENUS & MODALS --- */
-        .side-menu {
-            position: fixed; top: 0; right: 0; width: 400px; height: 100%;
-            background: rgba(255,255,255,0.98); z-index: 200;
-            padding: 60px 40px; transform: translateX(100%); transition: 0.6s cubic-bezier(0.77, 0, 0.175, 1);
-            display: flex; flex-direction: column; justify-content: center;
-            box-shadow: -10px 0 40px rgba(0,0,0,0.1);
+        /* --- MENU OVERLAY (Боковое меню) --- */
+        .menu-overlay {
+            position: fixed; top: 0; right: 0; width: 100%; height: 100%;
+            background: rgba(255,255,255,0.9); backdrop-filter: blur(15px);
+            z-index: 2000; transform: translateX(100%); transition: 0.5s;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
         }
-        .side-menu.active { transform: translateX(0); }
-        .nav-link {
-            font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; 
-            color: var(--dark); text-decoration: none; margin: 10px 0; transition: 0.3s;
-        }
-        .nav-link:hover { color: var(--purple); padding-left: 20px; font-style: italic; }
-
-        .modal {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7); backdrop-filter: blur(5px);
-            z-index: 300; display: none; align-items: center; justify-content: center;
-        }
-        .modal.active { display: flex; }
-        .modal-box {
-            background: #fff; padding: 50px; width: 100%; max-width: 450px;
-            border-radius: 8px; position: relative;
-        }
-        .modal-input {
-            width: 100%; padding: 15px; border: 1px solid #ddd; 
-            margin-bottom: 15px; font-family: 'Inter'; outline: none;
-        }
-        .modal-input:focus { border-color: var(--purple); }
-
-        /* --- AI WIDGET --- */
-        #ai-widget-btn {
-            position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px;
-            background: var(--purple); color: #fff; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; font-size: 24px;
-            cursor: pointer; box-shadow: 0 10px 30px rgba(93, 62, 142, 0.4); z-index: 90;
-            border: none; transition: 0.3s;
-        }
-        #ai-widget-btn:hover { transform: scale(1.1); }
-        #ai-chat-window {
-            display: none; position: fixed; bottom: 100px; right: 30px; width: 350px; height: 500px;
-            background: #fff; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-            z-index: 91; flex-direction: column; overflow: hidden;
+        .menu-overlay.active { transform: translateX(0); }
+        .menu-link {
+            font-family: 'Cormorant Garamond', serif; font-size: 3rem; color: var(--purple);
+            margin: 10px 0; font-style: italic;
         }
 
-        /* --- MOBILE --- */
         @media (max-width: 768px) {
-            .split-section { flex-direction: column; padding: 60px 20px; gap: 40px; text-align: center; }
-            .split-img { width: 100%; height: 350px; }
-            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
-            .side-menu { width: 100%; }
-            h2 { font-size: 2.5rem; }
-            .hero-text h1 { font-size: 3.5rem; }
+            .hero h1 { font-size: 3rem; }
+            .about-section { flex-direction: column; }
+            .about-img { width: 100%; height: 300px; }
+            #ls-ai-chat { width: 100%; height: 100%; bottom: 0; right: 0; border-radius: 0; }
         }
     </style>
 </head>
 <body>
 
+    <div class="menu-overlay" id="fullMenu">
+        <button onclick="toggleMenu()" style="position:absolute; top:30px; right:30px; background:none; border:none; font-size:40px; color:var(--purple); cursor:pointer;">&times;</button>
+        <a href="#" class="menu-link">Главная</a>
+        <a href="directions.html" class="menu-link">Направления</a>
+        <a href="test.html" class="menu-link">Фитнес-тест</a>
+        <a href="future-packages.html" class="menu-link">Абонементы</a>
+    </div>
+
     <header id="main-header">
         <div class="logo"><img src="logo_header_final.png" alt="LS"></div>
-        <button class="menu-trigger" onclick="toggleMenu()">Меню / Запись</button>
+        <button class="btn-menu" onclick="toggleMenu()">Меню</button>
     </header>
-
-    <div class="side-menu" id="sideMenu">
-        <button onclick="toggleMenu()" style="position:absolute; top:30px; right:30px; background:none; border:none; font-size:30px; cursor:pointer;">&times;</button>
-        <nav style="display:flex; flex-direction:column;">
-            <a href="index.html" class="nav-link">Главная</a>
-            <a href="directions.html" class="nav-link">Направления</a>
-            <a href="test.html" class="nav-link">Фитнес-тест</a>
-            <a href="future-packages.html" class="nav-link">Абонементы</a>
-        </nav>
-        <div style="margin-top: 50px;">
-            <p style="font-size: 12px; color: #888; margin-bottom: 5px;">КОНТАКТЫ</p>
-            <p style="font-size: 18px; font-weight: 600;">+7 908 715-55-57</p>
-        </div>
-    </div>
 
     <section class="hero">
         <video autoplay muted loop playsinline><source src="hero-video.mp4" type="video/mp4"></video>
+        <div class="hero-overlay"></div>
         
-        <div class="marquee-top">
+        <div class="marquee-wrapper">
             <div class="marquee-content">
-                <span>Запишись уже сейчас • Разреши себе дышать • Подари себе счастье • Твое тело не тюрьма • </span>
-                <span>Запишись уже сейчас • Разреши себе дышать • Подари себе счастье • Твое тело не тюрьма • </span>
+                <span>Запишись уже сейчас • Мечты сбываются • Гибкость и сила • Твое тело не тюрьма • </span>
+                <span>Запишись уже сейчас • Мечты сбываются • Гибкость и сила • Твое тело не тюрьма • </span>
             </div>
         </div>
 
         <div class="hero-text">
             <h1>Бережная растяжка</h1>
-            <p style="text-transform: uppercase; letter-spacing: 4px; font-size: 12px; margin-bottom: 40px; opacity: 0.9;">Сыктывкар // Est. 2026</p>
-            <div class="btn-group">
-                <button onclick="openModal()" class="btn btn-glass">Пробное занятие</button>
-                <a href="future-packages.html" class="btn btn-glass">Абонементы 2026</a>
+            <p>Сыктывкар // Est. 2026</p>
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <a href="#" class="btn-glass">Записаться</a>
+                <a href="future-packages.html" class="btn-glass">Абонементы</a>
             </div>
         </div>
     </section>
 
-    <section class="split-section">
-        <div class="split-img">
-            <img src="directions-main.jpg" alt="Направления Lady Stretch">
-        </div>
-        <div class="split-text">
-            <span class="label">Направления</span>
-            <h2>Путь к легкости и гибкости</h2>
-            <p class="desc">Мы объединили аэройогу, МФР и классический стретчинг. Каждая тренировка — это диалог с телом. Без боли, только удовольствие и прогресс.</p>
-            <a href="directions.html" class="btn btn-primary">Все направления</a>
-        </div>
-    </section>
-
-    <section class="split-section bg-gray">
-        <div class="split-img">
-            <img src="studio-photo.jpg" alt="Студия в Сыктывкаре">
-        </div>
-        <div class="split-text">
-            <span class="label">О студии</span>
-            <h2>Мировое комьюнити</h2>
-            <p class="desc">Lady Stretch — это больше, чем фитнес. В Сыктывкаре работают 2 студии с индивидуальным подходом. Мы создаем пространство, где ты чувствуешь себя безопасно и комфортно.</p>
-            <div style="display:flex; gap:40px; margin-top:30px;">
-                <div><b style="font-size:30px; color:var(--purple); display:block;">2</b><small>Студии</small></div>
-                <div><b style="font-size:30px; color:var(--purple); display:block;">30k+</b><small>Клиентов</small></div>
+    <section class="section">
+        <h2 class="section-title">Направления</h2>
+        <div class="directions-grid">
+            <div class="dir-card">
+                <img src="directions-main.jpg" alt="Aero"> <div class="dir-info">
+                    <h3>Аэройога</h3>
+                    <p>Полет и невесомость для твоей спины.</p>
+                </div>
+            </div>
+            <div class="dir-card">
+                <img src="studio-photo.jpg" alt="Stretch">
+                <div class="dir-info">
+                    <h3>Классика</h3>
+                    <p>Глубокая растяжка всего тела.</p>
+                </div>
+            </div>
+            <div class="dir-card">
+                <img src="directions-main.jpg" alt="MFR">
+                <div class="dir-info">
+                    <h3>МФР + Релакс</h3>
+                    <p>Избавление от зажимов и боли.</p>
+                </div>
             </div>
         </div>
+        <div style="text-align:center; margin-top: 40px;">
+            <a href="directions.html" class="btn-special">Смотреть все</a>
+        </div>
     </section>
 
-    <section style="padding: 100px 5%; text-align: center;">
-        <h2 style="margin-bottom: 50px;">Что говорят наши клиенты</h2>
-        <div style="max-width: 900px; margin: 0 auto; box-shadow: 0 20px 50px rgba(0,0,0,0.05); border-radius: 20px; overflow: hidden;">
-            <iframe style="width:100%;height:600px;border:none;" src="https://yandex.ru/maps-reviews-widget/101418003610?comments"></iframe>
+    <section class="section" style="background: #fafafa;">
+        <div class="about-section">
+            <div class="about-img">
+                <img src="studio-photo.jpg" alt="Lady Stretch Studio">
+                <div style="position: absolute; bottom: 20px; left: 20px; background: rgba(255,255,255,0.8); backdrop-filter: blur(5px); padding: 10px 20px; border-radius: 8px; font-weight: 700; color: var(--purple);">
+                    2 Студии в центре
+                </div>
+            </div>
+            <div class="about-content">
+                <h2>О студии</h2>
+                <p>Мы создали Lady Stretch в Сыктывкаре, чтобы ты могла забыть о суете. Это не просто фитнес, это час тишины, когда тебя никто не трогает. У нас нет нормативов, есть только ты и твое ощущение легкости.</p>
+                
+                <h4 style="margin-bottom: 15px; font-family:'Inter'; text-transform:uppercase; letter-spacing:1px; font-size:12px; color:#888;">Полезные сервисы:</h4>
+                <div class="about-buttons">
+                    <a href="test.html" class="btn-special">📝 Пройти Фитнес-тест</a>
+                    <a href="future-packages.html" class="btn-special">🔮 Получить предсказание</a>
+                </div>
+            </div>
         </div>
     </section>
 
     <footer>
         <div class="footer-grid">
-            <div class="footer-col">
-                <img src="logo_header_final.png" alt="Logo" style="height: 30px; margin-bottom: 20px;">
-                <p class="req-text">Сеть студий растяжки и фитнеса.<br>Твое тело — твое искусство.</p>
+            <div class="f-col">
+                <img src="logo_header_final.png" alt="" style="height:30px; margin-bottom:15px;">
+                <p style="font-size:13px; color:#666; line-height:1.6;">Пространство любви к себе.<br>Сыктывкар, 2026.</p>
             </div>
-            
-            <div class="footer-col">
+            <div class="f-col">
                 <h4>Документы</h4>
-                <a href="privacy.html" class="footer-link">Политика конфиденциальности</a>
-                <a href="offer.html" class="footer-link">Договор оферты</a>
-                <a href="consent.html" class="footer-link">Согласие на ОПД</a>
+                <a href="privacy.html">Политика конфиденциальности</a>
+                <a href="offer.html">Оферта</a>
             </div>
-            
-            <div class="footer-col">
-                <h4>Карьера</h4>
-                <a href="career.html" class="footer-link">Фитнес-тренер</a>
-                <a href="career.html" class="footer-link">Администратор</a>
+            <div class="f-col">
+                <h4>Контакты</h4>
+                <p style="font-size:14px; margin-bottom:5px;">+7 908 715-55-57</p>
+                <p style="font-size:12px; color:#666;">ИП Худяков Н.С. <br>ИНН 111801576622</p>
             </div>
-            
-            <div class="footer-col">
-                <h4>Реквизиты</h4>
-                <div class="req-text">
-                    ИП Худяков Николай Сергеевич<br>
-                    ИНН 111801576622<br>
-                    ОГРН 323110000009152<br>
-                    <strong style="color:var(--dark); font-size:16px; display:block; margin-top:10px;">+7 908 715-55-57</strong>
-                    ул. Пушкина, 63 | ул. Первомайская, 62
-                </div>
-            </div>
-        </div>
-        <div class="copyright">
-            © 2026 LADY STRETCH SYKTYVKAR. ALL RIGHTS RESERVED.
         </div>
     </footer>
 
-    <div class="modal" id="leadModal">
-        <div class="modal-box">
-            <button onclick="openModal()" style="position:absolute; top:20px; right:20px; background:none; border:none; cursor:pointer;">✕</button>
-            <h3 style="font-family:'Cormorant Garamond', serif; font-size:2rem; text-align:center; margin-bottom:20px;">Запись на занятие</h3>
-            <form id="tgForm">
-                <input type="text" placeholder="Ваше имя" class="modal-input" required>
-                <input type="tel" placeholder="+7 (___) ___-__-__" class="modal-input" required>
-                <button type="submit" class="btn btn-primary" style="width:100%;">Отправить</button>
-            </form>
+    <button id="ls-ai-button">💬</button>
+    <div id="ls-ai-chat">
+        <div style="background: var(--purple); color: white; padding: 15px; display: flex; justify-content: space-between;">
+            <span>Lady Stretch AI</span>
+            <span onclick="toggleChat()" style="cursor:pointer;">×</span>
         </div>
-    </div>
-
-    <button id="ai-widget-btn" onclick="toggleChat()">💬</button>
-    <div id="ai-chat-window">
-        <div style="background:var(--purple); color:#fff; padding:15px; display:flex; justify-content:space-between;">
-            <span>AI Помощник</span>
-            <span style="cursor:pointer;" onclick="toggleChat()">✕</span>
-        </div>
-        <div id="chat-messages" style="flex:1; padding:15px; overflow-y:auto; background:#f9f9f9;">
+        <div id="ls-ai-messages" style="flex:1; padding:15px; overflow-y:auto; background:rgba(255,255,255,0.5);">
             <div style="background:#fff; padding:10px; border-radius:10px; margin-bottom:10px; font-size:14px; box-shadow:0 2px 5px rgba(0,0,0,0.05);">
-                Привет! Я помогу подобрать направление или записаться. Что вас интересует?
+                Привет! Я помогу подобрать абонемент или записаться. 😊
             </div>
         </div>
-        <div style="padding:10px; border-top:1px solid #eee; display:flex; background:#fff;">
-            <input type="text" id="chat-input" placeholder="Напишите вопрос..." style="flex:1; padding:10px; border:1px solid #ddd; border-radius:20px; outline:none;">
-            <button onclick="sendMessage()" style="margin-left:10px; border:none; background:var(--purple); color:#fff; width:40px; height:40px; border-radius:50%; cursor:pointer;">➤</button>
+        <div style="padding:15px; background:rgba(255,255,255,0.8); display:flex; gap:10px;">
+            <input type="text" id="ls-ai-input" placeholder="Напиши вопрос..." style="flex:1; padding:10px; border-radius:20px; border:1px solid #ddd; outline:none;">
+            <button id="ls-ai-send" style="width:40px; height:40px; border-radius:50%; background:var(--purple); color:#fff; border:none;">➤</button>
         </div>
     </div>
 
     <script>
-        // Скролл хедера
-        window.addEventListener('scroll', () => {
-            const header = document.getElementById('main-header');
-            if (window.scrollY > 50) header.classList.add('scrolled');
-            else header.classList.remove('scrolled');
-        });
-
         // Меню
-        function toggleMenu() { document.getElementById('sideMenu').classList.toggle('active'); }
+        function toggleMenu() { document.getElementById('fullMenu').classList.toggle('active'); }
         
-        // Модалка
-        function openModal() { 
-            const m = document.getElementById('leadModal');
-            m.classList.toggle('active');
+        // Чат (Твоя логика)
+        const chatWindow = document.getElementById('ls-ai-chat');
+        window.toggleChat = function() {
+            chatWindow.style.display = chatWindow.style.display === 'flex' ? 'none' : 'flex';
         }
 
-        // Чат
-        function toggleChat() {
-            const chat = document.getElementById('ai-chat-window');
-            chat.style.display = (chat.style.display === 'flex') ? 'none' : 'flex';
+        // Логика отправки сообщений (упрощенная для примера)
+        document.getElementById('ls-ai-send').onclick = function() {
+            const input = document.getElementById('ls-ai-input');
+            const msgs = document.getElementById('ls-ai-messages');
+            if(input.value) {
+                msgs.innerHTML += `<div style="text-align:right; margin-bottom:10px;"><span style="background:var(--purple); color:#fff; padding:8px 12px; border-radius:10px; display:inline-block; font-size:14px;">${input.value}</span></div>`;
+                input.value = '';
+                setTimeout(() => {
+                    msgs.innerHTML += `<div style="background:#fff; padding:10px; border-radius:10px; margin-bottom:10px; font-size:14px; box-shadow:0 2px 5px rgba(0,0,0,0.05);">Секунду... (Тут будет ответ от сервера)</div>`;
+                    msgs.scrollTop = msgs.scrollHeight;
+                }, 500);
+            }
         }
 
-        async function sendMessage() {
-            const input = document.getElementById('chat-input');
-            const msg = input.value;
-            if(!msg) return;
-            
-            const area = document.getElementById('chat-messages');
-            area.innerHTML += `<div style="text-align:right; margin-bottom:10px;"><span style="background:var(--purple); color:#fff; padding:8px 12px; border-radius:10px; display:inline-block; font-size:14px;">${msg}</span></div>`;
-            input.value = '';
-            
-            // Имитация ответа (вставь свой API url ниже)
-            setTimeout(() => {
-                area.innerHTML += `<div style="background:#fff; padding:10px; border-radius:10px; margin-bottom:10px; font-size:14px; box-shadow:0 2px 5px rgba(0,0,0,0.05);">Секунду, уточняю... (тут будет ответ ИИ)</div>`;
-                area.scrollTop = area.scrollHeight;
-            }, 600);
-        }
+        // Хедер при скролле
+        window.addEventListener('scroll', () => {
+            const h = document.getElementById('main-header');
+            if(window.scrollY > 50) h.classList.add('scrolled');
+            else h.classList.remove('scrolled');
+        });
     </script>
+
 </body>
 </html>
