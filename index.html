@@ -1,208 +1,207 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <script type="text/javascript">
-        (function(m,e,t,r,i,k,a){
-            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();
-            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=106320674', 'ym');
-        ym(106320674, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
-    </script>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lady Stretch Сыктывкар | Фитнес и бережная растяжка</title>
+    <title>Lady Stretch | Эстетика твоего тела</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Cormorant+Garamond:ital,wght@1,500&display=swap" rel="stylesheet">
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
     <style>
-        :root { 
-            --bg: #ffffff; 
-            --text: #2D1B3E; 
-            --main-purple: #5D3E8E; 
-            --light-pink: #FFF0F2; 
+        :root {
+            --main-purple: #5D3E8E;
             --accent-pink: #FFD1DC;
+            --glass: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.4);
+            --text-dark: #2D1B3E;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { margin: 0; font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; text-align: center; }
+        body { font-family: 'Inter', sans-serif; color: var(--text-dark); background: #fff; overflow-x: hidden; }
 
-        /* HEADER ORIGIN */
-        header { 
-            position: fixed; top: 0; width: 100%; z-index: 1000; padding: 15px 40px; 
-            display: flex; justify-content: space-between; align-items: center; 
-            background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--light-pink); 
-        }
-        .logo-header img { height: 32px; }
-
-        /* СТЕКЛЯННЫЕ КНОПКИ (ЭФФЕКТ ЛИНЗЫ) */
-        .btn { 
-            padding: 18px 35px; 
-            text-decoration: none; 
-            font-size: 0.75rem; 
-            letter-spacing: 2px; 
-            text-transform: uppercase; 
-            font-weight: 700; 
-            transition: all 0.4s ease; 
-            cursor: pointer; 
-            display: inline-block;
-            border-radius: 8px; /* Менее круглые */
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            /* Градиент для эффекта линзы */
-            background: rgba(93, 62, 142, 0.1); 
-            color: var(--main-purple);
-            box-shadow: inset 0 2px 5px rgba(255,255,255,0.4), 0 5px 15px rgba(0,0,0,0.05);
+        /* --- ОБЩИЙ СТИЛЬ СТЕКЛЯННЫХ КНОПОК-ЛИНЗ --- */
+        .btn-lens {
+            padding: 20px 35px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #fff;
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px; /* Дорогой "рубленый" стиль */
+            cursor: pointer;
+            transition: 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
-        /* Блик линзы при наведении */
-        .btn::before {
-            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 70%);
-            transform: scale(0.5); opacity: 0; transition: 0.5s; pointer-events: none;
+        .btn-lens:hover {
+            transform: scale(1.05) translateY(-3px);
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 20px 40px rgba(93, 62, 142, 0.2);
         }
 
-        .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(93, 62, 142, 0.15); background: rgba(93, 62, 142, 0.15); }
-        .btn:hover::before { transform: scale(1); opacity: 1; }
+        /* Эффект увеличения внутри кнопки (Lens) */
+        .btn-lens::after {
+            content: ''; position: absolute; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, rgba(255,255,255,0.2) 0%, transparent 80%);
+            opacity: 0; transition: 0.5s;
+        }
+        .btn-lens:hover::after { opacity: 1; }
 
-        /* Вариант фиолетовой стеклянной кнопки */
-        .btn-purple { 
-            background: rgba(93, 62, 142, 0.8); 
-            color: #ffffff; 
-            border: 1px solid rgba(255,255,255,0.2);
+        /* --- ШАПКА --- */
+        header {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            padding: 15px 5%; display: flex; justify-content: space-between; align-items: center;
+            background: rgba(255,255,255,0.7); backdrop-filter: blur(25px);
+            border-bottom: 1px solid rgba(255,255,255,0.3);
         }
 
-        /* HERO ORIGIN */
-        .hero { 
-            height: 100vh; display: flex; align-items: center; justify-content: center; 
-            position: relative; background: var(--main-purple); color: #fff; overflow: hidden;
+        /* --- HERO --- */
+        .hero {
+            height: 100vh; position: relative; display: flex; align-items: center; justify-content: center;
+            background: #000; color: #fff; overflow: hidden;
         }
-        .hero video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.45; }
-        .hero-content { position: relative; z-index: 2; padding: 0 20px; }
-        .hero h1 { font-size: clamp(2.5rem, 8vw, 5rem); text-transform: uppercase; letter-spacing: 8px; line-height: 1.1; margin-bottom: 15px; }
+        .hero video { position: absolute; width: 100%; height: 100%; object-fit: cover; opacity: 0.6; }
+        .hero-content { position: relative; z-index: 10; max-width: 900px; text-align: center; }
+        .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 10vw, 6rem); font-style: italic; margin-bottom: 30px; }
 
-        /* BEGUCHAYA STROKA */
-        .marquee-window {
-            background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(12px); border-radius: 50px; 
-            padding: 12px 30px; max-width: 450px; overflow: hidden; margin: 0 auto 30px;
+        /* --- БЛОК НАПРАВЛЕНИЯ (2 ЧАСТИ) --- */
+        .split-section {
+            display: flex; min-height: 80vh; align-items: center; padding: 5% 10%; gap: 5%;
         }
-        .marquee-content { display: flex; white-space: nowrap; animation: marquee-run 40s linear infinite; }
-        @keyframes marquee-run { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
-        /* REVIEWS WIDGET CENTERED */
-        .reviews-section { padding: 80px 20px; display: flex; flex-direction: column; align-items: center; }
-        .widget-container { width: 100%; max-width: 560px; margin: 0 auto; }
-
-        /* SECTIONS */
-        section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; }
-        .tag { font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase; font-weight: 800; color: var(--main-purple); opacity: 0.6; margin-bottom: 10px; display: block; }
-        h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); text-transform: uppercase; margin-bottom: 30px; }
-
-        /* FOOTER ORIGIN */
-        footer { background: var(--light-pink); padding: 60px 40px; text-align: left; }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; }
-        .footer-link { color: var(--text); text-decoration: none; display: block; margin-bottom: 8px; font-size: 0.85rem; opacity: 0.7; }
-
-        /* MENU OVERLAY ORIGIN */
-        .menu-overlay { 
-            position: fixed; top: 0; right: 0; width: 350px; max-width: 85%; height: 100%; 
-            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px);
-            z-index: 2000; transition: 0.5s; transform: translateX(100%); padding: 60px 40px;
-            display: flex; flex-direction: column; box-shadow: -10px 0 30px rgba(0,0,0,0.05);
+        .split-photo {
+            flex: 1; height: 600px; border-radius: 20px; overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
         }
-        .menu-overlay.active { transform: translateX(0); }
-        .menu-overlay a { color: var(--main-purple); text-decoration: none; margin: 15px 0; text-transform: uppercase; font-weight: 600; font-size: 1.2rem; }
+        .split-photo img { width: 100%; height: 100%; object-fit: cover; transition: 1s; }
+        .split-photo:hover img { transform: scale(1.05); }
+        .split-info { flex: 1; text-align: left; }
+        .split-info h2 { font-size: 3rem; margin-bottom: 20px; text-transform: uppercase; letter-spacing: -1px; }
+        .split-info p { font-size: 1.1rem; line-height: 1.7; margin-bottom: 40px; opacity: 0.8; }
 
-        @media (max-width: 600px) {
-            header { padding: 15px 20px; }
-            .widget-container { height: 600px; overflow: hidden; }
-            .widget-container iframe { height: 100% !important; }
+        /* --- БЛОК ПРО СТУДИЮ --- */
+        .about-section { background: var(--light-pink); flex-direction: row-reverse; }
+
+        /* --- POPUP (GLASS) --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(45, 27, 62, 0.4); backdrop-filter: blur(10px);
+            z-index: 2000; display: none; align-items: center; justify-content: center;
+        }
+        .modal-content {
+            background: rgba(255, 255, 255, 0.7); border: 1px solid #fff;
+            padding: 50px; border-radius: 24px; width: 100%; max-width: 450px;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.2); text-align: center;
+        }
+        .modal-content input {
+            width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 10px;
+            border: 1px solid rgba(0,0,0,0.1); background: rgba(255,255,255,0.5);
+        }
+
+        /* --- АДАПТИВНОСТЬ --- */
+        @media (max-width: 900px) {
+            .split-section { flex-direction: column; padding: 80px 20px; text-align: center; }
+            .split-info { order: 1; text-align: center; }
+            .split-photo { order: 2; width: 100%; height: 400px; margin-top: 30px; }
+            .about-section { flex-direction: column; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo-header"><img src="logo_header_final.png" alt="LADY STRETCH"></div>
-        <button style="background:none; border:none; color:var(--main-purple); font-weight:700; cursor:pointer; font-size: 14px; letter-spacing: 1px;" onclick="toggleMenu()">МЕНЮ</button>
-    </header>
+<header>
+    <img src="logo_header_final.png" alt="Lady Stretch" style="height: 30px;">
+    <button class="btn-lens" style="padding: 10px 20px; color: var(--main-purple); border-color: var(--main-purple);" onclick="toggleMenu()">Меню</button>
+</header>
 
-    <div class="menu-overlay" id="fullMenu">
-        <button onclick="toggleMenu()" style="align-self: flex-end; background:none; border:none; font-size:35px; cursor:pointer; color: var(--main-purple);">&times;</button>
-        <a href="index.html">Главная</a>
-        <a href="directions.html">Направления</a>
-        <a href="test.html">Фитнес-тест</a>
-        <a href="future-packages.html">Абонементы 2026</a>
+<section class="hero">
+    <video autoplay muted loop playsinline><source src="hero-video.mp4" type="video/mp4"></video>
+    <div class="hero-content">
+        <h1>Эстетика твоего тела</h1>
+        <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+            <button class="btn-lens" onclick="openModal()">Записаться на пробное</button>
+            <a href="future-packages.html" class="btn-lens">Абонементы 2026</a>
+        </div>
     </div>
+</section>
 
-    <section class="hero" style="max-width:100%; padding:0;">
-        <video autoplay muted loop playsinline><source src="hero-video.mp4" type="video/mp4"></video>
-        <div class="hero-content">
-            <div class="marquee-window">
-                <div class="marquee-content">
-                    <span style="padding:0 30px; font-style:italic;">ЗАПИШИСЬ УЖЕ СЕЙЧАС • ПОДАРИ СЕБЕ СЧАСТЬЕ • РАЗРЕШИ СЕБЕ ДЫШАТЬ •</span>
-                    <span style="padding:0 30px; font-style:italic;">ЗАПИШИСЬ УЖЕ СЕЙЧАС • ПОДАРИ СЕБЕ СЧАСТЬЕ • РАЗРЕШИ СЕБЕ ДЫШАТЬ •</span>
-                </div>
-            </div>
-            <h1>Бережная растяжка</h1>
-            <p style="text-transform:uppercase; letter-spacing:4px; margin-bottom:30px; font-weight: 300;">Раскрой свою энергию // Сыктывкар</p>
-            <div style="display:flex; gap:15px; justify-content:center; flex-wrap:wrap;">
-                <a href="https://clck.ru/3RDNsC" class="btn">Записаться</a>
-                <a href="directions.html" class="btn btn-purple">Направления</a>
-            </div>
+<section class="split-section">
+    <div class="split-photo">
+        <img src="directions-main.jpg" alt="Направления Lady Stretch">
+    </div>
+    <div class="split-info">
+        <span style="text-transform: uppercase; letter-spacing: 5px; font-size: 0.7rem; color: var(--main-purple);">Направления</span>
+        <h2>Найди свою гармонию</h2>
+        <p>От динамичной растяжки до мягкой аэройоги в гамаках. Мы создали пространство, где каждое движение приносит удовольствие и приближает тебя к телу мечты.</p>
+        <a href="directions.html" class="btn-lens" style="color: var(--text-dark); background: rgba(93,62,142,0.1);">Все направления →</a>
+    </div>
+</section>
+
+<section class="split-section about-section">
+    <div class="split-photo">
+        <img src="studio-photo.jpg" alt="Студия Lady Stretch Сыктывкар">
+    </div>
+    <div class="split-info">
+        <span style="text-transform: uppercase; letter-spacing: 5px; font-size: 0.7rem; color: var(--main-purple);">О студии</span>
+        <h2>Lady Stretch в Сыктывкаре</h2>
+        <p>Две премиальные студии в центре города. Мы — часть глобальной семьи: более 30 000 девушек по всему миру выбрали наш подход к бережному фитнесу. Здесь тебя ждет индивидуальный подход, уютная атмосфера и поддержка на каждом этапе.</p>
+        <div style="display: flex; gap: 30px; margin-top: 20px;">
+            <div><h3 style="font-size: 2rem; color: var(--main-purple);">2</h3><p style="font-size: 0.7rem; opacity: 0.6;">Студии в городе</p></div>
+            <div><h3 style="font-size: 2rem; color: var(--main-purple);">30k+</h3><p style="font-size: 0.7rem; opacity: 0.6;">Девушек с нами</p></div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="reviews-section">
-        <span class="tag">Отзывы</span>
-        <h2>Что о нас говорят</h2>
-        <div class="widget-container">
-            <div style="width:100%;height:800px;overflow:hidden;position:relative;">
-                <iframe style="width:100%;height:100%;border:1px solid #e6e6e6;border-radius:8px;box-sizing:border-box" src="https://yandex.ru/maps-reviews-widget/101418003610?comments"></iframe>
-                <a href="https://yandex.ru/maps/org/lady_stretch/101418003610/" target="_blank" style="box-sizing:border-box;text-decoration:none;color:#b3b3b3;font-size:10px;font-family:YS Text,sans-serif;padding:0 20px;position:absolute;bottom:8px;width:100%;text-align:center;left:0;overflow:hidden;text-overflow:ellipsis;display:block;max-height:14px;white-space:nowrap;padding:0 16px;box-sizing:border-box">Lady Stretch на карте Сыктывкара — Яндекс Карты</a>
-            </div>
-        </div>
-    </section>
+<section style="padding: 100px 5%; background: #fff;">
+    <h2 style="text-align: center; margin-bottom: 50px;">О нас говорят</h2>
+    <div style="max-width: 800px; margin: 0 auto; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.05);">
+        <iframe style="width:100%;height:600px;border:none;" src="https://yandex.ru/maps-reviews-widget/101418003610?comments"></iframe>
+    </div>
+</section>
 
-    <section style="background: var(--light-pink); border-radius: 20px; margin: 40px 20px;">
-        <span class="tag">Фитнес-тест</span>
-        <h2>Узнай свой уровень гибкости</h2>
-        <p style="margin-bottom:30px; opacity:0.8;">Пройди короткий опрос и получи рекомендации от тренера.</p>
-        <a href="test.html" class="btn btn-purple">Пройти тест</a>
-    </section>
+<div class="modal-overlay" id="trialModal">
+    <div class="modal-content">
+        <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 2rem;">Пробное занятие</h2>
+        <p style="margin-bottom: 25px; opacity: 0.7;">Оставь свои контакты, и мы подберем идеальное время.</p>
+        <form id="tgForm">
+            <input type="text" placeholder="Твое имя" id="userName" required>
+            <input type="tel" placeholder="+7 (___) ___-__-__" id="userPhone" required>
+            <button type="submit" class="btn-lens" style="width: 100%; background: var(--main-purple); border: none;">Отправить заявку</button>
+        </form>
+        <button onclick="closeModal()" style="margin-top: 20px; background: none; border: none; cursor: pointer; opacity: 0.5;">Закрыть</button>
+    </div>
+</div>
 
-    <footer>
-        <div class="footer-grid">
-            <div>
-                <img src="logo_header_final.png" style="height:25px; margin-bottom:20px;">
-                <p style="font-size:0.8rem; opacity:0.6;">Сыктывкар, 2026<br>Твоё тело — твоё дело.</p>
-            </div>
-            <div>
-                <h4 style="margin-bottom:15px; font-size:0.8rem; color:var(--main-purple); text-transform: uppercase;">Информация</h4>
-                <a href="privacy.html" class="footer-link">Конфиденциальность</a>
-                <a href="offer.html" class="footer-link">Оферта</a>
-            </div>
-            <div>
-                <h4 style="margin-bottom:15px; font-size:0.8rem; color:var(--main-purple); text-transform: uppercase;">Контакты</h4>
-                <p style="font-size:1rem; font-weight: 600;">+7 908 715-55-57</p>
-                <p style="font-size:0.8rem; opacity:0.5; margin-top:5px;">ул. Пушкина, 63</p>
-            </div>
-        </div>
-    </footer>
+<script>
+    function openModal() { document.getElementById('trialModal').style.display = 'flex'; }
+    function closeModal() { document.getElementById('trialModal').style.display = 'none'; }
 
-    <script>
-        function toggleMenu() {
-            document.getElementById('fullMenu').classList.toggle('active');
+    // Интеграция с Telegram
+    document.getElementById('tgForm').onsubmit = async (e) => {
+        e.preventDefault();
+        const name = document.getElementById('userName').value;
+        const phone = document.getElementById('userPhone').value;
+        const message = `🔥 Новая заявка на ПРОБНОЕ!\n👤 Имя: ${name}\n📞 Телефон: ${phone}`;
+        
+        // Твой API Gateway или Bot API
+        const botToken = 'ТВОЙ_ТОКЕН_БОТА';
+        const chatId = 'ТВОЙ_CHAT_ID';
+        
+        try {
+            await fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`);
+            alert('Заявка успешно отправлена! Скоро свяжемся ✨');
+            closeModal();
+        } catch (error) {
+            alert('Ошибка. Попробуйте написать нам в ВК.');
         }
-    </script>
+    };
+</script>
 
 </body>
 </html>
