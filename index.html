@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
     <script type="text/javascript">
         (function(m,e,t,r,i,k,a){
@@ -14,174 +14,148 @@
         ym(106320674, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
     </script>
 
-    <title>LADY STRETCH | Сыктывкар</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <title>LADY STRETCH | SYKTYVKAR</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
 
     <style>
-        :root {
-            --main: #5D3E8E;
-            --dark: #1a1a1a;
-            --white: #ffffff;
-            --accent: #FFD1DC;
-            --glass: rgba(255, 255, 255, 0.1);
+        :root { 
+            --purple: #5D3E8E; 
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-dark: rgba(0, 0, 0, 0.8);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        body { background: #000; color: #fff; line-height: 1.6; overflow-x: hidden; }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { font-family: 'Inter', sans-serif; background: #000; color: #fff; line-height: 1.4; overflow-x: hidden; }
 
-        /* HEADER С ПОСТОЯННОЙ НАВИГАЦИЕЙ */
+        /* HEADER: ПРЕМИАЛЬНАЯ НАВИГАЦИЯ */
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
-            padding: 15px 5%; display: flex; justify-content: space-between; align-items: center;
-            background: rgba(0,0,0,0.8); backdrop-filter: blur(15px); border-bottom: 1px solid var(--glass);
+            padding: 20px 5%; display: flex; justify-content: space-between; align-items: center;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
         }
-        .logo img { height: 28px; }
-        .desktop-nav { display: flex; gap: 25px; }
-        .desktop-nav a { color: #fff; text-decoration: none; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; opacity: 0.7; transition: 0.3s; }
-        .desktop-nav a:hover { opacity: 1; color: var(--accent); }
+        .nav-links { display: flex; gap: 30px; align-items: center; }
+        .nav-links a { color: #fff; text-decoration: none; font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; opacity: 0.6; transition: 0.3s; }
+        .nav-links a:hover { opacity: 1; }
         
-        .header-actions { display: flex; align-items: center; gap: 15px; }
-        .social-icons img { width: 20px; height: 20px; vertical-align: middle; }
+        .cta-header { display: flex; align-items: center; gap: 20px; }
+        .vk-link img { width: 22px; filter: brightness(0) invert(1); opacity: 0.8; }
 
         /* HERO */
-        .hero {
-            height: 100vh; position: relative; display: flex; align-items: center; justify-content: center;
-            text-align: center; padding: 0 20px;
-        }
+        .hero { height: 100vh; height: 100dvh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
         .hero video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.5; z-index: -1; }
-        .hero-h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 8vw, 5rem); line-height: 1.1; margin-bottom: 20px; }
+        .hero-content { text-align: center; z-index: 2; padding: 0 20px; }
+        .hero-content h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 8vw, 5.5rem); text-transform: uppercase; font-weight: 500; letter-spacing: 4px; margin-bottom: 20px; }
         
+        /* КНОПКИ */
         .btn { 
-            padding: 18px 35px; border-radius: 50px; border: none; cursor: pointer; 
-            font-weight: 700; text-transform: uppercase; font-size: 12px; transition: 0.4s;
-            text-decoration: none; display: inline-block;
+            padding: 20px 45px; border-radius: 2px; border: 1px solid #fff; 
+            background: transparent; color: #fff; cursor: pointer; 
+            font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; 
+            transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1); 
         }
-        .btn-primary { background: var(--main); color: #fff; box-shadow: 0 10px 20px rgba(93, 62, 142, 0.4); }
-        .btn-primary:hover { transform: scale(1.05); background: #7a58b0; }
+        .btn:hover { background: #fff; color: #000; }
+        .btn-fill { background: var(--purple); border-color: var(--purple); }
 
-        /* БЛОК "ВЫБЕРИ СВОЙ РИТМ" */
-        .ritm-section { padding: 100px 5%; background: #080808; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        .ritm-card { 
-            padding: 60px 40px; border: 1px solid var(--glass); border-radius: 20px; 
-            transition: 0.4s; position: relative; overflow: hidden;
-        }
-        .ritm-card:hover { border-color: var(--main); background: rgba(93, 62, 142, 0.05); }
-        .ritm-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 38px; margin-bottom: 20px; }
-        .price-tag { color: var(--accent); font-weight: 700; font-size: 24px; margin: 15px 0; display: block; }
+        /* БЛОК "РИТМ" (Психологическое разделение) */
+        .split-section { display: flex; flex-wrap: wrap; background: #fff; color: #000; }
+        .split-box { flex: 1; min-width: 350px; padding: 100px 8%; display: flex; flex-direction: column; justify-content: center; min-height: 80vh; border-right: 1px solid #eee; }
+        .split-box.dark { background: #000; color: #fff; border: none; }
+        .split-box h2 { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; margin-bottom: 20px; text-transform: uppercase; }
+        .price { font-size: 2rem; font-family: 'Cormorant Garamond', serif; margin-bottom: 30px; display: block; }
 
-        /* MODAL FORM */
-        .modal {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9); z-index: 2000; align-items: center; justify-content: center;
-        }
-        .modal-content { 
-            background: #1a1a1a; padding: 40px; border-radius: 24px; width: 100%; max-width: 400px; 
-            border: 1px solid var(--main); position: relative;
-        }
-        .modal-content input { 
-            width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 10px; 
-            border: 1px solid var(--glass); background: #000; color: #fff; outline: none;
-        }
-        .close-modal { position: absolute; top: 20px; right: 20px; cursor: pointer; font-size: 24px; }
+        /* FOOTER / DOCUMENTS */
+        footer { padding: 100px 5% 50px; background: #000; border-top: 1px solid #222; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 50px; }
+        .footer-col h4 { font-size: 11px; letter-spacing: 2px; margin-bottom: 25px; opacity: 0.5; text-transform: uppercase; }
+        .footer-col a { display: block; color: #fff; text-decoration: none; font-size: 13px; margin-bottom: 12px; opacity: 0.8; }
 
-        /* MARQUEE */
-        .marquee { background: var(--main); padding: 10px 0; overflow: hidden; display: flex; }
-        .marquee-inner { display: flex; animation: scroll 30s linear infinite; white-space: nowrap; }
-        .marquee-inner span { font-size: 14px; font-weight: 700; padding: 0 40px; text-transform: uppercase; }
-        @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-        footer { padding: 80px 5%; background: #050505; border-top: 1px solid var(--glass); }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; }
-        .footer-col h4 { color: var(--main); margin-bottom: 20px; font-size: 12px; letter-spacing: 2px; }
-        .footer-col a { display: block; color: #666; text-decoration: none; margin-bottom: 10px; font-size: 14px; }
+        /* FORM MODAL */
+        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 2000; align-items: center; justify-content: center; }
+        .modal-content { width: 100%; max-width: 450px; padding: 40px; }
+        .modal-content input { width: 100%; padding: 20px; background: transparent; border: none; border-bottom: 1px solid #444; color: #fff; font-size: 18px; margin-bottom: 30px; outline: none; transition: 0.3s; }
+        .modal-content input:focus { border-color: var(--purple); }
 
         @media (max-width: 768px) {
-            .desktop-nav { display: none; }
-            .ritm-section { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .split-box { padding: 60px 20px; min-height: auto; }
         }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="logo"><img src="logo_header_final.png" alt="LS"></div>
-    <nav class="desktop-nav">
-        <a href="#ritm">Ритм тренировок</a>
+    <div class="logo"><img src="logo_header_final.png" alt="LS" style="height: 22px;"></div>
+    <nav class="nav-links">
+        <a href="#ritm">Ритм</a>
         <a href="directions.html">Направления</a>
         <a href="future-packages.html">Абонементы</a>
-        <a href="#docs">Документы</a>
+        <a href="#contacts">Контакты</a>
     </nav>
-    <div class="header-actions">
-        <div class="social-icons">
-            <a href="https://vk.com/ladystretch_syktyvkar" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/f/f3/VK_Compact_Logo_%282021-present%29.svg" alt="VK"></a>
-        </div>
-        <button class="btn btn-primary" style="padding: 10px 20px;" onclick="openModal()">Записаться</button>
+    <div class="cta-header">
+        <a href="https://vk.com/ladystretch_syktyvkar" class="vk-link" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/f/f3/VK_Compact_Logo_%282021-present%29.svg" alt="VK">
+        </a>
+        <button class="btn" style="padding: 12px 25px;" onclick="openModal()">Записаться</button>
     </div>
 </header>
 
 <section class="hero">
     <video autoplay muted loop playsinline><source src="hero-video.mp4" type="video/mp4"></video>
-    <div style="z-index: 10;">
-        <h1 class="hero-h1">Фитнес, который слышит тебя</h1>
-        <p style="margin-bottom: 30px; opacity: 0.8;">Пробная тренировка — всего 450 ₽</p>
-        <button class="btn btn-primary" onclick="openModal()">Занять место в группе</button>
+    <div class="hero-content">
+        <p style="letter-spacing: 6px; font-size: 10px; margin-bottom: 20px; opacity: 0.7;">SYKTYVKAR • 2026</p>
+        <h1>Тело как искусство</h1>
+        <button class="btn" onclick="openModal()">Начать практику за 450 ₽</button>
     </div>
 </section>
 
-<div class="marquee">
-    <div class="marquee-inner">
-        <span>СЫКТЫВКАР • 12 НАПРАВЛЕНИЙ • 450 РУБЛЕЙ ТРЕНИРОВКА • УМНЫЙ ФИТНЕС •</span>
-        <span>СЫКТЫВКАР • 12 НАПРАВЛЕНИЙ • 450 РУБЛЕЙ ТРЕНИРОВКА • УМНЫЙ ФИТНЕС •</span>
+<section id="ritm" class="split-section">
+    <div class="split-box">
+        <p style="font-size: 11px; letter-spacing: 3px; margin-bottom: 20px; opacity: 0.5; text-transform: uppercase;">Состояние тишины</p>
+        <h2>Разумная мягкость</h2>
+        <p style="margin-bottom: 20px; opacity: 0.7;">Растяжка, Аэройога, Здоровая спина. Мы убираем зажимы и возвращаем легкость дыхания.</p>
+        <span class="price">450 ₽</span>
+        <button class="btn" style="border-color: #000; color: #000;" onclick="openModal()">Выбрать спокойствие</button>
     </div>
-</div>
-
-<section id="ritm" class="ritm-section">
-    <div class="ritm-card">
-        <h3>Для спокойствия</h3>
-        <p>Мягкая растяжка, аэройога и «Здоровая спина». Когда хочется выключить телефон и просто подышать.</p>
-        <span class="price-tag">450 ₽</span>
-        <button class="btn btn-primary" onclick="openModal()">Выбрать тишину</button>
-    </div>
-    <div class="ritm-card" style="border-color: #8A2BE2;">
-        <h3>Для драйва</h3>
-        <p>Активные силовые тренировки, круговые сеты и интенсив. Когда нужно выплеснуть энергию и «запахаться».</p>
-        <span class="price-tag">450 ₽</span>
-        <button class="btn btn-primary" onclick="openModal()">Выбрать силу</button>
+    <div class="split-box dark">
+        <p style="font-size: 11px; letter-spacing: 3px; margin-bottom: 20px; opacity: 0.5; text-transform: uppercase;">Энергия действия</p>
+        <h2>Силовой ритм</h2>
+        <p style="margin-bottom: 20px; opacity: 0.7;">Круговые тренировки, интенсив и подкачка. Для тех, кто хочет чувствовать каждую мышцу.</p>
+        <span class="price">450 ₽</span>
+        <button class="btn" onclick="openModal()">Выбрать драйв</button>
     </div>
 </section>
 
-<footer id="docs">
+<footer id="contacts">
     <div class="footer-grid">
         <div class="footer-col">
-            <h4>КОНТАКТЫ</h4>
-            <p>Сыктывкар, Куратова 73/6</p>
-            <p>+7 908 715-55-57</p>
+            <h4>Локация</h4>
+            <a href="#">Сыктывкар, Куратова 73/6</a>
+            <a href="tel:+79087155557">+7 (908) 715-55-57</a>
         </div>
         <div class="footer-col">
-            <h4>ДОКУМЕНТЫ</h4>
-            <a href="privacy.html">Политика конфиденциальности</a>
-            <a href="offer.html">Договор оферты</a>
-            <a href="consent.html">Согласие на ОПД</a>
+            <h4>Навигация</h4>
+            <a href="directions.html">Направления</a>
+            <a href="future-packages.html">Абонементы</a>
+            <a href="test.html">Фитнес-тест</a>
         </div>
         <div class="footer-col">
-            <h4>РЕКВИЗИТЫ</h4>
-            <p style="font-size: 12px; color: #444;">ИП Худяков Николай Сергеевич<br>ИНН 111801576622<br>ОГРН 323110000009152</p>
+            <h4>Право</h4>
+            <a href="privacy.html">Конфиденциальность</a>
+            <a href="offer.html">Оферта</a>
+            <p style="font-size: 10px; opacity: 0.3; margin-top: 20px;">ИП Худяков Н.С.<br>ИНН 111801576622</p>
         </div>
     </div>
 </footer>
 
 <div class="modal" id="orderModal">
     <div class="modal-content">
-        <span class="close-modal" onclick="closeModal()">&times;</span>
-        <h2 style="margin-bottom: 20px; font-family: 'Cormorant Garamond', serif;">Запись на тренировку</h2>
+        <span style="position: absolute; top: 40px; right: 40px; cursor: pointer; font-size: 30px;" onclick="closeModal()">&times;</span>
+        <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; margin-bottom: 40px;">Запись на тренировку</h2>
         <form id="tgForm">
-            <input type="text" id="userName" placeholder="Ваше имя" required>
+            <input type="text" id="userName" placeholder="Имя" required>
             <input type="tel" id="userPhone" placeholder="+7 (___) ___-__-__" required>
-            <select id="userType" style="width:100%; padding:15px; margin-bottom:15px; background:#000; color:#fff; border-radius:10px; border:1px solid var(--glass);">
-                <option value="Спокойная">Спокойная (Тишина)</option>
-                <option value="Активная">Активная (Драйв)</option>
-            </select>
-            <button type="submit" class="btn btn-primary" style="width: 100%;">Отправить заявку</button>
+            <button type="submit" class="btn btn-fill" style="width: 100%; border: none; padding: 25px;">Отправить заявку</button>
         </form>
     </div>
 </div>
@@ -190,33 +164,22 @@
     function openModal() { document.getElementById('orderModal').style.display = 'flex'; }
     function closeModal() { document.getElementById('orderModal').style.display = 'none'; }
 
-    // ОТПРАВКА В TELEGRAM
+    // TELEGRAM ИНТЕГРАЦИЯ
     const TOKEN = "ТВОЙ_ТОКЕН_БОТА";
     const CHAT_ID = "ТВОЙ_ID_ЧАТА";
-    const URI_API = `https://api.telegram.org/bot${ TOKEN }/sendMessage`;
 
     document.getElementById('tgForm').addEventListener('submit', function(e) {
         e.preventDefault();
+        const text = `🔥 Новая заявка!\nИмя: ${this.userName.value}\nТел: ${this.userPhone.value}`;
         
-        let message = `<b>Новая заявка с сайта!</b>\n`;
-        message += `<b>Имя:</b> ${this.userName.value}\n`;
-        message += `<b>Телефон:</b> ${this.userPhone.value}\n`;
-        message += `<b>Тип:</b> ${this.userType.value}`;
-
-        fetch(URI_API, {
+        fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({
-                chat_id: CHAT_ID,
-                parse_mode: 'html',
-                text: message
-            })
-        }).then(res => {
-            alert('Заявка отправлена! Мы свяжемся с вами.');
+            body: JSON.stringify({ chat_id: CHAT_ID, text: text, parse_mode: 'html' })
+        }).then(() => {
+            alert('Мы получили вашу заявку!');
             closeModal();
             this.reset();
-        }).catch(err => {
-            alert('Ошибка. Попробуйте написать нам в ВК.');
         });
     });
 </script>
