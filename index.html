@@ -9,6 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Manrope:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    
+    <script src="https://reservi.ru/widget-fit1c.v2/js/config.js" data-fit-salon-id="02977247-3381-4559-b9ef-1cf88d2731a2"></script>
 
     <style>
         :root {
@@ -77,7 +79,7 @@
         }
         header.scrolled { background: rgba(8, 8, 20, 0.9); padding: 15px 5%; }
 
-        .brand-wrap { text-align: center; }
+        .brand-wrap { text-align: center; display: flex; flex-direction: column; align-items: center; }
         .brand-name { 
             font-family: var(--font-serif); font-size: 38px; 
             letter-spacing: 18px; text-transform: uppercase; color: #fff; 
@@ -169,6 +171,9 @@
         .dir-list li { margin-bottom: 8px; position: relative; padding-left: 20px; }
         .dir-list li::before { content: '—'; position: absolute; left: 0; color: var(--accent-gold); }
 
+        /* --- 1C SCHEDULE SECTION --- */
+        .schedule-section { padding: 80px 5% 120px; }
+
         /* --- FOOTER --- */
         footer { padding: 100px 5% 50px; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; }
         .footer-logo { font-size: 32px; letter-spacing: 12px; text-transform: uppercase; margin-bottom: 40px; }
@@ -219,10 +224,12 @@
         <span></span><span></span><span></span>
     </div>
     <div class="brand-wrap">
+        <img src="ЛОГО Ресурс.jpg" alt="Ресурс" style="height: 35px; filter: brightness(0) invert(1); margin-bottom: 5px;">
         <div class="brand-name">Ресурс</div>
         <div class="brand-sub">Private Health Club</div>
     </div>
-    <div style="width: 30px;"></div> </header>
+    <div style="width: 30px;"></div> 
+</header>
 
 <section class="hero">
     <div class="hero-video-wrap">
@@ -358,6 +365,14 @@
             </div>
         </div>
 
+    </div>
+</section>
+
+<section class="schedule-section">
+    <span class="section-label">Online Booking</span>
+    <h2 style="text-align: center; margin-bottom: 50px;">Выбери свое время</h2>
+    <div class="glass" style="padding: 20px; max-width: 1000px; margin: 0 auto;">
+        <div data-fit1c-calendar>Загружаем актуальное расписание...</div>
     </div>
 </section>
 
