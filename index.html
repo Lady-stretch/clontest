@@ -52,13 +52,20 @@
     transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Эффект зернистого проявления */
+/* Усиленный эффект зернистого проявления */
 .glass-sidebar.active {
     opacity: 1;
     visibility: visible;
     backdrop-filter: blur(25px) saturate(160%);
     -webkit-backdrop-filter: blur(25px) saturate(160%);
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E");
+    /* Делаем зерно более контрастным */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.15'/%3E%3C/svg%3E");
+    animation: noiseIn 0.4s steps(2);
+}
+
+@keyframes noiseIn {
+    0% { transform: scale(1.05); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
 }
 
 /* Стрелочка закрытия */
@@ -280,13 +287,13 @@
   <div class="hero-content">
     <span class="section-label" style="opacity: 0.7; letter-spacing: 6px;">Сыктывкар • С 2026 года</span>
     
-    <h1 class="hero-title" style="font-size: clamp(30px, 8vw, 80px); letter-spacing: 5px; line-height: 1.1;">
-        Твоё тело — <br><span style="color: var(--accent-gold);">твой главный актив</span>
+    <h1 class="hero-title" style="font-size: clamp(30px, 7vw, 64px); letter-spacing: 5px; line-height: 1.2; text-transform: none;">
+        Твоё тело — <br><span style="color: var(--accent-gold); font-family: var(--font-serif); font-style: italic;">твой главный ресурс</span>
     </h1>
 
-    <p class="hero-tagline" style="margin-top: 20px; opacity: 0.6;">Камерная студия движения в Сыктывкаре</p>
+    <p class="hero-tagline" style="margin-top: 25px; opacity: 0.6; font-size: 16px;">Камерная студия движения в Сыктывкаре</p>
     
-    <p class="hero-tagline" style="margin-top: 40px; margin-bottom: 60px; font-style: normal; font-weight: 300; letter-spacing: 1px;">
+    <p class="hero-tagline" style="margin-top: 40px; margin-bottom: 60px; font-style: normal; font-weight: 300; letter-spacing: 2px; text-transform: uppercase; font-size: 12px;">
         Верни себе себя за 50 минут
     </p>
     
