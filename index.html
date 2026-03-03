@@ -26,6 +26,28 @@
             --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
+        /* Эффект линзы и боковое меню */
+.btn-lens {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(15px) saturate(160%);
+    -webkit-backdrop-filter: blur(15px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.btn-lens:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--accent-gold);
+}
+.glass-sidebar {
+    position: fixed; top: 0; left: -320px; width: 300px; height: 100vh;
+    background: rgba(8, 8, 20, 0.8); backdrop-filter: blur(25px);
+    border-right: 1px solid rgba(255, 255, 255, 0.1); z-index: 2000;
+    transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+}
+.glass-sidebar.active { transform: translateX(320px); }
+
         /* --- GLOBAL RESET --- */
         * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
         html { scroll-behavior: smooth; }
@@ -78,7 +100,7 @@
             display: flex; justify-content: space-between; align-items: center;
             z-index: 1000; transition: var(--transition);
         }
-        header.scrolled { background: rgba(8, 8, 20, 0.9); padding: 15px 5%; }
+        header.scrolled { backdrop-filter: blur(10px); background: rgba(8, 8, 20, 0.4); padding: 15px 5%; }
 
         .brand-wrap { text-align: center; display: flex; flex-direction: column; align-items: center; }
         .brand-name { 
@@ -94,12 +116,6 @@
         .nav-trigger.active span:nth-child(2) { opacity: 0; }
         .nav-trigger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
-        .nav-overlay {
-            position: fixed; inset: 0; background: var(--bg-deep);
-            z-index: 1050; display: flex; align-items: center; justify-content: center;
-            opacity: 0; visibility: hidden; transition: var(--transition);
-        }
-        .nav-overlay.active { opacity: 1; visibility: visible; }
         .nav-links { text-align: center; }
         .nav-links a { 
             display: block; font-family: var(--font-serif); font-size: 42px; 
@@ -210,29 +226,26 @@
 </head>
 <body>
 
-<div class="nav-overlay" id="navOverlay">
-    <div class="nav-links">
-        <a href="#about" onclick="toggleNav()">Студия</a>
-        <a href="#directions" onclick="toggleNav()">Направления</a>
-        <a href="#club" onclick="toggleNav()">Клуб резидентов</a>
-        <a href="future-packages.html" onclick="toggleNav()">Абонементы</a>
-        <a href="#footer" onclick="toggleNav()">Контакты</a>
+<div id="navOverlay" class="glass-sidebar">
+    <div class="nav-links" style="padding: 120px 40px; display: flex; flex-direction: column; gap: 30px;">
+        <a href="#about" onclick="toggleNav()" style="font-size: 24px; font-family: var(--font-serif);">Студия</a>
+        <a href="#directions" onclick="toggleNav()" style="font-size: 24px; font-family: var(--font-serif);">Направления</a>
+        <a href="future-packages.html" style="font-size: 24px; font-family: var(--font-serif);">Абонементы</a>
+        <a href="#footer" onclick="toggleNav()" style="font-size: 24px; font-family: var(--font-serif);">Контакты</a>
     </div>
 </div>
 
-<header id="header">
-    <div class="nav-trigger" id="navTrigger" onclick="toggleNav()">
-        <span></span><span></span><span></span>
-    </div>
-    
-    <div class="brand-wrap" style="flex-grow: 1; display: flex; flex-direction: column; align-items: center;">
-        <img src="logo_header_final.png" alt="Ресурс" 
-             style="height: 50px; width: 50px; object-fit: cover; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); margin-bottom: 5px;">
-        <div class="brand-name" style="font-size: 26px; letter-spacing: 12px;">Ресурс</div>
-        <div class="brand-sub">Пространство твоего состояния</div>
+<header id="header" style="display: flex; justify-content: space-between; align-items: center; flex-direction: row-reverse; padding: 20px 5%;">
+    <div class="brand-wrap" style="align-items: flex-end; text-align: right;">
+        <img src="logo_header_final.png" alt="Ресурс" style="height: 45px; width: 45px; border-radius: 10px; margin-bottom: 5px;">
+        <div class="brand-name" style="font-size: 22px; letter-spacing: 6px;">Ресурс</div>
     </div>
 
-    <div style="width: 30px;"></div> 
+    <div class="nav-trigger btn-lens" id="navTrigger" onclick="toggleNav()" style="width: 50px; height: 50px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 5px;">
+        <span style="width: 20px; height: 1.5px; background: #fff;"></span>
+        <span style="width: 15px; height: 1.5px; background: #fff;"></span>
+        <span style="width: 20px; height: 1.5px; background: #fff;"></span>
+    </div>
 </header>
 
 <section class="hero">
@@ -255,7 +268,7 @@
         Верни себе себя за 50 минут
     </p>
     
-    <button class="btn" onclick="openModal()">Получить статус резидента</button>
+    <button class="btn btn-lens" onclick="openModal()">Получить статус резидента</button>
 </div>
 </section>
 
@@ -438,14 +451,12 @@
 
     // Navigation Toggle
     function toggleNav() {
-        document.getElementById('navTrigger').classList.toggle('active');
-        document.getElementById('navOverlay').classList.toggle('active');
-        if(document.getElementById('navOverlay').classList.contains('active')) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'auto';
-        }
-    }
+    document.getElementById('navTrigger').classList.toggle('active');
+    document.getElementById('navOverlay').classList.toggle('active');
+    // Блокируем скролл при открытом меню
+    const isActive = document.getElementById('navOverlay').classList.contains('active');
+    document.body.style.overflow = isActive ? 'hidden' : 'auto';
+}
 
     // Modal Control
     function openModal() {
