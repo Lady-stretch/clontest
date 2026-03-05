@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>РЕСУРС | Студия твоего состояния в Сыктывкаре</title>
     <link rel="icon" type="image/png" href="logo_header_final.png">
@@ -249,7 +249,7 @@
             .philosophy-img-wrap { height: 500px; }
             .footer-grid { grid-template-columns: 1fr; text-align: center; }
         }
-       /* --- AI CHAT WIDGET --- */
+      /* --- AI CHAT WIDGET (УЛУЧШЕННАЯ ВЕРСИЯ) --- */
 #ai-chat-container {
     position: fixed;
     bottom: 30px;
@@ -258,10 +258,9 @@
     height: 500px;
     z-index: 4000;
     display: none;
-    flex-direction: column;
+    flex-direction: column; /* Выстраивает шапку, сообщения и ввод вертикально */
     
-    /* Эффект стекла */
-    background: rgba(255, 255, 255, 0.03); 
+    background: rgba(10, 10, 25, 0.85); /* Чуть затемнил фон для лучшей читаемости текста */
     backdrop-filter: blur(25px) saturate(150%);
     -webkit-backdrop-filter: blur(25px) saturate(150%);
     
@@ -271,40 +270,54 @@
     overflow: hidden;
 }
 
-/* --- ВАШ НОВЫЙ КОД ТУТ --- */
+/* Контейнер для сообщений */
 .chat-messages {
-    flex-grow: 1;
+    flex-grow: 1; /* Занимает всё свободное место */
+    overflow-y: auto; /* Появляется прокрутка, если сообщений много */
     padding: 20px;
-    overflow-y: auto;
-    background: transparent;
-    font-size: 14px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
 }
 
+/* Тонкий стильный скроллбар */
+.chat-messages::-webkit-scrollbar { width: 4px; }
+.chat-messages::-webkit-scrollbar-thumb { background: rgba(197, 160, 89, 0.2); border-radius: 10px; }
+
+/* Общие стили для пузырей сообщений */
 .chat-messages div {
     max-width: 85%;
-    padding: 10px 15px;
-    border-radius: 15px;
+    padding: 12px 16px;
     line-height: 1.4;
-    position: relative;
     font-family: var(--font-main);
+    font-size: 13px;
+    animation: slideIn 0.3s ease-out;
+    position: relative;
 }
 
 .ai-msg {
     align-self: flex-start;
     background: rgba(255, 255, 255, 0.08);
     color: var(--text-main);
-    border-bottom-left-radius: 2px !important;
+    border-radius: 18px 18px 18px 4px;
 }
 
 .user-msg {
     align-self: flex-end;
     background: rgba(197, 160, 89, 0.2); 
-    color: #FFD1DC;
-    border-bottom-right-radius: 2px !important;
-    text-align: right;
+    color: #FFD1DC; 
+    border: 1px solid rgba(197, 160, 89, 0.3);
+    border-radius: 18px 18px 4px 18px;
+    text-align: left;
+}
+
+.chat-header {
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.03);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 /* ------------------------ */
 
@@ -337,7 +350,7 @@
     <div class="nav-links">
         <a href="#about" onclick="toggleNav()">Студия</a>
         <a href="#directions" onclick="toggleNav()">Направления</a>
-        <a href="#" onclick="toggleNav(); toggleChat(); return false;" style="color: #FFD1DC; text-shadow: 0 0 15px rgba(255, 209, 220, 0.4);">Помощь ИИ ✨</a>
+       <a href="#" onclick="toggleNav(); toggleChat(); return false;">Помощь ИИ ✨</a>
         <a href="future-packages.html">Абонементы</a>
         <a href="#footer" onclick="toggleNav()">Контакты</a>
     </div>
@@ -644,38 +657,46 @@
         chat.classList.toggle('chat-active');
     };
 
-    // Функция отправки сообщения (базовая логика)
-    window.sendMessage = function() {
-        const input = document.getElementById('chatInput');
-        const container = document.getElementById('chatMessages');
+    // Функция отправки сообщения (улучшенная версия со скроллом)
+window.sendMessage = function() {
+    const input = document.getElementById('chatInput');
+    const container = document.getElementById('chatMessages');
+    
+    if (input.value.trim() === "") return;
+
+    // 1. Сообщение пользователя
+    const userDiv = document.createElement('div');
+    userDiv.className = 'user-msg';
+    userDiv.innerText = input.value;
+    container.appendChild(userDiv);
+
+    const query = input.value.toLowerCase();
+    input.value = "";
+    
+    // Плавный скролл после добавления
+    setTimeout(() => { container.scrollTop = container.scrollHeight; }, 50);
+
+    // 2. Имитация ответа ИИ
+    setTimeout(() => {
+        const aiDiv = document.createElement('div');
+        aiDiv.className = 'ai-msg';
         
-        if (input.value.trim() === "") return;
-
-        // Добавляем сообщение пользователя
-        const userMsg = document.createElement('div');
-        userMsg.style.cssText = "margin-bottom: 15px; text-align: right; color: #FFD1DC;";
-        userMsg.innerText = input.value;
-        container.appendChild(userMsg);
-
-        const val = input.value.toLowerCase();
-        input.value = "";
-
-        // Простая имитация ответа ИИ (потом заменим на API)
-        setTimeout(() => {
-            const aiMsg = document.createElement('div');
-            aiMsg.style.cssText = "margin-bottom: 15px; opacity: 0.8; padding-right: 20px;";
-            
-            if (val.includes("цена") || val.includes("абонемент")) {
-                aiMsg.innerText = "У нас есть разные форматы участия. Сейчас лучшее предложение — абонемент 'Все включено' за 455₽ (пробный период). Загляните в раздел Абонементы!";
-            } else {
-                aiMsg.innerText = "Интересный вопрос! Чтобы я мог дать точный ответ, мне нужно уточнить детали у администратора. Хотите, чтобы вам перезвонили?";
-            }
-            
-            container.appendChild(aiMsg);
-            container.scrollTop = container.scrollHeight;
-        }, 600);
-    };
-
+        if (query.includes("цена") || query.includes("абонемент") || query.includes("стоимость")) {
+            aiDiv.innerText = "У нас есть разные форматы участия. Сейчас лучшее предложение — пробное занятие всего за 455₽. Хотите записаться?";
+        } else if (query.includes("адрес") || query.includes("где") || query.includes("локац")) {
+            aiDiv.innerText = "Мы ждем вас по двум адресам: ул. Советская 3 и ул. Коммунистическая 77/2. Какой район вам удобнее?";
+        } else if (query.includes("записаться") || query.includes("хочу")) {
+            aiDiv.innerText = "Отличный выбор! Вы можете нажать кнопку 'Стать резидентом' на главном экране или оставить номер здесь, и я передам его администратору.";
+        } else {
+            aiDiv.innerText = "Прекрасный вопрос. Чтобы я мог ответить точнее, мне нужно мгновение. Или я могу попросить администратора связаться с вами ✨";
+        }
+        
+        container.appendChild(aiDiv);
+        
+        // Повторный скролл после ответа ИИ
+        setTimeout(() => { container.scrollTop = container.scrollHeight; }, 50);
+    }, 800);
+};
     // Отправка по нажатию Enter
     document.getElementById('chatInput')?.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') sendMessage();
