@@ -608,15 +608,12 @@
     document.getElementById('tgForm').addEventListener('submit', async function(e) {
         e.preventDefault();
         
-        // Кнопка и поля
         const submitBtn = this.querySelector('button');
         const name = document.getElementById('userName').value;
         const phone = document.getElementById('userPhone').value;
         
-        // Текст сообщения
         const fullMessage = `💎 **НОВЫЙ ЛИД: РЕСУРС**\n\n👤 Резидент: ${name}\n📞 Контакт: ${phone}\n🏙 Город: Сыктывкар\n🌐 Источник: Основной сайт`;
 
-        // Визуальная индикация загрузки
         const originalBtnText = submitBtn.innerText;
         submitBtn.innerText = "ОТПРАВКА...";
         submitBtn.disabled = true;
@@ -632,72 +629,78 @@
                 })
             });
 
-            const result = await response.json();
-
             if (response.ok) {
                 alert('Благодарим! Заявка принята. Куратор свяжется с вами в ближайшее время.');
                 closeModal();
                 this.reset();
             } else {
-                console.error("Ошибка Telegram:", result);
-                alert('Ошибка отправки. Пожалуйста, напишите нам в ВК или позвоните.');
+                alert('Ошибка отправки. Пожалуйста, напишите нам в ВК.');
             }
         } catch (error) {
-            console.error("Сетевая ошибка:", error);
             alert('Нет связи с сервером. Проверьте интернет.');
         } finally {
-            // Возвращаем кнопку в исходное состояние
             submitBtn.innerText = originalBtnText;
             submitBtn.disabled = false;
         }
     });
-    // Функция открытия/закрытия чата
+
+    // --- ИНТЕГРАЦИЯ ИИ ---
+    const API_URL = 'https://d5d8t5f83og17j8u7ue7.y5sm01em.apigw.yandexcloud.net/ask';
+
     window.toggleChat = function() {
         const chat = document.getElementById('ai-chat-container');
         chat.classList.toggle('chat-active');
+        if (chat.classList.contains('chat-active')) {
+            document.getElementById('chatInput').focus();
+        }
     };
 
-    // Функция отправки сообщения (улучшенная версия со скроллом)
-window.sendMessage = function() {
-    const input = document.getElementById('chatInput');
-    const container = document.getElementById('chatMessages');
-    
-    if (input.value.trim() === "") return;
+    window.sendMessage = async function() {
+        const input = document.getElementById('chatInput');
+        const container = document.getElementById('chatMessages');
+        const text = input.value.trim();
 
-    // 1. Сообщение пользователя
-    const userDiv = document.createElement('div');
-    userDiv.className = 'user-msg';
-    userDiv.innerText = input.value;
-    container.appendChild(userDiv);
+        if (!text) return;
 
-    const query = input.value.toLowerCase();
-    input.value = "";
-    
-    // Плавный скролл после добавления
-    setTimeout(() => { container.scrollTop = container.scrollHeight; }, 50);
+        const userDiv = document.createElement('div');
+        userDiv.className = 'user-msg';
+        userDiv.innerText = text;
+        container.appendChild(userDiv);
+        
+        input.value = "";
+        container.scrollTop = container.scrollHeight;
 
-    // 2. Имитация ответа ИИ
-    setTimeout(() => {
         const aiDiv = document.createElement('div');
         aiDiv.className = 'ai-msg';
-        
-        if (query.includes("цена") || query.includes("абонемент") || query.includes("стоимость")) {
-            aiDiv.innerText = "У нас есть разные форматы участия. Сейчас лучшее предложение — пробное занятие всего за 455₽. Хотите записаться?";
-        } else if (query.includes("адрес") || query.includes("где") || query.includes("локац")) {
-            aiDiv.innerText = "Мы ждем вас по двум адресам: ул. Советская 3 и ул. Коммунистическая 77/2. Какой район вам удобнее?";
-        } else if (query.includes("записаться") || query.includes("хочу")) {
-            aiDiv.innerText = "Отличный выбор! Вы можете нажать кнопку 'Стать резидентом' на главном экране или оставить номер здесь, и я передам его администратору.";
-        } else {
-            aiDiv.innerText = "Прекрасный вопрос. Чтобы я мог ответить точнее, мне нужно мгновение. Или я могу попросить администратора связаться с вами ✨";
+        aiDiv.id = 'temp-loader';
+        aiDiv.innerText = "Сверяюсь с ресурсом...";
+        container.appendChild(aiDiv);
+        container.scrollTop = container.scrollHeight;
+
+        try {
+            const response = await fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ text: text })
+            });
+
+            const data = await response.json();
+            const loader = document.getElementById('temp-loader');
+            if (loader) loader.remove();
+
+            const finalAiDiv = document.createElement('div');
+            finalAiDiv.className = 'ai-msg';
+            finalAiDiv.innerText = data.answer || "Извините, не удалось получить ответ. Напишите нам в ВК.";
+            container.appendChild(finalAiDiv);
+            
+        } catch (error) {
+            const loader = document.getElementById('temp-loader');
+            if (loader) loader.innerText = "Ошибка связи. Напишите нам в ВК!";
         }
         
-        container.appendChild(aiDiv);
-        
-        // Повторный скролл после ответа ИИ
-        setTimeout(() => { container.scrollTop = container.scrollHeight; }, 50);
-    }, 800);
-};
-    // Отправка по нажатию Enter
+        container.scrollTop = container.scrollHeight;
+    };
+
     document.getElementById('chatInput')?.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') sendMessage();
     });
