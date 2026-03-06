@@ -249,50 +249,109 @@
             .philosophy-img-wrap { height: 500px; }
             .footer-grid { grid-template-columns: 1fr; text-align: center; }
         }
-      /* --- AI CHAT WIDGET (УЛУЧШЕННАЯ ВЕРСИЯ) --- */
+  /* --- AI CHAT WIDGET (ФИНАЛЬНАЯ ВЕРСИЯ) --- */
 #ai-chat-container {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    width: 350px;
-    height: 500px;
-    z-index: 4000;
+    width: 525px; 
+    height: 750px; 
+    z-index: 10000; 
     display: none;
-    flex-direction: column; /* Выстраивает шапку, сообщения и ввод вертикально */
-    
-    background: rgba(10, 10, 25, 0.85); /* Чуть затемнил фон для лучшей читаемости текста */
+    flex-direction: column;
+    background: rgba(10, 10, 25, 0.85); 
     backdrop-filter: blur(25px) saturate(150%);
     -webkit-backdrop-filter: blur(25px) saturate(150%);
-    
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 24px;
+    border-radius: 30px;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
     overflow: hidden;
+    transition: all 0.3s ease;
 }
 
-/* Контейнер для сообщений */
+.chat-header {
+    padding: 20px 25px;
+    background: rgba(255, 255, 255, 0.03);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
 .chat-messages {
-    flex-grow: 1; /* Занимает всё свободное место */
-    overflow-y: auto; /* Появляется прокрутка, если сообщений много */
-    padding: 20px;
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 25px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
 }
 
-/* Тонкий стильный скроллбар */
-.chat-messages::-webkit-scrollbar { width: 4px; }
-.chat-messages::-webkit-scrollbar-thumb { background: rgba(197, 160, 89, 0.2); border-radius: 10px; }
+.ai-msg {
+    align-self: flex-start;
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-main);
+    border-radius: 18px 18px 18px 4px;
+    padding: 14px 18px;
+    font-size: 15px;
+}
 
-/* Общие стили для пузырей сообщений */
-.chat-messages div {
-    max-width: 85%;
-    padding: 12px 16px;
-    line-height: 1.4;
-    font-family: var(--font-main);
-    font-size: 13px;
-    animation: slideIn 0.3s ease-out;
-    position: relative;
+.user-msg {
+    align-self: flex-end;
+    background: rgba(197, 160, 89, 0.2); 
+    color: #FFD1DC; 
+    border: 1px solid rgba(197, 160, 89, 0.3);
+    border-radius: 18px 18px 4px 18px;
+    padding: 14px 18px;
+    font-size: 15px;
+}
+
+.chat-input-area {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(0, 0, 0, 0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.chat-input {
+    flex-grow: 1;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 12px 15px;
+    color: white;
+    font-size: 16px; /* Защита от зума на iOS */
+    outline: none;
+}
+
+.chat-messages::-webkit-scrollbar { width: 4px; }
+.chat-messages::-webkit-scrollbar-thumb { background: rgba(197, 160, 89, 0.3); border-radius: 10px; }
+
+.chat-active { display: flex !important; animation: slideIn 0.3s ease-out; }
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* МОБИЛЬНАЯ АДАПТАЦИЯ */
+@media (max-width: 768px) {
+    #ai-chat-container {
+        width: 100% !important;
+        height: 100% !important;
+        bottom: 0 !important;
+        right: 0 !important;
+        border-radius: 0 !important;
+    }
+    .chat-input-area {
+        padding: 15px 15px calc(15px + env(safe-area-inset-bottom));
+    }
+    .btn-lens {
+        padding: 15px 25px !important; /* Кнопка больше для пальца */
+        font-size: 16px !important;
+    }
 }
 
 .ai-msg {
@@ -584,7 +643,9 @@
     </div>
     <div class="chat-input-area">
         <input type="text" class="chat-input" id="chatInput" placeholder="Ваш вопрос...">
-        <button onclick="sendMessage()" class="btn-lens" style="padding: 5px 15px; font-size: 10px; border: none; color: #FFD1DC;">→</button>
+        <button onclick="sendMessage()" class="btn-lens" style="border: none; color: #FFD1DC; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+    <span>ОТПРАВИТЬ</span>
+</button>
     </div>
 </div>
 
