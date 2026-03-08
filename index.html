@@ -88,20 +88,35 @@
             border-color: var(--accent-gold);
         }
 
-        /* --- HEADER --- */
-        header {
-            position: fixed; top: 0; width: 100%; padding: 30px 5%;
-            display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
-            z-index: 1000; transition: var(--transition);
-        }
-        
-        /* Шапка при скролле: плотнее и солиднее */
-        header.scrolled { 
-            backdrop-filter: blur(20px) !important; 
-            background: rgba(5, 5, 12, 0.92) !important; 
-            padding: 12px 5% !important; 
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
+        /* --- HEADER (ТВОЯ СТРУКТУРА) --- */
+header {
+    position: fixed; 
+    top: 0; 
+    width: 100%; 
+    padding: 30px 5%;
+    /* Сохраняем твою сетку, чтобы лого был в центре */
+    display: grid; 
+    grid-template-columns: 1fr auto 1fr; 
+    align-items: center;
+    z-index: 2000; 
+    transition: all 0.5s ease;
+    background: transparent; 
+}
+
+/* Эффект стекла при скролле (без черной заливки) */
+header.scrolled { 
+    background: rgba(10, 10, 25, 0.15) !important; 
+    backdrop-filter: blur(15px) !important; 
+    -webkit-backdrop-filter: blur(15px) !important; 
+    padding: 12px 5% !important; 
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Корректная работа названия при скролле */
+header.scrolled .brand-name {
+    font-size: 18px; /* Чуть уменьшаем шрифт при скролле для изящности */
+    transition: 0.4s;
+}
 
         .brand-name { 
             font-family: var(--font-serif); font-size: 20px; 
