@@ -436,37 +436,41 @@ header.scrolled .brand-name {
 <section class="club-section" id="practice-videos" style="padding-top: 60px;">
     <span class="section-label">Эстетика движения</span>
     
-    <div class="dir-container">
+    <div class="dir-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px;">
         
-        <div class="dir-item glass">
-            <video class="dir-bg" autoplay muted loop playsinline preload="metadata">
+        <div class="dir-item glass" style="height: auto; padding: 0; overflow: hidden; display: flex; flex-direction: column;">
+            <video autoplay muted loop playsinline preload="metadata" style="width: 100%; aspect-ratio: 9/16; object-fit: cover; display: block;">
                 <source src="Упражнение Майкл Джексон Ls.mp4" type="video/mp4">
             </video>
-            <div class="dir-content">
-                <h3 class="serif" style="font-size: 28px; color: var(--accent-gold); margin-bottom: 15px;">Легкость</h3>
-                <p style="font-size: 13px; opacity: 0.8; line-height: 1.6; margin-bottom: 25px;">
-                    Практика в гамаках: баланс, грация и работа с глубокими мышцами-стабилизаторами.
-                </p>
+            <div style="padding: 30px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <h3 class="serif" style="font-size: 28px; color: var(--accent-gold); margin-bottom: 15px;">Легкость</h3>
+                    <p style="font-size: 13px; opacity: 0.6; line-height: 1.6; margin-bottom: 25px;">
+                        Практика в гамаках: баланс, грация и работа с глубокими мышцами-стабилизаторами.
+                    </p>
+                </div>
                 <a href="schedule.html" class="btn btn-lens" style="width: 100%; font-size: 10px; padding: 15px;">Попробовать в гамаке</a>
             </div>
         </div>
 
-        <div class="dir-item glass">
-            <video class="dir-bg" autoplay muted loop playsinline preload="metadata">
+        <div class="dir-item glass" style="height: auto; padding: 0; overflow: hidden; display: flex; flex-direction: column;">
+            <video autoplay muted loop playsinline preload="metadata" style="width: 100%; aspect-ratio: 9/16; object-fit: cover; display: block;">
                 <source src="Мфр Клип С Музыкой.mp4" type="video/mp4">
             </video>
-            <div class="dir-content">
-                <h3 class="serif" style="font-size: 28px; color: var(--accent-gold); margin-bottom: 15px;">Релиз</h3>
-                <p style="font-size: 13px; opacity: 0.8; line-height: 1.6; margin-bottom: 25px;">
-                    Миофасциальное расслабление. Снимаем зажимы и возвращаем телу легкость.
-                </p>
+            <div style="padding: 30px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <h3 class="serif" style="font-size: 28px; color: var(--accent-gold); margin-bottom: 15px;">Релиз</h3>
+                    <p style="font-size: 13px; opacity: 0.6; line-height: 1.6; margin-bottom: 25px;">
+                        Миофасциальное расслабление. Снимаем зажимы и возвращаем телу легкость.
+                    </p>
+                </div>
                 <a href="schedule.html" class="btn btn-lens" style="width: 100%; font-size: 10px; padding: 15px;">Записаться на МФР</a>
             </div>
         </div>
 
     </div>
 </section>
-
+    
     <section class="cta-bot" style="padding: 60px 5%; text-align: center;">
     <div class="glass" style="padding: 60px 30px; border-radius: 40px; max-width: 1000px; margin: 0 auto; border: 1px solid rgba(197, 160, 89, 0.3);">
         <span class="section-label" style="margin-bottom: 20px;">Цифровой проводник</span>
