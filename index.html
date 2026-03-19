@@ -431,7 +431,42 @@ header.scrolled .brand-name {
         border-radius: 0 !important;
     }
 }
-        
+ /* Центрируем заголовок "Тело как ресурс" */
+    .philosophy-text {
+        text-align: center !important;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .philosophy-text h2 {
+        text-align: center !important;
+        width: 100%;
+    }
+
+    /* Центрируем цитату */
+    .philosophy-text p {
+        text-align: center !important;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Центрируем блок с цифрами 50 и 12 */
+    .stats-grid {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important; /* Две равные колонки */
+        justify-items: center !important; /* Центровка контента внутри колонок */
+        text-align: center !important;
+        width: 100%;
+        gap: 0 !important;
+    }
+
+    .stat-item {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
     </style>
 </head>
 <body>
