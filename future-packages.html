@@ -186,15 +186,15 @@
 </head>
 <body>
 
-<header style="padding: 20px 5%; display: flex; justify-content: space-between; align-items: center;">
-    <a href="index.html" class="back-link" style="flex: 1; min-width: 100px;">← Клуб</a>
+<header style="position: fixed; top: 0; width: 100%; padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: rgba(8, 8, 20, 0.9); border-bottom: var(--glass-border);">
     
-    <div style="display: flex; align-items: center; justify-content: center; gap: 15px; flex: 2;">
-        <img src="logo_header_final.png" alt="Ресурс" style="height: 32px; width: auto; filter: drop-shadow(0 0 5px rgba(255,255,255,0.1));">
-        <div class="brand-name" style="letter-spacing: 5px; font-size: 20px; white-space: nowrap;">Ресурс</div>
+    <a href="index.html" class="back-link" style="font-size: 11px; text-transform: uppercase; letter-spacing: 3px; opacity: 0.7;">← Клуб</a>
+    
+    <div style="display: flex; align-items: center; gap: 15px;">
+        <div class="brand-name" style="letter-spacing: 5px; font-size: clamp(14px, 4vw, 20px); white-space: nowrap;">Ресурс</div>
+        <img src="logo_header_final.png" alt="Ресурс" style="height: clamp(24px, 5vw, 32px); width: auto; filter: drop-shadow(0 0 5px rgba(255,255,255,0.1));">
     </div>
 
-    <div style="flex: 1; min-width: 100px;"></div> 
 </header>
 
     <section style="padding: 100px 5% 40px; max-width: 1200px; margin: 0 auto;">
