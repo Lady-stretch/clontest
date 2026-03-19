@@ -264,28 +264,30 @@ header.scrolled .brand-name {
             .philosophy-img-wrap { height: 500px; }
             .footer-grid { grid-template-columns: 1fr; text-align: center; }
         }
-  /* --- AI CHAT WIDGET (ФИНАЛЬНАЯ ВЕРСИЯ) --- */
+ /* --- AI CHAT WIDGET (ОПТИМИЗИРОВАННАЯ ВЕРСИЯ) --- */
 #ai-chat-container {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    width: 525px; 
-    height: 750px; 
-    z-index: 10000; 
+    width: 420px; /* Сделали чуть уже и элегантнее для десктопа */
+    height: 600px; /* Уменьшили высоту, чтобы не перекрывал весь экран */
+    z-index: 10000;
     display: none;
     flex-direction: column;
     background: rgba(10, 10, 25, 0.85); 
     backdrop-filter: blur(25px) saturate(150%);
     -webkit-backdrop-filter: blur(25px) saturate(150%);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 30px;
+    border-radius: 24px;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
     overflow: hidden;
     transition: all 0.3s ease;
 }
 
+.chat-active { display: flex !important; animation: slideIn 0.3s ease-out; }
+
 .chat-header {
-    padding: 20px 25px;
+    padding: 18px 20px;
     background: rgba(255, 255, 255, 0.03);
     display: flex;
     justify-content: space-between;
@@ -296,19 +298,25 @@ header.scrolled .brand-name {
 .chat-messages {
     flex-grow: 1;
     overflow-y: auto;
-    padding: 25px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 12px;
+}
+
+/* Стили сообщений */
+.ai-msg, .user-msg {
+    max-width: 85%;
+    padding: 12px 16px;
+    font-size: 14px;
+    line-height: 1.5;
 }
 
 .ai-msg {
     align-self: flex-start;
     background: rgba(255, 255, 255, 0.08);
-    color: var(--text-main);
-    border-radius: 18px 18px 18px 4px;
-    padding: 14px 18px;
-    font-size: 15px;
+    color: #fff;
+    border-radius: 15px 15px 15px 4px;
 }
 
 .user-msg {
@@ -316,17 +324,15 @@ header.scrolled .brand-name {
     background: rgba(197, 160, 89, 0.2); 
     color: #FFD1DC; 
     border: 1px solid rgba(197, 160, 89, 0.3);
-    border-radius: 18px 18px 4px 18px;
-    padding: 14px 18px;
-    font-size: 15px;
+    border-radius: 15px 15px 4px 15px;
 }
 
 .chat-input-area {
-    padding: 20px;
+    padding: 15px 20px;
+    background: rgba(0, 0, 0, 0.4);
     display: flex;
     align-items: center;
-    gap: 12px;
-    background: rgba(0, 0, 0, 0.3);
+    gap: 10px;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
@@ -335,24 +341,14 @@ header.scrolled .brand-name {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 12px;
-    padding: 12px 15px;
+    padding: 10px 15px;
     color: white;
-    font-size: 16px; /* Защита от зума на iOS */
+    font-size: 16px; /* Предотвращает авто-зум в iOS */
     outline: none;
 }
 
-.chat-messages::-webkit-scrollbar { width: 4px; }
-.chat-messages::-webkit-scrollbar-thumb { background: rgba(197, 160, 89, 0.3); border-radius: 10px; }
-
-.chat-active { display: flex !important; animation: slideIn 0.3s ease-out; }
-
-@keyframes slideIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* МОБИЛЬНАЯ АДАПТАЦИЯ */
-@media (max-width: 768px) {
+/* Адаптация для мобильных */
+@media (max-width: 600px) {
     #ai-chat-container {
         width: 100% !important;
         height: 100% !important;
@@ -360,61 +356,17 @@ header.scrolled .brand-name {
         right: 0 !important;
         border-radius: 0 !important;
     }
+    
     .chat-input-area {
-        padding: 15px 15px calc(15px + env(safe-area-inset-bottom));
-    }
-    .btn-lens {
-        padding: 15px 25px !important; /* Кнопка больше для пальца */
-        font-size: 16px !important;
+        /* Учитываем нижнюю полоску на iPhone и даем место под кнопку */
+        padding-bottom: calc(15px + env(safe-area-inset-bottom));
     }
 }
 
-.ai-msg {
-    align-self: flex-start;
-    background: rgba(255, 255, 255, 0.08);
-    color: var(--text-main);
-    border-radius: 18px 18px 18px 4px;
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
-
-.user-msg {
-    align-self: flex-end;
-    background: rgba(197, 160, 89, 0.2); 
-    color: #FFD1DC; 
-    border: 1px solid rgba(197, 160, 89, 0.3);
-    border-radius: 18px 18px 4px 18px;
-    text-align: left;
-}
-
-.chat-header {
-    padding: 15px 20px;
-    background: rgba(255, 255, 255, 0.03);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-/* ------------------------ */
-
-.chat-input-area {
-    padding: 15px;
-    background: rgba(0, 0, 0, 0.2);
-    display: flex;
-    gap: 10px;
-}
-        .chat-input {
-            flex-grow: 1; background: transparent; border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 10px; padding: 8px 15px; color: #fff; font-size: 13px;
-        }
-        /* Анимация появления */
-        @keyframes slideIn {
-            from { transform: translateY(20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        .chat-active { display: flex !important; animation: slideIn 0.3s ease-out; }
-
-        @media (max-width: 480px) {
-            #ai-chat-container { width: 90%; right: 5%; bottom: 20px; height: 70vh; }
-        }
     </style>
 </head>
 <body>
