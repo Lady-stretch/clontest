@@ -374,6 +374,64 @@ header.scrolled .brand-name {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+@media (max-width: 600px) {
+    /* 1. Хедер и Логотип */
+    header {
+        display: flex !important; 
+        grid-template-columns: none !important; 
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 20px !important;
+    }
+
+    header.scrolled {
+        padding: 10px 20px !important;
+    }
+
+    .brand-name {
+        font-size: 16px !important;
+        letter-spacing: 5px !important;
+        margin: 0 !important;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: max-content;
+    }
+
+    /* 2. Текст и Заголовки (КРИТИЧНО для мобилки) */
+    .hero-title {
+        font-size: 42px !important; 
+        letter-spacing: 8px !important;
+        line-height: 1.1;
+    }
+
+    .philosophy-text h2 {
+        font-size: 36px !important;
+        line-height: 1.2;
+        margin-bottom: 20px;
+    }
+
+    /* 3. Секции и картинки */
+    .philosophy {
+        padding: 60px 5% !important;
+        gap: 30px !important;
+    }
+
+    .philosophy-img-wrap {
+        height: 400px !important;
+    }
+
+    /* 4. Чат (если он у тебя в этом же блоке) */
+    #ls-ai-chat { 
+        width: 100% !important;
+        height: 100dvh !important;
+        bottom: 0 !important;
+        right: 0 !important;
+        border-radius: 0 !important;
+    }
+}
+        
     </style>
 </head>
 <body>
