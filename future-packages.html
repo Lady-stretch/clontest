@@ -317,7 +317,7 @@
 <div class="modal" id="orderModal">
     <div class="modal-content glass">
         <div class="modal-close" onclick="closeModal()">&times;</div>
-        <h2>Оформление</h2>
+        <h2 id="modalTitle">Оформление</h2>
         <p id="modalSubtitle">Оставьте контакты для активации доступа</p>
         
         <form id="tgForm">
@@ -340,27 +340,38 @@
         <div id="payment-form" style="margin-top: 20px;"></div>
     </div>
 </div>
-    </div>
-</div>
+
+<script src="https://unpkg.com/imask"></script>
 
 <script>
-    // 1. НАСТРОЙКИ
     const CLOUD_URL = "https://functions.yandexcloud.net/d4el388cufj9g6egpam3";
 
-    // 2. УПРАВЛЕНИЕ МОДАЛЬНЫМ ОКНОМ
+    // 1. АКТИВИРУЕМ МАСКУ ДЛЯ ТЕЛЕФОНА
+    const phoneElement = document.getElementById('userPhone');
+    const maskOptions = {
+        mask: '+{7} (000) 000-00-00',
+        lazy: false // Маска видна сразу
+    };
+    const phoneMask = IMask(phoneElement, maskOptions);
+
     function openModal(packageName, price) {
         document.getElementById('orderModal').style.display = 'flex';
         document.body.style.overflow = 'hidden';
         
-        // Сброс состояния при открытии
         document.getElementById('tgForm').style.display = 'block';
         document.getElementById('payment-form').innerHTML = '';
+        
+        // Сбрасываем заголовок при открытии
+        document.getElementById('modalTitle').innerText = 'Оформление';
         
         document.getElementById('selectedPackage').value = packageName;
         document.getElementById('selectedPrice').value = price;
         document.getElementById('modalSubtitle').innerText = 'Программа: ' + packageName;
         document.getElementById('submitBtn').innerText = 'Оплатить • ' + price + '₽';
         document.getElementById('submitBtn').disabled = false;
+        
+        // Сбрасываем значение телефона при новом открытии окна
+        phoneMask.value = ''; 
     }
 
     function closeModal() {
@@ -372,36 +383,42 @@
         if (event.target == document.getElementById('orderModal')) closeModal();
     }
 
-    // 3. ОБРАБОТКА ФОРМЫ И ОПЛАТА
     document.getElementById('tgForm').addEventListener('submit', async function(e) {
         e.preventDefault();
+        
+        // Проверяем, ввел ли пользователь все 10 цифр номера
+        if (phoneMask.unmaskedValue.length !== 11) {
+            alert('Пожалуйста, введите номер телефона полностью.');
+            return;
+        }
         
         const btn = document.getElementById('submitBtn');
         btn.innerText = 'СВЯЗЬ С БАНКОМ...';
         btn.disabled = true;
 
         const name = document.getElementById('userName').value;
-        const phone = document.getElementById('userPhone').value;
+        // Берем чистый номер из маски (только цифры)
+        const phone = phoneMask.unmaskedValue; 
         const packageType = document.getElementById('selectedPackage').value;
         const price = document.getElementById('selectedPrice').value;
 
         try {
-            // Запрос к твоему Облаку (оно само отправит ТГ и создаст платеж)
             const response = await fetch(CLOUD_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     amount: price,
                     name: name,
-                    phone: phone,
+                    phone: phone, // Отправляем чистый номер (напр. 79123456789)
                     description: `Абонемент Ресурс: ${packageType}`
                 })
             });
 
+            if (!response.ok) throw new Error('Облако вернуло ошибку');
+            
             const data = await response.json();
 
-           if (data.confirmation_token) {
-                // Прячем форму и показываем виджет оплаты
+            if (data.confirmation_token) {
                 document.getElementById('tgForm').style.display = 'none';
                 document.getElementById('modalTitle').innerText = 'Оплата';
                 
@@ -410,21 +427,21 @@
                     return_url: 'https://lady-stretch.github.io/thanks.html', 
                     customization: {
                         modal: false, 
-                        width: '100%' // ЭТО ИСПРАВЛЯЕТ ОБРЕЗАНИЕ ПО ШИРИНЕ
+                        width: '100%' 
                     },
                     error_callback: (error) => { 
-                        alert('Ошибка оплаты. Попробуйте еще раз.');
+                        alert('Ошибка виджета оплаты.');
                         console.error(error); 
                     }
                 });
 
                 checkout.render('payment-form');
             } else {
-                throw new Error('Ошибка: не получен токен');
+                throw new Error('Токен не получен');
             }
         } catch (error) {
-            console.error(error);
-            alert('Не удалось связаться с банком. Проверьте интернет или попробуйте позже.');
+            console.error('Детали ошибки:', error);
+            alert('Не удалось связаться с банком. Убедитесь, что Облако активно.');
             btn.disabled = false;
             btn.innerText = 'Попробовать снова';
         }
