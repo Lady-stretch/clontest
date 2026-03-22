@@ -876,8 +876,20 @@ header.scrolled .brand-name {
         finally { submitBtn.innerText = "Запросить доступ • 455₽"; submitBtn.disabled = false; }
     });
 
-    // 4. ИИ Чат
+   // 4. ИИ Чат
     const API_URL = 'https://d5d8t5f83og17j8u7ue7.y5sm01em.apigw.yandexcloud.net/ask';
+    
+    // Создаем "память" виджета
+    let chatHistory = [];
+
+    // Функция, которая находит ссылки в тексте и делает их кликабельными
+    function makeLinksClickable(text) {
+        const urlRegex = /(https?:\/\/[^\s]+)/g;
+        return text.replace(urlRegex, function(url) {
+            const cleanUrl = url.replace(/[.,!?;)]$/, ''); // Убираем точки и запятые на конце
+            return `<a href="${cleanUrl}" target="_blank" style="color: var(--accent-gold); text-decoration: underline; font-weight: bold;">${cleanUrl}</a>`;
+        });
+    }
     
     function toggleChat() {
         document.getElementById('ls-ai-chat').classList.toggle('chat-active');
@@ -892,7 +904,10 @@ header.scrolled .brand-name {
         const text = input.value.trim();
         if (!text) return;
 
+        // Выводим текст клиента и добавляем в историю
         addMsg(text, 'user');
+        chatHistory.push({ role: 'user', text: text });
+        
         input.value = "";
 
         const loaderId = 'loader-' + Date.now();
@@ -902,15 +917,22 @@ header.scrolled .brand-name {
             const res = await fetch(API_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ text: text })
+                // ОТПРАВЛЯЕМ ИСТОРИЮ (МАССИВ), А НЕ ПРОСТО ТЕКСТ!
+                body: JSON.stringify({ messages: chatHistory }) 
             });
             const data = await res.json();
             const loader = document.getElementById(loaderId);
             if (loader) loader.remove();
-            addMsg(data.answer || "Извините, не удалось получить ответ. Напишите нам в ВК.", 'assistant');
+            
+            const answerText = data.answer || "Извините, не удалось получить ответ. Напишите нам в ВК.";
+            
+            // Сохраняем ответ Веры в историю и выводим на экран
+            chatHistory.push({ role: 'assistant', text: answerText });
+            addMsg(answerText, 'assistant');
+            
         } catch (e) { 
             const loader = document.getElementById(loaderId);
-            if (loader) loader.innerText = "Ошибка связи. Напишите нам в ВК!"; 
+            if (loader) loader.innerHTML = "Ошибка связи. <a href='https://clck.ru/3S5nRj' style='color: var(--accent-gold);'>Напишите нам в ВК!</a>"; 
         }
     }
 
@@ -918,7 +940,14 @@ header.scrolled .brand-name {
         const div = document.createElement('div');
         div.className = `msg msg-${type}`;
         if(id) div.id = id;
-        div.innerText = text;
+        
+        if (type === 'user') {
+            div.textContent = text; // Сообщения клиента выводим просто как текст
+        } else {
+            // Сообщения Веры прогоняем через поиск ссылок и вставляем как HTML
+            div.innerHTML = makeLinksClickable(text);
+        }
+        
         const container = document.getElementById('ls-ai-messages');
         container.appendChild(div);
         container.scrollTop = container.scrollHeight;
