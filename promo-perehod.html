@@ -2,11 +2,17 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Акция ПЕРЕХОД | РЕСУРС</title>
+    
+    <link rel="icon" type="image/png" href="logo_header_final.png">
+    
+    <script src="https://yookassa.ru/checkout-widget/v1/checkout-widget.js"></script>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Manrope:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --bg-deep: #080814; 
@@ -15,6 +21,7 @@
             --font-main: 'Manrope', sans-serif;
             --font-serif: 'Cormorant Garamond', serif;
         }
+        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
         body { 
             background: var(--bg-deep); 
             color: var(--text-main);
@@ -23,9 +30,11 @@
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
         }
         .container { max-width: 800px; margin: 0 auto; padding: 60px 20px; text-align: center; }
+        
         .glass-card {
             background: rgba(255, 255, 255, 0.02);
             backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(197, 160, 89, 0.3);
             border-radius: 20px;
             padding: 40px;
@@ -35,19 +44,20 @@
             position: relative;
         }
         .glass-card:hover { border-color: var(--accent-gold); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(197, 160, 89, 0.1); }
-        h1 { font-family: var(--font-serif); font-size: 48px; color: var(--accent-gold); margin-bottom: 10px; }
-        .subtitle { opacity: 0.7; font-size: 18px; margin-bottom: 50px; }
-        .price-title { font-family: var(--font-serif); font-size: 24px; color: var(--accent-gold); margin-bottom: 10px; }
+        
+        h1 { font-family: var(--font-serif); font-size: 48px; color: var(--accent-gold); margin-bottom: 10px; font-weight: 300;}
+        .subtitle { opacity: 0.7; font-size: 18px; margin-bottom: 50px; font-weight: 300;}
+        .price-title { font-family: var(--font-serif); font-size: 24px; color: var(--accent-gold); margin-bottom: 10px; font-weight: 300;}
         .price-value { font-size: 32px; font-weight: 600; margin-bottom: 10px; }
         .discount { display: inline-block; background: rgba(197, 160, 89, 0.2); color: var(--accent-gold); padding: 5px 10px; border-radius: 6px; font-size: 12px; font-weight: bold; margin-bottom: 15px; }
-        .desc { font-size: 14px; opacity: 0.6; margin-bottom: 25px; }
+        .desc { font-size: 14px; opacity: 0.6; margin-bottom: 25px; font-weight: 300;}
         
-        /* Кнопка оплаты внутри карточки */
+        /* Кнопки */
         .buy-btn {
             display: inline-block; padding: 12px 30px;
             background: var(--accent-gold); color: #000; text-decoration: none;
             border-radius: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
-            transition: 0.3s; cursor: pointer; font-size: 12px;
+            transition: 0.3s; cursor: pointer; font-size: 12px; border: none; font-family: var(--font-main);
         }
         .buy-btn:hover { background: #dfb86e; box-shadow: 0 4px 15px rgba(197, 160, 89, 0.4); }
 
@@ -61,6 +71,39 @@
         .btn-outline:hover { background: rgba(197, 160, 89, 0.1); transform: scale(1.02); }
         .back-link { display: block; margin-top: 30px; color: var(--accent-gold); text-decoration: none; opacity: 0.7; font-size: 14px; }
         .back-link:hover { opacity: 1; text-decoration: underline; }
+
+        /* Модальное окно */
+        .modal {
+            display: none; position: fixed; inset: 0; z-index: 2000;
+            background: rgba(5, 5, 12, 0.98); align-items: flex-start; justify-content: center; 
+            padding: 20px; overflow-y: auto; -webkit-overflow-scrolling: touch;
+        }
+        .modal-content {
+            width: 100%; max-width: 550px; padding: 60px 30px; position: relative; 
+            text-align: center; margin: auto;
+            background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(20px);
+            border: 1px solid rgba(197, 160, 89, 0.3); border-radius: 20px;
+        }
+        .modal-close { 
+            position: absolute; top: 15px; right: 20px; font-size: 35px; 
+            cursor: pointer; font-weight: 200; z-index: 2001; color: var(--accent-gold); line-height: 1;
+        }
+        .modal h2 { font-size: clamp(28px, 8vw, 42px); margin-bottom: 15px; font-family: var(--font-serif); font-weight: 300; color: var(--accent-gold); }
+        .modal p { font-size: 11px; letter-spacing: 2px; opacity: 0.5; text-transform: uppercase; margin-bottom: 40px; }
+        .modal input[type="text"], .modal input[type="tel"] {
+            width: 100%; background: transparent; border: none; border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 15px; color: #fff; font-size: 18px; margin-bottom: 25px; text-align: center; font-family: var(--font-serif);
+        }
+        .modal input:focus { border-color: var(--accent-gold); }
+        
+        #payment-form { width: 100%; min-height: 450px; margin: 0 auto; display: flex; justify-content: center; }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 36px; }
+            .glass-card { padding: 25px; }
+            .modal-content { padding: 40px 15px; }
+            .modal-close { top: 10px; right: 15px; }
+        }
     </style>
 </head>
 <body>
@@ -75,7 +118,7 @@
         <div class="price-title">ГОДОВОЙ КАПИТАЛ (64 занятия)</div>
         <div class="price-value">26 880 ₽</div>
         <div class="desc">Всего 420 ₽ за тренировку на целый год вперед! Полная свобода в выборе направлений.</div>
-        <a href="#" target="_blank" class="buy-btn">Оплатить онлайн</a>
+        <button class="buy-btn" onclick="openModal('ПЕРЕХОД: Годовой капитал (64 занятия)', 26880)">Оплатить онлайн</button>
     </div>
 
     <div class="glass-card">
@@ -83,7 +126,7 @@
         <div class="price-title">МАКСИМАЛЬНЫЙ РЕЗУЛЬТАТ (32 занятия)</div>
         <div class="price-value">14 560 ₽</div>
         <div class="desc">Идеально для регулярных практик и достижения видимого результата.</div>
-        <a href="#" target="_blank" class="buy-btn">Оплатить онлайн</a>
+        <button class="buy-btn" onclick="openModal('ПЕРЕХОД: Максимальный результат (32 занятия)', 14560)">Оплатить онлайн</button>
     </div>
 
     <div class="glass-card">
@@ -91,7 +134,7 @@
         <div class="price-title">ОПТИМАЛЬНЫЙ (16 занятий)</div>
         <div class="price-value">7 840 ₽</div>
         <div class="desc">Базовый пакет для поддержания формы и тонуса.</div>
-        <a href="#" target="_blank" class="buy-btn">Оплатить онлайн</a>
+        <button class="buy-btn" onclick="openModal('ПЕРЕХОД: Оптимальный (16 занятий)', 7840)">Оплатить онлайн</button>
     </div>
 
     <div class="glass-card">
@@ -99,13 +142,147 @@
         <div class="price-title">ЛЕГКИЙ СТАРТ (8 занятий)</div>
         <div class="price-value">4 200 ₽</div>
         <div class="desc">Отличный выбор, чтобы познакомиться со студией и найти свое направление.</div>
-        <a href="#" target="_blank" class="buy-btn">Оплатить онлайн</a>
+        <button class="buy-btn" onclick="openModal('ПЕРЕХОД: Легкий старт (8 занятий)', 4200)">Оплатить онлайн</button>
     </div>
 
     <a href="https://vk.com/resurs_syktyvkar" target="_blank" class="btn-outline">Оформить в рассрочку или задать вопрос</a>
-    
     <a href="index.html" class="back-link">← Вернуться на главную страницу</a>
 </div>
+
+<div class="modal" id="orderModal">
+    <div class="modal-content">
+        <div class="modal-close" onclick="closeModal()">&times;</div>
+        <h2 id="modalTitle">Оформление</h2>
+        <p id="modalSubtitle">Программа</p>
+        
+        <form id="tgForm">
+            <input type="hidden" id="selectedPackage" value="">
+            <input type="hidden" id="selectedPrice" value=""> 
+            
+            <input type="text" id="userName" placeholder="ВАШЕ ИМЯ" required>
+            <input type="tel" id="userPhone" placeholder="+7 (___) ___-__-__" required>
+            
+            <div style="margin-bottom: 30px; display: flex; align-items: flex-start; gap: 10px; text-align: left;">
+                <input type="checkbox" id="offerAgree" required style="width: 18px; height: 18px; margin-top: 2px; accent-color: var(--accent-gold); cursor: pointer;">
+                <label for="offerAgree" style="font-size: 11px; opacity: 0.6; line-height: 1.4; cursor: pointer;">
+                    Я принимаю условия <a href="offer.html" target="_blank" style="color: var(--accent-gold); text-decoration: underline;">Договора оферты</a> 
+                    и даю согласие на обработку <a href="consent.html" target="_blank" style="color: var(--accent-gold); text-decoration: underline;">персональных данных</a>.
+                </label>
+            </div>
+
+            <button type="submit" class="buy-btn" style="width: 100%; padding: 18px; font-size: 14px;" id="submitBtn">Перейти к оплате</button>
+        </form>
+        
+        <div id="payment-form" style="margin-top: 20px;"></div>
+    </div>
+</div>
+
+<script src="https://unpkg.com/imask"></script>
+
+<script>
+    const CLOUD_URL = "https://functions.yandexcloud.net/d4el388cufj9g6egpam3"; // Ваша функция Yandex Cloud для чеков ЮKassa
+
+    // 1. АКТИВИРУЕМ МАСКУ ДЛЯ ТЕЛЕФОНА
+    const phoneElement = document.getElementById('userPhone');
+    const maskOptions = {
+        mask: '+{7} (000) 000-00-00',
+        lazy: false
+    };
+    const phoneMask = IMask(phoneElement, maskOptions);
+
+    // 2. ЛОГИКА ОТКРЫТИЯ ОКНА
+    function openModal(packageName, price) {
+        document.getElementById('orderModal').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        
+        document.getElementById('tgForm').style.display = 'block';
+        document.getElementById('payment-form').innerHTML = '';
+        
+        document.getElementById('modalTitle').innerText = 'Оформление';
+        document.getElementById('selectedPackage').value = packageName;
+        document.getElementById('selectedPrice').value = price;
+        document.getElementById('modalSubtitle').innerText = packageName;
+        document.getElementById('submitBtn').innerText = 'Оплатить • ' + price + '₽';
+        document.getElementById('submitBtn').disabled = false;
+        
+        phoneMask.value = ''; 
+    }
+
+    function closeModal() {
+        document.getElementById('orderModal').style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    // Закрытие по клику вне окна
+    window.onclick = function(event) {
+        if (event.target == document.getElementById('orderModal')) closeModal();
+    }
+
+    // 3. ОТПРАВКА ДАННЫХ И ВЫЗОВ ЮКАССЫ
+    document.getElementById('tgForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        if (phoneMask.unmaskedValue.length !== 11) {
+            alert('Пожалуйста, введите номер телефона полностью.');
+            return;
+        }
+        
+        const btn = document.getElementById('submitBtn');
+        btn.innerText = 'СВЯЗЬ С БАНКОМ...';
+        btn.disabled = true;
+
+        const name = document.getElementById('userName').value;
+        const phone = phoneMask.unmaskedValue; 
+        const packageType = document.getElementById('selectedPackage').value;
+        const price = document.getElementById('selectedPrice').value;
+
+        try {
+            const response = await fetch(CLOUD_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    amount: price,
+                    name: name,
+                    phone: phone,
+                    description: packageType
+                })
+            });
+
+            if (!response.ok) throw new Error('Облако вернуло ошибку');
+            
+            const data = await response.json();
+
+            if (data.confirmation_token) {
+                // Скрываем форму контактов, показываем форму ЮKassa
+                document.getElementById('tgForm').style.display = 'none';
+                document.getElementById('modalTitle').innerText = 'Оплата';
+                document.getElementById('modalSubtitle').innerText = 'Безопасный платеж через ЮKassa';
+                
+                const checkout = new window.YooMoneyCheckoutWidget({
+                    confirmation_token: data.confirmation_token,
+                    return_url: 'https://lady-stretch.github.io/thanks.html', 
+                    customization: {
+                        modal: false, 
+                        width: '100%' 
+                    },
+                    error_callback: (error) => { 
+                        alert('Ошибка виджета оплаты.');
+                        console.error(error); 
+                    }
+                });
+
+                checkout.render('payment-form');
+            } else {
+                throw new Error('Токен не получен');
+            }
+        } catch (error) {
+            console.error('Детали ошибки:', error);
+            alert('Не удалось связаться с банком. Убедитесь, что Облако активно.');
+            btn.disabled = false;
+            btn.innerText = 'Попробовать снова';
+        }
+    });
+</script>
 
 </body>
 </html>
