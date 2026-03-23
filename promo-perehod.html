@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Акция ПЕРЕХОД | РЕСУРС</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Manrope:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #080814; 
+            --accent-gold: #C5A059; 
+            --text-main: #F4F4F9;
+            --font-main: 'Manrope', sans-serif;
+            --font-serif: 'Cormorant Garamond', serif;
+        }
+        body { 
+            background: var(--bg-deep); 
+            color: var(--text-main);
+            font-family: var(--font-main); 
+            margin: 0; padding: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+        }
+        .container { max-width: 800px; margin: 0 auto; padding: 60px 20px; text-align: center; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 25px;
+            text-align: left;
+            transition: 0.3s;
+            position: relative;
+        }
+        .glass-card:hover { border-color: var(--accent-gold); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(197, 160, 89, 0.1); }
+        h1 { font-family: var(--font-serif); font-size: 48px; color: var(--accent-gold); margin-bottom: 10px; }
+        .subtitle { opacity: 0.7; font-size: 18px; margin-bottom: 50px; }
+        .price-title { font-family: var(--font-serif); font-size: 24px; color: var(--accent-gold); margin-bottom: 10px; }
+        .price-value { font-size: 32px; font-weight: 600; margin-bottom: 10px; }
+        .discount { display: inline-block; background: rgba(197, 160, 89, 0.2); color: var(--accent-gold); padding: 5px 10px; border-radius: 6px; font-size: 12px; font-weight: bold; margin-bottom: 15px; }
+        .desc { font-size: 14px; opacity: 0.6; margin-bottom: 25px; }
+        
+        /* Кнопка оплаты внутри карточки */
+        .buy-btn {
+            display: inline-block; padding: 12px 30px;
+            background: var(--accent-gold); color: #000; text-decoration: none;
+            border-radius: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
+            transition: 0.3s; cursor: pointer; font-size: 12px;
+        }
+        .buy-btn:hover { background: #dfb86e; box-shadow: 0 4px 15px rgba(197, 160, 89, 0.4); }
+
+        .btn-outline {
+            display: inline-block; padding: 18px 45px; margin-top: 40px;
+            background: transparent; color: var(--accent-gold); text-decoration: none;
+            border: 1px solid var(--accent-gold);
+            border-radius: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px;
+            transition: 0.3s; cursor: pointer;
+        }
+        .btn-outline:hover { background: rgba(197, 160, 89, 0.1); transform: scale(1.02); }
+        .back-link { display: block; margin-top: 30px; color: var(--accent-gold); text-decoration: none; opacity: 0.7; font-size: 14px; }
+        .back-link:hover { opacity: 1; text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div style="font-size: 12px; letter-spacing: 5px; text-transform: uppercase; opacity: 0.5; margin-bottom: 20px;">Закрытое предложение</div>
+    <h1>Акция ПЕРЕХОД</h1>
+    <p class="subtitle">Инвестируйте в свое тело выгодно. Предложение действует только до 25.03.2026г.</p>
+
+    <div class="glass-card" style="border-color: var(--accent-gold); box-shadow: 0 0 20px rgba(197, 160, 89, 0.2);">
+        <div class="discount">СКИДКА 40% — ХИТ ПРОДАЖ</div>
+        <div class="price-title">ГОДОВОЙ КАПИТАЛ (64 занятия)</div>
+        <div class="price-value">26 880 ₽</div>
+        <div class="desc">Всего 420 ₽ за тренировку на целый год вперед! Полная свобода в выборе направлений.</div>
+        <a href="#" target="_blank" class="buy-btn">Оплатить онлайн</a>
+    </div>
+
+    <div class="glass-card">
+        <div class="discount">СКИДКА 35%</div>
+        <div class="price-title">МАКСИМАЛЬНЫЙ РЕЗУЛЬТАТ (32 занятия)</div>
+        <div class="price-value">14 560 ₽</div>
+        <div class="desc">Идеально для регулярных практик и достижения видимого результата.</div>
+        <a href="#" target="_blank" class="buy-btn">Оплатить онлайн</a>
+    </div>
+
+    <div class="glass-card">
+        <div class="discount">СКИДКА 30%</div>
+        <div class="price-title">ОПТИМАЛЬНЫЙ (16 занятий)</div>
+        <div class="price-value">7 840 ₽</div>
+        <div class="desc">Базовый пакет для поддержания формы и тонуса.</div>
+        <a href="#" target="_blank" class="buy-btn">Оплатить онлайн</a>
+    </div>
+
+    <div class="glass-card">
+        <div class="discount">СКИДКА 25%</div>
+        <div class="price-title">ЛЕГКИЙ СТАРТ (8 занятий)</div>
+        <div class="price-value">4 200 ₽</div>
+        <div class="desc">Отличный выбор, чтобы познакомиться со студией и найти свое направление.</div>
+        <a href="#" target="_blank" class="buy-btn">Оплатить онлайн</a>
+    </div>
+
+    <a href="https://vk.com/resurs_syktyvkar" target="_blank" class="btn-outline">Оформить в рассрочку или задать вопрос</a>
+    
+    <a href="index.html" class="back-link">← Вернуться на главную страницу</a>
+</div>
+
+</body>
+</html>
