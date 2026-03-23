@@ -781,6 +781,108 @@ header.scrolled .brand-name {
     </div> 
 </div> 
 
+<style>
+    #promo-widget {
+        position: fixed;
+        top: 110px; 
+        left: 30px;
+        width: 320px;
+        z-index: 1500;
+        padding: 25px;
+        border-radius: 20px;
+        background: rgba(10, 10, 25, 0.65);
+        backdrop-filter: blur(20px) saturate(150%);
+        -webkit-backdrop-filter: blur(20px) saturate(150%);
+        border: 1px solid rgba(197, 160, 89, 0.3);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        display: none; 
+        flex-direction: column;
+        gap: 15px;
+        animation: promoFadeIn 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .promo-close {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        cursor: pointer;
+        opacity: 0.5;
+        font-size: 18px;
+        transition: 0.3s;
+        line-height: 1;
+    }
+    .promo-close:hover { opacity: 1; color: var(--accent-gold); }
+
+    .promo-title {
+        font-family: var(--font-serif);
+        font-size: 24px;
+        color: var(--accent-gold);
+        line-height: 1.1;
+    }
+
+    .promo-text { font-size: 13px; opacity: 0.8; line-height: 1.5; }
+
+    .promo-timer-box {
+        display: flex;
+        gap: 10px;
+        margin-top: 5px;
+    }
+    .timer-item {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        padding: 8px 5px;
+        text-align: center;
+        flex: 1;
+    }
+    .timer-val { font-size: 18px; font-weight: 600; color: #fff; font-family: var(--font-main); }
+    .timer-label { font-size: 9px; text-transform: uppercase; letter-spacing: 1px; opacity: 0.5; margin-top: 2px; }
+
+    .promo-btn {
+        display: block;
+        text-align: center;
+        padding: 12px;
+        background: var(--accent-gold);
+        color: #000;
+        text-decoration: none;
+        border-radius: 8px;
+        font-size: 11px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        transition: 0.3s;
+    }
+    .promo-btn:hover { background: #dfb86e; transform: translateY(-2px); }
+
+    @keyframes promoFadeIn {
+        from { opacity: 0; transform: translateX(-30px); }
+        to { opacity: 1; transform: translateX(0); }
+    }
+
+    @media (max-width: 768px) {
+        #promo-widget {
+            top: 80px; 
+            left: 5%;
+            width: 90%;
+            padding: 20px;
+        }
+    }
+</style>
+
+<div id="promo-widget">
+    <div class="promo-close" onclick="document.getElementById('promo-widget').style.display='none'">&times;</div>
+    <div class="promo-title" id="p-title">Заголовок</div>
+    <div class="promo-text" id="p-text">Текст акции</div>
+    
+    <div class="promo-timer-box" id="p-timer-box">
+        <div class="timer-item"><div class="timer-val" id="t-days">00</div><div class="timer-label">Дней</div></div>
+        <div class="timer-item"><div class="timer-val" id="t-hours">00</div><div class="timer-label">Часов</div></div>
+        <div class="timer-item"><div class="timer-val" id="t-mins">00</div><div class="timer-label">Минут</div></div>
+        <div class="timer-item"><div class="timer-val" id="t-secs">00</div><div class="timer-label">Секунд</div></div>
+    </div>
+
+    <a href="#" class="promo-btn" id="p-btn">Кнопка</a>
+</div>
 <div id="ls-ai-widget">
     <style>
         #ls-ai-button {
@@ -814,20 +916,22 @@ header.scrolled .brand-name {
 
     <button id="ls-ai-button" onclick="toggleChat()">✨</button>
 
-    <div id="ls-ai-chat"> <div style="background: rgba(197, 160, 89, 0.1); padding: 20px; border-bottom: 1px solid rgba(197, 160, 89, 0.2); display: flex; justify-content: space-between; align-items: center;">
-        <span class="serif" style="color: var(--accent-gold); letter-spacing: 1px; font-size: 14px;">RESOURCE AI</span>
-        <span onclick="toggleChat()" style="cursor: pointer; opacity: 0.5; font-size: 20px; line-height: 1;">&times;</span>
-    </div>
+    <div id="ls-ai-chat"> 
+        <div style="background: rgba(197, 160, 89, 0.1); padding: 20px; border-bottom: 1px solid rgba(197, 160, 89, 0.2); display: flex; justify-content: space-between; align-items: center;">
+            <span class="serif" style="color: var(--accent-gold); letter-spacing: 1px; font-size: 14px;">RESOURCE AI</span>
+            <span onclick="toggleChat()" style="cursor: pointer; opacity: 0.5; font-size: 20px; line-height: 1;">&times;</span>
+        </div>
 
-    <div id="ls-ai-messages" class="chat-messages" style="flex: 1; overflow-y: auto; display: flex; flex-direction: column;">
-        <div class="msg msg-assistant">Привет! Я ваш проводник в мире «Ресурса». Чем могу помочь? ✨</div>
-    </div>
+        <div id="ls-ai-messages" class="chat-messages" style="flex: 1; overflow-y: auto; display: flex; flex-direction: column;">
+            <div class="msg msg-assistant">Привет! Я ваш проводник в мире «Ресурса». Чем могу помочь? ✨</div>
+        </div>
 
-    <div class="chat-input-area">
-        <input type="text" id="ls-ai-input" class="chat-input" placeholder="Ваш вопрос...">
-        <button onclick="sendMessage()" style="background: var(--accent-gold); border: none; width: 45px; height: 45px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: white; font-size: 18px;">
-            ➤
-        </button>
+        <div class="chat-input-area">
+            <input type="text" id="ls-ai-input" class="chat-input" placeholder="Ваш вопрос..." style="flex-grow: 1; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 10px 15px; color: white; font-size: 16px; outline: none; margin-right: 10px;">
+            <button onclick="sendMessage()" style="background: var(--accent-gold); border: none; width: 45px; height: 45px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: white; font-size: 18px;">
+                ➤
+            </button>
+        </div>
     </div>
 </div>
 
@@ -876,21 +980,117 @@ header.scrolled .brand-name {
         finally { submitBtn.innerText = "Запросить доступ • 455₽"; submitBtn.disabled = false; }
     });
 
-   // 4. ИИ Чат
+    // === ЛОГИКА PROMO WIDGET ===
+    const promoConfig = {
+        endDate: "2026-03-25T23:59:59", 
+        title: "Акция ПЕРЕХОД",
+        text: "Скидка до 40% на годовой абонемент 64 занятия. Только до 25.03.2026.",
+        btnText: "Забрать скидку",
+        btnLink: "promo-perehod.html", // <--- ИЗМЕНИЛИ ССЫЛКУ СЮДА
+        showFallback: true, 
+        fallbackTitle: "Тело как опора",
+        fallbackText: "Инвестируйте 50 минут в себя. Коврики в студии уже ждут вас сегодня. ✨"
+    };
+
+    let promoTimerInterval;
+
+    function initPromo() {
+        const widget = document.getElementById('promo-widget');
+        const end = new Date(promoConfig.endDate).getTime();
+        const now = new Date().getTime();
+
+        if (end > now) {
+            document.getElementById('p-title').innerText = promoConfig.title;
+            document.getElementById('p-text').innerText = promoConfig.text;
+            document.getElementById('p-btn').innerText = promoConfig.btnText;
+            document.getElementById('p-btn').href = promoConfig.btnLink;
+            
+            widget.style.display = 'flex';
+            updatePromoTimer(end);
+            promoTimerInterval = setInterval(() => updatePromoTimer(end), 1000);
+        } else {
+            if (promoConfig.showFallback) {
+                document.getElementById('p-title').innerText = promoConfig.fallbackTitle;
+                document.getElementById('p-text').innerText = promoConfig.fallbackText;
+                document.getElementById('p-timer-box').style.display = 'none';
+                document.getElementById('p-btn').style.display = 'none';
+                widget.style.display = 'flex';
+            } else {
+                widget.style.display = 'none';
+            }
+        }
+    }
+
+    function updatePromoTimer(endTime) {
+        const now = new Date().getTime();
+        const distance = endTime - now;
+
+        if (distance < 0) {
+            clearInterval(promoTimerInterval);
+            initPromo(); 
+            return;
+        }
+
+        const d = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById('t-days').innerText = d < 10 ? '0' + d : d;
+        document.getElementById('t-hours').innerText = h < 10 ? '0' + h : h;
+        document.getElementById('t-mins').innerText = m < 10 ? '0' + m : m;
+        document.getElementById('t-secs').innerText = s < 10 ? '0' + s : s;
+    }
+
+    // 4. ИИ Чат (Оптимизированный с памятью и кнопками)
     const API_URL = 'https://d5d8t5f83og17j8u7ue7.y5sm01em.apigw.yandexcloud.net/ask';
     
-    // Создаем "память" виджета
-    let chatHistory = [];
+    // Загружаем память из сессии браузера
+    let chatHistory = JSON.parse(sessionStorage.getItem('resurs_chat_history')) || [];
 
-    // Функция, которая находит ссылки в тексте и делает их кликабельными
-    function makeLinksClickable(text) {
-        const urlRegex = /(https?:\/\/[^\s]+)/g;
-        return text.replace(urlRegex, function(url) {
-            const cleanUrl = url.replace(/[.,!?;)]$/, ''); // Убираем точки и запятые на конце
-            return `<a href="${cleanUrl}" target="_blank" style="color: var(--accent-gold); text-decoration: underline; font-weight: bold;">${cleanUrl}</a>`;
+    // Функция для парсинга кнопок из ответа YandexGPT
+    function parseButtons(text) {
+        const buttonRegex = /\[BUTTON:(.*?)\|(.*?)\]/g;
+        return text.replace(buttonRegex, function(match, btnText, btnLink) {
+            return `
+                <div style="margin-top: 15px; margin-bottom: 5px; text-align: left;">
+                    <a href="${btnLink.trim()}" target="_blank" style="
+                        display: inline-block;
+                        padding: 12px 24px;
+                        background: var(--accent-gold);
+                        color: #000; 
+                        text-decoration: none;
+                        border-radius: 8px;
+                        font-family: var(--font-main);
+                        font-weight: 600;
+                        font-size: 13px;
+                        letter-spacing: 1px;
+                        text-transform: uppercase;
+                        box-shadow: 0 4px 15px rgba(197, 160, 89, 0.4);
+                        transition: all 0.3s ease;
+                        border: none;
+                        cursor: pointer;
+                    " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(197, 160, 89, 0.6)';" 
+                       onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(197, 160, 89, 0.4)';">
+                        ${btnText.trim()}
+                    </a>
+                </div>
+            `;
         });
     }
-    
+
+    window.addEventListener('DOMContentLoaded', () => {
+        initPromo(); // Запуск виджета акции
+
+        if (chatHistory.length > 0) {
+            document.getElementById('ls-ai-messages').innerHTML = '<div class="msg msg-assistant">Привет! Я ваш проводник в мире «Ресурса». Чем могу помочь? ✨</div>';
+            chatHistory.forEach(msg => {
+                const type = msg.role === 'user' ? 'user' : 'assistant';
+                renderMsg(msg.text, type);
+            });
+        }
+    });
+
     function toggleChat() {
         document.getElementById('ls-ai-chat').classList.toggle('chat-active');
         if (document.getElementById('ls-ai-chat').classList.contains('chat-active')) {
@@ -898,26 +1098,40 @@ header.scrolled .brand-name {
         }
     }
 
+    function renderMsg(text, type, id = null) {
+        const div = document.createElement('div');
+        div.className = `msg msg-${type}`;
+        if(id) div.id = id;
+        
+        if (type === 'user') {
+            div.textContent = text; 
+        } else {
+            div.innerHTML = parseButtons(text);
+        }
+        
+        const container = document.getElementById('ls-ai-messages');
+        container.appendChild(div);
+        container.scrollTop = container.scrollHeight;
+    }
+
     async function sendMessage() {
         const input = document.getElementById('ls-ai-input');
-        const container = document.getElementById('ls-ai-messages');
         const text = input.value.trim();
         if (!text) return;
 
-        // Выводим текст клиента и добавляем в историю
-        addMsg(text, 'user');
+        renderMsg(text, 'user');
         chatHistory.push({ role: 'user', text: text });
+        sessionStorage.setItem('resurs_chat_history', JSON.stringify(chatHistory));
         
         input.value = "";
 
         const loaderId = 'loader-' + Date.now();
-        addMsg('Сверяюсь с ресурсом...', 'assistant', loaderId);
+        renderMsg('Сверяюсь с ресурсом...', 'assistant', loaderId);
 
         try {
             const res = await fetch(API_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                // ОТПРАВЛЯЕМ ИСТОРИЮ (МАССИВ), А НЕ ПРОСТО ТЕКСТ!
                 body: JSON.stringify({ messages: chatHistory }) 
             });
             const data = await res.json();
@@ -926,31 +1140,14 @@ header.scrolled .brand-name {
             
             const answerText = data.answer || "Извините, не удалось получить ответ. Напишите нам в ВК.";
             
-            // Сохраняем ответ Веры в историю и выводим на экран
             chatHistory.push({ role: 'assistant', text: answerText });
-            addMsg(answerText, 'assistant');
+            sessionStorage.setItem('resurs_chat_history', JSON.stringify(chatHistory));
+            renderMsg(answerText, 'assistant');
             
         } catch (e) { 
             const loader = document.getElementById(loaderId);
             if (loader) loader.innerHTML = "Ошибка связи. <a href='https://clck.ru/3S5nRj' style='color: var(--accent-gold);'>Напишите нам в ВК!</a>"; 
         }
-    }
-
-    function addMsg(text, type, id = null) {
-        const div = document.createElement('div');
-        div.className = `msg msg-${type}`;
-        if(id) div.id = id;
-        
-        if (type === 'user') {
-            div.textContent = text; // Сообщения клиента выводим просто как текст
-        } else {
-            // Сообщения Веры прогоняем через поиск ссылок и вставляем как HTML
-            div.innerHTML = makeLinksClickable(text);
-        }
-        
-        const container = document.getElementById('ls-ai-messages');
-        container.appendChild(div);
-        container.scrollTop = container.scrollHeight;
     }
 
     document.getElementById('ls-ai-input').onkeypress = (e) => { if(e.key === 'Enter') sendMessage(); };
