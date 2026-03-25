@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>РЕСУРС | Курс Детокс</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Manrope:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        :root {
+            --bg-deep: #080814; 
+            --glass-bg: rgba(255, 255, 255, 0.03); 
+            --glass-border: 1px solid rgba(197, 160, 89, 0.2); 
+            --accent-gold: #C5A059; 
+            --text-main: #F4F4F9;
+            --text-dim: rgba(244, 244, 249, 0.6);
+            --font-main: 'Manrope', sans-serif;
+            --font-serif: 'Cormorant Garamond', serif;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+        
+        body { 
+            background: var(--bg-deep); 
+            color: var(--text-main);
+            font-family: var(--font-main); 
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+        }
+
+        #app-container {
+            width: 100%;
+            max-width: 600px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        header {
+            padding: 25px 20px 15px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            background: rgba(8, 8, 20, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky; top: 0; z-index: 50;
+        }
+
+        header h1 {
+            font-family: var(--font-serif);
+            font-size: 24px;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+        }
+
+        .screen {
+            padding: 25px 20px 100px; /* Отступ снизу для навигации */
+            flex-grow: 1; 
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        .screen.active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        h2 { font-family: var(--font-serif); font-size: 28px; font-weight: 300; color: var(--accent-gold); margin-bottom: 20px; }
+        h3 { font-family: var(--font-serif); font-size: 20px; font-weight: 400; color: #fff; margin: 25px 0 15px; border-bottom: 1px solid rgba(197, 160, 89, 0.2); padding-bottom: 8px; }
+        p { margin-bottom: 15px; font-size: 14px; opacity: 0.8; }
+        ul { padding-left: 20px; margin-bottom: 20px; font-size: 14px; opacity: 0.8; }
+        li { margin-bottom: 8px; }
+
+        /* --- МЕНЮ ДНЕЙ --- */
+        #detox-menu { display: flex; flex-direction: column; gap: 15px; }
+        
+        .menu-item {
+            background: var(--glass-bg);
+            border: var(--glass-border);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: left;
+            cursor: pointer;
+            transition: var(--transition);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .menu-item:hover { background: rgba(197, 160, 89, 0.05); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+        .menu-item h3 { border: none; margin: 0 0 5px 0; padding: 0; color: var(--accent-gold); }
+        .menu-item p { margin: 0; opacity: 0.5; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
+
+        .future-course { opacity: 0.5; border: 1px dashed rgba(255,255,255,0.2); pointer-events: none; }
+        .future-course h3 { color: #fff; }
+
+        /* --- КНОПКИ --- */
+        .btn-lens {
+            display: block; width: 100%; text-align: center;
+            padding: 18px; border-radius: 12px;
+            background: rgba(197, 160, 89, 0.1);
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold);
+            font-family: var(--font-main); font-size: 12px; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 2px;
+            cursor: pointer; transition: var(--transition);
+            margin-top: 20px;
+        }
+        .btn-lens:hover { background: var(--accent-gold); color: #000; }
+        .btn-lens:disabled { opacity: 0.3; cursor: not-allowed; border-color: rgba(255,255,255,0.2); color: #fff; background: transparent; }
+
+        /* --- ФОРМЫ И ГРАФИКИ --- */
+        label { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; opacity: 0.6; margin-bottom: 8px; margin-top: 15px; }
+        input {
+            width: 100%; padding: 15px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px; color: #fff; font-size: 16px;
+            font-family: var(--font-main); outline: none; transition: 0.3s;
+        }
+        input:focus { border-color: var(--accent-gold); }
+
+        .chart-container { background: var(--glass-bg); border: var(--glass-border); border-radius: 16px; padding: 20px; margin: 20px 0; height: 300px; }
+        
+        .history-item {
+            background: rgba(255,255,255,0.02); border-left: 3px solid var(--accent-gold);
+            padding: 15px; margin-bottom: 10px; border-radius: 8px; font-size: 13px;
+            display: flex; flex-direction: column; gap: 5px;
+        }
+        .history-item strong { color: var(--accent-gold); font-weight: 400; font-family: var(--font-serif); font-size: 16px; }
+
+        /* --- ПРОГРЕСС И МОТИВАЦИЯ --- */
+        #progress-bar-container { margin: 30px 0; }
+        #progress-bar-track { height: 6px; background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden; margin-bottom: 10px; }
+        #progress-bar-fill { height: 100%; width: 0%; background: var(--accent-gold); transition: width 1s ease-out; }
+        .completed-day-item { font-size: 13px; opacity: 0.7; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+
+        /* --- МИНИ-ИГРА --- */
+        #game-area { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
+        .game-choice-button {
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+            color: #fff; padding: 15px; border-radius: 12px; cursor: pointer; transition: 0.3s;
+            font-family: var(--font-main); font-size: 13px;
+        }
+        .game-choice-button:hover { border-color: var(--accent-gold); }
+        .tip-box { padding: 15px; border-radius: 12px; margin-top: 15px; font-size: 13px; text-align: center; }
+        .hidden { display: none !important; }
+
+        /* --- ФОТО-ЗАГЛУШКИ ДЛЯ КОНТЕНТА --- */
+        .content-photo { width: 100%; height: 200px; object-fit: cover; border-radius: 16px; border: var(--glass-border); margin-bottom: 20px; opacity: 0.8; background: #111; }
+
+        /* --- НИЖНЯЯ НАВИГАЦИЯ --- */
+        #footer-nav {
+            display: flex; justify-content: space-around; padding: 15px 10px;
+            background: rgba(8, 8, 20, 0.95); backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            position: fixed; bottom: 0; width: 100%; max-width: 600px; z-index: 100;
+        }
+        .nav-button {
+            background: none; border: none; color: rgba(255,255,255,0.4);
+            font-family: var(--font-main); font-size: 10px; text-transform: uppercase; letter-spacing: 2px;
+            cursor: pointer; transition: var(--transition); flex-grow: 1; padding: 10px 0;
+        }
+        .nav-button.active { color: var(--accent-gold); font-weight: 600; }
+    </style>
+</head>
+<body oncontextmenu="return false;">
+
+    <div id="app-container">
+        
+        <header>
+            <h1>РЕСУРС</h1>
+        </header>
+
+        <section id="screen-detox" class="screen active">
+            <h2>Детокс: Мягкое очищение</h2>
+            <p style="margin-bottom: 30px;">Программа восстановления метаболизма, очищения рецепторов и избавления от отеков.</p>
+            
+            <div id="detox-menu">
+                <button class="menu-item" data-day="0">
+                    <h3>1. База: Продукты</h3>
+                    <p>Список покупок и правила</p>
+                </button>
+                <button class="menu-item" data-day="recipes">
+                    <h3>2. Книга рецептов</h3>
+                    <p>Смузи, супы и десерты</p>
+                </button>
+                <button class="menu-item" data-day="1"><h3>3. День 1</h3><p>Начало очищения</p></button>
+                <button class="menu-item" data-day="2"><h3>4. День 2</h3><p>Глубокое очищение</p></button>
+                <button class="menu-item" data-day="3"><h3>5. День 3</h3><p>Клеточное обновление</p></button>
+                <button class="menu-item" data-day="4"><h3>6. День 4</h3><p>План питания</p></button>
+                <button class="menu-item" data-day="5"><h3>7. День 5</h3><p>План питания</p></button>
+                <button class="menu-item" data-day="6"><h3>8. День 6</h3><p>План питания</p></button>
+                <button class="menu-item" data-day="7"><h3>9. День 7</h3><p>Мягкий выход</p></button>
+                
+                <button class="menu-item future-course">
+                    <h3>Курс Стройность</h3>
+                    <p>Скоро в экосистеме Ресурса</p>
+                </button>
+            </div>
+        </section>
+
+        <section id="screen-day-detail" class="screen">
+            <h2 id="day-detail-title">Меню на День</h2>
+            <div id="day-content"></div>
+            <button class="btn-lens back-button">← Вернуться к программе</button>
+        </section>
+
+        <section id="screen-results" class="screen">
+            <h2>Твоя динамика</h2>
+            <p>Фиксируй замеры до и после курса, чтобы увидеть реальный результат.</p>
+
+            <div class="glass-container" style="background: var(--glass-bg); padding: 20px; border-radius: 16px; border: var(--glass-border); margin-bottom: 30px;">
+                <form id="results-form">
+                    <label>Дата замера</label>
+                    <input type="date" id="result-date" required>
+                    
+                    <label>Вес (кг)</label>
+                    <input type="number" step="0.1" id="result-weight" placeholder="Например, 62.5" required>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <div>
+                            <label>Талия (см)</label>
+                            <input type="number" step="1" id="result-waist" placeholder="68">
+                        </div>
+                        <div>
+                            <label>Бедра (см)</label>
+                            <input type="number" step="1" id="result-hips" placeholder="95">
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn-lens">Сохранить данные</button>
+                </form>
+            </div>
+
+            <h3>График изменений</h3>
+            <div class="chart-container">
+                <canvas id="results-chart"></canvas>
+            </div>
+
+            <h3>История</h3>
+            <div id="results-history"></div>
+        </section>
+
+        <section id="screen-motivation" class="screen">
+            <h2>Прогресс и Фокус</h2>
+            
+            <div id="progress-bar-container">
+                <h3>Дневник Детокса</h3>
+                <div id="progress-bar-track">
+                    <div id="progress-bar-fill"></div>
+                </div>
+                <p id="progress-text" style="font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Пройдено: 0 из 7 дней</p>
+            </div>
+
+            <button id="complete-day-button" class="btn-lens">Отметить день как пройденный</button>
+            <div id="day-completion-history" style="margin-top: 20px;"></div>
+
+            <hr style="border-color: rgba(255,255,255,0.05); margin: 40px 0;">
+            
+            <h3>🧠 Интеллект Ресурса</h3>
+            <p>Закрепим знания. Какой из продуктов поддерживает очищение?</p>
+            <div id="game-area"></div>
+            <p id="game-message" class="tip-box hidden"></p>
+
+            <hr style="border-color: rgba(255,255,255,0.05); margin: 40px 0;">
+
+            <h3>Правила программы</h3>
+            <ul>
+                <li><strong>Вода:</strong> 2–3 литра чистой воды (теплой) в день. Утром натощак — обязательно стакан.</li>
+                <li><strong>Исключить:</strong> Сахар, молочные продукты, глютен, алкоголь, жареное.</li>
+                <li><strong>Белок:</strong> Со 2 по 6 день животный белок не более 1 раза в день. День 3 и 7 — полностью растительные.</li>
+                <li><strong>Сон:</strong> Восстановление идет во сне. Отбой строго до 23:00 (идеально в 22:00).</li>
+            </ul>
+        </section>
+
+        <nav id="footer-nav">
+            <button data-target="screen-detox" class="nav-button active">Программа</button>
+            <button data-target="screen-results" class="nav-button">Замеры</button>
+            <button data-target="screen-motivation" class="nav-button">Прогресс</button>
+        </nav>
+
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        // --- БАЗА ДАННЫХ (Контент пользователя) ---
+        const DETOX_DAYS_CONTENT = {
+            "0": {
+                title: "Список Продуктов",
+                photoUrl: "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&q=80", 
+                description: `
+                    <p>Покупайте только те продукты, которые любите и можете себе позволить. Важные выделены.</p>
+                    <h3>ОВОЩИ:</h3>
+                    <ul>
+                        <li>Морковь, тыква, помидор, огурец, сельдерей, шпинат, листья салата.</li>
+                        <li>Любая зелень (петрушка, укроп, руккола, кинза)</li>
+                        <li>Бобовые (фасоль, нут, чечевица красная)</li>
+                        <li>Лук, стручковая фасоль, кабачок, капуста, авокадо.</li>
+                        <li>Домашняя консервация (БЕЗ сахара и уксуса), квашеная капуста.</li>
+                    </ul>
+                    <h3>ФРУКТЫ И ЯГОДЫ:</h3>
+                    <ul>
+                        <li>Груша, яблоко, мандарин, лимон, грейпфрут, ананас, киви.</li>
+                        <li>Свежие ягоды или сухофрукты (кроме фиников, выбирайте самые невзрачные на вид сухофрукты - они натуральнее).</li>
+                    </ul>
+                    <h3>КРУПЫ:</h3>
+                    <ul>
+                        <li>Гречневая, кукурузная, перловая.</li>
+                        <li>Бурый/красный рис.</li>
+                        <li><strong>КИНОА</strong> (очень рекомендуем).</li>
+                    </ul>
+                    <h3>МАСЛА:</h3>
+                    <p>Только нерафинированные: оливковое, тыквенное, кунжутное, льняное.</p>
+                    <h3>БЕЛОК (ДЛЯ 2-6 ДНЯ):</h3>
+                    <ul>
+                        <li>Птица: филе индейки.</li>
+                        <li>Нежирная рыба (треска, минтай, горбуша, кета, тунец).</li>
+                        <li>Морепродукты (в собственном соку, не в масле).</li>
+                    </ul>
+                    <h3>НАПИТКИ:</h3>
+                    <ul>
+                        <li>Цикорий, Иван-чай, Травяные сборы.</li>
+                        <li>Матча, <strong>Кокосовое молоко</strong>.</li>
+                    </ul>
+                `
+            },
+            "recipes": {
+                title: "Книга Рецептов",
+                photoUrl: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=800&q=80",
+                description: `
+                    <h3>🥤 СМУЗИ И НАПИТКИ</h3>
+                    <p><strong>Очищающий зеленый смузи:</strong> 1 стебель сельдерея, пучок шпината, 1 зеленое яблоко, 150мл воды. Взбить в блендере.</p>
+                    <p><strong>Зеленый микс с сельдереем:</strong> 2 стебля сельдерея, 1 огурец, лимонный сок, 50мл воды.</p>
+
+                    <h3>🥣 ЗАВТРАКИ</h3>
+                    <p><strong>Льняная каша:</strong> 3 ст.л. семян льна (замочить на ночь), утром взбить блендером с горстью ягод и 2-3 вымоченными орехами.</p>
+                    <p><strong>Гречневый пудинг:</strong> Отварную гречку взбить в блендере с 50мл кокосового молока и половиной спелого банана.</p>
+
+                    <h3>🥘 СУПЫ И ОБЕДЫ</h3>
+                    <p><strong>Чечевичный суп-пюре:</strong> Красную чечевицу варить с морковью и луком 20 мин. Добавить куркуму, соль, взбить блендером.</p>
+                    <p><strong>Суп с сельдереем и шпинатом:</strong> Корень сельдерея отварить, за 2 мин до готовности добавить шпинат. Взбить с каплей оливкового масла.</p>
+                    <p><strong>Киноа с овощами:</strong> Киноа отварить. Овощи припустить на воде с каплей масла, смешать.</p>
+
+                    <h3>🥗 ПЕРЕКУСЫ</h3>
+                    <p><strong>Салат «Детокс»:</strong> Руккола, огурец, авокадо, семена. Заправка: оливковое масло + сок лимона.</p>
+                    <p><strong>Нутовое пюре (Хумус):</strong> Отварной нут взбить с кунжутной пастой, лимоном и чесноком.</p>
+
+                    <h3>🍤 УЖИНЫ</h3>
+                    <p><strong>Рыба по-азиатски:</strong> Филе кеты на пару, полить смесью из капли соевого соуса, тертого имбиря и кунжутного масла.</p>
+                    <p><strong>Овощное спагетти с креветками:</strong> Кабачок натереть длинной стружкой, припустить 2 мин. Добавить обжаренные с чесноком креветки (без масла).</p>
+
+                    <h3>🍰 ДЕСЕРТЫ</h3>
+                    <p><strong>Десерт из авокадо:</strong> Половину авокадо взбить с 1 ч.л. какао и каплей сиропа топинамбура.</p>
+                    <p><strong>Запеченное яблоко:</strong> Из яблока вынуть сердцевину, вложить грецкий орех, запекать 15 мин при 180°C.</p>
+                `
+            },
+            "1": { title: "День 1: Начало Очищения", photoUrl: "", description: `<h3>Первый завтрак (на выбор):</h3><ul><li>Фруктовое ассорти</li><li>Льняная каша с ягодами</li><li>Гречневый пудинг</li></ul><h3>Второй завтрак:</h3><ul><li>Любой смузи из Книги Рецептов</li></ul><h3>Обед:</h3><ul><li>Белая или красная рыба + рис + овощи (При аллергии - индейка)</li></ul><h3>Перекусы:</h3><ul><li>Салат «Детокс» или Запеченное яблоко</li><li>Суп-пюре (сельдерей/шпинат)</li></ul><h3>Ужин:</h3><ul><li>Индейка + овощи + зелень</li><li>Салат с кальмарами</li></ul>` },
+            "2": { title: "День 2: Глубокое Очищение", photoUrl: "", description: `<h3>Первый завтрак:</h3><ul><li>Зеленый смузи или Фруктовое ассорти</li></ul><h3>Второй завтрак:</h3><ul><li>Омлет из 2 яиц + овощи (БЕЗ молока!)</li><li>Гречневый пудинг</li></ul><h3>Обед:</h3><ul><li>Чечевичный суп-пюре</li><li>Овощное рагу + 1 ст.л. масла</li></ul><h3>Перекусы:</h3><ul><li>Груша + апельсин</li><li>Десерт из авокадо</li></ul><h3>Ужин:</h3><ul><li>Филе индейки + овощи</li><li>Овощное спагетти с креветками</li></ul>` },
+            "3": { title: "День 3: Клеточное Обновление (Веган)", photoUrl: "", description: `<p><strong>СЕГОДНЯ БЕЗ ЖИВОТНОГО БЕЛКА!</strong></p><h3>Первый завтрак:</h3><ul><li>Льняная/Гречневая каша на воде или кокосовом молоке</li></ul><h3>Второй завтрак:</h3><ul><li>Любой смузи</li></ul><h3>Обед:</h3><ul><li>Киноа + тушеные овощи</li><li>Овощное рагу</li></ul><h3>Перекусы:</h3><ul><li>Суп-пюре из брокколи</li><li>Горсть орехов (миндаль/кешью) + травяной чай</li></ul><h3>Ужин:</h3><ul><li>То же, что на обед (выбрать другой вариант)</li></ul>` },
+            "4": { title: "День 4: План Питания", photoUrl: "", description: `<h3>Первый завтрак:</h3><ul><li>Зеленый микс с сельдереем</li></ul><h3>Второй завтрак:</h3><ul><li>Омлет из 2 яиц с зеленью</li><li>Льняная каша</li></ul><h3>Обед:</h3><ul><li>Суп-пюре из шпината</li></ul><h3>Перекусы:</h3><ul><li>Сладкое яблоко + апельсин</li><li>2 хлебца + пюре из авокадо</li></ul><h3>Ужин:</h3><ul><li>Рыба по-азиатски (кета) + овощи</li><li>Фаршированная форель</li></ul>` },
+            "5": { title: "День 5: План Питания", photoUrl: "", description: `<h3>Первый завтрак:</h3><ul><li>Фруктовое ассорти</li></ul><h3>Второй завтрак:</h3><ul><li>Гречневый пудинг</li></ul><h3>Обед:</h3><ul><li>Киноа + овощное рагу</li></ul><h3>Перекусы:</h3><ul><li>Хумус + безглютеновые хлебцы</li><li>Запеченное яблоко</li></ul><h3>Ужин:</h3><ul><li>Индейка + овощи + зелень</li><li>Овощное спагетти с креветками</li></ul>` },
+            "6": { title: "День 6: План Питания", photoUrl: "", description: `<h3>Первый завтрак:</h3><ul><li>Гречка + кокосовое молоко</li></ul><h3>Второй завтрак:</h3><ul><li>Очищающий зеленый смузи</li></ul><h3>Обед:</h3><ul><li>Рыба на пару + цельный рис + овощи</li></ul><h3>Перекусы:</h3><ul><li>Салат «Мягкое очищение»</li><li>Десерт из авокадо</li></ul><h3>Ужин:</h3><ul><li>Киноа + тушеные овощи (без белка)</li><li>Чечевичный суп-пюре (без белка)</li></ul>` },
+            "7": { title: "День 7: Выход из Детокса", photoUrl: "", description: `<p><strong>СЕГОДНЯ БЕЗ ЖИВОТНОГО БЕЛКА!</strong> Тело обновилось. Плавно возвращаемся в ритм.</p><h3>Завтрак:</h3><ul><li>Смузи или Овсянка на воде с ягодами</li></ul><h3>Обед:</h3><ul><li>Овощной суп-пюре</li><li>Киноа + тушеные овощи</li></ul><h3>Ужин:</h3><ul><li>Салат из свежих овощей с маслом</li><li>Гречка + овощи</li></ul><hr><p><strong>ПРАВИЛА ПОСЛЕ КУРСА:</strong> Животный белок вводим постепенно (1 раз в день). Сладкое и мучное откладываем еще на 3-4 дня для закрепления результата.</p>` }
+        };
+
+        // --- ЛОГИКА ИНТЕРФЕЙСА ---
+        const menuItems = document.querySelectorAll('.menu-item:not(.future-course)');
+        const navButtons = document.querySelectorAll('.nav-button');
+        const backBtn = document.querySelector('.back-button');
+
+        function switchScreen(id) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            navButtons.forEach(b => b.classList.toggle('active', b.dataset.target === id));
+            if(id === 'screen-results') renderChart();
+            if(id === 'screen-motivation') { updateProgress(); initGame(); }
+            window.scrollTo(0,0);
+        }
+
+        navButtons.forEach(btn => btn.onclick = () => switchScreen(btn.dataset.target));
+        if(backBtn) backBtn.onclick = () => switchScreen('screen-detox');
+
+        menuItems.forEach(btn => {
+            btn.onclick = () => {
+                const data = DETOX_DAYS_CONTENT[btn.dataset.day];
+                if(data) {
+                    document.getElementById('day-detail-title').innerText = data.title;
+                    let html = "";
+                    if(data.photoUrl) html += `<img src="${data.photoUrl}" class="content-photo" onerror="this.style.display='none'">`;
+                    html += data.description;
+                    document.getElementById('day-content').innerHTML = html;
+                    switchScreen('screen-day-detail');
+                }
+            }
+        });
+
+        // --- ЛОГИКА ГРАФИКОВ (Замеры) ---
+        let results = JSON.parse(localStorage.getItem('resursDetoxRes')) || [];
+        const form = document.getElementById('results-form');
+        let chartInstance = null;
+
+        if(form) {
+            form.onsubmit = (e) => {
+                e.preventDefault();
+                const d = document.getElementById('result-date').value;
+                const w = document.getElementById('result-weight').value;
+                const waist = document.getElementById('result-waist').value;
+                const hips = document.getElementById('result-hips').value;
+
+                results.push({ date: d, weight: w, waist: waist||'-', hips: hips||'-' });
+                results.sort((a,b) => new Date(a.date) - new Date(b.date));
+                localStorage.setItem('resursDetoxRes', JSON.stringify(results));
+                
+                alert('Данные сохранены в вашем профиле!');
+                form.reset();
+                renderChart();
+            }
+        }
+
+        function renderChart() {
+            const ctx = document.getElementById('results-chart');
+            if(!ctx) return;
+            
+            const dates = results.map(r => new Date(r.date).toLocaleDateString());
+            const weights = results.map(r => r.weight);
+
+            if(chartInstance) chartInstance.destroy();
+
+            Chart.defaults.color = 'rgba(255,255,255,0.6)';
+            Chart.defaults.font.family = "'Manrope', sans-serif";
+
+            chartInstance = new Chart(ctx.getContext('2d'), {
+                type: 'line',
+                data: {
+                    labels: dates,
+                    datasets: [{
+                        label: 'Вес (кг)',
+                        data: weights,
+                        borderColor: '#C5A059',
+                        backgroundColor: 'rgba(197, 160, 89, 0.1)',
+                        tension: 0.3, fill: true, pointRadius: 5
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false }
+            });
+
+            const histDiv = document.getElementById('results-history');
+            if(results.length === 0) {
+                histDiv.innerHTML = '<p>Пока нет замеров.</p>';
+            } else {
+                histDiv.innerHTML = results.map(r => `
+                    <div class="history-item">
+                        <strong>${new Date(r.date).toLocaleDateString()}</strong>
+                        <span>Вес: ${r.weight} кг | Талия: ${r.waist} | Бедра: ${r.hips}</span>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // --- ЛОГИКА ПРОГРЕССА И ИГРЫ ---
+        let completed = JSON.parse(localStorage.getItem('resursDetoxProg')) || {};
+        const TOTAL = 7;
+
+        function updateProgress() {
+            const count = Object.keys(completed).length;
+            const perc = Math.round((count/TOTAL)*100);
+            
+            document.getElementById('progress-bar-fill').style.width = perc + '%';
+            document.getElementById('progress-text').innerText = `Пройдено: ${count} из ${TOTAL} дней (${perc}%)`;
+
+            const btn = document.getElementById('complete-day-button');
+            const today = new Date().toISOString().split('T')[0];
+
+            if(completed[today]) {
+                btn.innerText = "✓ Сегодня пройдено"; btn.disabled = true;
+            } else if (count >= TOTAL) {
+                btn.innerText = "🎉 Курс завершен!"; btn.disabled = true;
+            } else {
+                btn.innerText = "Отметить день как пройденный"; btn.disabled = false;
+                btn.onclick = () => {
+                    completed[today] = count + 1;
+                    localStorage.setItem('resursDetoxProg', JSON.stringify(completed));
+                    updateProgress();
+                }
+            }
+        }
+
+        // Игра
+        const products = [
+            {n:"Авокадо", h:true}, {n:"Сахар", h:false}, {n:"Шпинат", h:true}, {n:"Белый хлеб", h:false},
+            {n:"Киноа", h:true}, {n:"Молоко", h:false}, {n:"Гречка", h:true}, {n:"Жареное мясо", h:false}
+        ];
+
+        function initGame() {
+            const area = document.getElementById('game-area');
+            const msg = document.getElementById('game-message');
+            area.innerHTML = ''; msg.classList.add('hidden');
+
+            const mix = products.sort(() => 0.5 - Math.random()).slice(0,4);
+            
+            mix.forEach(p => {
+                const b = document.createElement('button');
+                b.className = 'game-choice-button';
+                b.innerText = p.n;
+                b.onclick = () => {
+                    document.querySelectorAll('.game-choice-button').forEach(btn => btn.disabled = true);
+                    msg.classList.remove('hidden');
+                    if(p.h) {
+                        b.style.background = 'rgba(76, 175, 80, 0.2)'; b.style.borderColor = '#4caf50';
+                        msg.innerHTML = `✅ Верно! ${p.n} — отличный выбор для детокса.`;
+                    } else {
+                        b.style.background = 'rgba(244, 67, 54, 0.2)'; b.style.borderColor = '#f44336';
+                        msg.innerHTML = `❌ Ошибка. ${p.n} нарушает процесс очищения.`;
+                    }
+                    setTimeout(initGame, 3000);
+                }
+                area.appendChild(b);
+            });
+        }
+    });
+    </script>
+</body>
+</html>
