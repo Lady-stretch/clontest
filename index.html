@@ -521,23 +521,31 @@ header.scrolled .brand-name {
         <span class="section-label" style="opacity: 0.8; letter-spacing: 8px; font-size: 11px; margin-bottom: 20px;">Сыктывкар</span>
         
         <style>
+  /* Общие настройки для всех устройств */
   .hero-title {
-    font-size: 42px; /* Для компьютера */
-    letter-spacing: 4px;
-    line-height: 1.3;
+    display: block;
+    text-align: center;
     text-transform: uppercase;
     font-family: var(--font-serif);
     font-weight: 300;
-    max-width: 800px;
-    margin: 0 auto 30px;
-    text-align: center;
+    margin: 0 auto 30px !important;
   }
 
+  /* Для компьютеров (начиная с 769px и выше) */
+  @media (min-width: 769px) {
+    .hero-title {
+      font-size: 42px !important;
+      letter-spacing: 4px !important;
+      line-height: 1.3 !important;
+    }
+  }
+
+  /* Для смартфонов (до 768px) */
   @media (max-width: 768px) {
     .hero-title {
-      font-size: 22px; /* Для смартфона (на 20% меньше) */
-      letter-spacing: 2px;
-      line-height: 1.2;
+      font-size: 20px !important; /* Уменьшил до 20px для заметного эффекта */
+      letter-spacing: 2px !important;
+      line-height: 1.2 !important;
     }
   }
 </style>
