@@ -1,1 +1,261 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108177329', 'ym');
 
+    ym(108177329, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/108177329" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>РЕСУРС | ОНЛАЙН-КЛУБ | Цифровое пространство практик</title>
+    <link rel="icon" type="image/png" href="logo_header_final.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Manrope:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-deep: #080814; 
+            --glass-bg: rgba(255, 255, 255, 0.02); 
+            --glass-border: 1px solid rgba(255, 255, 255, 0.08); 
+            --accent-gold: #C5A059; 
+            --text-main: #F4F4F9;
+            --font-main: 'Manrope', sans-serif;
+            --font-serif: 'Cormorant Garamond', serif;
+            --transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        /* --- GLOBAL RESET & ANDROID FIX --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
+        html { scroll-behavior: smooth; }
+        html, body {
+            overflow-x: hidden !important;
+            width: 100%;
+            position: relative;
+            background: var(--bg-deep); 
+            color: var(--text-main);
+            font-family: var(--font-main); 
+            line-height: 1.6;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+        }
+
+        h1, h2, h3, .serif { font-family: var(--font-serif); font-weight: 300; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+
+        /* --- UI COMPONENTS --- */
+        .glass { background: var(--glass-bg); backdrop-filter: blur(25px) saturate(180%); -webkit-backdrop-filter: blur(25px) saturate(180%); border: var(--glass-border); border-radius: 20px; transition: var(--transition); }
+
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 16px 35px; border: 1px solid var(--accent-gold); color: var(--accent-gold);
+            text-transform: uppercase; font-size: 10px; letter-spacing: 3px; font-weight: 600;
+            background: transparent; cursor: pointer; transition: var(--transition); border-radius: 8px;
+        }
+        .btn:hover { background: var(--accent-gold); color: #fff; transform: translateY(-2px); }
+
+        .locked-icon { font-size: 14px; color: rgba(255,255,255,0.4); margin-left: 8px; }
+
+        /* --- HEADER --- */
+        header { position: fixed; top: 0; width: 100%; padding: 20px 5%; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; z-index: 2000; transition: var(--transition); background: transparent; }
+        header.scrolled { background: rgba(10, 10, 25, 0.2); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border-bottom: 1px solid rgba(255,255,255,0.05); }
+
+        .brand-name { font-family: var(--font-serif); font-size: 20px; letter-spacing: 12px; text-transform: uppercase; color: #fff; text-align: center; }
+
+        .back-link { font-size: 10px; text-transform: uppercase; letter-spacing: 3px; color: rgba(255,255,255,0.5); display: flex; align-items: center; gap: 8px; transition: var(--transition); }
+        .back-link:hover { color: #fff; transform: translateX(-3px); }
+
+        /* --- HERO BLOCK --- */
+        .hero-club { padding: 160px 5% 60px; text-align: center; position: relative; }
+        .hero-title { font-size: clamp(36px, 6vw, 64px); line-height: 1.1; margin-bottom: 25px; letter-spacing: 1px; }
+        .user-status {
+            display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px;
+            background: rgba(197, 160, 89, 0.1); border: 1px solid rgba(197, 160, 89, 0.3);
+            border-radius: 30px; font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent-gold); margin-bottom: 40px;
+        }
+
+        /* --- FLAGS SECTION --- */
+        .club-grid { padding: 60px 5% 100px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; max-width: 1400px; margin: 0 auto; }
+        
+        .flag-card {
+            position: relative; height: 600px; display: flex; flex-direction: column; justify-content: flex-end; padding: 50px;
+            overflow: hidden; cursor: pointer;
+        }
+        .flag-card:hover { transform: translateY(-5px); border-color: rgba(197, 160, 89, 0.3); }
+        
+        .flag-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: 1s ease; opacity: 0.6; z-index: 0;}
+        .flag-card:hover .flag-bg { transform: scale(1.05); opacity: 0.8; }
+        .flag-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(8,8,20,1), rgba(8,8,20,0)); z-index: 1; }
+
+        .flag-content { position: relative; z-index: 2; }
+        .flag-title { font-size: clamp(28px, 4vw, 42px); color: #fff; margin-bottom: 15px; letter-spacing: 1px; }
+        .flag-desc { font-size: 16px; opacity: 0.7; max-width: 450px; margin-bottom: 40px; }
+
+        /* --- LIBRARY SECTION --- */
+        .library { padding: 80px 5%; max-width: 1400px; margin: 0 auto; }
+        .lib-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .lib-item {
+            padding: 40px; display: flex; flex-direction: column; justify-content: space-between;
+            min-height: 220px; text-align: left;
+        }
+        .lib-item:hover { transform: translateY(-3px); border-color: rgba(197, 160, 89, 0.2); background: rgba(255,255,255,0.04); }
+        
+        .lib-title { font-size: 20px; margin-bottom: 10px; }
+        .lib-desc { font-size: 12px; opacity: 0.5; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 25px; }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 900px) {
+            .club-grid { grid-template-columns: 1fr; gap: 30px; }
+            .flag-card { height: 500px; padding: 40px; }
+            .philosophy-img-wrap { height: 500px; }
+        }
+        @media (max-width: 600px) {
+            header { padding: 15px 20px !important; }
+            .back-link span { display: none; }
+            .hero-club { padding: 130px 5% 50px; }
+            .flag-desc { margin-bottom: 30px; }
+            .flag-content .btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<header id="header">
+    <a href="index.html" class="back-link">
+        <svg width="20" height="20" viewBox="0 0 24 24" style="fill: currentColor;"><path d="M12.707 19.707L5.414 12.414 12.707 5.121 11.293 3.707 2.586 12.414 11.293 21.121z"/></svg>
+        <span>На главную</span>
+    </a>
+    <div class="brand-name">РЕСУРС</div>
+    <div style="display: flex; justify-content: flex-end;">
+        <img src="logo_header_final.png" style="height: 35px; width: 35px; border-radius: 6px; opacity: 0.8;">
+    </div>
+</header>
+
+<section class="hero-club">
+    <div class="user-status">
+        <svg width="10" height="10" viewBox="0 0 10 10" style="fill: var(--accent-gold); margin-right: 5px;"><circle cx="5" cy="5" r="5"/></svg>
+        Статус: [Гость]
+    </div>
+    
+    <h1 class="hero-title">Ваш персональный Ресурс. <br>В любой точке мира</h1>
+    <p style="opacity: 0.7; max-width: 600px; margin: 0 auto; font-size: 18px; line-height: 1.8;">
+        Закрытая экосистема практик: флагманские курсы, детокс-программы и библиотека тренировок для осознанной трансформации.
+    </p>
+</section>
+
+<section class="club-grid" id="courses">
+    
+    <div class="flag-card glass">
+        <img src="slimness.jpg" class="flag-bg" alt="Курс Стройность">
+        <div class="flag-overlay"></div>
+        <div class="flag-content">
+            <h2 class="flag-title serif">Курс «СТРОЙНОСТЬ»</h2>
+            <p class="flag-desc">Комплексная 4-недельная программа трансформации: психология, питание и движение.</p>
+            <a href="#" class="btn" onclick="openPayment('Стройность')">Получить доступ</a>
+        </div>
+    </div>
+
+    <div class="flag-card glass">
+        <img src="detox.jpg" class="flag-bg" alt="Детокс Интенсив">
+        <div class="flag-overlay"></div>
+        <div class="flag-content">
+            <h2 class="flag-title serif">ДЕТОКС-ИНТЕНСИВ</h2>
+            <p class="flag-desc">7 дней перезагрузки: очищение организма, легкость и энергия.</p>
+            <a href="#" class="btn" onclick="openPayment('Детокс')">Получить доступ</a>
+        </div>
+    </div>
+
+</section>
+
+<section class="library" id="library">
+    <span class="section-label" style="text-align: left;">Библиотека тренировок</span>
+    
+    <div class="lib-grid">
+        
+        <div class="lib-item glass">
+            <div>
+                <h3 class="lib-title serif">Бодрое утро (10-15 мин)</h3>
+                <p class="lib-desc">12 Видео-зарядок</p>
+            </div>
+            <a href="#" class="btn" onclick="checkAccess()" style="width: 100%; font-size: 9px; padding: 14px;">
+                Смотреть Практики <span class="locked-icon">🔒</span>
+            </a>
+        </div>
+
+        <div class="lib-item glass">
+            <div>
+                <h3 class="lib-title serif">Растяжка перед сном (15 мин)</h3>
+                <p class="lib-desc">Библиотека релакса</p>
+            </div>
+            <a href="#" class="btn" onclick="checkAccess()" style="width: 100%; font-size: 9px; padding: 14px;">
+                Открыть Релакс <span class="locked-icon">🔒</span>
+            </a>
+        </div>
+
+        <div class="lib-item glass">
+            <div>
+                <h3 class="lib-title serif">Здоровая спина</h3>
+                <p class="lib-desc">Против зажимов</p>
+            </div>
+            <a href="#" class="btn" onclick="checkAccess()" style="width: 100%; font-size: 9px; padding: 14px;">
+                Открыть Доступ <span class="locked-icon">🔒</span>
+            </a>
+        </div>
+
+        <div class="lib-item glass">
+            <div>
+                <h3 class="lib-title serif">Дыхание и Медитация</h3>
+                <p class="lib-desc">Работа с состоянием</p>
+            </div>
+            <a href="#" class="btn" onclick="checkAccess()" style="width: 100%; font-size: 9px; padding: 14px;">
+                Открыть Доступ <span class="locked-icon">🔒</span>
+            </a>
+        </div>
+
+    </div>
+</section>
+
+<section style="padding: 100px 5%; text-align: center; border-top: 1px solid rgba(255,255,255,0.03); margin-top: 80px;">
+    <div class="glass" style="padding: 60px; max-width: 800px; margin: 0 auto; border: 1px solid rgba(197, 160, 89, 0.15); display: flex; flex-direction: column; align-items: center; gap: 30px;">
+        <span class="section-label" style="margin-bottom: 0;">Ваш проводник ✨</span>
+        <h3 class="serif" style="font-size: 28px; letter-spacing: 1px;">Не знаете, с чего начать?</h3>
+        <p style="opacity: 0.6; max-width: 450px; font-size: 15px; margin-top: -10px;">Запустите ИИ-куратора в чате, и он подберет программу под ваш текущий запрос и состояние.</p>
+        <a href="#" class="btn" onclick="window.parent.postMessage('openChat', '*'); return false;">Подобрать программу</a>
+    </div>
+</section>
+
+<footer style="padding: 60px 5%; border-top: 1px solid rgba(255,255,255,0.03); text-align: center;">
+    <div style="font-size: 9px; opacity: 0.2; text-transform: uppercase; letter-spacing: 3px;">
+        © 2026 РЕСУРС • Цифровое пространство практик • Все права защищены.
+    </div>
+</footer>
+
+<script>
+    // 1. Скролл и Хедер
+    window.addEventListener('scroll', () => {
+        const header = document.getElementById('header');
+        header.classList.toggle('scrolled', window.scrollY > 30);
+    });
+
+    // 2. Логика Кнопок (Временные заглушки)
+    function openPayment(productName) {
+        alert('Переход к оплате курса «' + productName + '». Модуль эквайринга будет подключен на этапе настройки платежей.');
+        // Здесь будет редирект на платежную ссылку
+    }
+
+    function checkAccess() {
+        alert('Этот раздел доступен только резидентам клуба. Хотите оформить подписку за 990₽/мес?');
+        // Здесь будет логика проверки или модалка покупки подписки
+    }
+</script>
+
+</body>
+</html>
