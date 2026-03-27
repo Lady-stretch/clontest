@@ -55,9 +55,10 @@
         /* --- LAYOUTS --- */
         .container { max-width: 1200px; margin: 0 auto; padding: 40px 5%; }
         
-        /* Экран авторизации */
-        #auth-view { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; text-align: center; }
-        .auth-box { max-width: 450px; width: 100%; padding: 50px 40px; }
+        /* Экран загрузки (Пока проверяем базу) */
+        #loader-view { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; text-align: center; }
+        .spinner { width: 40px; height: 40px; border: 1px solid rgba(197, 160, 89, 0.2); border-top: 1px solid var(--accent-gold); border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 20px; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
         /* Экран ЛК */
         #dashboard-view { display: none; padding-top: 100px; }
@@ -123,40 +124,19 @@
     <div class="logout" onclick="logout()">Выйти</div>
 </header>
 
-<div id="auth-view" class="container">
-    <div class="glass auth-box">
-        <h2 class="serif" style="font-size: 32px; margin-bottom: 10px;">Вход в клуб</h2>
-        <p style="opacity: 0.6; font-size: 14px; margin-bottom: 40px;">Введите данные для доступа к вашим программам</p>
-        
-        <div class="input-group">
-            <label>Ваше Имя и Фамилия</label>
-            <input type="text" id="reg-name" class="input-field" placeholder="Анна Иванова" required>
-        </div>
-        <div class="input-group">
-            <label>Email</label>
-            <input type="email" id="reg-email" class="input-field" placeholder="anna@example.com" required>
-        </div>
-        <div class="input-group">
-            <label>Телефон</label>
-            <input type="tel" id="reg-phone" class="input-field" placeholder="+7 (999) 000-00-00">
-        </div>
-        <div class="input-group" style="margin-bottom: 40px;">
-            <label>Промокод (если есть)</label>
-            <input type="text" id="reg-promo" class="input-field" placeholder="START2026">
-        </div>
-        
-        <button class="btn btn-fill" onclick="login()">Получить доступ</button>
-    </div>
+<div id="loader-view" class="container">
+    <div class="spinner"></div>
+    <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 3px; color: var(--accent-gold);">Проверка доступа...</p>
 </div>
 
 <div id="dashboard-view" class="container">
     
     <div class="profile-header">
         <div class="glass welcome-card">
-            <h1 class="serif" style="font-size: 38px; margin-bottom: 10px;">С возвращением, <span id="user-name-display" style="color: var(--accent-gold);">Гость</span>!</h1>
+            <h1 class="serif" style="font-size: 38px; margin-bottom: 10px;">С возвращением, <span id="user-name-display" style="color: var(--accent-gold);">...</span>!</h1>
             <p style="opacity: 0.7; max-width: 400px; margin-bottom: 20px;">Ваше состояние — наш приоритет. Продолжайте двигаться к своей цели шаг за шагом.</p>
             <div style="display: inline-block; padding: 5px 15px; background: rgba(197, 160, 89, 0.1); border: 1px solid rgba(197, 160, 89, 0.3); border-radius: 20px; font-size: 10px; text-transform: uppercase; color: var(--accent-gold);">
-                Подписка: Все включено
+                Доступ до: <span id="access-date">...</span>
             </div>
         </div>
 
@@ -271,33 +251,63 @@
 </div>
 
 <script>
-    // --- ЛОГИКА ИНТЕРФЕЙСА (Прототип) ---
+    // --- 1. СВЯЗЬ С YANDEX CLOUD ---
+    // ВНИМАНИЕ: Вставь сюда свою ссылку из Облака!
+    const CLOUD_URL = 'https://functions.yandexcloud.net/d4eg7hphveek8g1co3fr'; 
 
-    // 1. Авторизация
-    function login() {
-        const name = document.getElementById('reg-name').value;
-        const email = document.getElementById('reg-email').value;
-        if(name === '' || email === '') {
-            alert('Пожалуйста, введите Имя и Email');
+    async function verifyUser() {
+        // Проверяем ссылку (пришел ли человек из письма)
+        const urlParams = new URLSearchParams(window.location.search);
+        const emailFromUrl = urlParams.get('email');
+        
+        // Проверяем память браузера (вдруг он уже заходил)
+        const savedEmail = localStorage.getItem('resurs_user_email');
+        const emailToCheck = emailFromUrl || savedEmail;
+
+        if (!emailToCheck) {
+            // Если почты нет — выкидываем на страницу покупки
+            window.location.href = 'club.html';
             return;
         }
-        
-        // Прячем вход, показываем ЛК
-        document.getElementById('auth-view').style.display = 'none';
-        document.getElementById('dashboard-view').style.display = 'block';
-        document.getElementById('lk-header').style.display = 'flex';
-        
-        // Подставляем имя
-        document.getElementById('user-name-display').innerText = name.split(' ')[0]; // Берем только имя
+
+        try {
+            // Спрашиваем функцию: "Есть ли доступ?"
+            const response = await fetch(`${CLOUD_URL}?email=${encodeURIComponent(emailToCheck)}`);
+            const data = await response.json();
+
+            if (data.access === 'granted') {
+                // Прячем спиннер, показываем твой шикарный дизайн ЛК
+                document.getElementById('loader-view').style.display = 'none';
+                document.getElementById('lk-header').style.display = 'flex';
+                document.getElementById('dashboard-view').style.display = 'block';
+
+                // Заполняем данные из базы
+                localStorage.setItem('resurs_user_email', emailToCheck);
+                document.getElementById('user-name-display').innerText = data.name.split(' ')[0]; // Только имя
+                
+                // Форматируем дату (убираем часы/минуты)
+                const dateOnly = data.until.split(' ')[0] || data.until.split('T')[0];
+                document.getElementById('access-date').innerText = dateOnly;
+            } else {
+                alert('Доступ не найден или истек. Перенаправляем на главную.');
+                logout();
+            }
+        } catch (e) {
+            console.error(e);
+            alert('Ошибка связи с сервером.');
+        }
     }
+
+    // Запускаем проверку при открытии страницы
+    window.onload = verifyUser;
 
     function logout() {
-        document.getElementById('dashboard-view').style.display = 'none';
-        document.getElementById('lk-header').style.display = 'none';
-        document.getElementById('auth-view').style.display = 'flex';
+        localStorage.removeItem('resurs_user_email');
+        window.location.href = 'club.html';
     }
 
-    // 2. Логика Цели
+    // --- 2. ТВОЯ ЛОГИКА ИНТЕРФЕЙСА ---
+
     function saveGoal() {
         const goal = document.getElementById('target-weight').value;
         if(goal) {
@@ -312,7 +322,6 @@
         document.getElementById('goal-setup').style.display = 'block';
     }
 
-    // 3. Разблокировка Недели 1
     function unlockWeek1() {
         const weight = document.getElementById('m-weight').value;
         if(!weight) {
@@ -320,11 +329,9 @@
             return;
         }
         
-        // Скрываем замочек, показываем контент
         document.getElementById('slimness-gate').style.display = 'none';
         document.getElementById('slimness-content').style.display = 'block';
         
-        // Логика поздравления с целью (просто для демо)
         const target = parseFloat(document.getElementById('goal-value-text').innerText);
         const current = parseFloat(weight);
         if(target && current) {
@@ -337,20 +344,16 @@
         }
     }
 
-    // 4. Переключение Дней
     function switchDay(dayNum) {
-        // Убираем активный класс у всех кнопок дней
         const tabs = document.querySelectorAll('.day-tab');
         tabs.forEach(tab => tab.classList.remove('active'));
         
-        // Скрываем весь контент дней
         const contents = document.querySelectorAll('.day-content');
         contents.forEach(content => {
             content.classList.remove('active');
-            content.style.display = 'none'; // Жестко скрываем
+            content.style.display = 'none'; 
         });
         
-        // Делаем активным нужный
         tabs[dayNum - 1].classList.add('active');
         const activeContent = document.getElementById('day-' + dayNum);
         activeContent.style.display = 'block';
