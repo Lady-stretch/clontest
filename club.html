@@ -109,10 +109,17 @@
         .library { padding: 40px 5% 80px; max-width: 1400px; margin: 0 auto; }
         .lib-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
         .lib-item {
+            position: relative; overflow: hidden;
             padding: 40px; display: flex; flex-direction: column; justify-content: space-between;
             min-height: 220px; text-align: left; width: 100%;
         }
+        .lib-bg { 
+            position: absolute; inset: 0; width: 100%; height: 100%; 
+            object-fit: cover; opacity: 0.2; z-index: 0; transition: 0.6s;
+        }
         .lib-item:hover { transform: translateY(-3px); border-color: rgba(197, 160, 89, 0.2); background: rgba(255,255,255,0.04); }
+        .lib-item:hover .lib-bg { opacity: 0.4; transform: scale(1.1); }
+        .lib-content { position: relative; z-index: 1; }
         
         .lib-title { font-size: 20px; margin-bottom: 10px; }
         .lib-desc { font-size: 12px; opacity: 0.5; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 25px; }
@@ -121,12 +128,12 @@
         .active-card {
             margin-top: 40px; 
             position: relative; 
-            min-height: 250px; /* Уменьшили высоту в 2 раза */
+            min-height: 250px; 
             display: flex; 
             flex-direction: column; 
-            justify-content: center; /* Центрирование по вертикали */
-            align-items: center; /* Центрирование по горизонтали */
-            text-align: center; /* Центрирование текста */
+            justify-content: center; 
+            align-items: center; 
+            text-align: center; 
             padding: 50px 40px; 
             overflow: hidden; 
             cursor: pointer; 
@@ -154,7 +161,6 @@
             .flag-desc { margin-bottom: 30px; }
             .flag-content .btn, .active-content .btn { width: 100%; }
             .lib-item { padding: 30px; }
-            /* Адаптация панорамного блока для смартфона */
             .active-card { min-height: 200px; padding: 30px 20px; margin-top: 30px; }
             .active-title { font-size: 22px; }
             .active-desc { font-size: 13px; margin-bottom: 25px; }
@@ -190,7 +196,7 @@
 <section class="club-grid" id="courses">
     
     <div class="flag-card glass">
-        <img src="slimness.jpg" class="flag-bg" alt="Курс Стройность">
+        <img src="slimness.png" class="flag-bg" alt="Курс Стройность">
         <div class="flag-overlay"></div>
         <div class="flag-content">
             <h2 class="flag-title serif">Курс «СТРОЙНОСТЬ»</h2>
@@ -200,7 +206,7 @@
     </div>
 
     <div class="flag-card glass">
-        <img src="detox.jpg" class="flag-bg" alt="Детокс Интенсив">
+        <img src="detox.png" class="flag-bg" alt="Детокс Интенсив">
         <div class="flag-overlay"></div>
         <div class="flag-content">
             <h2 class="flag-title serif">ДЕТОКС-ИНТЕНСИВ</h2>
@@ -216,37 +222,44 @@
     
     <div class="lib-grid">
         <div class="lib-item glass">
-            <div>
+            <img src="morning.png" class="lib-bg" alt="Бодрое утро">
+            <div class="lib-content">
                 <h3 class="lib-title serif">Бодрое утро (10-15 мин)</h3>
                 <p class="lib-desc">12 Видео-зарядок</p>
+                <a href="#" class="btn" onclick="checkAccess()" style="width: 100%; font-size: 9px; padding: 14px;">Смотреть Практики <span class="locked-icon">🔒</span></a>
             </div>
-            <a href="#" class="btn" onclick="checkAccess()" style="width: 100%; font-size: 9px; padding: 14px;">Смотреть Практики <span class="locked-icon">🔒</span></a>
         </div>
+        
         <div class="lib-item glass">
-            <div>
+            <img src="bedtime.png" class="lib-bg" alt="Растяжка перед сном">
+            <div class="lib-content">
                 <h3 class="lib-title serif">Растяжка перед сном (15 мин)</h3>
                 <p class="lib-desc">Библиотека релакса</p>
+                <a href="#" class="btn" onclick="checkAccess()" style="width: 100%; font-size: 9px; padding: 14px;">Открыть Релакс <span class="locked-icon">🔒</span></a>
             </div>
-            <a href="#" class="btn" onclick="checkAccess()" style="width: 100%; font-size: 9px; padding: 14px;">Открыть Релакс <span class="locked-icon">🔒</span></a>
         </div>
+        
         <div class="lib-item glass">
-            <div>
+            <img src="back.png" class="lib-bg" alt="Здоровая спина">
+            <div class="lib-content">
                 <h3 class="lib-title serif">Здоровая спина</h3>
                 <p class="lib-desc">Против зажимов</p>
+                <a href="#" class="btn" onclick="checkAccess()" style="width: 100%; font-size: 9px; padding: 14px;">Открыть Доступ <span class="locked-icon">🔒</span></a>
             </div>
-            <a href="#" class="btn" onclick="checkAccess()" style="width: 100%; font-size: 9px; padding: 14px;">Открыть Доступ <span class="locked-icon">🔒</span></a>
         </div>
+        
         <div class="lib-item glass">
-            <div>
+            <img src="breath.png" class="lib-bg" alt="Дыхание и Медитация">
+            <div class="lib-content">
                 <h3 class="lib-title serif">Дыхание и Медитация</h3>
                 <p class="lib-desc">Работа с состоянием</p>
+                <a href="#" class="btn" onclick="checkAccess()" style="width: 100%; font-size: 9px; padding: 14px;">Открыть Доступ <span class="locked-icon">🔒</span></a>
             </div>
-            <a href="#" class="btn" onclick="checkAccess()" style="width: 100%; font-size: 9px; padding: 14px;">Открыть Доступ <span class="locked-icon">🔒</span></a>
         </div>
     </div>
 
     <div class="active-card glass" onclick="checkAccess()">
-        <img src="active-drive.jpg" class="active-bg" alt="Активные тренировки">
+        <img src="active-drive.png" class="active-bg" alt="Активные тренировки">
         <div class="active-overlay"></div>
         <div class="active-content">
             <h3 class="serif active-title">АКТИВНЫЕ ТРЕНИРОВКИ</h3>
