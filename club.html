@@ -333,28 +333,28 @@
 
 <script>
     // --- НАСТРОЙКИ ---
-    // ВАЖНО: Вставь сюда URL твоей функции из Yandex Cloud!
-    const CLOUD_FUNCTION_URL = '
-https://functions.yandexcloud.net/d4eg7hphveek8g1co3fr'; 
-    let currentProduct = '';
+    // Убедись, что адрес внутри одинарных кавычек и нет пробелов!
+    var CLOUD_FUNCTION_URL = 'https://functions.yandexcloud.net/d4eg7hphveek8g1co3fr'; 
+    var currentProduct = '';
 
-    const prices = {
+    var prices = {
         'Стройность': 5000,
         'Детокс': 3000,
         'Все включено': 1600
     };
 
-    window.addEventListener('scroll', () => {
-        const header = document.getElementById('header');
-        header.classList.toggle('scrolled', window.scrollY > 30);
+    window.addEventListener('scroll', function() {
+        var header = document.getElementById('header');
+        if (header) {
+            header.classList.toggle('scrolled', window.scrollY > 30);
+        }
     });
 
-    // Открытие окна оплаты
     function openPayment(productName) {
         currentProduct = productName;
         document.getElementById('modal-product-name').innerText = productName;
-        const price = prices[productName] || 1600;
-        document.getElementById('price-display').innerText = `К оплате: ${price}₽`;
+        var price = prices[productName] || 1600;
+        document.getElementById('price-display').innerText = 'К оплате: ' + price + ' руб.';
         
         document.getElementById('payment-modal').style.display = 'block';
         document.getElementById('modal-overlay').style.display = 'block';
@@ -365,13 +365,12 @@ https://functions.yandexcloud.net/d4eg7hphveek8g1co3fr';
         document.getElementById('modal-overlay').style.display = 'none';
     }
 
-    // ЛОГИКА ОПЛАТЫ
     async function processPayment() {
-        const name = document.getElementById('pay-name').value;
-        const email = document.getElementById('pay-email').value;
-        const phone = document.getElementById('pay-phone').value;
-        const promo = document.getElementById('pay-promo').value;
-        const btn = document.getElementById('confirm-pay-btn');
+        var name = document.getElementById('pay-name').value;
+        var email = document.getElementById('pay-email').value;
+        var phone = document.getElementById('pay-phone').value;
+        var promo = document.getElementById('pay-promo').value;
+        var btn = document.getElementById('confirm-pay-btn');
 
         if (!name || !email || !phone) {
             alert('Пожалуйста, заполните Имя, Email и Телефон');
@@ -382,7 +381,7 @@ https://functions.yandexcloud.net/d4eg7hphveek8g1co3fr';
         btn.disabled = true;
 
         try {
-            const response = await fetch(CLOUD_FUNCTION_URL, {
+            var response = await fetch(CLOUD_FUNCTION_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -394,7 +393,7 @@ https://functions.yandexcloud.net/d4eg7hphveek8g1co3fr';
                 })
             });
 
-            const data = await response.json();
+            var data = await response.json();
 
             if (data.confirmation_url) {
                 window.location.href = data.confirmation_url;
