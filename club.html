@@ -224,7 +224,7 @@
         <div class="flag-content">
             <h2 class="flag-title serif">Курс «СТРОЙНОСТЬ»</h2>
             <p class="flag-desc">Комплексная 4-недельная программа трансформации: психология, питание и движение.</p>
-            <a href="#" class="btn" onclick="openPayment('Стройность')">Получить доступ</a>
+            <a href="javascript:void(0)" class="btn" onclick="openPayment('Стройность')">Получить доступ</a>
         </div>
     </div>
 
@@ -234,7 +234,7 @@
         <div class="flag-content">
             <h2 class="flag-title serif">ДЕТОКС-ИНТЕНСИВ</h2>
             <p class="flag-desc">7 дней перезагрузки: очищение организма, легкость и энергия.</p>
-            <a href="#" class="btn" onclick="openPayment('Детокс')">Получить доступ</a>
+            <a href="javascript:void(0)" class="btn" onclick="openPayment('Детокс')">Получить доступ</a>
         </div>
     </div>
 
@@ -251,7 +251,7 @@
                     <h3 class="lib-title serif">Бодрое утро (10-15 мин)</h3>
                     <p class="lib-desc">12 Видео-зарядок</p>
                 </div>
-                <a href="#" class="btn" onclick="checkAccess()" style="width: 100%; font-size: 9px; padding: 14px;">Смотреть Практики <span class="locked-icon">🔒</span></a>
+                <a href="javascript:void(0)" class="btn" onclick="checkAccess()" style="width: 100%; font-size: 9px; padding: 14px;">Смотреть Практики <span class="locked-icon">🔒</span></a>
             </div>
         </div>
         
@@ -262,7 +262,7 @@
                     <h3 class="lib-title serif">Растяжка перед сном (15 мин)</h3>
                     <p class="lib-desc">Библиотека релакса</p>
                 </div>
-                <a href="#" class="btn" onclick="checkAccess()" style="width: 100%; font-size: 9px; padding: 14px;">Открыть Релакс <span class="locked-icon">🔒</span></a>
+                <a href="javascript:void(0)" class="btn" onclick="checkAccess()" style="width: 100%; font-size: 9px; padding: 14px;">Открыть Релакс <span class="locked-icon">🔒</span></a>
             </div>
         </div>
         
@@ -273,7 +273,7 @@
                     <h3 class="lib-title serif">Здоровая спина</h3>
                     <p class="lib-desc">Против зажимов</p>
                 </div>
-                <a href="#" class="btn" onclick="checkAccess()" style="width: 100%; font-size: 9px; padding: 14px;">Открыть Доступ <span class="locked-icon">🔒</span></a>
+                <a href="javascript:void(0)" class="btn" onclick="checkAccess()" style="width: 100%; font-size: 9px; padding: 14px;">Открыть Доступ <span class="locked-icon">🔒</span></a>
             </div>
         </div>
         
@@ -284,7 +284,7 @@
                     <h3 class="lib-title serif">Дыхание и Медитация</h3>
                     <p class="lib-desc">Работа с состоянием</p>
                 </div>
-                <a href="#" class="btn" onclick="checkAccess()" style="width: 100%; font-size: 9px; padding: 14px;">Открыть Доступ <span class="locked-icon">🔒</span></a>
+                <a href="javascript:void(0)" class="btn" onclick="checkAccess()" style="width: 100%; font-size: 9px; padding: 14px;">Открыть Доступ <span class="locked-icon">🔒</span></a>
             </div>
         </div>
     </div>
@@ -295,7 +295,7 @@
         <div class="active-content">
             <h3 class="serif active-title">АКТИВНЫЕ ТРЕНИРОВКИ</h3>
             <p class="active-desc">Ягодицы, пресс, табата и функциональный тренинг. Разгоняем пульс, повышаем выносливость и получаем мощный заряд энергии для всего тела.</p>
-            <a href="#" class="btn" style="font-size: 10px; padding: 16px 35px;">
+            <a href="javascript:void(0)" class="btn" style="font-size: 10px; padding: 16px 35px;">
                 Открыть Интенсивы <span class="locked-icon">🔒</span>
             </a>
         </div>
@@ -307,7 +307,7 @@
         <span class="section-label" style="margin-bottom: 0;">Ваш проводник ✨</span>
         <h3 class="serif" style="font-size: 28px; letter-spacing: 1px;">Не знаете, с чего начать?</h3>
         <p style="opacity: 0.6; max-width: 450px; font-size: 15px; margin-top: -10px;">Запустите ИИ-куратора в чате, и он подберет программу под ваш текущий запрос и состояние.</p>
-        <a href="#" class="btn" onclick="window.parent.postMessage('openChat', '*'); return false;">Подобрать программу</a>
+        <a href="javascript:void(0)" class="btn" onclick="window.parent.postMessage('openChat', '*'); return false;">Подобрать программу</a>
     </div>
 </section>
 
@@ -333,8 +333,9 @@
 
 <script>
     // --- НАСТРОЙКИ ---
+    // ВАЖНО: Вставь сюда URL твоей функции из Yandex Cloud!
     const CLOUD_FUNCTION_URL = '
-https://functions.yandexcloud.net/d4eg7hphveek8g1co3fr'; // Вставь сюда URL из Yandex Cloud
+https://functions.yandexcloud.net/d4eg7hphveek8g1co3fr'; 
     let currentProduct = '';
 
     const prices = {
