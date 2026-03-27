@@ -97,7 +97,7 @@
         }
         .flag-card:hover { transform: translateY(-5px); border-color: rgba(197, 160, 89, 0.3); }
         
-        .flag-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: 1s ease; opacity: 0.6; z-index: 0;}
+        .flag-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: 1s ease; opacity: 0.6; z-index: 0; color: transparent;}
         .flag-card:hover .flag-bg { transform: scale(1.05); opacity: 0.8; }
         .flag-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(8,8,20,1), rgba(8,8,20,0)); z-index: 1; }
 
@@ -108,27 +108,37 @@
         /* --- LIBRARY SECTION --- */
         .library { padding: 40px 5% 80px; max-width: 1400px; margin: 0 auto; }
         .lib-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        
+        /* ИДЕАЛЬНОЕ ВЫРАВНИВАНИЕ КАРТОЧЕК */
         .lib-item {
             position: relative; overflow: hidden;
-            padding: 40px; display: flex; flex-direction: column; justify-content: space-between;
-            min-height: 220px; text-align: left; width: 100%;
+            padding: 40px; display: flex; flex-direction: column;
+            min-height: 250px; text-align: left; width: 100%;
         }
         .lib-bg { 
             position: absolute; inset: 0; width: 100%; height: 100%; 
             object-fit: cover; opacity: 0.2; z-index: 0; transition: 0.6s;
+            color: transparent; /* Прячет текст сломанной картинки */
         }
         .lib-item:hover { transform: translateY(-3px); border-color: rgba(197, 160, 89, 0.2); background: rgba(255,255,255,0.04); }
         .lib-item:hover .lib-bg { opacity: 0.4; transform: scale(1.1); }
-        .lib-content { position: relative; z-index: 1; }
         
-        .lib-title { font-size: 20px; margin-bottom: 10px; }
-        .lib-desc { font-size: 12px; opacity: 0.5; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 25px; }
+        .lib-content { 
+            position: relative; z-index: 1; display: flex; flex-direction: column; height: 100%; flex-grow: 1;
+        }
+        .lib-text-wrap {
+            flex-grow: 1; /* Выталкивает кнопку всегда в самый низ */
+            margin-bottom: 25px;
+        }
+        
+        .lib-title { font-size: 20px; margin-bottom: 10px; line-height: 1.3;}
+        .lib-desc { font-size: 12px; opacity: 0.5; text-transform: uppercase; letter-spacing: 1.5px; }
 
-        /* --- ACTIVE TRAININGS (ОБНОВЛЕННАЯ ПАНОРАМНАЯ КАРТОЧКА) --- */
+        /* --- ACTIVE TRAININGS (ПАНОРАМА) --- */
         .active-card {
             margin-top: 40px; 
             position: relative; 
-            min-height: 250px; 
+            min-height: 280px; 
             display: flex; 
             flex-direction: column; 
             justify-content: center; 
@@ -141,14 +151,15 @@
             width: 100%;
         }
         .active-card:hover { transform: translateY(-5px); border-color: rgba(197, 160, 89, 0.3); }
-        .active-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: 1s ease; opacity: 0.4; z-index: 0; }
+        .active-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: 1s ease; opacity: 0.4; z-index: 0; color: transparent; }
         .active-card:hover .active-bg { transform: scale(1.05); opacity: 0.7; }
         .active-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(8,8,20,0.85), rgba(8,8,20,0.4)); z-index: 1; }
-        .active-content { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; }
-        .active-title { font-size: clamp(26px, 4vw, 38px); color: #fff; margin-bottom: 15px; letter-spacing: 1px; }
-        .active-desc { font-size: 15px; opacity: 0.7; max-width: 600px; margin: 0 auto 30px; line-height: 1.6; }
+        
+        .active-content { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; width: 100%; }
+        .active-title { font-size: clamp(26px, 4vw, 38px); color: #fff; margin-bottom: 15px; letter-spacing: 1px; text-align: center; }
+        .active-desc { font-size: 15px; opacity: 0.7; max-width: 600px; margin: 0 auto 30px; line-height: 1.6; text-align: center; }
 
-        /* --- РЕСПОНСИВ (АДАПТАЦИЯ ПОД ANDROID И IPHONE) --- */
+        /* --- РЕСПОНСИВ --- */
         @media (max-width: 900px) {
             .club-grid { grid-template-columns: 1fr; gap: 30px; }
             .flag-card { height: 500px; padding: 40px; }
@@ -160,8 +171,8 @@
             .flag-card { height: 420px; padding: 30px; }
             .flag-desc { margin-bottom: 30px; }
             .flag-content .btn, .active-content .btn { width: 100%; }
-            .lib-item { padding: 30px; }
-            .active-card { min-height: 200px; padding: 30px 20px; margin-top: 30px; }
+            .lib-item { padding: 30px; min-height: 220px; }
+            .active-card { min-height: 220px; padding: 40px 20px; margin-top: 30px; }
             .active-title { font-size: 22px; }
             .active-desc { font-size: 13px; margin-bottom: 25px; }
             .section-label { font-size: 11px; letter-spacing: 4px; }
@@ -196,7 +207,7 @@
 <section class="club-grid" id="courses">
     
     <div class="flag-card glass">
-        <img src="slimness.png" class="flag-bg" alt="Курс Стройность">
+        <img src="slimness.png" class="flag-bg" alt="">
         <div class="flag-overlay"></div>
         <div class="flag-content">
             <h2 class="flag-title serif">Курс «СТРОЙНОСТЬ»</h2>
@@ -206,7 +217,7 @@
     </div>
 
     <div class="flag-card glass">
-        <img src="detox.png" class="flag-bg" alt="Детокс Интенсив">
+        <img src="detox.png" class="flag-bg" alt="">
         <div class="flag-overlay"></div>
         <div class="flag-content">
             <h2 class="flag-title serif">ДЕТОКС-ИНТЕНСИВ</h2>
@@ -218,48 +229,56 @@
 </section>
 
 <section class="library" id="library">
-    <span class="section-label">БИБЛИОТЕКА ТРЕНИРОВОК</span>
+    <span class="section-label" style="margin-bottom: 50px;">БИБЛИОТЕКА ТРЕНИРОВОК</span>
     
     <div class="lib-grid">
         <div class="lib-item glass">
-            <img src="morning.png" class="lib-bg" alt="Бодрое утро">
+            <img src="morning.png" class="lib-bg" alt="">
             <div class="lib-content">
-                <h3 class="lib-title serif">Бодрое утро (10-15 мин)</h3>
-                <p class="lib-desc">12 Видео-зарядок</p>
+                <div class="lib-text-wrap">
+                    <h3 class="lib-title serif">Бодрое утро (10-15 мин)</h3>
+                    <p class="lib-desc">12 Видео-зарядок</p>
+                </div>
                 <a href="#" class="btn" onclick="checkAccess()" style="width: 100%; font-size: 9px; padding: 14px;">Смотреть Практики <span class="locked-icon">🔒</span></a>
             </div>
         </div>
         
         <div class="lib-item glass">
-            <img src="bedtime.png" class="lib-bg" alt="Растяжка перед сном">
+            <img src="bedtime.png" class="lib-bg" alt="">
             <div class="lib-content">
-                <h3 class="lib-title serif">Растяжка перед сном (15 мин)</h3>
-                <p class="lib-desc">Библиотека релакса</p>
+                <div class="lib-text-wrap">
+                    <h3 class="lib-title serif">Растяжка перед сном (15 мин)</h3>
+                    <p class="lib-desc">Библиотека релакса</p>
+                </div>
                 <a href="#" class="btn" onclick="checkAccess()" style="width: 100%; font-size: 9px; padding: 14px;">Открыть Релакс <span class="locked-icon">🔒</span></a>
             </div>
         </div>
         
         <div class="lib-item glass">
-            <img src="back.png" class="lib-bg" alt="Здоровая спина">
+            <img src="back.png" class="lib-bg" alt="">
             <div class="lib-content">
-                <h3 class="lib-title serif">Здоровая спина</h3>
-                <p class="lib-desc">Против зажимов</p>
+                <div class="lib-text-wrap">
+                    <h3 class="lib-title serif">Здоровая спина</h3>
+                    <p class="lib-desc">Против зажимов</p>
+                </div>
                 <a href="#" class="btn" onclick="checkAccess()" style="width: 100%; font-size: 9px; padding: 14px;">Открыть Доступ <span class="locked-icon">🔒</span></a>
             </div>
         </div>
         
         <div class="lib-item glass">
-            <img src="breath.png" class="lib-bg" alt="Дыхание и Медитация">
+            <img src="breath.png" class="lib-bg" alt="">
             <div class="lib-content">
-                <h3 class="lib-title serif">Дыхание и Медитация</h3>
-                <p class="lib-desc">Работа с состоянием</p>
+                <div class="lib-text-wrap">
+                    <h3 class="lib-title serif">Дыхание и Медитация</h3>
+                    <p class="lib-desc">Работа с состоянием</p>
+                </div>
                 <a href="#" class="btn" onclick="checkAccess()" style="width: 100%; font-size: 9px; padding: 14px;">Открыть Доступ <span class="locked-icon">🔒</span></a>
             </div>
         </div>
     </div>
 
     <div class="active-card glass" onclick="checkAccess()">
-        <img src="active-drive.png" class="active-bg" alt="Активные тренировки">
+        <img src="active-drive.png" class="active-bg" alt="">
         <div class="active-overlay"></div>
         <div class="active-content">
             <h3 class="serif active-title">АКТИВНЫЕ ТРЕНИРОВКИ</h3>
@@ -287,13 +306,11 @@
 </footer>
 
 <script>
-    // 1. Скролл и Хедер
     window.addEventListener('scroll', () => {
         const header = document.getElementById('header');
         header.classList.toggle('scrolled', window.scrollY > 30);
     });
 
-    // 2. Логика Кнопок (Временные заглушки)
     function openPayment(productName) {
         alert('Переход к оплате курса «' + productName + '». Модуль эквайринга будет подключен на этапе настройки платежей.');
     }
