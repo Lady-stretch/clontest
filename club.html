@@ -68,7 +68,20 @@
         }
         .btn:hover { background: var(--accent-gold); color: #fff; transform: translateY(-2px); }
 
+        .btn-fill { background: var(--accent-gold); color: #fff; }
+
         .locked-icon { font-size: 14px; color: rgba(255,255,255,0.4); margin-left: 8px; }
+
+        /* Styles for Modal Inputs */
+        .input-field-custom { 
+            width: 100%; padding: 15px; 
+            background: rgba(255,255,255,0.05); 
+            border: 1px solid rgba(255,255,255,0.1); 
+            color: #fff; border-radius: 8px; 
+            font-family: inherit; font-size: 14px;
+            transition: var(--transition);
+        }
+        .input-field-custom:focus { border-color: var(--accent-gold); background: rgba(255,255,255,0.08); }
 
         /* --- HEADER --- */
         header { position: fixed; top: 0; width: 100%; padding: 20px 5%; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; z-index: 2000; transition: var(--transition); background: transparent; }
@@ -109,7 +122,6 @@
         .library { padding: 40px 5% 80px; max-width: 1400px; margin: 0 auto; }
         .lib-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
         
-        /* ИДЕАЛЬНОЕ ВЫРАВНИВАНИЕ КАРТОЧЕК */
         .lib-item {
             position: relative; overflow: hidden;
             padding: 40px; display: flex; flex-direction: column;
@@ -118,7 +130,7 @@
         .lib-bg { 
             position: absolute; inset: 0; width: 100%; height: 100%; 
             object-fit: cover; opacity: 0.2; z-index: 0; transition: 0.6s;
-            color: transparent; /* Прячет текст сломанной картинки */
+            color: transparent;
         }
         .lib-item:hover { transform: translateY(-3px); border-color: rgba(197, 160, 89, 0.2); background: rgba(255,255,255,0.04); }
         .lib-item:hover .lib-bg { opacity: 0.4; transform: scale(1.1); }
@@ -127,14 +139,14 @@
             position: relative; z-index: 1; display: flex; flex-direction: column; height: 100%; flex-grow: 1;
         }
         .lib-text-wrap {
-            flex-grow: 1; /* Выталкивает кнопку всегда в самый низ */
+            flex-grow: 1; 
             margin-bottom: 25px;
         }
         
         .lib-title { font-size: 20px; margin-bottom: 10px; line-height: 1.3;}
         .lib-desc { font-size: 12px; opacity: 0.5; text-transform: uppercase; letter-spacing: 1.5px; }
 
-        /* --- ACTIVE TRAININGS (ПАНОРАМА) --- */
+        /* --- ACTIVE TRAININGS --- */
         .active-card {
             margin-top: 40px; 
             position: relative; 
@@ -159,7 +171,7 @@
         .active-title { font-size: clamp(26px, 4vw, 38px); color: #fff; margin-bottom: 15px; letter-spacing: 1px; text-align: center; }
         .active-desc { font-size: 15px; opacity: 0.7; max-width: 600px; margin: 0 auto 30px; line-height: 1.6; text-align: center; }
 
-        /* --- РЕСПОНСИВ --- */
+        /* --- RESPONSIVE --- */
         @media (max-width: 900px) {
             .club-grid { grid-template-columns: 1fr; gap: 30px; }
             .flag-card { height: 500px; padding: 40px; }
@@ -305,18 +317,100 @@
     </div>
 </footer>
 
+<div id="payment-modal" class="glass" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 3000; padding: 40px; width: 95%; max-width: 450px; border: 1px solid var(--accent-gold);">
+    <h2 id="modal-product-name" class="serif" style="font-size: 28px; margin-bottom: 20px; text-align: center;">Оформление</h2>
+    <div style="display: flex; flex-direction: column; gap: 15px;">
+        <input type="text" id="pay-name" placeholder="Имя и Фамилия" class="input-field-custom">
+        <input type="email" id="pay-email" placeholder="Email" class="input-field-custom">
+        <input type="tel" id="pay-phone" placeholder="+7 (___) ___-__-__" class="input-field-custom">
+        <input type="text" id="pay-promo" placeholder="Промокод (если есть)" class="input-field-custom">
+        <div id="price-display" style="text-align: center; color: var(--accent-gold); font-size: 18px; margin: 10px 0; font-weight: 600;"></div>
+        <button class="btn btn-fill" id="confirm-pay-btn" onclick="processPayment()" style="width:100%; background: var(--accent-gold); color: #fff;">Оплатить доступ</button>
+        <button onclick="closePayment()" style="background:none; border:none; color:rgba(255,255,255,0.3); cursor:pointer; width:100%; margin-top:10px; font-size: 10px; letter-spacing: 2px; text-transform: uppercase;">Отмена</button>
+    </div>
+</div>
+<div id="modal-overlay" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 2999;" onclick="closePayment()"></div>
+
 <script>
+    // --- НАСТРОЙКИ ---
+    const CLOUD_FUNCTION_URL = 'ТВОЙ_URL_ОБЛАКА'; // Вставь сюда URL из Yandex Cloud
+    let currentProduct = '';
+
+    const prices = {
+        'Стройность': 5000,
+        'Детокс': 3000,
+        'Все включено': 1600
+    };
+
     window.addEventListener('scroll', () => {
         const header = document.getElementById('header');
         header.classList.toggle('scrolled', window.scrollY > 30);
     });
 
+    // Открытие окна оплаты
     function openPayment(productName) {
-        alert('Переход к оплате курса «' + productName + '». Модуль эквайринга будет подключен на этапе настройки платежей.');
+        currentProduct = productName;
+        document.getElementById('modal-product-name').innerText = productName;
+        const price = prices[productName] || 1600;
+        document.getElementById('price-display').innerText = `К оплате: ${price}₽`;
+        
+        document.getElementById('payment-modal').style.display = 'block';
+        document.getElementById('modal-overlay').style.display = 'block';
+    }
+
+    function closePayment() {
+        document.getElementById('payment-modal').style.display = 'none';
+        document.getElementById('modal-overlay').style.display = 'none';
+    }
+
+    // ЛОГИКА ОПЛАТЫ
+    async function processPayment() {
+        const name = document.getElementById('pay-name').value;
+        const email = document.getElementById('pay-email').value;
+        const phone = document.getElementById('pay-phone').value;
+        const promo = document.getElementById('pay-promo').value;
+        const btn = document.getElementById('confirm-pay-btn');
+
+        if (!name || !email || !phone) {
+            alert('Пожалуйста, заполните Имя, Email и Телефон');
+            return;
+        }
+
+        btn.innerText = 'Связь с банком...';
+        btn.disabled = true;
+
+        try {
+            const response = await fetch(CLOUD_FUNCTION_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    full_name: name,
+                    email: email,
+                    phone: phone,
+                    promo: promo,
+                    product: currentProduct
+                })
+            });
+
+            const data = await response.json();
+
+            if (data.confirmation_url) {
+                window.location.href = data.confirmation_url;
+            } else {
+                alert('Ошибка при создании платежа. Попробуйте позже.');
+                btn.innerText = 'Оплатить доступ';
+                btn.disabled = false;
+            }
+        } catch (error) {
+            console.error('Ошибка:', error);
+            alert('Не удалось связаться с сервером оплаты.');
+            btn.innerText = 'Оплатить доступ';
+            btn.disabled = false;
+        }
     }
 
     function checkAccess() {
-        alert('Этот раздел доступен только резидентам клуба. Хотите оформить подписку за 990₽/мес?');
+        openPayment('Все включено');
     }
 </script>
 
