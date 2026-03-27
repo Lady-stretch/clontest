@@ -5,723 +5,443 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>РЕСУРС | Личный кабинет</title>
     
-    <link rel="icon" type="image/png" href="favicon.png">
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Manrope:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600&family=Manrope:wght@200;300;400;600&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
         :root {
             --bg-deep: #080814; 
-            --glass-bg: rgba(255, 255, 255, 0.03); 
+            --glass: rgba(255, 255, 255, 0.03); 
             --glass-border: 1px solid rgba(197, 160, 89, 0.2); 
-            --accent-gold: #C5A059; 
-            --text-main: #F4F4F9;
-            --font-main: 'Manrope', sans-serif;
+            --accent: #C5A059; 
+            --text: #F4F4F9;
             --font-serif: 'Cormorant Garamond', serif;
-            --transition: all 0.4s ease;
+            --font-sans: 'Manrope', sans-serif;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+        body { background: var(--bg-deep); color: var(--text); font-family: var(--font-sans); line-height: 1.6; overflow-x: hidden; }
+
+        /* Loader */
+        #loader-view { position: fixed; inset: 0; background: var(--bg-deep); z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .spinner { width: 30px; height: 30px; border: 1px solid rgba(197, 160, 89, 0.2); border-top: 1px solid var(--accent); border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 20px; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Layout */
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 5%; }
+        header { position: sticky; top: 0; z-index: 100; padding: 20px 5%; background: rgba(8, 8, 20, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(197, 160, 89, 0.1); display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--font-serif); font-size: 22px; letter-spacing: 6px; color: var(--accent); text-transform: uppercase; cursor: pointer; }
+        .logout { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; opacity: 0.5; cursor: pointer; transition: 0.3s; }
+        .logout:hover { color: var(--accent); opacity: 1; }
+
+        .welcome-section { padding: 40px 0; text-align: center; }
+        .welcome-section h1 { font-family: var(--font-serif); font-size: clamp(32px, 5vw, 48px); font-weight: 300; margin-bottom: 10px; }
         
-        body { 
-            background: var(--bg-deep); 
-            color: var(--text-main);
-            font-family: var(--font-main); 
-            line-height: 1.6;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-        }
+        /* Navigation */
+        .main-nav { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 40px; }
+        .nav-card { background: var(--glass); border: var(--glass-border); padding: 40px; cursor: pointer; transition: 0.4s; text-align: center; border-radius: 4px; }
+        .nav-card:hover { background: rgba(197, 160, 89, 0.05); border-color: var(--accent); transform: translateY(-5px); }
+        .nav-card h3 { font-family: var(--font-serif); font-size: 24px; letter-spacing: 3px; color: var(--accent); margin-bottom: 10px; text-transform: uppercase; }
+        .nav-card p { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; opacity: 0.5; }
 
-        /* --- ЗАГРУЗОЧНЫЙ ЭКРАН (БЕЗОПАСНОСТЬ) --- */
-        #loader-view {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-            background: var(--bg-deep); z-index: 9999;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-        }
-        .spinner { width: 40px; height: 40px; border: 2px solid rgba(197, 160, 89, 0.2); border-top: 2px solid var(--accent-gold); border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 20px; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        /* Week Switcher */
+        .week-tabs { display: flex; overflow-x: auto; gap: 10px; margin-bottom: 30px; padding-bottom: 10px; scrollbar-width: none; }
+        .week-tabs::-webkit-scrollbar { display: none; }
+        .tab { padding: 12px 25px; border: 1px solid rgba(255,255,255,0.1); font-size: 11px; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; white-space: nowrap; transition: 0.3s; border-radius: 4px; }
+        .tab.active { border-color: var(--accent); color: var(--accent); background: rgba(197, 160, 89, 0.05); }
 
-        /* --- ОСНОВНОЙ КОНТЕЙНЕР (АДАПТАЦИЯ ПОД ПК) --- */
-        #app-container {
-            width: 100%; max-width: 1200px; min-height: 100vh;
-            display: none; flex-direction: column; position: relative;
-        }
-
-        /* --- ШАПКА --- */
-        header {
-            padding: 15px 5%; background: rgba(8, 8, 20, 0.85); backdrop-filter: blur(30px);
-            border-bottom: 1px solid rgba(197, 160, 89, 0.15);
-            position: sticky; top: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between;
-        }
-
-        .burger-btn { display: flex; flex-direction: column; gap: 5px; cursor: pointer; padding: 5px; z-index: 51; }
-        .burger-btn div { width: 22px; height: 2px; background: var(--accent-gold); transition: 0.3s; }
-
-        .header-center-title {
-            position: absolute; left: 50%; transform: translateX(-50%);
-            font-family: var(--font-serif); font-size: 22px; letter-spacing: 5px; color: var(--accent-gold); margin: 0; white-space: nowrap;
-        }
-
-        .logout-btn { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; opacity: 0.6; transition: 0.3s; }
-        .logout-btn:hover { color: var(--accent-gold); opacity: 1; }
-
-        /* --- БОКОВОЕ МЕНЮ (БУРГЕР) --- */
-        #side-menu {
-            position: fixed; top: 0; left: -100%; width: 280px; height: 100vh;
-            background: rgba(5, 5, 12, 0.98); backdrop-filter: blur(20px);
-            border-right: 1px solid rgba(197, 160, 89, 0.2);
-            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 1000;
-            padding: 60px 20px 20px; display: flex; flex-direction: column; gap: 15px; box-shadow: 20px 0 50px rgba(0,0,0,0.5);
-        }
-        #side-menu.open { left: 0; }
-        .close-menu { position: absolute; top: 15px; right: 20px; color: var(--accent-gold); font-size: 35px; cursor: pointer; background: none; border: none; font-weight: 200; }
-        .side-menu-btn { background: none; border: none; color: #fff; font-family: var(--font-main); font-size: 16px; text-align: left; padding: 10px 0; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .side-menu-btn.active { color: var(--accent-gold); font-weight: 600; }
-
-        /* --- ОСНОВНОЙ КОНТЕНТ --- */
-        .screen { padding: 40px 5%; flex-grow: 1; display: none; animation: fadeIn 0.5s ease; width: 100%; }
+        /* Grids */
+        .screen { display: none; padding-bottom: 80px; animation: fadeIn 0.5s ease both; }
         .screen.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        h2 { font-family: var(--font-serif); font-size: 32px; font-weight: 300; color: var(--accent-gold); margin-bottom: 10px; }
-        h3 { font-family: var(--font-serif); font-size: 24px; font-weight: 400; color: #fff; margin: 30px 0 15px; border-bottom: 1px solid rgba(197, 160, 89, 0.2); padding-bottom: 8px; }
-        p { margin-bottom: 15px; font-size: 15px; opacity: 0.8; }
-        ul { padding-left: 20px; margin-bottom: 20px; font-size: 15px; opacity: 0.8; }
-        li { margin-bottom: 8px; }
+        .content-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 15px; }
+        .item-card { background: var(--glass); border: 1px solid rgba(255,255,255,0.05); padding: 25px; cursor: pointer; transition: 0.3s; border-radius: 4px; position: relative; overflow: hidden; }
+        .item-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: transparent; transition: 0.3s; }
+        .item-card:hover { border-color: var(--accent); background: rgba(255,255,255,0.02); transform: translateY(-3px); }
+        .item-card:hover::before { background: var(--accent); }
+        .item-card span { font-size: 9px; letter-spacing: 2px; opacity: 0.4; text-transform: uppercase; }
+        .item-card h4 { font-family: var(--font-serif); font-size: 20px; margin-top: 5px; font-weight: 400; color: #fff; }
 
-        .content-wrapper { max-width: 800px; margin: 0 auto; }
-
-        /* --- СЕТКА КАРТОЧЕК МЕНЮ --- */
-        .course-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-top: 30px; }
+        /* Detail View */
+        .detail-wrapper { max-width: 800px; margin: 0 auto; }
+        .btn-main { background: rgba(197, 160, 89, 0.1); border: 1px solid var(--accent); color: var(--accent); padding: 15px 30px; font-size: 11px; font-family: var(--font-sans); font-weight: 600; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; margin-bottom: 30px; border-radius: 4px; transition: 0.3s; display: inline-block; text-align: center; width: 100%; }
+        .btn-main:hover { background: var(--accent); color: #000; }
+        .btn-back { width: auto; background: transparent; padding: 10px 20px; }
         
-        .menu-item { 
-            position: relative; overflow: hidden; height: 160px;
-            background: var(--glass-bg); border: var(--glass-border); border-radius: 16px; 
-            padding: 25px 20px; text-align: left; cursor: pointer; transition: var(--transition); color: #fff; 
-            display: flex; flex-direction: column; justify-content: flex-end;
-        }
-        .menu-item-bg {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-size: cover; background-position: center; opacity: 0.2; transition: 0.5s; z-index: 0;
-        }
-        .menu-item:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); border-color: var(--accent-gold); }
-        .menu-item:hover .menu-item-bg { opacity: 0.4; transform: scale(1.05); }
-        .menu-item-content { position: relative; z-index: 1; }
-        .menu-item-content h3 { border: none; margin: 0 0 5px 0; padding: 0; color: var(--accent-gold); font-size: 24px; }
-        .menu-item-content p { margin: 0; opacity: 0.9; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+        .affirmation-box { font-family: var(--font-serif); font-size: clamp(20px, 4vw, 28px); font-style: italic; text-align: center; padding: 40px 20px; background: rgba(197, 160, 89, 0.03); border-left: 2px solid var(--accent); border-right: 2px solid var(--accent); margin: 30px 0; color: var(--accent); border-radius: 4px; }
 
-        /* --- КНОПКИ --- */
-        .btn-lens { display: block; width: 100%; max-width: 400px; text-align: center; padding: 18px; border-radius: 12px; background: rgba(197, 160, 89, 0.1); border: 1px solid var(--accent-gold); color: var(--accent-gold); font-family: var(--font-main); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: var(--transition); margin: 30px auto 0; }
-        .btn-lens:hover { background: var(--accent-gold); color: #000; }
-        .btn-lens:disabled { opacity: 0.3; cursor: not-allowed; border-color: rgba(255,255,255,0.2); color: #fff; background: transparent; }
+        .rich-text h3 { font-family: var(--font-serif); font-size: 28px; color: #fff; margin: 35px 0 15px; font-weight: 300; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 10px; }
+        .rich-text h4 { font-size: 13px; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-top: 30px; margin-bottom: 15px; }
+        .rich-text p { margin-bottom: 15px; opacity: 0.8; font-size: 16px; font-weight: 300; }
+        .rich-text ul { padding-left: 20px; margin-bottom: 25px; opacity: 0.8; }
+        .rich-text li { margin-bottom: 10px; font-weight: 300; }
 
-        /* --- ФОРМЫ И ГРАФИКИ --- */
-        .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; align-items: end; margin-bottom: 20px;}
-        label { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; opacity: 0.6; margin-bottom: 8px; }
-        input { width: 100%; padding: 15px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: #fff; font-size: 16px; font-family: var(--font-main); outline: none; transition: 0.3s; }
-        input:focus { border-color: var(--accent-gold); background: rgba(255,255,255,0.08);}
-        
-        .chart-container { background: var(--glass-bg); border: var(--glass-border); border-radius: 16px; padding: 20px; margin: 30px auto; height: 400px; max-width: 1000px; }
-        
-        .history-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; margin-top: 20px;}
-        .history-item { background: rgba(255,255,255,0.02); border-left: 3px solid var(--accent-gold); padding: 15px; border-radius: 8px; font-size: 14px; display: flex; flex-direction: column; gap: 5px; }
-        .history-item strong { color: var(--accent-gold); font-family: var(--font-serif); font-size: 18px; }
+        /* Detox Options */
+        .detox-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; }
+        .detox-opt { background: rgba(255,255,255,0.02); border: 1px solid rgba(197, 160, 89, 0.3); padding: 25px; border-radius: 4px; text-align: center; }
+        .detox-opt h5 { color: var(--accent); text-transform: uppercase; font-size: 14px; margin-bottom: 10px; letter-spacing: 2px; font-family: var(--font-serif); }
+        .detox-opt p { font-size: 14px; opacity: 0.8; margin: 0;}
 
-        /* --- ФОТО, ВИДЕО И ИГРА --- */
-        .content-photo { width: 100%; height: 350px; object-fit: cover; border-radius: 16px; border: var(--glass-border); margin-bottom: 30px; opacity: 0.9; }
-        #video-container iframe, #video-container video { width: 100%; border-radius: 16px; aspect-ratio: 16/9; border: var(--glass-border); margin-bottom: 30px; }
+        /* Video */
+        .video-box { width: 100%; aspect-ratio: 16/9; background: #000; margin-bottom: 30px; border-radius: 4px; overflow: hidden; border: var(--glass-border); }
+        .video-box iframe { width: 100%; height: 100%; border: none; }
+
+        .glass-box { background: var(--glass); border: var(--glass-border); padding: 30px; margin: 25px 0; border-radius: 4px; }
+        input { width: 100%; padding: 15px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1); color: #fff; margin-top: 10px; font-family: var(--font-sans); border-radius: 4px; }
         .hidden { display: none !important; }
-        
-        #progress-bar-container { margin: 30px auto; max-width: 800px; }
-        #progress-bar-track { height: 8px; background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden; margin-bottom: 10px; }
-        #progress-bar-fill { height: 100%; width: 0%; background: var(--accent-gold); transition: width 1s ease-out; }
-        
-        #game-area { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; margin-top: 20px; max-width: 800px; margin-left: auto; margin-right: auto;}
-        .game-choice-button { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 15px; border-radius: 12px; cursor: pointer; transition: 0.3s; font-size: 14px; }
-        .game-choice-button:hover { border-color: var(--accent-gold); transform: translateY(-2px);}
-        .tip-box { padding: 15px; border-radius: 12px; margin: 20px auto 0; max-width: 800px; font-size: 14px; text-align: center; }
 
-        /* --- ПОДВАЛ --- */
-        footer { margin-top: auto; padding: 40px 5%; border-top: 1px solid rgba(255,255,255,0.05); background: rgba(8, 8, 20, 0.5); text-align: center; width: 100%; }
-        .footer-nav { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-bottom: 20px; }
-        .footer-nav-btn { background: none; border: none; color: rgba(255,255,255,0.5); font-family: var(--font-main); font-size: 12px; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: 0.3s; }
-        .footer-nav-btn:hover, .footer-nav-btn.active { color: var(--accent-gold); }
+        /* Share Area */
+        #share-area { margin-top: 50px; text-align: center; padding: 40px; background: rgba(197,160,89,0.05); border: 1px dashed var(--accent); border-radius: 4px;}
+        #share-area h3 { font-family: var(--font-serif); color: var(--accent); font-size: 28px; margin-bottom: 15px;}
     </style>
 </head>
 <body>
 
-    <div id="loader-view">
-        <div class="spinner"></div>
-        <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 3px; color: var(--accent-gold);">Синхронизация...</p>
-    </div>
+<div id="loader-view"><div class="spinner"></div></div>
 
-    <div id="app-container">
-        
-        <header>
-            <div class="burger-btn" onclick="toggleMenu()">
-                <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-            </div>
-            <h1 class="header-center-title">РЕСУРС</h1>
-            <div class="logout-btn" onclick="logout()">Выйти</div>
-        </header>
+<header>
+    <div class="logo" onclick="switchScreen('screen-dashboard')">Ресурс</div>
+    <div class="logout" onclick="logout()">Выйти из клуба</div>
+</header>
 
-        <div id="side-menu">
-            <button class="close-menu" onclick="toggleMenu()">&times;</button>
-            <p style="color: var(--accent-gold); font-family: var(--font-serif); font-size: 24px; margin-bottom: 30px;">Меню Клуба</p>
-            <button data-target="screen-detox" class="side-menu-btn active" onclick="switchScreen('screen-detox'); toggleMenu();">Детокс (Питание)</button>
-            <button data-target="screen-slimness" class="side-menu-btn" onclick="switchScreen('screen-slimness'); toggleMenu();">Стройность (Видео)</button>
-            <button data-target="screen-results" class="side-menu-btn" onclick="switchScreen('screen-results'); toggleMenu();">Дневник Замеров</button>
-            <button data-target="screen-motivation" class="side-menu-btn" onclick="switchScreen('screen-motivation'); toggleMenu();">Трекер & Фокус</button>
+<div id="app-container" class="container">
+    
+    <section id="screen-dashboard" class="screen active">
+        <div class="welcome-section">
+            <h1 id="user-greeting" class="serif">Привет, Резидент</h1>
+            <p style="opacity: 0.4; font-size: 11px; text-transform: uppercase; letter-spacing: 4px;">Экосистема твоей трансформации</p>
         </div>
 
-        <section id="screen-detox" class="screen active">
-            <div class="content-wrapper">
-                <h2 style="font-size: 42px;">Привет, <span id="user-name-display" style="color: #fff;">Резидент</span>!</h2>
-                <p style="font-size: 18px; margin-bottom: 10px; color: var(--accent-gold);">Добро пожаловать в Детокс</p>
-                <p style="font-size: 14px; opacity: 0.7;">Мягкое очищение и подготовка тела.</p>
+        <div class="main-nav">
+            <div class="nav-card" onclick="openSlimness()">
+                <h3>Стройность</h3>
+                <p>Курс 6 недель</p>
             </div>
-            <div id="detox-menu" class="course-grid"></div>
-        </section>
-
-        <section id="screen-slimness" class="screen">
-            <div class="content-wrapper">
-                <h2 style="font-size: 42px;">Стройность</h2>
-                <p style="font-size: 18px; margin-bottom: 10px; color: var(--accent-gold);">Трансформация за 28 дней</p>
-                <p style="font-size: 14px; opacity: 0.7;">Активная фаза жиросжигания, тренировок и тонуса.</p>
+            <div class="nav-card" onclick="openModule('detox')">
+                <h3>Детокс</h3>
+                <p>Очищение и питание</p>
             </div>
-            <div id="slimness-menu" class="course-grid"></div>
-        </section>
-
-        <section id="screen-day-detail" class="screen">
-            <div class="content-wrapper">
-                <h2 id="day-detail-title" style="font-size: 38px;">Загрузка...</h2>
-                <div id="video-container" class="hidden"></div>
-                <div id="day-content"></div>
-                <button class="btn-lens back-button">← Вернуться к программе</button>
+            <div class="nav-card" onclick="openModule('workouts')">
+                <h3>Тренировки</h3>
+                <p>Видео-библиотека</p>
             </div>
-        </section>
+        </div>
 
-        <section id="screen-results" class="screen">
-            <div class="content-wrapper">
-                <h2 style="font-size: 38px;">Дневник замеров</h2>
-                <p>Фиксируй замеры до и после курса, чтобы увидеть реальную динамику.</p>
+        <div class="glass-box" style="text-align: center;">
+            <h4 class="serif" style="margin-bottom: 20px; letter-spacing: 2px; font-size: 22px;">График изменений</h4>
+            <canvas id="weightChart" style="max-height: 200px;"></canvas>
+            <button class="btn-main" style="margin-top: 25px;" onclick="switchScreen('screen-results')">Внести замеры</button>
+        </div>
+    </section>
 
-                <div style="background: var(--glass-bg); padding: 30px; border-radius: 16px; border: var(--glass-border); margin: 40px 0;">
-                    <form id="results-form">
-                        <div class="form-grid">
-                            <div><label>Дата</label><input type="date" id="result-date" required></div>
-                            <div><label>Вес (кг)</label><input type="number" step="0.1" id="result-weight" placeholder="62.5" required></div>
-                            <div><label>Талия (см)</label><input type="number" step="1" id="result-waist" placeholder="68"></div>
-                            <div><label>Бедра (см)</label><input type="number" step="1" id="result-hips" placeholder="95"></div>
-                        </div>
-                        <button type="submit" class="btn-lens" style="margin-top: 10px;">Сохранить данные</button>
-                    </form>
-                </div>
+    <section id="screen-slimness" class="screen">
+        <button class="btn-main btn-back" onclick="switchScreen('screen-dashboard')">← Назад</button>
+        <h2 class="serif" style="font-size: 42px; margin-bottom: 20px;">Курс Стройность</h2>
+        
+        <div class="week-tabs" id="week-tabs-container">
+            <div class="tab active" onclick="filterSlimness(1)">Неделя 1</div>
+            <div class="tab" onclick="filterSlimness(2)">Неделя 2</div>
+            <div class="tab" onclick="filterSlimness(3)">Неделя 3</div>
+            <div class="tab" onclick="filterSlimness(4)">Неделя 4</div>
+            <div class="tab" onclick="filterSlimness(5)">Неделя 5</div>
+            <div class="tab" onclick="filterSlimness(6)">Неделя 6 (Финал)</div>
+        </div>
+        
+        <div id="slimness-grid" class="content-grid"></div>
+    </section>
+
+    <section id="screen-detox" class="screen">
+        <button class="btn-main btn-back" onclick="switchScreen('screen-dashboard')">← Назад</button>
+        <h2 class="serif" style="font-size: 42px;">Детокс</h2>
+        <div id="detox-grid" class="content-grid"></div>
+    </section>
+
+    <section id="screen-workouts" class="screen">
+        <button class="btn-main btn-back" onclick="switchScreen('screen-dashboard')">← Назад</button>
+        <h2 class="serif" style="font-size: 42px;">Библиотека видео</h2>
+        <div id="workouts-grid" class="content-grid"></div>
+    </section>
+
+    <section id="screen-detail" class="screen">
+        <div class="detail-wrapper">
+            <button class="btn-main btn-back" id="btn-back-to-module">← Назад</button>
+            <div id="video-player" class="video-box hidden"></div>
+            <div id="affirmation-view" class="affirmation-box hidden"></div>
+            <h1 id="detail-title" class="serif" style="font-size: 42px; color: var(--text); line-height: 1.1; margin-bottom: 30px;"></h1>
+            <div id="detail-text" class="rich-text"></div>
+            
+            <div id="share-area" class="hidden">
+                <h3>Ты сделала это! 🎉</h3>
+                <p>Шесть недель трансформации позади. Гордись собой и поделись своим успехом!</p>
+                <button class="btn-main" onclick="shareResults()">Поделиться результатом</button>
             </div>
+        </div>
+    </section>
 
-            <h3 style="text-align: center;">График изменений</h3>
-            <div class="chart-container"><canvas id="results-chart"></canvas></div>
+    <section id="screen-results" class="screen">
+        <button class="btn-main btn-back" onclick="switchScreen('screen-dashboard')">← Назад</button>
+        <h2 class="serif" style="font-size: 42px;">Дневник замеров</h2>
+        <div class="glass-box">
+            <form id="res-form">
+                <input type="date" id="r-date" required>
+                <input type="number" step="0.1" id="r-weight" placeholder="Твой вес (кг)" required>
+                <input type="number" step="1" id="r-waist" placeholder="Талия (см)">
+                <input type="number" step="1" id="r-hips" placeholder="Бедра (см)">
+                <button type="submit" class="btn-main" style="margin-top: 20px;">Сохранить результат</button>
+            </form>
+        </div>
+    </section>
 
-            <div class="content-wrapper">
-                <h3>История</h3>
-                <div id="results-history" class="history-grid"></div>
-            </div>
-        </section>
+</div>
 
-        <section id="screen-motivation" class="screen">
-            <div class="content-wrapper">
-                <h2 style="font-size: 38px; text-align: center;">Прогресс и Фокус</h2>
-                
-                <div id="progress-bar-container">
-                    <h3 style="border: none; text-align: center; margin-bottom: 20px;">Дневник Детокса</h3>
-                    <div id="progress-bar-track"><div id="progress-bar-fill"></div></div>
-                    <p id="progress-text" style="font-size: 13px; text-transform: uppercase; letter-spacing: 2px; text-align: center; margin-top: 10px;">Пройдено: 0 из 7 дней</p>
-                    <button id="complete-day-button" class="btn-lens">Отметить день как пройденный</button>
-                </div>
+<script>
+    const CLOUD_URL = 'https://functions.yandexcloud.net/d4eg7hphveek8g1co3fr';
+    let currentModule = '';
+    let currentWeek = 1;
 
-                <hr style="border-color: rgba(255,255,255,0.05); margin: 60px 0;">
-                
-                <h3 style="text-align: center; border: none;">🧠 Интеллект Ресурса</h3>
-                <p style="text-align: center; font-size: 16px;">Какой из продуктов идеально подходит для очищения организма сегодня?</p>
-                <div id="game-area"></div>
-                <p id="game-message" class="tip-box hidden"></p>
+    // --- БАЗА ДАННЫХ (ВСЕ 6 НЕДЕЛЬ + ДЕТОКС) ---
+    const DB = {
+        detox: {
+            "d-rules": { title: "Правила Детокса", text: "<h3>Основные принципы</h3><ul><li>Утром натощак — стакан теплой воды</li><li>Объем порции до 300мл</li><li>Ужин за 3-4 часа до сна</li><li>Убираем сахар, глютен, молочку, алкоголь</li></ul>" },
+            "d-shop": { title: "Список продуктов", text: "<h3>Корзина</h3><p>Морковь, тыква, свекла, шпинат, крупы (гречка, киноа, бурый рис), яйца, индейка, белая/красная рыба, орехи (не жареные), оливковое масло.</p>" },
+            "d-recipes": { title: "Книга рецептов", text: "<h3>Рецепты</h3><p><b>Гречневый пудинг:</b> Гречка сухая 100г, кокосовое молоко 50мл, ягоды. Отварить, остудить, добавить молоко, пюрировать.</p><p><b>Хумус из нута:</b> Нут 250г, кунжут 50г, оливк. масло 1ст.л. Нут замочить, сварить. Взбить в блендере с обжаренным кунжутом.</p>" },
+            "d1": { title: "День 1", text: "<h3>План питания</h3><p>Завтрак: Льняная каша с ягодами.</p><p>Обед: Белая/Красная рыба + цельный рис + овощи.</p><p>Ужин: Филе индейки + свежие овощи.</p>" },
+            "d2": { title: "День 2", text: "<h3>План питания</h3><p>Завтрак: Омлет из 2 яиц (без молока) + зелень.</p><p>Обед: Чечевичный суп-пюре.</p><p>Ужин: Овощной салат с кальмарами.</p>" },
+            "d3": { title: "День 3 (Растительный)", text: "<h3>План питания (БЕЗ ЖИВОТНОГО БЕЛКА)</h3><p>Завтрак: Гречневый пудинг.</p><p>Обед: Киноа + тушеные овощи.</p><p>Ужин: Овощное рагу.</p>" },
+            "d4": { title: "День 4", text: "<h3>План питания</h3><p>Завтрак: Фруктовое ассорти.</p><p>Обед: Суп-пюре с сельдереем.</p><p>Ужин: Рыба по-азиатски (кета).</p>" },
+            "d5": { title: "День 5", text: "<h3>План питания</h3><p>Завтрак: Смузи.</p><p>Обед: Суп-пюре из брокколи.</p><p>Ужин: Овощное спагетти с креветками.</p>" },
+            "d6": { title: "День 6", text: "<h3>План питания</h3><p>Завтрак: Льняная каша.</p><p>Обед: Рыба на пару + рис.</p><p>Ужин: Чечевичный суп-пюре (без мяса).</p>" },
+            "d7": { title: "День 7 (Выход)", text: "<h3>План питания (БЕЗ ЖИВОТНОГО БЕЛКА)</h3><p>Завтрак: Овсяная каша на воде.</p><p>Обед: Гречка + тушеные овощи.</p><p>Ужин: Салат из свежих овощей.</p><h4>Правила выхода:</h4><p>Белок вводим постепенно (1 раз в день). Мучное и сладкое исключаем еще 3-4 дня.</p>" }
+        },
+        slimness: {
+            // НЕДЕЛЯ 1
+            "s1-info": { week: 1, title: "Рекомендации", text: "<h3>Старт Стройности</h3><ul><li>Тщательно пережевываем, не запиваем еду</li><li>Едим в тишине без гаджетов</li><li>Убираем сахар, булки, алкоголь</li><li>Делаем фото (фас, профиль, спина) и замеры!</li></ul>" },
+            "s1-d1": { week: 1, title: "День 1", affirmation: "Время - самое ценное, что у меня есть, и я отношусь к нему бережно.", text: "<h4>Задание</h4><ul><li>Отжимания от стены (30 раз)</li><li>Сдавливание ладошек «Намасте» (30 раз)</li></ul>" },
+            "s1-d2": { week: 1, title: "День 2", affirmation: "Нет таких препятствий, которые я не сумею преодолеть!", text: "<h4>Задание</h4><ul><li>30 прыжков</li><li>Планка (1 минута)</li></ul>" },
+            "s1-d3": { week: 1, title: "День 3", affirmation: "Там где другие видят проблему, я вижу новую возможность!", text: "<h4>Задание</h4><ul><li>Приседы «Плие» (30 раз)</li><li>«Стульчик» у стены (до отказа)</li></ul>" },
+            "s1-d4": { week: 1, title: "День 4", affirmation: "Я не боюсь просить помощи", text: "<h4>Задание</h4><ul><li>Опускаемся на колено поочередно</li><li>Отжимания узким хватом</li></ul>" },
+            "s1-d5": { week: 1, title: "День 5", affirmation: "Я не извиняюсь за то, какая я есть!", text: "<h4>Задание</h4><ul><li>Выпады назад (по 20 раз)</li><li>Трицепс: сгибание рук за головой (30 раз)</li></ul>" },
+            "s1-d6": { week: 1, title: "День 6", affirmation: "Я не даю моим страхам управлять мной!", text: "<h4>Задание</h4><ul><li>Отжимания обратным хватом (30 раз)</li><li>Поднимание туловища полностью (50 раз)</li></ul>" },
+            "s1-d7": { week: 1, title: "День 7", affirmation: "Я благодарна себе за смелость и упорство!", text: "<h4>Задание: Восстановление</h4><ul><li>Дыхательная гимнастика (5 мин)</li><li>Самомассаж (5 мин)</li><li>Легкая разминка (5 мин)</li></ul>" },
 
-                <hr style="border-color: rgba(255,255,255,0.05); margin: 60px 0;">
+            // НЕДЕЛЯ 2
+            "s2-shop": { week: 2, title: "Список покупок", text: "<h3>Корзина Недели 2</h3><p>Крупы (Овсяная, Пшеничная, Пшенная, Гречневая, Бурый рис), Белок (Индейка, Курица, Говядина, Рыба, Яйца, Творог 5%), Овощи (Кабачки, Перец, Кукуруза), Кефир, Ягоды.</p>" },
+            "s2-d1": { week: 2, title: "День 1", affirmation: "Я знаю, что заслуживаю похвалы и принимаю ее!", text: "<h4>Задание</h4><p>Упражнение Паучок (3 мин) + Присед (50 раз)</p>" },
+            "s2-d2": { week: 2, title: "День 2", affirmation: "Это моё тело, и я его люблю!", text: "<h4>Задание</h4><p>Отжимания от пола (30 раз) + Скручивания (50 раз)</p>" },
+            "s2-d3": { week: 2, title: "День 3", affirmation: "Мое тело заслуживает моего уважения и заботы!", text: "<h4>Задание</h4><p>Выпады реверанс (по 30) + Намасте (50 раз)</p>" },
+            "s2-d4": { week: 2, title: "День 4", affirmation: "Любовь к себе - это мое естественное состояние!", text: "<h4>Задание</h4><p>Выпрыгивания (3х25) + Выход в планку (3х10)</p>" },
+            "s2-d5": { week: 2, title: "День 5", affirmation: "Я ценю себя!", text: "<h4>Задание: Растяжка</h4><p>Кошка добрая/злая, Собака мордой вниз/вверх, наклоны к ногам.</p>" },
+            "s2-d6": { week: 2, title: "День 6", affirmation: "Я не боюсь ошибаться!", text: "<h4>Задание</h4><p>Сегодня отдых и восстановление.</p>" },
+            "s2-d7": { week: 2, title: "День 7", affirmation: "Каждый день я становлюсь сильнее!", text: "<h4>Задание</h4><p>Отжимания (3х10) + Присед классический (50 раз)</p>" },
 
-                <div style="background: rgba(197,160,89,0.05); border-left: 3px solid var(--accent-gold); padding: 30px; border-radius: 0 16px 16px 0;">
-                    <h3 style="margin-top: 0; border: none; font-size: 28px;">Золотые Правила</h3>
-                    <ul style="margin-bottom: 0;">
-                        <li><strong>Честность:</strong> Отмечайте день в трекере только после того, как выпили норму воды.</li>
-                        <li><strong>Вода:</strong> От 2 до 3 литров чистой теплой воды в день.</li>
-                        <li><strong>Чистота:</strong> Исключите алкоголь, сахар и молочку на период курса.</li>
-                        <li><strong>Сон:</strong> Отбой строго до 23:00 (идеально в 22:00).</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+            // НЕДЕЛЯ 3
+            "s3-shop": { week: 3, title: "Список покупок", text: "<h3>Корзина Недели 3</h3><p>Добавляем: Куриные сердечки и печень, апельсины, шпинат, авокадо.</p>" },
+            "s3-d1": { week: 3, title: "День 1", affirmation: "Самое главное для меня - это здоровье!", text: "<h4>Задание</h4><p>Планка бег на месте (1 мин) + Планка (1 мин)</p>" },
+            "s3-d2": { week: 3, title: "День 2", affirmation: "Я прощаю тех, кто причинил мне боль, и отпускаю обиды!", text: "<h4>Задание</h4><p>Присед с отведением ноги в сторону (по 25) + Присед с отведением ноги назад (25)</p>" },
+            "s3-d3": { week: 3, title: "День 3", affirmation: "Я сама себе супер герой!", text: "<h4>Задание</h4><p>Растяжка ног с разной постановкой ног (широкая, средняя), выпады.</p>" },
+            "s3-d4": { week: 3, title: "День 4", affirmation: "Мои чувства в моей власти, я выбираю быть счастливой!", text: "<h4>Задание</h4><p>Обратные отжимания (3х10) + Ягодичный мостик (3х25)</p>" },
+            "s3-d5": { week: 3, title: "День 5", affirmation: "Я могу, я сделаю! И точка!", text: "<h4>Задание</h4><p>Прыжки на месте (30) + Присед обычный (30)</p>" },
+            "s3-d6": { week: 3, title: "День 6", affirmation: "Я способна любить и заслуживаю любви!", text: "<h4>Задание</h4><p>Отжимания узким хватом (3х10) + Сдавливание ладоней (2х10)</p>" },
+            "s3-d7": { week: 3, title: "День 7", affirmation: "Я благодарна за то что имею!", text: "<h4>Задание</h4><p>Стульчик у стены (1 мин) + Планка (1 мин)</p>" },
 
-        <footer>
-            <div class="footer-nav">
-                <button data-target="screen-detox" class="footer-nav-btn active" onclick="switchScreen('screen-detox')">Детокс</button>
-                <button data-target="screen-slimness" class="footer-nav-btn" onclick="switchScreen('screen-slimness')">Стройность</button>
-                <button data-target="screen-results" class="footer-nav-btn" onclick="switchScreen('screen-results')">Замеры</button>
-            </div>
-            <p style="font-size: 11px; opacity: 0.3; text-transform: uppercase; letter-spacing: 3px;">© РЕСУРС. Экосистема здоровья</p>
-        </footer>
-    </div>
+            // НЕДЕЛЯ 4
+            "s4-shop": { week: 4, title: "Список покупок", text: "<h3>Корзина Недели 4</h3><p>Добавляем: Персики, ингредиенты для разгрузочного дня (яичные белки / кефир / грейпфруты).</p>" },
+            "s4-d1": { week: 4, title: "День 1", affirmation: "Я выбираю доброту!", text: "<h4>Задание</h4><p>Плие с подъемом пяток внизу (3х20) + Скручивания полные (3х30)</p>" },
+            "s4-d2": { week: 4, title: "День 2", affirmation: "Я знаю, что могу добиться всего, чего захочу!", text: "<h4>Задание</h4><p>Планка на локти-ладони (1 мин) + Планка прыжки ноги в стороны (1 мин)</p>" },
+            "s4-d3": { week: 4, title: "День 3", affirmation: "Я не боюсь постоять за себя!", text: "<h4>Задание</h4><p>Присед с коленом к груди (по 20) + Реверанс (по 20)</p>" },
+            "s4-d4": { week: 4, title: "День 4", affirmation: "Сегодня мой разум открыт для всего нового!", text: "<h4>Задание</h4><p>Обратные отжимания (30) + Поднимание туловища (50)</p>" },
+            "s4-d5": { week: 4, title: "День 5", affirmation: "Я отличаюсь от всех и буду счастлива по своему!", text: "<h4>Задание</h4><p>Скручивания складочкой (30) + Планка (1 мин)</p>" },
+            "s4-d6": { week: 4, title: "День 6 (Разгрузка)", affirmation: "Мое отношение к себе зависит только от меня!", text: "<h3>Выбери свой разгрузочный день:</h3><div class='detox-options'><div class='detox-opt'><h5>Белковый</h5><p>8-12 белков + 2-4 фрукта + вода</p></div><div class='detox-opt'><h5>Кефирно-Творожный</h5><p>1л кефира + 250г творога + вода</p></div><div class='detox-opt'><h5>Цитрусовый</h5><p>4-6 грейпфрутов + вода</p></div></div><br><h4>Задание</h4><p>Отжимания от пола (3х10) + Пресс (1 мин)</p>" },
+            "s4-d7": { week: 4, title: "День 7", affirmation: "Я благодарна за то что живу!", text: "<h4>Задание</h4><p>Танцы под любимую песню!</p>" },
 
-    <script>
-    // --- 1. АВТОРИЗАЦИЯ ---
-    const CLOUD_URL = 'https://functions.yandexcloud.net/d4eg7hphveek8g1co3fr'; 
+            // НЕДЕЛЯ 5
+            "s5-shop": { week: 5, title: "Список покупок", text: "<h3>Корзина Недели 5</h3><p>Повторяем корзину 2-й недели. Фокус на качественный белок и овощи.</p>" },
+            "s5-d1": { week: 5, title: "День 1", affirmation: "Мои мысли не управляют мной, а я управляю своими мыслями", text: "<h4>Задание</h4><p>Прыжки руки-ноги в стороны (30) + Присед плие (30)</p>" },
+            "s5-d2": { week: 5, title: "День 2", affirmation: "Я разрешаю себе быть счастливой!", text: "<h4>Задание</h4><p>Бег на месте (1 мин) + Планка (1 мин)</p>" },
+            "s5-d3": { week: 5, title: "День 3", affirmation: "Я достойна самого лучшего отношения к своему телу!", text: "<h4>Задание</h4><p>Опускание на колено поочередно + Отжимания узким хватом</p>" },
+            "s5-d4": { week: 5, title: "День 4", affirmation: "Каждая клетка моего организма работает на мою стройность", text: "<h4>Задание</h4><p>Выпады реверанс назад (по 20) + Работа на трицепс (30)</p>" },
+            "s5-d5": { week: 5, title: "День 5", affirmation: "Я прекрасна в своём стремлении к совершенству", text: "<h4>Задание</h4><p>Обратные отжимания (30) + Поднимание ног лежа (30)</p>" },
+            "s5-d6": { week: 5, title: "День 6", affirmation: "Я наслаждаюсь лёгкостью и энергией", text: "<h4>Задание</h4><p>Каракатица (1 мин) + Присед (50)</p>" },
+            "s5-d7": { week: 5, title: "День 7", affirmation: "Я люблю своё отражение в зеркале", text: "<h4>Задание</h4><p>Отжимания (30) + Скручивания (50)</p>" },
 
-    async function verifyUser() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const email = urlParams.get('email') || localStorage.getItem('resurs_user_email');
-
-        if (!email) { window.location.href = 'club.html'; return; }
-
-        try {
-            const response = await fetch(`${CLOUD_URL}?email=${encodeURIComponent(email)}`);
-            const data = await response.json();
-
-            if (data.access === 'granted') {
-                localStorage.setItem('resurs_user_email', email);
-                const firstName = data.name ? data.name.split(' ')[0] : 'Резидент';
-                document.getElementById('user-name-display').innerText = firstName;
-                
-                document.getElementById('loader-view').style.display = 'none';
-                document.getElementById('app-container').style.display = 'flex';
-                
-                initApp(); // Запускаем рендер контента и графиков
-            } else { logout(); }
-        } catch (e) { 
-            console.error("Auth error:", e);
-            logout(); 
+            // НЕДЕЛЯ 6 (ФИНАЛ)
+            "s6-d1": { week: 6, title: "День 1", affirmation: "С каждым движением я становлюсь сильнее и грациознее. Моё тело наполнено энергией и силой.", text: "<h4>Задание</h4><ul><li>Выпады реверанс (по 30)</li><li>Сжимание ладоней «Намасте» (50)</li></ul><h4>Практика</h4><p>Повторяйте аффирмацию во время выпадов. Наслаждайтесь движением.</p>" },
+            "s6-d2": { week: 6, title: "День 2", affirmation: "Моя сила растёт с каждым днём. Я уверенно иду к своей цели.", text: "<h4>Задание</h4><ul><li>Выпрыгивания (3х25)</li><li>Выход в планку (3х10)</li></ul><h4>Практика</h4><p>Проговаривайте аффирмацию между подходами. Фокус на дыхании.</p>" },
+            "s6-d3": { week: 6, title: "День 3", affirmation: "Моё тело гибкое и послушное. Я раскрываю свой потенциал.", text: "<h4>Задание (Растяжка)</h4><p>Перекаты с коленями, наклоны сидя, Кошка, Собака мордой вниз/вверх.</p><h4>Практика</h4><p>Чувствуйте, как улучшается ваша гибкость.</p>" },
+            "s6-d4": { week: 6, title: "День 4", affirmation: "Я заслуживаю отдыха. Моё тело восстанавливается и становится сильнее.", text: "<h4>Задание</h4><p>Отдых и расслабление.</p><h4>Практика</h4><p>Благодарите тело за работу и визуализируйте достижения.</p>" },
+            "s6-d5": { week: 6, title: "День 5", affirmation: "С каждым повторением я становлюсь ближе к своей цели. Моя сила безгранична.", text: "<h4>Задание</h4><ul><li>Отжимания (3х10)</li><li>Присед (50)</li></ul><h4>Практика</h4><p>Ощущайте рост мышц и верьте в себя.</p>" },
+            "s6-d6": { week: 6, title: "День 6", affirmation: "Моё тело выносливо и энергично. Я способна на многое.", text: "<h4>Задание</h4><ul><li>Планка бег (1 мин)</li><li>Планка классика (1 мин)</li></ul><h4>Практика</h4><p>Держитесь уверенно, наслаждайтесь процессом.</p>" },
+            "s6-d7": { week: 6, title: "День 7: Финал!", affirmation: "Я горжусь собой и своими достижениями. Я достигла новых высот!", text: "<h4>Задание</h4><ul><li>Присед с отведением ног в стороны (по 25)</li><li>Присед с отведением ног назад (25)</li></ul><hr><h3>Важные моменты финала:</h3><ul><li>Сделайте финальное фото ДО/ПОСЛЕ</li><li>Запишите финальные замеры</li><li>Помните: ваш труд не прошел даром! Вы проделали огромную работу.</li></ul>", isFinal: true }
+        },
+        workouts: {
+            "v-start": { title: "Лимфодренаж", video: "https://www.youtube.com/embed/dQw4w9WgXcQ", text: "<p>Идеальная зарядка для запуска лимфатической системы и снятия утренних отеков.</p>" }
         }
+    };
+
+    // --- ЛОГИКА ---
+    async function checkAccess() {
+        const email = new URLSearchParams(window.location.search).get('email') || localStorage.getItem('resurs_email');
+        if (!email) { window.location.href = 'club.html'; return; }
+        try {
+            const res = await fetch(`${CLOUD_URL}?email=${email}`);
+            const data = await res.json();
+            if (data.access === 'granted') {
+                localStorage.setItem('resurs_email', email);
+                document.getElementById('user-greeting').innerText = `Привет, ${data.name.split(' ')[0]}`;
+                document.getElementById('loader-view').style.display = 'none';
+                initCharts();
+            } else { logout(); }
+        } catch (e) { logout(); }
     }
 
-    function logout() { localStorage.removeItem('resurs_user_email'); window.location.href = 'club.html'; }
-    window.onload = verifyUser;
+    function logout() { localStorage.removeItem('resurs_email'); window.location.href = 'club.html'; }
 
-    // --- 2. БАЗЫ ДАННЫХ КОНТЕНТА ---
-
-    // === БАЗА: ДЕТОКС ===
-    const DETOX_DAYS_CONTENT = {
-        "0": {
-            title: "Список Продуктов",
-            photoUrl: "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&q=80",
-            description: `
-                <p><strong>Курс Детокс - Мягкое очищение, начнем со списка продуктов!</strong></p>
-                <p>ПОКУПАЙТЕ ТОЛЬКО ТЕ ПРОДУКТЫ ИЗ СПИСКА, КОТОРЫЕ: ЛЮБИТЕ И МОЖЕТЕ СЕБЕ ПОЗВОЛИТЬ.</p>
-                <h3>ОВОЩИ:</h3>
-                <ul>
-                    <li>МОРКОВЬ, ТЫКВА, ПОМИДОР, ОГУРЕЦ, СЕЛЬДЕРЕЙ, ШПИНАТ, ЛИСТЬЯ САЛАТА.</li>
-                    <li>ЛЮБАЯ ЗЕЛЕНЬ (ПЕТРУШКА, УКРОП, РУККОЛА, КИНЗА, И ТД)</li>
-                    <li>БОБОВЫЕ (ФАСОЛЬ, НУТ, ЧЕЧЕВИЦА КРАСНАЯ)</li>
-                    <li>ЛУК РЕПЧАТЫЙ, ЗЕЛЕНЫЙ, ПОРЕЙ. СТРУЧКОВАЯ ФАСОЛЬ, КАБАЧОК.</li>
-                    <li>КАПУСТА (БРОККОЛИ, ЦВЕТНАЯ), АВОКАДО.</li>
-                    <li>ДОМАШНЯЯ КОНСЕРВАЦИЯ (БЕЗ САХАРА И УКСУСА), В Т.Ч. КВАШЕННАЯ КАПУСТА.</li>
-                    <li>МАСЛИНЫ, ОЛИВКИ, ЗАМОРОЖЕННЫЕ СМЕСИ ОВОЩЕЙ (ДЛЯ СЛИШКОМ ЗАНЯТЫХ).</li>
-                </ul>
-                <h3>ГРИБЫ:</h3><ul><li>ШАМПИНЬОНЫ</li></ul>
-                <h3>ФРУКТЫ:</h3>
-                <ul>
-                    <li>ГРУША, ЯБЛОКО, МАНДАРИН, АПЕЛЬСИН, ЛИМОН, АБРИКОС, ПЕРСИК, НЕКТОРИН.</li>
-                    <li>ГРЕЙПФРУТ, АНАНАС, КИВИ, ФЕЙХОА.</li>
-                </ul>
-                <h3>ЯГОДЫ:</h3><ul><li>СВЕЖИЕ ИЛИ СУХОФРУКТЫ (КРОМЕ ФИНИКОВ)</li></ul>
-                <h3>ОРЕХИ (НЕ ЖАРЕНЫЕ):</h3><ul><li>КЕШЬЮ, ГРЕЦКИЙ, МИНДАЛЬ, ФУНДУК, КЕДРОВЫЕ</li></ul>
-                <h3>СЕМЕНА:</h3><ul><li>КУНЖУТ, ЧИА, ЛЬНА</li></ul>
-                <h3>СУХОФРУКТЫ И ДЖЕМЫ:</h3>
-                <ul>
-                    <li><strong>СУХОФРУКТЫ:</strong> ЧЕРНОСЛИВ, КУРАГА, ИЗЮМ</li>
-                    <li><strong>ДЖЕМЫ:</strong> НАТУРАЛЬНЫЕ, БЕЗ ДОБАВЛЕНИЯ САХАРА И СИРОПЫ</li>
-                </ul>
-                <h3>КРУПЫ:</h3>
-                <ul>
-                    <li>ГРЕЧНЕВАЯ, КУКУРУЗНАЯ, ПЕРЛОВАЯ.</li>
-                    <li>БУРЫЙ, КРАСНЫЙ РИС, РИС РУБИН (ЛЮБОЙ НЕШЛИФОВАННЫЙ).</li>
-                    <li><strong>КИНОА</strong> (ОЧЕНЬ РЕКОМЕНДУЕМ ПО ВОЗМОЖНОСТИ), АМАРАНТ.</li>
-                </ul>
-                <h3>МАСЛА:</h3><p>ТОЛЬКО НЕРАФИНИРОВАННЫЕ, ХОЛОДНОГО ОТЖИМА: <strong>ОЛИВКОВОЕ, ТЫКВЕННОЕ, КУНЖУТНОЕ, ЛЬНЯНОЕ</strong>.</p>
-                <h3>ИЗДЕЛИЯ ИЗ МУКИ:</h3><p>ХЛЕБЦЫ БЕЗ ДРОЖЖЕЙ В СОСТАВЕ И БЕЗ ГЛЮТЕНА (ГРЕЧНЕВЫЕ, КУКУРУЗНЫЕ, ИЗ КИНОА)</p>
-                <h3>СЛАДОСТИ:</h3>
-                <ul>
-                    <li><strong>ШОКОЛАД:</strong> НЕ МЕНЕЕ 75% КАКАОБОБОВ БЕЗ САХАРА В СОСТАВЕ</li>
-                    <li><strong>ПАСТИЛА:</strong> БЕЗ САХАРА (ПРИМЕР СОСТАВА: ЯБЛОКО)</li>
-                </ul>
-                <h3>ПРОЧИЕ ПРОДУКТЫ:</h3>
-                <ul>
-                    <li>ЯЙЦА КУРИНЫЕ ИЛИ ПЕРЕПЕЛИНЫЕ</li>
-                    <li>БАЛЬЗАМИК, ПЕСТО В НЕБОЛЬШИХ КОЛИЧЕСТВАХ</li>
-                    <li>СПЕЦИИ НАТУРАЛЬНЫЕ, СОЛЬ</li>
-                </ul>
-                <h3>БЕЛОК (НЕ БОЛЕЕ 1 РАЗА В ДЕНЬ СО 2 ПО 6 ДЕНЬ):</h3>
-                <ul>
-                    <li><strong>ПТИЦА:</strong> ФИЛЕ ИНДЕЙКИ, КРОЛЬЧАТИНА</li>
-                    <li><strong>РЫБА И МОРЕПРОДУКТЫ (НЕЖИРНЫЕ СОРТА):</strong>
-                        <ul>
-                            <li>МОРСКАЯ: КАМБАЛА, ТРЕСКА, ХЕК СЕРЕБРИСТЫЙ, МИНТАЙ, ГОРБУША, КЕТА, ТУНЕЦ, ФОРЕЛЬ, СЕМГА</li>
-                            <li>РЕЧНЫЕ: ЩУКА, ЛЕЩ, РЕЧНОЙ ОКУНЬ, СУДАК</li>
-                            <li>МОЛЛЮСКИ: МИДИИ, КРЕВЕТКИ, КАЛЬМАР, ОСЬМИНОГ - В КОНСЕРВАХ, В СОБСТВЕННОМ СОКУ (НЕ В МАСЛЕ)</li>
-                        </ul>
-                    </li>
-                </ul>
-                <h3>НАПИТКИ:</h3>
-                <ul>
-                    <li>ЦИКОРИЙ НАТУРАЛЬНЫЙ</li>
-                    <li>ЧАЙ РОЙБУШ (РОЙБАС), ИВАН ЧАЙ (КИПРЕЙ)</li>
-                    <li>МЯТА, МЕЛИСА, ЛЮБЫЕ ТРАВЫ</li>
-                    <li>МАТЧА ЗЕЛЕНАЯ/ГОЛУБАЯ, <strong>КОКОСОВОЕ МОЛОКО</strong> (!!!)</li>
-                </ul>`
-        },
-        "recipes": {
-            title: "Сборник Рецептов",
-            photoUrl: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=800&q=80",
-            description: `
-                <p>Здесь собраны все рецепты, которые помогут вам придерживаться плана питания по дням!</p>
-                <hr><h3>1. ЗАВТРАКИ И ПЕРЕКУСЫ</h3><hr>
-                <h4>Фруктовое ассорти</h4><p><strong>Ингредиенты:</strong> яблоко – 1 шт., груша – 1 шт., сок лимона – 1 ст. ложка, корица.</p><p><strong>Приготовление:</strong> Нарезаем фрукты, поливаем соком, посыпаем корицей.</p>
-                <h4>Гречневый пудинг</h4><p><strong>Ингредиенты:</strong> Гречневая крупа сухая – 100 гр, Кокосовое молочко – 50 мл, Фрукты, Соль.</p><p><strong>Приготовление:</strong> Отварить крупу до готовности, остудить, добавить теплое кокосовое молочко и пюрировать. Украсить ягодами.</p>
-                <h4>Запеченное яблоко</h4><p><strong>Ингредиенты:</strong> Яблоко, Курага, Грецкие орехи.</p><p><strong>Приготовление:</strong> Вырезаем сердцевину, начиняем орехами и курагой, запекаем при 180°C 30 минут.</p>
-                <h4>Салат «Детокс»</h4><p><strong>Ингредиенты:</strong> 1 сырая морковь, 100 г чернослива, 1 сырая свекла, 200 г белокочанной капусты, Масло, Сок лимона.</p><p><strong>Приготовление:</strong> Корнеплоды натереть на терке, нашинковать капусту. Чернослив залить кипятком, нарезать. Соединить и заправить маслом с лимоном.</p>
-                <h4>Салат «Мягкое очищение»</h4><p><strong>Ингредиенты:</strong> Зелень, 1 помидор, 2 огурца, сельдерей, базилик, половинка авокадо, оливковое масло, лимон.</p><p><strong>Приготовление:</strong> Нарезать, смешать, заправить.</p>
-                <h4>Пюре из нута и шпината</h4><p><strong>Ингредиенты:</strong> нут – 300 г, шпинат – 1 пучок, оливковое масло, специи.</p><p><strong>Приготовление:</strong> Нут отварить. Взбить в блендере со шпинатом, маслом и специями.</p>
-                <h4>Хумус из нута</h4><p><strong>Ингредиенты:</strong> Нут – 250 г, Кунжут – 50 г, Оливковое масло – 1 ст. ложка, Лук, Соль, Лимон.</p><p><strong>Приготовление:</strong> Отварной нут взбить в блендере с обжаренным кунжутом, жареным луком и оливковым маслом.</p>
-                <h4>Хлебцы с пюре из авокадо</h4><p><strong>Приготовление:</strong> Авокадо пюрируем блендером с соком лимона и солью. Мажем на гречневые хлебцы.</p>
-
-                <hr><h3>2. РЕЦЕПТЫ СМУЗИ</h3><hr>
-                <h4>Очищающий зеленый смузи</h4><p><strong>Ингредиенты:</strong> Любая зелень – 550 гр, льняное масло – 1 ч.л., лимон – 1 ч.л., сироп топинамбура – 1 ч.л., Вода.</p><p><strong>Приготовление:</strong> Пюрируем блендером.</p>
-                <h4>Зеленый микс с сельдереем</h4><p><strong>Ингредиенты:</strong> Стебель сельдерея, Семена льна 1 ч.л., Яблоко 1 шт., Вода.</p><p><strong>Приготовление:</strong> Пюрируем блендером сельдерей и яблоко, добавляем семена льна.</p>
-
-                <hr><h3>3. СУПЫ-ПЮРЕ</h3><hr>
-                <h4>Суп-пюре с сельдереем и шпинатом</h4><p><strong>Ингредиенты:</strong> 250 г сельдерея, 100 г лука-порея, 200 г шпината, Горсть цельного риса.</p><p><strong>Приготовление:</strong> Варим до готовности, затем пюрируем блендером.</p>
-                <h4>Чечевичный суп-пюре</h4><p><strong>Ингредиенты:</strong> Чечевица красная, Томат 2-3 шт, Чеснок 2 зубчика, Базилик.</p><p><strong>Приготовление:</strong> Варить чечевицу 25 минут, добавить томаты, чеснок, базилик. Варить еще 10 мин. Пюрировать блендером.</p>
-
-                <hr><h3>4. БЛЮДА ИЗ РЫБЫ И МОРЕПРОДУКТОВ</h3><hr>
-                <h4>Рыба по-азиатски (Кета)</h4><p><strong>Ингредиенты:</strong> Кета – 1 кг, соевый соус, чеснок, белый перец, оливковое масло, кунжут.</p><p><strong>Приготовление:</strong> Замариновать рыбу на 1 час. Присыпать кунжутом и запекать 30-35 минут при 180°C.</p>
-                <h4>Теплый салат с лососем и авокадо</h4><p><strong>Ингредиенты:</strong> Лосось филе – 100 г, Авокадо – 30 г, Шпинат и руккола - 50 г.</p><p><strong>Приготовление:</strong> Лосось запечь в фольге 25 минут. Выложить на зелень вместе с нарезанным авокадо.</p>
-                <h4>Овощное спагетти с креветками</h4><p><strong>Приготовление:</strong> Сделать пасту из кабачка, обжарить 4 мин. Обжарить креветки с чесноком 3 мин. Добавить соевый соус, соединить с кабачком.</p>
-
-                <hr><h3>5. ДЕСЕРТЫ</h3><hr>
-                <h4>Сладкий десерт из авокадо</h4><p><strong>Ингредиенты:</strong> Авокадо спелый – 1 шт, Какао – 1 ст.л, Сироп агавы – 3 ст.л.</p><p><strong>Приготовление:</strong> Пюрируем, замораживаем 4 часа. Формируем конфеты, обваливаем в стружке.</p>
-                
-                <hr><h2>ОБЩИЕ ПРАВИЛА «ДЕТОКС»</h2>
-                <ul>
-                    <li><strong>Утром натощак</strong> – стакан теплой воды</li>
-                    <li>Один прием пищи по объему <strong>до 300 гр/300мл</strong></li>
-                    <li>Со 2 по 6 день включительно – не более одного животного продукта в день</li>
-                    <li><strong>День 3 – полностью растительный</strong></li>
-                </ul>`
-        },
-        "1": {
-            title: "День 1: Ваш План Питания", photoUrl: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80", 
-            description: `
-                <h3>Первый завтрак (варианты на выбор):</h3>
-                <ul><li>Льняная каша + орехи + ягоды</li><li>Гречневая каша + кокосовое молочко</li><li>Гречневый пудинг (см. рецепты)</li><li>Кукурузная каша + орехи + ягоды</li></ul>
-                <h3>Второй завтрак:</h3><ul><li>Фруктовое ассорти</li><li>Смузи (любой на свой вкус)</li></ul>
-                <h3>Обед:</h3><ul><li>Белая или красная рыба + цельный рис + овощи</li></ul>
-                <p>* При аллергии на рыбу приготовьте индейку</p>
-                <h3>Перекус:</h3><ul><li>Салат «Детокс»</li><li>Салат: яблоко + морковь + сельдерей + лимон</li><li>Запеченное яблоко 1-2 шт + травяной чай</li></ul>
-                <h3>Второй перекус:</h3><ul><li>Чечевичный суп-пюре</li><li>Суп-пюре из сельдерея и шпината</li><li>Овощной суп-пюре</li></ul>
-                <h3>Ужин:</h3><ul><li>Индейка (грудка) + свежие овощи</li><li>Салат из свежих овощей + креветки</li><li>Салат с кальмарами</li></ul>`
-        },
-        "2": {
-            title: "День 2: Ваш План Питания", photoUrl: "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=800&q=80", 
-            description: `
-                <h3>Первый завтрак:</h3><ul><li>Фруктовое ассорти / Очищающий зеленый смузи</li></ul>
-                <h3>Второй завтрак:</h3><ul><li>Омлет из двух яиц + овощи (без молока!) / Гречневый пудинг</li></ul>
-                <h3>Перекус:</h3><ul><li>Груша + апельсин / Салат «Детокс» / Десерт</li></ul>
-                <h3>Обед:</h3><ul><li>Любой суп-пюре / Овощное рагу + 1 ст. ложка оливкового масла</li></ul>
-                <h3>Второй перекус (по желанию):</h3><ul><li>Овощной салат / 2 хлебца + хумус</li></ul>
-                <h3>Ужин:</h3><ul><li>Овощной салат с кальмарами / Филе индейки + овощи / Овощное спагетти с креветками</li></ul>`
-        },
-        "3": {
-            title: "День 3: Полностью Растительный", photoUrl: "https://images.unsplash.com/photo-1498837167922-41c54bfa3535?auto=format&fit=crop&w=800&q=80", 
-            description: `
-                <h3>Первый завтрак:</h3><ul><li>Любая каша (льняная, гречневая, кукурузная) + ягоды / кокосовое молочко</li></ul>
-                <h3>Второй завтрак:</h3><ul><li>Смузи (любой на свой вкус)</li></ul>
-                <h3>Обед:</h3><ul><li>Киноа + овощи / Гречка + овощи / Овощное рагу</li></ul>
-                <h3>Перекус:</h3><ul><li>Любой суп-пюре (без мяса!)</li></ul>
-                <h3>Второй перекус (по желанию):</h3><ul><li>Орехи + травяной чай / Запеченное яблоко / Салат «Детокс»</li></ul>
-                <h3>Ужин:</h3><ul><li>Киноа + овощи / Гречка + овощи (вариант, не использованный в обед)</li></ul>`
-        },
-        "4": {
-            title: "День 4: Ваш План Питания", photoUrl: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80", 
-            description: `
-                <h3>Первый завтрак:</h3><ul><li>Фруктовое ассорти / Очищающий зеленый смузи</li></ul>
-                <h3>Второй завтрак:</h3><ul><li>Омлет из 2 яиц + овощи / Гречка + кокосовое молочко / Льняная каша</li></ul>
-                <h3>Обед:</h3><ul><li>Суп-пюре / Овощное рагу</li></ul>
-                <h3>Перекус:</h3><ul><li>Фрукты / Салат «Мягкое очищение» / Десерт</li></ul>
-                <h3>Второй перекус:</h3><ul><li>Овощной салат / 2 хлебца + пюре из авокадо</li></ul>
-                <h3>Ужин:</h3><ul><li>Рыба по-азиатски + овощи / Теплый салат с лососем и авокадо / При аллергии: Индейка + овощи</li></ul>`
-        },
-        "5": {
-            title: "День 5: Ваш План Питания", photoUrl: "https://images.unsplash.com/photo-1494859802809-d069c3b71a8a?auto=format&fit=crop&w=800&q=80", 
-            description: `
-                <h3>Первый завтрак:</h3><ul><li>Фруктовое ассорти / Смузи</li></ul>
-                <h3>Второй завтрак:</h3><ul><li>Гречневый пудинг / Льняная каша</li></ul>
-                <h3>Обед:</h3><ul><li>Суп-пюре из брокколи / Чечевичный суп / Киноа + овощное рагу</li></ul>
-                <h3>Перекус:</h3><ul><li>Салат «Детокс» / 2 хлебца + хумус / Запеченное яблоко</li></ul>
-                <h3>Ужин:</h3><ul><li>Омлет из двух яиц + свежие овощи / Индейка + овощи / Овощное спагетти с креветками</li></ul>`
-        },
-        "6": {
-            title: "День 6: Ваш План Питания", photoUrl: "https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?auto=format&fit=crop&w=800&q=80", 
-            description: `
-                <h3>Первый завтрак:</h3><ul><li>Льняная каша / Гречка + кокосовое молочко</li></ul>
-                <h3>Второй завтрак:</h3><ul><li>Очищающий зеленый смузи / Фруктовое ассорти</li></ul>
-                <h3>Обед:</h3><ul><li>Рыба на пару + цельный рис + овощи / Крольчатина на пару + гречка</li></ul>
-                <h3>Перекус:</h3><ul><li>Салат «Мягкое очищение» / 2 хлебца + пюре из авокадо / Десерт из авокадо</li></ul>
-                <h3>Ужин:</h3><ul><li>Киноа + тушеные овощи (без животного белка!) / Чечевичный суп-пюре (без белка!)</li></ul>`
-        },
-        "7": {
-            title: "День 7: Выход из Детокса", photoUrl: "https://images.unsplash.com/photo-1511690743698-d9d85f2fbf38?auto=format&fit=crop&w=800&q=80", 
-            description: `
-                <h2>ПРАВИЛА ВЫХОДА ИЗ ПРОГРАММЫ</h2>
-                <p><strong>СЕГОДНЯ ЖИВОТНЫЙ БЕЛОК НЕ УПОТРЕБЛЯЕМ!</strong></p>
-                <p>Ваше тело очистилось и обновилось. Плавно возвращаемся к обычному рациону.</p>
-                <h3>Первый завтрак:</h3><ul><li>Смузи / Овсяная каша на воде с ягодами</li></ul>
-                <h3>Второй завтрак:</h3><ul><li>Порция фруктов / Запеченное яблоко</li></ul>
-                <h3>Обед:</h3><ul><li>Овощной суп-пюре (без мяса!) / Гречка + тушеные овощи</li></ul>
-                <h3>Перекус:</h3><ul><li>Горсть орехов / 2 хлебца с хумусом или авокадо</li></ul>
-                <h3>Ужин:</h3><ul><li>Салат из свежих овощей с оливковым маслом / Киноа + тушеные овощи</li></ul>
-                <hr>
-                <h3>ПРАВИЛА ДЛЯ СЛЕДУЮЩИХ ДНЕЙ:</h3>
-                <ul>
-                    <li>Животный белок вводим постепенно, <strong>не более 1 раза в день</strong> в течение первой недели.</li>
-                    <li>Сладкое и мучное не употребляем еще как минимум 3-4 дня.</li>
-                    <li>Постепенно расширяем рацион, избегая жареного, жирного и сахара.</li>
-                </ul>`
-        }
-    };
-
-    // === БАЗА: СТРОЙНОСТЬ (С ВИДЕО) ===
-    const SLIMNESS_CONTENT = {
-        "s-w1-d1": {
-            title: "День 1: Точка отсчета",
-            photoUrl: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=800&q=80",
-            videoHtml: `<iframe width="100%" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>`,
-            description: `
-                <h3>Фокус дня: Замеры и лимфодренаж</h3>
-                <p>Сегодня мы запускаем процессы и избавляемся от отеков. Посмотрите видеоурок и выполните задания ниже.</p>
-                <ul>
-                    <li><strong>Аффирмация:</strong> Мое тело — мой храм. Сегодня я делаю первый шаг к легкости.</li>
-                    <li><strong>Задания:</strong> Прыжки (100 раз), норма воды, фото «До», вакуум живота (новичок).</li>
-                </ul>`
-        },
-        "s-w1-d2": {
-            title: "День 2: Пробуждение кишечника",
-            photoUrl: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80",
-            videoHtml: ``, // Нет видео - плеер не покажется
-            description: `
-                <h3>Фокус дня: Работа с ЖКТ и осанкой</h3>
-                <p>Легкость начинается изнутри. Сегодня мы работаем с пищеварением.</p>
-                <ul>
-                    <li><strong>Задания:</strong> Планка (1 мин), упражнение «Кошка», строгое исключение сахара на весь день.</li>
-                </ul>`
-        },
-        "s-w1-d3": {
-            title: "День 3: Легкие ноги",
-            photoUrl: "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=800&q=80",
-            videoHtml: ``,
-            description: `
-                <h3>Фокус дня: Избавление от тяжести</h3>
-                <ul>
-                    <li><strong>Задания:</strong> Упражнение «Тараканчик» (вибрация конечностями), самомассаж сухой щеткой перед душем, вечерняя растяжка.</li>
-                </ul>`
-        }
-    };
-
-    // --- 3. ЛОГИКА ИНТЕРФЕЙСА ---
-    
-    let activeCourse = 'detox'; // Запоминаем, в каком курсе сейчас находимся
-
-    function toggleMenu() { document.getElementById('side-menu').classList.toggle('open'); }
-
-    window.switchScreen = function(id) {
+    function switchScreen(id) {
         document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
         document.getElementById(id).classList.add('active');
-        
-        document.querySelectorAll('.side-menu-btn, .footer-nav-btn').forEach(b => {
-            if(b.dataset.target === id) b.classList.add('active');
-            else b.classList.remove('active');
-        });
-
-        if(id === 'screen-detox') activeCourse = 'detox';
-        if(id === 'screen-slimness') activeCourse = 'slimness';
-
-        if(id === 'screen-results') renderChart();
-        if(id === 'screen-motivation') { updateProgress(); }
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    const backBtn = document.querySelector('.back-button');
-    if(backBtn) backBtn.onclick = () => switchScreen(`screen-${activeCourse}`);
-
-    function initApp() {
-        renderCourseMenus();
-        renderChart();
-        updateProgress();
-        initGame();
+    function openModule(mod) {
+        currentModule = mod;
+        const grid = document.getElementById(`${mod}-grid`);
+        grid.innerHTML = '';
+        for (let id in DB[mod]) {
+            const label = id.includes('rules') || id.includes('shop') || id.includes('recipes') ? 'Инфо' : (mod === 'workouts' ? 'Видео' : 'День');
+            grid.innerHTML += `<div class="item-card" onclick="openDetail('${mod}', '${id}')"><span>${label}</span><h4>${DB[mod][id].title}</h4></div>`;
+        }
+        switchScreen(`screen-${mod}`);
     }
 
-    function renderCourseMenus() {
-        // Отрисовка меню Детокса
-        const detoxMenu = document.getElementById('detox-menu');
-        detoxMenu.innerHTML = '';
-        for (let key in DETOX_DAYS_CONTENT) {
-            const item = DETOX_DAYS_CONTENT[key];
-            detoxMenu.innerHTML += `
-                <div class="menu-item" onclick="openLesson('detox', '${key}')">
-                    <div class="menu-item-bg" style="background-image: url('${item.photoUrl}')"></div>
-                    <div class="menu-item-content"><h3>${item.title}</h3><p>Курс Детокс</p></div>
-                </div>`;
-        }
+    function openSlimness() {
+        currentModule = 'slimness';
+        filterSlimness(currentWeek);
+        switchScreen('screen-slimness');
+    }
 
-        // Отрисовка меню Стройности
-        const slimMenu = document.getElementById('slimness-menu');
-        slimMenu.innerHTML = '';
-        for (let key in SLIMNESS_CONTENT) {
-            const item = SLIMNESS_CONTENT[key];
-            slimMenu.innerHTML += `
-                <div class="menu-item" onclick="openLesson('slimness', '${key}')">
-                    <div class="menu-item-bg" style="background-image: url('${item.photoUrl}')"></div>
-                    <div class="menu-item-content"><h3>${item.title}</h3><p>Курс Стройность</p></div>
-                </div>`;
+    function filterSlimness(week) {
+        currentWeek = week;
+        document.querySelectorAll('.tab').forEach((t, i) => t.classList.toggle('active', i === week-1));
+        const grid = document.getElementById('slimness-grid');
+        grid.innerHTML = '';
+        for (let id in DB.slimness) {
+            if (DB.slimness[id].week === week) {
+                const isInfo = id.includes('info') || id.includes('shop');
+                grid.innerHTML += `<div class="item-card" onclick="openDetail('slimness', '${id}')"><span>${isInfo ? 'Инфо' : 'День'}</span><h4>${DB.slimness[id].title}</h4></div>`;
+            }
         }
     }
 
-    window.openLesson = function(course, id) {
-        activeCourse = course;
-        const data = (course === 'detox') ? DETOX_DAYS_CONTENT[id] : SLIMNESS_CONTENT[id];
-        if(!data) return;
+    function openDetail(mod, id) {
+        const data = DB[mod][id];
+        document.getElementById('detail-title').innerText = data.title;
+        document.getElementById('detail-text').innerHTML = data.text;
+        
+        const affView = document.getElementById('affirmation-view');
+        if (data.affirmation) {
+            affView.innerText = `«${data.affirmation}»`;
+            affView.classList.remove('hidden');
+        } else {
+            affView.classList.add('hidden');
+        }
 
-        document.getElementById('day-detail-title').innerText = data.title;
-        document.getElementById('day-content').innerHTML = `
-            <img src="${data.photoUrl}" class="content-photo" onerror="this.style.display='none'">
-            ${data.description}
-        `;
-
-        const videoBox = document.getElementById('video-container');
-        if (data.videoHtml && data.videoHtml.trim() !== '') {
-            videoBox.innerHTML = data.videoHtml;
+        const videoBox = document.getElementById('video-player');
+        if (data.video) {
+            videoBox.innerHTML = `<iframe src="${data.video}" allowfullscreen></iframe>`;
             videoBox.classList.remove('hidden');
         } else {
             videoBox.innerHTML = '';
             videoBox.classList.add('hidden');
         }
 
-        switchScreen('screen-day-detail');
+        const shareArea = document.getElementById('share-area');
+        if (data.isFinal) {
+            shareArea.classList.remove('hidden');
+        } else {
+            shareArea.classList.add('hidden');
+        }
+
+        document.getElementById('btn-back-to-module').onclick = () => {
+            if (mod === 'slimness') openSlimness(); else openModule(mod);
+        };
+        switchScreen('screen-detail');
     }
 
-    // --- 4. ЗАМЕРЫ И МУЛЬТИ-ГРАФИК ---
-    let results = JSON.parse(localStorage.getItem('resursDetoxRes')) || [];
-    const form = document.getElementById('results-form');
+    // ЛОГИКА ШЕРИНГА
+    function shareResults() {
+        const shareData = {
+            title: 'Я прошла трансформацию!',
+            text: 'Я завершила 6 недель курса Стройность в экосистеме РЕСУРС! Это было потрясающе 💪✨ Присоединяйся!',
+            url: window.location.origin
+        };
+        if (navigator.share) {
+            navigator.share(shareData).catch(console.error);
+        } else {
+            alert('Текст скопирован в буфер обмена! Поделись им с друзьями.');
+            navigator.clipboard.writeText(`${shareData.text} ${shareData.url}`);
+        }
+    }
+
+    // ЗАМЕРЫ И ГРАФИК
+    let results = JSON.parse(localStorage.getItem('resursRes')) || [];
+    const form = document.getElementById('res-form');
     let chartInstance = null;
 
     if(form) {
         form.onsubmit = (e) => {
             e.preventDefault();
             results.push({ 
-                date: document.getElementById('result-date').value, 
-                weight: document.getElementById('result-weight').value, 
-                waist: document.getElementById('result-waist').value || '-', 
-                hips: document.getElementById('result-hips').value || '-' 
+                date: document.getElementById('r-date').value, 
+                weight: parseFloat(document.getElementById('r-weight').value) 
             });
             results.sort((a,b) => new Date(a.date) - new Date(b.date));
-            localStorage.setItem('resursDetoxRes', JSON.stringify(results));
-            form.reset(); renderChart();
+            localStorage.setItem('resursRes', JSON.stringify(results));
+            form.reset(); 
+            initCharts();
+            switchScreen('screen-dashboard');
         }
     }
 
-    function renderChart() {
-        const ctx = document.getElementById('results-chart');
+    function initCharts() {
+        const ctx = document.getElementById('weightChart');
         if(!ctx) return;
         if(chartInstance) chartInstance.destroy();
-        
-        Chart.defaults.color = 'rgba(255,255,255,0.7)';
-        Chart.defaults.font.family = "'Manrope', sans-serif";
-        Chart.defaults.font.size = window.innerWidth > 768 ? 14 : 10;
 
-        const dates = results.map(r => new Date(r.date).toLocaleDateString());
-        const weights = results.map(r => r.weight);
-        const waists = results.map(r => r.waist !== '-' ? parseFloat(r.waist) : null);
-        const hips = results.map(r => r.hips !== '-' ? parseFloat(r.hips) : null);
+        let labels = results.length > 0 ? results.map(r => new Date(r.date).toLocaleDateString().slice(0,5)) : ['Нет данных'];
+        let dataPts = results.length > 0 ? results.map(r => r.weight) : [0];
+
+        Chart.defaults.color = 'rgba(255,255,255,0.5)';
+        Chart.defaults.font.family = "'Manrope', sans-serif";
 
         chartInstance = new Chart(ctx.getContext('2d'), {
             type: 'line',
-            data: {
-                labels: dates,
-                datasets: [
-                    { label: 'Вес (кг)', data: weights, borderColor: '#C5A059', backgroundColor: 'rgba(197, 160, 89, 0.15)', tension: 0.4, fill: true, pointRadius: 6, borderWidth: 3 },
-                    { label: 'Талия (см)', data: waists, borderColor: '#4caf50', tension: 0.4, pointRadius: 5, fill: false, spanGaps: true, borderWidth: 2 },
-                    { label: 'Бедра (см)', data: hips, borderColor: '#2196f3', tension: 0.4, pointRadius: 5, fill: false, spanGaps: true, borderWidth: 2 }
-                ]
+            data: { 
+                labels: labels, 
+                datasets: [{ 
+                    data: dataPts, 
+                    borderColor: '#C5A059', 
+                    tension: 0.4, 
+                    borderWidth: 3, 
+                    pointRadius: 5, 
+                    pointBackgroundColor: '#C5A059' 
+                }] 
             },
             options: { 
                 responsive: true, maintainAspectRatio: false,
-                interaction: { mode: 'index', intersect: false },
-                plugins: { legend: { position: 'top' } }
+                plugins: { legend: { display: false } }, 
+                scales: { 
+                    y: { grid: { color: 'rgba(255,255,255,0.05)' } }, 
+                    x: { grid: { display: false } } 
+                } 
             }
         });
-
-        document.getElementById('results-history').innerHTML = results.map(r => `
-            <div class="history-item">
-                <strong>${new Date(r.date).toLocaleDateString()}</strong>
-                <span>⚖️ Вес: ${r.weight} кг</span>
-                <span>📏 Талия: ${r.waist} см</span>
-                <span>👖 Бедра: ${r.hips} см</span>
-            </div>
-        `).join('');
     }
 
-    // --- 5. ПРОГРЕСС И ИГРА ---
-    let completed = JSON.parse(localStorage.getItem('resursDetoxProg')) || {};
-    const TOTAL = 7;
+    window.onload = checkAccess;
+</script>
 
-    function updateProgress() {
-        const count = Object.keys(completed).length;
-        document.getElementById('progress-bar-fill').style.width = Math.round((count/TOTAL)*100) + '%';
-        document.getElementById('progress-text').innerText = `Пройдено: ${count} из ${TOTAL} дней`;
-
-        const btn = document.getElementById('complete-day-button');
-        const today = new Date().toISOString().split('T')[0];
-
-        if(completed[today]) { btn.innerText = "✓ Сегодня пройдено"; btn.disabled = true; }
-        else if (count >= TOTAL) { btn.innerText = "🎉 Курс завершен!"; btn.disabled = true; }
-        else {
-            btn.innerText = "Отметить день как пройденный"; btn.disabled = false;
-            btn.onclick = () => { completed[today] = count + 1; localStorage.setItem('resursDetoxProg', JSON.stringify(completed)); updateProgress(); }
-        }
-    }
-
-    const products = [{n:"Авокадо", h:true}, {n:"Сахар", h:false}, {n:"Шпинат", h:true}, {n:"Белый хлеб", h:false}, {n:"Киноа", h:true}, {n:"Коровье молоко", h:false}, {n:"Гречка", h:true}, {n:"Жареное мясо", h:false}, {n:"Грейпфрут", h:true}, {n:"Алкоголь", h:false}];
-    
-    function initGame() {
-        const area = document.getElementById('game-area');
-        const msg = document.getElementById('game-message');
-        if(!area) return;
-        area.innerHTML = ''; msg.style.display = 'none';
-
-        products.sort(() => 0.5 - Math.random()).slice(0,4).forEach(p => {
-            const b = document.createElement('button');
-            b.className = 'game-choice-button'; b.innerText = p.n;
-            b.onclick = () => {
-                document.querySelectorAll('.game-choice-button').forEach(btn => btn.disabled = true);
-                msg.style.display = 'block';
-                if(p.h) { b.style.borderColor = '#4caf50'; b.style.background = 'rgba(76, 175, 80, 0.2)'; msg.innerHTML = `✅ Верно! <strong>${p.n}</strong> — отличный выбор.`; } 
-                else { b.style.borderColor = '#f44336'; b.style.background = 'rgba(244, 67, 54, 0.2)'; msg.innerHTML = `❌ Ошибка. <strong>${p.n}</strong> тормозит очищение.`; }
-                setTimeout(initGame, 3000);
-            }
-            area.appendChild(b);
-        });
-    }
-    </script>
 </body>
 </html>
