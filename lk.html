@@ -23,6 +23,15 @@
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
+        
+        /* ЗАЩИТА ОТ ВЫДЕЛЕНИЯ ТЕКСТА */
+        .no-copy {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
         body {
             background: var(--bg-deep); color: var(--text-main); font-family: var(--font-main); 
             line-height: 1.6; min-height: 100vh; overflow-x: hidden;
@@ -110,7 +119,7 @@
         }
     </style>
 </head>
-<body>
+<body class="no-copy" oncontextmenu="return false;" oncopy="return false;" oncut="return false;" onselectstart="return false;">
 
 <header id="lk-header" style="display: none;">
     <div class="logo-mini">РЕСУРС</div>
@@ -140,6 +149,7 @@
             <div id="sub-badge" style="display: inline-block; padding: 5px 15px; background: rgba(197, 160, 89, 0.1); border: 1px solid rgba(197, 160, 89, 0.3); border-radius: 20px; font-size: 10px; text-transform: uppercase; color: var(--accent-gold);">
                 Загрузка уровня доступа...
             </div>
+            <p id="access-until" style="font-size: 12px; opacity: 0.5; margin-top: 10px; display: none;"></p>
         </div>
     </div>
 
@@ -201,17 +211,11 @@
 </div>
 
 <script>
-    // --- 1. НАСТРОЙКИ (ВСТАВЬ СВОИ ДАННЫЕ) ---
-    // URL функции авторизации (Замени на свой!)
     const CLOUD_URL = 'https://functions.yandexcloud.net/d4eg7hphveek8g1co3fr'; 
-    
-    // URL контента из Yandex Object Storage (твоя ссылка)
     const CONTENT_URL = 'https://storage.yandexcloud.net/resurs-content/content.json';
     
-    // База данных (будет заполнена после загрузки)
     let DB = {};
 
-    // Загрузка "мозгов" (контента) при открытии страницы
     async function loadContent() {
         try {
             const res = await fetch(CONTENT_URL);
@@ -223,7 +227,6 @@
     }
     loadContent();
 
-    // --- 2. ЛОГИКА АВТОРИЗАЦИИ И ПРАВ ---
     async function login() {
         const email = document.getElementById('reg-email').value.trim().toLowerCase();
         if(!email) return alert('Введите email');
@@ -232,17 +235,30 @@
         btn.innerText = 'Проверка...';
 
         try {
-            // Запрашиваем данные у базы (Яндекс Функции)
             const res = await fetch(`${CLOUD_URL}?email=${email}`);
             const data = await res.json();
             
             if (data.access === 'granted') {
+                
+                // Проверка сроков доступа со стороны клиента (доп. защита)
+                if (data.until) {
+                    const expiryDate = new Date(data.until);
+                    const now = new Date();
+                    if (now > expiryDate) {
+                        alert('Срок действия вашей подписки истек. Продлите доступ.');
+                        btn.innerText = 'Войти';
+                        return;
+                    }
+                    // Показываем до какого числа доступ
+                    document.getElementById('access-until').innerText = `Доступ до: ${expiryDate.toLocaleDateString('ru-RU')}`;
+                    document.getElementById('access-until').style.display = 'block';
+                }
+
                 document.getElementById('auth-view').style.display = 'none';
                 document.getElementById('dashboard-view').style.display = 'block';
                 document.getElementById('lk-header').style.display = 'flex';
                 document.getElementById('user-name-display').innerText = data.name.split(' ')[0] || 'Резидент';
                 
-                // РАСПРЕДЕЛЯЕМ ПРАВА
                 applyPermissions(data.subscription);
                 
             } else {
@@ -262,24 +278,22 @@
         const cardDetox = document.getElementById('nav-detox');
         const cardLibrary = document.getElementById('nav-library');
 
-        // Сбрасываем замки
         [cardSlimness, cardDetox, cardLibrary].forEach(c => setUnlocked(c));
 
         if (subType === 'slimness') {
-            badge.innerText = 'Подписка: Стройность';
+            badge.innerText = 'Подписка: Стройность (45 дней)';
             setLocked(cardDetox, 'Купите Детокс-меню');
             setLocked(cardLibrary, 'Доступно в тарифе Все Включено');
             switchModule('slimness');
         } else if (subType === 'detox') {
-            badge.innerText = 'Подписка: Детокс';
+            badge.innerText = 'Подписка: Детокс (10 дней)';
             setLocked(cardSlimness, 'Купите курс Стройность');
             setLocked(cardLibrary, 'Доступно в тарифе Все Включено');
             switchModule('detox');
         } else if (subType === 'full_access') {
-            badge.innerText = 'Подписка: Все включено';
+            badge.innerText = 'Подписка: Все включено (30 дней)';
             switchModule('slimness');
         } else {
-            // По умолчанию (если база вернула что-то непонятное)
             badge.innerText = 'Базовый доступ';
         }
     }
@@ -302,7 +316,6 @@
         document.querySelectorAll('.module-content').forEach(m => m.classList.remove('active'));
         document.getElementById('module-' + mod).classList.add('active');
 
-        // Генерируем контент
         if(mod === 'slimness' && document.getElementById('slimness-content').style.display === 'block') {
             renderSlimnessWeek(1);
         }
@@ -311,14 +324,7 @@
         }
     }
 
-    function logout() {
-        document.getElementById('dashboard-view').style.display = 'none';
-        document.getElementById('auth-view').style.display = 'flex';
-        document.getElementById('lk-header').style.display = 'none';
-        document.getElementById('login-btn').innerText = 'Войти';
-    }
-
-    // --- 3. ГЕНЕРАТОР КОНТЕНТА ИЗ БАКЕТА ---
+    function logout() { location.reload(); }
 
     function unlockSlimness() {
         if(!document.getElementById('m-weight').value) return alert('Введите вес для старта.');
@@ -327,9 +333,8 @@
         renderSlimnessWeek(1);
     }
 
-    // Рендер Стройности
     function renderSlimnessWeek(weekNum) {
-        if (!DB.slimness) return; // Защита, если контент еще не прогрузился
+        if (!DB.slimness) return;
 
         let tabsHtml = '';
         for(let i=1; i<=6; i++) {
@@ -347,4 +352,57 @@
         for(let d=1; d<=7; d++) {
             daysHtml += `<div class="day-tab" id="s-tab-${d}" onclick="showSlimnessContent('${d}')">День ${d}</div>`;
         }
-        document.
+        document.getElementById('slimness-days-nav').innerHTML = daysHtml;
+
+        showSlimnessContent(weekData.info ? 'info' : '1');
+    }
+
+    function showSlimnessContent(dayId) {
+        document.querySelectorAll('#slimness-days-nav .day-tab').forEach(t => t.classList.remove('active'));
+        document.getElementById('s-tab-' + dayId).classList.add('active');
+
+        const data = window.currentSlimnessWeekData[dayId];
+        let html = '';
+
+        if(dayId === 'info') {
+            html = `<h3 class="serif" style="font-size: 24px; color: var(--accent-gold); margin-bottom: 20px;">${data.title}</h3>${data.html}`;
+        } else {
+            if(data.aff) html += `<div class="affirmation-box serif">«${data.aff}»</div>`;
+            
+            html += `<h3 class="serif" style="font-size: 24px; color: var(--accent-gold); margin-bottom: 20px;">Задания на день</h3><ul class="task-list">`;
+            if (data.tasks) {
+                data.tasks.forEach(task => {
+                    html += `<li><input type="checkbox"> <span>${task}</span></li>`;
+                });
+            }
+            html += `</ul>`;
+        }
+        document.getElementById('slimness-day-render').innerHTML = `<div class="day-content active">${html}</div>`;
+    }
+
+    function renderDetox() {
+        if (!DB.detox) return;
+
+        let daysHtml = `<div class="day-tab info-tab" id="d-tab-info" onclick="showDetoxContent('info')">База<br><span style="font-size:10px; opacity:0.5;">Правила</span></div>`;
+        for(let d=1; d<=7; d++) {
+            daysHtml += `<div class="day-tab" id="d-tab-${d}" onclick="showDetoxContent('${d}')">День ${d}</div>`;
+        }
+        document.getElementById('detox-days-nav').innerHTML = daysHtml;
+        showDetoxContent('info');
+    }
+
+    function showDetoxContent(dayId) {
+        document.querySelectorAll('#detox-days-nav .day-tab').forEach(t => t.classList.remove('active'));
+        document.getElementById('d-tab-' + dayId).classList.add('active');
+
+        const data = DB.detox[dayId];
+        let html = `<div class="day-content active">`;
+        if (data) {
+            html += `<h3 class="serif" style="font-size: 24px; color: var(--accent-gold); margin-bottom: 20px;">${data.title || ''}</h3>${data.html || ''}`;
+        }
+        html += `</div>`;
+        document.getElementById('detox-day-render').innerHTML = html;
+    }
+</script>
+</body>
+</html>
