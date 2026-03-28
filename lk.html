@@ -22,10 +22,13 @@
             --transition: all 0.4s ease;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
-        
-        /* ЗАЩИТА ОТ ВЫДЕЛЕНИЯ ТЕКСТА */
-        .no-copy {
+        /* ЗАЩИТА ОТ КОПИРОВАНИЯ И ВЫДЕЛЕНИЯ */
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+            outline: none; 
+            -webkit-tap-highlight-color: transparent;
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
@@ -39,8 +42,6 @@
         }
 
         h1, h2, h3, .serif { font-family: var(--font-serif); font-weight: 300; }
-        a { text-decoration: none; color: inherit; }
-
         .glass { background: var(--glass-bg); backdrop-filter: blur(25px); border: var(--glass-border); border-radius: 20px; }
 
         .btn {
@@ -58,7 +59,6 @@
             width: 100%; padding: 15px 20px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);
             color: #fff; border-radius: 8px; font-family: var(--font-main); font-size: 14px; transition: var(--transition);
         }
-        .input-field:focus { border-color: var(--accent-gold); background: rgba(255,255,255,0.05); }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 40px 5%; }
         
@@ -69,8 +69,7 @@
         
         header { position: fixed; top: 0; width: 100%; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; z-index: 100; background: rgba(8,8,20,0.8); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.05); }
         .logo-mini { font-family: var(--font-serif); font-size: 16px; letter-spacing: 8px; color: var(--accent-gold); }
-        .logout { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; opacity: 0.6; transition: 0.3s; }
-        .logout:hover { opacity: 1; color: var(--accent-gold); }
+        .logout { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; opacity: 0.6; }
 
         .profile-header { display: flex; flex-wrap: wrap; gap: 30px; margin-bottom: 40px; align-items: stretch; }
         .welcome-card { flex: 2; padding: 40px; min-width: 300px; }
@@ -83,8 +82,6 @@
         .module-content.active { display: block; animation: fadeIn 0.5s ease; }
         
         .gatekeeper { padding: 50px; text-align: center; position: relative; overflow: hidden; }
-        .gatekeeper::before { content: ''; position: absolute; inset: 0; background: linear-gradient(45deg, rgba(8,8,20,0.9), rgba(197, 160, 89, 0.1)); z-index: 0; }
-        .gate-content { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; }
         .measurements-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 30px 0; }
 
         .weeks-nav { display: flex; gap: 10px; margin-bottom: 30px; overflow-x: auto; padding-bottom: 10px; }
@@ -96,30 +93,25 @@
         .day-tab.active { border-color: var(--accent-gold); color: var(--accent-gold); background: rgba(197, 160, 89, 0.1); }
         .day-tab.info-tab { background: rgba(255,255,255,0.03); border-style: dashed; }
 
-        .day-content { padding: 40px; display: none; }
-        .day-content.active { display: block; animation: fadeIn 0.4s ease; }
+        .day-content { padding: 40px; animation: fadeIn 0.4s ease; }
         
-        .affirmation-box { padding: 30px; border-left: 3px solid var(--accent-gold); background: rgba(255,255,255,0.02); margin-bottom: 40px; font-size: 20px; font-style: italic; color: var(--accent-gold); }
+        .affirmation-box { padding: 30px; border-left: 3px solid var(--accent-gold); background: rgba(255,255,255,0.02); margin-bottom: 40px; font-size: 20px; font-style: italic; color: var(--accent-gold); font-family: var(--font-serif); }
         .task-list { list-style: none; margin-bottom: 30px; }
         .task-list li { margin-bottom: 15px; display: flex; align-items: flex-start; gap: 15px; font-size: 16px; opacity: 0.8; }
         .task-list input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--accent-gold); margin-top: 3px; cursor: pointer;}
         
         .nutrition-block { background: rgba(255,255,255,0.02); padding: 25px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.05); margin-top: 30px;}
         .nutrition-block h4 { color: var(--accent-gold); margin-bottom: 15px; font-family: var(--font-serif); font-size: 22px; }
-        .nutrition-block p { opacity: 0.8; margin-bottom: 10px;}
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         @media (max-width: 768px) {
             .profile-header { flex-direction: column; }
-            .measurements-grid { grid-template-columns: 1fr; }
             .days-nav { grid-template-columns: repeat(4, 1fr); }
-            .gatekeeper { padding: 30px 20px; }
-            .day-content { padding: 20px 0; }
         }
     </style>
 </head>
-<body class="no-copy" oncontextmenu="return false;" oncopy="return false;" oncut="return false;" onselectstart="return false;">
+<body oncontextmenu="return false;" oncopy="return false;" oncut="return false;" onpaste="return false;">
 
 <header id="lk-header" style="display: none;">
     <div class="logo-mini">РЕСУРС</div>
@@ -129,32 +121,27 @@
 <div id="auth-view" class="container">
     <div class="glass auth-box">
         <h2 class="serif" style="font-size: 32px; margin-bottom: 10px;">Вход в клуб</h2>
-        <p style="opacity: 0.6; font-size: 14px; margin-bottom: 40px;">Введите данные для доступа к вашим программам</p>
-        
+        <p style="opacity: 0.6; font-size: 14px; margin-bottom: 40px;">Введите ваш Email для доступа</p>
         <div class="input-group">
             <label>Email</label>
-            <input type="email" id="reg-email" class="input-field" placeholder="anna@example.com" required>
+            <input type="email" id="reg-email" class="input-field" placeholder="example@mail.ru" required>
         </div>
-        
         <button class="btn btn-fill" id="login-btn" onclick="login()">Войти</button>
     </div>
 </div>
 
 <div id="dashboard-view" class="container">
-    
     <div class="profile-header">
         <div class="glass welcome-card">
             <h1 class="serif" style="font-size: 38px; margin-bottom: 10px;">С возвращением, <span id="user-name-display" style="color: var(--accent-gold);">Резидент</span>!</h1>
             <p style="opacity: 0.7; max-width: 400px; margin-bottom: 20px;">Ваше состояние — наш приоритет. Продолжайте двигаться к своей цели шаг за шагом.</p>
-            <div id="sub-badge" style="display: inline-block; padding: 5px 15px; background: rgba(197, 160, 89, 0.1); border: 1px solid rgba(197, 160, 89, 0.3); border-radius: 20px; font-size: 10px; text-transform: uppercase; color: var(--accent-gold);">
-                Загрузка уровня доступа...
-            </div>
-            <p id="access-until" style="font-size: 12px; opacity: 0.5; margin-top: 10px; display: none;"></p>
+            <div id="sub-badge" style="display: inline-block; padding: 5px 15px; background: rgba(197, 160, 89, 0.1); border: 1px solid rgba(197, 160, 89, 0.3); border-radius: 20px; font-size: 10px; text-transform: uppercase; color: var(--accent-gold);">Загрузка...</div>
+            <p id="access-until" style="font-size: 12px; opacity: 0.5; margin-top: 10px;"></p>
         </div>
     </div>
 
     <div class="nav-cards">
-        <div class="glass nav-card active" id="nav-slimness" onclick="switchModule('slimness')">
+        <div class="glass nav-card" id="nav-slimness" onclick="switchModule('slimness')">
             <h3 class="serif">СТРОЙНОСТЬ</h3>
             <p style="font-size: 12px; opacity: 0.5; margin-top: 5px;">6 недель трансформации</p>
         </div>
@@ -164,28 +151,24 @@
         </div>
         <div class="glass nav-card" id="nav-library" onclick="switchModule('library')">
             <h3 class="serif">БИБЛИОТЕКА</h3>
-            <p style="font-size: 12px; opacity: 0.5; margin-top: 5px;">Интенсивы 🔒</p>
+            <p style="font-size: 12px; opacity: 0.5; margin-top: 5px;">Тренировки 🔒</p>
         </div>
     </div>
 
-    <div id="module-slimness" class="module-content active">
+    <div id="module-slimness" class="module-content">
         <div id="slimness-gate" class="glass gatekeeper">
             <div class="gate-content">
-                <h2 class="serif" style="font-size: 32px; color: var(--accent-gold); margin-bottom: 15px;">Точка отсчета</h2>
-                <p style="opacity: 0.8; font-size: 15px;">Внеси стартовые замеры, чтобы разблокировать программу.</p>
+                <h2 class="serif" style="font-size: 28px; color: var(--accent-gold); margin-bottom: 15px;">Точка отсчета</h2>
                 <div class="measurements-grid">
                     <input type="number" class="input-field" placeholder="Вес (кг)" id="m-weight">
-                    <input type="number" class="input-field" placeholder="Обхват груди (см)">
                     <input type="number" class="input-field" placeholder="Обхват талии (см)">
-                    <input type="number" class="input-field" placeholder="Обхват бедер (см)">
                 </div>
-                <button class="btn btn-fill" onclick="unlockSlimness()">Сохранить и Начать</button>
+                <button class="btn btn-fill" onclick="unlockSlimness()">Начать программу</button>
             </div>
         </div>
-
         <div id="slimness-content" style="display: none;">
             <div class="weeks-nav" id="slimness-weeks-nav"></div>
-            <div class="glass" style="padding: 30px;" id="slimness-days-container">
+            <div class="glass" style="padding: 20px;">
                 <div class="days-nav" id="slimness-days-nav"></div>
                 <div id="slimness-day-render"></div>
             </div>
@@ -194,7 +177,7 @@
 
     <div id="module-detox" class="module-content">
         <div class="weeks-nav"><div class="week-tab active">Детокс: Мягкое очищение</div></div>
-        <div class="glass" style="padding: 30px;">
+        <div class="glass" style="padding: 20px;">
             <div class="days-nav" id="detox-days-nav"></div>
             <div id="detox-day-render"></div>
         </div>
@@ -202,10 +185,8 @@
 
     <div id="module-library" class="module-content">
         <div class="glass gatekeeper">
-            <h2 class="serif" style="font-size: 32px; color: var(--accent-gold); margin-bottom: 15px;">Библиотека Тренировок</h2>
-            <div style="margin-top: 30px; border: 1px dashed rgba(255,255,255,0.2); padding: 40px; border-radius: 10px;">
-                <p style="opacity: 0.5;">Модуль ожидает загрузки видео-материалов...</p>
-            </div>
+            <h2 class="serif" style="font-size: 28px; color: var(--accent-gold);">Библиотека видео-тренировок</h2>
+            <p style="opacity: 0.5; margin-top: 20px;">Доступно для тарифа "Все Включено"</p>
         </div>
     </div>
 </div>
@@ -220,17 +201,15 @@
         try {
             const res = await fetch(CONTENT_URL);
             DB = await res.json();
-            console.log("✅ Контент успешно загружен из хранилища!");
-        } catch(e) {
-            console.error("❌ Ошибка загрузки контента:", e);
-        }
+            console.log("✅ Контент загружен");
+        } catch(e) { console.error("❌ Ошибка загрузки контента", e); }
     }
     loadContent();
 
     async function login() {
         const email = document.getElementById('reg-email').value.trim().toLowerCase();
         if(!email) return alert('Введите email');
-
+        
         const btn = document.getElementById('login-btn');
         btn.innerText = 'Проверка...';
 
@@ -239,35 +218,27 @@
             const data = await res.json();
             
             if (data.access === 'granted') {
-                
-                // Проверка сроков доступа со стороны клиента (доп. защита)
                 if (data.until) {
-                    const expiryDate = new Date(data.until);
-                    const now = new Date();
-                    if (now > expiryDate) {
-                        alert('Срок действия вашей подписки истек. Продлите доступ.');
+                    const expiry = new Date(data.until);
+                    if (new Date() > expiry) {
+                        alert('Срок доступа истек.');
                         btn.innerText = 'Войти';
                         return;
                     }
-                    // Показываем до какого числа доступ
-                    document.getElementById('access-until').innerText = `Доступ до: ${expiryDate.toLocaleDateString('ru-RU')}`;
-                    document.getElementById('access-until').style.display = 'block';
+                    document.getElementById('access-until').innerText = `Доступ до: ${expiry.toLocaleDateString('ru-RU')}`;
                 }
 
                 document.getElementById('auth-view').style.display = 'none';
                 document.getElementById('dashboard-view').style.display = 'block';
                 document.getElementById('lk-header').style.display = 'flex';
                 document.getElementById('user-name-display').innerText = data.name.split(' ')[0] || 'Резидент';
-                
                 applyPermissions(data.subscription);
-                
             } else {
-                alert('Доступ запрещен. Убедитесь, что email введен верно, или оплатите курс.');
+                alert('Доступ не найден.');
                 btn.innerText = 'Войти';
             }
         } catch(e) {
-            console.error(e);
-            alert('Ошибка подключения к серверу.');
+            alert('Ошибка сервера. Проверьте CLOUD_URL.');
             btn.innerText = 'Войти';
         }
     }
@@ -293,8 +264,6 @@
         } else if (subType === 'full_access') {
             badge.innerText = 'Подписка: Все включено (30 дней)';
             switchModule('slimness');
-        } else {
-            badge.innerText = 'Базовый доступ';
         }
     }
 
@@ -307,7 +276,6 @@
     function setUnlocked(el) {
         el.style.opacity = '1';
         el.onclick = () => switchModule(el.id.replace('nav-', ''));
-        el.querySelector('p').innerText = el.querySelector('p').innerText.replace('🔒 ', '');
     }
 
     function switchModule(mod) {
@@ -316,18 +284,12 @@
         document.querySelectorAll('.module-content').forEach(m => m.classList.remove('active'));
         document.getElementById('module-' + mod).classList.add('active');
 
-        if(mod === 'slimness' && document.getElementById('slimness-content').style.display === 'block') {
-            renderSlimnessWeek(1);
-        }
-        if(mod === 'detox') {
-            renderDetox();
-        }
+        if(mod === 'slimness' && document.getElementById('slimness-content').style.display === 'block') renderSlimnessWeek(1);
+        if(mod === 'detox') renderDetox();
     }
 
-    function logout() { location.reload(); }
-
     function unlockSlimness() {
-        if(!document.getElementById('m-weight').value) return alert('Введите вес для старта.');
+        if(!document.getElementById('m-weight').value) return alert('Введите вес');
         document.getElementById('slimness-gate').style.display = 'none';
         document.getElementById('slimness-content').style.display = 'block';
         renderSlimnessWeek(1);
@@ -335,74 +297,56 @@
 
     function renderSlimnessWeek(weekNum) {
         if (!DB.slimness) return;
+        let tabs = '';
+        for(let i=1; i<=6; i++) tabs += `<div class="week-tab ${i===weekNum?'active':''}" onclick="renderSlimnessWeek(${i})">Неделя ${i}</div>`;
+        document.getElementById('slimness-weeks-nav').innerHTML = tabs;
 
-        let tabsHtml = '';
-        for(let i=1; i<=6; i++) {
-            tabsHtml += `<div class="week-tab ${i === weekNum ? 'active' : ''}" onclick="renderSlimnessWeek(${i})">Неделя ${i}</div>`;
-        }
-        document.getElementById('slimness-weeks-nav').innerHTML = tabsHtml;
-
-        window.currentSlimnessWeekData = DB.slimness[weekNum];
-        const weekData = window.currentSlimnessWeekData;
-        
-        let daysHtml = '';
-        if(weekData.info) {
-            daysHtml += `<div class="day-tab info-tab" id="s-tab-info" onclick="showSlimnessContent('info')">Инфо<br><span style="font-size:10px; opacity:0.5;">База</span></div>`;
-        }
-        for(let d=1; d<=7; d++) {
-            daysHtml += `<div class="day-tab" id="s-tab-${d}" onclick="showSlimnessContent('${d}')">День ${d}</div>`;
-        }
-        document.getElementById('slimness-days-nav').innerHTML = daysHtml;
-
-        showSlimnessContent(weekData.info ? 'info' : '1');
+        window.currentWeek = DB.slimness[weekNum];
+        let days = '';
+        if(window.currentWeek.info) days += `<div class="day-tab info-tab" id="s-t-info" onclick="showS('info')">Инфо</div>`;
+        for(let d=1; d<=7; d++) days += `<div class="day-tab" id="s-t-${d}" onclick="showS('${d}')">День ${d}</div>`;
+        document.getElementById('slimness-days-nav').innerHTML = days;
+        showS('info');
     }
 
-    function showSlimnessContent(dayId) {
+    function showS(id) {
         document.querySelectorAll('#slimness-days-nav .day-tab').forEach(t => t.classList.remove('active'));
-        document.getElementById('s-tab-' + dayId).classList.add('active');
-
-        const data = window.currentSlimnessWeekData[dayId];
-        let html = '';
-
-        if(dayId === 'info') {
-            html = `<h3 class="serif" style="font-size: 24px; color: var(--accent-gold); margin-bottom: 20px;">${data.title}</h3>${data.html}`;
-        } else {
-            if(data.aff) html += `<div class="affirmation-box serif">«${data.aff}»</div>`;
-            
-            html += `<h3 class="serif" style="font-size: 24px; color: var(--accent-gold); margin-bottom: 20px;">Задания на день</h3><ul class="task-list">`;
-            if (data.tasks) {
-                data.tasks.forEach(task => {
-                    html += `<li><input type="checkbox"> <span>${task}</span></li>`;
-                });
-            }
-            html += `</ul>`;
+        document.getElementById('s-t-'+id).classList.add('active');
+        const d = window.currentWeek[id];
+        let h = '';
+        if(id === 'info') h = `<div class="day-content active"><h3>${d.title}</h3>${d.html}</div>`;
+        else {
+            h = `<div class="day-content active"><div class="affirmation-box">${d.aff}</div><ul class="task-list">`;
+            if(d.tasks) d.tasks.forEach(t => h += `<li><input type="checkbox"><span>${t}</span></li>`);
+            h += `</ul></div>`;
         }
-        document.getElementById('slimness-day-render').innerHTML = `<div class="day-content active">${html}</div>`;
+        document.getElementById('slimness-day-render').innerHTML = h;
     }
 
     function renderDetox() {
         if (!DB.detox) return;
-
-        let daysHtml = `<div class="day-tab info-tab" id="d-tab-info" onclick="showDetoxContent('info')">База<br><span style="font-size:10px; opacity:0.5;">Правила</span></div>`;
-        for(let d=1; d<=7; d++) {
-            daysHtml += `<div class="day-tab" id="d-tab-${d}" onclick="showDetoxContent('${d}')">День ${d}</div>`;
-        }
-        document.getElementById('detox-days-nav').innerHTML = daysHtml;
-        showDetoxContent('info');
+        let days = `<div class="day-tab info-tab" id="d-t-info" onclick="showD('info')">База</div>`;
+        for(let d=1; d<=7; d++) days += `<div class="day-tab" id="d-t-${d}" onclick="showD('${d}')">День ${d}</div>`;
+        document.getElementById('detox-days-nav').innerHTML = days;
+        showD('info');
     }
 
-    function showDetoxContent(dayId) {
+    function showD(id) {
         document.querySelectorAll('#detox-days-nav .day-tab').forEach(t => t.classList.remove('active'));
-        document.getElementById('d-tab-' + dayId).classList.add('active');
-
-        const data = DB.detox[dayId];
-        let html = `<div class="day-content active">`;
-        if (data) {
-            html += `<h3 class="serif" style="font-size: 24px; color: var(--accent-gold); margin-bottom: 20px;">${data.title || ''}</h3>${data.html || ''}`;
-        }
-        html += `</div>`;
-        document.getElementById('detox-day-render').innerHTML = html;
+        document.getElementById('d-t-'+id).classList.add('active');
+        const d = DB.detox[id];
+        document.getElementById('detox-day-render').innerHTML = `<div class="day-content active"><h3>${d.title || 'Правила'}</h3>${d.html}</div>`;
     }
+
+    function logout() { location.reload(); }
+
+    // ДОПОЛНИТЕЛЬНАЯ ЗАЩИТА ОТ ГОРЯЧИХ КЛАВИШ
+    window.addEventListener('keydown', function(e) {
+        if ((e.ctrlKey || e.metaKey) && (e.keyCode === 67 || e.keyCode === 85 || e.keyCode === 83 || e.keyCode === 73)) {
+            e.preventDefault();
+            return false;
+        }
+    });
 </script>
 </body>
 </html>
