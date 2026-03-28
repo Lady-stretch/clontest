@@ -250,6 +250,16 @@
     const CONTENT_URL = 'https://storage.yandexcloud.net/resurs-content/content.json?v=' + Date.now();
     let DB = {}, USER = {}, chart = null;
 
+    // Авто-вход через ссылку
+    window.onload = () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const emailParam = urlParams.get('email');
+        if (emailParam) {
+            document.getElementById('user-email').value = emailParam;
+            login(emailParam.toLowerCase());
+        }
+    };
+
     async function loadDB() { 
         try { 
             const r = await fetch(CONTENT_URL); 
@@ -258,7 +268,6 @@
     }
     loadDB();
 
-    // ФУНКЦИЯ ФОРМАТИРОВАНИЯ ДАТЫ ИЗ YDB (YYYY-MM-DD -> DD.MM)
     function formatDate(dateString) {
         if(!dateString) return '--';
         const parts = dateString.split('-');
@@ -266,8 +275,9 @@
         return dateString;
     }
 
-    async function login() {
-        const email = document.getElementById('user-email').value.trim().toLowerCase();
+    async function login(manualEmail = null) {
+        const emailInput = document.getElementById('user-email').value.trim().toLowerCase();
+        const email = manualEmail || emailInput;
         if(!email) return alert('Введите почту');
         const btn = document.getElementById('login-btn'); btn.innerText = 'Проверка данных...';
 
@@ -278,24 +288,22 @@
             if(d.access === 'granted') {
                 USER = { email, ...d, history: d.history || [] };
                 
-                // Расчет дней доступа
                 const days = Math.ceil((new Date(d.until) - new Date()) / 86400000);
                 document.getElementById('days-left').innerText = days > 0 ? days : 0;
                 document.getElementById('user-name-display').innerText = d.name.split(' ')[0];
                 
-                // Переключение экранов
                 document.getElementById('auth-view').style.display = 'none';
                 document.getElementById('dashboard-view').style.display = 'block';
                 document.getElementById('lk-header').style.display = 'flex';
                 document.getElementById('prog-section').style.display = 'block';
 
-                // Загрузка цели и прогресса
                 if(d.target_weight) renderGoal(d.target_weight);
                 initChart();
                 renderTable();
-                
-                // РАСПРЕДЕЛЕНИЕ ДОСТУПОВ (Строгая логика)
                 applyRights(d.subscription);
+                
+                // Добавляем email в URL, чтобы не вводить его при обновлении
+                window.history.replaceState({}, '', `?email=${email}`);
             } else {
                 alert('Пользователь не найден или доступ истек.');
                 btn.innerText = 'Получить доступ';
@@ -311,19 +319,16 @@
         const d = document.getElementById('nav-detox');
         const l = document.getElementById('nav-library');
 
-        // Сброс (Блокируем всё)
         [s, d, l].forEach(el => { 
             el.style.opacity = '0.3'; 
             el.onclick = () => alert('Вам нужно повысить тариф для доступа к этому разделу'); 
         });
 
-        // Детокс: открыт только Детокс
         if(sub === 'detox') {
             d.style.opacity = '1'; 
             d.onclick = () => switchModule('detox');
             switchModule('detox');
         } 
-        // Стройность: открыта Стройность + Детокс
         else if (sub === 'slimness') {
             s.style.opacity = '1'; 
             d.style.opacity = '1'; 
@@ -331,7 +336,6 @@
             d.onclick = () => switchModule('detox');
             switchModule('slimness');
         } 
-        // Все включено: открыто всё
         else if (sub === 'full_access') {
             s.style.opacity = '1'; 
             d.style.opacity = '1'; 
@@ -343,7 +347,6 @@
         }
     }
 
-    /* --- ЛОГИКА ЦЕЛИ --- */
     async function saveGoal() {
         const g = parseFloat(document.getElementById('target-weight').value);
         if(!g) return;
@@ -352,10 +355,16 @@
         document.getElementById('goal-setup').style.display = 'none';
         document.getElementById('goal-display').style.display = 'block';
         
-        await fetch(CLOUD_URL, { method: 'POST', body: JSON.stringify({ action: 'save_goal', email: USER.email, goal: g }) });
-        USER.target_weight = g;
-        renderGoal(g);
-        initChart(); // Перерисовываем график с новой линией цели
+        try {
+            await fetch(CLOUD_URL, { 
+                method: 'POST', 
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'save_goal', email: USER.email, goal: g }) 
+            });
+            USER.target_weight = g;
+            renderGoal(g);
+            initChart();
+        } catch(e) { alert('Ошибка сохранения цели'); }
     }
     
     function renderGoal(g) {
@@ -363,7 +372,6 @@
         document.getElementById('goal-display').style.display = 'block';
         document.getElementById('goal-val').innerText = g + ' кг';
         
-        // Расчет прогресса к цели
         const diffText = document.getElementById('goal-diff-text');
         if(USER.history && USER.history.length > 0) {
             const currentWeight = USER.history[USER.history.length - 1].weight;
@@ -386,7 +394,6 @@
         document.getElementById('goal-setup').style.display = 'block'; 
     }
 
-    /* --- ЛОГИКА ЗАМЕРОВ (СОХРАНЕНИЕ БЕЗ ОШИБОК) --- */
     async function saveEntry() {
         const w = document.getElementById('new-w').value;
         const t = document.getElementById('new-t').value || 0; 
@@ -399,16 +406,19 @@
         btn.innerText = '...';
         
         try {
-            await fetch(CLOUD_URL, { method: 'POST', body: JSON.stringify({ action: 'save_progress', email: USER.email, weight: w, waist: t, hips: b }) });
+            await fetch(CLOUD_URL, { 
+                method: 'POST', 
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'save_progress', email: USER.email, weight: parseFloat(w), waist: parseFloat(t), hips: parseFloat(b) }) 
+            });
             
-            // Получаем сегодняшнюю дату в формате YDB для правильного отображения
             const today = new Date();
             const ydbDateStr = `${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,'0')}-${String(today.getDate()).padStart(2,'0')}`;
             
             USER.history.push({ date: ydbDateStr, weight: parseFloat(w), waist: t, hips: b });
             initChart();
             renderTable();
-            if(USER.target_weight) renderGoal(USER.target_weight); // Обновляем мотивационный текст
+            if(USER.target_weight) renderGoal(USER.target_weight); 
             
             document.getElementById('new-w').value = ''; 
             document.getElementById('new-t').value = ''; 
@@ -419,7 +429,6 @@
         btn.innerText = originalText;
     }
 
-    /* --- КРАСИВЫЙ ЖИВОЙ ГРАФИК (AREA CHART) --- */
     function initChart() {
         const ctx = document.getElementById('weightChart');
         if(chart) chart.destroy();
@@ -428,13 +437,11 @@
         const labels = hist.map(h => formatDate(h.date));
         const data = hist.map(h => h.weight);
         
-        // Линия цели (массив одинаковых значений для отрисовки горизонтальной линии)
         const targetLine = USER.target_weight ? Array(hist.length).fill(USER.target_weight) : [];
 
-        // Создаем градиент для заливки под графиком
         let gradient = ctx.getContext('2d').createLinearGradient(0, 0, 0, 300);
-        gradient.addColorStop(0, 'rgba(197, 160, 89, 0.5)'); // Золотой полупрозрачный сверху
-        gradient.addColorStop(1, 'rgba(197, 160, 89, 0.0)'); // Прозрачный снизу
+        gradient.addColorStop(0, 'rgba(197, 160, 89, 0.5)'); 
+        gradient.addColorStop(1, 'rgba(197, 160, 89, 0.0)'); 
 
         Chart.defaults.color = 'rgba(255,255,255,0.6)';
         Chart.defaults.font.family = "'Manrope', sans-serif";
@@ -444,8 +451,8 @@
             data: data,
             borderColor: '#C5A059',
             backgroundColor: gradient,
-            fill: true, // Включаем заливку
-            tension: 0.4, // Плавные изгибы
+            fill: true,
+            tension: 0.4, 
             borderWidth: 3,
             pointBackgroundColor: '#080814',
             pointBorderColor: '#C5A059',
@@ -454,14 +461,13 @@
             pointHoverRadius: 6
         }];
 
-        // Добавляем линию цели, если она установлена
         if(targetLine.length > 0) {
             datasets.push({
                 label: 'Цель',
                 data: targetLine,
                 borderColor: 'rgba(255,255,255,0.3)',
                 borderWidth: 2,
-                borderDash: [5, 5], // Пунктирная линия
+                borderDash: [5, 5], 
                 pointRadius: 0,
                 fill: false,
                 tension: 0
@@ -490,7 +496,7 @@
                 scales: { 
                     y: { 
                         grid: { color: 'rgba(255,255,255,0.05)' },
-                        suggestedMin: USER.target_weight ? USER.target_weight - 2 : undefined // Чтобы цель всегда было видно
+                        suggestedMin: USER.target_weight ? USER.target_weight - 2 : undefined 
                     },
                     x: { grid: { display: false } }
                 },
@@ -516,7 +522,6 @@
         `).join('');
     }
 
-    /* --- ЗАГРУЗКА ФОТО --- */
     async function uploadPhoto(input, type) {
         if(!input.files[0]) return;
         
@@ -526,19 +531,21 @@
             preview.src = e.target.result;
             preview.style.display = 'block';
             
-            const res = await fetch(CLOUD_URL, { method: 'POST', body: JSON.stringify({ action: 'upload_photo', email: USER.email, type: type, image_base64: e.target.result }) });
+            const res = await fetch(CLOUD_URL, { 
+                method: 'POST', 
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'upload_photo', email: USER.email, type: type, image_base64: e.target.result }) 
+            });
             const d = await res.json();
             if(d.status === 'ok') alert(d.bonus ? 'Фото ПОСЛЕ сохранено! Вы молодец, начислено +7 бонусных дней!' : 'Фото ДО успешно загружено в безопасное облако!');
         };
         reader.readAsDataURL(input.files[0]);
     }
 
-    /* --- ЛОГИКА МОДУЛЕЙ И СТРУКТУРА --- */
     function unlockSlimness() {
         const w = document.getElementById('m-weight').value;
         if(!w) return alert('Для старта необходимо указать хотя бы текущий вес.');
         
-        // Авто-сохранение первого замера при старте
         document.getElementById('new-w').value = w;
         document.getElementById('new-t').value = document.getElementById('m-waist').value; 
         document.getElementById('new-b').value = document.getElementById('m-hips').value; 
