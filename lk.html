@@ -57,8 +57,10 @@
         
         .progress-section { margin-top: 40px; padding: 30px; }
         .upload-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
-        .upload-box { border: 1px dashed rgba(255,255,255,0.2); padding: 20px; text-align: center; border-radius: 10px; position: relative; cursor: pointer; }
+        .upload-box { border: 1px dashed rgba(255,255,255,0.2); padding: 20px; text-align: center; border-radius: 10px; position: relative; cursor: pointer; transition: 0.3s;}
+        .upload-box:hover { border-color: var(--accent); }
         .upload-box input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+        .photo-preview { display: none; width: 100%; height: 150px; object-fit: cover; border-radius: 8px; margin-top: 15px; border: 1px solid var(--accent); }
 
         .history-table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 12px; }
         .history-table th { color: var(--accent); padding: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); }
@@ -142,6 +144,13 @@
         </div>
     </div>
 
+    <div id="module-library" class="module-content">
+        <div class="glass" style="padding: 50px; text-align: center;">
+            <h2 class="serif" style="font-size: 28px; color: var(--accent);">Библиотека</h2>
+            <p style="opacity: 0.5;">Скоро здесь появятся тренировки</p>
+        </div>
+    </div>
+
     <div class="glass progress-section" id="prog-section" style="display: none;">
         <h2 class="serif" style="font-size: 28px; color: var(--accent);">Дневник прогресса</h2>
         <div class="upload-grid">
@@ -156,12 +165,14 @@
             </div>
             <div style="display: flex; flex-direction: column; gap: 15px;">
                 <div class="upload-box" id="up-before">
-                    <span>📸 Фото ДО</span>
+                    <span>📸 Загрузить Фото ДО</span>
                     <input type="file" accept="image/*" onchange="uploadPhoto(this, 'before')">
+                    <img id="preview-before" class="photo-preview">
                 </div>
                 <div class="upload-box" id="up-after">
-                    <span>✨ Фото ПОСЛЕ (+7 дней)</span>
+                    <span>✨ Загрузить Фото ПОСЛЕ (+7 дней)</span>
                     <input type="file" accept="image/*" onchange="uploadPhoto(this, 'after')">
+                    <img id="preview-after" class="photo-preview">
                 </div>
                 <table class="history-table">
                     <thead><tr><th>Дата</th><th>Кг</th><th>Т</th><th>Б</th></tr></thead>
@@ -177,7 +188,12 @@
     const CONTENT_URL = 'https://storage.yandexcloud.net/resurs-content/content.json?v=' + Date.now();
     let DB = {}, USER = {}, chart = null;
 
-    async function loadDB() { try { const r = await fetch(CONTENT_URL); DB = await r.json(); } catch(e){} }
+    async function loadDB() { 
+        try { 
+            const r = await fetch(CONTENT_URL); 
+            DB = await r.json(); 
+        } catch(e) { console.error("Ошибка загрузки контента", e); } 
+    }
     loadDB();
 
     async function login() {
@@ -202,6 +218,8 @@
                 if(d.target_weight) renderGoal(d.target_weight);
                 initChart(d.history || []);
                 renderTable(d.history || []);
+                
+                // РАСПРЕДЕЛЕНИЕ ДОСТУПОВ
                 applyRights(d.subscription);
             } else alert('Доступ не найден');
         } catch(e) { alert('Ошибка связи с сервером'); }
@@ -209,18 +227,36 @@
     }
 
     function applyRights(sub) {
-        const s = document.getElementById('nav-slimness'), d = document.getElementById('nav-detox');
-        s.style.opacity = d.style.opacity = '0.3';
-        s.onclick = d.onclick = () => alert('Нет доступа');
+        const s = document.getElementById('nav-slimness');
+        const d = document.getElementById('nav-detox');
+        const l = document.getElementById('nav-library');
 
-        if(sub === 'slimness' || sub === 'full_access') {
-            s.style.opacity = d.style.opacity = '1';
+        // Блокируем всё по умолчанию
+        [s, d, l].forEach(el => { 
+            el.style.opacity = '0.3'; 
+            el.onclick = () => alert('Вам нужно повысить тариф для доступа к этому разделу'); 
+        });
+
+        if(sub === 'detox') {
+            d.style.opacity = '1'; 
+            d.onclick = () => switchModule('detox');
+            switchModule('detox');
+        } 
+        else if (sub === 'slimness') {
+            s.style.opacity = '1'; 
+            d.style.opacity = '1'; 
             s.onclick = () => switchModule('slimness');
             d.onclick = () => switchModule('detox');
             switchModule('slimness');
-        } else if(sub === 'detox') {
-            d.style.opacity = '1'; d.onclick = () => switchModule('detox');
-            switchModule('detox');
+        } 
+        else if (sub === 'full_access') {
+            s.style.opacity = '1'; 
+            d.style.opacity = '1'; 
+            l.style.opacity = '1';
+            s.onclick = () => switchModule('slimness');
+            d.onclick = () => switchModule('detox');
+            l.onclick = () => switchModule('library');
+            switchModule('slimness');
         }
     }
 
@@ -230,12 +266,17 @@
         await fetch(CLOUD_URL, { method: 'POST', body: JSON.stringify({ action: 'save_goal', email: USER.email, goal: g }) });
         renderGoal(g);
     }
+    
     function renderGoal(g) {
         document.getElementById('goal-setup').style.display = 'none';
         document.getElementById('goal-display').style.display = 'block';
         document.getElementById('goal-val').innerText = g + ' кг';
     }
-    function resetGoal() { document.getElementById('goal-display').style.display = 'none'; document.getElementById('goal-setup').style.display = 'block'; }
+    
+    function resetGoal() { 
+        document.getElementById('goal-display').style.display = 'none'; 
+        document.getElementById('goal-setup').style.display = 'block'; 
+    }
 
     async function saveEntry() {
         const w = document.getElementById('new-w').value, t = document.getElementById('new-t').value, b = document.getElementById('new-b').value;
@@ -255,16 +296,23 @@
     }
 
     function renderTable(hist) {
-        document.getElementById('hist-body').innerHTML = hist.slice().reverse().map(h => `<tr><td>${h.date}</td><td>${h.weight}</td><td>${h.waist}</td><td>${h.hips}</td></tr>`).join('');
+        document.getElementById('hist-body').innerHTML = hist.slice().reverse().map(h => `<tr><td>${h.date}</td><td>${h.weight}</td><td>${h.waist || '--'}</td><td>${h.hips || '--'}</td></tr>`).join('');
     }
 
     async function uploadPhoto(input, type) {
         if(!input.files[0]) return;
+        
         const reader = new FileReader();
         reader.onload = async (e) => {
+            // Показываем превью сразу
+            const preview = document.getElementById(`preview-${type}`);
+            preview.src = e.target.result;
+            preview.style.display = 'block';
+            
+            // Отправляем на сервер
             const res = await fetch(CLOUD_URL, { method: 'POST', body: JSON.stringify({ action: 'upload_photo', email: USER.email, type: type, image_base64: e.target.result }) });
             const d = await res.json();
-            if(d.status === 'ok') alert(d.bonus ? 'Фото загружено! Вам начислено +7 дней!' : 'Фото загружено!');
+            if(d.status === 'ok') alert(d.bonus ? 'Фото сохранено в облаке! Вам начислено +7 дней!' : 'Фото успешно сохранено в облаке!');
         };
         reader.readAsDataURL(input.files[0]);
     }
@@ -279,14 +327,18 @@
 
     function switchModule(mod) {
         document.querySelectorAll('.nav-card').forEach(c => c.classList.remove('active'));
-        document.getElementById('nav-'+mod).classList.add('active');
+        const activeNav = document.getElementById('nav-'+mod);
+        if(activeNav) activeNav.classList.add('active');
+        
         document.querySelectorAll('.module-content').forEach(m => m.classList.remove('active'));
         document.getElementById('module-'+mod).classList.add('active');
+        
         if(mod === 'slimness' && document.getElementById('slimness-content').style.display === 'block') renderWeeks(1);
         if(mod === 'detox') renderDetox();
     }
 
     function renderWeeks(n) {
+        if(!DB.slimness) return;
         document.getElementById('weeks-list').innerHTML = [1,2,3,4,5,6].map(i => `<div class="week-tab ${i===n?'active':''}" onclick="renderWeeks(${i})">Неделя ${i}</div>`).join('');
         window.curW = DB.slimness[n];
         let d = ''; if(curW.info) d += `<div class="day-tab active" id="s-t-info" onclick="showS('info')">Инфо</div>`;
@@ -297,13 +349,20 @@
     function showS(id) {
         document.querySelectorAll('#days-list .day-tab').forEach(t => t.classList.remove('active'));
         document.getElementById('s-t-'+id).classList.add('active');
-        const d = window.curW[id]; let h = '';
+        const d = window.curW[id]; 
+        if(!d) return;
+        
+        let h = '';
         if(id === 'info') h = `<h3>${d.title}</h3>${d.html}`;
         else h = `<div class="affirmation-box">${d.aff}</div><ul style="list-style:none;">${d.tasks.map(t => `<li style="margin-bottom:10px;"><input type="checkbox"> ${t}</li>`).join('')}</ul>`;
         document.getElementById('slim-render').innerHTML = `<div class="day-content">${h}</div>`;
     }
 
     function renderDetox() {
+        if(!DB.detox) {
+            document.getElementById('detox-render').innerHTML = "<p style='opacity:0.5'>Загрузка базы рецептов...</p>";
+            return;
+        }
         let d = `<div class="day-tab active" id="d-t-info" onclick="showD('info')">База</div>`;
         for(let i=1; i<=7; i++) d += `<div class="day-tab" id="d-t-${i}" onclick="showD('${i}')">День ${i}</div>`;
         document.getElementById('detox-days').innerHTML = d; showD('info');
@@ -313,6 +372,7 @@
         document.querySelectorAll('#detox-days .day-tab').forEach(t => t.classList.remove('active'));
         document.getElementById('d-t-'+id).classList.add('active');
         const d = DB.detox[id];
+        if(!d) return;
         document.getElementById('detox-render').innerHTML = `<div class="day-content"><h3>${d.title}</h3>${d.html}</div>`;
     }
 </script>
