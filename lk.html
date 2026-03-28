@@ -94,7 +94,7 @@
 
 <header id="lk-header" style="display: none;">
     <div class="logo-mini">РЕСУРС</div>
-    <div class="logout" onclick="location.reload()">Выйти из клуба</div>
+    <div class="logout" onclick="logout()">Выйти из клуба</div>
 </header>
 
 <div id="auth-view" class="container">
@@ -250,23 +250,28 @@
     const CONTENT_URL = 'https://storage.yandexcloud.net/resurs-content/content.json?v=' + Date.now();
     let DB = {}, USER = {}, chart = null;
 
-    // Авто-вход через ссылку
+    // Авто-вход через LocalStorage (исправлено, чтобы не кидало между аккаунтами)
     window.onload = () => {
-        const urlParams = new URLSearchParams(window.location.search);
-        const emailParam = urlParams.get('email');
-        if (emailParam) {
-            document.getElementById('user-email').value = emailParam;
-            login(emailParam.toLowerCase());
+        const savedEmail = localStorage.getItem('userEmail');
+        if (savedEmail) {
+            document.getElementById('user-email').value = savedEmail;
+            login(savedEmail);
         }
+        loadDB();
     };
+
+    // Кнопка Выхода
+    function logout() {
+        localStorage.removeItem('userEmail');
+        window.location.reload();
+    }
 
     async function loadDB() { 
         try { 
             const r = await fetch(CONTENT_URL); 
             DB = await r.json(); 
-        } catch(e) { console.error("Ошибка загрузки контента CORS", e); } 
+        } catch(e) { console.error("Ошибка загрузки контента", e); } 
     }
-    loadDB();
 
     function formatDate(dateString) {
         if(!dateString) return '--';
@@ -286,6 +291,8 @@
             const d = await r.json();
             
             if(d.access === 'granted') {
+                // Успешный вход -> запоминаем в localStorage
+                localStorage.setItem('userEmail', email);
                 USER = { email, ...d, history: d.history || [] };
                 
                 const days = Math.ceil((new Date(d.until) - new Date()) / 86400000);
@@ -301,12 +308,10 @@
                 initChart();
                 renderTable();
                 applyRights(d.subscription);
-                
-                // Добавляем email в URL, чтобы не вводить его при обновлении
-                window.history.replaceState({}, '', `?email=${email}`);
             } else {
                 alert('Пользователь не найден или доступ истек.');
                 btn.innerText = 'Получить доступ';
+                localStorage.removeItem('userEmail'); // Очищаем, если доступ закрыт
             }
         } catch(e) { 
             alert('Ошибка связи с сервером. Проверьте интернет.'); 
@@ -358,7 +363,7 @@
         try {
             await fetch(CLOUD_URL, { 
                 method: 'POST', 
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json' }, // ВАЖНО ДЛЯ СОХРАНЕНИЯ
                 body: JSON.stringify({ action: 'save_goal', email: USER.email, goal: g }) 
             });
             USER.target_weight = g;
@@ -408,7 +413,7 @@
         try {
             await fetch(CLOUD_URL, { 
                 method: 'POST', 
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json' }, // ВАЖНО ДЛЯ СОХРАНЕНИЯ
                 body: JSON.stringify({ action: 'save_progress', email: USER.email, weight: parseFloat(w), waist: parseFloat(t), hips: parseFloat(b) }) 
             });
             
@@ -533,7 +538,7 @@
             
             const res = await fetch(CLOUD_URL, { 
                 method: 'POST', 
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json' }, // ВАЖНО ДЛЯ СОХРАНЕНИЯ
                 body: JSON.stringify({ action: 'upload_photo', email: USER.email, type: type, image_base64: e.target.result }) 
             });
             const d = await res.json();
