@@ -38,7 +38,7 @@
         .welcome-card { flex: 2; padding: 30px; min-width: 300px; position: relative; display: flex; flex-direction: column; justify-content: center;}
         .goal-card { flex: 1; padding: 30px; min-width: 280px; text-align: center; border: 1px solid rgba(197,160,89,0.3); background: linear-gradient(135deg, rgba(197, 160, 89, 0.05), rgba(255,255,255,0.01));}
         
-        .days-badge { display: inline-block; margin-top: 15px; padding: 8px 15px; border: 1px solid rgba(255,255,255,0.1); border-radius: 30px; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.7);}
+        .days-badge { display: inline-block; margin-top: 15px; padding: 8px 15px; border: 1px solid rgba(255,255,255,0.1); border-radius: 30px; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.7); margin-right: 10px;}
         .days-badge span { color: var(--accent); font-weight: 600; font-size: 14px;}
 
         .goal-val { font-size: 48px; color: var(--accent); line-height: 1; font-family: 'Cormorant Garamond', serif; margin: 10px 0;}
@@ -63,15 +63,17 @@
 
         .affirmation-box { padding: 30px; border-left: 3px solid var(--accent); background: rgba(255,255,255,0.02); margin-bottom: 30px; font-style: italic; color: var(--accent); font-family: 'Cormorant Garamond', serif; font-size: 24px; text-align: center;}
         
-        .task-item { display: flex; align-items: flex-start; gap: 15px; margin-bottom: 15px; font-size: 16px; opacity: 0.9; padding: 10px; background: rgba(255,255,255,0.01); border-radius: 8px; border: 1px solid rgba(255,255,255,0.03);}
-        .task-item input[type="checkbox"] { width: 22px; height: 22px; accent-color: var(--accent); cursor: pointer; margin-top: 2px;}
+        .task-item { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; font-size: 16px; opacity: 0.9; padding: 15px; background: rgba(255,255,255,0.02); border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); cursor: pointer; transition: 0.3s;}
+        .task-item:hover { background: rgba(197,160,89,0.05); border-color: rgba(197,160,89,0.3); }
+        .task-item.completed { opacity: 0.5; text-decoration: line-through; border-color: var(--accent); background: rgba(197,160,89,0.1); }
+        .task-item input[type="checkbox"] { width: 24px; height: 24px; accent-color: var(--accent); cursor: pointer; pointer-events: none;}
 
         .progress-section { margin-top: 50px; padding: 40px; border-top: 1px solid rgba(255,255,255,0.05);}
         .upload-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 40px; margin-top: 30px; }
         
         .chart-container { position: relative; height: 250px; width: 100%; margin-bottom: 30px; }
         
-        .measurement-inputs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items: end;}
+        .measurement-inputs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; align-items: end;}
         
         .upload-box { border: 1px dashed rgba(255,255,255,0.2); padding: 25px; text-align: center; border-radius: 10px; position: relative; cursor: pointer; transition: 0.3s; background: rgba(255,255,255,0.01);}
         .upload-box:hover { border-color: var(--accent); background: rgba(197,160,89,0.05);}
@@ -79,8 +81,11 @@
         .photo-preview { display: none; width: 100%; height: 160px; object-fit: cover; border-radius: 8px; margin-top: 15px; border: 1px solid var(--accent); }
 
         .history-table { width: 100%; border-collapse: collapse; margin-top: 30px; font-size: 13px; }
-        .history-table th { color: var(--accent); padding: 12px; border-bottom: 1px solid rgba(197,160,89,0.3); text-transform: uppercase; letter-spacing: 1px; font-size: 10px;}
+        .history-table th { color: var(--accent); padding: 12px; border-bottom: 1px solid rgba(197,160,89,0.3); text-transform: uppercase; letter-spacing: 1px; font-size: 10px; text-align: center;}
         .history-table td { padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.05); text-align: center; }
+
+        /* Стили для видео плеера */
+        video { width: 100%; max-height: 450px; border-radius: 12px; background: #000; outline: none; border: 1px solid rgba(197,160,89,0.2); margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
 
         @media (max-width: 768px) { 
             .upload-grid { grid-template-columns: 1fr; gap: 20px;} 
@@ -101,7 +106,7 @@
     <div class="glass" style="padding: 50px 40px; max-width: 420px; width: 100%; text-align: center;">
         <h2 class="serif" style="font-size: 36px; margin-bottom: 10px; color: var(--accent);">Вход в клуб</h2>
         <p style="opacity: 0.6; font-size: 14px; margin-bottom: 40px;">Введите ваш Email для доступа к программам</p>
-        <input type="email" id="user-email" class="input-field" placeholder="Ваш Email (например: anna@mail.ru)" style="margin-bottom: 25px; text-align: center;">
+        <input type="email" id="user-email" class="input-field" placeholder="Ваш Email" style="margin-bottom: 25px; text-align: center;">
         <button class="btn btn-fill" id="login-btn" onclick="login()">Получить доступ</button>
     </div>
 </div>
@@ -111,9 +116,10 @@
     <div class="profile-header">
         <div class="glass welcome-card">
             <h1 class="serif" style="font-size: 42px; margin-bottom: 5px;">Привет, <span id="user-name-display" style="color: var(--accent);">Резидент</span>!</h1>
-            <p style="opacity: 0.7; font-size: 15px; max-width: 400px;">Продолжай двигаться к своей цели шаг за шагом. Твоя трансформация — в твоих руках.</p>
+            <p style="opacity: 0.7; font-size: 15px; max-width: 400px; margin-bottom: 10px;">Продолжай двигаться к своей цели шаг за шагом. Твоя трансформация — в твоих руках.</p>
             <div>
                 <div class="days-badge">Доступно дней: <span id="days-left">0</span></div>
+                <div class="days-badge" style="border-color: var(--accent); background: rgba(197,160,89,0.1);">Прогресс: <span id="course-progress">День 1 из 45</span></div>
             </div>
         </div>
 
@@ -121,7 +127,7 @@
             <div id="goal-setup">
                 <h3 class="serif" style="font-size: 28px; color: var(--accent); margin-bottom: 10px;">Твоя Цель</h3>
                 <p style="font-size: 12px; opacity: 0.6;">Зафиксируй желаемый вес для графика</p>
-                <input type="number" id="target-weight" class="input-field" placeholder="Например: 58" style="margin: 20px auto; text-align: center; max-width: 200px;">
+                <input type="number" id="target-weight" class="input-field" placeholder="Вес (кг)" style="margin: 20px auto; text-align: center; max-width: 200px;">
                 <button class="btn" style="max-width: 200px;" onclick="saveGoal()">Установить цель</button>
             </div>
             <div id="goal-display" style="display: none;">
@@ -152,8 +158,8 @@
         <div id="slimness-gate" class="glass" style="padding: 50px; text-align: center;">
             <h2 class="serif" style="font-size: 36px; color: var(--accent); margin-bottom: 15px;">Точка отсчета</h2>
             <p style="opacity: 0.7; font-size: 15px; margin-bottom: 30px;">Твой путь начинается с честности перед собой. Внеси стартовые замеры.</p>
-            <div class="upload-grid" style="max-width: 600px; margin: 0 auto 30px; grid-template-columns: 1fr 1fr; gap: 15px;">
-                <input type="number" id="m-weight" class="input-field" placeholder="Вес (кг) *обязательно">
+            <div class="upload-grid" style="max-width: 800px; margin: 0 auto 30px; grid-template-columns: repeat(4, 1fr); gap: 10px;">
+                <input type="number" id="m-weight" class="input-field" placeholder="Вес (кг) *обязат.">
                 <input type="number" id="m-chest" class="input-field" placeholder="Грудь (см)">
                 <input type="number" id="m-waist" class="input-field" placeholder="Талия (см)">
                 <input type="number" id="m-hips" class="input-field" placeholder="Бедра (см)">
@@ -200,11 +206,15 @@
                         <input type="number" step="0.1" id="new-w" class="input-field" placeholder="0.0">
                     </div>
                     <div>
-                        <label style="font-size: 10px; opacity: 0.5; text-transform: uppercase;">Талия (см)</label>
+                        <label style="font-size: 10px; opacity: 0.5; text-transform: uppercase;">Грудь</label>
+                        <input type="number" id="new-c" class="input-field" placeholder="0">
+                    </div>
+                    <div>
+                        <label style="font-size: 10px; opacity: 0.5; text-transform: uppercase;">Талия</label>
                         <input type="number" id="new-t" class="input-field" placeholder="0">
                     </div>
                     <div>
-                        <label style="font-size: 10px; opacity: 0.5; text-transform: uppercase;">Бедра (см)</label>
+                        <label style="font-size: 10px; opacity: 0.5; text-transform: uppercase;">Бедра</label>
                         <input type="number" id="new-b" class="input-field" placeholder="0">
                     </div>
                     <button class="btn btn-fill" style="height: 44px;" onclick="saveEntry()">Внести</button>
@@ -233,6 +243,7 @@
                             <tr>
                                 <th style="text-align: left;">Дата</th>
                                 <th>Вес</th>
+                                <th>Грудь</th>
                                 <th>Талия</th>
                                 <th>Бедра</th>
                             </tr>
@@ -250,7 +261,7 @@
     const CONTENT_URL = 'https://storage.yandexcloud.net/resurs-content/content.json?v=' + Date.now();
     let DB = {}, USER = {}, chart = null;
 
-    // Авто-вход через LocalStorage (исправлено, чтобы не кидало между аккаунтами)
+    // Авто-вход
     window.onload = () => {
         const savedEmail = localStorage.getItem('userEmail');
         if (savedEmail) {
@@ -260,7 +271,6 @@
         loadDB();
     };
 
-    // Кнопка Выхода
     function logout() {
         localStorage.removeItem('userEmail');
         window.location.reload();
@@ -291,14 +301,24 @@
             const d = await r.json();
             
             if(d.access === 'granted') {
-                // Успешный вход -> запоминаем в localStorage
                 localStorage.setItem('userEmail', email);
-                USER = { email, ...d, history: d.history || [] };
+                // Загружаем пользователя и его сохраненные задачи (галочки)
+                USER = { email, ...d, history: d.history || [], tasks: d.tasks || [] };
                 
-                const days = Math.ceil((new Date(d.until) - new Date()) / 86400000);
-                document.getElementById('days-left').innerText = days > 0 ? days : 0;
+                // Расчет оставшихся дней
+                const daysLeft = Math.ceil((new Date(d.until) - new Date()) / 86400000);
+                document.getElementById('days-left').innerText = daysLeft > 0 ? daysLeft : 0;
                 document.getElementById('user-name-display').innerText = d.name.split(' ')[0];
                 
+                // Расчет текущего дня прогресса
+                if(USER.history.length > 0) {
+                    const startD = new Date(USER.history[0].date);
+                    const now = new Date();
+                    let diffDays = Math.floor((now - startD) / 86400000) + 1;
+                    if(diffDays > 45) diffDays = 45;
+                    document.getElementById('course-progress').innerText = `День ${diffDays} из 45`;
+                }
+
                 document.getElementById('auth-view').style.display = 'none';
                 document.getElementById('dashboard-view').style.display = 'block';
                 document.getElementById('lk-header').style.display = 'flex';
@@ -311,7 +331,7 @@
             } else {
                 alert('Пользователь не найден или доступ истек.');
                 btn.innerText = 'Получить доступ';
-                localStorage.removeItem('userEmail'); // Очищаем, если доступ закрыт
+                localStorage.removeItem('userEmail');
             }
         } catch(e) { 
             alert('Ошибка связи с сервером. Проверьте интернет.'); 
@@ -352,6 +372,43 @@
         }
     }
 
+    // ЛОГИКА ОТОБРАЖЕНИЯ СТАРТОВОГО ОКНА ИЛИ КУРСА
+    function checkSlimnessGate() {
+        if(USER.history && USER.history.length > 0) {
+            document.getElementById('slimness-gate').style.display = 'none';
+            document.getElementById('slimness-content').style.display = 'block';
+            renderWeeks(1);
+        } else {
+            document.getElementById('slimness-gate').style.display = 'block';
+            document.getElementById('slimness-content').style.display = 'none';
+        }
+    }
+
+    function switchModule(mod) {
+        document.querySelectorAll('.nav-card').forEach(c => c.classList.remove('active'));
+        const activeNav = document.getElementById('nav-'+mod);
+        if(activeNav) activeNav.classList.add('active');
+        
+        document.querySelectorAll('.module-content').forEach(m => m.classList.remove('active'));
+        document.getElementById('module-'+mod).classList.add('active');
+        
+        if(mod === 'slimness') checkSlimnessGate();
+        if(mod === 'detox') renderDetox();
+    }
+
+    function unlockSlimness() {
+        const w = document.getElementById('m-weight').value;
+        if(!w) return alert('Для старта необходимо указать хотя бы текущий вес.');
+        
+        document.getElementById('new-w').value = w;
+        document.getElementById('new-c').value = document.getElementById('m-chest').value || ''; 
+        document.getElementById('new-t').value = document.getElementById('m-waist').value || ''; 
+        document.getElementById('new-b').value = document.getElementById('m-hips').value || ''; 
+        saveEntry();
+
+        checkSlimnessGate(); // Перепроверяем и открываем курс
+    }
+
     async function saveGoal() {
         const g = parseFloat(document.getElementById('target-weight').value);
         if(!g) return;
@@ -363,7 +420,7 @@
         try {
             await fetch(CLOUD_URL, { 
                 method: 'POST', 
-                headers: { 'Content-Type': 'application/json' }, // ВАЖНО ДЛЯ СОХРАНЕНИЯ
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ action: 'save_goal', email: USER.email, goal: g }) 
             });
             USER.target_weight = g;
@@ -401,6 +458,7 @@
 
     async function saveEntry() {
         const w = document.getElementById('new-w').value;
+        const c = document.getElementById('new-c').value || 0; 
         const t = document.getElementById('new-t').value || 0; 
         const b = document.getElementById('new-b').value || 0; 
         
@@ -413,21 +471,26 @@
         try {
             await fetch(CLOUD_URL, { 
                 method: 'POST', 
-                headers: { 'Content-Type': 'application/json' }, // ВАЖНО ДЛЯ СОХРАНЕНИЯ
-                body: JSON.stringify({ action: 'save_progress', email: USER.email, weight: parseFloat(w), waist: parseFloat(t), hips: parseFloat(b) }) 
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'save_progress', email: USER.email, weight: parseFloat(w), chest: parseFloat(c), waist: parseFloat(t), hips: parseFloat(b) }) 
             });
             
             const today = new Date();
             const ydbDateStr = `${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,'0')}-${String(today.getDate()).padStart(2,'0')}`;
             
-            USER.history.push({ date: ydbDateStr, weight: parseFloat(w), waist: t, hips: b });
+            USER.history.push({ date: ydbDateStr, weight: parseFloat(w), chest: c, waist: t, hips: b });
             initChart();
             renderTable();
             if(USER.target_weight) renderGoal(USER.target_weight); 
             
             document.getElementById('new-w').value = ''; 
+            document.getElementById('new-c').value = ''; 
             document.getElementById('new-t').value = ''; 
             document.getElementById('new-b').value = '';
+            
+            // Если это был первый замер, счетчик дней оживет
+            document.getElementById('course-progress').innerText = `День 1 из 45`;
+            
         } catch(e) {
             alert('Ошибка сохранения. Попробуйте позже.');
         }
@@ -487,22 +550,10 @@
                 maintainAspectRatio: false,
                 plugins: { 
                     legend: { display: false },
-                    tooltip: {
-                        backgroundColor: 'rgba(8,8,20,0.9)',
-                        titleColor: '#C5A059',
-                        bodyColor: '#fff',
-                        borderColor: 'rgba(197,160,89,0.3)',
-                        borderWidth: 1,
-                        padding: 10,
-                        displayColors: false,
-                        callbacks: { label: function(context) { return context.parsed.y + ' кг'; } }
-                    }
+                    tooltip: { backgroundColor: 'rgba(8,8,20,0.9)', titleColor: '#C5A059', bodyColor: '#fff', borderColor: 'rgba(197,160,89,0.3)', borderWidth: 1, padding: 10, displayColors: false, callbacks: { label: function(context) { return context.parsed.y + ' кг'; } } }
                 }, 
                 scales: { 
-                    y: { 
-                        grid: { color: 'rgba(255,255,255,0.05)' },
-                        suggestedMin: USER.target_weight ? USER.target_weight - 2 : undefined 
-                    },
+                    y: { grid: { color: 'rgba(255,255,255,0.05)' }, suggestedMin: USER.target_weight ? USER.target_weight - 2 : undefined },
                     x: { grid: { display: false } }
                 },
                 interaction: { mode: 'index', intersect: false }
@@ -513,7 +564,7 @@
     function renderTable() {
         const hist = USER.history || [];
         if(hist.length === 0) {
-            document.getElementById('hist-body').innerHTML = '<tr><td colspan="4" style="opacity:0.5; padding:20px;">Нет записей. Внесите первый замер!</td></tr>';
+            document.getElementById('hist-body').innerHTML = '<tr><td colspan="5" style="opacity:0.5; padding:20px;">Нет записей. Внесите первый замер!</td></tr>';
             return;
         }
         
@@ -521,6 +572,7 @@
             <tr>
                 <td style="text-align: left; opacity:0.8;">${formatDate(h.date)}</td>
                 <td style="color: var(--accent); font-weight:600;">${h.weight}</td>
+                <td>${h.chest || '-'}</td>
                 <td>${h.waist || '-'}</td>
                 <td>${h.hips || '-'}</td>
             </tr>
@@ -529,7 +581,6 @@
 
     async function uploadPhoto(input, type) {
         if(!input.files[0]) return;
-        
         const reader = new FileReader();
         reader.onload = async (e) => {
             const preview = document.getElementById(`preview-${type}`);
@@ -538,47 +589,23 @@
             
             const res = await fetch(CLOUD_URL, { 
                 method: 'POST', 
-                headers: { 'Content-Type': 'application/json' }, // ВАЖНО ДЛЯ СОХРАНЕНИЯ
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ action: 'upload_photo', email: USER.email, type: type, image_base64: e.target.result }) 
             });
             const d = await res.json();
-            if(d.status === 'ok') alert(d.bonus ? 'Фото ПОСЛЕ сохранено! Вы молодец, начислено +7 бонусных дней!' : 'Фото ДО успешно загружено в безопасное облако!');
+            if(d.status === 'ok') alert(d.bonus ? 'Фото ПОСЛЕ сохранено! Вы молодец, начислено +7 бонусных дней!' : 'Фото ДО успешно загружено!');
         };
         reader.readAsDataURL(input.files[0]);
     }
 
-    function unlockSlimness() {
-        const w = document.getElementById('m-weight').value;
-        if(!w) return alert('Для старта необходимо указать хотя бы текущий вес.');
-        
-        document.getElementById('new-w').value = w;
-        document.getElementById('new-t').value = document.getElementById('m-waist').value; 
-        document.getElementById('new-b').value = document.getElementById('m-hips').value; 
-        saveEntry();
-
-        document.getElementById('slimness-gate').style.display = 'none';
-        document.getElementById('slimness-content').style.display = 'block';
-        renderWeeks(1);
-    }
-
-    function switchModule(mod) {
-        document.querySelectorAll('.nav-card').forEach(c => c.classList.remove('active'));
-        const activeNav = document.getElementById('nav-'+mod);
-        if(activeNav) activeNav.classList.add('active');
-        
-        document.querySelectorAll('.module-content').forEach(m => m.classList.remove('active'));
-        document.getElementById('module-'+mod).classList.add('active');
-        
-        if(mod === 'slimness' && document.getElementById('slimness-content').style.display === 'block') renderWeeks(1);
-        if(mod === 'detox') renderDetox();
-    }
-
+    // --- ЛОГИКА ОТРИСОВКИ КУРСОВ И ГАЛОЧЕК ---
     function renderWeeks(n) {
         if(!DB.slimness) {
-            document.getElementById('slim-render').innerHTML = "<div class='glass' style='padding:40px; text-align:center;'><h3 class='serif' style='color:var(--accent); font-size:24px;'>Контент загружается...</h3><p style='opacity:0.5;'>Если это сообщение не исчезает, проверьте настройки CORS в Яндекс.Облаке.</p></div>";
+            document.getElementById('slim-render').innerHTML = "<div class='glass' style='padding:40px; text-align:center;'><h3 class='serif' style='color:var(--accent); font-size:24px;'>Контент загружается...</h3></div>";
             return;
         }
         document.getElementById('weeks-list').innerHTML = [1,2,3,4,5,6].map(i => `<div class="week-tab ${i===n?'active':''}" onclick="renderWeeks(${i})">Неделя ${i}</div>`).join('');
+        window.curWNum = n;
         window.curW = DB.slimness[n];
         let d = ''; if(curW.info) d += `<div class="day-tab active" id="s-t-info" onclick="showS('info')">Инфо</div>`;
         for(let i=1; i<=7; i++) d += `<div class="day-tab" id="s-t-${i}" onclick="showS('${i}')">День ${i}</div>`;
@@ -596,17 +623,50 @@
             h = `<h3 class="serif" style="color:var(--accent); font-size:28px; margin-bottom:20px; border-bottom:1px solid rgba(197,160,89,0.2); padding-bottom:10px;">${d.title}</h3>${d.html}`;
         } else {
             h = `<div class="affirmation-box">«${d.aff}»</div>`;
-            h += `<h4 class="serif" style="font-size: 22px; margin-bottom: 15px;">Задания на день:</h4>`;
-            h += `<div>${d.tasks.map(t => `<div class="task-item"><input type="checkbox"> <span>${t}</span></div>`).join('')}</div>`;
+            h += `${d.html || ''}`; // Вывод видео, если оно есть в json
+            h += `<h4 class="serif" style="font-size: 22px; margin-bottom: 15px; margin-top: 30px;">Задания на день:</h4>`;
+            
+            h += `<div>${d.tasks.map((t, index) => {
+                const taskId = `w${window.curWNum}_d${id}_t${index}`;
+                const isChecked = USER.tasks && USER.tasks.includes(taskId);
+                return `
+                <div class="task-item ${isChecked ? 'completed' : ''}" onclick="toggleTask('${taskId}', this)">
+                    <input type="checkbox" ${isChecked ? 'checked' : ''}> 
+                    <span>${t}</span>
+                </div>`;
+            }).join('')}</div>`;
         }
         document.getElementById('slim-render').innerHTML = `<div class="day-content">${h}</div>`;
     }
 
-    function renderDetox() {
-        if(!DB.detox) {
-            document.getElementById('detox-render').innerHTML = "<div class='glass' style='padding:40px; text-align:center;'><h3 class='serif' style='color:var(--accent); font-size:24px;'>Меню загружается...</h3><p style='opacity:0.5;'>Если это сообщение не исчезает, проверьте настройки CORS в Яндекс.Облаке.</p></div>";
-            return;
+    // Сохранение галочек в базу
+    async function toggleTask(taskId, element) {
+        const checkbox = element.querySelector('input');
+        const isCompleted = element.classList.contains('completed');
+        
+        if (isCompleted) {
+            element.classList.remove('completed');
+            checkbox.checked = false;
+            USER.tasks = USER.tasks.filter(id => id !== taskId);
+        } else {
+            element.classList.add('completed');
+            checkbox.checked = true;
+            if(!USER.tasks) USER.tasks = [];
+            USER.tasks.push(taskId);
         }
+
+        // Отправка в облако
+        try {
+            await fetch(CLOUD_URL, { 
+                method: 'POST', 
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'save_tasks', email: USER.email, tasks: USER.tasks }) 
+            });
+        } catch(e) { console.error("Ошибка синхронизации задач"); }
+    }
+
+    function renderDetox() {
+        if(!DB.detox) return;
         let d = `<div class="day-tab active" id="d-t-info" onclick="showD('info')">База</div>`;
         for(let i=1; i<=7; i++) d += `<div class="day-tab" id="d-t-${i}" onclick="showD('${i}')">День ${i}</div>`;
         document.getElementById('detox-days').innerHTML = d; showD('info');
