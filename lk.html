@@ -84,7 +84,6 @@
         .history-table th { color: var(--accent); padding: 12px; border-bottom: 1px solid rgba(197,160,89,0.3); text-transform: uppercase; letter-spacing: 1px; font-size: 10px; text-align: center;}
         .history-table td { padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.05); text-align: center; }
 
-        /* Стили для видео плеера */
         video { width: 100%; max-height: 450px; border-radius: 12px; background: #000; outline: none; border: 1px solid rgba(197,160,89,0.2); margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
 
         @media (max-width: 768px) { 
@@ -261,7 +260,6 @@
     const CONTENT_URL = 'https://storage.yandexcloud.net/resurs-content/content.json?v=' + Date.now();
     let DB = {}, USER = {}, chart = null;
 
-    // Авто-вход
     window.onload = () => {
         const savedEmail = localStorage.getItem('userEmail');
         if (savedEmail) {
@@ -280,6 +278,10 @@
         try { 
             const r = await fetch(CONTENT_URL); 
             DB = await r.json(); 
+            // Если контент загрузился после авторизации, обновляем открытую вкладку
+            if(USER.email && document.getElementById('module-slimness').classList.contains('active')) {
+                renderWeeks(1);
+            }
         } catch(e) { console.error("Ошибка загрузки контента", e); } 
     }
 
@@ -302,15 +304,12 @@
             
             if(d.access === 'granted') {
                 localStorage.setItem('userEmail', email);
-                // Загружаем пользователя и его сохраненные задачи (галочки)
                 USER = { email, ...d, history: d.history || [], tasks: d.tasks || [] };
                 
-                // Расчет оставшихся дней
                 const daysLeft = Math.ceil((new Date(d.until) - new Date()) / 86400000);
                 document.getElementById('days-left').innerText = daysLeft > 0 ? daysLeft : 0;
                 document.getElementById('user-name-display').innerText = d.name.split(' ')[0];
                 
-                // Расчет текущего дня прогресса
                 if(USER.history.length > 0) {
                     const startD = new Date(USER.history[0].date);
                     const now = new Date();
@@ -372,7 +371,6 @@
         }
     }
 
-    // ЛОГИКА ОТОБРАЖЕНИЯ СТАРТОВОГО ОКНА ИЛИ КУРСА
     function checkSlimnessGate() {
         if(USER.history && USER.history.length > 0) {
             document.getElementById('slimness-gate').style.display = 'none';
@@ -384,7 +382,6 @@
         }
     }
 
-    // Функция переключения модулей (теперь с библиотекой!)
     function switchModule(mod) {
         document.querySelectorAll('.nav-card').forEach(c => c.classList.remove('active'));
         const activeNav = document.getElementById('nav-'+mod);
@@ -394,14 +391,14 @@
         document.getElementById('module-'+mod).classList.add('active');
         
         if(mod === 'slimness') checkSlimnessGate();
-        if(mod === 'detox') renderDetox();
+        if(mod === 'detox') renderDetoxLibrary();
         if(mod === 'library') renderLibrary();
     }
 
-    // Функция отрисовки Библиотеки (теперь работает на 100%)
+    // --- МОДУЛЬ: БИБЛИОТЕКА ---
     function renderLibrary() {
         if(!DB.library) {
-            document.getElementById('module-library').innerHTML = "<div class='glass' style='padding:60px; text-align:center;'><h2 class='serif' style='color:var(--accent); font-size:32px;'>Библиотека</h2><p style='opacity:0.5;'>Загрузка видео...</p></div>";
+            document.getElementById('module-library').innerHTML = "<div class='glass' style='padding:60px; text-align:center;'><h2 class='serif' style='color:var(--accent); font-size:32px;'>Библиотека</h2><p style='opacity:0.5;'>Ожидает загрузки видео-материалов...</p></div>";
             return;
         }
         
@@ -423,6 +420,131 @@
         document.getElementById('module-library').innerHTML = h;
     }
 
+    // --- МОДУЛЬ: СТРОЙНОСТЬ (КУРС) ---
+    function renderWeeks(n) {
+        if(!DB.course_weeks) {
+            document.getElementById('slim-render').innerHTML = "<div class='glass' style='padding:40px; text-align:center;'><h3 class='serif' style='color:var(--accent); font-size:24px;'>Контент загружается...</h3></div>";
+            return;
+        }
+        document.getElementById('weeks-list').innerHTML = DB.course_weeks.map(w =>
+            `<div class="week-tab ${w.week_number === n ? 'active':''}" onclick="renderWeeks(${w.week_number})">Неделя ${w.week_number}</div>`
+        ).join('');
+
+        window.curWNum = n;
+        window.curW = DB.course_weeks.find(w => w.week_number === n);
+        if(!window.curW) return;
+
+        let d = `<div class="day-tab active" id="s-t-info" onclick="showS('info')">Инфо</div>`;
+        window.curW.days.forEach(day => {
+            d += `<div class="day-tab" id="s-t-${day.day}" onclick="showS('${day.day}')">День ${day.day}</div>`;
+        });
+        document.getElementById('days-list').innerHTML = d;
+        showS('info');
+    }
+
+    function showS(id) {
+        document.querySelectorAll('#days-list .day-tab').forEach(t => t.classList.remove('active'));
+        document.getElementById('s-t-'+id).classList.add('active');
+        const w = window.curW;
+        if(!w) return;
+
+        let h = '';
+        if(id === 'info') {
+            h = `<h3 class="serif" style="color:var(--accent); font-size:28px; margin-bottom:20px;">${w.title}</h3>`;
+            if(w.tasks) h += `<div class="glass" style="padding:15px; margin:15px 0; font-size:14px; border-left:2px solid var(--accent);">${w.tasks}</div>`;
+            
+            if(w.fasting_day_options) {
+                let opts = Array.isArray(w.fasting_day_options) ? w.fasting_day_options.join('<br><br>') : w.fasting_day_options;
+                h += `<div style="background:rgba(197,160,89,0.05); padding:15px; border-radius:8px; border:1px dashed var(--accent);"><b>Разгрузочный день:</b><br><br>${opts}</div>`;
+            }
+            if(w.final_instructions) {
+                h += `<div style="margin-top:20px; padding:15px; background:rgba(255,255,255,0.02); border-radius:8px; border-left: 2px solid #a8e6cf;"><b style="color:#a8e6cf">Финал:</b><br>${w.final_instructions}</div>`;
+            }
+        } else {
+            const day = w.days.find(d => String(d.day) === String(id));
+            if(!day) return;
+
+            h = `<div class="affirmation-box">«${day.affirmation}»</div>`;
+
+            if(day.menu) {
+                h += `<div class="glass" style="padding:20px; margin-bottom:20px; font-size:14px; line-height:1.6;">`;
+                h += `<h4 style="color:var(--accent); margin-bottom:10px; text-transform:uppercase; font-size:12px; letter-spacing:1px;">Рацион дня:</h4>`;
+                
+                const menuNames = {
+                    breakfast: "Завтрак", breakfast_1: "Завтрак 1", breakfast_2: "Завтрак 2",
+                    snack_1: "Перекус 1", lunch: "Обед", snack_2: "Перекус 2", dinner: "Ужин", info: "Внимание", same_as: "Меню как в"
+                };
+                
+                for(let key in day.menu) {
+                    let niceKey = menuNames[key] || key;
+                    h += `<p style="margin-bottom:8px;"><b style="color:var(--accent); opacity:0.8">${niceKey}:</b> ${day.menu[key]}</p>`;
+                }
+                h += `</div>`;
+            }
+
+            if(day.workout) {
+                h += `<h4 class="serif" style="font-size:22px; margin-bottom:15px;">Активность и задания:</h4>`;
+                if(day.workout.videoUrl) h += `<video controls class="glass" style="margin-bottom:15px; width:100%;"><source src="${day.workout.videoUrl}"></video>`;
+
+                if(day.workout.description) {
+                    const taskList = day.workout.description.split(';').map(t => t.trim()).filter(t => t);
+                    h += taskList.map((t, i) => {
+                        const tid = `w${w.week_number}_d${id}_t${i}`;
+                        const ok = USER.tasks && USER.tasks.includes(tid);
+                        return `<div class="task-item ${ok?'completed':''}" onclick="toggleTask('${tid}', this)"><input type="checkbox" ${ok?'checked':''}><span>${t}</span></div>`;
+                    }).join('');
+                }
+            }
+        }
+        document.getElementById('slim-render').innerHTML = `<div class="day-content">${h}</div>`;
+    }
+
+    // --- МОДУЛЬ: БАЗА РЕЦЕПТОВ (ДЕТОКС) ---
+    function renderDetoxLibrary() {
+        if(!DB.recipes_library) {
+            document.getElementById('detox-render').innerHTML = "<div class='glass' style='padding:40px; text-align:center;'><h3 class='serif' style='color:var(--accent); font-size:24px;'>Загрузка базы...</h3></div>";
+            return;
+        }
+        
+        const categories = { breakfasts:'Завтраки', smoothies:'Смузи', snacks:'Перекусы', soups:'Супы', cereals:'Крупы', desserts:'Десерты' };
+        let tabs = `<div class="day-tab active" id="d-t-info" onclick="showRecipeCat('info')">Памятка</div>`;
+        for(let key in categories) {
+            if(DB.recipes_library[key]) tabs += `<div class="day-tab" id="d-t-${key}" onclick="showRecipeCat('${key}')">${categories[key]}</div>`;
+        }
+        document.getElementById('detox-days').innerHTML = tabs;
+        showRecipeCat('info');
+    }
+
+    function showRecipeCat(cat) {
+        document.querySelectorAll('#detox-days .day-tab').forEach(t => t.classList.remove('active'));
+        document.getElementById('d-t-'+cat).classList.add('active');
+
+        let h = '';
+        if(cat === 'info') {
+            const b = DB.base_knowledge;
+            if(b) {
+                h = `<h3 class="serif" style="color:var(--accent); font-size:28px;">База Знаний Детокса</h3>`;
+                h += `<h4 style="margin-top:20px; color:var(--accent);">Основные правила:</h4><ul style="font-size:14px; opacity:0.9; margin:10px 0; padding-left:20px; line-height:1.8;">${b.detox_rules.map(r => `<li style="margin-bottom:8px;">${r}</li>`).join('')}</ul>`;
+                h += `<div style="background:rgba(255,0,0,0.05); padding:15px; border-radius:8px; border:1px solid rgba(255,0,0,0.1); color:#ffcccc; font-size:13px; margin-top:20px;"><b>ИСКЛЮЧИТЬ ИЗ РАЦИОНА:</b><br>${b.forbidden_products.join(', ')}</div>`;
+                h += `<h4 style="margin-top:20px; color:var(--accent);">Стратегия выхода:</h4><ul style="font-size:14px; opacity:0.9; margin:10px 0; padding-left:20px; line-height:1.8;">${b.detox_exit_strategy.map(r => `<li style="margin-bottom:8px;">${r}</li>`).join('')}</ul>`;
+            }
+        } else {
+            const recipes = DB.recipes_library[cat];
+            if(recipes) {
+                h = `<div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:15px;">`;
+                h += recipes.map(r => `
+                    <div class="glass" style="padding:25px;">
+                        <h4 style="color:var(--accent); margin-bottom:15px; font-family:'Cormorant Garamond', serif; font-size:22px; line-height:1.2;">${r.title}</h4>
+                        <div style="font-size:13px; opacity:0.8; margin-bottom:15px; background:rgba(0,0,0,0.2); padding:10px; border-radius:6px;">${r.ingredients ? `<b>Состав:</b><br>${r.ingredients}` : ''}</div>
+                        <p style="font-size:14px; line-height:1.6; opacity:0.9;">${r.preparation ? `<b>Приготовление:</b><br>${r.preparation}` : ''}</p>
+                    </div>`).join('');
+                h += `</div>`;
+            }
+        }
+        document.getElementById('detox-render').innerHTML = `<div class="day-content">${h}</div>`;
+    }
+
+    // --- ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ---
     function unlockSlimness() {
         const w = document.getElementById('m-weight').value;
         if(!w) return alert('Для старта необходимо указать хотя бы текущий вес.');
@@ -433,7 +555,7 @@
         document.getElementById('new-b').value = document.getElementById('m-hips').value || ''; 
         saveEntry();
 
-        checkSlimnessGate(); // Перепроверяем и открываем курс
+        setTimeout(() => checkSlimnessGate(), 500);
     }
 
     async function saveGoal() {
@@ -515,7 +637,6 @@
             document.getElementById('new-t').value = ''; 
             document.getElementById('new-b').value = '';
             
-            // Если это был первый замер, счетчик дней оживет
             document.getElementById('course-progress').innerText = `День 1 из 45`;
             
         } catch(e) {
@@ -625,86 +746,21 @@
         reader.readAsDataURL(input.files[0]);
     }
 
-    // --- ЛОГИКА ОТРИСОВКИ КУРСОВ И ГАЛОЧЕК ---
-    function renderWeeks(n) {
-        if(!DB.slimness) {
-            document.getElementById('slim-render').innerHTML = "<div class='glass' style='padding:40px; text-align:center;'><h3 class='serif' style='color:var(--accent); font-size:24px;'>Контент загружается...</h3></div>";
-            return;
-        }
-        document.getElementById('weeks-list').innerHTML = [1,2,3,4,5,6].map(i => `<div class="week-tab ${i===n?'active':''}" onclick="renderWeeks(${i})">Неделя ${i}</div>`).join('');
-        window.curWNum = n;
-        window.curW = DB.slimness[n];
-        let d = ''; if(curW.info) d += `<div class="day-tab active" id="s-t-info" onclick="showS('info')">Инфо</div>`;
-        for(let i=1; i<=7; i++) d += `<div class="day-tab" id="s-t-${i}" onclick="showS('${i}')">День ${i}</div>`;
-        document.getElementById('days-list').innerHTML = d; showS('info');
-    }
-
-    function showS(id) {
-        document.querySelectorAll('#days-list .day-tab').forEach(t => t.classList.remove('active'));
-        document.getElementById('s-t-'+id).classList.add('active');
-        const d = window.curW[id]; 
-        if(!d) return;
-        
-        let h = '';
-        if(id === 'info') {
-            h = `<h3 class="serif" style="color:var(--accent); font-size:28px; margin-bottom:20px; border-bottom:1px solid rgba(197,160,89,0.2); padding-bottom:10px;">${d.title}</h3>${d.html}`;
-        } else {
-            h = `<div class="affirmation-box">«${d.aff}»</div>`;
-            h += `${d.html || ''}`; // Вывод видео, если оно есть в json
-            h += `<h4 class="serif" style="font-size: 22px; margin-bottom: 15px; margin-top: 30px;">Задания на день:</h4>`;
-            
-            h += `<div>${(d.tasks || []).map((t, index) => {
-                const taskId = `w${window.curWNum}_d${id}_t${index}`;
-                const isChecked = USER.tasks && USER.tasks.includes(taskId);
-                return `
-                <div class="task-item ${isChecked ? 'completed' : ''}" onclick="toggleTask('${taskId}', this)">
-                    <input type="checkbox" ${isChecked ? 'checked' : ''}> 
-                    <span>${t}</span>
-                </div>`;
-            }).join('')}</div>`;
-        }
-        document.getElementById('slim-render').innerHTML = `<div class="day-content">${h}</div>`;
-    }
-
-    // Сохранение галочек в базу
-    async function toggleTask(taskId, element) {
-        const checkbox = element.querySelector('input');
-        const isCompleted = element.classList.contains('completed');
-        
-        if (isCompleted) {
-            element.classList.remove('completed');
-            checkbox.checked = false;
-            USER.tasks = USER.tasks.filter(id => id !== taskId);
-        } else {
-            element.classList.add('completed');
-            checkbox.checked = true;
+    async function toggleTask(tid, el) {
+        const box = el.querySelector('input');
+        if(el.classList.contains('completed')) { 
+            el.classList.remove('completed'); box.checked = false; 
+            USER.tasks = USER.tasks.filter(id => id !== tid); 
+        } else { 
+            el.classList.add('completed'); box.checked = true; 
             if(!USER.tasks) USER.tasks = [];
-            USER.tasks.push(taskId);
+            USER.tasks.push(tid); 
         }
-
-        // Отправка в облако
-        try {
-            await fetch(CLOUD_URL, { 
-                method: 'POST', 
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ action: 'save_tasks', email: USER.email, tasks: USER.tasks }) 
-            });
-        } catch(e) { console.error("Ошибка синхронизации задач"); }
-    }
-
-    function renderDetox() {
-        if(!DB.detox) return;
-        let d = `<div class="day-tab active" id="d-t-info" onclick="showD('info')">База</div>`;
-        for(let i=1; i<=7; i++) d += `<div class="day-tab" id="d-t-${i}" onclick="showD('${i}')">День ${i}</div>`;
-        document.getElementById('detox-days').innerHTML = d; showD('info');
-    }
-
-    function showD(id) {
-        document.querySelectorAll('#detox-days .day-tab').forEach(t => t.classList.remove('active'));
-        document.getElementById('d-t-'+id).classList.add('active');
-        const d = DB.detox[id];
-        if(!d) return;
-        document.getElementById('detox-render').innerHTML = `<div class="day-content"><h3 class="serif" style="color:var(--accent); font-size:28px; margin-bottom:20px; border-bottom:1px solid rgba(197,160,89,0.2); padding-bottom:10px;">${d.title}</h3>${d.html}</div>`;
+        await fetch(CLOUD_URL, { 
+            method:'POST', 
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ action:'save_tasks', email:USER.email, tasks:USER.tasks }) 
+        });
     }
 </script>
 </body>
