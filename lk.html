@@ -57,7 +57,7 @@
         .week-tab { padding: 8px 20px; font-size: 11px; text-transform: uppercase; border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; cursor: pointer; white-space: nowrap; transition: 0.3s;}
         .week-tab.active { background: var(--accent); color: #000; border-color: var(--accent);}
 
-        .days-nav { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; margin-bottom: 20px; }
+        .days-nav { display: grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 8px; margin-bottom: 20px; }
         .day-tab { padding: 12px 5px; text-align: center; border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; cursor: pointer; font-size: 12px; transition: 0.3s;}
         .day-tab.active { border-color: var(--accent); background: rgba(197,160,89,0.1); color: var(--accent); }
 
@@ -72,7 +72,6 @@
         .upload-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 40px; margin-top: 30px; }
         
         .chart-container { position: relative; height: 250px; width: 100%; margin-bottom: 30px; }
-        
         .measurement-inputs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; align-items: end;}
         
         .upload-box { border: 1px dashed rgba(255,255,255,0.2); padding: 25px; text-align: center; border-radius: 10px; position: relative; cursor: pointer; transition: 0.3s; background: rgba(255,255,255,0.01);}
@@ -83,8 +82,6 @@
         .history-table { width: 100%; border-collapse: collapse; margin-top: 30px; font-size: 13px; }
         .history-table th { color: var(--accent); padding: 12px; border-bottom: 1px solid rgba(197,160,89,0.3); text-transform: uppercase; letter-spacing: 1px; font-size: 10px; text-align: center;}
         .history-table td { padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.05); text-align: center; }
-
-        video { width: 100%; max-height: 450px; border-radius: 12px; background: #000; outline: none; border: 1px solid rgba(197,160,89,0.2); margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
 
         @media (max-width: 768px) { 
             .upload-grid { grid-template-columns: 1fr; gap: 20px;} 
@@ -145,7 +142,11 @@
         </div>
         <div class="glass nav-card" id="nav-detox" onclick="switchModule('detox')">
             <h3 class="serif" style="font-size: 24px; letter-spacing: 2px;">ДЕТОКС</h3>
-            <p style="font-size: 11px; opacity: 0.5; margin-top: 5px; text-transform: uppercase;">База рецептов</p>
+            <p style="font-size: 11px; opacity: 0.5; margin-top: 5px; text-transform: uppercase;">7 дней очищения</p>
+        </div>
+        <div class="glass nav-card" id="nav-recipes" onclick="switchModule('recipes')">
+            <h3 class="serif" style="font-size: 24px; letter-spacing: 2px;">РЕЦЕПТЫ</h3>
+            <p style="font-size: 11px; opacity: 0.5; margin-top: 5px; text-transform: uppercase;">База знаний</p>
         </div>
         <div class="glass nav-card" id="nav-library" onclick="switchModule('library')">
             <h3 class="serif" style="font-size: 24px; letter-spacing: 2px;">БИБЛИОТЕКА</h3>
@@ -169,7 +170,7 @@
         <div id="slimness-content" style="display: none;">
             <div class="weeks-nav" id="weeks-list"></div>
             <div class="glass" style="padding: 30px;">
-                <div class="days-nav" id="days-list"></div>
+                <div class="days-nav" id="slim-days-list"></div>
                 <div id="slim-render"></div>
             </div>
         </div>
@@ -177,8 +178,15 @@
 
     <div id="module-detox" class="module-content">
         <div class="glass" style="padding: 30px;">
-            <div class="days-nav" id="detox-days"></div>
+            <div class="days-nav" id="detox-days-list"></div>
             <div id="detox-render"></div>
+        </div>
+    </div>
+
+    <div id="module-recipes" class="module-content">
+        <div class="glass" style="padding: 30px;">
+            <div class="days-nav" id="recipes-tabs"></div>
+            <div id="recipes-render"></div>
         </div>
     </div>
 
@@ -278,9 +286,9 @@
         try { 
             const r = await fetch(CONTENT_URL); 
             DB = await r.json(); 
-            // Если контент загрузился после авторизации, обновляем открытую вкладку
-            if(USER.email && document.getElementById('module-slimness').classList.contains('active')) {
-                renderWeeks(1);
+            // Обновляем текущую вкладку, если она уже открыта
+            if(USER.email) {
+                if(document.getElementById('module-slimness').classList.contains('active')) renderWeeks(1);
             }
         } catch(e) { console.error("Ошибка загрузки контента", e); } 
     }
@@ -290,6 +298,21 @@
         const parts = dateString.split('-');
         if(parts.length === 3) return `${parts[2]}.${parts[1]}`;
         return dateString;
+    }
+
+    // --- УМНЫЙ ПАРСЕР ВИДЕО (YouTube / Vimeo / MP4) ---
+    function getVideoHTML(url) {
+        if(!url) return '';
+        if(url.includes('youtube.com') || url.includes('youtu.be')) {
+            let vid = url.split('v=')[1] || url.split('youtu.be/')[1];
+            if(vid) vid = vid.split('&')[0];
+            return `<iframe class="glass" style="width:100%; height:350px; margin-bottom:15px; border-radius:12px;" src="https://www.youtube.com/embed/${vid}" frameborder="0" allowfullscreen></iframe>`;
+        }
+        if(url.includes('vimeo.com')) {
+            let vid = url.split('vimeo.com/')[1];
+            return `<iframe class="glass" style="width:100%; height:350px; margin-bottom:15px; border-radius:12px;" src="https://player.vimeo.com/video/${vid}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
+        }
+        return `<video controls class="glass" style="margin-bottom:15px; width:100%; border-radius:12px; max-height:400px;"><source src="${url}"></video>`;
     }
 
     async function login(manualEmail = null) {
@@ -338,15 +361,22 @@
         }
     }
 
+    // --- РАСПРЕДЕЛЕНИЕ ПРАВ ---
     function applyRights(sub) {
         const s = document.getElementById('nav-slimness');
         const d = document.getElementById('nav-detox');
+        const r = document.getElementById('nav-recipes');
         const l = document.getElementById('nav-library');
 
-        [s, d, l].forEach(el => { 
+        // По умолчанию все закрыто
+        [s, d, r, l].forEach(el => { 
             el.style.opacity = '0.3'; 
             el.onclick = () => alert('Вам нужно повысить тариф для доступа к этому разделу'); 
         });
+
+        // Рецепты (База знаний) открыты ВСЕМ!
+        r.style.opacity = '1';
+        r.onclick = () => switchModule('recipes');
 
         if(sub === 'detox') {
             d.style.opacity = '1'; 
@@ -360,7 +390,7 @@
             d.onclick = () => switchModule('detox');
             switchModule('slimness');
         } 
-        else if (sub === 'full_access') {
+        else if (sub === 'full_access' || sub === 'library') {
             s.style.opacity = '1'; 
             d.style.opacity = '1'; 
             l.style.opacity = '1';
@@ -369,6 +399,20 @@
             l.onclick = () => switchModule('library');
             switchModule('slimness');
         }
+    }
+
+    function switchModule(mod) {
+        document.querySelectorAll('.nav-card').forEach(c => c.classList.remove('active'));
+        const activeNav = document.getElementById('nav-'+mod);
+        if(activeNav) activeNav.classList.add('active');
+        
+        document.querySelectorAll('.module-content').forEach(m => m.classList.remove('active'));
+        document.getElementById('module-'+mod).classList.add('active');
+        
+        if(mod === 'slimness') checkSlimnessGate();
+        if(mod === 'detox') renderDetoxProgram();
+        if(mod === 'recipes') renderRecipesLibrary();
+        if(mod === 'library') renderLibrary();
     }
 
     function checkSlimnessGate() {
@@ -382,72 +426,8 @@
         }
     }
 
-    function switchModule(mod) {
-        document.querySelectorAll('.nav-card').forEach(c => c.classList.remove('active'));
-        const activeNav = document.getElementById('nav-'+mod);
-        if(activeNav) activeNav.classList.add('active');
-        
-        document.querySelectorAll('.module-content').forEach(m => m.classList.remove('active'));
-        document.getElementById('module-'+mod).classList.add('active');
-        
-        if(mod === 'slimness') checkSlimnessGate();
-        if(mod === 'detox') renderDetoxLibrary();
-        if(mod === 'library') renderLibrary();
-    }
-
-    // --- МОДУЛЬ: БИБЛИОТЕКА ---
-    function renderLibrary() {
-        if(!DB.library) {
-            document.getElementById('module-library').innerHTML = "<div class='glass' style='padding:60px; text-align:center;'><h2 class='serif' style='color:var(--accent); font-size:32px;'>Библиотека</h2><p style='opacity:0.5;'>Ожидает загрузки видео-материалов...</p></div>";
-            return;
-        }
-        
-        let h = `<div class="glass" style="padding: 40px;"><h2 class="serif" style="font-size: 36px; color: var(--accent); margin-bottom: 30px; text-align:center;">Библиотека тренировок</h2>`;
-        h += `<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px;">`;
-        
-        DB.library.forEach(video => {
-            h += `
-            <div style="background: rgba(255,255,255,0.02); padding: 25px; border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; transition: 0.3s;">
-                <h4 class="serif" style="font-size: 22px; color: var(--accent); margin-bottom: 15px;">${video.title}</h4>
-                <video controls controlsList="nodownload" style="width: 100%; border-radius: 8px; margin-bottom: 15px; border: 1px solid rgba(197,160,89,0.2);">
-                    <source src="${video.url}" type="video/mp4">
-                </video>
-                <p style="font-size: 14px; opacity: 0.7;">${video.desc}</p>
-            </div>`;
-        });
-        
-        h += `</div></div>`;
-        document.getElementById('module-library').innerHTML = h;
-    }
-
-    // --- МОДУЛЬ: СТРОЙНОСТЬ (КУРС) ---
-    function renderWeeks(n) {
-        if(!DB.course_weeks) {
-            document.getElementById('slim-render').innerHTML = "<div class='glass' style='padding:40px; text-align:center;'><h3 class='serif' style='color:var(--accent); font-size:24px;'>Контент загружается...</h3></div>";
-            return;
-        }
-        document.getElementById('weeks-list').innerHTML = DB.course_weeks.map(w =>
-            `<div class="week-tab ${w.week_number === n ? 'active':''}" onclick="renderWeeks(${w.week_number})">Неделя ${w.week_number}</div>`
-        ).join('');
-
-        window.curWNum = n;
-        window.curW = DB.course_weeks.find(w => w.week_number === n);
-        if(!window.curW) return;
-
-        let d = `<div class="day-tab active" id="s-t-info" onclick="showS('info')">Инфо</div>`;
-        window.curW.days.forEach(day => {
-            d += `<div class="day-tab" id="s-t-${day.day}" onclick="showS('${day.day}')">День ${day.day}</div>`;
-        });
-        document.getElementById('days-list').innerHTML = d;
-        showS('info');
-    }
-
-    function showS(id) {
-        document.querySelectorAll('#days-list .day-tab').forEach(t => t.classList.remove('active'));
-        document.getElementById('s-t-'+id).classList.add('active');
-        const w = window.curW;
-        if(!w) return;
-
+    // --- ОТРИСОВКА ВНУТРЕННОСТЕЙ ДНЯ (Общая для стройности и детокса) ---
+    function renderDayContent(w, id, targetId) {
         let h = '';
         if(id === 'info') {
             h = `<h3 class="serif" style="color:var(--accent); font-size:28px; margin-bottom:20px;">${w.title}</h3>`;
@@ -464,7 +444,7 @@
             const day = w.days.find(d => String(d.day) === String(id));
             if(!day) return;
 
-            h = `<div class="affirmation-box">«${day.affirmation}»</div>`;
+            if(day.affirmation) h += `<div class="affirmation-box">«${day.affirmation}»</div>`;
 
             if(day.menu) {
                 h += `<div class="glass" style="padding:20px; margin-bottom:20px; font-size:14px; line-height:1.6;">`;
@@ -484,7 +464,10 @@
 
             if(day.workout) {
                 h += `<h4 class="serif" style="font-size:22px; margin-bottom:15px;">Активность и задания:</h4>`;
-                if(day.workout.videoUrl) h += `<video controls class="glass" style="margin-bottom:15px; width:100%;"><source src="${day.workout.videoUrl}"></video>`;
+                
+                if(day.workout.videoUrl) {
+                    h += getVideoHTML(day.workout.videoUrl);
+                }
 
                 if(day.workout.description) {
                     const taskList = day.workout.description.split(';').map(t => t.trim()).filter(t => t);
@@ -496,28 +479,71 @@
                 }
             }
         }
-        document.getElementById('slim-render').innerHTML = `<div class="day-content">${h}</div>`;
+        document.getElementById(targetId).innerHTML = `<div class="day-content">${h}</div>`;
     }
 
-    // --- МОДУЛЬ: БАЗА РЕЦЕПТОВ (ДЕТОКС) ---
-    function renderDetoxLibrary() {
-        if(!DB.recipes_library) {
-            document.getElementById('detox-render').innerHTML = "<div class='glass' style='padding:40px; text-align:center;'><h3 class='serif' style='color:var(--accent); font-size:24px;'>Загрузка базы...</h3></div>";
-            return;
-        }
+    // --- МОДУЛЬ: СТРОЙНОСТЬ (КУРС) ---
+    function renderWeeks(n) {
+        if(!DB.course_weeks) return;
+        document.getElementById('weeks-list').innerHTML = DB.course_weeks.map(w =>
+            `<div class="week-tab ${w.week_number === n ? 'active':''}" onclick="renderWeeks(${w.week_number})">Неделя ${w.week_number}</div>`
+        ).join('');
+
+        window.curWNum = n;
+        window.curW = DB.course_weeks.find(w => w.week_number === n);
+        if(!window.curW) return;
+
+        let d = `<div class="day-tab active" id="s-t-info" onclick="showS('info')">Инфо</div>`;
+        window.curW.days.forEach(day => {
+            d += `<div class="day-tab" id="s-t-${day.day}" onclick="showS('${day.day}')">День ${day.day}</div>`;
+        });
+        document.getElementById('slim-days-list').innerHTML = d;
+        showS('info');
+    }
+
+    function showS(id) {
+        document.querySelectorAll('#slim-days-list .day-tab').forEach(t => t.classList.remove('active'));
+        document.getElementById('s-t-'+id).classList.add('active');
+        renderDayContent(window.curW, id, 'slim-render');
+    }
+
+    // --- МОДУЛЬ: ДЕТОКС (Только 7 дней) ---
+    function renderDetoxProgram() {
+        if(!DB.course_weeks) return;
+        // Берем 1-ю неделю, так как это и есть Детокс
+        window.curDetoxW = DB.course_weeks.find(w => w.week_number === 1);
+        if(!window.curDetoxW) return;
+
+        let d = `<div class="day-tab active" id="d-t-info" onclick="showDetoxDay('info')">Инфо</div>`;
+        window.curDetoxW.days.forEach(day => {
+            d += `<div class="day-tab" id="d-t-${day.day}" onclick="showDetoxDay('${day.day}')">День ${day.day}</div>`;
+        });
+        document.getElementById('detox-days-list').innerHTML = d;
+        showDetoxDay('info');
+    }
+
+    function showDetoxDay(id) {
+        document.querySelectorAll('#detox-days-list .day-tab').forEach(t => t.classList.remove('active'));
+        document.getElementById('d-t-'+id).classList.add('active');
+        renderDayContent(window.curDetoxW, id, 'detox-render');
+    }
+
+    // --- МОДУЛЬ: БАЗА РЕЦЕПТОВ ---
+    function renderRecipesLibrary() {
+        if(!DB.recipes_library) return;
         
         const categories = { breakfasts:'Завтраки', smoothies:'Смузи', snacks:'Перекусы', soups:'Супы', cereals:'Крупы', desserts:'Десерты' };
-        let tabs = `<div class="day-tab active" id="d-t-info" onclick="showRecipeCat('info')">Памятка</div>`;
+        let tabs = `<div class="day-tab active" id="r-t-info" onclick="showRecipeCat('info')">Памятка</div>`;
         for(let key in categories) {
-            if(DB.recipes_library[key]) tabs += `<div class="day-tab" id="d-t-${key}" onclick="showRecipeCat('${key}')">${categories[key]}</div>`;
+            if(DB.recipes_library[key]) tabs += `<div class="day-tab" id="r-t-${key}" onclick="showRecipeCat('${key}')">${categories[key]}</div>`;
         }
-        document.getElementById('detox-days').innerHTML = tabs;
+        document.getElementById('recipes-tabs').innerHTML = tabs;
         showRecipeCat('info');
     }
 
     function showRecipeCat(cat) {
-        document.querySelectorAll('#detox-days .day-tab').forEach(t => t.classList.remove('active'));
-        document.getElementById('d-t-'+cat).classList.add('active');
+        document.querySelectorAll('#recipes-tabs .day-tab').forEach(t => t.classList.remove('active'));
+        document.getElementById('r-t-'+cat).classList.add('active');
 
         let h = '';
         if(cat === 'info') {
@@ -541,7 +567,51 @@
                 h += `</div>`;
             }
         }
-        document.getElementById('detox-render').innerHTML = `<div class="day-content">${h}</div>`;
+        document.getElementById('recipes-render').innerHTML = `<div class="day-content">${h}</div>`;
+    }
+
+    // --- МОДУЛЬ: БИБЛИОТЕКА ТРЕНИРОВОК ---
+    function renderLibrary() {
+        let videos = [];
+        
+        // Если библиотека не задана отдельно, автоматически собираем видео из курса!
+        if(DB.library) {
+            videos = DB.library;
+        } else if (DB.course_weeks) {
+            DB.course_weeks.forEach(w => {
+                if(w.days) {
+                    w.days.forEach(d => {
+                        if(d.workout && d.workout.videoUrl && d.workout.videoUrl !== "") {
+                            videos.push({
+                                title: `Неделя ${w.week_number}, День ${d.day}`,
+                                url: d.workout.videoUrl,
+                                desc: d.workout.description || 'Тренировка дня'
+                            });
+                        }
+                    });
+                }
+            });
+        }
+
+        if(videos.length === 0) {
+            document.getElementById('module-library').innerHTML = "<div class='glass' style='padding:60px; text-align:center;'><h2 class='serif' style='color:var(--accent); font-size:32px;'>Библиотека</h2><p style='opacity:0.5;'>Видео-материалы загружаются...</p></div>";
+            return;
+        }
+        
+        let h = `<div class="glass" style="padding: 40px;"><h2 class="serif" style="font-size: 36px; color: var(--accent); margin-bottom: 30px; text-align:center;">Библиотека тренировок</h2>`;
+        h += `<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px;">`;
+        
+        videos.forEach(v => {
+            h += `
+            <div style="background: rgba(255,255,255,0.02); padding: 25px; border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; transition: 0.3s;">
+                <h4 class="serif" style="font-size: 22px; color: var(--accent); margin-bottom: 15px;">${v.title}</h4>
+                ${getVideoHTML(v.url)}
+                <p style="font-size: 14px; opacity: 0.7;">${v.desc}</p>
+            </div>`;
+        });
+        
+        h += `</div></div>`;
+        document.getElementById('module-library').innerHTML = h;
     }
 
     // --- ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ---
