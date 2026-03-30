@@ -2,18 +2,57 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>РЕСУРС | ВЫБОР СОСТОЯНИЯ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>РЕСУРС | ВЫБОР ПУТИ</title>
+    <link rel="icon" type="image/png" href="logo_header_final.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Manrope:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --accent-gold: #C5A059;
+            --bg-deep: #080814; 
+            --accent-gold: #C5A059; 
+            --glass-bg: rgba(255, 255, 255, 0.02); 
+            --glass-border: 1px solid rgba(255, 255, 255, 0.08); 
             --font-main: 'Manrope', sans-serif;
-            --transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+            --font-serif: 'Cormorant Garamond', serif;
+            --transition: all 0.8s cubic-bezier(0.25, 1, 0.3, 1);
         }
 
-        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #000; font-family: sans-serif; }
+        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
+        html, body { height: 100%; width: 100%; overflow: hidden; background: var(--bg-deep); font-family: var(--font-main); position: relative;}
 
-        .split-container { display: flex; width: 100%; height: 100%; }
+        h1, h2, h3, .serif { font-family: var(--font-serif); font-weight: 300; margin: 0; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+
+        /* --- HEADER (ВОЗВРАЩАЕМ ТВОЙ СТИЛЬ С ГЛАВНОЙ) --- */
+        header {
+            position: fixed; top: 0; width: 100%; padding: 30px 5%;
+            display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+            z-index: 2000; background: transparent; transition: 0.4s;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+        
+        .brand-name { 
+            font-family: var(--font-serif); font-size: 20px; 
+            letter-spacing: 12px; text-transform: uppercase; color: #fff; 
+            text-align: center; margin-right: -12px;
+        }
+
+        .nav-trigger { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 4px; z-index: 1100; cursor: pointer;}
+        .nav-trigger span { height: 1px; background: #fff; transition: 0.3s; }
+        .nav-trigger:hover span { background: var(--accent-gold); }
+
+        /* --- SPLIT CONTAINER (ОСНОВНОЙ БЛОК НА ВЕСЬ ЭКРАН) --- */
+        .split-container { display: flex; width: 100%; height: 100dvh; position: relative; z-index: 100; }
+
+        /* ЛЕЧЕНИЕ ДЛЯ АЙФОНА: dvh (dynamic viewport height) */
+        @media (max-width: 768px) {
+            .split-container { flex-direction: column; height: 100dvh; }
+        }
 
         .side {
             position: relative;
@@ -24,6 +63,12 @@
             transition: var(--transition);
             cursor: pointer;
             overflow: hidden;
+            border-right: 1px solid rgba(255,255,255,0.03);
+        }
+        
+        /* Стилизация для мобильных (stacked) */
+        @media (max-width: 768px) {
+            .side { flex: none; height: 50dvh; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.03); }
         }
 
         /* Видео на фоне */
@@ -34,46 +79,83 @@
             width: auto; height: auto;
             transform: translate(-50%, -50%);
             object-fit: cover;
-            opacity: 0.3;
+            opacity: 0.25;
             transition: var(--transition);
+            filter: contrast(1.1);
         }
 
-        .side:hover { flex: 1.6; }
-        .side:hover video { opacity: 0.7; transform: translate(-50%, -50%) scale(1.05); }
-
-        .side-content { position: relative; z-index: 10; text-align: center; color: #fff; padding: 20px; }
+        /* Текст и контент */
+        .side-content {
+            position: relative;
+            z-index: 10;
+            text-align: left;
+            padding: 50px;
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            height: 100%;
+            width: 100%;
+            transition: 0.5s ease;
+        }
 
         .side-title {
-            font-size: clamp(24px, 5vw, 48px);
-            letter-spacing: 12px;
+            font-size: clamp(24px, 4vw, 36px);
+            color: var(--accent-gold);
+            margin-bottom: 15px;
+            letter-spacing: 1px;
             text-transform: uppercase;
-            margin-bottom: 20px;
-            display: block;
         }
 
+        .side-desc {
+            font-size: 15px;
+            opacity: 0.7;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        /* ЭФФЕКТ СТЕКЛА ДЛЯ КНОПОК */
         .side-btn {
-            padding: 16px 40px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 18px 45px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             color: #fff;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            font-size: 11px;
+            font-size: 10px;
+            letter-spacing: 4px;
+            border-radius: 4px;
             cursor: pointer;
-            transition: 0.3s;
+            transition: 0.4s;
+            width: fit-content;
         }
 
-        .light-side { border-right: 1px solid rgba(255,255,255,0.1); }
-        .light-side:hover .side-btn { background: #fff; color: #000; box-shadow: 0 0 30px #fff; }
-        
-        .dark-side:hover .side-btn { background: var(--accent-gold); color: #000; border-color: var(--accent-gold); box-shadow: 0 0 30px var(--accent-gold); }
+        /* --- ЭФФЕКТЫ ПРИ НАВЕДЕНИИ (ТОЛЬКО ДЕСТКОП) --- */
+        @media (min-width: 769px) {
+            .side:hover { flex: 1.5; }
+            .side:hover video { opacity: 0.6; transform: translate(-50%, -50%) scale(1.05); }
+            .side:hover .side-content { transform: translateY(-10px); }
+            .side:hover .side-btn { background: var(--accent-gold); color: #000; border-color: var(--accent-gold); box-shadow: 0 0 30px var(--accent-gold); }
+        }
 
+        /* Мобильные кнопки */
+        @media (max-width: 768px) {
+            .side-content { padding: 30px; justify-content: center; text-align: center; align-items: center;}
+            .side-title { font-size: 22px; margin-bottom: 10px; }
+            .side-desc { font-size: 13px; margin-bottom: 25px; max-width: 300px;}
+            .side-btn { width: 100%; max-width: 280px; padding: 15px 30px; background: rgba(197, 160, 89, 0.1); border-color: rgba(197, 160, 89, 0.3); color: var(--accent-gold);}
+            .light-side video { opacity: 0.3; }
+            .dark-side video { opacity: 0.3; }
+        }
+
+        /* --- ПОДПИСЬ В ЦЕНТРЕ (ГЛАВНЫЙ ВОПРОС) --- */
         .center-label {
             position: absolute;
             top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            z-index: 100;
+            z-index: 500;
             pointer-events: none;
             text-align: center;
             width: 100%;
@@ -82,49 +164,87 @@
         .center-text {
             color: var(--accent-gold);
             text-transform: uppercase;
-            letter-spacing: 5px;
-            font-size: 12px;
+            letter-spacing: 6px;
+            font-size: 11px;
             background: rgba(8, 8, 20, 0.8);
             padding: 12px 25px;
             border-radius: 50px;
             border: 1px solid rgba(197, 160, 89, 0.3);
+            backdrop-filter: blur(5px);
         }
-
+        
         @media (max-width: 768px) {
-            .split-container { flex-direction: column; }
-            .side:hover { flex: 1; }
-            .side-title { font-size: 30px; letter-spacing: 6px; }
             .center-label { top: 50%; }
         }
     </style>
 </head>
 <body>
 
+<header id="header">
+    <div class="nav-trigger" onclick="alert('Это тест выбора. Нажмите на половину экрана.')">
+        <span style="width: 22px; height: 1px; background: #fff;"></span>
+        <span style="width: 14px; height: 1px; background: #fff; align-self: flex-start; margin-left: 0px; margin-top: 4px;"></span>
+    </div>
+    <div class="brand-name">РЕСУРС</div>
+    <div style="display: flex; justify-content: flex-end;">
+        <img src="logo_header_final.png" style="height: 35px; width: 35px; border-radius: 6px; opacity: 0.8;">
+    </div>
+</header>
+
 <div class="center-label">
     <span class="center-text">В каком ты сегодня ресурсе?</span>
 </div>
 
 <div class="split-container">
-    <div class="side light-side" onclick="location.href='index.html?theme=light'">
-        <video autoplay muted loop playsinline>
+    <div class="side light-side" onclick="selectSide('light')">
+        <video autoplay muted loop playsinline preload="metadata">
             <source src="mfr-clip.mp4" type="video/mp4">
         </video>
         <div class="side-content">
-            <span class="side-title">СВЕТ</span>
-            <button class="side-btn">Хочу легкости</button>
+            <h2 class="side-title serif">СВЕТ</h2>
+            <p class="side-desc">Глубокое расслабление и восстановление. Снимите зажимы, избавьтесь от отеков и обретите легкость.</p>
+            <button class="side-btn">Выбрать спокойствие</button>
         </div>
     </div>
 
-    <div class="side dark-side" onclick="location.href='index.html?theme=dark'">
-        <video autoplay muted loop playsinline>
+    <div class="side dark-side" onclick="selectSide('dark')">
+        <video autoplay muted loop playsinline preload="metadata">
             <source src="Упражнение Майкл Джексон Ls.mp4" type="video/mp4">
         </video>
         <div class="side-content">
-            <span class="side-title">ТЬМА</span>
-            <button class="side-btn">Нужен драйв</button>
+            <h2 class="side-title serif">ТЬМА</h2>
+            <p class="side-desc">Мощный заряд энергии и драйва. Работа над рельефом, жиросжигание и проявление силы тела.</p>
+            <button class="side-btn">Выбрать драйв</button>
         </div>
     </div>
 </div>
+
+<script>
+    function selectSide(side) {
+        // Сохраняем выбор темы в память браузера
+        localStorage.setItem('resource_theme', side);
+        
+        // Плавный переход
+        document.body.style.opacity = '0';
+        document.body.style.transition = '1s ease';
+        
+        // Переход на главную страницу через секунду
+        setTimeout(() => {
+            window.location.href = 'index.html'; 
+        }, 1000);
+    }
+    
+    // При загрузке страницы проверяем, нет ли уже выбранной темы, чтобы не показывать портал снова
+    // (По желанию можно отключить эту проверку, если нужно всегда показывать портал)
+    /*
+    window.onload = function() {
+        const savedTheme = localStorage.getItem('resource_theme');
+        if (savedTheme) {
+            window.location.href = 'index.html';
+        }
+    }
+    */
+</script>
 
 </body>
 </html>
