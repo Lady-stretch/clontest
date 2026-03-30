@@ -14,60 +14,48 @@
         :root {
             --bg-deep: #080814; 
             --accent-gold: #C5A059; 
-            --glass-bg: rgba(255, 255, 255, 0.02); 
-            --glass-border: 1px solid rgba(255, 255, 255, 0.08); 
             --font-main: 'Manrope', sans-serif;
             --font-serif: 'Cormorant Garamond', serif;
             --transition: all 0.8s cubic-bezier(0.25, 1, 0.3, 1);
-            --text-dark: #1A1A1A; /* Текст для Светлой стороны */
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
         html, body { height: 100%; width: 100%; overflow: hidden; background: var(--bg-deep); font-family: var(--font-main); position: relative;}
 
-        h1, h2, h3, .serif { font-family: var(--font-serif); font-weight: 300; margin: 0; }
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        h2, .serif { font-family: var(--font-serif); font-weight: 300; margin: 0; }
 
         /* --- HEADER --- */
         header {
             position: fixed; top: 0; width: 100%; padding: 20px 5%;
             display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
-            z-index: 2000; background: transparent; transition: 0.4s;
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            z-index: 2000; background: transparent;
         }
         
-        @media (max-width: 768px) { header { padding: 15px 20px !important; } }
-
         .brand-name { 
             font-family: var(--font-serif); font-size: 18px; 
             letter-spacing: 12px; text-transform: uppercase; color: #fff; 
             text-align: center; margin-right: -12px;
         }
 
-        .nav-trigger { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 4px; z-index: 1100; cursor: pointer;}
-        .nav-trigger span { height: 1px; background: #fff; transition: 0.3s; }
+        .nav-trigger { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 4px; cursor: pointer;}
+        .nav-trigger span { height: 1px; background: #fff; width: 20px; }
 
         /* --- SPLIT CONTAINER --- */
-        .split-container { display: flex; width: 100%; height: 100dvh; position: relative; z-index: 100; }
-
+        .split-container { display: flex; width: 100%; height: 100dvh; position: relative; }
         @media (max-width: 768px) { .split-container { flex-direction: column; } }
 
         .side {
             position: relative;
             flex: 1;
             display: flex;
-            align-items: center;
+            align-items: flex-end; /* Текст прижимаем вниз */
             justify-content: center;
             transition: var(--transition);
             cursor: pointer;
             overflow: hidden;
-            border-right: 1px solid rgba(255,255,255,0.03);
         }
         
-        @media (max-width: 768px) {
-            .side { flex: none; height: 50dvh; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.03); }
-        }
+        @media (max-width: 768px) { .side { flex: none; height: 50dvh; } }
 
         /* Видео */
         .side video {
@@ -77,30 +65,45 @@
             width: auto; height: auto;
             transform: translate(-50%, -50%);
             object-fit: cover;
-            opacity: 0.25;
-            transition: var(--transition);
+            opacity: 0.4;
             filter: contrast(1.1);
         }
 
-        /* Контент */
+        /* ГРАДИЕНТНАЯ ВУАЛЬ ДЛЯ ЧИТАЕМОСТИ */
+        .side::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 5;
+            transition: 0.5s;
+        }
+        /* Вуаль для Света (белая снизу) */
+        .light-side::after {
+            background: linear-gradient(to top, rgba(244, 244, 249, 0.9) 0%, rgba(244, 244, 249, 0) 60%);
+        }
+        /* Вуаль для Тьмы (черная снизу) */
+        .dark-side::after {
+            background: linear-gradient(to top, rgba(8, 8, 20, 0.9) 0%, rgba(8, 8, 20, 0) 60%);
+        }
+
+        /* Контентный блок */
         .side-content {
             position: relative;
             z-index: 10;
-            padding: 50px;
-            max-width: 500px;
+            padding: 60px 40px;
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
-            height: 100%;
-            width: 100%;
-            transition: 0.5s ease;
+            align-items: center;
         }
 
         .side-title {
-            font-size: clamp(24px, 4vw, 36px);
+            font-size: clamp(26px, 4vw, 38px);
             color: var(--accent-gold);
             margin-bottom: 15px;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             text-transform: uppercase;
         }
 
@@ -108,73 +111,33 @@
             font-size: 15px;
             margin-bottom: 30px;
             line-height: 1.6;
+            font-weight: 400;
         }
 
-        /* --- КНОПКИ СТЕКЛА --- */
+        /* Настройки текста Света */
+        .light-side .side-desc { color: #000; font-weight: 500; }
+        /* Настройки текста Тьмы */
+        .dark-side .side-desc { color: #fff; }
+
+        /* КНОПКА */
         .side-btn {
-            display: inline-flex; align-items: center; justify-content: center;
             padding: 18px 45px;
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #fff;
+            background: rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 0, 0, 0.1);
             text-transform: uppercase;
             font-size: 10px;
             letter-spacing: 4px;
             border-radius: 4px;
             cursor: pointer;
             transition: 0.4s;
-            width: fit-content;
-        }
-
-        /* --- ЭФФЕКТЫ ДЕСТКОП --- */
-        @media (min-width: 769px) {
-            .side:hover { flex: 1.5; }
-            .side:hover video { opacity: 0.6; transform: translate(-50%, -50%) scale(1.05); }
-            .side:hover .side-content { transform: translateY(-10px); }
-            .light-side:hover .side-btn { background: var(--text-dark, #1A1A1A); color: #fff; box-shadow: 0 0 30px rgba(0,0,0,0.3); }
-            .dark-side:hover .side-btn { background: var(--accent-gold); color: #000; border-color: var(--accent-gold); box-shadow: 0 0 30px var(--accent-gold); }
-        }
-
-        /* --- МОБИЛЬНЫЕ НАСТРОЙКИ (КРИТИЧНО ДЛЯ КЛИЕНТОВ) --- */
-        @media (max-width: 768px) {
-            .side-content { padding: 30px; justify-content: center; text-align: center; align-items: center;}
-            .side-title { font-size: 22px; margin-bottom: 10px; }
-            .side-desc { font-size: 13px; margin-bottom: 25px; max-width: 300px;}
-            .side-btn { width: 100%; max-width: 280px; padding: 15px 30px;}
-        }
-
-        /* --- РАЗДЕЛЕНИЕ КОНТРАСТА СВЕТ / ТЬМА (ИСПРАВЛЕНО) --- */
-        .light-side .side-content {
-            color: var(--text-dark, #1A1A1A); /* Темный текст на светлом фоне */
         }
         
-        .dark-side .side-content {
-            color: #fff; /* БЕЛЫЙ текст на темном фоне • ТЕПЕРЬ ВИДНО ВЕЗДЕ */
-        }
-        
-        .dark-side .side-desc {
-            color: rgba(255,255,255,0.8); /* ЧУТЬ приглушаем описание для изящности */
-            text-shadow: 0 2px 10px rgba(0,0,0,0.8); /* ТЕНЬ ТЕКСТА • ГАРАНТИЯ ЧИТАЕМОСТИ НА ЛОСИНАХ */
-        }
+        .light-side .side-btn { background: #000; color: #fff; border: none; }
+        .dark-side .side-btn { background: var(--accent-gold); color: #000; border: none; }
 
-        /* Кнопка на мобильном • Световая */
-        @media (max-width: 768px) {
-            .light-side .side-btn {
-                background: var(--text-dark, #1A1A1A); 
-                color: #fff; 
-                border-color: var(--text-dark, #1A1A1A);
-            }
-            /* Кнопка на мобильном • Темная */
-            .dark-side .side-btn {
-                background: rgba(197, 160, 89, 0.1); 
-                border-color: rgba(197, 160, 89, 0.3); 
-                color: var(--accent-gold);
-            }
-        }
-
-        /* --- ПОДПИСЬ В ЦЕНТРЕ --- */
+        /* ЦЕНТРАЛЬНАЯ МЕТКА */
         .center-label {
             position: absolute;
             top: 50%; left: 50%;
@@ -182,33 +145,34 @@
             z-index: 500;
             pointer-events: none;
             text-align: center;
-            width: 100%;
         }
-
         .center-text {
             color: var(--accent-gold);
             text-transform: uppercase;
-            letter-spacing: 6px;
+            letter-spacing: 5px;
             font-size: 11px;
-            background: rgba(8, 8, 20, 0.8);
+            background: rgba(8, 8, 20, 0.9);
             padding: 12px 25px;
             border-radius: 50px;
-            border: 1px solid rgba(197, 160, 89, 0.3);
-            backdrop-filter: blur(5px);
+            border: 1px solid var(--accent-gold);
+            white-space: nowrap;
+        }
+
+        /* Адаптация под мобилки */
+        @media (max-width: 768px) {
+            .side-content { padding: 30px 20px; }
+            .side-desc { font-size: 14px; margin-bottom: 20px; }
+            .side-btn { width: 100%; max-width: 280px; }
+            .center-text { font-size: 9px; letter-spacing: 3px; }
         }
     </style>
 </head>
 <body>
 
-<header id="header">
-    <div class="nav-trigger" onclick="alert('Это тест портала. Выберите половину экрана.')">
-        <span style="width: 22px; height: 1px; background: #fff;"></span>
-        <span style="width: 14px; height: 1px; background: #fff; align-self: flex-start; margin-left: 0px; margin-top: 4px;"></span>
-    </div>
+<header>
+    <div class="nav-trigger"><span></span><span style="margin-top: 4px; width: 12px; align-self: flex-start;"></span></div>
     <div class="brand-name">РЕСУРС</div>
-    <div style="display: flex; justify-content: flex-end;">
-        <img src="logo_header_final.png" style="height: 35px; width: 35px; border-radius: 6px; opacity: 0.8;">
-    </div>
+    <div style="width: 35px; height: 35px; background: url('logo_header_final.png') center/cover; border-radius: 6px;"></div>
 </header>
 
 <div class="center-label">
@@ -243,10 +207,10 @@
     function selectSide(side) {
         localStorage.setItem('resource_theme', side);
         document.body.style.opacity = '0';
-        document.body.style.transition = '1s ease';
+        document.body.style.transition = '0.8s';
         setTimeout(() => {
             window.location.href = 'index.html'; 
-        }, 1000);
+        }, 800);
     }
 </script>
 
