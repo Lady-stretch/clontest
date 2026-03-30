@@ -70,8 +70,6 @@
 
         .btn-fill { background: var(--accent-gold); color: #fff; }
 
-        .locked-icon { font-size: 14px; color: rgba(255,255,255,0.4); margin-left: 8px; }
-
         /* Styles for Modal Inputs */
         .input-field-custom { 
             width: 100%; padding: 15px; 
@@ -101,75 +99,22 @@
             border-radius: 30px; font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent-gold); margin-bottom: 40px;
         }
 
-        /* --- FLAGS SECTION --- */
-        .club-grid { padding: 60px 5% 100px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; max-width: 1400px; margin: 0 auto; }
+        /* --- 3-BLOCK GRID --- */
+        .club-grid { padding: 60px 5% 100px; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; max-width: 1400px; margin: 0 auto; }
         
         .flag-card {
-            position: relative; height: 600px; display: flex; flex-direction: column; justify-content: flex-end; padding: 50px;
-            overflow: hidden; cursor: pointer; width: 100%;
+            position: relative; height: 500px; display: flex; flex-direction: column; justify-content: flex-end; padding: 40px;
+            overflow: hidden; cursor: pointer; width: 100%; text-align: left;
         }
-        .flag-card:hover { transform: translateY(-5px); border-color: rgba(197, 160, 89, 0.3); }
+        .flag-card:hover { transform: translateY(-5px); border-color: rgba(197, 160, 89, 0.3); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         
-        .flag-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: 1s ease; opacity: 0.6; z-index: 0; color: transparent;}
-        .flag-card:hover .flag-bg { transform: scale(1.05); opacity: 0.8; }
-        .flag-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(8,8,20,1), rgba(8,8,20,0)); z-index: 1; }
+        .flag-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: 1s ease; opacity: 0.5; z-index: 0; color: transparent;}
+        .flag-card:hover .flag-bg { transform: scale(1.05); opacity: 0.7; }
+        .flag-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(8,8,20,1) 10%, rgba(8,8,20,0) 80%); z-index: 1; }
 
-        .flag-content { position: relative; z-index: 2; }
-        .flag-title { font-size: clamp(28px, 4vw, 42px); color: #fff; margin-bottom: 15px; letter-spacing: 1px; }
-        .flag-desc { font-size: 16px; opacity: 0.7; max-width: 450px; margin-bottom: 40px; }
-
-        /* --- LIBRARY SECTION --- */
-        .library { padding: 40px 5% 80px; max-width: 1400px; margin: 0 auto; }
-        .lib-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        
-        .lib-item {
-            position: relative; overflow: hidden;
-            padding: 40px; display: flex; flex-direction: column;
-            min-height: 250px; text-align: left; width: 100%;
-        }
-        .lib-bg { 
-            position: absolute; inset: 0; width: 100%; height: 100%; 
-            object-fit: cover; opacity: 0.2; z-index: 0; transition: 0.6s;
-            color: transparent;
-        }
-        .lib-item:hover { transform: translateY(-3px); border-color: rgba(197, 160, 89, 0.2); background: rgba(255,255,255,0.04); }
-        .lib-item:hover .lib-bg { opacity: 0.4; transform: scale(1.1); }
-        
-        .lib-content { 
-            position: relative; z-index: 1; display: flex; flex-direction: column; height: 100%; flex-grow: 1;
-        }
-        .lib-text-wrap {
-            flex-grow: 1; 
-            margin-bottom: 25px;
-        }
-        
-        .lib-title { font-size: 20px; margin-bottom: 10px; line-height: 1.3;}
-        .lib-desc { font-size: 12px; opacity: 0.5; text-transform: uppercase; letter-spacing: 1.5px; }
-
-        /* --- ACTIVE TRAININGS --- */
-        .active-card {
-            margin-top: 40px; 
-            position: relative; 
-            min-height: 280px; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            align-items: center; 
-            text-align: center; 
-            padding: 50px 40px; 
-            overflow: hidden; 
-            cursor: pointer; 
-            border-radius: 20px;
-            width: 100%;
-        }
-        .active-card:hover { transform: translateY(-5px); border-color: rgba(197, 160, 89, 0.3); }
-        .active-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: 1s ease; opacity: 0.4; z-index: 0; color: transparent; }
-        .active-card:hover .active-bg { transform: scale(1.05); opacity: 0.7; }
-        .active-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(8,8,20,0.85), rgba(8,8,20,0.4)); z-index: 1; }
-        
-        .active-content { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; width: 100%; }
-        .active-title { font-size: clamp(26px, 4vw, 38px); color: #fff; margin-bottom: 15px; letter-spacing: 1px; text-align: center; }
-        .active-desc { font-size: 15px; opacity: 0.7; max-width: 600px; margin: 0 auto 30px; line-height: 1.6; text-align: center; }
+        .flag-content { position: relative; z-index: 2; display: flex; flex-direction: column; height: 100%; justify-content: flex-end; }
+        .flag-title { font-size: clamp(24px, 3vw, 32px); color: var(--accent-gold); margin-bottom: 15px; letter-spacing: 1px; line-height: 1.2; }
+        .flag-desc { font-size: 15px; opacity: 0.8; margin-bottom: 30px; line-height: 1.6; }
 
         /* --- AI CHAT WIDGET CSS --- */
         #ls-ai-button {
@@ -207,19 +152,15 @@
         /* --- RESPONSIVE --- */
         @media (max-width: 900px) {
             .club-grid { grid-template-columns: 1fr; gap: 30px; }
-            .flag-card { height: 500px; padding: 40px; }
+            .flag-card { height: 450px; padding: 30px; }
         }
         @media (max-width: 600px) {
             header { padding: 15px 20px !important; }
             .back-link span { display: none; }
-            .hero-club { padding: 130px 5% 50px; }
-            .flag-card { height: 420px; padding: 30px; }
-            .flag-desc { margin-bottom: 30px; }
-            .flag-content .btn, .active-content .btn { width: 100%; }
-            .lib-item { padding: 30px; min-height: 220px; }
-            .active-card { min-height: 220px; padding: 40px 20px; margin-top: 30px; }
-            .active-title { font-size: 22px; }
-            .active-desc { font-size: 13px; margin-bottom: 25px; }
+            .hero-club { padding: 130px 5% 40px; }
+            .flag-card { height: 400px; padding: 25px; }
+            .flag-desc { margin-bottom: 25px; font-size: 14px;}
+            .flag-content .btn { width: 100%; }
             .section-label { font-size: 11px; letter-spacing: 4px; }
             
             #ls-ai-chat { bottom: 0; right: 0; width: 100% !important; height: 100dvh !important; border-radius: 0; max-height: 100dvh;}
@@ -246,9 +187,9 @@
         Статус: [Гость]
     </div>
     
-    <h1 class="hero-title">Ваш персональный Ресурс. <br>В любой точке мира</h1>
-    <p style="opacity: 0.7; max-width: 600px; margin: 0 auto; font-size: 18px; line-height: 1.8;">
-        Закрытая экосистема практик: флагманские курсы, детокс-программы и библиотека тренировок для осознанной трансформации.
+    <h1 class="hero-title">Твоя личная трансформация <br>в любой точке мира</h1>
+    <p style="opacity: 0.7; max-width: 650px; margin: 0 auto; font-size: 18px; line-height: 1.8;">
+        Закрытая цифровая экосистема: пошаговые флагманские курсы, детокс-программы и огромная библиотека тренировок для красивого и здорового тела.
     </p>
 </section>
 
@@ -259,8 +200,8 @@
         <div class="flag-overlay"></div>
         <div class="flag-content">
             <h2 class="flag-title serif">Курс «СТРОЙНОСТЬ»</h2>
-            <p class="flag-desc">Комплексная 4-недельная программа трансформации: психология, питание и движение.</p>
-            <a href="javascript:void(0)" class="btn" onclick="openPayment('Стройность')">Получить доступ</a>
+            <p class="flag-desc">Пошаговая система трансформации тела и мышления. За 28 дней вы сбросите лишнее, подтянете фигуру и обретете здоровую самооценку без жестких диет и срывов.</p>
+            <a href="javascript:void(0)" class="btn" onclick="openPayment('Стройность')">Начать трансформацию</a>
         </div>
     </div>
 
@@ -269,76 +210,24 @@
         <div class="flag-overlay"></div>
         <div class="flag-content">
             <h2 class="flag-title serif">ДЕТОКС-ИНТЕНСИВ</h2>
-            <p class="flag-desc">7 дней перезагрузки: очищение организма, легкость и энергия.</p>
-            <a href="javascript:void(0)" class="btn" onclick="openPayment('Детокс')">Получить доступ</a>
+            <p class="flag-desc">Тотальная перезагрузка организма за неделю. Избавьтесь от отеков, верните легкость телу и здоровое сияние коже. Ваш быстрый старт к энергии и стройности.</p>
+            <a href="javascript:void(0)" class="btn" onclick="openPayment('Детокс')">Запустить очищение</a>
+        </div>
+    </div>
+
+    <div class="flag-card glass">
+        <img src="active-drive.png" class="flag-bg" alt="">
+        <div class="flag-overlay"></div>
+        <div class="flag-content">
+            <h2 class="flag-title serif">БИБЛИОТЕКА ТРЕНИРОВОК</h2>
+            <p class="flag-desc">Безлимитный доступ к коллекции практик. От утренних зарядок и здоровой спины до интенсивного жиросжигания. Занимайтесь где и когда удобно, подбирая тренировку под своё состояние.</p>
+            <a href="javascript:void(0)" class="btn" onclick="openPayment('Все включено')">Открыть все тренировки</a>
         </div>
     </div>
 
 </section>
-
-<section class="library" id="library">
-    <span class="section-label" style="margin-bottom: 50px;">БИБЛИОТЕКА ТРЕНИРОВОК</span>
     
-    <div class="lib-grid">
-        <div class="lib-item glass">
-            <img src="morning.png" class="lib-bg" alt="">
-            <div class="lib-content">
-                <div class="lib-text-wrap">
-                    <h3 class="lib-title serif">Бодрое утро (10-15 мин)</h3>
-                    <p class="lib-desc">Видео-зарядка</p>
-                </div>
-                <a href="javascript:void(0)" class="btn" onclick="checkAccess()" style="width: 100%; font-size: 9px; padding: 14px;">Смотреть Практики <span class="locked-icon">🔒</span></a>
-            </div>
-        </div>
-        
-        <div class="lib-item glass">
-            <img src="bedtime.png" class="lib-bg" alt="">
-            <div class="lib-content">
-                <div class="lib-text-wrap">
-                    <h3 class="lib-title serif">СКОРО Растяжка перед сном (15 мин)</h3>
-                    <p class="lib-desc">Библиотека релакса</p>
-                </div>
-                <a href="javascript:void(0)" class="btn" onclick="checkAccess()" style="width: 100%; font-size: 9px; padding: 14px;">Открыть Релакс <span class="locked-icon">🔒</span></a>
-            </div>
-        </div>
-        
-        <div class="lib-item glass">
-            <img src="back.png" class="lib-bg" alt="">
-            <div class="lib-content">
-                <div class="lib-text-wrap">
-                    <h3 class="lib-title serif">Здоровая спина/Пилатес</h3>
-                    <p class="lib-desc">Против зажимов</p>
-                </div>
-                <a href="javascript:void(0)" class="btn" onclick="checkAccess()" style="width: 100%; font-size: 9px; padding: 14px;">Открыть Доступ <span class="locked-icon">🔒</span></a>
-            </div>
-        </div>
-        
-        <div class="lib-item glass">
-            <img src="breath.png" class="lib-bg" alt="">
-            <div class="lib-content">
-                <div class="lib-text-wrap">
-                    <h3 class="lib-title serif">СКОРО - Дыхание и Медитация</h3>
-                    <p class="lib-desc">Работа с состоянием</p>
-                </div>
-                <a href="javascript:void(0)" class="btn" onclick="checkAccess()" style="width: 100%; font-size: 9px; padding: 14px;">Открыть Доступ <span class="locked-icon">🔒</span></a>
-            </div>
-        </div>
-    </div>
-
-    <div class="active-card glass" onclick="checkAccess()">
-        <img src="active-drive.png" class="active-bg" alt="">
-        <div class="active-overlay"></div>
-        <div class="active-content">
-            <h3 class="serif active-title">АКТИВНЫЕ ТРЕНИРОВКИ</h3>
-            <p class="active-desc">Ягодицы, пресс, табата и функциональный тренинг. Разгоняем пульс, повышаем выносливость и получаем мощный заряд энергии для всего тела.</p>
-            <a href="javascript:void(0)" class="btn" style="font-size: 10px; padding: 16px 35px;">
-                Открыть Интенсивы <span class="locked-icon">🔒</span>
-            </a>
-        </div>
-    </div>
-</section>
-    
-<section style="padding: 100px 5%; text-align: center; border-top: 1px solid rgba(255,255,255,0.03); margin-top: 40px;">
+<section style="padding: 60px 5% 100px; text-align: center; border-top: 1px solid rgba(255,255,255,0.03);">
     <div class="glass" style="padding: 60px; max-width: 800px; margin: 0 auto; border: 1px solid rgba(197, 160, 89, 0.15); display: flex; flex-direction: column; align-items: center; gap: 30px;">
         <span class="section-label" style="margin-bottom: 0;">Ваш проводник ✨</span>
         <h3 class="serif" style="font-size: 28px; letter-spacing: 1px;">Не знаете, с чего начать?</h3>
