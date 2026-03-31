@@ -247,6 +247,11 @@
         </div>
 
         <div class="input-group">
+            <label>Медицинские противопоказания</label>
+            <textarea id="contraindications" rows="2" placeholder="Травмы, ограничения, рекомендации врача (если нет, оставь пустым)"></textarea>
+        </div>
+
+        <div class="input-group">
             <label>Выбери пространство</label>
             <select id="studio">
                 <option value="Коммунистическая">Коммунистическая, 77/2</option>
@@ -372,6 +377,10 @@
             birth_date: document.getElementById('birth_date').value,
             studio: document.getElementById('studio').value,
             inn: document.getElementById('inn').value,
+            
+            // 🔥 ДОБАВЛЕНО: Сбор данных из поля противопоказаний
+            contraindications: document.getElementById('contraindications').value, 
+            
             booking: bookingData
         };
 
@@ -403,7 +412,6 @@
         btn.innerText = "СОХРАНЯЕМ...";
         btn.disabled = true;
 
-        // 🔥 ИЗМЕНИЛИ: Названия полей (rate_trainer, trainer_comment) теперь 1 в 1 как в Python
         const data = {
             action: 'anketa_part2',
             phone: userPhone,
