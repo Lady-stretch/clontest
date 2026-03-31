@@ -112,19 +112,25 @@
 
         /* --- INPUTS --- */
         .input-group { margin-bottom: 35px; position: relative; }
+        
+        /* 🔥 ИЗМЕНИЛИ: Сделали заголовки крупнее и ярче */
         label { 
-            display: block; font-size: 10px; text-transform: uppercase; 
-            letter-spacing: 3px; opacity: 0.6; margin-bottom: 12px; 
+            display: block; font-size: 12px; text-transform: uppercase; 
+            letter-spacing: 2px; opacity: 0.9; margin-bottom: 8px; 
             font-weight: 600; color: var(--accent-gold);
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5); /* Легкая тень для контраста */
         }
+        
         input, select, textarea {
             width: 100%; background: transparent; border: none;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
             padding: 12px 0; color: #fff; font-size: 18px;
             font-family: var(--font-serif); transition: 0.3s;
         }
         input:focus, select:focus, textarea:focus { border-color: var(--accent-gold); outline: none; }
-        ::placeholder { color: rgba(255,255,255,0.2); font-size: 16px; }
+        
+        /* 🔥 ИЗМЕНИЛИ: Подсказки в полях тоже сделали чуть ярче */
+        ::placeholder { color: rgba(255,255,255,0.4); font-size: 16px; }
         select { background: rgba(8, 8, 20, 0.9); }
 
         .inn-bonus {
@@ -397,11 +403,12 @@
         btn.innerText = "СОХРАНЯЕМ...";
         btn.disabled = true;
 
+        // 🔥 ИЗМЕНИЛИ: Названия полей (rate_trainer, trainer_comment) теперь 1 в 1 как в Python
         const data = {
             action: 'anketa_part2',
             phone: userPhone,
-            rate: document.getElementById('rate_trainer').value,
-            comment: document.getElementById('trainer_comment').value,
+            rate_trainer: document.getElementById('rate_trainer').value,
+            trainer_comment: document.getElementById('trainer_comment').value,
             ready: document.getElementById('ready').value
         };
 
