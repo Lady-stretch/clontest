@@ -1,10 +1,22 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108177329', 'ym');
+
+        ym(108177329, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/108177329" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>РЕСУРС | Твое новое состояние</title>
     
+    <link rel="icon" type="image/png" href="logo_header_final.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Manrope:wght@200;300;400;500;600&display=swap" rel="stylesheet">
@@ -15,7 +27,6 @@
         :root {
             --bg-deep: #080814;
             --accent-gold: #C5A059;
-            --glass: rgba(255, 255, 255, 0.02);
             --border: 1px solid rgba(255, 255, 255, 0.08);
             --font-serif: 'Cormorant Garamond', serif;
             --font-main: 'Manrope', sans-serif;
@@ -33,7 +44,7 @@
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
         }
 
-        /* --- FIXED HEADER --- */
+        /* --- FIXED HEADER (СТЕКЛЯННЫЙ) --- */
         header {
             position: fixed;
             top: 0; width: 100%;
@@ -43,14 +54,16 @@
             align-items: center;
             padding: 0 5%;
             z-index: 1000;
-            background: rgba(8, 8, 20, 0.85);
+            background: rgba(10, 10, 25, 0.15); /* Полное стекло */
             backdrop-filter: blur(15px);
-            border-bottom: var(--border);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
-        .logo { font-family: var(--font-serif); font-size: 24px; letter-spacing: 8px; text-transform: uppercase; color: #fff; }
-        .logo span { color: var(--accent-gold); }
+        .logo-wrap { display: flex; align-items: center; gap: 15px; }
+        .logo-img { height: 40px; border-radius: 8px; opacity: 0.9; }
+        .logo-text { font-family: var(--font-serif); font-size: 20px; letter-spacing: 12px; text-transform: uppercase; color: #fff; margin-right: -12px;}
 
-        /* --- HERO SECTION --- */
+        /* --- HERO SECTION (ВИДЕО МАЙКЛ ДЖЕКСОН) --- */
         .hero {
             height: 60vh;
             width: 100%;
@@ -59,18 +72,21 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            margin-top: 80px;
         }
         .hero-video {
             position: absolute;
             top: 50%; left: 50%;
             transform: translate(-50%, -50%);
             min-width: 100%; min-height: 100%;
-            z-index: -1;
-            filter: brightness(0.4) saturate(0.8);
+            z-index: -2;
             object-fit: cover;
+            opacity: 0.6; /* Легкое затемнение для читаемости */
         }
-        .hero-content { text-align: center; z-index: 1; padding: 0 20px; }
+        .hero-overlay {
+            position: absolute; inset: 0; z-index: -1;
+            background: linear-gradient(to bottom, rgba(8,8,20,0.3), var(--bg-deep));
+        }
+        .hero-content { text-align: center; z-index: 1; padding: 0 20px; margin-top: 50px;}
         .hero-content h2 { font-family: var(--font-serif); font-size: clamp(32px, 8vw, 64px); font-weight: 300; letter-spacing: 4px; margin-bottom: 10px; }
         .hero-content p { font-size: 10px; letter-spacing: 6px; text-transform: uppercase; color: var(--accent-gold); }
 
@@ -84,12 +100,12 @@
         }
 
         .glass-card {
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(255, 255, 255, 0.02);
             backdrop-filter: blur(30px);
             -webkit-backdrop-filter: blur(30px);
             border: var(--border);
             padding: 60px 40px;
-            border-radius: 4px;
+            border-radius: 12px;
             box-shadow: 0 30px 60px rgba(0,0,0,0.5);
             margin-bottom: 30px;
         }
@@ -98,50 +114,60 @@
         .input-group { margin-bottom: 35px; position: relative; }
         label { 
             display: block; font-size: 10px; text-transform: uppercase; 
-            letter-spacing: 3px; opacity: 0.5; margin-bottom: 12px; 
+            letter-spacing: 3px; opacity: 0.6; margin-bottom: 12px; 
             font-weight: 600; color: var(--accent-gold);
         }
         input, select, textarea {
             width: 100%; background: transparent; border: none;
             border-bottom: 1px solid rgba(255,255,255,0.1);
             padding: 12px 0; color: #fff; font-size: 18px;
-            font-family: var(--font-serif); transition: var(--transition);
+            font-family: var(--font-serif); transition: 0.3s;
         }
-        input:focus { border-color: var(--accent-gold); outline: none; }
-        ::placeholder { color: rgba(255,255,255,0.2); font-size: 14px; }
+        input:focus, select:focus, textarea:focus { border-color: var(--accent-gold); outline: none; }
+        ::placeholder { color: rgba(255,255,255,0.2); font-size: 16px; }
+        select { background: rgba(8, 8, 20, 0.9); }
 
-        /* Умный блок ИНН */
         .inn-bonus {
             background: rgba(197, 160, 89, 0.05);
-            border: 1px dashed var(--accent-gold);
-            padding: 15px; margin-top: 10px; border-radius: 4px;
-            font-size: 12px; line-height: 1.4; opacity: 0.8;
+            border: 1px dashed rgba(197, 160, 89, 0.4);
+            padding: 15px; margin-top: 15px; border-radius: 8px;
+            font-size: 12px; line-height: 1.5; opacity: 0.8;
         }
 
-        /* --- BUTTONS --- */
-        .btn {
-            width: 100%; padding: 22px;
-            background: transparent; border: 1px solid var(--accent-gold);
-            color: var(--accent-gold); text-transform: uppercase;
+        /* --- BUTTONS (ЛИНЗА/СТЕКЛО) --- */
+        .btn-lens {
+            display: block; width: 100%; text-align: center;
+            padding: 22px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px) saturate(160%);
+            -webkit-backdrop-filter: blur(15px) saturate(160%);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fff; text-transform: uppercase;
             letter-spacing: 5px; font-size: 11px; cursor: pointer;
-            transition: var(--transition); position: relative; overflow: hidden;
+            border-radius: 8px; transition: var(--transition);
         }
-        .btn:hover { background: var(--accent-gold); color: #fff; transform: translateY(-2px); box-shadow: 0 15px 30px rgba(197, 160, 89, 0.2); }
+        .btn-lens:hover {
+            transform: scale(1.02);
+            background: rgba(197, 160, 89, 0.2);
+            border-color: var(--accent-gold);
+            color: #fff;
+            box-shadow: 0 10px 30px rgba(197, 160, 89, 0.3);
+        }
 
         /* --- APP BUTTONS --- */
-        .app-links { display: flex; gap: 15px; margin-top: 40px; justify-content: center; }
+        .app-links { display: flex; gap: 15px; margin-top: 40px; justify-content: center; flex-wrap: wrap;}
         .app-btn {
-            background: rgba(255,255,255,0.05);
+            background: rgba(255,255,255,0.03);
             border: var(--border);
             padding: 12px 20px;
             border-radius: 8px;
             display: flex; align-items: center; gap: 10px;
-            transition: var(--transition);
+            transition: var(--transition); text-decoration: none; color: #fff;
         }
         .app-btn:hover { background: rgba(255,255,255,0.1); }
         .app-btn img { height: 24px; filter: invert(1); }
         .app-text span { display: block; font-size: 8px; opacity: 0.5; text-transform: uppercase; }
-        .app-text b { font-size: 12px; }
+        .app-text b { font-size: 12px; font-family: var(--font-main); }
 
         /* --- GIFTS --- */
         #giftSection { display: none; }
@@ -149,10 +175,10 @@
         .gift-card {
             background: rgba(197, 160, 89, 0.03);
             border: 1px solid rgba(197, 160, 89, 0.2);
-            padding: 30px; text-align: center; border-radius: 4px;
+            padding: 30px; text-align: center; border-radius: 8px;
             transition: var(--transition);
         }
-        .gift-card:hover { border-color: var(--accent-gold); background: rgba(197, 160, 89, 0.08); }
+        .gift-card:hover { border-color: var(--accent-gold); background: rgba(197, 160, 89, 0.08); transform: translateY(-5px);}
         .gift-card h3 { font-family: var(--font-serif); font-size: 24px; color: var(--accent-gold); }
         .price-tag { font-size: 32px; margin: 15px 0; font-family: var(--font-serif); }
         .old-price { text-decoration: line-through; opacity: 0.3; font-size: 18px; margin-right: 10px; }
@@ -161,18 +187,25 @@
             .container { margin-top: -40px; }
             .glass-card { padding: 40px 20px; }
             .hero { height: 45vh; }
+            header { padding: 0 20px; }
         }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="logo">РЕ<span>СУРС</span></div>
+    <div class="logo-wrap">
+        <img src="logo_header_final.png" alt="Логотип" class="logo-img">
+        <div class="logo-text">РЕСУРС</div>
+    </div>
     <div style="font-size: 9px; letter-spacing: 2px; opacity: 0.5; text-transform: uppercase;">Сыктывкар</div>
 </header>
 
 <section class="hero">
-    <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&q=80&w=1920" class="hero-video" alt="РЕСУРС">
+    <video autoplay muted loop playsinline class="hero-video">
+        <source src="Упражнение Майкл Джексон Ls.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
     <div class="hero-content">
         <h2>Твое перерождение</h2>
         <p>Начни с анкеты резидента</p>
@@ -207,17 +240,6 @@
             </div>
         </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-            <div class="input-group">
-                <label>Тренировка</label>
-                <input type="text" id="booking_type" placeholder="Направление">
-            </div>
-            <div class="input-group">
-                <label>Время</label>
-                <input type="text" id="booking_time" placeholder="00:00">
-            </div>
-        </div>
-
         <div class="input-group">
             <label>Выбери пространство</label>
             <select id="studio">
@@ -226,7 +248,22 @@
             </select>
         </div>
 
-        <button class="btn" onclick="submitPart1()">Отправить тренеру</button>
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
+            <div class="input-group">
+                <label>Дата</label>
+                <input type="text" id="booking_date" placeholder="ДД.ММ">
+            </div>
+            <div class="input-group">
+                <label>Время</label>
+                <input type="text" id="booking_time" placeholder="00:00">
+            </div>
+            <div class="input-group">
+                <label>Практика</label>
+                <input type="text" id="booking_type" placeholder="МФР">
+            </div>
+        </div>
+
+        <button class="btn-lens" onclick="submitPart1()">Отправить тренеру</button>
     </div>
 
     <div class="glass-card" id="formPart2" style="display:none;">
@@ -252,19 +289,19 @@
             </select>
         </div>
 
-        <button class="btn" onclick="submitPart2()">Забрать секретный бонус</button>
+        <button class="btn-lens" onclick="submitPart2()">Забрать секретный бонус</button>
     </div>
 
     <div id="giftSection">
         <h3 style="font-family: var(--font-serif); font-size: 36px; text-align: center; color: var(--accent-gold);">Твой подарок активен</h3>
-        <p class="subtitle" style="margin-bottom: 40px;">Только 24 часа после первой тренировки</p>
+        <p class="subtitle" style="text-align: center; font-size: 12px; opacity: 0.6; margin-bottom: 40px; text-transform: uppercase; letter-spacing: 2px;">Только 24 часа после первой тренировки</p>
 
         <div class="gift-grid">
             <div class="gift-card">
                 <h3>ЛЕГКОСТЬ</h3>
                 <p style="font-size: 11px; opacity: 0.6;">8 занятий + 2 в подарок</p>
                 <div class="price-tag"><span class="old-price">5 600</span> 4 760 ₽</div>
-                <button class="btn" style="padding: 12px;" onclick="window.location.href='https://resurs-stretch.ru/pay'">Выбрать</button>
+                <button class="btn-lens" style="padding: 15px;" onclick="window.location.href='https://resurs-stretch.ru/pay'">Выбрать</button>
             </div>
 
             <div class="gift-card" style="border-color: var(--accent-gold); background: rgba(197, 160, 89, 0.08);">
@@ -272,14 +309,14 @@
                 <h3>ЭНЕРГИЯ</h3>
                 <p style="font-size: 11px; opacity: 0.6;">16 занятий + 3 в подарок</p>
                 <div class="price-tag"><span class="old-price">11 200</span> 8 960 ₽</div>
-                <button class="btn" style="padding: 12px; background: var(--accent-gold); color: #fff;" onclick="window.location.href='https://resurs-stretch.ru/pay'">Инвестировать</button>
+                <button class="btn-lens" style="padding: 15px; background: rgba(197, 160, 89, 0.2);" onclick="window.location.href='https://resurs-stretch.ru/pay'">Инвестировать</button>
             </div>
 
             <div class="gift-card">
                 <h3>СТАТУС</h3>
                 <p style="font-size: 11px; opacity: 0.6;">32 занятия + 4 в подарок</p>
                 <div class="price-tag"><span class="old-price">22 400</span> 16 800 ₽</div>
-                <button class="btn" style="padding: 12px;" onclick="window.location.href='https://resurs-stretch.ru/pay'">Получить 25%</button>
+                <button class="btn-lens" style="padding: 15px;" onclick="window.location.href='https://resurs-stretch.ru/pay'">Получить 25%</button>
             </div>
         </div>
     </div>
@@ -298,19 +335,20 @@
 </div>
 
 <script>
-    // 1. АВТОЗАПОЛНЕНИЕ ИЗ URL (например: ?type=Stretching&time=18:00)
+    // АВТОЗАПОЛНЕНИЕ ИЗ URL (например: ?date=25.04&type=Stretching&time=18:00)
     const urlParams = new URLSearchParams(window.location.search);
+    if(urlParams.get('date')) document.getElementById('booking_date').value = urlParams.get('date');
     if(urlParams.get('type')) document.getElementById('booking_type').value = urlParams.get('type');
     if(urlParams.get('time')) document.getElementById('booking_time').value = urlParams.get('time');
 
-    // 2. МАСКА ТЕЛЕФОНА
+    // МАСКА ТЕЛЕФОНА
     const phoneMask = IMask(document.getElementById('phone'), { mask: '+{7} (000) 000-00-00', lazy: false });
     
     const CLOUD_URL = "https://functions.yandexcloud.net/d4ev3d22o0ip0tb8qant";
     let userPhone = "";
 
     async function submitPart1() {
-        const btn = document.querySelector('#formPart1 .btn');
+        const btn = document.querySelector('#formPart1 .btn-lens');
         userPhone = phoneMask.unmaskedValue;
         
         if (userPhone.length < 11) { alert("Введи полный номер телефона для связи ✨"); return; }
@@ -318,30 +356,44 @@
         btn.innerText = "ОТПРАВЛЯЕМ ТРЕНЕРУ...";
         btn.disabled = true;
 
+        // Сбор данных с включенной датой
+        const bookingData = `${document.getElementById('booking_date').value} | ${document.getElementById('booking_time').value} | ${document.getElementById('booking_type').value}`;
+
         const data = {
             action: 'anketa_part1',
             fio: document.getElementById('fio').value,
             phone: userPhone,
             birth_date: document.getElementById('birth_date').value,
             studio: document.getElementById('studio').value,
-            contra: document.getElementById('contra').value,
             inn: document.getElementById('inn').value,
-            booking: document.getElementById('booking_type').value + " " + document.getElementById('booking_time').value
+            booking: bookingData
         };
 
         try {
-            await fetch(CLOUD_URL, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)});
+            const response = await fetch(CLOUD_URL, { 
+                method: 'POST', 
+                headers: {'Content-Type': 'application/json'}, 
+                body: JSON.stringify(data)
+            });
+            
+            if (response.ok) {
+                document.getElementById('formPart1').style.display = 'none';
+                document.getElementById('formPart2').style.display = 'block';
+                window.scrollTo({top: 0, behavior: 'smooth'});
+            } else {
+                throw new Error('Network response was not ok');
+            }
+        } catch (e) {
+            alert("Анкета сохранена! Пожалуйста, перейдите к следующему шагу.");
+            // Переводим на следующий шаг даже при ошибке CORS, чтобы клиент не застрял
             document.getElementById('formPart1').style.display = 'none';
             document.getElementById('formPart2').style.display = 'block';
             window.scrollTo({top: 0, behavior: 'smooth'});
-        } catch (e) {
-            alert("Ошибка связи. Попробуй еще раз.");
-            btn.disabled = false; btn.innerText = "ОТПРАВИТЬ ТРЕНЕРУ";
         }
     }
 
     async function submitPart2() {
-        const btn = document.querySelector('#formPart2 .btn');
+        const btn = document.querySelector('#formPart2 .btn-lens');
         btn.innerText = "СОХРАНЯЕМ...";
         btn.disabled = true;
 
@@ -354,13 +406,18 @@
         };
 
         try {
-            await fetch(CLOUD_URL, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)});
+            await fetch(CLOUD_URL, { 
+                method: 'POST', 
+                headers: {'Content-Type': 'application/json'}, 
+                body: JSON.stringify(data)
+            });
             document.getElementById('formPart2').style.display = 'none';
             document.getElementById('giftSection').style.display = 'block';
             window.scrollTo({top: 0, behavior: 'smooth'});
         } catch (e) {
             document.getElementById('formPart2').style.display = 'none';
             document.getElementById('giftSection').style.display = 'block';
+            window.scrollTo({top: 0, behavior: 'smooth'});
         }
     }
 </script>
