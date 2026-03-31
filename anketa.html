@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>РЕСУРС | Анкета Резидента</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Manrope:wght@200;300;400&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/imask"></script>
+    <style>
+        :root {
+            --bg-deep: #080814;
+            --accent-gold: #C5A059;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        body {
+            background: var(--bg-deep);
+            color: #F4F4F9;
+            font-family: 'Manrope', sans-serif;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+        .container { max-width: 500px; margin: 0 auto; }
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: var(--border);
+            padding: 40px 30px;
+            border-radius: 2px;
+            margin-bottom: 20px;
+        }
+        h1 { font-family: 'Cormorant Garamond', serif; font-size: 32px; text-align: center; letter-spacing: 3px; color: var(--accent-gold); margin-bottom: 10px; }
+        .subtitle { text-align: center; font-size: 10px; letter-spacing: 5px; text-transform: uppercase; opacity: 0.5; margin-bottom: 40px; }
+        
+        .input-group { margin-bottom: 25px; }
+        label { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; opacity: 0.6; margin-bottom: 8px; }
+        input, select, textarea {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 12px 0;
+            color: #fff;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        input:focus { border-color: var(--accent-gold); outline: none; }
+        
+        .btn {
+            width: 100%;
+            padding: 20px;
+            background: transparent;
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: 0.4s;
+            margin-top: 20px;
+        }
+        .btn:hover { background: var(--accent-gold); color: #fff; }
+        
+        .gift-card { display: none; text-align: center; border: 1px solid var(--accent-gold); padding: 30px; background: rgba(197, 160, 89, 0.05); }
+        .price-box { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: var(--accent-gold); margin: 15px 0; }
+        .old-price { text-decoration: line-through; opacity: 0.3; font-size: 18px; margin-right: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="glass-card" id="formPart1">
+        <h1>РЕСУРС</h1>
+        <p class="subtitle">Анкета Резидента</p>
+        
+        <div class="input-group">
+            <label>Ваше имя</label>
+            <input type="text" id="fio" placeholder="Иванова Анна">
+        </div>
+
+        <div class="input-group">
+            <label>Телефон</label>
+            <input type="tel" id="phone">
+        </div>
+
+        <div class="input-group">
+            <label>Дата рождения</label>
+            <input type="date" id="birth_date">
+        </div>
+
+        <div class="input-group">
+            <label>Студия</label>
+            <select id="studio">
+                <option value="Коммунистическая">Коммунистическая, 77/2</option>
+                <option value="Советская">Советская, 3</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label>Противопоказания</label>
+            <input type="text" id="contra" placeholder="Нет (или укажите)">
+        </div>
+
+        <div class="input-group">
+            <label>Ваш ИНН (для вычета 13%)</label>
+            <input type="number" id="inn" placeholder="Необязательно">
+        </div>
+
+        <button class="btn" onclick="submitPart1()">Отправить тренеру</button>
+    </div>
+
+    <div class="glass-card" id="formPart2" style="display:none;">
+        <h1>Ваши впечатления</h1>
+        <p class="subtitle">После тренировки</p>
+        <div class="input-group">
+            <label>Профессионализм тренера (1-10)</label>
+            <input type="number" id="rate_trainer" min="1" max="10">
+        </div>
+        <div class="input-group">
+            <label>Готовы выделить 2-3 часа в неделю?</label>
+            <select id="ready">
+                <option value="Да">Да, готова</option>
+                <option value="Нет">Пока сложно сказать</option>
+            </select>
+        </div>
+        <button class="btn" onclick="submitPart2()">Получить подарок</button>
+    </div>
+
+    <div id="giftSection" style="display:none;">
+        <div class="glass-card gift-card">
+            <p class="subtitle">Ваш бонус активен 24ч</p>
+            <h3>ЭНЕРГИЯ (Хит)</h3>
+            <p>16 занятий + 3 в подарок</p>
+            <div class="price-box"><span class="old-price">11 200</span> 8 960 ₽</div>
+            <button class="btn" onclick="window.location.href='https://resurs-stretch.ru/pay'">Забрать</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Маска телефона
+    const phoneMask = IMask(document.getElementById('phone'), { mask: '+{7} (000) 000-00-00' });
+
+    async function submitPart1() {
+        const data = {
+            action: 'anketa_part1',
+            fio: document.getElementById('fio').value,
+            phone: phoneMask.unmaskedValue,
+            birth_date: document.getElementById('birth_date').value,
+            studio: document.getElementById('studio').value,
+            contra: document.getElementById('contra').value,
+            inn: document.getElementById('inn').value
+        };
+        
+        // Тут будет fetch к вашей функции Яндекса
+        console.log("Отправка в чат тренеров...", data);
+        alert("Данные переданы тренеру! Приятной тренировки ✨");
+        
+        document.getElementById('formPart1').style.display = 'none';
+        document.getElementById('formPart2').style.display = 'block';
+    }
+
+    function submitPart2() {
+        document.getElementById('formPart2').style.display = 'none';
+        document.getElementById('giftSection').style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
