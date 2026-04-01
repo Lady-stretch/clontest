@@ -12,6 +12,7 @@
         ym(108177329, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
     </script>
     <noscript><div><img src="https://mc.yandex.ru/watch/108177329" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>РЕСУРС | Твое новое состояние</title>
@@ -21,6 +22,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Manrope:wght@200;300;400;500;600&display=swap" rel="stylesheet">
     
+    <script src="https://yookassa.ru/checkout-widget/v1/checkout-widget.js"></script>
     <script src="https://unpkg.com/imask"></script>
 
     <style>
@@ -44,156 +46,87 @@
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
         }
 
-        /* --- FIXED HEADER (СТЕКЛЯННЫЙ) --- */
         header {
-            position: fixed;
-            top: 0; width: 100%;
-            height: 80px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 5%;
-            z-index: 1000;
-            background: rgba(10, 10, 25, 0.15); /* Полное стекло */
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
+            position: fixed; top: 0; width: 100%; height: 80px;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 5%; z-index: 1000;
+            background: rgba(10, 10, 25, 0.15); 
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
         .logo-wrap { display: flex; align-items: center; gap: 15px; }
         .logo-img { height: 40px; border-radius: 8px; opacity: 0.9; }
         .logo-text { font-family: var(--font-serif); font-size: 20px; letter-spacing: 12px; text-transform: uppercase; color: #fff; margin-right: -12px;}
 
-        /* --- HERO SECTION (ВИДЕО МАЙКЛ ДЖЕКСОН) --- */
         .hero {
-            height: 60vh;
-            width: 100%;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
+            height: 60vh; width: 100%; position: relative;
+            display: flex; align-items: center; justify-content: center; overflow: hidden;
         }
         .hero-video {
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            min-width: 100%; min-height: 100%;
-            z-index: -2;
-            object-fit: cover;
-            opacity: 0.6; /* Легкое затемнение для читаемости */
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            min-width: 100%; min-height: 100%; z-index: -2; object-fit: cover; opacity: 0.6;
         }
-        .hero-overlay {
-            position: absolute; inset: 0; z-index: -1;
-            background: linear-gradient(to bottom, rgba(8,8,20,0.3), var(--bg-deep));
-        }
+        .hero-overlay { position: absolute; inset: 0; z-index: -1; background: linear-gradient(to bottom, rgba(8,8,20,0.3), var(--bg-deep)); }
         .hero-content { text-align: center; z-index: 1; padding: 0 20px; margin-top: 50px;}
         .hero-content h2 { font-family: var(--font-serif); font-size: clamp(32px, 8vw, 64px); font-weight: 300; letter-spacing: 4px; margin-bottom: 10px; }
         .hero-content p { font-size: 10px; letter-spacing: 6px; text-transform: uppercase; color: var(--accent-gold); }
 
-        /* --- CONTAINER --- */
-        .container { 
-            max-width: 800px; 
-            margin: -60px auto 100px; 
-            position: relative;
-            z-index: 10;
-            padding: 0 20px;
-        }
+        .container { max-width: 800px; margin: -60px auto 100px; position: relative; z-index: 10; padding: 0 20px; }
 
         .glass-card {
             background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            border: var(--border);
-            padding: 60px 40px;
-            border-radius: 12px;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
-            margin-bottom: 30px;
+            backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
+            border: var(--border); padding: 60px 40px;
+            border-radius: 12px; box-shadow: 0 30px 60px rgba(0,0,0,0.5); margin-bottom: 30px;
         }
 
-        /* --- INPUTS --- */
         .input-group { margin-bottom: 35px; position: relative; }
-        
-        /* 🔥 ИЗМЕНИЛИ: Сделали заголовки крупнее и ярче */
-        label { 
-            display: block; font-size: 12px; text-transform: uppercase; 
-            letter-spacing: 2px; opacity: 0.9; margin-bottom: 8px; 
-            font-weight: 600; color: var(--accent-gold);
-            text-shadow: 0 1px 2px rgba(0,0,0,0.5); /* Легкая тень для контраста */
-        }
-        
+        label { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; opacity: 0.9; margin-bottom: 8px; font-weight: 600; color: var(--accent-gold); text-shadow: 0 1px 2px rgba(0,0,0,0.5); }
         input, select, textarea {
-            width: 100%; background: transparent; border: none;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
-            padding: 12px 0; color: #fff; font-size: 18px;
-            font-family: var(--font-serif); transition: 0.3s;
+            width: 100%; background: transparent; border: none; border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding: 12px 0; color: #fff; font-size: 18px; font-family: var(--font-serif); transition: 0.3s;
         }
         input:focus, select:focus, textarea:focus { border-color: var(--accent-gold); outline: none; }
-        
-        /* 🔥 ИЗМЕНИЛИ: Подсказки в полях тоже сделали чуть ярче */
         ::placeholder { color: rgba(255,255,255,0.4); font-size: 16px; }
         select { background: rgba(8, 8, 20, 0.9); }
 
-        .inn-bonus {
-            background: rgba(197, 160, 89, 0.05);
-            border: 1px dashed rgba(197, 160, 89, 0.4);
-            padding: 15px; margin-top: 15px; border-radius: 8px;
-            font-size: 12px; line-height: 1.5; opacity: 0.8;
-        }
+        .inn-bonus { background: rgba(197, 160, 89, 0.05); border: 1px dashed rgba(197, 160, 89, 0.4); padding: 15px; margin-top: 15px; border-radius: 8px; font-size: 12px; line-height: 1.5; opacity: 0.8; }
 
-        /* --- BUTTONS (ЛИНЗА/СТЕКЛО) --- */
         .btn-lens {
-            display: block; width: 100%; text-align: center;
-            padding: 22px;
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(15px) saturate(160%);
-            -webkit-backdrop-filter: blur(15px) saturate(160%);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: #fff; text-transform: uppercase;
-            letter-spacing: 5px; font-size: 11px; cursor: pointer;
+            display: block; width: 100%; text-align: center; padding: 22px;
+            background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px) saturate(160%);
+            -webkit-backdrop-filter: blur(15px) saturate(160%); border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fff; text-transform: uppercase; letter-spacing: 5px; font-size: 11px; cursor: pointer;
             border-radius: 8px; transition: var(--transition);
         }
-        .btn-lens:hover {
-            transform: scale(1.02);
-            background: rgba(197, 160, 89, 0.2);
-            border-color: var(--accent-gold);
-            color: #fff;
-            box-shadow: 0 10px 30px rgba(197, 160, 89, 0.3);
-        }
+        .btn-lens:hover:not(:disabled) { transform: scale(1.02); background: rgba(197, 160, 89, 0.2); border-color: var(--accent-gold); box-shadow: 0 10px 30px rgba(197, 160, 89, 0.3); }
+        .btn-lens:disabled { opacity: 0.5; cursor: not-allowed; }
+        
+        /* Кнопка без заливки для альтернативного варианта */
+        .btn-outline { background: transparent; border: 1px solid rgba(255, 255, 255, 0.1); font-size: 9px; opacity: 0.7; padding: 15px; }
+        .btn-outline:hover:not(:disabled) { opacity: 1; border-color: rgba(255, 255, 255, 0.3); }
 
-        /* --- APP BUTTONS --- */
-        .app-links { display: flex; gap: 15px; margin-top: 40px; justify-content: center; flex-wrap: wrap;}
-        .app-btn {
-            background: rgba(255,255,255,0.03);
-            border: var(--border);
-            padding: 12px 20px;
-            border-radius: 8px;
-            display: flex; align-items: center; gap: 10px;
-            transition: var(--transition); text-decoration: none; color: #fff;
+        /* 🔥 СТИЛИ ДЛЯ МОДАЛКИ ЮKASSA */
+        .modal {
+            display: none; position: fixed; inset: 0; z-index: 2000;
+            background: rgba(5, 5, 12, 0.98); align-items: flex-start; justify-content: center;
+            padding: 20px; overflow-y: auto; -webkit-overflow-scrolling: touch;
         }
-        .app-btn:hover { background: rgba(255,255,255,0.1); }
-        .app-btn img { height: 24px; filter: invert(1); }
-        .app-text span { display: block; font-size: 8px; opacity: 0.5; text-transform: uppercase; }
-        .app-text b { font-size: 12px; font-family: var(--font-main); }
-
-        /* --- GIFTS --- */
-        #giftSection { display: none; }
-        .gift-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 30px; }
-        .gift-card {
-            background: rgba(197, 160, 89, 0.03);
-            border: 1px solid rgba(197, 160, 89, 0.2);
-            padding: 30px; text-align: center; border-radius: 8px;
-            transition: var(--transition);
+        .modal-content {
+            width: 100%; max-width: 550px; padding: 60px 30px; position: relative;
+            text-align: center; margin: auto; border-radius: 12px; border: var(--border);
+            background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(30px);
         }
-        .gift-card:hover { border-color: var(--accent-gold); background: rgba(197, 160, 89, 0.08); transform: translateY(-5px);}
-        .gift-card h3 { font-family: var(--font-serif); font-size: 24px; color: var(--accent-gold); }
-        .price-tag { font-size: 32px; margin: 15px 0; font-family: var(--font-serif); }
-        .old-price { text-decoration: line-through; opacity: 0.3; font-size: 18px; margin-right: 10px; }
+        .modal-close {
+            position: absolute; top: 15px; right: 20px; font-size: 35px; cursor: pointer;
+            font-weight: 200; z-index: 2001; color: var(--accent-gold); line-height: 1;
+        }
+        #payment-form-container { width: 100%; min-height: 400px; margin-top: 20px; display: flex; justify-content: center; }
 
         @media (max-width: 600px) {
-            .container { margin-top: -40px; }
-            .glass-card { padding: 40px 20px; }
-            .hero { height: 45vh; }
-            header { padding: 0 20px; }
+            .container { margin-top: -40px; } .glass-card { padding: 40px 20px; }
+            .hero { height: 45vh; } header { padding: 0 20px; }
+            .modal-content { padding: 40px 15px; }
         }
     </style>
 </head>
@@ -252,6 +185,11 @@
         </div>
 
         <div class="input-group">
+            <label>Какую цель ставите на ближайшее время?</label>
+            <textarea id="user_goal" rows="2" placeholder="Например: сесть на шпагат, избавиться от боли в спине, похудеть..."></textarea>
+        </div>
+
+        <div class="input-group">
             <label>Выбери пространство</label>
             <select id="studio">
                 <option value="Коммунистическая">Коммунистическая, 77/2</option>
@@ -274,7 +212,10 @@
             </div>
         </div>
 
-        <button class="btn-lens" onclick="submitPart1()">Отправить тренеру</button>
+        <div style="display: flex; flex-direction: column; gap: 15px; margin-top: 10px;">
+            <button class="btn-lens" id="btnPay" style="background: rgba(197, 160, 89, 0.15); border-color: var(--accent-gold);" onclick="submitPart1(true)">Оплатить пробное (455 ₽)</button>
+            <button class="btn-lens btn-outline" id="btnFree" onclick="submitPart1(false)">Отправить анкету и оплатить в студии</button>
+        </div>
     </div>
 
     <div class="glass-card" id="formPart2" style="display:none;">
@@ -303,108 +244,123 @@
         <button class="btn-lens" onclick="submitPart2()">Забрать секретный бонус</button>
     </div>
 
-    <div id="giftSection">
+    <div id="giftSection" style="display: none;">
         <h3 style="font-family: var(--font-serif); font-size: 36px; text-align: center; color: var(--accent-gold);">Твой подарок активен</h3>
-        <p class="subtitle" style="text-align: center; font-size: 12px; opacity: 0.6; margin-bottom: 40px; text-transform: uppercase; letter-spacing: 2px;">Только 24 часа после первой тренировки</p>
-
-        <div class="gift-grid">
-            <div class="gift-card">
-                <h3>ЛЕГКОСТЬ</h3>
-                <p style="font-size: 11px; opacity: 0.6;">8 занятий + 2 в подарок</p>
-                <div class="price-tag"><span class="old-price">5 600</span> 4 760 ₽</div>
-                <button class="btn-lens" style="padding: 15px;" onclick="window.location.href='https://resurs-stretch.ru/pay'">Выбрать</button>
-            </div>
-
-            <div class="gift-card" style="border-color: var(--accent-gold); background: rgba(197, 160, 89, 0.08);">
-                <div style="font-size: 8px; color: var(--accent-gold); letter-spacing: 3px; font-weight: 700; margin-bottom: 10px;">ВЫБОР РЕЗИДЕНТОВ</div>
-                <h3>ЭНЕРГИЯ</h3>
-                <p style="font-size: 11px; opacity: 0.6;">16 занятий + 3 в подарок</p>
-                <div class="price-tag"><span class="old-price">11 200</span> 8 960 ₽</div>
-                <button class="btn-lens" style="padding: 15px; background: rgba(197, 160, 89, 0.2);" onclick="window.location.href='https://resurs-stretch.ru/pay'">Инвестировать</button>
-            </div>
-
-            <div class="gift-card">
-                <h3>СТАТУС</h3>
-                <p style="font-size: 11px; opacity: 0.6;">32 занятия + 4 в подарок</p>
-                <div class="price-tag"><span class="old-price">22 400</span> 16 800 ₽</div>
-                <button class="btn-lens" style="padding: 15px;" onclick="window.location.href='https://resurs-stretch.ru/pay'">Получить 25%</button>
-            </div>
+        <p style="text-align: center; font-size: 12px; opacity: 0.6; margin-bottom: 40px; text-transform: uppercase; letter-spacing: 2px;">Только 24 часа после первой тренировки</p>
         </div>
-    </div>
-
-    <div class="app-links">
-        <a href="https://apps.apple.com/ru/app/lady-stretch/id1482167879" class="app-btn">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="App Store">
-            <div class="app-text"><span>Download on the</span><b>App Store</b></div>
-        </a>
-        <a href="https://www.rustore.ru/catalog/app/com.itrack.ladystretch587164" class="app-btn">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Android_robot.svg" alt="RuStore">
-            <div class="app-text"><span>Available on</span><b>RuStore</b></div>
-        </a>
-    </div>
 
 </div>
 
+<div class="modal" id="orderModal">
+    <div class="modal-content">
+        <div class="modal-close" onclick="closeModal()">&times;</div>
+        <h2 style="font-family: var(--font-serif); font-size: 32px; color: var(--accent-gold);">Оплата пробного</h2>
+        <p style="font-size: 11px; opacity: 0.6; letter-spacing: 2px; text-transform: uppercase;">Безопасный платеж</p>
+        <div id="payment-form-container"></div>
+    </div>
+</div>
+
 <script>
-    // АВТОЗАПОЛНЕНИЕ ИЗ URL (например: ?date=25.04&type=Stretching&time=18:00)
     const urlParams = new URLSearchParams(window.location.search);
     if(urlParams.get('date')) document.getElementById('booking_date').value = urlParams.get('date');
     if(urlParams.get('type')) document.getElementById('booking_type').value = urlParams.get('type');
     if(urlParams.get('time')) document.getElementById('booking_time').value = urlParams.get('time');
 
-    // МАСКА ТЕЛЕФОНА
     const phoneMask = IMask(document.getElementById('phone'), { mask: '+{7} (000) 000-00-00', lazy: false });
     
-    const CLOUD_URL = "https://functions.yandexcloud.net/d4ev3d22o0ip0tb8qant";
+    // 🔥 ДВЕ ССЫЛКИ: Для анкеты и для оплаты
+    const CLOUD_URL_MAIN = "https://functions.yandexcloud.net/d4ev3d22o0ip0tb8qant"; // Python (Чат)
+    const CLOUD_URL_PAY = "https://functions.yandexcloud.net/d4el388cufj9g6egpam3"; // Node.js (ЮKassa)
+
     let userPhone = "";
 
-    async function submitPart1() {
-        const btn = document.querySelector('#formPart1 .btn-lens');
-        userPhone = phoneMask.unmaskedValue;
+    async function submitPart1(isPayment) {
+        const btnPay = document.getElementById('btnPay');
+        const btnFree = document.getElementById('btnFree');
         
+        userPhone = phoneMask.unmaskedValue;
         if (userPhone.length < 11) { alert("Введи полный номер телефона для связи ✨"); return; }
         
-        btn.innerText = "ОТПРАВЛЯЕМ ТРЕНЕРУ...";
-        btn.disabled = true;
+        // Блокируем кнопки
+        btnPay.disabled = true; btnFree.disabled = true;
+        if(isPayment) btnPay.innerText = "СОЕДИНЕНИЕ С БАНКОМ...";
+        else btnFree.innerText = "ОТПРАВЛЯЕМ...";
 
-        // Сбор данных с включенной датой
         const bookingData = `${document.getElementById('booking_date').value} | ${document.getElementById('booking_time').value} | ${document.getElementById('booking_type').value}`;
+        const userName = document.getElementById('fio').value || 'Не указано';
 
-        const data = {
+        // 1. Сбор данных для Python (Чат VK)
+        const mainData = {
             action: 'anketa_part1',
-            fio: document.getElementById('fio').value,
+            fio: userName,
             phone: userPhone,
             birth_date: document.getElementById('birth_date').value,
             studio: document.getElementById('studio').value,
             inn: document.getElementById('inn').value,
-            
-            // 🔥 ДОБАВЛЕНО: Сбор данных из поля противопоказаний
             contraindications: document.getElementById('contraindications').value, 
-            
+            goal: document.getElementById('user_goal').value, // 🔥 Передаем цель
             booking: bookingData
         };
 
-        try {
-            const response = await fetch(CLOUD_URL, { 
-                method: 'POST', 
-                headers: {'Content-Type': 'application/json'}, 
-                body: JSON.stringify(data)
-            });
-            
-            if (response.ok) {
-                document.getElementById('formPart1').style.display = 'none';
-                document.getElementById('formPart2').style.display = 'block';
-                window.scrollTo({top: 0, behavior: 'smooth'});
-            } else {
-                throw new Error('Network response was not ok');
+        // Незаметно отправляем анкету в облако Python (не ждем ответа через await, чтобы не тормозить пользователя)
+        fetch(CLOUD_URL_MAIN, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(mainData) }).catch(e=>console.log("YDB send error", e));
+
+        if (isPayment) {
+            // 2. Логика генерации платежа ЮKassa
+            try {
+                const payRes = await fetch(CLOUD_URL_PAY, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        amount: 455,
+                        name: userName,
+                        phone: userPhone,
+                        description: 'Пробное занятие РЕСУРС'
+                    })
+                });
+                
+                const payData = await payRes.json();
+                
+                if (payData.confirmation_token) {
+                    document.getElementById('orderModal').style.display = 'flex';
+                    document.body.style.overflow = 'hidden';
+                    
+                    const checkout = new window.YooMoneyCheckoutWidget({
+                        confirmation_token: payData.confirmation_token,
+                        return_url: window.location.href, // Куда вернуть после успешной оплаты
+                        customization: { modal: false, width: '100%' },
+                        error_callback: (error) => { alert('Ошибка виджета оплаты.'); console.error(error); }
+                    });
+                    checkout.render('payment-form-container');
+                } else {
+                    throw new Error('Токен не получен');
+                }
+            } catch (error) {
+                console.error(error);
+                alert('Произошла ошибка при создании платежа. Анкета отправлена тренеру, оплатить можно в студии.');
+                goToPart2();
             }
-        } catch (e) {
-            alert("Анкета сохранена! Пожалуйста, перейдите к следующему шагу.");
-            // Переводим на следующий шаг даже при ошибке CORS, чтобы клиент не застрял
-            document.getElementById('formPart1').style.display = 'none';
-            document.getElementById('formPart2').style.display = 'block';
-            window.scrollTo({top: 0, behavior: 'smooth'});
+        } else {
+            // Если просто "Отправить" - перекидываем на вторую часть
+            goToPart2();
         }
+
+        // Возвращаем кнопкам исходный вид (на случай закрытия модалки)
+        btnPay.innerText = "ОПЛАТИТЬ ПРОБНОЕ (455 ₽)";
+        btnFree.innerText = "Отправить анкету и оплатить в студии";
+        btnPay.disabled = false; btnFree.disabled = false;
+    }
+
+    function goToPart2() {
+        document.getElementById('formPart1').style.display = 'none';
+        document.getElementById('formPart2').style.display = 'block';
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+
+    function closeModal() {
+        document.getElementById('orderModal').style.display = 'none';
+        document.body.style.overflow = 'auto';
+        goToPart2(); // Логично перекинуть на 2 часть, если человек закрыл виджет оплаты
     }
 
     async function submitPart2() {
@@ -421,11 +377,7 @@
         };
 
         try {
-            await fetch(CLOUD_URL, { 
-                method: 'POST', 
-                headers: {'Content-Type': 'application/json'}, 
-                body: JSON.stringify(data)
-            });
+            await fetch(CLOUD_URL_MAIN, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data) });
             document.getElementById('formPart2').style.display = 'none';
             document.getElementById('giftSection').style.display = 'block';
             window.scrollTo({top: 0, behavior: 'smooth'});
