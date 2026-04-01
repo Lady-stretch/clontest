@@ -279,7 +279,7 @@
                 <h3>ЛЕГКОСТЬ</h3>
                 <p style="font-size: 11px; opacity: 0.6;">8 занятий + 2 в подарок</p>
                 <div class="price-tag"><span class="old-price">5 600</span> 4 760 ₽</div>
-                <button class="btn-lens" style="padding: 15px;" onclick="window.location.href='https://resurs-stretch.ru/pay'">Выбрать</button>
+                <button class="btn-lens" style="padding: 15px;" onclick="buySubscription(4760, 'ЛЕГКОСТЬ', this)">Выбрать</button>
             </div>
 
             <div class="gift-card" style="border-color: var(--accent-gold); background: rgba(197, 160, 89, 0.08);">
@@ -287,14 +287,14 @@
                 <h3>ЭНЕРГИЯ</h3>
                 <p style="font-size: 11px; opacity: 0.6;">16 занятий + 3 в подарок</p>
                 <div class="price-tag"><span class="old-price">11 200</span> 8 960 ₽</div>
-                <button class="btn-lens" style="padding: 15px; background: rgba(197, 160, 89, 0.2);" onclick="window.location.href='https://resurs-stretch.ru/pay'">Инвестировать</button>
+                <button class="btn-lens" style="padding: 15px; background: rgba(197, 160, 89, 0.2);" onclick="buySubscription(8960, 'ЭНЕРГИЯ', this)">Инвестировать</button>
             </div>
 
             <div class="gift-card">
                 <h3>СТАТУС</h3>
                 <p style="font-size: 11px; opacity: 0.6;">32 занятия + 4 в подарок</p>
                 <div class="price-tag"><span class="old-price">22 400</span> 16 800 ₽</div>
-                <button class="btn-lens" style="padding: 15px;" onclick="window.location.href='https://resurs-stretch.ru/pay'">Получить 25%</button>
+                <button class="btn-lens" style="padding: 15px;" onclick="buySubscription(16800, 'СТАТУС', this)">Получить 25%</button>
             </div>
         </div>
     </div>
@@ -320,15 +320,14 @@
 <div class="modal" id="orderModal">
     <div class="modal-content">
         <div class="modal-close" onclick="closeModal()">&times;</div>
-        <h2 style="font-family: var(--font-serif); font-size: 32px; color: var(--accent-gold);">Оплата пробного</h2>
-        <p style="font-size: 11px; opacity: 0.6; letter-spacing: 2px; text-transform: uppercase;">Безопасный платеж 455 ₽</p>
+        <h2 id="modalTitle" style="font-family: var(--font-serif); font-size: 32px; color: var(--accent-gold);">Оплата пробного</h2>
+        <p id="modalSubtitle" style="font-size: 11px; opacity: 0.6; letter-spacing: 2px; text-transform: uppercase;">Безопасный платеж 455 ₽</p>
         <div id="payment-form-container"></div>
     </div>
 </div>
 
 <script>
     // 🔥 УМНАЯ ПАМЯТЬ БРАУЗЕРА (localStorage)
-    // Проверяем, на каком шаге остановился клиент, когда он открывает страницу
     document.addEventListener("DOMContentLoaded", () => {
         const step = localStorage.getItem('anketa_step');
         if (step === 'part2') {
@@ -365,7 +364,10 @@
         const bookingData = `${document.getElementById('booking_date').value} | ${document.getElementById('booking_time').value} | ${document.getElementById('booking_type').value}`;
         const userName = document.getElementById('fio').value || 'Не указано';
 
-        // 1. Отправляем анкету тренеру (Python)
+        // 🔥 Запоминаем данные клиента, чтобы не спрашивать их на этапе абонементов
+        localStorage.setItem('userPhone', userPhone);
+        localStorage.setItem('userName', userName);
+
         const mainData = {
             action: 'anketa_part1',
             fio: userName,
@@ -378,10 +380,8 @@
             booking: bookingData
         };
 
-        // Не ждем ответа, отправляем в фоне
         fetch(CLOUD_URL_MAIN, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(mainData) }).catch(e=>console.log("Error", e));
 
-        // 2. Логика генерации платежа ЮKassa
         try {
             const payRes = await fetch(CLOUD_URL_PAY, {
                 method: 'POST',
@@ -397,15 +397,20 @@
             const payData = await payRes.json();
             
             if (payData.confirmation_token) {
-                // 🔥 ЗАПОМИНАЕМ, ЧТО ПЕРВАЯ ЧАСТЬ ЗАПОЛНЕНА
                 localStorage.setItem('anketa_step', 'part2');
+                
+                // Настраиваем тексты в модалке
+                document.getElementById('modalTitle').innerText = 'Оплата пробного';
+                document.getElementById('modalSubtitle').innerText = 'Безопасный платеж 455 ₽';
                 
                 document.getElementById('orderModal').style.display = 'flex';
                 document.body.style.overflow = 'hidden';
                 
+                // Очищаем контейнер перед рендером
+                document.getElementById('payment-form-container').innerHTML = '';
+                
                 const checkout = new window.YooMoneyCheckoutWidget({
                     confirmation_token: payData.confirmation_token,
-                    // Если банк перезагрузит страницу, она откроется уже на part2 (благодаря localStorage)
                     return_url: window.location.href, 
                     customization: { modal: false, width: '100%' },
                     error_callback: (error) => { alert('Ошибка виджета оплаты.'); console.error(error); }
@@ -434,7 +439,12 @@
     function closeModal() {
         document.getElementById('orderModal').style.display = 'none';
         document.body.style.overflow = 'auto';
-        goToPart2(); // Перекидываем на часть 2, даже если закрыл крестиком
+        
+        // Переходим ко второй части только если мы были на первой
+        const step = localStorage.getItem('anketa_step');
+        if (step !== 'done' && step !== 'part2') {
+            goToPart2();
+        }
     }
 
     async function submitPart2() {
@@ -444,7 +454,7 @@
 
         const data = {
             action: 'anketa_part2',
-            phone: userPhone || phoneMask.unmaskedValue, // Подстраховка, если телефон забылся после перезагрузки
+            phone: localStorage.getItem('userPhone') || phoneMask.unmaskedValue, 
             rate_trainer: document.getElementById('rate_trainer').value,
             trainer_comment: document.getElementById('trainer_comment').value,
             ready: document.getElementById('ready').value
@@ -452,7 +462,6 @@
 
         try {
             await fetch(CLOUD_URL_MAIN, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data) });
-            // 🔥 ЗАПОМИНАЕМ, ЧТО ВСЯ АНКЕТА ПРОЙДЕНА
             localStorage.setItem('anketa_step', 'done');
             
             document.getElementById('formPart2').style.display = 'none';
@@ -464,6 +473,60 @@
             document.getElementById('giftSection').style.display = 'block';
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
+    }
+
+    // 🔥 НОВАЯ ФУНКЦИЯ ДЛЯ ОПЛАТЫ АБОНЕМЕНТОВ
+    async function buySubscription(price, title, btnElement) {
+        const originalText = btnElement.innerText;
+        btnElement.innerText = "СВЯЗЬ С БАНКОМ...";
+        btnElement.disabled = true;
+
+        // Достаем телефон и имя из памяти телефона
+        const savedPhone = localStorage.getItem('userPhone') || '';
+        const savedName = localStorage.getItem('userName') || 'Резидент';
+
+        try {
+            const payRes = await fetch(CLOUD_URL_PAY, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    amount: price,
+                    name: savedName,
+                    phone: savedPhone,
+                    description: `Абонемент РЕСУРС: ${title}`
+                })
+            });
+            
+            const payData = await payRes.json();
+            
+            if (payData.confirmation_token) {
+                // Настраиваем тексты в модалке для абонементов
+                document.getElementById('modalTitle').innerText = title;
+                document.getElementById('modalSubtitle').innerText = `Безопасный платеж ${price} ₽`;
+                
+                document.getElementById('orderModal').style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+                
+                // Очищаем старый виджет, если он там был с первого шага
+                document.getElementById('payment-form-container').innerHTML = '';
+
+                const checkout = new window.YooMoneyCheckoutWidget({
+                    confirmation_token: payData.confirmation_token,
+                    return_url: window.location.href, 
+                    customization: { modal: false, width: '100%' },
+                    error_callback: (error) => { alert('Ошибка виджета оплаты.'); console.error(error); }
+                });
+                checkout.render('payment-form-container');
+            } else {
+                throw new Error('Токен не получен');
+            }
+        } catch (error) {
+            console.error(error);
+            alert('Произошла ошибка при создании платежа. Обратитесь к администратору студии.');
+        }
+
+        btnElement.innerText = originalText;
+        btnElement.disabled = false;
     }
 </script>
 
