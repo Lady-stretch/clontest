@@ -14,7 +14,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    <title>РЕСУРС | Body Intelligence System</title>
+    <title>РЕСУРС | Твоя эволюция тела</title>
     <link rel="icon" type="image/png" href="logo_header_final.png">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -51,8 +51,8 @@
 
         /* ВИДЕО ФОН ВСЕГО ПРИЛОЖЕНИЯ */
         .bg-video-wrapper { position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: -2; overflow: hidden; }
-        .bg-video { width: 100%; height: 100%; object-fit: cover; opacity: 0.25; filter: grayscale(50%) contrast(1.2); }
-        .bg-overlay { position: fixed; inset: 0; background: var(--bg-deep); opacity: 0.85; z-index: -1; }
+        .bg-video { width: 100%; height: 100%; object-fit: cover; opacity: 0.3; filter: grayscale(30%) contrast(1.1); }
+        .bg-overlay { position: fixed; inset: 0; background: var(--bg-deep); opacity: 0.92; z-index: -1; } /* Усилено затемнение */
         .bg-noise { position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E"); z-index: -1; pointer-events: none; }
 
         h1, h2, h3, .serif { font-family: var(--font-serif); font-weight: 300; }
@@ -70,12 +70,23 @@
 
         /* LAYOUT */
         .page-container { max-width: 1200px; margin: 100px auto 60px; padding: 0 5%; }
+        
+        .onboarding-block { text-align: center; margin-bottom: 30px; padding: 30px; border-left: 3px solid var(--accent-gold); border-right: 3px solid var(--accent-gold); }
+        .onboarding-block h2 { font-size: 28px; color: var(--accent-gold); margin-bottom: 15px; }
+        .onboarding-block p { font-size: 14px; opacity: 0.8; max-width: 800px; margin: 0 auto; line-height: 1.6; }
+        .step-num { color: var(--accent-gold); font-weight: 800; margin-right: 5px; }
+
         .app-wrapper { display: grid; gap: 30px; }
 
         /* ЭВОЛЮЦИЯ */
         .level-badge { width: 110px; height: 110px; margin: 0 auto 15px; background: radial-gradient(circle, rgba(197, 160, 89, 0.2) 0%, transparent 70%); display: flex; align-items: center; justify-content: center; font-size: 3.5rem; border-radius: 50%; position: relative; border: 1px solid rgba(197, 160, 89, 0.3); }
         .weekly-count { font-size: 11px; color: var(--accent-gold); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-top: 5px; display: inline-block; padding: 4px 12px; background: rgba(197,160,89,0.1); border-radius: 12px; }
         
+        /* МОТИВАЦИЯ (НОВОЕ) */
+        .motivation-box { background: rgba(197, 160, 89, 0.05); border-left: 3px solid var(--accent-gold); padding: 20px; border-radius: 0 16px 16px 0; margin-top: 25px; text-align: left; }
+        .motivation-box h4 { color: var(--accent-gold); font-size: 18px; margin-bottom: 8px; }
+        .motivation-box p { font-size: 13px; opacity: 0.85; line-height: 1.5; font-style: italic; }
+
         .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 25px; }
         .stat-item { background: rgba(0,0,0,0.4); padding: 18px 12px; border-radius: 16px; border: var(--glass-border); text-align: center; }
         .stat-item b { font-size: 1.4rem; display: block; color: #fff; margin-bottom: 4px; font-family: var(--font-serif); }
@@ -104,7 +115,7 @@
         .cycle-tab { flex: 1; min-width: 80px; padding: 12px 10px; border-radius: 10px; border: var(--glass-border); background: transparent; color: var(--text-dim); font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; text-align: center; transition: 0.3s; }
         .cycle-tab.active { background: var(--accent-gold); color: #000; border-color: var(--accent-gold); }
 
-        /* ОПИСАНИЕ СОСТОЯНИЯ (НОВОЕ) */
+        /* ОПИСАНИЕ СОСТОЯНИЯ */
         .state-desc-box { border-left: 3px solid var(--accent-gold); padding-left: 15px; margin-bottom: 25px; min-height: 40px; display: flex; align-items: center; }
         .state-desc-text { font-size: 12px; opacity: 0.8; font-style: italic; line-height: 1.5; transition: 0.3s; }
 
@@ -120,7 +131,7 @@
         .water-info { flex-grow: 1; }
         .water-btn { background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); color: var(--water); padding: 8px 15px; border-radius: 8px; font-size: 10px; text-transform: uppercase; cursor: pointer; transition: 0.3s; font-weight: 800; margin-top: 8px; letter-spacing: 1px; }
 
-        /* КАРТОЧКА ДРАЙВ */
+        /* КАРТОЧКА БИБЛИОТЕКА */
         .video-block { position: relative; border-radius: 16px; overflow: hidden; margin-top: 30px; border: var(--glass-border); aspect-ratio: 16/9; }
         .video-block img { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; transition: 0.5s; filter: grayscale(20%); }
         .video-block:hover img { opacity: 0.8; transform: scale(1.03); }
@@ -149,17 +160,17 @@
             .brand-name { font-size: 16px; letter-spacing: 6px; }
             header { padding: 15px !important; }
             
-            /* Сетка Инпутов (чтобы точно влезло) */
+            .onboarding-block h2 { font-size: 22px; }
+            .onboarding-block p { font-size: 12px; text-align: left; }
+
             .input-row { gap: 8px; }
             .num-input { padding: 12px 2px; font-size: 16px; border-radius: 8px; }
             .input-group label { font-size: 8px; letter-spacing: 1px; }
 
-            /* Сетка биометрии */
             .bio-stats { gap: 5px; }
             .bio-val { font-size: 20px; }
             .bio-label { font-size: 8px; letter-spacing: 1px; }
 
-            /* Левая панель метрик */
             .stats-grid { gap: 10px; }
             .stat-item { padding: 15px 10px; }
             .stat-item b { font-size: 1.2rem; }
@@ -174,8 +185,8 @@
 <body>
 
 <div class="bg-video-wrapper">
-    <video autoplay muted loop playsinline class="bg-video" poster="mfr.jpg">
-        <source src="mfr-clip.mp4" type="video/mp4">
+    <video autoplay muted loop playsinline class="bg-video" poster="hero.jpg">
+        <source src="hero.mp4" type="video/mp4">
     </video>
     <div class="bg-overlay"></div>
     <div class="bg-noise"></div>
@@ -190,6 +201,17 @@
 </header>
 
 <div class="page-container">
+    
+    <div class="glass onboarding-block">
+        <h2 class="serif">Система Body Intelligence</h2>
+        <p>
+            Добро пожаловать в ваш цифровой дневник состояния. <br>
+            <span class="step-num">1.</span> Укажите свои текущие параметры и фазу цикла, чтобы узнать ИМТ, норму калорий и воды на день.<br>
+            <span class="step-num">2.</span> Система проанализирует данные и подберет идеальную практику на сегодня.<br>
+            <span class="step-num">3.</span> Отмечайте каждую тренировку! Наблюдайте, как растет ваш статус, либидо и строится график вашей эволюции.
+        </p>
+    </div>
+
     <div class="app-wrapper">
         
         <div class="profile-panel">
@@ -200,6 +222,11 @@
                 
                 <p id="lvl-count" style="font-size: 11px; opacity: 0.6; text-transform: uppercase; letter-spacing: 2px;">Всего тренировок: 0</p>
                 <div class="weekly-count" id="weekly-count">На этой неделе: 0</div>
+
+                <div class="motivation-box">
+                    <h4 class="serif">Ценность твоих усилий</h4>
+                    <p id="motivation-text">Твой первый шаг — самый важный. Сегодня ты закладываешь фундамент новых нейронных связей и привычки заботиться о себе.</p>
+                </div>
 
                 <div class="stats-grid">
                     <div class="stat-item">
@@ -296,10 +323,10 @@
                 <div id="train-container"></div>
 
                 <div class="video-block">
-                    <img src="drive.jpg" alt="Drive">
+                    <img src="library.jpg" alt="Библиотека тренировок">
                     <div class="video-overlay">
-                        <h3 class="serif" style="font-size: 28px; color: #fff; margin-bottom: 5px;">Драйв и Энергия</h3>
-                        <p style="font-size: 11px; opacity: 0.8; letter-spacing: 1px; text-transform: uppercase;">Включайся в ритм студии</p>
+                        <h3 class="serif" style="font-size: 28px; color: #fff; margin-bottom: 5px;">Онлайн-Клуб</h3>
+                        <p style="font-size: 11px; opacity: 0.8; letter-spacing: 1px; text-transform: uppercase;">Доступ к библиотеке тренировок</p>
                     </div>
                 </div>
             </div>
@@ -349,7 +376,6 @@
         peak: "Интенсивные и силовые нагрузки для жиросжигания, развития выносливости и формирования красивого мышечного рельефа."
     };
 
-    // Обновленные достижения до 1000 занятий
     const levels = [
         { n: 0, name: "Новичок", icon: "🌱" }, 
         { n: 10, name: "Адепт", icon: "🌸" },
@@ -428,6 +454,16 @@
         }
     }
 
+    // --- МОТИВАЦИОННЫЙ ТЕКСТ ---
+    function getMotivationalText(sessions) {
+        if (sessions === 0) return "Твой первый шаг — самый важный. Сегодня ты закладываешь фундамент новых нейронных связей и привычки заботиться о себе.";
+        if (sessions < 4) return "Запускается нейропластичность. Улучшается микроциркуляция крови и ток лимфы. Тело начинает вспоминать, что движение — это жизнь.";
+        if (sessions < 9) return "Ценность этих тренировок колоссальна: снизился базовый уровень кортизола, укрепляется мышечный корсет. Ты уже меняешь архитектуру тела, даже если зеркало пока молчит. Не обесценивай этот этап!";
+        if (sessions < 15) return "Формируется устойчивый мышечный тонус. Метаболизм работает на новых, более высоких оборотах. Твой ресурсный объем заметно вырос.";
+        if (sessions < 30) return "Тело адаптировалось. Теперь каждое движение приносит дофамин. Ты инвестировала в свое здоровье десятки часов, и это твой самый надежный актив.";
+        return "Дисциплина стала твоей суперсилой. Твое тело — это отлаженный механизм, полный энергии и ресурса. Продолжай вдохновлять!";
+    }
+
     // --- ЭВОЛЮЦИЯ И ТРЕНИРОВКИ ---
     function updateEvolution() {
         const totalSessions = state.workouts.length;
@@ -438,6 +474,9 @@
 
         document.getElementById('lvl-count').innerText = `Всего тренировок: ${totalSessions}`;
         document.getElementById('weekly-count').innerText = `На этой неделе: ${weeklyCount}`;
+        
+        // Обновляем мотивацию
+        document.getElementById('motivation-text').innerText = getMotivationalText(totalSessions);
         
         document.getElementById('doc-save').innerText = Math.round(totalSessions * 3.5) + ' часов';
         document.getElementById('stress-save').innerText = Math.min(totalSessions * 5, 95) + '%';
@@ -553,18 +592,18 @@
         updateEvolution(); 
         updateChart();
         save();
-        alert("Практика засчитана! Ваш ресурсный уровень вырос.");
+        alert("Практика засчитана! Внутри твоего тела только что произошли потрясающие изменения.");
     }
 
     function closeModal() { document.querySelectorAll('.modal').forEach(m => m.style.display = 'none'); }
     
-    function save() { localStorage.setItem('resurs_body_intelligence_pro', JSON.stringify(state)); }
+    function save() { localStorage.setItem('resurs_body_intelligence_final_v2', JSON.stringify(state)); }
     function load() {
-        const saved = localStorage.getItem('resurs_body_intelligence_pro');
+        const saved = localStorage.getItem('resurs_body_intelligence_final_v2');
         if(saved) {
             const parsed = JSON.parse(saved);
             state = Object.assign(state, parsed);
-            // Миграция старых данных (если раньше sessions было числом, переводим в массив)
+            
             if(!state.workouts && state.sessions > 0) {
                 state.workouts = Array(state.sessions).fill(Date.now());
             }
@@ -583,7 +622,7 @@
 
     function resetData() {
         if(confirm("Полностью обнулить эволюцию, воду и график?")) { 
-            localStorage.removeItem('resurs_body_intelligence_pro'); 
+            localStorage.removeItem('resurs_body_intelligence_final_v2'); 
             location.reload(); 
         }
     }
