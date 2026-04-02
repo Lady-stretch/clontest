@@ -11,7 +11,6 @@
         ym(108177329, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
     </script>
     <noscript><div><img src="https://mc.yandex.ru/watch/108177329" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>РЕСУРС ТВОЕГО ТЕЛА | Тест на биологический возраст</title>
@@ -33,7 +32,7 @@
             --transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
         
         body {
             background: var(--bg-deep);
@@ -45,16 +44,20 @@
 
         .serif { font-family: var(--font-serif); font-weight: 300; }
 
-        /* --- HEADER (Единый стиль) --- */
+        /* --- HEADER (Стеклянный эффект) --- */
         header { 
             position: fixed; top: 0; width: 100%; padding: 20px 5%; 
             display: grid; grid-template-columns: 1fr auto 1fr; 
             align-items: center; z-index: 2000; 
-            background: rgba(8, 8, 20, 0.2); backdrop-filter: blur(15px);
+            background: rgba(8, 8, 20, 0.2); 
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: var(--transition);
         }
         .brand-name { font-family: var(--font-serif); font-size: 20px; letter-spacing: 12px; text-transform: uppercase; color: #fff; text-align: center; margin-right: -12px;}
-        .back-link { font-size: 10px; text-transform: uppercase; letter-spacing: 3px; color: rgba(255,255,255,0.5); display: flex; align-items: center; gap: 8px; }
+        .back-link { font-size: 10px; text-transform: uppercase; letter-spacing: 3px; color: rgba(255,255,255,0.5); display: flex; align-items: center; gap: 8px; text-decoration: none; transition: 0.3s;}
+        .back-link:hover { color: #fff; }
 
         /* --- QUIZ CONTAINER --- */
         .quiz-wrapper {
@@ -93,14 +96,15 @@
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .quiz-image {
-            width: 120px; height: 120px;
-            margin: 0 auto 30px;
-            border-radius: 50%;
-            border: 1px solid var(--accent-gold);
-            padding: 5px;
+        /* Элегантные стили для новых фото квиза */
+        .quiz-step-image {
+            width: 100%;
+            height: 250px;
             object-fit: cover;
-            opacity: 0.8;
+            border-radius: 20px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         .question-title { font-size: 28px; margin-bottom: 15px; color: var(--accent-gold); }
@@ -119,6 +123,7 @@
             font-size: 14px;
             text-align: left;
             line-height: 1.4;
+            font-family: inherit;
         }
         .option-btn:hover {
             border-color: var(--accent-gold);
@@ -138,13 +143,17 @@
             font-size: 12px;
             margin-top: 30px;
             transition: var(--transition);
+            cursor: pointer;
+            border: none;
         }
         .btn-gold:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(197, 160, 89, 0.3); }
 
         @media (max-width: 600px) {
+            header { padding: 15px 20px; }
             .quiz-card { padding: 40px 25px; }
             .question-title { font-size: 24px; }
             .brand-name { font-size: 14px; letter-spacing: 6px; }
+            .quiz-step-image { height: 200px; }
         }
     </style>
 </head>
@@ -156,7 +165,7 @@
     </a>
     <div class="brand-name">РЕСУРС</div>
     <div style="display: flex; justify-content: flex-end;">
-        <img src="logo_header_final.png" style="height: 30px; opacity: 0.8;">
+        <img src="logo_header_final.png" style="height: 30px; border-radius: 6px; opacity: 0.8;" alt="Логотип">
     </div>
 </header>
 
@@ -165,13 +174,14 @@
         <div class="progress-bar" id="progress"></div>
 
         <div class="step active" id="step-start">
-            <img src="logo_header_final.png" class="quiz-image" style="border:none; opacity: 1;">
+            <img src="quiz-cover.jpg" class="quiz-step-image" alt="Ресурс твоего тела">
             <h1 class="serif question-title">Ресурс твоего тела</h1>
             <p class="question-desc">Пройдите 50-секундный аудит и узнайте биологический возраст вашего позвоночника.</p>
             <button class="btn-gold" onclick="nextStep(1)">Начать аудит</button>
         </div>
 
         <div class="step" id="step-1">
+            <img src="quiz-q1.jpg" class="quiz-step-image" alt="Позвоночник">
             <h2 class="serif question-title">01. Позвоночник</h2>
             <p class="question-desc">Встаньте прямо и наклонитесь вперед. Как глубоко вы входите в это состояние?</p>
             <div class="options-list">
@@ -182,6 +192,7 @@
         </div>
 
         <div class="step" id="step-2">
+            <img src="quiz-q2.jpg" class="quiz-step-image" alt="Плечевой пояс">
             <h2 class="serif question-title">02. Плечевой пояс</h2>
             <p class="question-desc">Сцепите руки в замок за спиной (одна сверху, другая снизу). Ваш результат?</p>
             <div class="options-list">
@@ -192,6 +203,7 @@
         </div>
 
         <div class="step" id="step-3">
+            <img src="quiz-q3.jpg" class="quiz-step-image" alt="Баланс">
             <h2 class="serif question-title">03. Баланс</h2>
             <p class="question-desc">Встаньте на одну ногу и закройте глаза. Сколько секунд вы удерживаете центр?</p>
             <div class="options-list">
@@ -202,6 +214,7 @@
         </div>
 
         <div class="step" id="step-4">
+            <img src="quiz-q4.jpg" class="quiz-step-image" alt="Энергия">
             <h2 class="serif question-title">04. Энергия</h2>
             <p class="question-desc">Ваше состояние в первые 15 минут после пробуждения?</p>
             <div class="options-list">
@@ -212,10 +225,18 @@
         </div>
 
         <div class="step" id="step-final">
+            <img src="quiz-cover.jpg" class="quiz-step-image" style="height: 150px;" alt="Анализ завершен">
             <h2 class="serif question-title">Анализ завершен</h2>
-            <p class="question-desc">Ваш персональный отчет и рекомендации по восстановлению ресурса готовы.</p>
-            <div id="result-text" style="margin-bottom: 20px; font-style: italic; opacity: 0.9;"></div>
-            <button class="btn-gold" id="vk-link">Получить разбор в ВК ✨</button>
+            <p class="question-desc" style="margin-bottom: 20px;">Ваш персональный отчет и рекомендации по восстановлению ресурса готовы.</p>
+            
+            <div id="result-text" style="margin-bottom: 25px; font-weight: 600; font-size: 16px; color: var(--accent-gold); letter-spacing: 1px;"></div>
+            
+            <button class="btn-gold" id="vk-link" style="width: 100%; margin-top: 10px;">Получить разбор в ВК ✨</button>
+            
+            <div style="margin-top: 25px; padding: 15px; background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);">
+                <p style="font-size: 10px; color: var(--accent-gold); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px;">💡 Важный шаг:</p>
+                <p style="font-size: 13px; opacity: 0.7; line-height: 1.5; margin: 0;">После перехода в диалог нажмите кнопку <b>«Начать»</b> (или отправьте любое сообщение), чтобы куратор увидел ваши результаты.</p>
+            </div>
         </div>
     </div>
 </div>
