@@ -2,687 +2,458 @@
 <html lang="ru">
 <head>
     <script type="text/javascript">
-        (function(m,e,t,r,i,k,a){
-            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();
-            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108177329', 'ym');
-        ym(108177329, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
-    </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/108177329" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-    <meta charset="UTF-8">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108177329', 'ym');
+
+    ym(108177329, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/108177329" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    <title>РЕСУРС | Твоя эволюция тела</title>
+    <title>РЕСУРС | ОНЛАЙН-КЛУБ | Цифровое пространство практик</title>
     <link rel="icon" type="image/png" href="logo_header_final.png">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Manrope:wght@200;300;400;500;600;800&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Manrope:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --bg-deep: #080814; 
-            --glass-bg: rgba(255, 255, 255, 0.03); 
-            --glass-border: 1px solid rgba(255, 255, 255, 0.1); 
+            --glass-bg: rgba(255, 255, 255, 0.02); 
+            --glass-border: 1px solid rgba(255, 255, 255, 0.08); 
             --accent-gold: #C5A059; 
             --text-main: #F4F4F9;
-            --text-dim: rgba(244, 244, 249, 0.6);
             --font-main: 'Manrope', sans-serif;
             --font-serif: 'Cormorant Garamond', serif;
-            --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            --fire: #ff4500;
-            --safe: #4ade80;
-            --warning: #fbbf24;
-            --danger: #f87171;
-            --water: #3b82f6;
-            --water-glow: rgba(59, 130, 246, 0.4);
+            --transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
-        /* --- GLOBAL RESET & STRICT MOBILE FIX --- */
+        /* --- GLOBAL RESET & ANDROID FIX --- */
         * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
-        
-        html, body { 
-            width: 100%; 
-            max-width: 100vw;
-            overflow-x: hidden; /* Жестко убиваем любой горизонтальный скролл */
-            scroll-behavior: smooth; 
-            min-height: 100vh; 
-        }
-
-        body { 
+        html { scroll-behavior: smooth; }
+        html, body {
+            overflow-x: hidden !important;
+            width: 100%;
+            position: relative;
+            background: var(--bg-deep); 
             color: var(--text-main);
             font-family: var(--font-main); 
             line-height: 1.6;
-            background: var(--bg-deep);
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
         }
 
         h1, h2, h3, .serif { font-family: var(--font-serif); font-weight: 300; }
         a { text-decoration: none; color: inherit; transition: var(--transition); }
 
-        .glass { background: var(--glass-bg); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border: var(--glass-border); border-radius: 24px; padding: 30px; box-shadow: 0 15px 35px rgba(0,0,0,0.2); width: 100%; }
-        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 18px 45px; border: 1px solid var(--accent-gold); color: var(--accent-gold); text-transform: uppercase; font-size: 11px; letter-spacing: 4px; background: rgba(197, 160, 89, 0.05); cursor: pointer; transition: var(--transition); border-radius: 12px; font-weight: 600; width: 100%; text-align: center; }
-        .btn:hover { background: var(--accent-gold); color: #000; box-shadow: 0 10px 30px rgba(197, 160, 89, 0.3); transform: translateY(-2px); }
-        .section-label { text-align: center; font-size: 10px; letter-spacing: 7px; text-transform: uppercase; color: var(--accent-gold); margin-bottom: 20px; display: block; }
-
-        /* HEADER */
-        header { position: fixed; top: 0; width: 100%; padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; z-index: 2000; transition: all 0.5s ease; }
-        header.scrolled { background: rgba(10, 10, 25, 0.9) !important; backdrop-filter: blur(25px) !important; -webkit-backdrop-filter: blur(25px) !important; padding: 12px 5% !important; border-bottom: var(--glass-border); }
-        .brand-name { font-family: var(--font-serif); font-size: 20px; letter-spacing: 10px; text-transform: uppercase; color: var(--accent-gold); font-weight: 600; position: absolute; left: 50%; transform: translateX(-50%); }
-
-        /* LAYOUT */
-        .page-container { max-width: 1200px; margin: 100px auto 60px; padding: 0 20px; width: 100%; }
-        
-        .onboarding-block { text-align: center; margin-bottom: 30px; padding: 30px; border-left: 3px solid var(--accent-gold); border-right: 3px solid var(--accent-gold); }
-        .onboarding-block h2 { font-size: 28px; color: var(--accent-gold); margin-bottom: 15px; }
-        .onboarding-block p { font-size: 14px; opacity: 0.8; max-width: 800px; margin: 0 auto; line-height: 1.6; }
-        .step-num { color: var(--accent-gold); font-weight: 800; margin-right: 5px; }
-
-        .app-wrapper { display: grid; gap: 30px; width: 100%; }
-
-        /* ЭВОЛЮЦИЯ */
-        .level-badge { width: 110px; height: 110px; margin: 0 auto 15px; background: radial-gradient(circle, rgba(197, 160, 89, 0.2) 0%, transparent 70%); display: flex; align-items: center; justify-content: center; font-size: 3.5rem; border-radius: 50%; position: relative; border: 1px solid rgba(197, 160, 89, 0.3); }
-        .weekly-count { font-size: 11px; color: var(--accent-gold); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-top: 5px; display: inline-block; padding: 4px 12px; background: rgba(197,160,89,0.1); border-radius: 12px; }
-        
-        .motivation-box { background: rgba(197, 160, 89, 0.05); border-left: 3px solid var(--accent-gold); padding: 20px; border-radius: 0 16px 16px 0; margin-top: 25px; text-align: left; }
-        .motivation-box h4 { color: var(--accent-gold); font-size: 18px; margin-bottom: 8px; }
-        .motivation-box p { font-size: 13px; opacity: 0.85; line-height: 1.5; font-style: italic; }
-
-        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 25px; }
-        .stat-item { background: rgba(0,0,0,0.4); padding: 18px 12px; border-radius: 16px; border: var(--glass-border); text-align: center; }
-        .stat-item b { font-size: 1.4rem; display: block; color: #fff; margin-bottom: 4px; font-family: var(--font-serif); }
-        .stat-item span { font-size: 9px; opacity: 0.6; text-transform: uppercase; letter-spacing: 1px; }
-        .fire-text { color: var(--fire) !important; text-shadow: 0 0 15px rgba(255,69,0,0.5); }
-        .gold-text { color: var(--accent-gold) !important; }
-
-        /* НАСТОЯЩИЙ ГРАФИК */
-        .real-chart-container { width: 100%; margin-top: 35px; position: relative; height: 160px; overflow: hidden; }
-        .chart-svg { width: 100%; height: 120px; overflow: visible; }
-        .chart-grid-line { stroke: rgba(255,255,255,0.05); stroke-width: 1; }
-        .chart-path { fill: none; stroke: var(--accent-gold); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 5px 8px rgba(197, 160, 89, 0.4)); transition: d 0.8s ease-out; }
-        .chart-point { fill: #fff; stroke: var(--bg-deep); stroke-width: 2; transition: 0.3s; r: 4; }
-        .chart-value-text { fill: #fff; font-size: 10px; font-family: var(--font-main); font-weight: 800; text-anchor: middle; opacity: 0.9; }
-        .chart-dates { display: flex; justify-content: space-between; margin-top: 10px; font-size: 9px; opacity: 0.4; letter-spacing: 1px; }
-
-        /* ВВОД ДАННЫХ (ИСПОЛЬЗУЕМ minmax ЧТОБЫ НЕ ПОРВАТЬ ЭКРАН) */
-        .input-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; width: 100%; }
-        .input-group label { font-size: 9px; text-transform: uppercase; letter-spacing: 2px; opacity: 0.5; }
-        .input-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; width: 100%; }
-        .num-input { width: 100%; background: rgba(0,0,0,0.6); border: var(--glass-border); border-radius: 12px; padding: 15px 5px; color: #fff; font-size: 18px; text-align: center; font-family: var(--font-main); font-weight: 600; transition: 0.3s; }
-        .num-input:focus { border-color: var(--accent-gold); background: rgba(197, 160, 89, 0.05); }
-
-        .cycle-tabs { display: flex; gap: 5px; overflow-x: auto; padding-bottom: 5px; margin-bottom: 15px; scrollbar-width: none; width: 100%; }
-        .cycle-tabs::-webkit-scrollbar { display: none; }
-        .cycle-tab { flex: 1; min-width: 80px; padding: 12px 10px; border-radius: 10px; border: var(--glass-border); background: transparent; color: var(--text-dim); font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; text-align: center; transition: 0.3s; }
-        .cycle-tab.active { background: var(--accent-gold); color: #000; border-color: var(--accent-gold); }
-
-        /* ОПИСАНИЕ СОСТОЯНИЯ */
-        .state-desc-box { border-left: 3px solid var(--accent-gold); padding-left: 15px; margin-bottom: 25px; min-height: 40px; display: flex; align-items: center; }
-        .state-desc-text { font-size: 12px; opacity: 0.8; font-style: italic; line-height: 1.5; transition: 0.3s; }
-
-        /* БИОМЕТРИЯ И ЖИВОЙ СТАТУС */
-        .bio-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 20px 0 5px; padding-top: 20px; border-top: 1px solid var(--glass-border); text-align: center; width: 100%; }
-        .bio-val { font-size: 24px; font-family: var(--font-serif); font-weight: 600; color: #fff; display: block; line-height: 1.2; transition: color 0.3s ease; }
-        .bio-label { font-size: 9px; opacity: 0.5; text-transform: uppercase; letter-spacing: 2px; margin-top: 5px; display: block; }
-        .disclaimer-text { font-size: 9px; opacity: 0.4; text-align: center; margin-bottom: 20px; letter-spacing: 1px; }
-
-        /* ТРЕКЕР ВОДЫ */
-        .water-widget { display: flex; align-items: center; gap: 20px; background: rgba(0,0,0,0.5); border-radius: 16px; padding: 20px; margin-top: 15px; border-left: 3px solid var(--water); box-shadow: inset 0 0 20px rgba(59, 130, 246, 0.05); width: 100%; }
-        .water-glass-container { width: 45px; height: 75px; border: 2px solid rgba(255,255,255,0.15); border-radius: 6px 6px 15px 15px; position: relative; overflow: hidden; cursor: pointer; flex-shrink: 0; background: rgba(255,255,255,0.02); }
-        .water-fill { position: absolute; bottom: 0; left: 0; width: 100%; height: 0%; background: linear-gradient(to top, #1d4ed8, var(--water)); transition: height 0.8s cubic-bezier(0.34, 1.56, 0.64, 1); box-shadow: 0 -5px 15px var(--water-glow); }
-        .water-info { flex-grow: 1; }
-        .water-btn { background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); color: var(--water); padding: 8px 15px; border-radius: 8px; font-size: 10px; text-transform: uppercase; cursor: pointer; transition: 0.3s; font-weight: 800; margin-top: 8px; letter-spacing: 1px; }
-
-        /* ВЕРДИКТ ИМТ И ЦИКЛА */
-        .verdict-box { background: rgba(0,0,0,0.3); border-radius: 16px; padding: 20px; margin-top: 20px; border-left: 3px solid var(--accent-gold); display: flex; gap: 15px; }
-        .status-line { width: 4px; border-radius: 10px; flex-shrink: 0; background: var(--safe); transition: 0.5s; }
-        .verdict-text { font-size: 13px; color: #ccc; line-height: 1.5; }
-
-        /* ПРОДАЮЩАЯ КАРТОЧКА БИБЛИОТЕКИ */
-        .club-card { border: 1px solid var(--glass-border); border-radius: 16px; overflow: hidden; margin-top: 30px; background: rgba(0,0,0,0.4); display: flex; flex-direction: column; }
-        .club-card-img { position: relative; height: 160px; width: 100%; }
-        .club-card-img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; filter: grayscale(10%); transition: 0.5s; }
-        .club-card:hover .club-card-img img { opacity: 0.8; transform: scale(1.02); }
-        .club-card-img-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.95), transparent); display: flex; flex-direction: column; justify-content: flex-end; padding: 20px; }
-        .club-card-content { padding: 20px; text-align: center; }
-
-        /* ТРЕНИРОВКИ */
-        .training-item { background: rgba(255,255,255,0.02); border: var(--glass-border); border-radius: 16px; padding: 20px; transition: 0.3s; cursor: pointer; display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-        .train-info h4 { font-family: var(--font-serif); font-size: 22px; color: #fff; margin-bottom: 5px; }
-        .train-info p { font-size: 9px; opacity: 0.5; text-transform: uppercase; letter-spacing: 1px; }
-
-        /* МОДАЛКА */
-        .modal { display: none; position: fixed; inset: 0; z-index: 3000; background: rgba(5, 5, 12, 0.95); backdrop-filter: blur(10px); align-items: center; justify-content: center; padding: 20px; }
-        .modal-content { width: 100%; max-width: 450px; position: relative; }
-
-        /* =========================================
-           ЖЕСТКАЯ МОБИЛЬНАЯ АДАПТАЦИЯ
-           ========================================= */
-        @media (min-width: 1024px) {
-            .app-wrapper { grid-template-columns: 380px 1fr; align-items: start; }
-            .profile-panel { position: sticky; top: 100px; }
+        .section-label {
+            text-align: center; font-size: 10px; letter-spacing: 7px;
+            text-transform: uppercase; color: var(--accent-gold);
+            margin-bottom: 40px; display: block;
         }
 
-        @media (max-width: 768px) {
-            .page-container { margin: 80px auto 40px; padding: 0 10px; }
-            .glass { padding: 20px 15px; border-radius: 20px; } 
-            .brand-name { font-size: 16px; letter-spacing: 6px; }
-            header { padding: 15px !important; }
+        /* --- UI COMPONENTS --- */
+        .glass { background: var(--glass-bg); backdrop-filter: blur(25px) saturate(180%); -webkit-backdrop-filter: blur(25px) saturate(180%); border: var(--glass-border); border-radius: 20px; transition: var(--transition); }
+
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 16px 35px; border: 1px solid var(--accent-gold); color: var(--accent-gold);
+            text-transform: uppercase; font-size: 10px; letter-spacing: 3px; font-weight: 600;
+            background: transparent; cursor: pointer; transition: var(--transition); border-radius: 8px;
+        }
+        .btn:hover { background: var(--accent-gold); color: #fff; transform: translateY(-2px); }
+
+        .btn-fill { background: var(--accent-gold); color: #fff; }
+
+        /* Styles for Modal Inputs */
+        .input-field-custom { 
+            width: 100%; padding: 15px; 
+            background: rgba(255,255,255,0.05); 
+            border: 1px solid rgba(255,255,255,0.1); 
+            color: #fff; border-radius: 8px; 
+            font-family: inherit; font-size: 14px;
+            transition: var(--transition);
+        }
+        .input-field-custom:focus { border-color: var(--accent-gold); background: rgba(255,255,255,0.08); }
+
+        /* --- HEADER --- */
+        header { position: fixed; top: 0; width: 100%; padding: 20px 5%; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; z-index: 2000; transition: var(--transition); background: transparent; }
+        header.scrolled { background: rgba(10, 10, 25, 0.2); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border-bottom: 1px solid rgba(255,255,255,0.05); }
+
+        .brand-name { font-family: var(--font-serif); font-size: 20px; letter-spacing: 12px; text-transform: uppercase; color: #fff; text-align: center; }
+
+        .back-link { font-size: 10px; text-transform: uppercase; letter-spacing: 3px; color: rgba(255,255,255,0.5); display: flex; align-items: center; gap: 8px; transition: var(--transition); }
+        .back-link:hover { color: #fff; transform: translateX(-3px); }
+
+        /* --- HERO BLOCK --- */
+        .hero-club { padding: 160px 5% 60px; text-align: center; position: relative; }
+        .hero-title { font-size: clamp(36px, 6vw, 64px); line-height: 1.1; margin-bottom: 25px; letter-spacing: 1px; }
+        .user-status {
+            display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px;
+            background: rgba(197, 160, 89, 0.1); border: 1px solid rgba(197, 160, 89, 0.3);
+            border-radius: 30px; font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent-gold); margin-bottom: 40px;
+        }
+
+        /* --- 3-BLOCK GRID --- */
+        .club-grid { padding: 60px 5% 100px; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; max-width: 1400px; margin: 0 auto; }
+        
+        .flag-card {
+            position: relative; height: 500px; display: flex; flex-direction: column; justify-content: flex-end; padding: 40px;
+            overflow: hidden; cursor: pointer; width: 100%; text-align: left;
+        }
+        .flag-card:hover { transform: translateY(-5px); border-color: rgba(197, 160, 89, 0.3); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        
+        .flag-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: 1s ease; opacity: 0.5; z-index: 0; color: transparent;}
+        .flag-card:hover .flag-bg { transform: scale(1.05); opacity: 0.7; }
+        .flag-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(8,8,20,1) 10%, rgba(8,8,20,0) 80%); z-index: 1; }
+
+        .flag-content { position: relative; z-index: 2; display: flex; flex-direction: column; height: 100%; justify-content: flex-end; }
+        .flag-title { font-size: clamp(24px, 3vw, 32px); color: var(--accent-gold); margin-bottom: 15px; letter-spacing: 1px; line-height: 1.2; }
+        .flag-desc { font-size: 15px; opacity: 0.8; margin-bottom: 30px; line-height: 1.6; }
+
+        /* --- AI CHAT WIDGET CSS --- */
+        #ls-ai-button {
+            position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px;
+            background: var(--accent-gold); border: none; border-radius: 50%;
+            cursor: pointer; box-shadow: 0 10px 25px rgba(197, 160, 89, 0.4);
+            z-index: 9999; display: flex; align-items: center; justify-content: center;
+            font-size: 24px; animation: ls-pulse 2s infinite;
+        }
+        @keyframes ls-pulse {
+            0% { box-shadow: 0 0 0 0 rgba(197, 160, 89, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(197, 160, 89, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(197, 160, 89, 0); }
+        }
+        #ls-ai-chat {
+            display: none; position: fixed; bottom: 100px; right: 25px; width: 350px;
+            height: 550px; max-height: 80vh; background: rgba(15, 15, 25, 0.95);
+            backdrop-filter: blur(25px) saturate(150%); -webkit-backdrop-filter: blur(25px) saturate(150%);
+            border: 1px solid rgba(197, 160, 89, 0.3); border-radius: 25px; 
+            z-index: 10000; flex-direction: column; overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            transition: all 0.3s ease;
+        }
+        .chat-active { display: flex !important; animation: slideIn 0.3s ease-out; }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .chat-messages { flex-grow: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 12px; }
+        .msg { padding: 12px 16px; border-radius: 15px; font-size: 14px; line-height: 1.5; max-width: 85%; }
+        .msg-assistant { background: rgba(255, 255, 255, 0.08); color: white; align-self: flex-start; border-radius: 15px 15px 15px 4px; }
+        .msg-user { background: rgba(197, 160, 89, 0.2); color: #FFD1DC; align-self: flex-end; border: 1px solid rgba(197, 160, 89, 0.3); border-radius: 15px 15px 4px 15px; }
+        
+        .chat-input-area { padding: 15px 20px; background: rgba(0, 0, 0, 0.4); display: flex; align-items: center; gap: 10px; border-top: 1px solid rgba(255, 255, 255, 0.05); }
+        .chat-input { flex-grow: 1; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 10px 15px; color: white; font-size: 16px; outline: none; }
+        
+        /* --- RESPONSIVE --- */
+        @media (max-width: 900px) {
+            .club-grid { grid-template-columns: 1fr; gap: 30px; }
+            .flag-card { height: 450px; padding: 30px; }
+        }
+        @media (max-width: 600px) {
+            header { padding: 15px 20px !important; }
+            .back-link span { display: none; }
+            .hero-club { padding: 130px 5% 40px; }
+            .flag-card { height: 400px; padding: 25px; }
+            .flag-desc { margin-bottom: 25px; font-size: 14px;}
+            .flag-content .btn { width: 100%; }
+            .section-label { font-size: 11px; letter-spacing: 4px; }
             
-            .onboarding-block h2 { font-size: 22px; }
-            .onboarding-block p { font-size: 12px; text-align: left; }
-
-            .input-row { gap: 6px; }
-            .num-input { padding: 10px 2px; font-size: 15px; border-radius: 8px; }
-            .input-group label { font-size: 8px; letter-spacing: 1px; }
-
-            .bio-stats { gap: 5px; }
-            .bio-val { font-size: 17px; } 
-            .bio-label { font-size: 8px; letter-spacing: 1px; }
-
-            .stats-grid { gap: 10px; }
-            .stat-item { padding: 15px 10px; }
-            .stat-item b { font-size: 1.2rem; }
-
-            .water-widget { padding: 15px; gap: 15px; flex-direction: row; }
-            .train-info h4 { font-size: 18px; }
-            
-            .state-desc-text { font-size: 11px; }
-            .verdict-text { font-size: 12px; }
+            #ls-ai-chat { bottom: 0; right: 0; width: 100% !important; height: 100dvh !important; border-radius: 0; max-height: 100dvh;}
+            .chat-input-area { padding-bottom: calc(15px + env(safe-area-inset-bottom)); background: rgba(10, 10, 25, 1); }
         }
     </style>
 </head>
 <body>
 
 <header id="header">
-    <div style="width: 40px;"></div>
-    <a href="index.html" class="brand-name">РЕСУРС</a>
+    <a href="index.html" class="back-link">
+        <svg width="20" height="20" viewBox="0 0 24 24" style="fill: currentColor;"><path d="M12.707 19.707L5.414 12.414 12.707 5.121 11.293 3.707 2.586 12.414 11.293 21.121z"/></svg>
+        <span>На главную</span>
+    </a>
+    <div class="brand-name">РЕСУРС</div>
     <div style="display: flex; justify-content: flex-end;">
-        <img src="logo_header_final.png" style="height: 40px; width: 40px; border-radius: 8px; opacity: 0.9;" alt="Лого">
+        <img src="logo_header_final.png" style="height: 35px; width: 35px; border-radius: 6px; opacity: 0.8;">
     </div>
 </header>
 
-<div class="page-container">
+<section class="hero-club">
+    <div class="user-status">
+        <svg width="10" height="10" viewBox="0 0 10 10" style="fill: var(--accent-gold); margin-right: 5px;"><circle cx="5" cy="5" r="5"/></svg>
+        Статус: [Гость]
+    </div>
     
-    <div class="glass onboarding-block">
-        <h2 class="serif">Система эволюции тела</h2>
-        <p>
-            Добро пожаловать в ваш цифровой дневник состояния. <br>
-            <span class="step-num">1.</span> Укажите свои текущие параметры и фазу цикла, чтобы узнать ИМТ, норму калорий и воды на день.<br>
-            <span class="step-num">2.</span> Система проанализирует данные и подберет идеальную практику на сегодня.<br>
-            <span class="step-num">3.</span> Отмечайте каждую тренировку! Наблюдайте, как растет ваш статус, либидо и строится график вашей эволюции.
-        </p>
+    <h1 class="hero-title">Твоя личная трансформация <br>в любой точке мира</h1>
+    <p style="opacity: 0.7; max-width: 650px; margin: 0 auto; font-size: 18px; line-height: 1.8;">
+        Закрытая цифровая экосистема: пошаговые флагманские курсы, детокс-программы и огромная библиотека тренировок для красивого и здорового тела.
+    </p>
+</section>
+
+<section class="club-grid" id="courses">
+    
+    <div class="flag-card glass">
+        <img src="slimness.png" class="flag-bg" alt="">
+        <div class="flag-overlay"></div>
+        <div class="flag-content">
+            <h2 class="flag-title serif">Курс «СТРОЙНОСТЬ»</h2>
+            <p class="flag-desc">Пошаговая система трансформации тела и мышления. За 28 дней вы сбросите лишнее, подтянете фигуру и обретете здоровую самооценку без жестких диет и срывов.</p>
+            <a href="javascript:void(0)" class="btn" onclick="openPayment('Стройность')">Начать трансформацию</a>
+        </div>
     </div>
 
-    <div class="app-wrapper">
-        
-        <div class="profile-panel">
-            <div class="glass" style="text-align: center;">
-                <span class="section-label">Твоя эволюция</span>
-                <div class="level-badge" id="lvl-icon">🌱</div>
-                <h2 id="lvl-name" style="font-size: 32px; margin-bottom: 5px; color: var(--accent-gold);">Новичок</h2>
-                
-                <p id="lvl-count" style="font-size: 11px; opacity: 0.6; text-transform: uppercase; letter-spacing: 2px;">Всего тренировок: 0</p>
-                <div class="weekly-count" id="weekly-count">На этой неделе: 0</div>
-
-                <div class="motivation-box">
-                    <h4 class="serif">Ценность твоих усилий</h4>
-                    <p id="motivation-text">Твой первый шаг — самый важный. Сегодня ты закладываешь фундамент новых нейронных связей и привычки заботиться о себе.</p>
-                </div>
-
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <b id="stress-save" class="gold-text">0%</b>
-                        <span>Стресса снято</span>
-                    </div>
-                    <div class="stat-item">
-                        <b id="libido-level">База</b>
-                        <span>Уровень либидо</span>
-                    </div>
-                    <div class="stat-item" style="grid-column: span 2;">
-                        <b id="doc-save">0 часов</b>
-                        <span>Сэкономлено времени на врачах</span>
-                    </div>
-                </div>
-
-                <div class="real-chart-container">
-                    <span style="font-size: 10px; text-transform: uppercase; opacity: 0.5; letter-spacing: 2px; position: absolute; top: -15px; left: 0;">Динамика веса</span>
-                    <svg class="chart-svg" id="real-chart" viewBox="0 0 300 120">
-                        <g id="chart-grid"></g>
-                        <path class="chart-path" id="chart-path" d=""></path>
-                        <g id="chart-points"></g>
-                    </svg>
-                    <div class="chart-dates" id="chart-dates"></div>
-                </div>
-                
-                <button style="background:none; border:none; color:var(--text-dim); font-size:10px; margin-top:25px; cursor:pointer; text-decoration: underline;" onclick="resetData()">Сбросить данные</button>
-            </div>
+    <div class="flag-card glass">
+        <img src="detox.png" class="flag-bg" alt="">
+        <div class="flag-overlay"></div>
+        <div class="flag-content">
+            <h2 class="flag-title serif">ДЕТОКС-ИНТЕНСИВ</h2>
+            <p class="flag-desc">Тотальная перезагрузка организма за неделю. Избавьтесь от отеков, верните легкость телу и здоровое сияние коже. Ваш быстрый старт к энергии и стройности.</p>
+            <a href="javascript:void(0)" class="btn" onclick="openPayment('Детокс')">Запустить очищение</a>
         </div>
+    </div>
 
-        <div class="content-panel">
-            <div class="glass">
-                <span class="section-label">Архитектура тела</span>
-                
-                <div class="input-group">
-                    <label>Фаза женского цикла</label>
-                    <div class="cycle-tabs">
-                        <button class="cycle-tab active" onclick="setCycle(1, this)">Менструация</button>
-                        <button class="cycle-tab" onclick="setCycle(2, this)">Фолликулярная</button>
-                        <button class="cycle-tab" onclick="setCycle(3, this)">Овуляция</button>
-                        <button class="cycle-tab" onclick="setCycle(4, this)">Лютеиновая</button>
-                    </div>
-                </div>
-
-                <div class="input-row">
-                    <div class="input-group"><label>Вес (кг)</label><input type="number" id="w-val" class="num-input" value="62" onchange="calculate(true)"></div>
-                    <div class="input-group"><label>Рост (см)</label><input type="number" id="h-val" class="num-input" value="168" oninput="calculate(false)"></div>
-                    <div class="input-group"><label>Возраст</label><input type="number" id="a-val" class="num-input" value="30" oninput="calculate(false)"></div>
-                </div>
-
-                <div class="bio-stats">
-                    <div>
-                        <span class="bio-val" id="bmi-res">0.0</span>
-                        <span class="bio-label">ИМТ</span>
-                    </div>
-                    <div>
-                        <span class="bio-val" id="kcal-res">0</span>
-                        <span class="bio-label">Ккал / база</span>
-                    </div>
-                    <div>
-                        <span class="bio-val" id="dynamic-status" style="color:var(--safe)">БАЛАНС</span>
-                        <span class="bio-label">Режим тела</span>
-                    </div>
-                </div>
-                
-                <p class="disclaimer-text">* Расчет Ккал и H2O указан для базового обмена веществ. При активности расход увеличивается.</p>
-
-                <div class="water-widget">
-                    <div class="water-glass-container" onclick="addWater()">
-                        <div class="water-fill" id="water-fill-visual"></div>
-                    </div>
-                    <div class="water-info">
-                        <h4 style="font-size: 14px; margin-bottom: 3px; font-family: var(--font-serif); color: #fff;">Водный баланс</h4>
-                        <p style="font-size: 11px; opacity: 0.7;">Выпито: <b id="water-drunk-text" style="color: var(--water); font-size: 13px;">0.0</b> / <span id="water-target-text">0.0</span> л</p>
-                        <button class="water-btn" onclick="addWater()">+ 250 мл</button>
-                    </div>
-                </div>
-
-                <div class="verdict-box">
-                    <div class="status-line" id="v-line"></div>
-                    <div>
-                        <p class="verdict-text" id="v-text">Введите данные для получения рекомендаций.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="glass" style="margin-top: 30px;">
-                <span class="section-label">Смарт Подбор Практик</span>
-                <p style="font-size: 12px; opacity: 0.6; margin-bottom: 10px; text-align: center;">Оцените ваше текущее состояние:</p>
-                
-                <div class="cycle-tabs" style="margin-bottom: 15px;">
-                    <button class="cycle-tab" id="res-low" onclick="setResource('low')">Усталость</button>
-                    <button class="cycle-tab active" id="res-norm" onclick="setResource('norm')">В тонусе</button>
-                    <button class="cycle-tab" id="res-peak" onclick="setResource('peak')">Заряжена</button>
-                </div>
-
-                <div class="state-desc-box">
-                    <div class="state-desc-text" id="state-desc">
-                        Базовые сбалансированные тренировки для поддержания мышечного тонуса, красивой осанки и хорошего самочувствия.
-                    </div>
-                </div>
-
-                <div id="train-container"></div>
-
-                <div class="club-card">
-                    <div class="club-card-img">
-                        <img src="active-drive.png" alt="Библиотека тренировок">
-                        <div class="club-card-img-overlay">
-                            <h3 class="serif" style="font-size: 26px; color: #fff;">Онлайн-Клуб «РЕСУРС»</h3>
-                        </div>
-                    </div>
-                    <div class="club-card-content">
-                        <p style="font-size: 12px; color: #ccc; margin-bottom: 20px; line-height: 1.6;">
-                            Тренировки — это мощный фундамент, но настоящая трансформация тела невозможна без правильной нутрициологии. Возьми свою форму под полный контроль: получи доступ к библиотеке умных практик и авторским протоколам питания.
-                        </p>
-                        <a href="club.html" class="btn">Всё включено за 1600 ₽</a>
-                    </div>
-                </div>
-
-            </div>
+    <div class="flag-card glass">
+        <img src="active-drive.png" class="flag-bg" alt="">
+        <div class="flag-overlay"></div>
+        <div class="flag-content">
+            <h2 class="flag-title serif">БИБЛИОТЕКА ТРЕНИРОВОК</h2>
+            <p class="flag-desc">Безлимитный доступ к коллекции практик. От утренних зарядок и здоровой спины до интенсивного жиросжигания. Занимайтесь где и когда удобно, подбирая тренировку под своё состояние.</p>
+            <a href="javascript:void(0)" class="btn" onclick="openPayment('Все включено')">Открыть все тренировки</a>
         </div>
+    </div>
+
+</section>
+    
+<section style="padding: 60px 5% 100px; text-align: center; border-top: 1px solid rgba(255,255,255,0.03);">
+    <div class="glass" style="padding: 60px; max-width: 800px; margin: 0 auto; border: 1px solid rgba(197, 160, 89, 0.15); display: flex; flex-direction: column; align-items: center; gap: 30px;">
+        <span class="section-label" style="margin-bottom: 0;">Ваш проводник ✨</span>
+        <h3 class="serif" style="font-size: 28px; letter-spacing: 1px;">Не знаете, с чего начать?</h3>
+        <p style="opacity: 0.6; max-width: 450px; font-size: 15px; margin-top: -10px;">Запустите ИИ-куратора в чате, и он подберет программу под ваш текущий запрос и состояние.</p>
+        <a href="javascript:void(0)" class="btn" onclick="toggleChat(); return false;">Подобрать программу</a>
+    </div>
+</section>
+
+<footer style="padding: 60px 5%; border-top: 1px solid rgba(255,255,255,0.03); text-align: center;">
+    <div style="font-size: 9px; opacity: 0.2; text-transform: uppercase; letter-spacing: 3px;">
+        © 2026 РЕСУРС • Цифровое пространство практик • Все права защищены.
+    </div>
+</footer>
+
+<div id="payment-modal" class="glass" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 3000; padding: 40px; width: 95%; max-width: 450px; border: 1px solid var(--accent-gold);">
+    <h2 id="modal-product-name" class="serif" style="font-size: 28px; margin-bottom: 20px; text-align: center;">Оформление</h2>
+    <div style="display: flex; flex-direction: column; gap: 15px;">
+        <input type="text" id="pay-name" placeholder="Имя и Фамилия" class="input-field-custom">
+        <input type="email" id="pay-email" placeholder="Email" class="input-field-custom">
+        <input type="tel" id="pay-phone" placeholder="+7 (___) ___-__-__" class="input-field-custom">
+        <input type="text" id="pay-promo" placeholder="Промокод (если есть)" class="input-field-custom">
+        <div id="price-display" style="text-align: center; color: var(--accent-gold); font-size: 18px; margin: 10px 0; font-weight: 600;"></div>
+        <button class="btn btn-fill" id="confirm-pay-btn" onclick="processPayment()" style="width:100%; background: var(--accent-gold); color: #fff;">Оплатить доступ</button>
+        <button onclick="closePayment()" style="background:none; border:none; color:rgba(255,255,255,0.3); cursor:pointer; width:100%; margin-top:10px; font-size: 10px; letter-spacing: 2px; text-transform: uppercase;">Отмена</button>
     </div>
 </div>
+<div id="modal-overlay" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 2999;" onclick="closePayment()"></div>
 
-<div class="modal" id="trainModal">
-    <div class="glass modal-content">
-        <div style="position: absolute; top: 20px; right: 25px; font-size: 24px; cursor: pointer; opacity: 0.5;" onclick="closeModal()">✕</div>
-        <h2 id="m-title" style="font-size: 36px; color: var(--accent-gold); margin-bottom: 15px;" class="serif">Название</h2>
-        <p id="m-desc" style="font-size: 14px; color: #ccc; margin-bottom: 25px; line-height: 1.6;">Описание</p>
-        <button class="btn" onclick="confirmWorkout()">Я выполнила практику</button>
+<div id="ls-ai-widget">
+    <button id="ls-ai-button" onclick="toggleChat()">✨</button>
+
+    <div id="ls-ai-chat"> 
+        <div style="background: rgba(197, 160, 89, 0.1); padding: 20px; border-bottom: 1px solid rgba(197, 160, 89, 0.2); display: flex; justify-content: space-between; align-items: center;">
+            <span class="serif" style="color: var(--accent-gold); letter-spacing: 1px; font-size: 14px;">RESOURCE AI</span>
+            <span onclick="toggleChat()" style="cursor: pointer; opacity: 0.5; font-size: 20px; line-height: 1;">&times;</span>
+        </div>
+
+        <div id="ls-ai-messages" class="chat-messages">
+            <div class="msg msg-assistant">Привет! Я ваш проводник в мире «Ресурса». Чем могу помочь? ✨</div>
+        </div>
+
+        <div class="chat-input-area">
+            <input type="text" id="ls-ai-input" class="chat-input" placeholder="Ваш вопрос...">
+            <button onclick="sendMessage()" style="background: var(--accent-gold); border: none; width: 45px; height: 45px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: white; font-size: 18px;">
+                ➤
+            </button>
+        </div>
     </div>
 </div>
 
 <script>
-    // --- ДАННЫЕ И БИОХАКИНГ ---
-    let state = {
-        weight: 62, height: 168, age: 30, cycle: 1, resource: 'norm', level: 0,
-        history: [], 
-        workouts: [], 
-        waterDrunk: 0, lastWaterDate: ""
+    // --- НАСТРОЙКИ ОПЛАТЫ ---
+    var CLOUD_FUNCTION_URL = 'https://functions.yandexcloud.net/d4eg7hphveek8g1co3fr'; 
+    var currentProduct = '';
+
+    var prices = {
+        'Стройность': 5000,
+        'Детокс': 3000,
+        'Все включено': 1600
     };
 
-    const trainingLibrary = {
-        "Пилатес": { d: "Укрепление мышечного корсета. Идеально для осанки и здоровья позвоночника.", tags: ["Спина", "Корсет"] },
-        "Стретчинг": { d: "Классическая растяжка. Улучшает кровоток, снимает мышечное напряжение.", tags: ["Гибкость", "Релакс"] },
-        "Аэростретчинг": { d: "Растяжка в гамаках. Декомпрессия позвоночника и чувство невесомости.", tags: ["Гамаки", "Позвоночник"] },
-        "Йога релакс": { d: "Мягкая практика с акцентом на дыхание. Эффективно снижает кортизол.", tags: ["Дыхание", "Антистресс"] },
-        "Здоровая спина": { d: "Специализированный комплекс для шеи и поясницы. База вашего здоровья.", tags: ["Осанка", "Здоровье"] },
-        "МФР": { d: "Миофасциальный релиз с роллами. Запускает лимфу и разбивает триггеры.", tags: ["Массаж", "Лимфодренаж"] },
-        "Ягодицы пресс": { d: "Целевая работа. Улучшает кровоснабжение малого таза.", tags: ["Тонус", "Формы"] },
-        "Круговая тренировка": { d: "Интенсивный тренинг. Разгон метаболизма и выносливости.", tags: ["Жиросжигание", "Выносливость"] },
-        "Табата": { d: "Тренирует сердце, быстро сжигает калории по протоколу 20/10.", tags: ["Интенсив", "Сердце"] }
-    };
-
-    const resources = {
-        low: ["МФР", "Йога релакс", "Здоровая спина"],
-        norm: ["Пилатес", "Аэростретчинг", "Стретчинг"],
-        peak: ["Круговая тренировка", "Табата", "Ягодицы пресс"]
-    };
-
-    const resourceDesc = {
-        low: "Мягкие восстановительные практики без осевой нагрузки. Выбирайте их при эмоциональном выгорании или физической тяжести.",
-        norm: "Базовые сбалансированные тренировки для поддержания мышечного тонуса, красивой осанки и хорошего самочувствия.",
-        peak: "Интенсивные и силовые нагрузки для жиросжигания, развития выносливости и формирования красивого мышечного рельефа."
-    };
-
-    const levels = [
-        { n: 0, name: "Новичок", icon: "🌱" }, 
-        { n: 10, name: "Адепт", icon: "🌸" },
-        { n: 30, name: "Трансформация", icon: "🦋" }, 
-        { n: 60, name: "Мастер", icon: "💎" },
-        { n: 120, name: "Гуру", icon: "🧘‍♀️" },
-        { n: 250, name: "Амбассадор", icon: "👑" },
-        { n: 500, name: "Эпоха", icon: "✨" },
-        { n: 1000, name: "Легенда", icon: "🌌" }
-    ];
-
-    window.onload = () => {
-        load();
-        checkDailyWaterReset();
-        if (state.history.length === 0) recordWeight(state.weight);
-        
-        calculate(false); 
-        setResource(state.resource);
-        updateEvolution();
-        
-        window.addEventListener('scroll', () => {
-            const header = document.getElementById('header');
-            header.classList.toggle('scrolled', window.scrollY > 50);
-        });
-    };
-
-    // --- ВОДА ---
-    function checkDailyWaterReset() {
-        const today = new Date().toDateString();
-        if(state.lastWaterDate !== today) {
-            state.waterDrunk = 0; state.lastWaterDate = today; save();
+    window.addEventListener('scroll', function() {
+        var header = document.getElementById('header');
+        if (header) {
+            header.classList.toggle('scrolled', window.scrollY > 30);
         }
-    }
-    function addWater() {
-        checkDailyWaterReset();
-        state.waterDrunk += 0.25; updateWaterUI(); save();
-    }
-    function updateWaterUI() {
-        const waterNeed = state.weight * 0.035;
-        document.getElementById('water-target-text').innerText = waterNeed.toFixed(1);
-        document.getElementById('water-drunk-text').innerText = state.waterDrunk.toFixed(2);
-        let percent = (state.waterDrunk / waterNeed) * 100;
-        if(percent > 100) percent = 100;
-        document.getElementById('water-fill-visual').style.height = percent + '%';
+    });
+
+    function openPayment(productName) {
+        currentProduct = productName;
+        document.getElementById('modal-product-name').innerText = productName;
+        var price = prices[productName] || 1600;
+        document.getElementById('price-display').innerText = 'К оплате: ' + price + ' руб.';
+        
+        document.getElementById('payment-modal').style.display = 'block';
+        document.getElementById('modal-overlay').style.display = 'block';
     }
 
-    // --- ВЕС И ИМТ ---
-    function recordWeight(w) {
-        const now = new Date().getTime();
-        const todayStr = new Date().toDateString();
-        const lastEntry = state.history[state.history.length - 1];
-        
-        if (lastEntry && new Date(lastEntry.ts).toDateString() === todayStr) {
-            lastEntry.w = w;
-        } else {
-            state.history.push({ ts: now, w: w });
-            if(state.history.length > 7) state.history.shift();
-        }
+    function closePayment() {
+        document.getElementById('payment-modal').style.display = 'none';
+        document.getElementById('modal-overlay').style.display = 'none';
     }
 
-    function calculate(isWeightChanged) {
-        state.weight = parseFloat(document.getElementById('w-val').value) || 0;
-        state.height = parseFloat(document.getElementById('h-val').value) || 0;
-        state.age = parseFloat(document.getElementById('a-val').value) || 0;
+    async function processPayment() {
+        var name = document.getElementById('pay-name').value;
+        var email = document.getElementById('pay-email').value;
+        var phone = document.getElementById('pay-phone').value;
+        var promo = document.getElementById('pay-promo').value;
+        var btn = document.getElementById('confirm-pay-btn');
 
-        if (state.weight > 0 && state.height > 100) {
-            const bmi = (state.weight / ((state.height / 100) ** 2)).toFixed(1);
-            document.getElementById('bmi-res').innerText = bmi;
-            
-            let bmr = (10 * state.weight) + (6.25 * state.height) - (5 * state.age) - 161;
-            document.getElementById('kcal-res').innerText = Math.round(bmr);
-
-            updateVerdict(bmi);
-            updateWaterUI();
-            
-            if(isWeightChanged) { recordWeight(state.weight); updateChart(); save(); }
-        }
-    }
-
-    // --- ВЕРДИКТ (БИОХАКИНГ) ---
-    function updateVerdict(bmi) {
-        const vText = document.getElementById('v-text');
-        const vLine = document.getElementById('v-line');
-        let advice = "";
-        
-        if (state.cycle === 1) advice = "Энергия минимальна. Твоя задача сегодня — бережное вытяжение фасций и снятие спазмов.";
-        else if (state.cycle === 2) advice = "Эстроген на подъеме! Идеальное окно для интенсивных тренировок и формирования рельефа.";
-        else if (state.cycle === 3) advice = "Пик ресурса. Тело готово к максимальным нагрузкам. Бери максимум от занятий.";
-        else if (state.cycle === 4) advice = "Возможна задержка жидкости. Подключаем лимфодренажный МФР и перевернутые асаны в гамаке.";
-
-        let bmiVerdict = "";
-        if (bmi < 18.5) {
-            bmiVerdict = "Наблюдается дефицит массы.";
-            vLine.style.background = 'var(--warning)';
-        } else if (bmi <= 24.9) {
-            bmiVerdict = "Биологический эталон формы.";
-            vLine.style.background = 'var(--safe)';
-        } else {
-            bmiVerdict = "Метаболизм требует разгона.";
-            vLine.style.background = 'var(--danger)';
-        }
-        
-        vText.innerHTML = `<span style="color:var(--accent-gold); font-family:var(--font-serif); font-size:16px;">${bmiVerdict}</span><br>${advice}`;
-    }
-
-    // --- МОТИВАЦИОННЫЙ ТЕКСТ ---
-    function getMotivationalText(sessions) {
-        if (sessions === 0) return "Твой первый шаг — самый важный. Сегодня ты закладываешь фундамент новых нейронных связей и привычки заботиться о себе.";
-        if (sessions < 4) return "Запускается нейропластичность. Улучшается микроциркуляция крови и ток лимфы. Тело начинает вспоминать, что движение — это жизнь.";
-        if (sessions < 9) return "Ценность этих тренировок колоссальна: снизился базовый уровень кортизола, укрепляется мышечный корсет. Ты меняешь архитектуру тела!";
-        if (sessions < 15) return "Формируется устойчивый мышечный тонус. Метаболизм работает на новых, более высоких оборотах. Твой ресурсный объем заметно вырос.";
-        if (sessions < 30) return "Тело адаптировалось. Теперь каждое движение приносит дофамин. Ты инвестировала в свое здоровье десятки часов, и это твой актив.";
-        return "Дисциплина стала твоей суперсилой. Твое тело — это отлаженный механизм, полный энергии и ресурса. Продолжай вдохновлять!";
-    }
-
-    // --- ЭВОЛЮЦИЯ И ТРЕНИРОВКИ ---
-    function updateEvolution() {
-        const totalSessions = state.workouts.length;
-        const oneWeekAgo = Date.now() - (7 * 24 * 60 * 60 * 1000);
-        const weeklyCount = state.workouts.filter(ts => ts > oneWeekAgo).length;
-
-        document.getElementById('lvl-count').innerText = `Всего тренировок: ${totalSessions}`;
-        document.getElementById('weekly-count').innerText = `На этой неделе: ${weeklyCount}`;
-        
-        document.getElementById('motivation-text').innerText = getMotivationalText(totalSessions);
-        
-        document.getElementById('doc-save').innerText = Math.round(totalSessions * 3.5) + ' часов';
-        document.getElementById('stress-save').innerText = Math.min(totalSessions * 5, 95) + '%';
-        
-        const libidoBoost = Math.min(totalSessions * 5, 200);
-        const libEl = document.getElementById('libido-level');
-        if (libidoBoost === 0) { libEl.innerText = "База"; libEl.className = ""; }
-        else if (libidoBoost >= 50) { libEl.innerText = `+${libidoBoost}% 🔥`; libEl.className = "fire-text"; }
-        else { libEl.innerText = `+${libidoBoost}%`; libEl.className = "gold-text"; }
-
-        let currentLevel = levels[0];
-        for(let i=0; i<levels.length; i++) { if(totalSessions >= levels[i].n) currentLevel = levels[i]; }
-        document.getElementById('lvl-name').innerText = currentLevel.name;
-        document.getElementById('lvl-icon').innerText = currentLevel.icon;
-    }
-
-    // --- НАСТОЯЩИЙ ГРАФИК ---
-    function updateChart() {
-        if(state.history.length < 1) return;
-        
-        const svgW = 300; const svgH = 120;
-        const pathEl = document.getElementById('chart-path');
-        const pointsGroup = document.getElementById('chart-points');
-        const gridGroup = document.getElementById('chart-grid');
-        const datesEl = document.getElementById('chart-dates');
-        
-        pointsGroup.innerHTML = ''; datesEl.innerHTML = ''; gridGroup.innerHTML = '';
-        
-        for(let i=0; i<=2; i++) {
-            let gy = i * (svgH/2);
-            gridGroup.innerHTML += `<line x1="0" y1="${gy}" x2="${svgW}" y2="${gy}" class="chart-grid-line" />`;
-        }
-        
-        if (state.history.length === 1) {
-            const y = svgH / 2;
-            pathEl.setAttribute('d', `M 0 ${y} L ${svgW} ${y}`);
-            pointsGroup.innerHTML += `<circle cx="${svgW/2}" cy="${y}" class="chart-point" />`;
-            pointsGroup.innerHTML += `<text x="${svgW/2}" y="${y - 10}" class="chart-value-text">${state.history[0].w}</text>`;
-            datesEl.innerHTML = `<span style="margin:0 auto;">${formatDate(state.history[0].ts)}</span>`;
+        if (!name || !email || !phone) {
+            alert('Пожалуйста, заполните Имя, Email и Телефон');
             return;
         }
 
-        const times = state.history.map(h => h.ts);
-        const weights = state.history.map(h => h.w);
-        const minT = Math.min(...times); const maxT = Math.max(...times);
-        const minW = Math.min(...weights) - 2; const maxW = Math.max(...weights) + 2;
+        btn.innerText = 'Связь с банком...';
+        btn.disabled = true;
 
-        let d = "";
-        state.history.forEach((point, i) => {
-            const x = (maxT === minT) ? (svgW / 2) : ((point.ts - minT) / (maxT - minT)) * svgW;
-            const y = svgH - (((point.w - minW) / (maxW - minW)) * svgH);
-
-            if (i === 0) d += `M ${x} ${y}`; else d += ` L ${x} ${y}`; 
-
-            pointsGroup.innerHTML += `<circle cx="${x}" cy="${y}" class="chart-point" />`;
-            pointsGroup.innerHTML += `<text x="${x}" y="${y - 10}" class="chart-value-text">${point.w}</text>`;
-
-            if (i === 0 || i === state.history.length - 1 || state.history.length <= 4) {
-                const dateSpan = document.createElement('span');
-                dateSpan.innerText = formatDate(point.ts);
-                dateSpan.style.position = 'absolute';
-                dateSpan.style.left = `calc(${(x/svgW)*100}% - 15px)`; 
-                datesEl.appendChild(dateSpan);
-            }
-        });
-        pathEl.setAttribute('d', d);
-    }
-
-    function formatDate(ts) {
-        const date = new Date(ts);
-        const d = date.getDate().toString().padStart(2, '0');
-        const m = (date.getMonth() + 1).toString().padStart(2, '0');
-        return `${d}.${m}`;
-    }
-
-    function setCycle(c, btn) {
-        state.cycle = c;
-        document.querySelectorAll('.cycle-tab').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        calculate(false); save();
-    }
-
-    // --- ОЖИВЛЕНИЕ СТАТУСА ---
-    function setResource(res) {
-        state.resource = res;
-        ['low', 'norm', 'peak'].forEach(r => document.getElementById('res-'+r).classList.toggle('active', r === res));
-        document.getElementById('state-desc').innerText = resourceDesc[res];
-        
-        const statusEl = document.getElementById('dynamic-status');
-        if(res === 'low') {
-            statusEl.innerText = "РЕМОНТ";
-            statusEl.style.color = "var(--warning)";
-        } else if (res === 'norm') {
-            statusEl.innerText = "БАЛАНС";
-            statusEl.style.color = "var(--safe)";
-        } else {
-            statusEl.innerText = "ДРАЙВ";
-            statusEl.style.color = "var(--fire)";
-        }
-
-        renderTrainings(); save();
-    }
-
-    function renderTrainings() {
-        const container = document.getElementById('train-container');
-        container.innerHTML = resources[state.resource].map(name => {
-            const data = trainingLibrary[name];
-            return `<div class="training-item" onclick="openTrainModal('${name}')">
-                        <div class="train-info"><h4 class="serif">${name}</h4><p>${data.tags.join(' • ')}</p></div>
-                        <div style="color: var(--accent-gold); font-size: 24px;">→</div>
-                    </div>`;
-        }).join('');
-    }
-
-    function openTrainModal(name) {
-        document.getElementById('m-title').innerText = name;
-        document.getElementById('m-desc').innerText = trainingLibrary[name].d;
-        document.getElementById('trainModal').style.display = 'flex';
-    }
-
-    function confirmWorkout() {
-        state.workouts.push(Date.now());
-        recordWeight(state.weight); 
-        closeModal(); 
-        updateEvolution(); 
-        updateChart();
-        save();
-        alert("Практика засчитана! Внутри твоего тела только что произошли потрясающие изменения.");
-    }
-
-    function closeModal() { document.querySelectorAll('.modal').forEach(m => m.style.display = 'none'); }
-    
-    function save() { localStorage.setItem('resurs_body_evolution_v4', JSON.stringify(state)); }
-    function load() {
-        const saved = localStorage.getItem('resurs_body_evolution_v4');
-        if(saved) {
-            const parsed = JSON.parse(saved);
-            state = Object.assign(state, parsed);
-            
-            if(!state.workouts && state.sessions > 0) {
-                state.workouts = Array(state.sessions).fill(Date.now());
-            }
-
-            document.getElementById('w-val').value = state.weight;
-            document.getElementById('h-val').value = state.height;
-            document.getElementById('a-val').value = state.age;
-            
-            document.querySelectorAll('.cycle-tab').forEach((btn, idx) => {
-                if(idx === state.cycle - 1) btn.classList.add('active');
-                else btn.classList.remove('active');
+        try {
+            var response = await fetch(CLOUD_FUNCTION_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    full_name: name,
+                    email: email,
+                    phone: phone,
+                    promo: promo,
+                    product: currentProduct
+                })
             });
-            updateChart();
+
+            var data = await response.json();
+
+            if (data.confirmation_url) {
+                window.location.href = data.confirmation_url;
+            } else {
+                alert('Ошибка при создании платежа. Попробуйте позже.');
+                btn.innerText = 'Оплатить доступ';
+                btn.disabled = false;
+            }
+        } catch (error) {
+            console.error('Ошибка:', error);
+            alert('Не удалось связаться с сервером оплаты.');
+            btn.innerText = 'Оплатить доступ';
+            btn.disabled = false;
         }
     }
 
-    function resetData() {
-        if(confirm("Полностью обнулить эволюцию, воду и график?")) { 
-            localStorage.removeItem('resurs_body_evolution_v4'); 
-            location.reload(); 
+    function checkAccess() {
+        openPayment('Все включено');
+    }
+
+    // --- ЛОГИКА ИИ ЧАТА ---
+    const API_URL = 'https://d5d8t5f83og17j8u7ue7.y5sm01em.apigw.yandexcloud.net/ask';
+    let chatHistory = JSON.parse(sessionStorage.getItem('resurs_chat_history')) || [];
+
+    function parseButtons(text) {
+        const buttonRegex = /\[BUTTON:(.*?)\|(.*?)\]/g;
+        return text.replace(buttonRegex, function(match, btnText, btnLink) {
+            return `
+                <div style="margin-top: 15px; margin-bottom: 5px; text-align: left;">
+                    <a href="${btnLink.trim()}" target="_blank" style="
+                        display: inline-block; padding: 12px 24px; background: var(--accent-gold);
+                        color: #000; text-decoration: none; border-radius: 8px; font-family: var(--font-main);
+                        font-weight: 600; font-size: 13px; letter-spacing: 1px; text-transform: uppercase;
+                        box-shadow: 0 4px 15px rgba(197, 160, 89, 0.4); transition: all 0.3s ease; border: none; cursor: pointer;
+                    " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(197, 160, 89, 0.6)';" 
+                       onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(197, 160, 89, 0.4)';">
+                        ${btnText.trim()}
+                    </a>
+                </div>
+            `;
+        });
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        if (chatHistory.length > 0) {
+            document.getElementById('ls-ai-messages').innerHTML = '<div class="msg msg-assistant">Привет! Я ваш проводник в мире «Ресурса». Чем могу помочь? ✨</div>';
+            chatHistory.forEach(msg => {
+                const type = msg.role === 'user' ? 'user' : 'assistant';
+                renderMsg(msg.text, type);
+            });
+        }
+    });
+
+    function toggleChat() {
+        document.getElementById('ls-ai-chat').classList.toggle('chat-active');
+        if (document.getElementById('ls-ai-chat').classList.contains('chat-active')) {
+            document.getElementById('ls-ai-input').focus();
         }
     }
+
+    function renderMsg(text, type, id = null) {
+        const div = document.createElement('div');
+        div.className = `msg msg-${type}`;
+        if(id) div.id = id;
+        
+        if (type === 'user') {
+            div.textContent = text; 
+        } else {
+            div.innerHTML = parseButtons(text);
+        }
+        
+        const container = document.getElementById('ls-ai-messages');
+        container.appendChild(div);
+        container.scrollTop = container.scrollHeight;
+    }
+
+    async function sendMessage() {
+        const input = document.getElementById('ls-ai-input');
+        const text = input.value.trim();
+        if (!text) return;
+
+        renderMsg(text, 'user');
+        chatHistory.push({ role: 'user', text: text });
+        sessionStorage.setItem('resurs_chat_history', JSON.stringify(chatHistory));
+        
+        input.value = "";
+
+        const loaderId = 'loader-' + Date.now();
+        renderMsg('Сверяюсь с ресурсом...', 'assistant', loaderId);
+
+        try {
+            const res = await fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ messages: chatHistory }) 
+            });
+            const data = await res.json();
+            const loader = document.getElementById(loaderId);
+            if (loader) loader.remove();
+            
+            const answerText = data.answer || "Извините, не удалось получить ответ. Напишите нам в ВК.";
+            
+            chatHistory.push({ role: 'assistant', text: answerText });
+            sessionStorage.setItem('resurs_chat_history', JSON.stringify(chatHistory));
+            renderMsg(answerText, 'assistant');
+            
+        } catch (e) { 
+            const loader = document.getElementById(loaderId);
+            if (loader) loader.innerHTML = "Ошибка связи. <a href='https://vk.com/resurs_syktyvkar' style='color: var(--accent-gold);'>Напишите нам в ВК!</a>"; 
+        }
+    }
+
+    document.getElementById('ls-ai-input').onkeypress = (e) => { if(e.key === 'Enter') sendMessage(); };
 </script>
+
 </body>
 </html>
