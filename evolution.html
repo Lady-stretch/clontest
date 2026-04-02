@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+    <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.index.umd.js"></script>
+
     <script type="text/javascript">
         (function(m,e,t,r,i,k,a){
             m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -11,6 +13,7 @@
         ym(108177329, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
     </script>
     <noscript><div><img src="https://mc.yandex.ru/watch/108177329" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     
@@ -40,7 +43,6 @@
             --water-glow: rgba(59, 130, 246, 0.4);
         }
 
-        /* --- БРОНЕБОЙНЫЙ СБРОС (Исключает обрезку на iOS) --- */
         * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
         
         html, body { 
@@ -63,18 +65,15 @@
         h1, h2, h3, .serif { font-family: var(--font-serif); font-weight: 300; }
         a { text-decoration: none; color: inherit; transition: var(--transition); }
 
-        /* Контейнеры с min-width: 0 защищают от распирания сетки */
         .glass { background: var(--glass-bg); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border: var(--glass-border); border-radius: 24px; padding: 30px; box-shadow: 0 15px 35px rgba(0,0,0,0.2); width: 100%; min-width: 0; overflow: hidden; }
         .btn { display: inline-flex; align-items: center; justify-content: center; padding: 18px 20px; border: 1px solid var(--accent-gold); color: var(--accent-gold); text-transform: uppercase; font-size: 11px; letter-spacing: 4px; background: rgba(197, 160, 89, 0.05); cursor: pointer; transition: var(--transition); border-radius: 12px; font-weight: 600; width: 100%; text-align: center; white-space: normal; }
         .btn:hover { background: var(--accent-gold); color: #000; box-shadow: 0 10px 30px rgba(197, 160, 89, 0.3); transform: translateY(-2px); }
         .section-label { text-align: center; font-size: 10px; letter-spacing: 7px; text-transform: uppercase; color: var(--accent-gold); margin-bottom: 20px; display: block; }
 
-        /* HEADER */
         header { position: fixed; top: 0; left: 0; width: 100%; padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; z-index: 2000; transition: all 0.5s ease; background: transparent; }
         header.scrolled { background: rgba(10, 10, 25, 0.95) !important; backdrop-filter: blur(25px) !important; -webkit-backdrop-filter: blur(25px) !important; padding: 12px 5% !important; border-bottom: var(--glass-border); }
         .brand-name { font-family: var(--font-serif); font-size: 20px; letter-spacing: 10px; text-transform: uppercase; color: var(--accent-gold); font-weight: 600; position: absolute; left: 50%; transform: translateX(-50%); white-space: nowrap; }
 
-        /* LAYOUT */
         .page-container { width: 100%; max-width: 1200px; margin: 100px auto 60px; padding: 0 5%; display: flex; flex-direction: column; align-items: center; min-width: 0; }
         
         .onboarding-block { text-align: center; margin-bottom: 30px; padding: 30px; border-left: 3px solid var(--accent-gold); border-right: 3px solid var(--accent-gold); width: 100%; min-width: 0; }
@@ -82,10 +81,8 @@
         .onboarding-block p { font-size: 14px; opacity: 0.8; max-width: 800px; margin: 0 auto; line-height: 1.6; }
         .step-num { color: var(--accent-gold); font-weight: 800; margin-right: 5px; }
 
-        /* Использование flex-direction column вместо grid для мобильных */
         .app-wrapper { display: flex; flex-direction: column; gap: 30px; width: 100%; min-width: 0; }
 
-        /* ЭВОЛЮЦИЯ */
         .level-badge { width: 110px; height: 110px; margin: 0 auto 15px; background: radial-gradient(circle, rgba(197, 160, 89, 0.2) 0%, transparent 70%); display: flex; align-items: center; justify-content: center; font-size: 3.5rem; border-radius: 50%; position: relative; border: 1px solid rgba(197, 160, 89, 0.3); }
         .weekly-count { font-size: 11px; color: var(--accent-gold); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-top: 5px; display: inline-block; padding: 4px 12px; background: rgba(197,160,89,0.1); border-radius: 12px; }
         
@@ -102,7 +99,6 @@
         
         .science-note { font-size: 9px; opacity: 0.5; text-align: center; margin-top: 15px; line-height: 1.5; letter-spacing: 0.5px; padding: 0 10px; }
 
-        /* НАСТОЯЩИЙ ГРАФИК */
         .real-chart-container { width: 100%; margin-top: 35px; position: relative; height: auto; min-height: 140px; }
         .chart-svg { width: 100%; height: auto; max-height: 120px; overflow: visible; display: block; }
         .chart-grid-line { stroke: rgba(255,255,255,0.05); stroke-width: 1; }
@@ -111,29 +107,25 @@
         .chart-value-text { fill: #fff; font-size: 10px; font-family: var(--font-main); font-weight: 800; text-anchor: middle; opacity: 0.9; }
         .chart-dates { display: flex; justify-content: space-between; margin-top: 10px; font-size: 9px; opacity: 0.4; letter-spacing: 1px; }
 
-        /* ВВОД ДАННЫХ (Учитываем особенности Safari) */
         .input-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; width: 100%; min-width: 0; }
         .input-group label { font-size: 9px; text-transform: uppercase; letter-spacing: 2px; opacity: 0.5; }
         .input-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; width: 100%; min-width: 0; }
-        /* appearance: none убирает стандартные рамки iOS */
         .num-input { -webkit-appearance: none; appearance: none; width: 100%; min-width: 0; background: rgba(0,0,0,0.6); border: var(--glass-border); border-radius: 12px; padding: 15px 5px; color: #fff; font-size: 18px; text-align: center; font-family: var(--font-main); font-weight: 600; transition: 0.3s; }
         .num-input:focus { border-color: var(--accent-gold); background: rgba(197, 160, 89, 0.05); }
 
         .cycle-tabs { display: flex; gap: 5px; overflow-x: auto; padding-bottom: 5px; margin-bottom: 15px; width: 100%; -webkit-overflow-scrolling: touch; }
         .cycle-tabs::-webkit-scrollbar { display: none; }
-        .cycle-tab { flex: 1 0 auto; min-width: 80px; padding: 12px 10px; border-radius: 10px; border: var(--glass-border); background: transparent; color: var(--text-dim); font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; text-align: center; transition: 0.3s; }
+        .cycle-tab { flex: 1 0 auto; min-width: 75px; padding: 12px 10px; border-radius: 10px; border: var(--glass-border); background: transparent; color: var(--text-dim); font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; text-align: center; transition: 0.3s; }
         .cycle-tab.active { background: var(--accent-gold); color: #000; border-color: var(--accent-gold); }
 
         .state-desc-box { border-left: 3px solid var(--accent-gold); padding-left: 15px; margin-bottom: 25px; min-height: 40px; display: flex; align-items: center; }
         .state-desc-text { font-size: 12px; opacity: 0.8; font-style: italic; line-height: 1.5; transition: 0.3s; }
 
-        /* БИОМЕТРИЯ */
         .bio-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 5px; margin: 20px 0 5px; padding-top: 20px; border-top: 1px solid var(--glass-border); text-align: center; width: 100%; min-width: 0; }
         .bio-val { font-size: 24px; font-family: var(--font-serif); font-weight: 600; color: #fff; display: block; line-height: 1.2; transition: color 0.3s ease; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .bio-label { font-size: 9px; opacity: 0.5; text-transform: uppercase; letter-spacing: 2px; margin-top: 5px; display: block; }
         .disclaimer-text { font-size: 9px; opacity: 0.4; text-align: center; margin-bottom: 10px; letter-spacing: 1px; }
 
-        /* ТРЕКЕР ВОДЫ + МАРКЕТИНГОВЫЙ ПРИЗЫВ */
         .water-hint { font-size: 10px; color: var(--accent-gold); text-align: center; text-transform: uppercase; letter-spacing: 1px; margin: 25px 0 8px; font-weight: 600; }
         .water-widget { display: flex; align-items: center; gap: 20px; background: rgba(0,0,0,0.5); border-radius: 16px; padding: 20px; border-left: 3px solid var(--water); box-shadow: inset 0 0 20px rgba(59, 130, 246, 0.05); width: 100%; min-width: 0; flex-wrap: wrap; }
         .water-glass-container { width: 45px; height: 75px; border: 2px solid rgba(255,255,255,0.15); border-radius: 6px 6px 15px 15px; position: relative; overflow: hidden; cursor: pointer; flex-shrink: 0; background: rgba(255,255,255,0.02); }
@@ -141,12 +133,10 @@
         .water-info { flex: 1; min-width: 120px; }
         .water-btn { background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); color: var(--water); padding: 10px 15px; border-radius: 8px; font-size: 10px; text-transform: uppercase; cursor: pointer; transition: 0.3s; font-weight: 800; margin-top: 8px; letter-spacing: 1px; width: 100%; }
 
-        /* ВЕРДИКТ */
         .verdict-box { background: rgba(0,0,0,0.3); border-radius: 16px; padding: 20px; margin-top: 20px; border-left: 3px solid var(--accent-gold); display: flex; gap: 15px; width: 100%; min-width: 0; }
         .status-line { width: 4px; border-radius: 10px; flex-shrink: 0; background: var(--safe); transition: 0.5s; }
         .verdict-text { font-size: 13px; color: #ccc; line-height: 1.5; word-wrap: break-word; }
 
-        /* ПРОДАЮЩАЯ КАРТОЧКА БИБЛИОТЕКИ */
         .club-card { border: 1px solid var(--glass-border); border-radius: 16px; overflow: hidden; margin-top: 30px; background: rgba(0,0,0,0.4); display: flex; flex-direction: column; width: 100%; min-width: 0; }
         .club-card-img { width: 100%; aspect-ratio: 16/9; position: relative; }
         .club-card-img img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; opacity: 0.7; filter: grayscale(10%); transition: 0.5s; display: block; }
@@ -161,9 +151,6 @@
         .modal { display: none; position: fixed; inset: 0; z-index: 3000; background: rgba(5, 5, 12, 0.95); backdrop-filter: blur(10px); align-items: center; justify-content: center; padding: 20px; }
         .modal-content { width: 100%; max-width: 450px; position: relative; }
 
-        /* =========================================
-           ОКОНЧАТЕЛЬНАЯ МОБИЛЬНАЯ АДАПТАЦИЯ
-           ========================================= */
         @media (min-width: 1024px) {
             .app-wrapper { flex-direction: row; display: grid; grid-template-columns: 380px 1fr; align-items: start; }
             .profile-panel { position: sticky; top: 100px; }
@@ -176,27 +163,20 @@
             .glass { padding: 20px 15px; border-radius: 20px; } 
             header { padding: 15px 10px !important; }
             .brand-name { font-size: 16px; letter-spacing: 6px; }
-            
             .onboarding-block h2 { font-size: 22px; }
             .onboarding-block p { font-size: 12px; text-align: left; }
-
             .input-row { gap: 6px; }
             .num-input { padding: 12px 2px; font-size: 16px; }
             .input-group label { font-size: 8px; letter-spacing: 1px; }
-
             .bio-stats { gap: 2px; }
             .bio-val { font-size: 18px; } 
             .bio-label { font-size: 8px; }
-
             .stats-grid { gap: 10px; }
             .stat-item { padding: 15px 8px; }
             .stat-item b { font-size: 1.2rem; }
-            
             .science-note { font-size: 8.5px; text-align: left; margin-top: 10px; }
-            
             .water-hint { font-size: 9px; margin-top: 15px; }
             .water-widget { padding: 15px; gap: 15px; flex-wrap: nowrap; }
-            
             .train-info h4 { font-size: 18px; }
             .state-desc-text { font-size: 11px; }
             .verdict-text { font-size: 12px; }
@@ -282,10 +262,10 @@
                 <div class="input-group">
                     <label>Фаза женского цикла</label>
                     <div class="cycle-tabs">
-                        <button class="cycle-tab active" onclick="setCycle(1, this)">Менструация</button>
-                        <button class="cycle-tab" onclick="setCycle(2, this)">Фолликулярная</button>
-                        <button class="cycle-tab" onclick="setCycle(3, this)">Овуляция</button>
-                        <button class="cycle-tab" onclick="setCycle(4, this)">Лютеиновая</button>
+                        <button class="cycle-tab active" onclick="setCycle(1, this)">1. Месячные</button>
+                        <button class="cycle-tab" onclick="setCycle(2, this)">2. Энергия</button>
+                        <button class="cycle-tab" onclick="setCycle(3, this)">3. Овуляция</button>
+                        <button class="cycle-tab" onclick="setCycle(4, this)">4. ПМС / Забота</button>
                     </div>
                 </div>
 
@@ -389,15 +369,15 @@
     };
 
     const trainingLibrary = {
-        "Пилатес": { d: "Укрепление мышечного корсета. Идеально для осанки и здоровья позвоночника.", tags: ["Спина", "Корсет"] },
-        "Стретчинг": { d: "Классическая растяжка. Улучшает кровоток, снимает мышечное напряжение.", tags: ["Гибкость", "Релакс"] },
-        "Аэростретчинг": { d: "Растяжка в гамаках. Декомпрессия позвоночника и чувство невесомости.", tags: ["Гамаки", "Позвоночник"] },
-        "Йога релакс": { d: "Мягкая практика с акцентом на дыхание. Эффективно снижает кортизол.", tags: ["Дыхание", "Антистресс"] },
-        "Здоровая спина": { d: "Специализированный комплекс для шеи и поясницы. База вашего здоровья.", tags: ["Осанка", "Здоровье"] },
-        "МФР": { d: "Миофасциальный релиз с роллами. Запускает лимфу и разбивает триггеры.", tags: ["Массаж", "Лимфодренаж"] },
-        "Ягодицы пресс": { d: "Целевая работа. Улучшает кровоснабжение малого таза.", tags: ["Тонус", "Формы"] },
-        "Круговая тренировка": { d: "Интенсивный тренинг. Разгон метаболизма и выносливости.", tags: ["Жиросжигание", "Выносливость"] },
-        "Табата": { d: "Тренирует сердце, быстро сжигает калории по протоколу 20/10.", tags: ["Интенсив", "Сердце"] }
+        "Пилатес": { d: "Укрепление мышечного корсета и глубоких мышц тазового дна. Идеально для женского здоровья и красивой осанки.", tags: ["Спина", "Тазовое дно"] },
+        "Стретчинг": { d: "Классическая растяжка. Улучшает кровоток, снимает мышечное напряжение и возвращает пластику.", tags: ["Гибкость", "Релакс"] },
+        "Аэростретчинг": { d: "Растяжка в гамаках. Декомпрессия позвоночника, чувство невесомости и свобода суставов.", tags: ["Гамаки", "Позвоночник"] },
+        "Йога релакс": { d: "Мягкая практика с акцентом на дыхание. Эффективно снижает кортизол и успокаивает нервную систему.", tags: ["Дыхание", "Антистресс"] },
+        "Здоровая спина": { d: "Специализированный комплекс для шеи и поясницы. База вашего здоровья и профилактика грыж.", tags: ["Осанка", "Здоровье"] },
+        "МФР": { d: "Миофасциальный релиз с роллами. Запускает лимфу, убирает отеки и разбивает болевые триггеры.", tags: ["Массаж", "Лимфодренаж"] },
+        "Ягодицы пресс": { d: "Целевая работа. Улучшает кровоснабжение малого таза, формирует рельеф и укрепляет кор.", tags: ["Тонус", "Формы"] },
+        "Круговая тренировка": { d: "Интенсивный тренинг. Разгон метаболизма, жиросжигание и развитие общей выносливости.", tags: ["Жиросжигание", "Выносливость"] },
+        "Табата": { d: "Тренирует сердце, быстро сжигает калории по протоколу 20/10. Мощный драйв.", tags: ["Интенсив", "Сердце"] }
     };
 
     const resources = {
@@ -424,6 +404,9 @@
     ];
 
     window.onload = () => {
+        // ИНИЦИАЛИЗАЦИЯ VK BRIDGE
+        vkBridge.send('VKWebAppInit');
+
         load();
         checkDailyWaterReset();
         if (state.history.length === 0) recordWeight(state.weight);
@@ -496,10 +479,10 @@
         const vLine = document.getElementById('v-line');
         let advice = "";
         
-        if (state.cycle === 1) advice = "Энергия минимальна. Твоя задача сегодня — бережное вытяжение фасций и снятие спазмов.";
-        else if (state.cycle === 2) advice = "Эстроген на подъеме! Идеальное окно для интенсивных тренировок и формирования мышечного рельефа.";
+        if (state.cycle === 1) advice = "Энергия минимальна. Твоя задача сегодня — бережное вытяжение фасций, снятие спазмов и расслабление тазового дна.";
+        else if (state.cycle === 2) advice = "Эстроген на подъеме! Идеальное окно для интенсивных тренировок, формирования рельефа и активации центра.";
         else if (state.cycle === 3) advice = "Пик ресурса. Тело готово к максимальным нагрузкам. Бери максимум от занятий.";
-        else if (state.cycle === 4) advice = "Возможна задержка жидкости. Подключаем лимфодренажный МФР и перевернутые позы.";
+        else if (state.cycle === 4) advice = "Возможна задержка жидкости. Подключаем лимфодренажный МФР и мягкую работу с мышцами тазового дна.";
 
         let bmiVerdict = "";
         if (bmi < 18.5) {
@@ -538,9 +521,11 @@
         let hoursSaved = Math.round(totalSessions * 0.35);
         document.getElementById('doc-save').innerText = hoursSaved + ' часов';
         
-        document.getElementById('stress-save').innerText = Math.min(totalSessions * 5, 95) + '%';
+        // Разные формулы для стресса и либидо, чтобы динамика выглядела живой
+        const stressRelief = Math.min(totalSessions * 6, 95);
+        document.getElementById('stress-save').innerText = stressRelief + '%';
         
-        const libidoBoost = Math.min(totalSessions * 5, 200);
+        const libidoBoost = Math.min((totalSessions * 4) + Math.floor(totalSessions / 3), 200);
         const libEl = document.getElementById('libido-level');
         if (libidoBoost === 0) { libEl.innerText = "База"; libEl.className = ""; }
         else if (libidoBoost >= 50) { libEl.innerText = `+${libidoBoost}% 🔥`; libEl.className = "fire-text"; }
@@ -661,7 +646,14 @@
         updateEvolution(); 
         updateChart();
         save();
-        alert("Практика засчитана! Твое тело делает колоссальную работу прямо сейчас.");
+        
+        // Плавный скролл вверх для демонстрации прогресса
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        
+        // Вызов алерта с небольшой задержкой, чтобы скролл успел начаться
+        setTimeout(() => {
+            alert("Практика засчитана! Ваша шкала эволюции обновилась. ✨");
+        }, 300);
     }
 
     function closeModal() { document.querySelectorAll('.modal').forEach(m => m.style.display = 'none'); }
