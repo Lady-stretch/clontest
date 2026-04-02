@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108177329', 'ym');
+        ym(108177329, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/108177329" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>РЕСУРС ТВОЕГО ТЕЛА | Тест на биологический возраст</title>
+    <link rel="icon" type="image/png" href="logo_header_final.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Manrope:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-deep: #080814; 
+            --glass-bg: rgba(255, 255, 255, 0.02); 
+            --glass-border: 1px solid rgba(255, 255, 255, 0.08); 
+            --accent-gold: #C5A059; 
+            --text-main: #F4F4F9;
+            --font-main: 'Manrope', sans-serif;
+            --font-serif: 'Cormorant Garamond', serif;
+            --transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+        
+        body {
+            background: var(--bg-deep);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            overflow-x: hidden;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+        }
+
+        .serif { font-family: var(--font-serif); font-weight: 300; }
+
+        /* --- HEADER (Единый стиль) --- */
+        header { 
+            position: fixed; top: 0; width: 100%; padding: 20px 5%; 
+            display: grid; grid-template-columns: 1fr auto 1fr; 
+            align-items: center; z-index: 2000; 
+            background: rgba(8, 8, 20, 0.2); backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .brand-name { font-family: var(--font-serif); font-size: 20px; letter-spacing: 12px; text-transform: uppercase; color: #fff; text-align: center; margin-right: -12px;}
+        .back-link { font-size: 10px; text-transform: uppercase; letter-spacing: 3px; color: rgba(255,255,255,0.5); display: flex; align-items: center; gap: 8px; }
+
+        /* --- QUIZ CONTAINER --- */
+        .quiz-wrapper {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 20px 60px;
+        }
+
+        .quiz-card {
+            width: 100%;
+            max-width: 600px;
+            padding: 50px 40px;
+            border-radius: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass { 
+            background: var(--glass-bg); 
+            backdrop-filter: blur(25px) saturate(180%); 
+            -webkit-backdrop-filter: blur(25px) saturate(180%); 
+            border: var(--glass-border); 
+        }
+
+        .progress-bar {
+            position: absolute; top: 0; left: 0; height: 2px;
+            background: var(--accent-gold);
+            width: 0%; transition: width 0.5s ease;
+        }
+
+        .step { display: none; animation: fadeIn 0.8s ease forwards; }
+        .step.active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .quiz-image {
+            width: 120px; height: 120px;
+            margin: 0 auto 30px;
+            border-radius: 50%;
+            border: 1px solid var(--accent-gold);
+            padding: 5px;
+            object-fit: cover;
+            opacity: 0.8;
+        }
+
+        .question-title { font-size: 28px; margin-bottom: 15px; color: var(--accent-gold); }
+        .question-desc { font-size: 15px; opacity: 0.6; margin-bottom: 35px; line-height: 1.6; }
+
+        /* --- OPTIONS --- */
+        .options-list { display: flex; flex-direction: column; gap: 15px; }
+        .option-btn {
+            padding: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.03);
+            color: var(--text-main);
+            border-radius: 15px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 14px;
+            text-align: left;
+            line-height: 1.4;
+        }
+        .option-btn:hover {
+            border-color: var(--accent-gold);
+            background: rgba(197, 160, 89, 0.05);
+            transform: translateX(5px);
+        }
+
+        .btn-gold {
+            display: inline-block;
+            padding: 18px 40px;
+            background: var(--accent-gold);
+            color: #000;
+            border-radius: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 12px;
+            margin-top: 30px;
+            transition: var(--transition);
+        }
+        .btn-gold:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(197, 160, 89, 0.3); }
+
+        @media (max-width: 600px) {
+            .quiz-card { padding: 40px 25px; }
+            .question-title { font-size: 24px; }
+            .brand-name { font-size: 14px; letter-spacing: 6px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html" class="back-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" style="fill: currentColor;"><path d="M12.707 19.707L5.414 12.414 12.707 5.121 11.293 3.707 2.586 12.414 11.293 21.121z"/></svg>
+    </a>
+    <div class="brand-name">РЕСУРС</div>
+    <div style="display: flex; justify-content: flex-end;">
+        <img src="logo_header_final.png" style="height: 30px; opacity: 0.8;">
+    </div>
+</header>
+
+<div class="quiz-wrapper">
+    <div class="quiz-card glass">
+        <div class="progress-bar" id="progress"></div>
+
+        <div class="step active" id="step-start">
+            <img src="logo_header_final.png" class="quiz-image" style="border:none; opacity: 1;">
+            <h1 class="serif question-title">Ресурс твоего тела</h1>
+            <p class="question-desc">Пройдите 50-секундный аудит и узнайте биологический возраст вашего позвоночника.</p>
+            <button class="btn-gold" onclick="nextStep(1)">Начать аудит</button>
+        </div>
+
+        <div class="step" id="step-1">
+            <h2 class="serif question-title">01. Позвоночник</h2>
+            <p class="question-desc">Встаньте прямо и наклонитесь вперед. Как глубоко вы входите в это состояние?</p>
+            <div class="options-list">
+                <button class="option-btn" onclick="addPoints(5)">Ладони полностью на полу. Тело послушно.</button>
+                <button class="option-btn" onclick="addPoints(3)">Касаюсь пальцами, но чувствую натяжение.</button>
+                <button class="option-btn" onclick="addPoints(1)">Едва дохожу до голени. Тело «жесткое».</button>
+            </div>
+        </div>
+
+        <div class="step" id="step-2">
+            <h2 class="serif question-title">02. Плечевой пояс</h2>
+            <p class="question-desc">Сцепите руки в замок за спиной (одна сверху, другая снизу). Ваш результат?</p>
+            <div class="options-list">
+                <button class="option-btn" onclick="addPoints(5)">Легко смыкаю замок с обеих сторон.</button>
+                <button class="option-btn" onclick="addPoints(3)">Только касаюсь пальцами с одной стороны.</button>
+                <button class="option-btn" onclick="addPoints(1)">Руки далеко друг от друга.</button>
+            </div>
+        </div>
+
+        <div class="step" id="step-3">
+            <h2 class="serif question-title">03. Баланс</h2>
+            <p class="question-desc">Встаньте на одну ногу и закройте глаза. Сколько секунд вы удерживаете центр?</p>
+            <div class="options-list">
+                <button class="option-btn" onclick="addPoints(5)">Более 15 секунд. Полный контроль.</button>
+                <button class="option-btn" onclick="addPoints(3)">От 5 до 10 секунд. Есть неустойчивость.</button>
+                <button class="option-btn" onclick="addPoints(1)">Теряю равновесие почти сразу.</button>
+            </div>
+        </div>
+
+        <div class="step" id="step-4">
+            <h2 class="serif question-title">04. Энергия</h2>
+            <p class="question-desc">Ваше состояние в первые 15 минут после пробуждения?</p>
+            <div class="options-list">
+                <button class="option-btn" onclick="addPoints(5)">Легкость и заряд энергии сразу.</button>
+                <button class="option-btn" onclick="addPoints(3)">Нужно время, чтобы «расходиться».</button>
+                <button class="option-btn" onclick="addPoints(1)">Разбитость и зажатость во всем теле.</button>
+            </div>
+        </div>
+
+        <div class="step" id="step-final">
+            <h2 class="serif question-title">Анализ завершен</h2>
+            <p class="question-desc">Ваш персональный отчет и рекомендации по восстановлению ресурса готовы.</p>
+            <div id="result-text" style="margin-bottom: 20px; font-style: italic; opacity: 0.9;"></div>
+            <button class="btn-gold" id="vk-link">Получить разбор в ВК ✨</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    let currentStep = 0;
+    let totalPoints = 0;
+    const steps = document.querySelectorAll('.step');
+    const progress = document.getElementById('progress');
+
+    function nextStep(stepIdx) {
+        steps.forEach(s => s.classList.remove('active'));
+        steps[stepIdx].classList.add('active');
+        currentStep = stepIdx;
+        
+        // Обновляем прогресс-бар
+        const percent = (stepIdx / (steps.length - 1)) * 100;
+        progress.style.width = percent + '%';
+
+        if (stepIdx === steps.length - 1) {
+            showFinal();
+        }
+    }
+
+    function addPoints(pts) {
+        totalPoints += pts;
+        nextStep(currentStep + 1);
+    }
+
+    function showFinal() {
+        let verdict = "";
+        if (totalPoints >= 16) verdict = "Ваш био-возраст: 18-25 лет. Ресурс на пике!";
+        else if (totalPoints >= 10) verdict = "Ваш био-возраст: 35-40 лет. Нужна подзарядка.";
+        else verdict = "Критический дефицит ресурса. Требуется восстановление.";
+
+        document.getElementById('result-text').innerText = verdict;
+        
+        // Ссылка в ВК с параметром результата
+        const vkBtn = document.getElementById('vk-link');
+        vkBtn.onclick = () => {
+            window.location.href = `https://vk.com/im?sel=-221142875&ref=quiz_${totalPoints}`;
+        };
+    }
+</script>
+
+</body>
+</html>
