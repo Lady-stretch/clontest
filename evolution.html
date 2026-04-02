@@ -40,8 +40,10 @@
             --water-glow: rgba(59, 130, 246, 0.4);
         }
 
+        /* --- GLOBAL RESET --- */
         * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
-        html, body { overflow-x: hidden !important; width: 100%; position: relative; scroll-behavior: smooth; min-height: 100vh; }
+        /* Убрали 100vw, чтобы не было горизонтального скролла */
+        html, body { width: 100%; position: relative; overflow-x: hidden; scroll-behavior: smooth; min-height: 100vh; }
 
         body { 
             color: var(--text-main);
@@ -50,15 +52,15 @@
         }
 
         /* ВИДЕО ФОН ВСЕГО ПРИЛОЖЕНИЯ */
-        .bg-video-wrapper { position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: -2; overflow: hidden; }
+        .bg-video-wrapper { position: fixed; inset: 0; width: 100%; height: 100vh; z-index: -2; overflow: hidden; background: var(--bg-deep); }
         .bg-video { width: 100%; height: 100%; object-fit: cover; opacity: 0.3; filter: grayscale(30%) contrast(1.1); }
-        .bg-overlay { position: fixed; inset: 0; background: var(--bg-deep); opacity: 0.92; z-index: -1; } /* Усилено затемнение */
+        .bg-overlay { position: fixed; inset: 0; background: var(--bg-deep); opacity: 0.92; z-index: -1; }
         .bg-noise { position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E"); z-index: -1; pointer-events: none; }
 
         h1, h2, h3, .serif { font-family: var(--font-serif); font-weight: 300; }
         a { text-decoration: none; color: inherit; transition: var(--transition); }
 
-        .glass { background: var(--glass-bg); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border: var(--glass-border); border-radius: 24px; padding: 30px; box-shadow: 0 15px 35px rgba(0,0,0,0.2); }
+        .glass { background: var(--glass-bg); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border: var(--glass-border); border-radius: 24px; padding: 30px; box-shadow: 0 15px 35px rgba(0,0,0,0.2); width: 100%; }
         .btn { display: inline-flex; align-items: center; justify-content: center; padding: 18px 45px; border: 1px solid var(--accent-gold); color: var(--accent-gold); text-transform: uppercase; font-size: 11px; letter-spacing: 4px; background: rgba(197, 160, 89, 0.05); cursor: pointer; transition: var(--transition); border-radius: 12px; font-weight: 600; width: 100%; text-align: center; }
         .btn:hover { background: var(--accent-gold); color: #000; box-shadow: 0 10px 30px rgba(197, 160, 89, 0.3); transform: translateY(-2px); }
         .section-label { text-align: center; font-size: 10px; letter-spacing: 7px; text-transform: uppercase; color: var(--accent-gold); margin-bottom: 20px; display: block; }
@@ -69,20 +71,20 @@
         .brand-name { font-family: var(--font-serif); font-size: 20px; letter-spacing: 10px; text-transform: uppercase; color: var(--accent-gold); font-weight: 600; position: absolute; left: 50%; transform: translateX(-50%); }
 
         /* LAYOUT */
-        .page-container { max-width: 1200px; margin: 100px auto 60px; padding: 0 5%; }
+        .page-container { max-width: 1200px; margin: 100px auto 60px; padding: 0 5%; width: 100%; }
         
         .onboarding-block { text-align: center; margin-bottom: 30px; padding: 30px; border-left: 3px solid var(--accent-gold); border-right: 3px solid var(--accent-gold); }
         .onboarding-block h2 { font-size: 28px; color: var(--accent-gold); margin-bottom: 15px; }
         .onboarding-block p { font-size: 14px; opacity: 0.8; max-width: 800px; margin: 0 auto; line-height: 1.6; }
         .step-num { color: var(--accent-gold); font-weight: 800; margin-right: 5px; }
 
-        .app-wrapper { display: grid; gap: 30px; }
+        .app-wrapper { display: grid; gap: 30px; width: 100%; }
 
         /* ЭВОЛЮЦИЯ */
         .level-badge { width: 110px; height: 110px; margin: 0 auto 15px; background: radial-gradient(circle, rgba(197, 160, 89, 0.2) 0%, transparent 70%); display: flex; align-items: center; justify-content: center; font-size: 3.5rem; border-radius: 50%; position: relative; border: 1px solid rgba(197, 160, 89, 0.3); }
         .weekly-count { font-size: 11px; color: var(--accent-gold); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-top: 5px; display: inline-block; padding: 4px 12px; background: rgba(197,160,89,0.1); border-radius: 12px; }
         
-        /* МОТИВАЦИЯ (НОВОЕ) */
+        /* МОТИВАЦИЯ */
         .motivation-box { background: rgba(197, 160, 89, 0.05); border-left: 3px solid var(--accent-gold); padding: 20px; border-radius: 0 16px 16px 0; margin-top: 25px; text-align: left; }
         .motivation-box h4 { color: var(--accent-gold); font-size: 18px; margin-bottom: 8px; }
         .motivation-box p { font-size: 13px; opacity: 0.85; line-height: 1.5; font-style: italic; }
@@ -104,13 +106,13 @@
         .chart-dates { display: flex; justify-content: space-between; margin-top: 10px; font-size: 9px; opacity: 0.4; letter-spacing: 1px; }
 
         /* ВВОД ДАННЫХ */
-        .input-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+        .input-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; width: 100%; }
         .input-group label { font-size: 9px; text-transform: uppercase; letter-spacing: 2px; opacity: 0.5; }
-        .input-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+        .input-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; width: 100%; }
         .num-input { width: 100%; background: rgba(0,0,0,0.6); border: var(--glass-border); border-radius: 12px; padding: 15px 5px; color: #fff; font-size: 18px; text-align: center; font-family: var(--font-main); font-weight: 600; transition: 0.3s; }
         .num-input:focus { border-color: var(--accent-gold); background: rgba(197, 160, 89, 0.05); }
 
-        .cycle-tabs { display: flex; gap: 5px; overflow-x: auto; padding-bottom: 5px; margin-bottom: 15px; scrollbar-width: none; }
+        .cycle-tabs { display: flex; gap: 5px; overflow-x: auto; padding-bottom: 5px; margin-bottom: 15px; scrollbar-width: none; width: 100%; }
         .cycle-tabs::-webkit-scrollbar { display: none; }
         .cycle-tab { flex: 1; min-width: 80px; padding: 12px 10px; border-radius: 10px; border: var(--glass-border); background: transparent; color: var(--text-dim); font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; text-align: center; transition: 0.3s; }
         .cycle-tab.active { background: var(--accent-gold); color: #000; border-color: var(--accent-gold); }
@@ -119,13 +121,13 @@
         .state-desc-box { border-left: 3px solid var(--accent-gold); padding-left: 15px; margin-bottom: 25px; min-height: 40px; display: flex; align-items: center; }
         .state-desc-text { font-size: 12px; opacity: 0.8; font-style: italic; line-height: 1.5; transition: 0.3s; }
 
-        /* БИОМЕТРИЯ */
-        .bio-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 20px 0; padding-top: 20px; border-top: 1px solid var(--glass-border); text-align: center; }
-        .bio-val { font-size: 24px; font-family: var(--font-serif); font-weight: 600; color: #fff; display: block; line-height: 1.2; }
+        /* БИОМЕТРИЯ И ЖИВОЙ СТАТУС */
+        .bio-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 20px 0; padding-top: 20px; border-top: 1px solid var(--glass-border); text-align: center; width: 100%; }
+        .bio-val { font-size: 24px; font-family: var(--font-serif); font-weight: 600; color: #fff; display: block; line-height: 1.2; transition: color 0.3s ease; }
         .bio-label { font-size: 9px; opacity: 0.5; text-transform: uppercase; letter-spacing: 2px; margin-top: 5px; display: block; }
 
         /* ТРЕКЕР ВОДЫ */
-        .water-widget { display: flex; align-items: center; gap: 20px; background: rgba(0,0,0,0.5); border-radius: 16px; padding: 20px; margin-top: 15px; border-left: 3px solid var(--water); box-shadow: inset 0 0 20px rgba(59, 130, 246, 0.05); }
+        .water-widget { display: flex; align-items: center; gap: 20px; background: rgba(0,0,0,0.5); border-radius: 16px; padding: 20px; margin-top: 15px; border-left: 3px solid var(--water); box-shadow: inset 0 0 20px rgba(59, 130, 246, 0.05); width: 100%; }
         .water-glass-container { width: 45px; height: 75px; border: 2px solid rgba(255,255,255,0.15); border-radius: 6px 6px 15px 15px; position: relative; overflow: hidden; cursor: pointer; flex-shrink: 0; background: rgba(255,255,255,0.02); }
         .water-fill { position: absolute; bottom: 0; left: 0; width: 100%; height: 0%; background: linear-gradient(to top, #1d4ed8, var(--water)); transition: height 0.8s cubic-bezier(0.34, 1.56, 0.64, 1); box-shadow: 0 -5px 15px var(--water-glow); }
         .water-info { flex-grow: 1; }
@@ -133,8 +135,8 @@
 
         /* КАРТОЧКА БИБЛИОТЕКА */
         .video-block { position: relative; border-radius: 16px; overflow: hidden; margin-top: 30px; border: var(--glass-border); aspect-ratio: 16/9; }
-        .video-block img { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; transition: 0.5s; filter: grayscale(20%); }
-        .video-block:hover img { opacity: 0.8; transform: scale(1.03); }
+        .video-block img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; transition: 0.5s; filter: grayscale(10%); }
+        .video-block:hover img { opacity: 0.9; transform: scale(1.03); }
         .video-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); display: flex; flex-direction: column; justify-content: flex-end; padding: 25px; pointer-events: none; }
 
         /* ТРЕНИРОВКИ */
@@ -147,7 +149,7 @@
         .modal-content { width: 100%; max-width: 450px; position: relative; }
 
         /* =========================================
-           МОБИЛЬНАЯ АДАПТАЦИЯ (ЖЕСТКИЕ ПРАВИЛА)
+           ЖЕСТКАЯ МОБИЛЬНАЯ АДАПТАЦИЯ
            ========================================= */
         @media (min-width: 1024px) {
             .app-wrapper { grid-template-columns: 380px 1fr; align-items: start; }
@@ -155,7 +157,7 @@
         }
 
         @media (max-width: 768px) {
-            .page-container { margin: 80px auto 40px; padding: 0 10px; }
+            .page-container { margin: 80px auto 40px; padding: 0 15px; }
             .glass { padding: 20px 15px; border-radius: 20px; } 
             .brand-name { font-size: 16px; letter-spacing: 6px; }
             header { padding: 15px !important; }
@@ -163,12 +165,12 @@
             .onboarding-block h2 { font-size: 22px; }
             .onboarding-block p { font-size: 12px; text-align: left; }
 
-            .input-row { gap: 8px; }
-            .num-input { padding: 12px 2px; font-size: 16px; border-radius: 8px; }
+            .input-row { gap: 6px; }
+            .num-input { padding: 10px 2px; font-size: 15px; border-radius: 8px; }
             .input-group label { font-size: 8px; letter-spacing: 1px; }
 
             .bio-stats { gap: 5px; }
-            .bio-val { font-size: 20px; }
+            .bio-val { font-size: 17px; } /* Уменьшили шрифт, чтобы ИМТ и ККАЛ точно влезли */
             .bio-label { font-size: 8px; letter-spacing: 1px; }
 
             .stats-grid { gap: 10px; }
@@ -186,7 +188,7 @@
 
 <div class="bg-video-wrapper">
     <video autoplay muted loop playsinline class="bg-video" poster="hero.jpg">
-        <source src="hero.mp4" type="video/mp4">
+        <source src="hero-video.mp4" type="video/mp4">
     </video>
     <div class="bg-overlay"></div>
     <div class="bg-noise"></div>
@@ -203,7 +205,7 @@
 <div class="page-container">
     
     <div class="glass onboarding-block">
-        <h2 class="serif">Система Body Intelligence</h2>
+        <h2 class="serif">Система эволюции тела</h2>
         <p>
             Добро пожаловать в ваш цифровой дневник состояния. <br>
             <span class="step-num">1.</span> Укажите свои текущие параметры и фазу цикла, чтобы узнать ИМТ, норму калорий и воды на день.<br>
@@ -287,8 +289,8 @@
                         <span class="bio-label">Ккал / база</span>
                     </div>
                     <div>
-                        <span class="bio-val" style="color:var(--safe)">ОК</span>
-                        <span class="bio-label">Статус</span>
+                        <span class="bio-val" id="dynamic-status" style="color:var(--safe)">БАЛАНС</span>
+                        <span class="bio-label">Режим тела</span>
                     </div>
                 </div>
 
@@ -309,21 +311,21 @@
                 <p style="font-size: 12px; opacity: 0.6; margin-bottom: 10px; text-align: center;">Оцените ваше текущее состояние:</p>
                 
                 <div class="cycle-tabs" style="margin-bottom: 15px;">
-                    <button class="cycle-tab active" id="res-low" onclick="setResource('low')">Усталость</button>
-                    <button class="cycle-tab" id="res-norm" onclick="setResource('norm')">В тонусе</button>
+                    <button class="cycle-tab" id="res-low" onclick="setResource('low')">Усталость</button>
+                    <button class="cycle-tab active" id="res-norm" onclick="setResource('norm')">В тонусе</button>
                     <button class="cycle-tab" id="res-peak" onclick="setResource('peak')">Заряжена</button>
                 </div>
 
                 <div class="state-desc-box">
                     <div class="state-desc-text" id="state-desc">
-                        Мягкие восстановительные практики без осевой нагрузки. Выбирайте их при эмоциональном выгорании или физической тяжести.
+                        Базовые сбалансированные тренировки для поддержания мышечного тонуса, красивой осанки и хорошего самочувствия.
                     </div>
                 </div>
 
                 <div id="train-container"></div>
 
                 <div class="video-block">
-                    <img src="library.jpg" alt="Библиотека тренировок">
+                    <img src="active-drive.png" alt="Библиотека тренировок">
                     <div class="video-overlay">
                         <h3 class="serif" style="font-size: 28px; color: #fff; margin-bottom: 5px;">Онлайн-Клуб</h3>
                         <p style="font-size: 11px; opacity: 0.8; letter-spacing: 1px; text-transform: uppercase;">Доступ к библиотеке тренировок</p>
@@ -422,7 +424,7 @@
         document.getElementById('water-fill-visual').style.height = percent + '%';
     }
 
-    // --- ВЕС ---
+    // --- ВЕС И ИМТ ---
     function recordWeight(w) {
         const now = new Date().getTime();
         const todayStr = new Date().toDateString();
@@ -458,24 +460,21 @@
     function getMotivationalText(sessions) {
         if (sessions === 0) return "Твой первый шаг — самый важный. Сегодня ты закладываешь фундамент новых нейронных связей и привычки заботиться о себе.";
         if (sessions < 4) return "Запускается нейропластичность. Улучшается микроциркуляция крови и ток лимфы. Тело начинает вспоминать, что движение — это жизнь.";
-        if (sessions < 9) return "Ценность этих тренировок колоссальна: снизился базовый уровень кортизола, укрепляется мышечный корсет. Ты уже меняешь архитектуру тела, даже если зеркало пока молчит. Не обесценивай этот этап!";
+        if (sessions < 9) return "Ценность этих тренировок колоссальна: снизился базовый уровень кортизола, укрепляется мышечный корсет. Ты меняешь архитектуру тела!";
         if (sessions < 15) return "Формируется устойчивый мышечный тонус. Метаболизм работает на новых, более высоких оборотах. Твой ресурсный объем заметно вырос.";
-        if (sessions < 30) return "Тело адаптировалось. Теперь каждое движение приносит дофамин. Ты инвестировала в свое здоровье десятки часов, и это твой самый надежный актив.";
+        if (sessions < 30) return "Тело адаптировалось. Теперь каждое движение приносит дофамин. Ты инвестировала в свое здоровье десятки часов, и это твой актив.";
         return "Дисциплина стала твоей суперсилой. Твое тело — это отлаженный механизм, полный энергии и ресурса. Продолжай вдохновлять!";
     }
 
     // --- ЭВОЛЮЦИЯ И ТРЕНИРОВКИ ---
     function updateEvolution() {
         const totalSessions = state.workouts.length;
-        
-        // Считаем тренировки за последние 7 дней
         const oneWeekAgo = Date.now() - (7 * 24 * 60 * 60 * 1000);
         const weeklyCount = state.workouts.filter(ts => ts > oneWeekAgo).length;
 
         document.getElementById('lvl-count').innerText = `Всего тренировок: ${totalSessions}`;
         document.getElementById('weekly-count').innerText = `На этой неделе: ${weeklyCount}`;
         
-        // Обновляем мотивацию
         document.getElementById('motivation-text').innerText = getMotivationalText(totalSessions);
         
         document.getElementById('doc-save').innerText = Math.round(totalSessions * 3.5) + ' часов';
@@ -505,7 +504,6 @@
         
         pointsGroup.innerHTML = ''; datesEl.innerHTML = ''; gridGroup.innerHTML = '';
         
-        // Сетка
         for(let i=0; i<=2; i++) {
             let gy = i * (svgH/2);
             gridGroup.innerHTML += `<line x1="0" y1="${gy}" x2="${svgW}" y2="${gy}" class="chart-grid-line" />`;
@@ -533,7 +531,6 @@
             if (i === 0) d += `M ${x} ${y}`; else d += ` L ${x} ${y}`; 
 
             pointsGroup.innerHTML += `<circle cx="${x}" cy="${y}" class="chart-point" />`;
-            // Текст с весом над точкой
             pointsGroup.innerHTML += `<text x="${x}" y="${y - 10}" class="chart-value-text">${point.w}</text>`;
 
             if (i === 0 || i === state.history.length - 1 || state.history.length <= 4) {
@@ -561,10 +558,25 @@
         calculate(false); save();
     }
 
+    // --- ОЖИВЛЕНИЕ СТАТУСА ---
     function setResource(res) {
         state.resource = res;
         ['low', 'norm', 'peak'].forEach(r => document.getElementById('res-'+r).classList.toggle('active', r === res));
         document.getElementById('state-desc').innerText = resourceDesc[res];
+        
+        // Меняем динамический статус в зависимости от ресурса
+        const statusEl = document.getElementById('dynamic-status');
+        if(res === 'low') {
+            statusEl.innerText = "РЕМОНТ";
+            statusEl.style.color = "var(--warning)";
+        } else if (res === 'norm') {
+            statusEl.innerText = "БАЛАНС";
+            statusEl.style.color = "var(--safe)";
+        } else {
+            statusEl.innerText = "ДРАЙВ";
+            statusEl.style.color = "var(--fire)";
+        }
+
         renderTrainings(); save();
     }
 
@@ -597,9 +609,9 @@
 
     function closeModal() { document.querySelectorAll('.modal').forEach(m => m.style.display = 'none'); }
     
-    function save() { localStorage.setItem('resurs_body_intelligence_final_v2', JSON.stringify(state)); }
+    function save() { localStorage.setItem('resurs_body_evolution_v3', JSON.stringify(state)); }
     function load() {
-        const saved = localStorage.getItem('resurs_body_intelligence_final_v2');
+        const saved = localStorage.getItem('resurs_body_evolution_v3');
         if(saved) {
             const parsed = JSON.parse(saved);
             state = Object.assign(state, parsed);
@@ -622,7 +634,7 @@
 
     function resetData() {
         if(confirm("Полностью обнулить эволюцию, воду и график?")) { 
-            localStorage.removeItem('resurs_body_intelligence_final_v2'); 
+            localStorage.removeItem('resurs_body_evolution_v3'); 
             location.reload(); 
         }
     }
