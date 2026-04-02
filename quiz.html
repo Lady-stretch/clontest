@@ -13,7 +13,7 @@
     <noscript><div><img src="https://mc.yandex.ru/watch/108177329" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>РЕСУРС | Тест на биологический возраст</title>
+    <title>РЕСУРС ТВОЕГО ТЕЛА | Тест на биологический возраст</title>
     <link rel="icon" type="image/png" href="logo_header_final.png">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -96,17 +96,17 @@
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- ЭЛЕГАНТНЫЕ КВАДРАТНЫЕ КАРТОЧКИ --- */
+        /* --- ЭЛЕГАНТНЫЕ КВАДРАТНЫЕ КАРТОЧКИ (УВЕЛИЧЕННЫЕ) --- */
         .quiz-step-image {
             width: 100%;
-            max-width: 260px; /* Ограничиваем размер, чтобы не уезжали кнопки */
-            aspect-ratio: 1 / 1; /* Жестко задаем пропорцию 1:1 */
+            max-width: 420px; /* Увеличили пропорции, фото станет главным акцентом */
+            aspect-ratio: 1 / 1; 
             object-fit: cover; 
             border-radius: 20px;
-            margin: 0 auto 25px auto; /* Центрируем */
+            margin: 0 auto 30px auto; 
             display: block;
             border: 1px solid rgba(197, 160, 89, 0.2);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6); /* Чуть усилили тень для объема */
         }
 
         .question-title { font-size: 28px; margin-bottom: 15px; color: var(--accent-gold); }
@@ -152,10 +152,10 @@
 
         @media (max-width: 600px) {
             header { padding: 15px 20px; }
-            .quiz-card { padding: 40px 25px; }
+            .quiz-card { padding: 40px 20px; }
             .question-title { font-size: 24px; }
             .brand-name { font-size: 14px; letter-spacing: 6px; }
-            .quiz-step-image { max-width: 220px; } /* Чуть меньше на мобильных */
+            .quiz-step-image { max-width: 100%; margin-bottom: 20px; } /* На телефоне фото занимает всю ширину подложки */
         }
     </style>
 </head>
