@@ -13,7 +13,7 @@
     <noscript><div><img src="https://mc.yandex.ru/watch/108177329" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>РЕСУРС ТВОЕГО ТЕЛА | Тест на биологический возраст</title>
+    <title>РЕСУРС | Тест на биологический возраст</title>
     <link rel="icon" type="image/png" href="logo_header_final.png">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -96,13 +96,15 @@
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Элегантные стили для новых фото квиза */
+        /* --- ЭЛЕГАНТНЫЕ КВАДРАТНЫЕ КАРТОЧКИ --- */
         .quiz-step-image {
             width: 100%;
-            height: 250px;
-            object-fit: cover;
+            max-width: 260px; /* Ограничиваем размер, чтобы не уезжали кнопки */
+            aspect-ratio: 1 / 1; /* Жестко задаем пропорцию 1:1 */
+            object-fit: cover; 
             border-radius: 20px;
-            margin-bottom: 25px;
+            margin: 0 auto 25px auto; /* Центрируем */
+            display: block;
             border: 1px solid rgba(197, 160, 89, 0.2);
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
@@ -153,7 +155,7 @@
             .quiz-card { padding: 40px 25px; }
             .question-title { font-size: 24px; }
             .brand-name { font-size: 14px; letter-spacing: 6px; }
-            .quiz-step-image { height: 200px; }
+            .quiz-step-image { max-width: 220px; } /* Чуть меньше на мобильных */
         }
     </style>
 </head>
@@ -225,7 +227,7 @@
         </div>
 
         <div class="step" id="step-final">
-            <img src="quiz-cover.jpg" class="quiz-step-image" style="height: 150px;" alt="Анализ завершен">
+            <img src="quiz-cover.jpg" class="quiz-step-image" alt="Анализ завершен">
             <h2 class="serif question-title">Анализ завершен</h2>
             <p class="question-desc" style="margin-bottom: 20px;">Ваш персональный отчет и рекомендации по восстановлению ресурса готовы.</p>
             
