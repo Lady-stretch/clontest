@@ -11,10 +11,9 @@
         ym(108177329, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
     </script>
     <noscript><div><img src="https://mc.yandex.ru/watch/108177329" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>РЕСУРС | Колесо Фортуны</title>
+    <title>РЕСУРС | Испытай удачу</title>
     <link rel="icon" type="image/png" href="logo_header_final.png">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,15 +28,7 @@
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        
-        /* Убираем фон у body, чтобы видео за ним было видно */
-        body, html { 
-            width: 100%; height: 100%; 
-            font-family: var(--font-main); 
-            background: transparent; 
-            color: #fff; 
-            overflow: hidden; 
-        }
+        body, html { width: 100%; height: 100%; font-family: var(--font-main); background: #000; color: #fff; overflow: hidden; }
 
         /* --- ШАПКА (ЖЕСТКАЯ ЦЕНТРОВКА) --- */
         header {
@@ -48,31 +39,28 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
         
-        .back-link { width: 40px; color: var(--accent-gold); display: flex; align-items: center; z-index: 2100; }
+        .back-link { width: 40px; color: var(--accent-gold); display: flex; align-items: center; z-index: 2100; text-decoration: none; }
         
         .brand-name { 
             position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
             font-family: var(--font-serif); font-size: clamp(18px, 4vw, 24px); 
             letter-spacing: 8px; text-transform: uppercase; white-space: nowrap;
-            padding-left: 8px;
+            padding-left: 8px; color: #fff;
         }
 
         .header-logo { width: 40px; display: flex; justify-content: flex-end; z-index: 2100; }
-        .header-logo img { height: 35px; width: 35px; border-radius: 6px; }
+        .header-logo img { height: 35px; width: 35px; border-radius: 6px; object-fit: cover; }
 
-        /* --- ВИДЕОФОН (КАК НА INDEX.HTML) --- */
+        /* --- ВИДЕОФОН --- */
         .video-fixed-bg {
             position: fixed; inset: 0; width: 100%; height: 100%;
             z-index: -1; background: #000; overflow: hidden;
         }
-        .video-fixed-bg video {
-            width: 100%; height: 100%; object-fit: cover;
-            opacity: 0.8; /* Хорошая видимость */
-        }
+        .video-fixed-bg video { width: 100%; height: 100%; object-fit: cover; opacity: 0.85; }
         .video-fixed-overlay {
             position: absolute; inset: 0;
             background: linear-gradient(to bottom, rgba(8,8,20,0.2) 0%, rgba(8,8,20,0.7) 100%);
-            pointer-events: none; /* Чтобы не мешало кликам */
+            pointer-events: none;
         }
 
         /* --- КОНТЕЙНЕР --- */
@@ -107,7 +95,7 @@
             color: #000; border: none; border-radius: 12px; font-weight: 600;
             text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: 0.3s;
         }
-        .spin-btn:disabled { opacity: 0.4; }
+        .spin-btn:disabled { opacity: 0.4; pointer-events: none; }
 
         /* --- MODAL --- */
         .modal {
@@ -120,10 +108,22 @@
             border: 1px solid var(--accent-gold); text-align: center; max-width: 380px; width: 100%;
         }
         .prize-title { font-size: 22px; font-weight: 600; color: #fff; margin: 15px 0; font-family: var(--font-serif); }
-        .prize-desc { font-size: 14px; opacity: 0.7; line-height: 1.6; margin-bottom: 30px; }
+        .prize-desc { font-size: 14px; opacity: 0.7; line-height: 1.6; margin-bottom: 25px; }
+        
+        .instruction-box {
+            background: rgba(197, 160, 89, 0.1); border: 1px dashed var(--accent-gold);
+            padding: 15px; border-radius: 12px; margin-bottom: 25px;
+        }
         .vk-link {
             display: block; padding: 18px; background: #0077FF; color: #fff;
             text-decoration: none; border-radius: 12px; font-weight: 600; text-transform: uppercase;
+            animation: pulse-blue 2s infinite;
+        }
+
+        @keyframes pulse-blue {
+            0% { box-shadow: 0 0 0 0 rgba(0, 119, 255, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(0, 119, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 119, 255, 0); }
         }
     </style>
 </head>
@@ -139,7 +139,7 @@
 
 <div class="video-fixed-bg">
     <video muted autoplay loop playsinline preload="auto" id="bgVideo">
-        <source src="/hero-video.mp4" type="video/mp4">
+        <source src="hero-video.mp4" type="video/mp4">
     </video>
     <div class="video-fixed-overlay"></div>
 </div>
@@ -163,12 +163,17 @@
         <h2 style="font-family: var(--font-serif); color: var(--accent-gold); font-size: 32px;">Поздравляем!</h2>
         <div id="prizeName" class="prize-title"></div>
         <div id="prizeInfo" class="prize-desc"></div>
+        
+        <div class="instruction-box">
+            <p style="font-size: 13px; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-bottom: 5px;">Важный шаг:</p>
+            <p style="font-size: 14px; color: #fff;">Нажмите кнопку ниже и в чате ВК подтвердите выигрыш фразой: <br><strong>«Забрать выигрыш»</strong></p>
+        </div>
+
         <a href="#" id="vkBtn" class="vk-link">ЗАБРАТЬ ВЫИГРЫШ</a>
     </div>
 </div>
 
 <script>
-    // Гарантированный запуск видео
     const video = document.getElementById('bgVideo');
     function playBg() { video.play().catch(() => { document.addEventListener('click', () => video.play(), {once:true}); }); }
     playBg();
@@ -176,10 +181,9 @@
     const canvas = document.getElementById('wheelCanvas');
     const ctx = canvas.getContext('2d');
     
-    // ВАШИ ОПИСАНИЯ ПРИЗОВ
     const prizes = [
         { text: "70% РАЗОВОЕ", code: "SINGLE70", full: "Скидка 70% на разовое занятие", desc: "Попробуй атмосферу РЕСУРСА за 390 руб, вместо 1300 руб! Идеально для первого знакомства." },
-        { text: "20% АБОНЕМЕНТ", code: "ABON20", full: "Скидка 20% на любой абонемент", desc: "Твоя привилегия на любой пакет (8, 16, 32 или 64 занятия). Инвестируй в свое состояние выгодно. Подробности у администратора!" },
+        { text: "20% АБОНЕМЕНТ", code: "ABON20", full: "Скидка 20% на любой абонемент", desc: "Твоя привилегия на любой пакет (8, 16, 32 или 64 занятия). Инвестируй в свое состояние выгодно." },
         { text: "4 за 2000₽", code: "FOUR2000", full: "4 занятия за 2000 руб (14 дней)", desc: "Две недели полноценной практики. Глубокое погружение в ритм студии за минимальную цену." },
         { text: "40% ГОДОВОЙ", code: "YEAR40", full: "40% на годовой абонемент", desc: "Максимальный вклад в твое долголетие и форму. Твой ресурс на 64 занятия, на целый год!" },
         { text: "ТЕСТ-ДРАЙВ", code: "TD990", full: "Тест-драйв: 3 занятия / 990₽ (7 дней)", desc: "Наш легендарный старт на одну неделю. Почувствуй эффект и легкость в теле уже за 3 визита!" }
@@ -226,7 +230,7 @@
                 
                 document.getElementById('prizeName').innerText = win.full;
                 document.getElementById('prizeInfo').innerText = win.desc;
-                document.getElementById('vkBtn').href = `https://vk.com/im?sel=-221142875&ref=wheel_${win.code}`;
+                document.getElementById('vkBtn').href = `https://vk.me/public221142875?ref=wheel_${win.code}`;
                 
                 setTimeout(() => { document.getElementById('winModal').style.display = 'flex'; }, 600);
             }
