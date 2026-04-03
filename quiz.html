@@ -13,7 +13,7 @@
     <noscript><div><img src="https://mc.yandex.ru/watch/108177329" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>РЕСУРС ТВОЕГО ТЕЛА | Тест на биологический возраст</title>
+    <title>РЕСУРС | Тест на биологический возраст</title>
     <link rel="icon" type="image/png" href="logo_header_final.png">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,29 +40,11 @@
             font-family: var(--font-main);
             overflow-x: hidden;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-            position: relative;
-        }
-
-        /* [НОВОЕ] Эффект дыхания фона */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 50%; left: 50%;
-            width: 140vw; height: 140vh;
-            background: radial-gradient(circle, rgba(197, 160, 89, 0.07) 0%, transparent 70%);
-            transform: translate(-50%, -50%);
-            animation: breathe 8s ease-in-out infinite;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        @keyframes breathe {
-            0%, 100% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
-            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
         }
 
         .serif { font-family: var(--font-serif); font-weight: 300; }
 
+        /* --- HEADER (Стеклянный эффект) --- */
         header { 
             position: fixed; top: 0; width: 100%; padding: 20px 5%; 
             display: grid; grid-template-columns: 1fr auto 1fr; 
@@ -77,6 +59,7 @@
         .back-link { font-size: 10px; text-transform: uppercase; letter-spacing: 3px; color: rgba(255,255,255,0.5); display: flex; align-items: center; gap: 8px; text-decoration: none; transition: 0.3s;}
         .back-link:hover { color: #fff; }
 
+        /* --- QUIZ CONTAINER --- */
         .quiz-wrapper {
             min-height: 100vh;
             display: flex;
@@ -113,21 +96,23 @@
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
+        /* --- ЭЛЕГАНТНЫЕ КВАДРАТНЫЕ КАРТОЧКИ --- */
         .quiz-step-image {
             width: 100%;
-            max-width: 420px; 
-            aspect-ratio: 1 / 1; 
+            max-width: 260px; /* Ограничиваем размер, чтобы не уезжали кнопки */
+            aspect-ratio: 1 / 1; /* Жестко задаем пропорцию 1:1 */
             object-fit: cover; 
             border-radius: 20px;
-            margin: 0 auto 30px auto; 
+            margin: 0 auto 25px auto; /* Центрируем */
             display: block;
             border: 1px solid rgba(197, 160, 89, 0.2);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.6); 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         .question-title { font-size: 28px; margin-bottom: 15px; color: var(--accent-gold); }
         .question-desc { font-size: 15px; opacity: 0.6; margin-bottom: 35px; line-height: 1.6; }
 
+        /* --- OPTIONS --- */
         .options-list { display: flex; flex-direction: column; gap: 15px; }
         .option-btn {
             padding: 20px;
@@ -148,24 +133,8 @@
             transform: translateX(5px);
         }
 
-        /* [НОВОЕ] Стили для поля ввода телефона */
-        .input-gold {
-            width: 100%;
-            padding: 18px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 12px;
-            color: #fff;
-            font-size: 16px;
-            margin-bottom: 15px;
-            text-align: center;
-            transition: 0.3s;
-        }
-        .input-gold:focus { border-color: var(--accent-gold); background: rgba(197, 160, 89, 0.05); }
-
         .btn-gold {
             display: inline-block;
-            width: 100%;
             padding: 18px 40px;
             background: var(--accent-gold);
             color: #000;
@@ -174,30 +143,19 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             font-size: 12px;
-            margin-top: 10px;
+            margin-top: 30px;
             transition: var(--transition);
             cursor: pointer;
             border: none;
         }
         .btn-gold:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(197, 160, 89, 0.3); }
 
-        /* [НОВОЕ] Анимация загрузки ИИ */
-        .ai-loader {
-            width: 60px; height: 60px;
-            border: 3px solid rgba(197, 160, 89, 0.1);
-            border-top: 3px solid var(--accent-gold);
-            border-radius: 50%;
-            margin: 40px auto;
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
         @media (max-width: 600px) {
             header { padding: 15px 20px; }
-            .quiz-card { padding: 40px 20px; }
+            .quiz-card { padding: 40px 25px; }
             .question-title { font-size: 24px; }
             .brand-name { font-size: 14px; letter-spacing: 6px; }
-            .quiz-step-image { max-width: 100%; margin-bottom: 20px; }
+            .quiz-step-image { max-width: 220px; } /* Чуть меньше на мобильных */
         }
     </style>
 </head>
@@ -268,26 +226,18 @@
             </div>
         </div>
 
-        <div class="step" id="step-loading">
-            <div class="ai-loader"></div>
-            <h2 class="serif question-title">Анализ данных...</h2>
-            <p class="question-desc">ИИ-куратор Вера анализирует ваши ответы и формирует персональную карту восстановления ресурса.</p>
-        </div>
-
         <div class="step" id="step-final">
             <img src="quiz-cover.jpg" class="quiz-step-image" alt="Анализ завершен">
             <h2 class="serif question-title">Анализ завершен</h2>
-            <p class="question-desc" style="margin-bottom: 15px;">Ваш персональный отчет готов. Введите номер телефона, чтобы закрепить за собой результат.</p>
+            <p class="question-desc" style="margin-bottom: 20px;">Ваш персональный отчет и рекомендации по восстановлению ресурса готовы.</p>
             
-            <div id="result-text" style="margin-bottom: 20px; font-weight: 600; font-size: 16px; color: var(--accent-gold); letter-spacing: 1px;"></div>
+            <div id="result-text" style="margin-bottom: 25px; font-weight: 600; font-size: 16px; color: var(--accent-gold); letter-spacing: 1px;"></div>
             
-            <input type="tel" id="user-phone" class="input-gold" placeholder="+7 (___) ___-__-__">
-            
-            <button class="btn-gold" id="vk-link">Получить разбор в ВК ✨</button>
+            <button class="btn-gold" id="vk-link" style="width: 100%; margin-top: 10px;">Получить разбор в ВК ✨</button>
             
             <div style="margin-top: 25px; padding: 15px; background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);">
                 <p style="font-size: 10px; color: var(--accent-gold); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px;">💡 Важный шаг:</p>
-                <p style="font-size: 13px; opacity: 0.7; line-height: 1.5; margin: 0;">После перехода в диалог нажмите кнопку <b>«Начать»</b>, чтобы Вера увидела ваши данные.</p>
+                <p style="font-size: 13px; opacity: 0.7; line-height: 1.5; margin: 0;">После перехода в диалог нажмите кнопку <b>«Начать»</b> (или отправьте любое сообщение), чтобы куратор увидел ваши результаты.</p>
             </div>
         </div>
     </div>
@@ -304,18 +254,11 @@
         steps[stepIdx].classList.add('active');
         currentStep = stepIdx;
         
-        // Обновляем прогресс-бар (учитываем, что шагов стало на 1 больше)
+        // Обновляем прогресс-бар
         const percent = (stepIdx / (steps.length - 1)) * 100;
         progress.style.width = percent + '%';
 
-        // Если попали на экран загрузки - ждем 2.5 сек и идем в финал
-        if (steps[stepIdx].id === 'step-loading') {
-            setTimeout(() => {
-                nextStep(stepIdx + 1);
-            }, 2500);
-        }
-
-        if (steps[stepIdx].id === 'step-final') {
+        if (stepIdx === steps.length - 1) {
             showFinal();
         }
     }
@@ -333,20 +276,10 @@
 
         document.getElementById('result-text').innerText = verdict;
         
+        // Ссылка в ВК с параметром результата
         const vkBtn = document.getElementById('vk-link');
-        const phoneInput = document.getElementById('user-phone');
-
         vkBtn.onclick = () => {
-            const phone = phoneInput.value.replace(/\D/g, ""); // Очистка номера от лишних символов
-            
-            if (phone.length < 10) {
-                alert("Пожалуйста, введите корректный номер телефона для получения разбора");
-                phoneInput.style.borderColor = "red";
-                return;
-            }
-
-            // [УЛУЧШЕНО] Передаем и баллы, и телефон в параметре ref
-            window.location.href = `https://vk.me/public221142875?ref=quiz_${totalPoints}_${phone}`;
+            window.location.href = `https://vk.com/im?sel=-221142875&ref=quiz_${totalPoints}`;
         };
     }
 </script>
