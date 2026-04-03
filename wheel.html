@@ -1,141 +1,244 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108177329', 'ym');
+        ym(108177329, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/108177329" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>РЕСУРС | Колесо Фортуны</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Manrope:wght@400;600&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>РЕСУРС | Испытай удачу</title>
+    <link rel="icon" type="image/png" href="logo_header_final.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Manrope:wght@300;400;600&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --bg-deep: #080814;
             --accent-gold: #C5A059;
-            --text-main: #F4F4F9;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+            --font-main: 'Manrope', sans-serif;
+            --font-serif: 'Cormorant Garamond', serif;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        body {
-            background: var(--bg-deep);
-            color: var(--text-main);
-            font-family: 'Manrope', sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            margin: 0;
-            overflow: hidden;
+
+        body, html { 
+            margin: 0; padding: 0; width: 100%; height: 100%; 
+            font-family: var(--font-main); background: #000; color: #fff; 
+            overflow: hidden; /* Запрещаем скролл, чтобы страница была как приложение */
         }
-        .header { text-align: center; margin-bottom: 30px; }
-        .header h1 { font-family: 'Cormorant Garamond', serif; font-size: 32px; color: var(--accent-gold); margin: 0; }
-        
-        /* --- WHEEL STYLES --- */
-        .wheel-container { position: relative; width: 320px; height: 320px; }
-        #canvas { width: 100%; height: 100%; border-radius: 50%; border: 5px solid var(--accent-gold); box-shadow: 0 0 30px rgba(197, 160, 89, 0.2); }
+
+        /* --- СТЕКЛЯННАЯ ШАПКА --- */
+        header {
+            position: fixed; top: 0; width: 100%; padding: 20px 5%;
+            display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+            z-index: 2000;
+            background: rgba(8, 8, 20, 0.2);
+            backdrop-filter: blur(15px) saturate(180%);
+            -webkit-backdrop-filter: blur(15px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .back-arrow-link { display: flex; align-items: center; justify-content: flex-start; color: var(--accent-gold); transition: var(--transition); width: fit-content; }
+        .back-arrow-link:hover { transform: translateX(-5px); color: #fff; }
+        .brand-name { font-family: var(--font-serif); font-size: 22px; letter-spacing: 10px; text-transform: uppercase; color: #fff; text-align: center; margin-right: -10px; }
+        .header-logo-wrap { display: flex; justify-content: flex-end; align-items: center; }
+        .header-logo-wrap img { height: 40px; width: auto; border-radius: 8px; opacity: 0.9; }
+
+        /* --- HERO ВИДЕО ФОН --- */
+        .video-bg-wrap { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+        .video-bg { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; filter: contrast(1.1) brightness(0.6); }
+        .video-overlay { position: absolute; inset: 0; background: radial-gradient(circle, rgba(8,8,20,0.4) 0%, rgba(8,8,20,0.85) 100%); }
+
+        /* --- КОНТЕЙНЕР КОЛЕСА --- */
+        .main-content {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            padding: 80px 20px 20px; z-index: 10;
+        }
+
+        .glass-card {
+            background: rgba(8, 8, 20, 0.4);
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            padding: 40px 25px; border-radius: 30px;
+            max-width: 450px; width: 100%; box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            text-align: center;
+        }
+
+        h1 { font-family: var(--font-serif); font-size: 32px; letter-spacing: 2px; color: var(--accent-gold); margin: 0 0 10px; }
+        p { font-weight: 300; font-size: 15px; opacity: 0.8; margin: 0 0 30px; line-height: 1.5; }
+
+        /* --- КОЛЕСО --- */
+        .wheel-box { position: relative; width: 300px; height: 300px; margin: 0 auto; }
+        #canvas { width: 100%; height: 100%; border-radius: 50%; border: 4px solid var(--accent-gold); box-shadow: 0 0 30px rgba(197, 160, 89, 0.2); }
         .pointer {
-            position: absolute; top: -20px; left: 50%; transform: translateX(-50%);
-            width: 0; height: 0; 
-            border-left: 15px solid transparent; border-right: 15px solid transparent;
-            border-top: 30px solid var(--accent-gold); z-index: 10;
+            position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
+            width: 0; height: 0; border-left: 15px solid transparent; border-right: 15px solid transparent;
+            border-top: 30px solid var(--accent-gold); z-index: 5;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));
         }
-        
+
         .btn-spin {
-            margin-top: 40px; padding: 18px 40px;
-            background: var(--accent-gold); color: #000;
-            border: none; border-radius: 12px; font-weight: 600;
-            text-transform: uppercase; cursor: pointer; transition: 0.3s;
+            margin-top: 35px; width: 100%; padding: 18px; background: var(--accent-gold);
+            color: #000; border: none; border-radius: 12px; font-weight: 600; font-family: var(--font-main);
+            text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: 0.3s;
         }
         .btn-spin:disabled { opacity: 0.5; cursor: not-allowed; }
+        .btn-spin:hover:not(:disabled) { box-shadow: 0 10px 20px rgba(197, 160, 89, 0.4); transform: translateY(-2px); }
 
-        /* --- MODAL --- */
+        /* --- МОДАЛЬНОЕ ОКНО --- */
         .modal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9); z-index: 100; align-items: center; justify-content: center;
+            background: rgba(5,5,12,0.95); z-index: 3000; align-items: center; justify-content: center;
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 20px;
         }
         .modal-content {
-            background: #121225; padding: 40px; border-radius: 24px; border: 1px solid var(--accent-gold);
-            text-align: center; max-width: 80%;
+            background: rgba(18,18,37,0.8); padding: 40px 25px; border-radius: 24px; border: 1px solid var(--accent-gold);
+            text-align: center; max-width: 380px; width: 100%;
+            box-shadow: 0 0 50px rgba(197, 160, 89, 0.15);
         }
+        .win-title { font-family: var(--font-serif); font-size: 36px; color: var(--accent-gold); margin-bottom: 15px; line-height: 1.1; }
         .btn-vk {
-            display: block; margin-top: 20px; padding: 15px;
-            background: #0077FF; color: #fff; text-decoration: none; border-radius: 10px;
+            display: block; margin-top: 30px; padding: 18px; background: #0077FF;
+            color: #fff; text-decoration: none; border-radius: 12px; font-weight: 600; font-size: 14px;
+            text-transform: uppercase; letter-spacing: 1px; transition: 0.3s;
+        }
+        .btn-vk:hover { background: #0066dd; transform: translateY(-2px); }
+
+        /* Адаптив */
+        @media (max-width: 600px) {
+            header { padding: 15px 5%; }
+            .brand-name { font-size: 16px; letter-spacing: 5px; margin-right: -5px; }
+            .header-logo-wrap img { height: 32px; }
+            .glass-card { padding: 30px 20px; }
+            h1 { font-size: 28px; }
+            .wheel-box { width: 260px; height: 260px; }
         }
     </style>
 </head>
 <body>
 
-<div class="header">
-    <h1>Испытай удачу РЕСУРСА</h1>
-    <p style="opacity: 0.7; font-size: 14px;">Выиграй свою привилегию на старт</p>
+<header>
+    <a href="index.html" class="back-arrow-link" title="На главную">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </a>
+    <div class="brand-name">РЕСУРС</div>
+    <div class="header-logo-wrap">
+        <img src="logo_header_final.png" alt="Логотип">
+    </div>
+</header>
+
+<div class="video-bg-wrap">
+    <video class="video-bg" autoplay muted loop playsinline poster="bg.jpg">
+        <source src="hero-video.mp4" type="video/mp4">
+    </video>
+    <div class="video-overlay"></div>
 </div>
 
-<div class="wheel-container">
-    <div class="pointer"></div>
-    <canvas id="canvas" width="500" height="500"></canvas>
-</div>
+<div class="main-content">
+    <div class="glass-card">
+        <h1>Твоя привилегия</h1>
+        <p>Крути колесо, чтобы забрать мощный бонус на старт тренировок. У тебя одна попытка!</p>
+        
+        <div class="wheel-box">
+            <div class="pointer"></div>
+            <canvas id="canvas" width="600" height="600"></canvas>
+        </div>
 
-<button class="btn-spin" onclick="spin()">Вращать колесо</button>
+        <button class="btn-spin" onclick="spin()">Испытать удачу</button>
+    </div>
+</div>
 
 <div class="modal" id="resultModal">
     <div class="modal-content">
-        <h2 style="color: var(--accent-gold);">Поздравляем!</h2>
-        <p id="prizeText" style="font-size: 18px;"></p>
-        <p style="font-size: 13px; opacity: 0.6;">Чтобы забрать приз, перейдите в чат с Верой (ИИ-куратор)</p>
-        <a href="#" id="vkLink" class="btn-vk">Забрать подарок в ВК</a>
+        <div class="win-title">Великолепно!</div>
+        <p id="prizeText" style="font-size: 20px; font-weight: 600; color: #fff; margin: 15px 0;"></p>
+        <p style="font-size: 13px; opacity: 0.6; line-height: 1.5; margin: 0;">Твой ИИ-куратор Вера уже ждет в ВК, чтобы подтвердить выигрыш и подобрать студию.</p>
+        <a href="#" id="vkLink" class="btn-vk">ЗАБРАТЬ ВЫИГРЫШ</a>
     </div>
 </div>
 
 <script>
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
+    
+    // ВАШИ ПРИЗЫ
     const prizes = [
-        { text: "Скидка 70%", code: "SALE70" },
-        { text: "Скидка 20%", code: "SALE20" },
+        { text: "70% РАЗОВОЕ", code: "SINGLE70" },
+        { text: "20% АБОНЕМЕНТ", code: "ABON20" },
         { text: "4 за 2000р", code: "FOUR2000" },
         { text: "40% ГОДОВОЙ", code: "YEAR40" },
-        { text: "ТЕСТ-ДРАЙВ 990", code: "TD990" }
+        { text: "ТЕСТ-ДРАЙВ", code: "TD990" }
     ];
 
     let startAngle = 0;
     const arc = Math.PI / (prizes.length / 2);
-    
+
     function drawWheel() {
+        // Увеличили радиус для Canvas (600x600) для идеальной четкости на телефонах (Retina)
+        const cx = 300, cy = 300, r = 290; 
+        
         prizes.forEach((prize, i) => {
             const angle = startAngle + i * arc;
-            ctx.fillStyle = i % 2 === 0 ? "#121225" : "#1a1a35";
-            ctx.beginPath(); ctx.moveTo(250, 250);
-            ctx.arc(250, 250, 250, angle, angle + arc, false);
-            ctx.fill(); ctx.strokeStyle = "#C5A059"; ctx.stroke();
+            ctx.fillStyle = i % 2 === 0 ? "#0A0A14" : "#1A1A2E"; // Темно-синие дорогие оттенки
+            ctx.beginPath(); ctx.moveTo(cx, cy);
+            ctx.arc(cx, cy, r, angle, angle + arc, false);
+            ctx.fill(); 
+            ctx.strokeStyle = "#C5A059"; 
+            ctx.lineWidth = 3; 
+            ctx.stroke();
             
             ctx.save();
-            ctx.fillStyle = "#fff";
-            ctx.translate(250 + Math.cos(angle + arc / 2) * 180, 250 + Math.sin(angle + arc / 2) * 180);
+            ctx.fillStyle = "#C5A059";
+            // Позиционируем текст
+            ctx.translate(cx + Math.cos(angle + arc / 2) * 200, cy + Math.sin(angle + arc / 2) * 200);
             ctx.rotate(angle + arc / 2 + Math.PI / 2);
-            ctx.font = 'bold 20px Manrope';
+            ctx.font = 'bold 24px Manrope';
             ctx.fillText(prize.text, -ctx.measureText(prize.text).width / 2, 0);
             ctx.restore();
         });
     }
 
     function spin() {
-        const spinAngle = Math.random() * 10 + 10;
+        const spinAngle = Math.random() * 10 + 20; // Случайное вращение
         let currentRotation = 0;
         const btn = document.querySelector('.btn-spin');
         btn.disabled = true;
 
         const interval = setInterval(() => {
-            startAngle += 0.1;
-            currentRotation += 0.1;
+            startAngle += 0.15; // Скорость вращения
+            currentRotation += 0.15;
             drawWheel();
+            
             if (currentRotation >= spinAngle) {
                 clearInterval(interval);
+                
+                // Вычисляем выигранный сектор
                 const index = Math.floor((((startAngle + Math.PI/2) % (Math.PI * 2)) / (Math.PI * 2)) * prizes.length);
                 const finalIndex = prizes.length - 1 - index;
                 const win = prizes[finalIndex < 0 ? 0 : finalIndex];
                 
-                document.getElementById('prizeText').innerText = "Ваш приз: " + win.text;
-                document.getElementById('vkLink').href = `https://vk.me/public221142875?ref=wheel_${win.code}`;
+                // Показываем модалку
+                document.getElementById('prizeText').innerText = win.text;
+                // Ссылка ведет в сообщения вашей группы с меткой выигрыша
+                document.getElementById('vkLink').href = `https://vk.com/im?sel=-221142875&ref=wheel_${win.code}`;
                 document.getElementById('resultModal').style.display = 'flex';
             }
-        }, 10);
+        }, 15);
     }
+    
+    // Отрисовываем при загрузке
     drawWheel();
 </script>
 </body>
