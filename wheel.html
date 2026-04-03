@@ -31,93 +31,87 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body, html { width: 100%; height: 100%; font-family: var(--font-main); background: #000; color: #fff; overflow: hidden; }
 
-        /* --- ИСПРАВЛЕННАЯ ШАПКА --- */
+        /* --- ШАПКА (ИДЕАЛЬНЫЙ ЦЕНТР) --- */
         header {
-            position: fixed; top: 0; width: 100%; padding: 15px 5%;
-            display: grid; 
-            /* Жестко задаем колонки: бока по 60px, центр забирает всё остальное */
-            grid-template-columns: 60px 1fr 60px; 
-            align-items: center;
-            z-index: 2000;
-            background: rgba(8, 8, 20, 0.25);
-            backdrop-filter: blur(15px) saturate(180%);
-            -webkit-backdrop-filter: blur(15px) saturate(180%);
+            position: fixed; top: 0; width: 100%; height: 80px;
+            padding: 0 5%; display: flex; align-items: center; justify-content: space-between;
+            z-index: 2000; background: rgba(8, 8, 20, 0.4);
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
         
-        .back-link { display: flex; align-items: center; color: var(--accent-gold); text-decoration: none; }
+        .back-link { width: 40px; display: flex; align-items: center; color: var(--accent-gold); text-decoration: none; z-index: 10; }
         
         .brand-name { 
-            font-family: var(--font-serif); 
-            font-size: 22px; 
-            letter-spacing: 10px; 
-            text-transform: uppercase; 
-            text-align: center; 
-            /* Компенсируем отступ последней буквы для идеального центра */
-            padding-left: 10px; 
+            position: absolute; left: 50%; transform: translateX(-50%);
+            font-family: var(--font-serif); font-size: clamp(16px, 4vw, 24px); 
+            letter-spacing: clamp(4px, 2vw, 12px); text-transform: uppercase; 
+            white-space: nowrap; pointer-events: none;
         }
 
-        .header-logo { display: flex; justify-content: flex-end; }
-        .header-logo img { height: 38px; width: auto; border-radius: 8px; }
+        .header-logo { width: 40px; display: flex; justify-content: flex-end; z-index: 10; }
+        .header-logo img { height: 35px; width: 35px; border-radius: 6px; object-fit: cover; }
 
-        /* --- ВИДЕОФОН --- */
-        .video-wrapper { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+        /* --- ФОНОВОЕ ВИДЕО --- */
+        .video-wrapper { position: fixed; inset: 0; z-index: -1; }
         .video-bg { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; }
-        .video-overlay { position: absolute; inset: 0; background: radial-gradient(circle, rgba(8,8,20,0.2) 0%, rgba(8,8,20,0.85) 100%); }
+        .video-overlay { position: absolute; inset: 0; background: radial-gradient(circle, rgba(8,8,20,0.2) 0%, rgba(8,8,20,0.9) 100%); }
 
-        /* --- КОНТЕНТ --- */
+        /* --- ГЛАВНЫЙ КОНТЕЙНЕР (РАМКА) --- */
         .main-container {
-            width: 100%; height: 100%;
-            display: flex; align-items: center; justify-content: center;
-            padding-top: 60px;
+            width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+            padding: 90px 20px 20px;
         }
 
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.03); 
-            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(197, 160, 89, 0.25);
-            padding: 40px 20px; border-radius: 35px; width: 92%; max-width: 440px;
-            text-align: center; box-shadow: 0 30px 60px rgba(0,0,0,0.7);
+        .glass-frame {
+            background: rgba(255, 255, 255, 0.02); 
+            backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            padding: clamp(20px, 5vw, 40px); border-radius: clamp(20px, 4vw, 40px);
+            width: 100%; max-width: 480px; text-align: center;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.8);
+            animation: fadeIn 1s ease-out;
         }
 
-        h1 { font-family: var(--font-serif); font-size: clamp(24px, 6vw, 32px); color: var(--accent-gold); margin-bottom: 10px; letter-spacing: 2px; }
-        .info-txt { font-size: 14px; opacity: 0.7; font-weight: 300; margin-bottom: 30px; line-height: 1.4; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        h1 { font-family: var(--font-serif); font-size: clamp(22px, 5vw, 32px); color: var(--accent-gold); margin-bottom: 8px; letter-spacing: 1px; }
+        .info-txt { font-size: clamp(12px, 3vw, 14px); opacity: 0.7; font-weight: 300; margin-bottom: 25px; line-height: 1.4; }
 
         /* --- WHEEL --- */
-        .wheel-container { position: relative; width: 280px; height: 280px; margin: 0 auto; }
-        #wheelCanvas { width: 100%; height: 100%; border-radius: 50%; border: 4px solid var(--accent-gold); }
+        .wheel-container { position: relative; width: clamp(240px, 70vw, 320px); height: clamp(240px, 70vw, 320px); margin: 0 auto; }
+        #wheelCanvas { width: 100%; height: 100%; border-radius: 50%; border: 3px solid var(--accent-gold); }
         .wheel-pointer {
-            position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
-            width: 0; height: 0; border-left: 15px solid transparent; border-right: 15px solid transparent;
-            border-top: 30px solid var(--accent-gold); z-index: 50;
+            position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+            width: 0; height: 0; border-left: 12px solid transparent; border-right: 12px solid transparent;
+            border-top: 25px solid var(--accent-gold); z-index: 50;
         }
 
         .spin-button {
-            margin-top: 35px; width: 100%; padding: 18px; background: var(--accent-gold);
+            margin-top: 30px; width: 100%; padding: 18px; background: var(--accent-gold);
             color: #000; border: none; border-radius: 12px; font-weight: 600;
             text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: 0.3s;
+            font-size: 14px;
         }
-        .spin-button:disabled { opacity: 0.4; }
+        .spin-button:disabled { opacity: 0.4; pointer-events: none; }
+        .spin-button:hover { background: #dfb86e; box-shadow: 0 0 20px rgba(197, 160, 89, 0.3); }
 
         /* --- MODAL --- */
         .win-modal {
             display: none; position: fixed; inset: 0; background: rgba(5,5,15,0.98);
             z-index: 5000; align-items: center; justify-content: center; padding: 20px;
+            backdrop-filter: blur(15px);
         }
         .win-content {
             background: #0f0f1e; padding: 40px 25px; border-radius: 30px;
-            border: 1px solid var(--accent-gold); text-align: center; max-width: 380px;
+            border: 1px solid var(--accent-gold); text-align: center; max-width: 380px; width: 100%;
         }
-        .win-name { font-size: 22px; font-weight: 600; color: #fff; margin: 15px 0; }
-        .win-desc { font-size: 15px; opacity: 0.7; line-height: 1.6; margin-bottom: 30px; }
+        .win-name { font-size: 22px; font-weight: 600; color: #fff; margin: 15px 0; font-family: var(--font-serif); }
+        .win-desc { font-size: 14px; opacity: 0.7; line-height: 1.6; margin-bottom: 30px; }
         .vk-btn {
             display: block; padding: 18px; background: #0077FF; color: #fff;
             text-decoration: none; border-radius: 12px; font-weight: 600; text-transform: uppercase;
-        }
-
-        @media (max-width: 400px) {
-            .brand-name { font-size: 16px; letter-spacing: 6px; }
-            .wheel-container { width: 240px; height: 240px; }
+            font-size: 13px; letter-spacing: 1px;
         }
     </style>
 </head>
@@ -125,7 +119,7 @@
 
 <header>
     <a href="index.html" class="back-link">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
     </a>
     <div class="brand-name">РЕСУРС</div>
     <div class="header-logo">
@@ -141,7 +135,7 @@
 </div>
 
 <div class="main-container">
-    <div class="glass-panel">
+    <div class="glass-frame">
         <h1>Твоя привилегия</h1>
         <p class="info-txt">Начни свою эволюцию с подарка. <br>Крути колесо и забирай бонус на тренировки!</p>
         
@@ -159,18 +153,21 @@
         <h2 style="font-family: var(--font-serif); color: var(--accent-gold); font-size: 32px;">Поздравляем!</h2>
         <div id="winPrize" class="win-name"></div>
         <div id="winInfo" class="win-desc"></div>
-        <a href="#" id="winLink" class="vk-btn">Забрать в ВК</a>
+        <a href="#" id="winLink" class="vk-btn">ЗАБРАТЬ ВЫИГРЫШ</a>
     </div>
 </div>
 
 <script>
-    // Принудительный запуск видео при загрузке
-    window.addEventListener('load', function() {
-        const video = document.getElementById('heroVideo');
-        video.play().catch(function(error) {
-            console.log("Автозапуск заблокирован браузером, ждем клика");
+    // СКРИПТ АВТОЗАПУСКА ВИДЕО
+    const video = document.getElementById('heroVideo');
+    
+    function tryPlayVideo() {
+        video.play().catch(() => {
+            // Если браузер заблокировал, пробуем снова при любом клике на странице
+            document.addEventListener('click', () => { video.play(); }, { once: true });
         });
-    });
+    }
+    tryPlayVideo();
 
     const canvas = document.getElementById('wheelCanvas');
     const ctx = canvas.getContext('2d');
@@ -178,9 +175,9 @@
     const prizes = [
         { text: "70% РАЗОВОЕ", code: "SINGLE70", full: "Скидка 70% на разовое занятие", desc: "Попробуй атмосферу РЕСУРСА практически даром!" },
         { text: "20% АБОНЕМЕНТ", code: "ABON20", full: "Скидка 20% на любой абонемент", desc: "Выгода на пакеты 16, 32 или 64 занятия." },
-        { text: "4 за 2000₽", code: "FOUR2000", full: "4 занятия за 2000 руб", desc: "Действует 14 дней. Погрузись в практику полностью." },
-        { text: "40% ГОДОВОЙ", code: "YEAR40", full: "40% на годовой абонемент", desc: "Максимальная привилегия для твоей трансформации." },
-        { text: "ТЕСТ-ДРАЙВ", code: "TD990", full: "Тест-драйв: 4 занятия / 990₽", desc: "Твой старт на неделю. 4 тренировки за копейки!" }
+        { text: "4 за 2000₽", code: "FOUR2000", full: "4 занятия за 2000 руб (14 дней)", desc: "Две недели полноценной практики для твоего результата." },
+        { text: "40% ГОДОВОЙ", code: "YEAR40", full: "40% на годовой абонемент", desc: "Максимальная привилегия для твоей тотальной трансформации." },
+        { text: "ТЕСТ-ДРАЙВ", code: "TD990", full: "Тест-драйв: 4 занятия / 990₽ (7 дней)", desc: "Твой мощный старт на одну неделю. Почувствуй эффект сразу!" }
     ];
 
     let currentAngle = 0;
@@ -192,12 +189,13 @@
             const angle = currentAngle + i * arc;
             ctx.fillStyle = i % 2 === 0 ? "#0a0a14" : "#121225";
             ctx.beginPath(); ctx.moveTo(300, 300);
-            ctx.arc(300, 300, 285, angle, angle + arc, false);
-            ctx.fill(); ctx.strokeStyle = "#C5A059"; ctx.lineWidth = 2; ctx.stroke();
+            ctx.arc(300, 300, 290, angle, angle + arc, false);
+            ctx.fill(); 
+            ctx.strokeStyle = "rgba(197, 160, 89, 0.4)"; ctx.lineWidth = 2; ctx.stroke();
             
             ctx.save();
             ctx.fillStyle = "#C5A059";
-            ctx.translate(300 + Math.cos(angle + arc/2) * 210, 300 + Math.sin(angle + arc/2) * 210);
+            ctx.translate(300 + Math.cos(angle + arc/2) * 215, 300 + Math.sin(angle + arc/2) * 215);
             ctx.rotate(angle + arc/2 + Math.PI/2);
             ctx.font = 'bold 24px Manrope';
             ctx.fillText(p.text, -ctx.measureText(p.text).width/2, 0);
@@ -206,12 +204,10 @@
     }
 
     function startSpin() {
-        // При клике на кнопку также пытаемся запустить видео, если оно не пошло
-        document.getElementById('heroVideo').play();
-
+        tryPlayVideo(); // На всякий случай запускаем видео при клике на кнопку
         const btn = document.querySelector('.spin-button');
         btn.disabled = true;
-        const totalRotation = Math.random() * 10 + 25;
+        const totalRotation = Math.random() * 10 + 30;
         let rotationStep = 0;
 
         const anim = setInterval(() => {
