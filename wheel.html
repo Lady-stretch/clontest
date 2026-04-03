@@ -14,7 +14,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>РЕСУРС | Твоя привилегия</title>
+    <title>РЕСУРС | Испытай удачу</title>
     <link rel="icon" type="image/png" href="logo_header_final.png">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,228 +24,216 @@
     <style>
         :root {
             --accent-gold: #C5A059;
-            --glass: rgba(255, 255, 255, 0.03);
             --font-main: 'Manrope', sans-serif;
             --font-serif: 'Cormorant Garamond', serif;
         }
 
-        body, html { margin: 0; padding: 0; width: 100%; height: 100%; font-family: var(--font-main); background: #000; color: #fff; overflow: hidden; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body, html { width: 100%; height: 100%; font-family: var(--font-main); background: #000; color: #fff; overflow: hidden; }
 
-        /* --- ШАПКА --- */
+        /* --- ИСПРАВЛЕННАЯ ШАПКА --- */
         header {
-            position: fixed; top: 0; width: 100%; padding: 20px 5%;
-            display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+            position: fixed; top: 0; width: 100%; padding: 15px 5%;
+            display: grid; 
+            /* Жестко задаем колонки: бока по 60px, центр забирает всё остальное */
+            grid-template-columns: 60px 1fr 60px; 
+            align-items: center;
             z-index: 2000;
-            background: rgba(8, 8, 20, 0.3);
+            background: rgba(8, 8, 20, 0.25);
             backdrop-filter: blur(15px) saturate(180%);
             -webkit-backdrop-filter: blur(15px) saturate(180%);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
-        .back-arrow { display: flex; align-items: center; color: var(--accent-gold); text-decoration: none; transition: 0.3s; }
-        .back-arrow:hover { transform: translateX(-5px); color: #fff; }
-        .brand-name { font-family: var(--font-serif); font-size: 20px; letter-spacing: 10px; text-transform: uppercase; text-align: center; margin-right: -10px; }
-        .header-logo img { height: 40px; border-radius: 8px; }
+        
+        .back-link { display: flex; align-items: center; color: var(--accent-gold); text-decoration: none; }
+        
+        .brand-name { 
+            font-family: var(--font-serif); 
+            font-size: 22px; 
+            letter-spacing: 10px; 
+            text-transform: uppercase; 
+            text-align: center; 
+            /* Компенсируем отступ последней буквы для идеального центра */
+            padding-left: 10px; 
+        }
 
-        /* --- VIDEO FON --- */
-        .video-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
-        .video-bg { width: 100%; height: 100%; object-fit: cover; opacity: 0.55; filter: brightness(0.7) contrast(1.1); }
-        .video-overlay { position: absolute; inset: 0; background: radial-gradient(circle, rgba(8,8,20,0.3) 0%, rgba(8,8,20,0.8) 100%); }
+        .header-logo { display: flex; justify-content: flex-end; }
+        .header-logo img { height: 38px; width: auto; border-radius: 8px; }
 
-        /* --- CONTENT --- */
-        .main-wrapper {
-            position: relative; width: 100%; height: 100%;
+        /* --- ВИДЕОФОН --- */
+        .video-wrapper { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+        .video-bg { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; }
+        .video-overlay { position: absolute; inset: 0; background: radial-gradient(circle, rgba(8,8,20,0.2) 0%, rgba(8,8,20,0.85) 100%); }
+
+        /* --- КОНТЕНТ --- */
+        .main-container {
+            width: 100%; height: 100%;
             display: flex; align-items: center; justify-content: center;
-            z-index: 10; padding-top: 60px;
-        }
-        .glass-card {
-            background: rgba(8, 8, 20, 0.4); backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px); border: 1px solid rgba(197, 160, 89, 0.2);
-            padding: 40px 25px; border-radius: 35px; max-width: 450px; width: 90%;
-            text-align: center; box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+            padding-top: 60px;
         }
 
-        h1 { font-family: var(--font-serif); font-size: 30px; letter-spacing: 2px; color: var(--accent-gold); margin: 0 0 10px; }
-        .sub-title { font-size: 14px; opacity: 0.7; margin-bottom: 30px; line-height: 1.4; font-weight: 300; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03); 
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(197, 160, 89, 0.25);
+            padding: 40px 20px; border-radius: 35px; width: 92%; max-width: 440px;
+            text-align: center; box-shadow: 0 30px 60px rgba(0,0,0,0.7);
+        }
 
-        /* --- WHEEL UI --- */
-        .wheel-wrap { position: relative; width: 300px; height: 300px; margin: 0 auto; }
-        #canvas { width: 100%; height: 100%; border-radius: 50%; border: 4px solid var(--accent-gold); box-shadow: 0 0 40px rgba(197, 160, 89, 0.2); }
-        .pointer {
+        h1 { font-family: var(--font-serif); font-size: clamp(24px, 6vw, 32px); color: var(--accent-gold); margin-bottom: 10px; letter-spacing: 2px; }
+        .info-txt { font-size: 14px; opacity: 0.7; font-weight: 300; margin-bottom: 30px; line-height: 1.4; }
+
+        /* --- WHEEL --- */
+        .wheel-container { position: relative; width: 280px; height: 280px; margin: 0 auto; }
+        #wheelCanvas { width: 100%; height: 100%; border-radius: 50%; border: 4px solid var(--accent-gold); }
+        .wheel-pointer {
             position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
             width: 0; height: 0; border-left: 15px solid transparent; border-right: 15px solid transparent;
-            border-top: 30px solid var(--accent-gold); z-index: 100;
+            border-top: 30px solid var(--accent-gold); z-index: 50;
         }
 
-        .btn-spin {
-            margin-top: 35px; width: 100%; padding: 20px; background: var(--accent-gold);
-            color: #000; border: none; border-radius: 15px; font-weight: 600;
+        .spin-button {
+            margin-top: 35px; width: 100%; padding: 18px; background: var(--accent-gold);
+            color: #000; border: none; border-radius: 12px; font-weight: 600;
             text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: 0.3s;
         }
-        .btn-spin:disabled { opacity: 0.4; transform: scale(0.98); }
+        .spin-button:disabled { opacity: 0.4; }
 
         /* --- MODAL --- */
-        .modal {
-            display: none; position: fixed; inset: 0; background: rgba(5,5,15,0.96);
+        .win-modal {
+            display: none; position: fixed; inset: 0; background: rgba(5,5,15,0.98);
             z-index: 5000; align-items: center; justify-content: center; padding: 20px;
-            backdrop-filter: blur(12px);
         }
-        .modal-content {
-            background: #121225; padding: 45px 30px; border-radius: 30px;
-            border: 1px solid var(--accent-gold); text-align: center; max-width: 400px;
-            box-shadow: 0 0 60px rgba(197, 160, 89, 0.2);
+        .win-content {
+            background: #0f0f1e; padding: 40px 25px; border-radius: 30px;
+            border: 1px solid var(--accent-gold); text-align: center; max-width: 380px;
         }
-        .win-title { font-family: var(--font-serif); font-size: 38px; color: var(--accent-gold); margin-bottom: 10px; }
-        .prize-name { font-size: 22px; font-weight: 600; margin: 15px 0; color: #fff; letter-spacing: 1px; }
-        .prize-desc { font-size: 15px; opacity: 0.7; line-height: 1.6; margin-bottom: 30px; min-height: 60px; }
-        
-        .btn-vk {
+        .win-name { font-size: 22px; font-weight: 600; color: #fff; margin: 15px 0; }
+        .win-desc { font-size: 15px; opacity: 0.7; line-height: 1.6; margin-bottom: 30px; }
+        .vk-btn {
             display: block; padding: 18px; background: #0077FF; color: #fff;
-            text-decoration: none; border-radius: 12px; font-weight: 600;
-            text-transform: uppercase; letter-spacing: 1px; transition: 0.3s;
+            text-decoration: none; border-radius: 12px; font-weight: 600; text-transform: uppercase;
         }
-        .btn-vk:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0, 119, 255, 0.4); }
 
-        @media (max-width: 600px) {
+        @media (max-width: 400px) {
             .brand-name { font-size: 16px; letter-spacing: 6px; }
-            .wheel-wrap { width: 270px; height: 270px; }
-            h1 { font-size: 26px; }
+            .wheel-container { width: 240px; height: 240px; }
         }
     </style>
 </head>
 <body>
 
 <header>
-    <a href="index.html" class="back-arrow">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    <a href="index.html" class="back-link">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
     </a>
     <div class="brand-name">РЕСУРС</div>
-    <div class="header-logo"><img src="logo_header_final.png" alt="Logo"></div>
+    <div class="header-logo">
+        <img src="logo_header_final.png" alt="Logo">
+    </div>
 </header>
 
-<div class="video-container">
-    <video class="video-bg" autoplay muted loop playsinline preload="auto">
+<div class="video-wrapper">
+    <video id="heroVideo" class="video-bg" autoplay muted loop playsinline preload="auto">
         <source src="hero-video.mp4" type="video/mp4">
     </video>
     <div class="video-overlay"></div>
 </div>
 
-<div class="main-wrapper">
-    <div class="glass-card">
-        <h1>Твой подарок</h1>
-        <p class="sub-title">Испытай удачу РЕСУРСА. <br>Выиграй привилегию на старт тренировок прямо сейчас!</p>
+<div class="main-container">
+    <div class="glass-panel">
+        <h1>Твоя привилегия</h1>
+        <p class="info-txt">Начни свою эволюцию с подарка. <br>Крути колесо и забирай бонус на тренировки!</p>
         
-        <div class="wheel-wrap">
-            <div class="pointer"></div>
-            <canvas id="canvas" width="600" height="600"></canvas>
+        <div class="wheel-container">
+            <div class="wheel-pointer"></div>
+            <canvas id="wheelCanvas" width="600" height="600"></canvas>
         </div>
 
-        <button class="btn-spin" onclick="spin()">Запустить колесо</button>
+        <button class="spin-button" onclick="startSpin()">Запустить удачу</button>
     </div>
 </div>
 
-<div class="modal" id="resultModal">
-    <div class="modal-content">
-        <div class="win-title">Поздравляем!</div>
-        <div id="prizeName" class="prize-name"></div>
-        <div id="prizeDesc" class="prize-desc"></div>
-        <a href="#" id="vkLink" class="btn-vk">Забрать выигрыш</a>
+<div class="win-modal" id="winModal">
+    <div class="win-content">
+        <h2 style="font-family: var(--font-serif); color: var(--accent-gold); font-size: 32px;">Поздравляем!</h2>
+        <div id="winPrize" class="win-name"></div>
+        <div id="winInfo" class="win-desc"></div>
+        <a href="#" id="winLink" class="vk-btn">Забрать в ВК</a>
     </div>
 </div>
 
 <script>
-    const canvas = document.getElementById('canvas');
+    // Принудительный запуск видео при загрузке
+    window.addEventListener('load', function() {
+        const video = document.getElementById('heroVideo');
+        video.play().catch(function(error) {
+            console.log("Автозапуск заблокирован браузером, ждем клика");
+        });
+    });
+
+    const canvas = document.getElementById('wheelCanvas');
     const ctx = canvas.getContext('2d');
     
     const prizes = [
-        { 
-            text: "СКИДКА 70%", 
-            code: "SINGLE70", 
-            full: "Скидка 70% на разовое занятие",
-            desc: "Идеально, чтобы попробовать нашу атмосферу. Один визит в РЕСУРС практически даром!" 
-        },
-        { 
-            text: "СКИДКА 20%", 
-            code: "ABON20", 
-            full: "Скидка 20% на любой абонемент",
-            desc: "Твоя прямая выгода при покупке любого курса занятий (16, 32 или 64 тренировки)." 
-        },
-        { 
-            text: "4 за 2000₽", 
-            code: "FOUR2000", 
-            full: "Пакет: 4 занятия за 2000 руб",
-            desc: "Глубокое погружение в практику. Срок активации и использования — 14 дней." 
-        },
-        { 
-            text: "40% ГОДОВОЙ", 
-            code: "YEAR40", 
-            full: "Скидка 40% на годовой абонемент",
-            desc: "Твой безлимитный ресурс на целый год с максимальной выгодой. Только для решительных!" 
-        },
-        { 
-            text: "ТЕСТ-ДРАЙВ", 
-            code: "TD990", 
-            full: "Тест-драйв: 4 занятия за 990 руб",
-            desc: "Наш легендарный старт! 4 тренировки, которые нужно пройти за 7 дней." 
-        }
+        { text: "70% РАЗОВОЕ", code: "SINGLE70", full: "Скидка 70% на разовое занятие", desc: "Попробуй атмосферу РЕСУРСА практически даром!" },
+        { text: "20% АБОНЕМЕНТ", code: "ABON20", full: "Скидка 20% на любой абонемент", desc: "Выгода на пакеты 16, 32 или 64 занятия." },
+        { text: "4 за 2000₽", code: "FOUR2000", full: "4 занятия за 2000 руб", desc: "Действует 14 дней. Погрузись в практику полностью." },
+        { text: "40% ГОДОВОЙ", code: "YEAR40", full: "40% на годовой абонемент", desc: "Максимальная привилегия для твоей трансформации." },
+        { text: "ТЕСТ-ДРАЙВ", code: "TD990", full: "Тест-драйв: 4 занятия / 990₽", desc: "Твой старт на неделю. 4 тренировки за копейки!" }
     ];
 
-    let startAngle = 0;
+    let currentAngle = 0;
     const arc = Math.PI / (prizes.length / 2);
 
-    function drawWheel() {
-        const cx = 300, cy = 300, r = 280;
+    function draw() {
         ctx.clearRect(0,0,600,600);
-        
         prizes.forEach((p, i) => {
-            const angle = startAngle + i * arc;
-            ctx.fillStyle = i % 2 === 0 ? "#080814" : "#121225";
-            ctx.beginPath(); ctx.moveTo(cx, cy);
-            ctx.arc(cx, cy, r, angle, angle + arc, false);
-            ctx.fill(); 
-            ctx.strokeStyle = "rgba(197, 160, 89, 0.5)"; ctx.lineWidth = 2; ctx.stroke();
+            const angle = currentAngle + i * arc;
+            ctx.fillStyle = i % 2 === 0 ? "#0a0a14" : "#121225";
+            ctx.beginPath(); ctx.moveTo(300, 300);
+            ctx.arc(300, 300, 285, angle, angle + arc, false);
+            ctx.fill(); ctx.strokeStyle = "#C5A059"; ctx.lineWidth = 2; ctx.stroke();
             
             ctx.save();
             ctx.fillStyle = "#C5A059";
-            ctx.translate(cx + Math.cos(angle + arc/2) * 200, cy + Math.sin(angle + arc/2) * 200);
+            ctx.translate(300 + Math.cos(angle + arc/2) * 210, 300 + Math.sin(angle + arc/2) * 210);
             ctx.rotate(angle + arc/2 + Math.PI/2);
-            ctx.font = 'bold 22px Manrope';
+            ctx.font = 'bold 24px Manrope';
             ctx.fillText(p.text, -ctx.measureText(p.text).width/2, 0);
             ctx.restore();
         });
     }
 
-    function spin() {
-        const btn = document.querySelector('.btn-spin');
-        btn.disabled = true;
-        const spinAngle = Math.random() * 10 + 25;
-        let currentRotation = 0;
+    function startSpin() {
+        // При клике на кнопку также пытаемся запустить видео, если оно не пошло
+        document.getElementById('heroVideo').play();
 
-        const interval = setInterval(() => {
-            startAngle += 0.15;
-            currentRotation += 0.15;
-            drawWheel();
-            if (currentRotation >= spinAngle) {
-                clearInterval(interval);
-                const index = Math.floor((((startAngle + Math.PI/2) % (Math.PI * 2)) / (Math.PI * 2)) * prizes.length);
-                const finalIndex = prizes.length - 1 - index;
-                const win = prizes[finalIndex < 0 ? 0 : finalIndex];
+        const btn = document.querySelector('.spin-button');
+        btn.disabled = true;
+        const totalRotation = Math.random() * 10 + 25;
+        let rotationStep = 0;
+
+        const anim = setInterval(() => {
+            currentAngle += 0.15;
+            rotationStep += 0.15;
+            draw();
+            if (rotationStep >= totalRotation) {
+                clearInterval(anim);
+                const index = Math.floor((((currentAngle + Math.PI/2) % (Math.PI * 2)) / (Math.PI * 2)) * prizes.length);
+                const finalIdx = prizes.length - 1 - index;
+                const win = prizes[finalIdx < 0 ? 0 : finalIdx];
                 
-                showResult(win);
+                document.getElementById('winPrize').innerText = win.full;
+                document.getElementById('winInfo').innerText = win.desc;
+                document.getElementById('winLink').href = `https://vk.com/im?sel=-221142875&ref=wheel_${win.code}`;
+                
+                setTimeout(() => { document.getElementById('winModal').style.display = 'flex'; }, 600);
             }
         }, 15);
     }
 
-    function showResult(win) {
-        document.getElementById('prizeName').innerText = win.full;
-        document.getElementById('prizeDesc').innerText = win.desc;
-        document.getElementById('vkLink').href = `https://vk.com/im?sel=-221142875&ref=wheel_${win.code}`;
-        
-        setTimeout(() => {
-            document.getElementById('resultModal').style.display = 'flex';
-        }, 500);
-    }
-
-    drawWheel();
+    draw();
 </script>
 </body>
 </html>
