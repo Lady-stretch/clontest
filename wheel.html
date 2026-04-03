@@ -14,7 +14,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>РЕСУРС | Привилегия</title>
+    <title>РЕСУРС | Колесо Фортуны</title>
     <link rel="icon" type="image/png" href="logo_header_final.png">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,52 +29,65 @@
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body, html { width: 100%; height: 100%; font-family: var(--font-main); background: #000; color: #fff; overflow: hidden; }
+        
+        /* Убираем фон у body, чтобы видео за ним было видно */
+        body, html { 
+            width: 100%; height: 100%; 
+            font-family: var(--font-main); 
+            background: transparent; 
+            color: #fff; 
+            overflow: hidden; 
+        }
 
-        /* --- ШАПКА (АБСОЛЮТНАЯ ЦЕНТРОВКА) --- */
+        /* --- ШАПКА (ЖЕСТКАЯ ЦЕНТРОВКА) --- */
         header {
             position: fixed; top: 0; width: 100%; height: 70px;
             padding: 0 5%; display: flex; align-items: center; justify-content: space-between;
-            z-index: 2000; background: rgba(8, 8, 20, 0.3);
+            z-index: 2000; background: rgba(8, 8, 20, 0.4);
             backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
         
-        .back-link { width: 40px; display: flex; align-items: center; color: var(--accent-gold); text-decoration: none; position: relative; z-index: 2100; }
+        .back-link { width: 40px; color: var(--accent-gold); display: flex; align-items: center; z-index: 2100; }
         
         .brand-name { 
             position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
-            font-family: var(--font-serif); font-size: clamp(18px, 4.5vw, 26px); 
-            letter-spacing: clamp(4px, 1.5vw, 12px); text-transform: uppercase; 
-            white-space: nowrap; color: #fff; padding-left: 12px;
+            font-family: var(--font-serif); font-size: clamp(18px, 4vw, 24px); 
+            letter-spacing: 8px; text-transform: uppercase; white-space: nowrap;
+            padding-left: 8px;
         }
 
-        .header-logo { width: 40px; display: flex; justify-content: flex-end; position: relative; z-index: 2100; }
+        .header-logo { width: 40px; display: flex; justify-content: flex-end; z-index: 2100; }
         .header-logo img { height: 35px; width: 35px; border-radius: 6px; }
 
-        /* --- ФОНОВОЕ ВИДЕО (БЕЗ "ЗАНАВЕСКИ") --- */
-        .video-wrapper { position: fixed; inset: 0; z-index: -1; background: #000; }
-        .video-bg { width: 100%; height: 100%; object-fit: cover; opacity: 0.85; } /* Подняли яркость */
-        
-        /* Облегченный градиент, чтобы видео было "живым" */
-        .video-overlay { 
-            position: absolute; inset: 0; 
-            background: linear-gradient(to bottom, rgba(8,8,20,0.3) 0%, rgba(8,8,20,0.6) 100%); 
+        /* --- ВИДЕОФОН (КАК НА INDEX.HTML) --- */
+        .video-fixed-bg {
+            position: fixed; inset: 0; width: 100%; height: 100%;
+            z-index: -1; background: #000; overflow: hidden;
+        }
+        .video-fixed-bg video {
+            width: 100%; height: 100%; object-fit: cover;
+            opacity: 0.8; /* Хорошая видимость */
+        }
+        .video-fixed-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to bottom, rgba(8,8,20,0.2) 0%, rgba(8,8,20,0.7) 100%);
+            pointer-events: none; /* Чтобы не мешало кликам */
         }
 
-        /* --- ГЛАВНЫЙ КОНТЕЙНЕР --- */
-        .main-container {
+        /* --- КОНТЕЙНЕР --- */
+        .content-area {
             width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
-            padding: 80px 15px 20px;
+            padding: 80px 15px 20px; position: relative; z-index: 10;
         }
 
-        .glass-frame {
-            background: rgba(255, 255, 255, 0.04); 
-            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+        .glass-box {
+            background: rgba(255, 255, 255, 0.03); 
+            backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
             border: 1px solid rgba(197, 160, 89, 0.3);
-            padding: clamp(20px, 4vw, 40px); border-radius: 30px;
+            padding: clamp(20px, 5vw, 40px); border-radius: 30px;
             width: 100%; max-width: 460px; text-align: center;
-            box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.5);
         }
 
         h1 { font-family: var(--font-serif); font-size: clamp(24px, 6vw, 32px); color: var(--accent-gold); margin-bottom: 8px; }
@@ -83,32 +96,32 @@
         /* --- WHEEL --- */
         .wheel-container { position: relative; width: clamp(260px, 75vw, 320px); height: clamp(260px, 75vw, 320px); margin: 0 auto; }
         #wheelCanvas { width: 100%; height: 100%; border-radius: 50%; border: 3px solid var(--accent-gold); }
-        .wheel-pointer {
+        .pointer {
             position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
             width: 0; height: 0; border-left: 12px solid transparent; border-right: 12px solid transparent;
-            border-top: 25px solid var(--accent-gold); z-index: 50;
+            border-top: 25px solid var(--accent-gold); z-index: 100;
         }
 
-        .spin-button {
+        .spin-btn {
             margin-top: 30px; width: 100%; padding: 18px; background: var(--accent-gold);
             color: #000; border: none; border-radius: 12px; font-weight: 600;
             text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: 0.3s;
         }
-        .spin-button:disabled { opacity: 0.4; pointer-events: none; }
+        .spin-btn:disabled { opacity: 0.4; }
 
         /* --- MODAL --- */
-        .win-modal {
+        .modal {
             display: none; position: fixed; inset: 0; background: rgba(5,5,15,0.98);
             z-index: 5000; align-items: center; justify-content: center; padding: 20px;
             backdrop-filter: blur(15px);
         }
-        .win-content {
+        .modal-body {
             background: #0f0f1e; padding: 40px 25px; border-radius: 30px;
             border: 1px solid var(--accent-gold); text-align: center; max-width: 380px; width: 100%;
         }
-        .win-name { font-size: 22px; font-weight: 600; color: #fff; margin: 15px 0; font-family: var(--font-serif); }
-        .win-desc { font-size: 14px; opacity: 0.7; line-height: 1.6; margin-bottom: 30px; }
-        .vk-btn {
+        .prize-title { font-size: 22px; font-weight: 600; color: #fff; margin: 15px 0; font-family: var(--font-serif); }
+        .prize-desc { font-size: 14px; opacity: 0.7; line-height: 1.6; margin-bottom: 30px; }
+        .vk-link {
             display: block; padding: 18px; background: #0077FF; color: #fff;
             text-decoration: none; border-radius: 12px; font-weight: 600; text-transform: uppercase;
         }
@@ -121,59 +134,55 @@
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
     </a>
     <div class="brand-name">РЕСУРС</div>
-    <div class="header-logo">
-        <img src="logo_header_final.png" alt="Logo">
-    </div>
+    <div class="header-logo"><img src="logo_header_final.png" alt="Logo"></div>
 </header>
 
-<div class="video-wrapper">
-    <video id="heroVideo" class="video-bg" autoplay muted loop playsinline preload="auto">
-        <source src="hero-video.mp4" type="video/mp4">
+<div class="video-fixed-bg">
+    <video muted autoplay loop playsinline preload="auto" id="bgVideo">
+        <source src="/hero-video.mp4" type="video/mp4">
     </video>
-    <div class="video-overlay"></div>
+    <div class="video-fixed-overlay"></div>
 </div>
 
-<div class="main-container">
-    <div class="glass-frame">
+<div class="content-area">
+    <div class="glass-box">
         <h1>Твоя привилегия</h1>
         <p class="info-txt">Раскрой потенциал своего тела. <br>Крути колесо и забирай подарок на старт!</p>
         
         <div class="wheel-container">
-            <div class="wheel-pointer"></div>
+            <div class="pointer"></div>
             <canvas id="wheelCanvas" width="600" height="600"></canvas>
         </div>
 
-        <button class="spin-button" onclick="startSpin()">Запустить удачу</button>
+        <button class="spin-btn" onclick="startSpin()">Запустить удачу</button>
     </div>
 </div>
 
-<div class="win-modal" id="winModal">
-    <div class="win-content">
+<div class="modal" id="winModal">
+    <div class="modal-body">
         <h2 style="font-family: var(--font-serif); color: var(--accent-gold); font-size: 32px;">Поздравляем!</h2>
-        <div id="winPrize" class="win-name"></div>
-        <div id="winInfo" class="win-desc"></div>
-        <a href="#" id="winLink" class="vk-btn">ЗАБРАТЬ ВЫИГРЫШ</a>
+        <div id="prizeName" class="prize-title"></div>
+        <div id="prizeInfo" class="prize-desc"></div>
+        <a href="#" id="vkBtn" class="vk-link">ЗАБРАТЬ ВЫИГРЫШ</a>
     </div>
 </div>
 
 <script>
-    const video = document.getElementById('heroVideo');
-    function tryPlayVideo() {
-        video.play().catch(() => {
-            document.addEventListener('click', () => { video.play(); }, { once: true });
-        });
-    }
-    tryPlayVideo();
+    // Гарантированный запуск видео
+    const video = document.getElementById('bgVideo');
+    function playBg() { video.play().catch(() => { document.addEventListener('click', () => video.play(), {once:true}); }); }
+    playBg();
 
     const canvas = document.getElementById('wheelCanvas');
     const ctx = canvas.getContext('2d');
     
+    // ВАШИ ОПИСАНИЯ ПРИЗОВ
     const prizes = [
-        { text: "70% РАЗОВОЕ", code: "SINGLE70", full: "Скидка 70% на разовое занятие", desc: "Попробуй атмосферу РЕСУРСА практически даром!" },
-        { text: "20% АБОНЕМЕНТ", code: "ABON20", full: "Скидка 20% на любой абонемент", desc: "Твоя привилегия на пакеты 16, 32 или 64 занятия." },
-        { text: "4 за 2000₽", code: "FOUR2000", full: "4 занятия за 2000 руб (14 дней)", desc: "Две недели осознанного движения для твоего результата." },
-        { text: "40% ГОДОВОЙ", code: "YEAR40", full: "40% на годовой абонемент", desc: "Максимальный вклад в твое долголетие и форму." },
-        { text: "ТЕСТ-ДРАЙВ", code: "TD990", full: "Тест-драйв: 4 занятия / 990₽ (7 дней)", desc: "Легендарный старт! 4 тренировки за одну неделю." }
+        { text: "70% РАЗОВОЕ", code: "SINGLE70", full: "Скидка 70% на разовое занятие", desc: "Попробуй атмосферу РЕСУРСА практически даром! Идеально для первого знакомства." },
+        { text: "20% АБОНЕМЕНТ", code: "ABON20", full: "Скидка 20% на любой абонемент", desc: "Твоя привилегия на любой пакет (16, 32 или 64 занятия). Инвестируй в свое состояние выгодно." },
+        { text: "4 за 2000₽", code: "FOUR2000", full: "4 занятия за 2000 руб (14 дней)", desc: "Две недели полноценной практики. Глубокое погружение в ритм студии за минимальную цену." },
+        { text: "40% ГОДОВОЙ", code: "YEAR40", full: "40% на годовой абонемент", desc: "Максимальный вклад в твое долголетие и форму. Твой безлимитный ресурс на целый год!" },
+        { text: "ТЕСТ-ДРАЙВ", code: "TD990", full: "Тест-драйв: 4 занятия / 990₽ (7 дней)", desc: "Наш легендарный старт на одну неделю. Почувствуй эффект и легкость в теле уже за 4 визита!" }
     ];
 
     let currentAngle = 0;
@@ -199,8 +208,8 @@
     }
 
     function startSpin() {
-        video.play();
-        const btn = document.querySelector('.spin-button');
+        playBg();
+        const btn = document.querySelector('.spin-btn');
         btn.disabled = true;
         const totalRotation = Math.random() * 10 + 35;
         let rotationStep = 0;
@@ -215,9 +224,9 @@
                 const finalIdx = prizes.length - 1 - index;
                 const win = prizes[finalIdx < 0 ? 0 : finalIdx];
                 
-                document.getElementById('winPrize').innerText = win.full;
-                document.getElementById('winInfo').innerText = win.desc;
-                document.getElementById('winLink').href = `https://vk.com/im?sel=-221142875&ref=wheel_${win.code}`;
+                document.getElementById('prizeName').innerText = win.full;
+                document.getElementById('prizeInfo').innerText = win.desc;
+                document.getElementById('vkBtn').href = `https://vk.com/im?sel=-221142875&ref=wheel_${win.code}`;
                 
                 setTimeout(() => { document.getElementById('winModal').style.display = 'flex'; }, 600);
             }
