@@ -35,8 +35,8 @@
         header {
             position: fixed; top: 0; width: 100%; height: 70px;
             padding: 0 5%; display: flex; align-items: center; justify-content: space-between;
-            z-index: 2000; background: rgba(8, 8, 20, 0.5);
-            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            z-index: 2000; background: rgba(8, 8, 20, 0.4);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
         .back-link { width: 40px; color: var(--accent-gold); display: flex; align-items: center; text-decoration: none; z-index: 2100; }
@@ -45,12 +45,13 @@
             font-family: var(--font-serif); font-size: clamp(18px, 4vw, 24px); 
             letter-spacing: 8px; text-transform: uppercase; white-space: nowrap; padding-left: 8px;
         }
-        .header-logo { width: 40px; display: flex; justify-content: flex-end; z-index: 2100; }
-        .header-logo img { height: 35px; width: 35px; border-radius: 6px; }
+        /* Секретная кнопка сброса на логотипе */
+        .header-logo { width: 40px; display: flex; justify-content: flex-end; z-index: 2100; cursor: pointer; }
+        .header-logo img { height: 35px; width: 35px; border-radius: 6px; pointer-events: none; }
 
-        /* --- ФОНОВОЕ ВИДЕО (КАК НА INDEX) --- */
+        /* --- ВИДЕОФОН --- */
         .video-fixed-bg { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; overflow: hidden; }
-        .video-fixed-bg video { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
+        .video-fixed-bg video { width: 100%; height: 100%; object-fit: cover; opacity: 0.85; }
         .video-fixed-overlay { position: absolute; inset: 0; background: rgba(8, 8, 20, 0.4); pointer-events: none; }
 
         /* --- КОНТЕНТ --- */
@@ -82,7 +83,7 @@
             color: #000; border: none; border-radius: 12px; font-weight: 600;
             text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: 0.3s;
         }
-        .spin-btn:disabled { opacity: 0.4; }
+        .spin-btn:disabled { opacity: 0.4; cursor: default; }
 
         /* --- MODAL --- */
         .modal {
@@ -113,7 +114,9 @@
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
     </a>
     <div class="brand-name">РЕСУРС</div>
-    <div class="header-logo"><img src="logo_header_final.png" alt="Logo"></div>
+    <div id="secretReset" class="header-logo" title="Сбросить память (админ)">
+        <img src="logo_header_final.png" alt="Logo">
+    </div>
 </header>
 
 <div class="video-fixed-bg">
@@ -126,12 +129,12 @@
 <div class="content-area">
     <div class="glass-box">
         <h1>Твоя привилегия</h1>
-        <p class="info-txt">Раскрой потенциал своего тела. <br>Крути колесо и забирай подарок на старт!</p>
+        <p id="mainText" class="info-txt">Раскрой потенциал своего тела. <br>Крути колесо и забирай подарок на старт!</p>
         <div class="wheel-container">
             <div class="pointer"></div>
             <canvas id="wheelCanvas" width="600" height="600"></canvas>
         </div>
-        <button class="spin-btn" onclick="startSpin()">Запустить удачу</button>
+        <button id="spinBtn" class="spin-btn" onclick="startSpin()">Запустить удачу</button>
     </div>
 </div>
 
@@ -154,6 +157,23 @@
     const video = document.getElementById('bgVideo');
     function playBg() { video.play().catch(() => { document.addEventListener('click', () => video.play(), {once:true}); }); }
     playBg();
+
+    // ПРОВЕРКА ПАМЯТИ (localStorage)
+    window.addEventListener('DOMContentLoaded', () => {
+        if (localStorage.getItem('resurs_wheel_done')) {
+            const btn = document.getElementById('spinBtn');
+            btn.disabled = true;
+            btn.innerText = "ПОПЫТКА ИСПОЛЬЗОВАНА";
+            document.getElementById('mainText').innerHTML = "Ваш бонус уже зафиксирован в системе.<br>Активируйте его в сообщениях группы ВК.";
+        }
+    });
+
+    // СЕКРЕТНЫЙ СБРОС (Double Click на логотип)
+    document.getElementById('secretReset').addEventListener('dblclick', () => {
+        localStorage.removeItem('resurs_wheel_done');
+        alert("Память сброшена. Николай Сергеевич, удачного тестирования!");
+        location.reload();
+    });
 
     const canvas = document.getElementById('wheelCanvas');
     const ctx = canvas.getContext('2d');
@@ -189,7 +209,7 @@
 
     function startSpin() {
         playBg();
-        const btn = document.querySelector('.spin-btn');
+        const btn = document.getElementById('spinBtn');
         btn.disabled = true;
         const totalRotation = Math.random() * 10 + 35;
         let rotationStep = 0;
@@ -199,6 +219,10 @@
             draw();
             if (rotationStep >= totalRotation) {
                 clearInterval(anim);
+                
+                // Фиксируем попытку в памяти
+                localStorage.setItem('resurs_wheel_done', 'true');
+
                 const index = Math.floor((((currentAngle + Math.PI/2) % (Math.PI * 2)) / (Math.PI * 2)) * prizes.length);
                 const finalIdx = prizes.length - 1 - index;
                 const win = prizes[finalIdx < 0 ? 0 : finalIdx];
