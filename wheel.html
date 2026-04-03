@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>РЕСУРС | Колесо Фортуны</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Manrope:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #080814;
+            --accent-gold: #C5A059;
+            --text-main: #F4F4F9;
+        }
+        body {
+            background: var(--bg-deep);
+            color: var(--text-main);
+            font-family: 'Manrope', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .header { text-align: center; margin-bottom: 30px; }
+        .header h1 { font-family: 'Cormorant Garamond', serif; font-size: 32px; color: var(--accent-gold); margin: 0; }
+        
+        /* --- WHEEL STYLES --- */
+        .wheel-container { position: relative; width: 320px; height: 320px; }
+        #canvas { width: 100%; height: 100%; border-radius: 50%; border: 5px solid var(--accent-gold); box-shadow: 0 0 30px rgba(197, 160, 89, 0.2); }
+        .pointer {
+            position: absolute; top: -20px; left: 50%; transform: translateX(-50%);
+            width: 0; height: 0; 
+            border-left: 15px solid transparent; border-right: 15px solid transparent;
+            border-top: 30px solid var(--accent-gold); z-index: 10;
+        }
+        
+        .btn-spin {
+            margin-top: 40px; padding: 18px 40px;
+            background: var(--accent-gold); color: #000;
+            border: none; border-radius: 12px; font-weight: 600;
+            text-transform: uppercase; cursor: pointer; transition: 0.3s;
+        }
+        .btn-spin:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        /* --- MODAL --- */
+        .modal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9); z-index: 100; align-items: center; justify-content: center;
+        }
+        .modal-content {
+            background: #121225; padding: 40px; border-radius: 24px; border: 1px solid var(--accent-gold);
+            text-align: center; max-width: 80%;
+        }
+        .btn-vk {
+            display: block; margin-top: 20px; padding: 15px;
+            background: #0077FF; color: #fff; text-decoration: none; border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>Испытай удачу РЕСУРСА</h1>
+    <p style="opacity: 0.7; font-size: 14px;">Выиграй свою привилегию на старт</p>
+</div>
+
+<div class="wheel-container">
+    <div class="pointer"></div>
+    <canvas id="canvas" width="500" height="500"></canvas>
+</div>
+
+<button class="btn-spin" onclick="spin()">Вращать колесо</button>
+
+<div class="modal" id="resultModal">
+    <div class="modal-content">
+        <h2 style="color: var(--accent-gold);">Поздравляем!</h2>
+        <p id="prizeText" style="font-size: 18px;"></p>
+        <p style="font-size: 13px; opacity: 0.6;">Чтобы забрать приз, перейдите в чат с Верой (ИИ-куратор)</p>
+        <a href="#" id="vkLink" class="btn-vk">Забрать подарок в ВК</a>
+    </div>
+</div>
+
+<script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    const prizes = [
+        { text: "Скидка 70%", code: "SALE70" },
+        { text: "Скидка 20%", code: "SALE20" },
+        { text: "4 за 2000р", code: "FOUR2000" },
+        { text: "40% ГОДОВОЙ", code: "YEAR40" },
+        { text: "ТЕСТ-ДРАЙВ 990", code: "TD990" }
+    ];
+
+    let startAngle = 0;
+    const arc = Math.PI / (prizes.length / 2);
+    
+    function drawWheel() {
+        prizes.forEach((prize, i) => {
+            const angle = startAngle + i * arc;
+            ctx.fillStyle = i % 2 === 0 ? "#121225" : "#1a1a35";
+            ctx.beginPath(); ctx.moveTo(250, 250);
+            ctx.arc(250, 250, 250, angle, angle + arc, false);
+            ctx.fill(); ctx.strokeStyle = "#C5A059"; ctx.stroke();
+            
+            ctx.save();
+            ctx.fillStyle = "#fff";
+            ctx.translate(250 + Math.cos(angle + arc / 2) * 180, 250 + Math.sin(angle + arc / 2) * 180);
+            ctx.rotate(angle + arc / 2 + Math.PI / 2);
+            ctx.font = 'bold 20px Manrope';
+            ctx.fillText(prize.text, -ctx.measureText(prize.text).width / 2, 0);
+            ctx.restore();
+        });
+    }
+
+    function spin() {
+        const spinAngle = Math.random() * 10 + 10;
+        let currentRotation = 0;
+        const btn = document.querySelector('.btn-spin');
+        btn.disabled = true;
+
+        const interval = setInterval(() => {
+            startAngle += 0.1;
+            currentRotation += 0.1;
+            drawWheel();
+            if (currentRotation >= spinAngle) {
+                clearInterval(interval);
+                const index = Math.floor((((startAngle + Math.PI/2) % (Math.PI * 2)) / (Math.PI * 2)) * prizes.length);
+                const finalIndex = prizes.length - 1 - index;
+                const win = prizes[finalIndex < 0 ? 0 : finalIndex];
+                
+                document.getElementById('prizeText').innerText = "Ваш приз: " + win.text;
+                document.getElementById('vkLink').href = `https://vk.me/public221142875?ref=wheel_${win.code}`;
+                document.getElementById('resultModal').style.display = 'flex';
+            }
+        }, 10);
+    }
+    drawWheel();
+</script>
+</body>
+</html>
