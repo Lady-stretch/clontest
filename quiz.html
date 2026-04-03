@@ -43,22 +43,22 @@
             position: relative;
         }
 
-        /* Добавлен динамический пульсирующий фон */
+        /* [НОВОЕ] Эффект дыхания фона */
         body::before {
             content: '';
             position: fixed;
             top: 50%; left: 50%;
-            width: 150vw; height: 150vh;
+            width: 140vw; height: 140vh;
+            background: radial-gradient(circle, rgba(197, 160, 89, 0.07) 0%, transparent 70%);
             transform: translate(-50%, -50%);
-            background: radial-gradient(circle, rgba(197, 160, 89, 0.08) 0%, transparent 60%);
-            animation: breathe 5s ease-in-out infinite alternate;
+            animation: breathe 8s ease-in-out infinite;
             z-index: -1;
             pointer-events: none;
         }
 
         @keyframes breathe {
-            0% { opacity: 0.4; transform: translate(-50%, -50%) scale(0.95); }
-            100% { opacity: 1; transform: translate(-50%, -50%) scale(1.05); }
+            0%, 100% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
         }
 
         .serif { font-family: var(--font-serif); font-weight: 300; }
@@ -148,8 +148,24 @@
             transform: translateX(5px);
         }
 
+        /* [НОВОЕ] Стили для поля ввода телефона */
+        .input-gold {
+            width: 100%;
+            padding: 18px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 16px;
+            margin-bottom: 15px;
+            text-align: center;
+            transition: 0.3s;
+        }
+        .input-gold:focus { border-color: var(--accent-gold); background: rgba(197, 160, 89, 0.05); }
+
         .btn-gold {
             display: inline-block;
+            width: 100%;
             padding: 18px 40px;
             background: var(--accent-gold);
             color: #000;
@@ -158,61 +174,23 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             font-size: 12px;
-            margin-top: 30px;
+            margin-top: 10px;
             transition: var(--transition);
             cursor: pointer;
             border: none;
         }
         .btn-gold:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(197, 160, 89, 0.3); }
 
-        /* Добавлены стили для кольца загрузки ИИ */
-        .loader-ring {
-            display: inline-block;
-            width: 80px; height: 80px;
-            margin: 40px 0;
-        }
-        .loader-ring:after {
-            content: " ";
-            display: block;
-            width: 64px; height: 64px;
-            margin: 8px;
+        /* [НОВОЕ] Анимация загрузки ИИ */
+        .ai-loader {
+            width: 60px; height: 60px;
+            border: 3px solid rgba(197, 160, 89, 0.1);
+            border-top: 3px solid var(--accent-gold);
             border-radius: 50%;
-            border: 4px solid var(--accent-gold);
-            border-color: var(--accent-gold) transparent var(--accent-gold) transparent;
-            animation: loader-ring 1.2s linear infinite;
+            margin: 40px auto;
+            animation: spin 1s linear infinite;
         }
-        @keyframes loader-ring {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Добавлены стили для поля ввода телефона */
-        .input-gold {
-            width: 100%;
-            padding: 18px 20px;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 12px;
-            color: var(--accent-gold);
-            font-family: var(--font-main);
-            font-size: 16px;
-            margin-top: 10px;
-            margin-bottom: 20px;
-            transition: var(--transition);
-            text-align: center;
-            letter-spacing: 1px;
-        }
-        .input-gold::placeholder { color: rgba(255,255,255,0.3); }
-        .input-gold:focus {
-            border-color: var(--accent-gold);
-            background: rgba(197, 160, 89, 0.05);
-            box-shadow: 0 0 15px rgba(197, 160, 89, 0.2);
-        }
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            75% { transform: translateX(5px); }
-        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
         @media (max-width: 600px) {
             header { padding: 15px 20px; }
@@ -291,25 +269,25 @@
         </div>
 
         <div class="step" id="step-loading">
-            <div class="loader-ring"></div>
+            <div class="ai-loader"></div>
             <h2 class="serif question-title">Анализ данных...</h2>
-            <p class="question-desc" style="opacity: 0.8;">ИИ-куратор Вера обрабатывает ваши ответы и формирует персональный план восстановления ресурса.</p>
+            <p class="question-desc">ИИ-куратор Вера анализирует ваши ответы и формирует персональную карту восстановления ресурса.</p>
         </div>
 
         <div class="step" id="step-final">
             <img src="quiz-cover.jpg" class="quiz-step-image" alt="Анализ завершен">
             <h2 class="serif question-title">Анализ завершен</h2>
+            <p class="question-desc" style="margin-bottom: 15px;">Ваш персональный отчет готов. Введите номер телефона, чтобы закрепить за собой результат.</p>
             
-            <div id="result-text" style="margin-bottom: 25px; font-weight: 600; font-size: 16px; color: var(--accent-gold); letter-spacing: 1px;"></div>
+            <div id="result-text" style="margin-bottom: 20px; font-weight: 600; font-size: 16px; color: var(--accent-gold); letter-spacing: 1px;"></div>
             
-            <p class="question-desc" style="font-size: 13px; margin-bottom: 5px; color: #fff;">Для закрепления результата и плана за вами, введите ваш WhatsApp:</p>
-            <input type="tel" id="user-phone" class="input-gold" placeholder="+7 (999) 000-00-00" required>
+            <input type="tel" id="user-phone" class="input-gold" placeholder="+7 (___) ___-__-__">
             
-            <button class="btn-gold" id="vk-link" style="width: 100%; margin-top: 5px;">Получить план в ВК ✨</button>
+            <button class="btn-gold" id="vk-link">Получить разбор в ВК ✨</button>
             
             <div style="margin-top: 25px; padding: 15px; background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);">
                 <p style="font-size: 10px; color: var(--accent-gold); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px;">💡 Важный шаг:</p>
-                <p style="font-size: 13px; opacity: 0.7; line-height: 1.5; margin: 0;">После перехода в диалог нажмите кнопку <b>«Начать»</b>, чтобы куратор увидел ваш номер и результаты.</p>
+                <p style="font-size: 13px; opacity: 0.7; line-height: 1.5; margin: 0;">После перехода в диалог нажмите кнопку <b>«Начать»</b>, чтобы Вера увидела ваши данные.</p>
             </div>
         </div>
     </div>
@@ -326,16 +304,15 @@
         steps[stepIdx].classList.add('active');
         currentStep = stepIdx;
         
-        // Обновляем прогресс-бар с учетом нового шага загрузки
-        let percent = (stepIdx / (steps.length - 2)) * 100;
-        if (percent > 100) percent = 100; // Держим на 100% для финала
+        // Обновляем прогресс-бар (учитываем, что шагов стало на 1 больше)
+        const percent = (stepIdx / (steps.length - 1)) * 100;
         progress.style.width = percent + '%';
 
-        // ЛОГИКА ЭКРАНА ЗАГРУЗКИ (Искусственная задержка)
+        // Если попали на экран загрузки - ждем 2.5 сек и идем в финал
         if (steps[stepIdx].id === 'step-loading') {
             setTimeout(() => {
-                nextStep(stepIdx + 1); // Переходим на финальный экран
-            }, 2500); // 2.5 секунды
+                nextStep(stepIdx + 1);
+            }, 2500);
         }
 
         if (steps[stepIdx].id === 'step-final') {
@@ -360,21 +337,16 @@
         const phoneInput = document.getElementById('user-phone');
 
         vkBtn.onclick = () => {
-            const phone = phoneInput.value.trim();
+            const phone = phoneInput.value.replace(/\D/g, ""); // Очистка номера от лишних символов
             
-            // ВАЛИДАЦИЯ ТЕЛЕФОНА (Не пускаем без номера)
             if (phone.length < 10) {
-                phoneInput.style.borderColor = "#ff4444";
-                phoneInput.style.animation = "shake 0.4s";
-                setTimeout(() => phoneInput.style.animation = "", 400);
+                alert("Пожалуйста, введите корректный номер телефона для получения разбора");
+                phoneInput.style.borderColor = "red";
                 return;
             }
 
-            // Очищаем номер от лишних символов (оставляем только цифры)
-            const cleanPhone = phone.replace(/\D/g,'');
-            
-            // Переход в ВК с передачей баллов И номера телефона
-            window.location.href = `https://vk.com/im?sel=-221142875&ref=quiz_${totalPoints}_${cleanPhone}`;
+            // [УЛУЧШЕНО] Передаем и баллы, и телефон в параметре ref
+            window.location.href = `https://vk.com/im?sel=-221142875&ref=quiz_${totalPoints}_${phone}`;
         };
     }
 </script>
