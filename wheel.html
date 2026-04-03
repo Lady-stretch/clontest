@@ -14,12 +14,12 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>РЕСУРС | Испытай удачу</title>
+    <title>РЕСУРС | Привилегия</title>
     <link rel="icon" type="image/png" href="logo_header_final.png">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Manrope:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Manrope:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -31,55 +31,57 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body, html { width: 100%; height: 100%; font-family: var(--font-main); background: #000; color: #fff; overflow: hidden; }
 
-        /* --- ШАПКА (ИДЕАЛЬНЫЙ ЦЕНТР) --- */
+        /* --- ШАПКА (АБСОЛЮТНАЯ ЦЕНТРОВКА) --- */
         header {
-            position: fixed; top: 0; width: 100%; height: 80px;
+            position: fixed; top: 0; width: 100%; height: 70px;
             padding: 0 5%; display: flex; align-items: center; justify-content: space-between;
-            z-index: 2000; background: rgba(8, 8, 20, 0.4);
-            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            z-index: 2000; background: rgba(8, 8, 20, 0.3);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
         
-        .back-link { width: 40px; display: flex; align-items: center; color: var(--accent-gold); text-decoration: none; z-index: 10; }
+        .back-link { width: 40px; display: flex; align-items: center; color: var(--accent-gold); text-decoration: none; position: relative; z-index: 2100; }
         
         .brand-name { 
-            position: absolute; left: 50%; transform: translateX(-50%);
-            font-family: var(--font-serif); font-size: clamp(16px, 4vw, 24px); 
-            letter-spacing: clamp(4px, 2vw, 12px); text-transform: uppercase; 
-            white-space: nowrap; pointer-events: none;
+            position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+            font-family: var(--font-serif); font-size: clamp(18px, 4.5vw, 26px); 
+            letter-spacing: clamp(4px, 1.5vw, 12px); text-transform: uppercase; 
+            white-space: nowrap; color: #fff; padding-left: 12px;
         }
 
-        .header-logo { width: 40px; display: flex; justify-content: flex-end; z-index: 10; }
-        .header-logo img { height: 35px; width: 35px; border-radius: 6px; object-fit: cover; }
+        .header-logo { width: 40px; display: flex; justify-content: flex-end; position: relative; z-index: 2100; }
+        .header-logo img { height: 35px; width: 35px; border-radius: 6px; }
 
-        /* --- ФОНОВОЕ ВИДЕО --- */
-        .video-wrapper { position: fixed; inset: 0; z-index: -1; }
-        .video-bg { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; }
-        .video-overlay { position: absolute; inset: 0; background: radial-gradient(circle, rgba(8,8,20,0.2) 0%, rgba(8,8,20,0.9) 100%); }
+        /* --- ФОНОВОЕ ВИДЕО (БЕЗ "ЗАНАВЕСКИ") --- */
+        .video-wrapper { position: fixed; inset: 0; z-index: -1; background: #000; }
+        .video-bg { width: 100%; height: 100%; object-fit: cover; opacity: 0.85; } /* Подняли яркость */
+        
+        /* Облегченный градиент, чтобы видео было "живым" */
+        .video-overlay { 
+            position: absolute; inset: 0; 
+            background: linear-gradient(to bottom, rgba(8,8,20,0.3) 0%, rgba(8,8,20,0.6) 100%); 
+        }
 
-        /* --- ГЛАВНЫЙ КОНТЕЙНЕР (РАМКА) --- */
+        /* --- ГЛАВНЫЙ КОНТЕЙНЕР --- */
         .main-container {
             width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
-            padding: 90px 20px 20px;
+            padding: 80px 15px 20px;
         }
 
         .glass-frame {
-            background: rgba(255, 255, 255, 0.02); 
-            backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
-            border: 1px solid rgba(197, 160, 89, 0.2);
-            padding: clamp(20px, 5vw, 40px); border-radius: clamp(20px, 4vw, 40px);
-            width: 100%; max-width: 480px; text-align: center;
-            box-shadow: 0 40px 100px rgba(0,0,0,0.8);
-            animation: fadeIn 1s ease-out;
+            background: rgba(255, 255, 255, 0.04); 
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            padding: clamp(20px, 4vw, 40px); border-radius: 30px;
+            width: 100%; max-width: 460px; text-align: center;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.6);
         }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-        h1 { font-family: var(--font-serif); font-size: clamp(22px, 5vw, 32px); color: var(--accent-gold); margin-bottom: 8px; letter-spacing: 1px; }
-        .info-txt { font-size: clamp(12px, 3vw, 14px); opacity: 0.7; font-weight: 300; margin-bottom: 25px; line-height: 1.4; }
+        h1 { font-family: var(--font-serif); font-size: clamp(24px, 6vw, 32px); color: var(--accent-gold); margin-bottom: 8px; }
+        .info-txt { font-size: 13px; opacity: 0.8; font-weight: 300; margin-bottom: 25px; line-height: 1.4; }
 
         /* --- WHEEL --- */
-        .wheel-container { position: relative; width: clamp(240px, 70vw, 320px); height: clamp(240px, 70vw, 320px); margin: 0 auto; }
+        .wheel-container { position: relative; width: clamp(260px, 75vw, 320px); height: clamp(260px, 75vw, 320px); margin: 0 auto; }
         #wheelCanvas { width: 100%; height: 100%; border-radius: 50%; border: 3px solid var(--accent-gold); }
         .wheel-pointer {
             position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
@@ -91,10 +93,8 @@
             margin-top: 30px; width: 100%; padding: 18px; background: var(--accent-gold);
             color: #000; border: none; border-radius: 12px; font-weight: 600;
             text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: 0.3s;
-            font-size: 14px;
         }
         .spin-button:disabled { opacity: 0.4; pointer-events: none; }
-        .spin-button:hover { background: #dfb86e; box-shadow: 0 0 20px rgba(197, 160, 89, 0.3); }
 
         /* --- MODAL --- */
         .win-modal {
@@ -111,7 +111,6 @@
         .vk-btn {
             display: block; padding: 18px; background: #0077FF; color: #fff;
             text-decoration: none; border-radius: 12px; font-weight: 600; text-transform: uppercase;
-            font-size: 13px; letter-spacing: 1px;
         }
     </style>
 </head>
@@ -137,7 +136,7 @@
 <div class="main-container">
     <div class="glass-frame">
         <h1>Твоя привилегия</h1>
-        <p class="info-txt">Начни свою эволюцию с подарка. <br>Крути колесо и забирай бонус на тренировки!</p>
+        <p class="info-txt">Раскрой потенциал своего тела. <br>Крути колесо и забирай подарок на старт!</p>
         
         <div class="wheel-container">
             <div class="wheel-pointer"></div>
@@ -158,12 +157,9 @@
 </div>
 
 <script>
-    // СКРИПТ АВТОЗАПУСКА ВИДЕО
     const video = document.getElementById('heroVideo');
-    
     function tryPlayVideo() {
         video.play().catch(() => {
-            // Если браузер заблокировал, пробуем снова при любом клике на странице
             document.addEventListener('click', () => { video.play(); }, { once: true });
         });
     }
@@ -174,10 +170,10 @@
     
     const prizes = [
         { text: "70% РАЗОВОЕ", code: "SINGLE70", full: "Скидка 70% на разовое занятие", desc: "Попробуй атмосферу РЕСУРСА практически даром!" },
-        { text: "20% АБОНЕМЕНТ", code: "ABON20", full: "Скидка 20% на любой абонемент", desc: "Выгода на пакеты 16, 32 или 64 занятия." },
-        { text: "4 за 2000₽", code: "FOUR2000", full: "4 занятия за 2000 руб (14 дней)", desc: "Две недели полноценной практики для твоего результата." },
-        { text: "40% ГОДОВОЙ", code: "YEAR40", full: "40% на годовой абонемент", desc: "Максимальная привилегия для твоей тотальной трансформации." },
-        { text: "ТЕСТ-ДРАЙВ", code: "TD990", full: "Тест-драйв: 4 занятия / 990₽ (7 дней)", desc: "Твой мощный старт на одну неделю. Почувствуй эффект сразу!" }
+        { text: "20% АБОНЕМЕНТ", code: "ABON20", full: "Скидка 20% на любой абонемент", desc: "Твоя привилегия на пакеты 16, 32 или 64 занятия." },
+        { text: "4 за 2000₽", code: "FOUR2000", full: "4 занятия за 2000 руб (14 дней)", desc: "Две недели осознанного движения для твоего результата." },
+        { text: "40% ГОДОВОЙ", code: "YEAR40", full: "40% на годовой абонемент", desc: "Максимальный вклад в твое долголетие и форму." },
+        { text: "ТЕСТ-ДРАЙВ", code: "TD990", full: "Тест-драйв: 4 занятия / 990₽ (7 дней)", desc: "Легендарный старт! 4 тренировки за одну неделю." }
     ];
 
     let currentAngle = 0;
@@ -190,8 +186,7 @@
             ctx.fillStyle = i % 2 === 0 ? "#0a0a14" : "#121225";
             ctx.beginPath(); ctx.moveTo(300, 300);
             ctx.arc(300, 300, 290, angle, angle + arc, false);
-            ctx.fill(); 
-            ctx.strokeStyle = "rgba(197, 160, 89, 0.4)"; ctx.lineWidth = 2; ctx.stroke();
+            ctx.fill(); ctx.strokeStyle = "rgba(197, 160, 89, 0.4)"; ctx.lineWidth = 2; ctx.stroke();
             
             ctx.save();
             ctx.fillStyle = "#C5A059";
@@ -204,10 +199,10 @@
     }
 
     function startSpin() {
-        tryPlayVideo(); // На всякий случай запускаем видео при клике на кнопку
+        video.play();
         const btn = document.querySelector('.spin-button');
         btn.disabled = true;
-        const totalRotation = Math.random() * 10 + 30;
+        const totalRotation = Math.random() * 10 + 35;
         let rotationStep = 0;
 
         const anim = setInterval(() => {
@@ -228,7 +223,6 @@
             }
         }, 15);
     }
-
     draw();
 </script>
 </body>
