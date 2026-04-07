@@ -317,23 +317,51 @@
         btn.innerText = 'ОТПРАВКА...';
         btn.disabled = true;
 
-        setTimeout(() => {
+        // Собираем данные формы
+        const formData = new FormData(this);
+        const data = Object.fromEntries(formData.entries());
+
+        // Отправляем данные на боевую функцию Yandex Cloud
+        fetch('https://functions.yandexcloud.net/d4eg243jthg6ruglntjj', {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if (!response.ok) throw new Error('Ошибка соединения с сервером');
+            return response.json();
+        })
+        .then(result => {
+            // Данные успешно ушли
             document.getElementById('surveyForm').style.display = 'none';
             document.getElementById('success-message').style.display = 'block';
             window.scrollTo(0, 0);
 
+            // Логика рандомайзера
             const isWinner = Math.random() < 0.05; 
             
             if (isWinner) {
                 document.getElementById('promo-code-display').innerText = 'ПОБЕДА_ВБ500';
+                document.getElementById('promo-code-display').style.borderColor = '#C5A059';
+                document.getElementById('promo-code-display').style.color = '#C5A059';
                 document.getElementById('gift-text').innerHTML = '🎉 <b>ДЖЕКПОТ!</b> Наш рандомайзер выбрал вас! Вы получаете 500 рублей на шоппинг Wildberries. Отправьте этот код менеджеру:';
             } else {
-                const selectedGift = document.querySelector('input[name="gift"]:checked').value;
+                const selectedGift = data.gift;
                 if(selectedGift === 'Видео') {
                     document.getElementById('promo-code-display').innerText = 'RESURS_VIDEO';
+                } else {
+                    document.getElementById('promo-code-display').innerText = result.gift_code || 'RESURS_14';
                 }
             }
-        }, 1500); 
+        })
+        .catch(error => {
+            console.error('Ошибка:', error);
+            alert('Произошла техническая ошибка. Пожалуйста, проверьте интернет-соединение и попробуйте еще раз.');
+            btn.innerText = 'Отправить и забрать бонус';
+            btn.disabled = false;
+        });
     });
 </script>
 </body>
