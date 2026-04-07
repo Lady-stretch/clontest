@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Выбор нашего комьюнити | РЕСУРС</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --accent: #6c5ce7;
+            --glass: rgba(255, 255, 255, 0.85);
+            --text-main: #2d3436;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
+            background-attachment: fixed;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            color: var(--text-main);
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 { text-align: center; font-size: 32px; margin-bottom: 10px; color: var(--accent); }
+        .subtitle { text-align: center; color: #636e72; margin-bottom: 40px; font-size: 18px; }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .chart-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .chart-card.full-width { grid-column: 1 / -1; }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #2d3436;
+        }
+
+        .cta-box {
+            text-align: center;
+            margin-top: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            border-radius: 16px;
+            color: white;
+        }
+
+        .btn-test-drive {
+            display: inline-block;
+            background: white;
+            color: var(--accent);
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            text-decoration: none;
+            margin-top: 15px;
+            font-size: 18px;
+            transition: transform 0.2s;
+        }
+
+        .btn-test-drive:hover { transform: scale(1.05); }
+
+        @media (max-width: 768px) {
+            .dashboard-grid { grid-template-columns: 1fr; }
+            .container { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Живой пульс студии «РЕСУРС»</h1>
+    <p class="subtitle">Узнайте, почему сотни женщин Сыктывкара доверяют нам свое здоровье. Данные основаны на честных ответах наших клиенток.</p>
+
+    <div class="dashboard-grid">
+        
+        <div class="chart-card">
+            <div class="card-title">Какой ритм выбирают?</div>
+            <canvas id="vibeChart"></canvas>
+        </div>
+
+        <div class="chart-card">
+            <div class="card-title">Что ценят больше всего?</div>
+            <canvas id="priorityChart"></canvas>
+        </div>
+
+        <div class="chart-card full-width">
+            <div class="card-title">С какими болями мы успешно справились</div>
+            <canvas id="problemsChart" height="100"></canvas>
+        </div>
+    </div>
+
+    <div class="cta-box">
+        <h2>Пора заняться собой!</h2>
+        <p>Тысячи слов не заменят одного ощущения легкости в теле. Присоединяйтесь к нашему комьюнити.</p>
+        <a href="https://t.me/Resurs_syktyvkar_bot" class="btn-test-drive">ТЕСТ-ДРАЙВ: 3 занятия за 990₽</a>
+    </div>
+</div>
+
+<script>
+    // Настройки графиков
+    Chart.defaults.font.family = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    Chart.defaults.color = "#636e72";
+
+    // 1. График: Мягкий vs Активный вайб
+    new Chart(document.getElementById('vibeChart'), {
+        type: 'doughnut',
+        data: {
+            labels: ['Мягкий (Оздоровление)', 'Активный (Драйв)'],
+            datasets: [{
+                data: [65, 35], // Эти цифры потом будем брать из Python (Yandex Cloud)
+                backgroundColor: ['#6c5ce7', '#00cec9'],
+                borderWidth: 0
+            }]
+        },
+        options: { cutout: '70%', plugins: { legend: { position: 'bottom' } } }
+    });
+
+    // 2. График: Экспертность vs Цена
+    new Chart(document.getElementById('priorityChart'), {
+        type: 'doughnut',
+        data: {
+            labels: ['Экспертность тренера', 'Удобство', 'Атмосфера', 'Низкая цена'],
+            datasets: [{
+                data: [45, 25, 20, 10],
+                backgroundColor: ['#e84393', '#fdcb6e', '#00b894', '#b2bec3'],
+                borderWidth: 0
+            }]
+        },
+        options: { cutout: '70%', plugins: { legend: { position: 'bottom' } } }
+    });
+
+    // 3. График: Решенные проблемы
+    new Chart(document.getElementById('problemsChart'), {
+        type: 'bar',
+        data: {
+            labels: ['Боли в спине/шее', 'Лишний вес/отеки', 'Стресс/Выгорание', 'Нехватка энергии'],
+            datasets: [{
+                label: '% клиенток, решивших проблему',
+                data: [82, 65, 55, 70],
+                backgroundColor: '#a29bfe',
+                borderRadius: 8
+            }]
+        },
+        options: {
+            scales: { y: { beginAtZero: true, max: 100 } },
+            plugins: { legend: { display: false } }
+        }
+    });
+</script>
+</body>
+</html>
