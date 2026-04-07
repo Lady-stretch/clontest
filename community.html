@@ -146,7 +146,7 @@
     </div>
     
     <h1>Живой пульс студии «РЕСУРС»</h1>
-    <p class="subtitle">Узнайте, почему сотни женщин Сыктывкара доверяют нам свое здоровье.<br>Данные основаны на честных ответах наших резидентов.</p>
+    <p class="subtitle" id="dynamic-subtitle">Узнайте, почему сотни женщин Сыктывкара доверяют нам свое здоровье.<br>Данные основаны на честных ответах наших резидентов.</p>
 
     <div class="dashboard-grid">
         
@@ -174,60 +174,85 @@
 </div>
 
 <script>
-    // Адаптация графиков под темный бренд
-    Chart.defaults.font.family = "'Manrope', sans-serif";
-    Chart.defaults.color = "rgba(244, 244, 249, 0.6)";
+    // URL вашей новой Яндекс.Функции для сбора статистики
+    const STATS_URL = 'https://functions.yandexcloud.net/d4e09bhn4sp9p2sqpt7u';
 
-    // 1. График: Вайб
-    new Chart(document.getElementById('vibeChart'), {
-        type: 'doughnut',
-        data: {
-            labels: ['Мягкий ресурс', 'Активный ресурс'],
-            datasets: [{
-                data: [65, 35],
-                backgroundColor: ['#C5A059', 'rgba(255, 255, 255, 0.15)'],
-                borderColor: '#080814',
-                borderWidth: 2
-            }]
-        },
-        options: { cutout: '75%', plugins: { legend: { position: 'bottom', labels: { padding: 20 } } } }
-    });
+    async function loadStats() {
+        try {
+            const response = await fetch(STATS_URL);
+            if (!response.ok) throw new Error('Ошибка сети');
+            const data = await response.json();
 
-    // 2. График: Приоритеты
-    new Chart(document.getElementById('priorityChart'), {
-        type: 'doughnut',
-        data: {
-            labels: ['Экспертность', 'Атмосфера', 'Удобство', 'Цена'],
-            datasets: [{
-                data: [45, 25, 20, 10],
-                backgroundColor: ['#C5A059', '#D9B97F', 'rgba(255, 255, 255, 0.3)', 'rgba(255, 255, 255, 0.1)'],
-                borderColor: '#080814',
-                borderWidth: 2
-            }]
-        },
-        options: { cutout: '75%', plugins: { legend: { position: 'bottom', labels: { padding: 20 } } } }
-    });
+            // Динамически обновляем подзаголовок количеством собранных анкет
+            const subtitle = document.getElementById('dynamic-subtitle');
+            subtitle.innerHTML = `Узнайте, почему сотни женщин Сыктывкара доверяют нам свое здоровье.<br>Данные основаны на честных ответах наших резидентов.<br><br><span style="color: var(--accent-gold); font-size: 12px; letter-spacing: 2px; text-transform: uppercase;">ОБНОВЛЕНО НА ОСНОВЕ ${data.count} АНКЕТ</span>`;
 
-    // 3. График: Проблемы
-    new Chart(document.getElementById('problemsChart'), {
-        type: 'bar',
-        data: {
-            labels: ['Боли в спине и шее', 'Отеки и вес', 'Стресс', 'Усталость'],
-            datasets: [{
-                label: '% решивших проблему',
-                data: [82, 65, 55, 70],
-                backgroundColor: '#C5A059',
-                borderRadius: 6
-            }]
-        },
-        options: {
-            scales: { 
-                y: { beginAtZero: true, max: 100, grid: { color: 'rgba(255, 255, 255, 0.05)' } },
-                x: { grid: { display: false } }
-            },
-            plugins: { legend: { display: false } }
+            drawCharts(data);
+        } catch (error) {
+            console.error('Не удалось загрузить статистику:', error);
+            // Если функция пока не вернула данные (например, бакет пуст), графики просто не отрисуются
         }
-    });
+    }
+
+    function drawCharts(data) {
+        // Адаптация графиков под темный бренд
+        Chart.defaults.font.family = "'Manrope', sans-serif";
+        Chart.defaults.color = "rgba(244, 244, 249, 0.6)";
+
+        // 1. График: Вайб
+        new Chart(document.getElementById('vibeChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Мягкий ресурс', 'Активный ресурс'],
+                datasets: [{
+                    data: data.vibe_data,
+                    backgroundColor: ['#C5A059', 'rgba(255, 255, 255, 0.15)'],
+                    borderColor: '#080814',
+                    borderWidth: 2
+                }]
+            },
+            options: { cutout: '75%', plugins: { legend: { position: 'bottom', labels: { padding: 20 } } } }
+        });
+
+        // 2. График: Приоритеты
+        new Chart(document.getElementById('priorityChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Экспертность', 'Атмосфера', 'Удобство', 'Цена'],
+                datasets: [{
+                    data: data.priority_data,
+                    backgroundColor: ['#C5A059', '#D9B97F', 'rgba(255, 255, 255, 0.3)', 'rgba(255, 255, 255, 0.1)'],
+                    borderColor: '#080814',
+                    borderWidth: 2
+                }]
+            },
+            options: { cutout: '75%', plugins: { legend: { position: 'bottom', labels: { padding: 20 } } } }
+        });
+
+        // 3. График: Проблемы
+        new Chart(document.getElementById('problemsChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Боли в спине и шее', 'Отеки и вес', 'Стресс', 'Усталость'],
+                datasets: [{
+                    label: 'Кол-во резидентов',
+                    data: data.problems_data,
+                    backgroundColor: '#C5A059',
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                scales: { 
+                    y: { beginAtZero: true, grid: { color: 'rgba(255, 255, 255, 0.05)' } },
+                    x: { grid: { display: false } }
+                },
+                plugins: { legend: { display: false } }
+            }
+        });
+    }
+
+    // Инициализация загрузки при открытии страницы
+    loadStats();
 </script>
 </body>
 </html>
