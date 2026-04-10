@@ -265,6 +265,15 @@
         <div class="section-title">III. Экономика и Удобство</div>
 
         <div class="question-block">
+            <label class="q-title">Что для вас в приоритете при выборе абонемента?</label>
+            <div class="options-grid">
+                <label class="radio-label"><input type="radio" name="abonement_priority" value="Дешевле и короче" required> Меньшая стоимость, даже если срок абонемента сгорит быстрее</label>
+                <label class="radio-label"><input type="radio" name="abonement_priority" value="Дороже и дольше"> Больший срок действия (чтобы ходить в комфортном темпе), пусть это и выйдет дороже</label>
+                <label class="radio-label"><input type="radio" name="abonement_priority" value="Баланс и рассрочка"> Идеальный баланс: длинный абонемент, но с комфортной оплатой частями (рассрочка)</label>
+            </div>
+        </div>
+
+        <div class="question-block">
             <label class="q-title">Насколько вам важна возможность оплаты абонемента частями (рассрочка без %)?</label>
             <div class="options-grid">
                 <label class="radio-label"><input type="radio" name="credit" value="Крайне важна" required> Крайне важна, покупаю только так</label>
@@ -290,7 +299,7 @@
             <label class="q-title">Какой бонус вы хотите получить за прохождение опроса?</label>
             <div class="options-grid">
                 <label class="radio-label"><input type="radio" name="gift" value="Продление" required> Продление текущего абонемента на 14 дней</label>
-                <label class="radio-label"><input type="radio" name="gift" value="Видео"> Видео-гайд «Утренняя лимфодренажная зарядка» от Ольги</label>
+                <label class="radio-label"><input type="radio" name="gift" value="2тренировки"> +2 тренировки к вашему действующему абонементу</label>
             </div>
         </div>
 
@@ -300,7 +309,7 @@
     <div id="success-message">
         <h2 style="font-family: var(--font-serif); font-size: 32px;">Благодарим за доверие!</h2>
         <p style="color: var(--text-dim);">Вы сделали огромный вклад в развитие комьюнити «РЕСУРС».</p>
-        <p id="gift-text" style="margin-top: 30px;">Ваш подарок забронирован. Отправьте этот промокод менеджеру в ВК или боту:</p>
+        <p id="gift-text" style="margin-top: 30px;">Ваш подарок забронирован. Отправьте этот промокод руководителю в ВК или боту:</p>
         <div class="promo-code" id="promo-code-display">RESURS_14</div>
         <p style="margin-top: 40px;">
             <a href="https://resurs-stretch.ru/community.html" style="color: var(--accent-gold); font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--accent-gold); padding-bottom: 3px;">Посмотреть результаты нашего комьюнити ➔</a>
@@ -345,11 +354,11 @@
                 document.getElementById('promo-code-display').innerText = 'ПОБЕДА_ВБ500';
                 document.getElementById('promo-code-display').style.borderColor = '#C5A059';
                 document.getElementById('promo-code-display').style.color = '#C5A059';
-                document.getElementById('gift-text').innerHTML = '🎉 <b>ДЖЕКПОТ!</b> Наш рандомайзер выбрал вас! Вы получаете 500 рублей на шоппинг Wildberries. Отправьте этот код менеджеру:';
+                document.getElementById('gift-text').innerHTML = '🎉 <b>ДЖЕКПОТ!</b> Наш рандомайзер выбрал вас! Вы получаете 500 рублей на шоппинг Wildberries. Отправьте этот код:';
             } else {
                 const selectedGift = data.gift;
-                if(selectedGift === 'Видео') {
-                    document.getElementById('promo-code-display').innerText = 'RESURS_VIDEO';
+                if(selectedGift === '2тренировки') {
+                    document.getElementById('promo-code-display').innerText = 'RESURS_PLUS2';
                 } else {
                     document.getElementById('promo-code-display').innerText = result.gift_code || 'RESURS_14';
                 }
