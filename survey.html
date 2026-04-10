@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <script type="text/javascript">
         (function(m,e,t,r,i,k,a){
             m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -12,7 +9,6 @@
             k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
         })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108177329', 'ym');
         ym(108177329, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
-
         var _tmr = window._tmr || (window._tmr = []);
         _tmr.push({id: "3755240", type: "pageView", start: (new Date()).getTime()});
         (function (d, w, id) {
@@ -29,6 +25,9 @@
             <img src="https://top-fwz1.mail.ru/counter?id=3755240;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" />
         </div>
     </noscript>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Опрос РЕСУРС 2026 | Станьте соавтором студии</title>
     <link rel="icon" type="image/png" href="logo_header_final.png">
     
@@ -73,8 +72,35 @@
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
         }
 
-        .header-top { display: flex; justify-content: center; margin-bottom: 30px; }
-        .header-top img { height: 50px; border-radius: 8px; }
+        /* Обновленный хедер для кнопки назад */
+        .header-top { 
+            position: relative; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center;
+            margin-bottom: 30px; 
+        }
+        .header-top img { height: 50px; border-radius: 8px; transition: var(--transition); }
+        .header-top img:hover { opacity: 0.8; }
+
+        .back-btn {
+            position: absolute;
+            left: 0;
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            z-index: 10;
+        }
+        .back-btn:hover {
+            color: var(--accent-gold);
+            transform: translateX(-4px);
+        }
 
         h1 { font-family: var(--font-serif); text-align: center; font-size: 36px; margin-bottom: 10px; font-weight: 300; letter-spacing: 1px; }
         .subtitle { text-align: center; color: var(--text-dim); margin-bottom: 50px; font-size: 15px; }
@@ -107,6 +133,11 @@
             .options-grid.two-cols { grid-template-columns: 1fr; }
             .container { padding: 30px 20px; }
             h1 { font-size: 28px; }
+        }
+
+        @media (max-width: 500px) {
+            .back-text { display: none; }
+            .back-btn { font-size: 20px; left: 0px; top: 15px; }
         }
 
         .radio-label {
@@ -186,7 +217,13 @@
 
 <div class="container" id="main-container">
     <div class="header-top">
-        <img src="logo_header_final.png" alt="РЕСУРС Логотип">
+        <a href="index.html" class="back-btn">
+            <span style="font-size: 18px; line-height: 1; padding-bottom: 2px;">←</span> 
+            <span class="back-text">На главную</span>
+        </a>
+        <a href="index.html" style="display: flex;">
+            <img src="logo_header_final.png" alt="РЕСУРС Логотип">
+        </a>
     </div>
     
     <h1>Станьте соавтором студии «РЕСУРС»</h1>
@@ -313,7 +350,7 @@
         <p id="gift-text" style="margin-top: 30px;">Ваш подарок забронирован. Отправьте этот промокод руководителю в ВК или боту:</p>
         <div class="promo-code" id="promo-code-display">RESURS_14</div>
         <p style="margin-top: 40px;">
-            <a href="https://resurs-stretch.ru/community.html" style="color: var(--accent-gold); font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--accent-gold); padding-bottom: 3px;">Посмотреть результаты нашего комьюнити ➔</a>
+            <a href="community.html" style="color: var(--accent-gold); font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--accent-gold); padding-bottom: 3px;">Посмотреть результаты нашего комьюнити ➔</a>
         </p>
     </div>
 </div>
@@ -326,9 +363,11 @@
         btn.innerText = 'ОТПРАВКА...';
         btn.disabled = true;
 
+        // Собираем данные формы
         const formData = new FormData(this);
         const data = Object.fromEntries(formData.entries());
 
+        // Отправляем данные на боевую функцию Yandex Cloud
         fetch('https://functions.yandexcloud.net/d4eg243jthg6ruglntjj', {
             method: 'POST',
             body: JSON.stringify(data),
@@ -341,10 +380,12 @@
             return response.json();
         })
         .then(result => {
+            // Данные успешно ушли
             document.getElementById('surveyForm').style.display = 'none';
             document.getElementById('success-message').style.display = 'block';
             window.scrollTo(0, 0);
 
+            // Логика рандомайзера
             const isWinner = Math.random() < 0.05; 
             
             if (isWinner) {
