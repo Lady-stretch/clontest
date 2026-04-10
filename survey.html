@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <script type="text/javascript">
         (function(m,e,t,r,i,k,a){
             m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -9,6 +12,7 @@
             k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
         })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108177329', 'ym');
         ym(108177329, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+
         var _tmr = window._tmr || (window._tmr = []);
         _tmr.push({id: "3755240", type: "pageView", start: (new Date()).getTime()});
         (function (d, w, id) {
@@ -25,9 +29,6 @@
             <img src="https://top-fwz1.mail.ru/counter?id=3755240;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" />
         </div>
     </noscript>
-    
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Опрос РЕСУРС 2026 | Станьте соавтором студии</title>
     <link rel="icon" type="image/png" href="logo_header_final.png">
     
@@ -325,11 +326,9 @@
         btn.innerText = 'ОТПРАВКА...';
         btn.disabled = true;
 
-        // Собираем данные формы
         const formData = new FormData(this);
         const data = Object.fromEntries(formData.entries());
 
-        // Отправляем данные на боевую функцию Yandex Cloud
         fetch('https://functions.yandexcloud.net/d4eg243jthg6ruglntjj', {
             method: 'POST',
             body: JSON.stringify(data),
@@ -342,12 +341,10 @@
             return response.json();
         })
         .then(result => {
-            // Данные успешно ушли
             document.getElementById('surveyForm').style.display = 'none';
             document.getElementById('success-message').style.display = 'block';
             window.scrollTo(0, 0);
 
-            // Логика рандомайзера
             const isWinner = Math.random() < 0.05; 
             
             if (isWinner) {
