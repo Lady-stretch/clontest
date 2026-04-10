@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
     <script type="text/javascript">
         (function(m,e,t,r,i,k,a){
             m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -9,6 +12,7 @@
             k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
         })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108177329', 'ym');
         ym(108177329, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+
         var _tmr = window._tmr || (window._tmr = []);
         _tmr.push({id: "3755240", type: "pageView", start: (new Date()).getTime()});
         (function (d, w, id) {
@@ -25,9 +29,6 @@
             <img src="https://top-fwz1.mail.ru/counter?id=3755240;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" />
         </div>
     </noscript>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Выбор комьюнити | РЕСУРС</title>
     <link rel="icon" type="image/png" href="logo_header_final.png">
     
@@ -55,9 +56,10 @@
             color: var(--text-main);
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
             margin: 0;
-            padding: 40px 20px;
+            padding: 40px 10px;
             display: flex;
             justify-content: center;
+            overflow-x: hidden;
         }
 
         .container {
@@ -68,36 +70,37 @@
             -webkit-backdrop-filter: blur(25px) saturate(180%);
             border-radius: 24px;
             border: var(--glass-border);
-            padding: 50px;
+            padding: 50px 30px;
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
         }
 
         .header-top { display: flex; justify-content: center; margin-bottom: 20px; }
         .header-top img { height: 40px; border-radius: 8px; }
 
-        h1 { font-family: var(--font-serif); text-align: center; font-size: 42px; margin-bottom: 10px; font-weight: 300; letter-spacing: 2px; }
+        h1 { font-family: var(--font-serif); text-align: center; font-size: clamp(28px, 5vw, 42px); margin-bottom: 10px; font-weight: 300; letter-spacing: 2px; }
         .subtitle { text-align: center; color: rgba(244, 244, 249, 0.6); margin-bottom: 50px; font-size: 16px; line-height: 1.6; }
 
         .dashboard-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 30px;
+            gap: 20px;
         }
 
         .chart-card {
             background: rgba(255, 255, 255, 0.02);
-            padding: 30px;
+            padding: 25px;
             border-radius: 16px;
             border: 1px solid rgba(255, 255, 255, 0.05);
+            min-width: 0; /* Важно для Chart.js внутри гридов */
         }
 
         .chart-card.full-width { grid-column: 1 / -1; }
 
         .card-title {
             font-family: var(--font-serif);
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 400;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             text-align: center;
             color: var(--accent-gold);
             letter-spacing: 1px;
@@ -106,7 +109,7 @@
         .cta-box {
             text-align: center;
             margin-top: 50px;
-            padding: 40px;
+            padding: 40px 20px;
             background: rgba(197, 160, 89, 0.05);
             border: 1px solid rgba(197, 160, 89, 0.3);
             border-radius: 16px;
@@ -128,23 +131,24 @@
             letter-spacing: 3px;
             transition: var(--transition);
             cursor: pointer;
+            border: none;
         }
 
         .btn-test-drive:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(197, 160, 89, 0.4); }
 
-        /* Стили модального окна оплаты */
+        /* MODAL */
         .modal-overlay {
             display: none; position: fixed; inset: 0; z-index: 3000;
             background: rgba(5, 5, 12, 0.95); backdrop-filter: blur(10px);
             align-items: center; justify-content: center; padding: 20px;
         }
         .modal-content {
-            width: 100%; max-width: 450px; padding: 50px 40px; position: relative;
+            width: 100%; max-width: 450px; padding: 40px; position: relative;
             text-align: center; border-radius: 24px; border: 1px solid rgba(197, 160, 89, 0.3);
             background: rgba(10, 10, 25, 0.85); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
         }
         .modal-close {
-            position: absolute; top: 20px; right: 25px; font-size: 30px;
+            position: absolute; top: 15px; right: 20px; font-size: 30px;
             cursor: pointer; color: var(--accent-gold); opacity: 0.7; transition: 0.3s;
         }
         .modal-close:hover { opacity: 1; }
@@ -163,9 +167,10 @@
 
         @media (max-width: 768px) {
             .dashboard-grid { grid-template-columns: 1fr; }
-            .container { padding: 30px 20px; }
-            h1 { font-size: 32px; }
-            .modal-content { padding: 40px 20px; }
+            .container { padding: 30px 15px; }
+            h1 { font-size: 28px; }
+            .subtitle { font-size: 14px; margin-bottom: 30px; }
+            .cta-box h2 { font-size: 26px; }
         }
     </style>
 </head>
@@ -180,7 +185,6 @@
     <p class="subtitle" id="dynamic-subtitle">Узнайте, почему сотни женщин Сыктывкара доверяют нам свое здоровье.<br>Данные основаны на честных ответах наших резидентов.</p>
 
     <div class="dashboard-grid">
-        
         <div class="chart-card">
             <div class="card-title">Какой ритм выбирают?</div>
             <canvas id="vibeChart"></canvas>
@@ -193,7 +197,7 @@
 
         <div class="chart-card full-width">
             <div class="card-title">Решенные запросы комьюнити</div>
-            <canvas id="problemsChart" height="100"></canvas>
+            <canvas id="problemsChart" height="150"></canvas>
         </div>
     </div>
 
@@ -226,9 +230,6 @@
 </div>
 
 <script>
-    /* ==========================================
-       ЧАСТЬ 1: ЗАГРУЗКА И ОТРИСОВКА СТАТИСТИКИ 
-       ========================================== */
     const STATS_URL = 'https://functions.yandexcloud.net/d4e09bhn4sp9p2sqpt7u';
 
     async function loadStats() {
@@ -238,7 +239,7 @@
             const data = await response.json();
 
             const subtitle = document.getElementById('dynamic-subtitle');
-            subtitle.innerHTML = `Узнайте, почему сотни женщин Сыктывкара доверяют нам свое здоровье.<br>Данные основаны на честных ответах наших резидентов.<br><br><span style="color: var(--accent-gold); font-size: 12px; letter-spacing: 2px; text-transform: uppercase;">ОБНОВЛЕНО НА ОСНОВЕ ${data.count} АНКЕТ</span>`;
+            subtitle.innerHTML = `Узнайте, почему сотни женщин Сыктывкара доверяют нам свое здоровье.<br>Данные основаны на честных ответах наших резидентов.<br><br><span style="color: var(--accent-gold); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; border-top: 1px solid rgba(197,160,89,0.3); padding-top: 10px; display: inline-block;">ОБНОВЛЕНО НА ОСНОВЕ ${data.count} АНКЕТ</span>`;
 
             drawCharts(data);
         } catch (error) {
@@ -279,7 +280,7 @@
         new Chart(document.getElementById('problemsChart'), {
             type: 'bar',
             data: {
-                labels: ['Боли в спине и шее', 'Отеки и вес', 'Стресс', 'Усталость'],
+                labels: ['Боли в спине', 'Отеки и вес', 'Стресс', 'Усталость'],
                 datasets: [{
                     label: 'Кол-во резидентов',
                     data: data.problems_data,
@@ -287,6 +288,8 @@
                 }]
             },
             options: {
+                responsive: true,
+                maintainAspectRatio: false,
                 scales: { 
                     y: { beginAtZero: true, grid: { color: 'rgba(255, 255, 255, 0.05)' } },
                     x: { grid: { display: false } }
@@ -296,18 +299,16 @@
         });
     }
 
-    // Инициализация загрузки статистики при открытии страницы
     loadStats();
 
-    /* ==========================================
-       ЧАСТЬ 2: ЛОГИКА УМНОГО ВИДЖЕТА ОПЛАТЫ И ОТПРАВКИ В VK
-       ========================================== */
+    /* PAYMENT LOGIC */
     const paymentModal = document.getElementById('paymentModal');
+    const openPaymentBtn = document.getElementById('openPaymentBtn');
     
-    document.getElementById('openPaymentBtn').addEventListener('click', function(e) {
-        e.preventDefault();
+    openPaymentBtn.addEventListener('click', () => {
         paymentModal.style.display = 'flex';
-        document.body.style.overflow = 'hidden'; 
+        document.body.style.overflow = 'hidden';
+        document.getElementById('payName').focus();
     });
 
     function closePaymentModal() { 
@@ -315,10 +316,7 @@
         document.body.style.overflow = 'auto'; 
     }
 
-    // URL Яндекс.Функции, которая отвечает за анкеты и пересылку в VK
     const VK_LEAD_URL = "https://functions.yandexcloud.net/d4eg243jthg6ruglntjj";
-    
-    // Постоянная ссылка из Робокассы
     const ROBOKASSA_LINK = "https://auth.robokassa.ru/merchant/Invoice/zICwctvJTEqrASoc9pbzYQ"; 
 
     document.getElementById('paymentLeadForm').addEventListener('submit', async function(e) {
@@ -329,24 +327,22 @@
         const phone = document.getElementById('payPhone').value;
         
         btn.innerText = "ПЕРЕХОД К ОПЛАТЕ...";
-        btn.style.opacity = "0.7";
         btn.disabled = true;
 
         try {
-            // Отправляем лид в Яндекс.Функцию (Мозг), которая перешлет его в VK
             await fetch(VK_LEAD_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     action: 'payment_lead',
                     name: name,
-                    phone: phone
+                    phone: phone,
+                    source: 'community_page'
                 })
             });
         } catch (error) {
             console.error('Ошибка логирования лида:', error);
         } finally {
-            // Перенаправление на Робокассу
             window.location.href = ROBOKASSA_LINK;
         }
     });
