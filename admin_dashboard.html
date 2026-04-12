@@ -13,7 +13,7 @@
     <style>
         :root {
             --bg-deep: #F2F2F7;
-            --glass: rgba(255, 255, 255, 0.92);
+            --glass: rgba(255, 255, 255, 0.95);
             --glass-border: 1px solid rgba(0, 0, 0, 0.08);
             --accent: #A68A56; 
             --text: #1C1C1E;
@@ -169,7 +169,7 @@
         /* ЮНИТ-ВИДЖЕТЫ */
         .unit-grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); 
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); 
             gap: 15px; 
             margin-bottom: 25px; 
         }
@@ -194,6 +194,44 @@
             text-transform: uppercase; 
             color: var(--text-dim); 
             letter-spacing: 1px; 
+        }
+
+        .sub-val {
+            font-size: 11px;
+            color: var(--text);
+            margin-top: 5px;
+            font-weight: 600;
+        }
+
+        /* ВОРОНКА */
+        .funnel-bar {
+            background: var(--bg-deep); 
+            height: 40px; 
+            border-radius: 8px; 
+            position: relative; 
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+        .funnel-fill {
+            height: 100%; 
+            position: absolute; 
+            left: 0; 
+            top: 0; 
+            transition: width 0.5s ease;
+        }
+
+        .funnel-text {
+            position: relative; 
+            z-index: 2; 
+            padding-left: 15px; 
+            font-size: 11px; 
+            font-weight: 700;
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding-right: 15px;
         }
 
         /* ВЕРА */
@@ -270,7 +308,7 @@
     </div>
     <div id="vera-chat" style="flex: 1; padding: 20px; overflow-y: auto; font-size: 14px;">
         <div style="background: #fff; padding: 15px; border-radius: 15px; border: var(--glass-border); margin-bottom: 15px;">
-            Николай Сергеевич, здравия желаю! Все системы оцифрованы. Жду Ваших распоряжений по анализу.
+            Николай Сергеевич, здравия желаю! Математическое ядро запущено. Юнит-экономика считается автоматически.
         </div>
     </div>
     <div style="padding: 15px; background: #fff; display: flex; gap: 10px;">
@@ -280,35 +318,72 @@
 </div>
 
 <div id="page-dash" class="page">
-    <h2 class="serif" style="font-size: 32px; margin-bottom: 25px;">Пульс бизнеса</h2>
+    <h2 class="serif" style="font-size: 32px; margin-bottom: 25px;">Юнит-Экономика</h2>
     
     <div class="unit-grid">
-        <div class="unit-item"><div class="unit-lab">Выручка</div><div class="unit-val" id="d-rev">0 ₽</div></div>
-        <div class="unit-item"><div class="unit-lab">ROMI</div><div class="unit-val" id="d-romi">0%</div></div>
-        <div class="unit-item"><div class="unit-lab">CAC</div><div class="unit-val" id="d-cac">0 ₽</div></div>
-        <div class="unit-item"><div class="unit-lab">Лиды</div><div class="unit-val" id="d-leads">0</div></div>
-    </div>
-
-    <div class="card">
-        <h3 class="serif" style="margin-bottom: 15px;">Воронка продаж</h3>
-        <div style="display: flex; flex-direction: column; gap: 10px;">
-            <div style="background: var(--bg-deep); height: 35px; border-radius: 8px; position: relative; overflow: hidden;">
-                <div style="background: var(--accent); width: 100%; height: 100%; opacity: 0.8;"></div>
-                <span style="position: absolute; left: 15px; top: 8px; font-size: 11px; font-weight: 700;">ЛИДЫ: <span id="f-leads">0</span></span>
-            </div>
-            <div style="background: var(--bg-deep); height: 35px; border-radius: 8px; position: relative; overflow: hidden;">
-                <div style="background: var(--accent); width: 60%; height: 100%; opacity: 0.6;"></div>
-                <span style="position: absolute; left: 15px; top: 8px; font-size: 11px; font-weight: 700;">ПРОБНЫЕ: <span id="f-trials">0</span></span>
-            </div>
-            <div style="background: var(--bg-deep); height: 35px; border-radius: 8px; position: relative; overflow: hidden;">
-                <div style="background: var(--ok); width: 30%; height: 100%; opacity: 0.6;"></div>
-                <span style="position: absolute; left: 15px; top: 8px; font-size: 11px; font-weight: 700;">ПЕРВИЧНЫЕ: <span id="f-prim">0</span></span>
-            </div>
+        <div class="unit-item">
+            <div class="unit-lab">Общая Выручка</div>
+            <div class="unit-val" id="d-rev">0 ₽</div>
+            <div class="sub-val" style="color: var(--ok);">Вторичка: <span id="d-sec-rev">0</span> ₽</div>
+        </div>
+        <div class="unit-item">
+            <div class="unit-lab">LTV (Жизн. цикл)</div>
+            <div class="unit-val" id="d-ltv">0 ₽</div>
+            <div class="sub-val">На 1 клиента</div>
+        </div>
+        <div class="unit-item">
+            <div class="unit-lab">CAC (Цена клиента)</div>
+            <div class="unit-val" id="d-cac">0 ₽</div>
+            <div class="sub-val">Только первичка</div>
+        </div>
+        <div class="unit-item">
+            <div class="unit-lab">ROMI</div>
+            <div class="unit-val" id="d-romi">0%</div>
+            <div class="sub-val">Окупаемость</div>
         </div>
     </div>
 
     <div class="card">
-        <h3 class="serif" style="margin-bottom: 10px;">Динамика доходности</h3>
+        <h3 class="serif" style="margin-bottom: 15px;">Воронка Конверсии</h3>
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+            
+            <div class="funnel-bar">
+                <div class="funnel-fill" style="background: rgba(166, 138, 86, 0.8); width: 100%;"></div>
+                <div class="funnel-text">
+                    <span>1. ЛИДЫ (Трафик)</span>
+                    <span id="f-leads">0</span>
+                </div>
+            </div>
+
+            <div class="funnel-bar">
+                <div class="funnel-fill" id="bar-bookings" style="background: rgba(166, 138, 86, 0.6); width: 0%;"></div>
+                <div class="funnel-text">
+                    <span>2. ЗАПИСИ (CR: <span id="cr-bookings">0</span>%)</span>
+                    <span id="f-bookings">0</span>
+                </div>
+            </div>
+
+            <div class="funnel-bar">
+                <div class="funnel-fill" id="bar-trials" style="background: rgba(242, 153, 74, 0.7); width: 0%;"></div>
+                <div class="funnel-text">
+                    <span>3. ДОХОДИМОСТЬ (Пробные) (CR: <span id="cr-trials">0</span>%)</span>
+                    <span id="f-trials">0</span>
+                </div>
+            </div>
+
+            <div class="funnel-bar">
+                <div class="funnel-fill" id="bar-prim" style="background: rgba(39, 174, 96, 0.8); width: 0%;"></div>
+                <div class="funnel-text">
+                    <span style="color: #fff;">4. ПОКУПКА 8+ ЗАН. (CR: <span id="cr-prim">0</span>%)</span>
+                    <span style="color: #fff;" id="f-prim">0</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="card">
+        <h3 class="serif" style="margin-bottom: 10px;">Динамика Доходности</h3>
         <div class="chart-wrap"><canvas id="revChart"></canvas></div>
     </div>
 </div>
@@ -317,7 +392,7 @@
     <h2 class="serif" style="font-size: 32px; margin-bottom: 25px;">Фиксация результатов</h2>
     
     <div class="card">
-        <label>Выбор даты</label>
+        <label>Календарь (Выбор даты)</label>
         <input type="date" id="in-date">
         <label>Студия</label>
         <select id="in-loc">
@@ -327,8 +402,9 @@
     </div>
 
     <div class="card" style="border-left: 5px solid var(--accent);">
-        <h3 class="serif" style="margin-bottom: 15px;">Трафик (Лиды)</h3>
-        <label>Источник</label>
+        <h3 class="serif" style="margin-bottom: 15px;">Трафик и Записи</h3>
+        
+        <label>Источник лидов</label>
         <select id="l-src">
             <option>ВК</option>
             <option>2ГИС</option>
@@ -338,23 +414,37 @@
             <option>Одноклассники</option>
             <option>Сайт</option>
         </select>
-        <label>Количество</label>
-        <input type="number" id="l-qty" placeholder="0">
-        <button class="btn" style="background: var(--text);" onclick="addLead()">Внести лиды</button>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <div>
+                <label>Поступило лидов</label>
+                <input type="number" id="l-qty" placeholder="0">
+            </div>
+            <div>
+                <label>Записано на пробное</label>
+                <input type="number" id="b-qty" placeholder="0">
+            </div>
+        </div>
+        
+        <button class="btn" style="background: var(--text);" onclick="addTraffic()">Внести трафик</button>
     </div>
 
     <div class="card" style="border-left: 5px solid var(--ok);">
-        <h3 class="serif" style="margin-bottom: 15px;">Продажи (Касса)</h3>
-        <label>Тип сделки</label>
+        <h3 class="serif" style="margin-bottom: 15px;">Касса (Продажи)</h3>
+        
+        <label>Статус Клиента</label>
         <select id="s-cat">
-            <option value="trial">Пробное занятие</option>
-            <option value="prim">Первичная покупка</option>
-            <option value="sec">Вторичная (Продление)</option>
+            <option value="trial">Пробное занятие (Доходимость)</option>
+            <option value="prim">Первичная покупка абонемента</option>
+            <option value="sec">Вторичная покупка (Продление)</option>
         </select>
-        <label>Номенклатура</label>
+        
+        <label>Номенклатура (Продукт)</label>
         <select id="s-type">
-            <option>Подписка 3 зан/нед - 990 руб</option>
-            <option>Тест драйв 3 зан на 10 дней - 990 руб</option>
+            <option>Пробное занятие</option>
+            <option>Подписка 3 зан/нед</option>
+            <option>Тест драйв 3 зан на 10 дней</option>
+            <option>Безлимит на месяц</option>
             <option>8 занятий</option>
             <option>12 занятий</option>
             <option>16 занятий</option>
@@ -365,8 +455,9 @@
             <option>96 занятий</option>
             <option>128 занятий</option>
         </select>
-        <label>Сумма оплаты (₽)</label>
-        <input type="number" id="s-val" placeholder="Введите факт">
+        
+        <label>Фактическая сумма оплаты (₽)</label>
+        <input type="number" id="s-val" placeholder="Например: 11200">
         <button class="btn" onclick="addSale()">Зафиксировать продажу</button>
     </div>
 
@@ -374,8 +465,9 @@
         <h3 class="serif" style="margin-bottom: 15px;">Расходы</h3>
         <label>Категория</label>
         <select id="e-cat">
-            <option>Реклама (Бюджет)</option>
-            <option>Реклама (Подрядчик)</option>
+            <option>Реклама (ВК)</option>
+            <option>Реклама (Яндекс)</option>
+            <option>Реклама (Прочее)</option>
             <option>Такси / Логистика</option>
             <option>Хознужды / Вода</option>
             <option>Аренда / Кредит</option>
@@ -390,21 +482,30 @@
 <div id="page-log" class="page">
     <h2 class="serif" style="font-size: 32px; margin-bottom: 25px;">История операций</h2>
     <div id="log-list">
-        <p style="text-align: center; color: var(--text-dim); margin-top: 50px;">Данных пока нет.</p>
+        <p style="text-align: center; color: var(--text-dim); margin-top: 50px;">Журнал пуст. Внесите первые данные.</p>
     </div>
 </div>
 
 <div id="page-plan" class="page">
     <h2 class="serif" style="font-size: 32px; margin-bottom: 25px;">Инвестор-панель</h2>
+    
     <div class="card" style="background: var(--text); color: #fff;">
         <div style="font-size: 10px; text-transform: uppercase; opacity: 0.6; letter-spacing: 2px;">Долговая нагрузка</div>
         <div style="font-size: 36px; font-family: serif; margin: 10px 0;">2 500 000 ₽</div>
         <div style="font-size: 11px; color: var(--warn);">Статус: Обслуживается в графике</div>
     </div>
+    
     <div class="card">
-        <h3 class="serif" style="margin-bottom: 15px;">Эффективность каналов</h3>
+        <h3 class="serif" style="margin-bottom: 15px;">Лиды по Каналам</h3>
         <div class="chart-wrap">
             <canvas id="chanChart"></canvas>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3 class="serif" style="margin-bottom: 15px;">Популярность Абонементов (SKU)</h3>
+        <div class="chart-wrap">
+            <canvas id="skuChart"></canvas>
         </div>
     </div>
 </div>
@@ -421,7 +522,7 @@
             switchTab('page-dash', document.querySelector('.nav-item'));
             initializeCharts();
         } else { 
-            alert("Неверное кодовое слово."); 
+            alert("Неверное кодовое слово, Николай Сергеевич."); 
         }
     }
 
@@ -455,7 +556,7 @@
         setTimeout(() => {
             chatContent.innerHTML += `
                 <div style="background: #fff; border: var(--glass-border); padding: 15px; border-radius: 15px; margin-bottom: 15px;">
-                    Николай Сергеевич, информация принята. Данные будут учтены при формировании отчетов.
+                    Я зафиксировала запрос. Логика расчета LTV и ROMI работает в штатном режиме без сбоев.
                 </div>`;
             chatContent.scrollTop = chatContent.scrollHeight;
         }, 600);
@@ -463,18 +564,29 @@
         inputField.value = "";
     }
 
-    // --- ЛОГИКА ВВОДА ---
-    let dashboardStats = { 
-        revenue: 0, 
+    // --- МАТЕМАТИЧЕСКОЕ ЯДРО (ЮНИТ-ЭКОНОМИКА) ---
+    let appData = { 
+        totalRevenue: 0,
+        secondaryRevenue: 0,
         leads: 0, 
+        bookings: 0,
         trials: 0, 
         primarySales: 0, 
-        spend: 0 
+        secondarySalesCount: 0,
+        marketingSpend: 0,
+        dailyRevenue: {}, // Для графика выручки по дням
+        leadsBySource: {
+            'ВК': 0, '2ГИС': 0, 'Яндекс': 0, 'Сайт': 0, 'Подруги / Рекомендации': 0, 'Архив / Старая база': 0, 'Одноклассники': 0
+        },
+        salesBySku: {} // Для графика популярности
     };
+
+    // Глобальные переменные для графиков
+    let revenueChartInstance, channelsChartInstance, skuChartInstance;
 
     function appendToLog(text, value, type) {
         const logList = document.getElementById('log-list');
-        if (logList.innerHTML.includes("пока нет")) {
+        if (logList.innerHTML.includes("Журнал пуст")) {
             logList.innerHTML = "";
         }
         
@@ -496,16 +608,30 @@
         logList.insertAdjacentHTML('afterbegin', logHtml);
     }
 
-    function addLead() {
-        const leadQuantity = parseInt(document.getElementById('l-qty').value); 
-        if (!leadQuantity) return;
+    function addTraffic() {
+        const leadQuantity = parseInt(document.getElementById('l-qty').value) || 0; 
+        const bookQuantity = parseInt(document.getElementById('b-qty').value) || 0;
+        
+        if (leadQuantity === 0 && bookQuantity === 0) return;
         
         const leadSource = document.getElementById('l-src').value;
-        dashboardStats.leads += leadQuantity;
         
-        appendToLog(`Лиды: ${leadSource} (${leadQuantity} шт)`, null, 'text');
+        appData.leads += leadQuantity;
+        appData.bookings += bookQuantity;
+        
+        if (leadQuantity > 0) {
+            appData.leadsBySource[leadSource] += leadQuantity;
+            appendToLog(`Лиды: ${leadSource} (${leadQuantity} шт)`, null, 'text');
+        }
+        if (bookQuantity > 0) {
+            appendToLog(`Записи на пробное (${bookQuantity} шт)`, null, 'text');
+        }
+        
         updateDashboardView(); 
+        updateDynamicCharts();
+        
         document.getElementById('l-qty').value = "";
+        document.getElementById('b-qty').value = "";
     }
 
     function addSale() {
@@ -514,13 +640,29 @@
         
         const saleCategory = document.getElementById('s-cat').value;
         const saleTypeLabel = document.getElementById('s-type').value;
+        const dateValue = document.getElementById('in-date').value;
         
-        dashboardStats.revenue += saleValue;
-        if (saleCategory === 'trial') dashboardStats.trials++;
-        if (saleCategory === 'prim') dashboardStats.primarySales++;
+        // Учет денег
+        appData.totalRevenue += saleValue;
+        appData.dailyRevenue[dateValue] = (appData.dailyRevenue[dateValue] || 0) + saleValue;
+
+        // Учет воронки и LTV
+        if (saleCategory === 'trial') {
+            appData.trials++;
+        } else if (saleCategory === 'prim') {
+            appData.primarySales++;
+        } else if (saleCategory === 'sec') {
+            appData.secondarySalesCount++;
+            appData.secondaryRevenue += saleValue;
+        }
         
-        appendToLog(`Продажа: ${saleTypeLabel}`, `${saleValue} ₽`, 'ok');
+        // Учет SKU (Абонементов)
+        appData.salesBySku[saleTypeLabel] = (appData.salesBySku[saleTypeLabel] || 0) + 1;
+        
+        appendToLog(`Продажа [${saleCategory === 'sec' ? 'Вторичка' : 'Первичка'}]: ${saleTypeLabel}`, `${saleValue} ₽`, 'ok');
+        
         updateDashboardView(); 
+        updateDynamicCharts();
         document.getElementById('s-val').value = "";
     }
 
@@ -529,7 +671,11 @@
         if (!expenseValue) return;
         
         const expenseCategory = document.getElementById('e-cat').value;
-        dashboardStats.spend += expenseValue;
+        
+        // Если это реклама, добавляем в расчет CAC и ROMI
+        if (expenseCategory.includes('Реклама')) {
+            appData.marketingSpend += expenseValue;
+        }
         
         appendToLog(`Расход: ${expenseCategory}`, `${expenseValue} ₽`, 'crit');
         updateDashboardView(); 
@@ -537,55 +683,92 @@
     }
 
     function updateDashboardView() {
-        document.getElementById('d-rev').innerText = dashboardStats.revenue.toLocaleString() + " ₽";
-        document.getElementById('d-leads').innerText = dashboardStats.leads;
-        document.getElementById('f-leads').innerText = dashboardStats.leads;
-        document.getElementById('f-trials').innerText = dashboardStats.trials;
-        document.getElementById('f-prim').innerText = dashboardStats.primarySales;
+        // Базовые метрики
+        document.getElementById('d-rev').innerText = appData.totalRevenue.toLocaleString() + " ₽";
+        document.getElementById('d-sec-rev').innerText = appData.secondaryRevenue.toLocaleString();
+        document.getElementById('d-leads').innerText = appData.leads;
         
-        const calculatedCac = dashboardStats.primarySales > 0 ? Math.round(dashboardStats.spend / dashboardStats.primarySales) : 0;
-        document.getElementById('d-cac').innerText = calculatedCac + " ₽";
+        // Юнит Экономика
+        const calculatedCac = appData.primarySales > 0 ? Math.round(appData.marketingSpend / appData.primarySales) : 0;
+        document.getElementById('d-cac').innerText = calculatedCac.toLocaleString() + " ₽";
         
-        const calculatedRomi = dashboardStats.spend > 0 ? Math.round(((dashboardStats.revenue - dashboardStats.spend) / dashboardStats.spend) * 100) : 0;
+        const calculatedRomi = appData.marketingSpend > 0 ? Math.round(((appData.totalRevenue - appData.marketingSpend) / appData.marketingSpend) * 100) : 0;
         document.getElementById('d-romi').innerText = calculatedRomi + "%";
+
+        const calculatedLtv = appData.primarySales > 0 ? Math.round(appData.secondaryRevenue / appData.primarySales) : 0;
+        document.getElementById('d-ltv').innerText = calculatedLtv.toLocaleString() + " ₽";
+
+        // Обновление Воронки
+        document.getElementById('f-leads').innerText = appData.leads;
+        document.getElementById('f-bookings').innerText = appData.bookings;
+        document.getElementById('f-trials').innerText = appData.trials;
+        document.getElementById('f-prim').innerText = appData.primarySales;
+
+        // Расчет конверсий (CR) и ширины полос
+        let crBookings = appData.leads > 0 ? Math.round((appData.bookings / appData.leads) * 100) : 0;
+        let crTrials = appData.bookings > 0 ? Math.round((appData.trials / appData.bookings) * 100) : 0;
+        let crPrim = appData.trials > 0 ? Math.round((appData.primarySales / appData.trials) * 100) : 0;
+
+        document.getElementById('cr-bookings').innerText = crBookings;
+        document.getElementById('cr-trials').innerText = crTrials;
+        document.getElementById('cr-prim').innerText = crPrim;
+
+        // Визуальное заполнение воронки
+        document.getElementById('bar-bookings').style.width = (appData.leads > 0 ? (appData.bookings / appData.leads * 100) : 0) + '%';
+        document.getElementById('bar-trials').style.width = (appData.bookings > 0 ? (appData.trials / appData.bookings * 100) : 0) + '%';
+        document.getElementById('bar-prim').style.width = (appData.trials > 0 ? (appData.primarySales / appData.trials * 100) : 0) + '%';
     }
 
-    // --- ГРАФИКИ ---
+    // --- ЖИВЫЕ ГРАФИКИ (Chart.js) ---
     function initializeCharts() {
-        const revenueChartContext = document.getElementById('revChart').getContext('2d');
-        new Chart(revenueChartContext, {
+        // График Выручки
+        const revCtx = document.getElementById('revChart').getContext('2d');
+        revenueChartInstance = new Chart(revCtx, {
             type: 'line',
-            data: { 
-                labels: ['Начало', 'Середина', 'Конец'], 
-                datasets: [{ 
-                    label: 'Выручка', 
-                    data: [0, 0, 0], 
-                    borderColor: '#A68A56', 
-                    tension: 0.4 
-                }] 
-            },
-            options: { 
-                maintainAspectRatio: false, 
-                plugins: { legend: { display: false } } 
-            }
+            data: { labels: [], datasets: [{ label: 'Выручка (₽)', data: [], borderColor: '#A68A56', backgroundColor: 'rgba(166, 138, 86, 0.1)', fill: true, tension: 0.3 }] },
+            options: { maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } }
         });
 
-        const channelsChartContext = document.getElementById('chanChart').getContext('2d');
-        new Chart(channelsChartContext, {
+        // График Каналов Трафика
+        const chanCtx = document.getElementById('chanChart').getContext('2d');
+        channelsChartInstance = new Chart(chanCtx, {
             type: 'bar',
-            data: { 
-                labels: ['ВК', 'Яндекс', '2ГИС', 'Сайт'], 
-                datasets: [{ 
-                    label: 'Лиды', 
-                    data: [0, 0, 0, 0], 
-                    backgroundColor: '#1C1C1E' 
-                }] 
-            },
-            options: { 
-                maintainAspectRatio: false, 
-                plugins: { legend: { display: false } } 
-            }
+            data: { labels: Object.keys(appData.leadsBySource), datasets: [{ label: 'Лиды', data: Object.values(appData.leadsBySource), backgroundColor: '#1C1C1E', borderRadius: 6 }] },
+            options: { maintainAspectRatio: false, plugins: { legend: { display: false } } }
         });
+
+        // График SKU (Абонементы)
+        const skuCtx = document.getElementById('skuChart').getContext('2d');
+        skuChartInstance = new Chart(skuCtx, {
+            type: 'bar',
+            data: { labels: [], datasets: [{ label: 'Продано шт.', data: [], backgroundColor: '#27AE60', borderRadius: 6 }] },
+            options: { maintainAspectRatio: false, plugins: { legend: { display: false } } }
+        });
+    }
+
+    // Функция обновления данных внутри графиков
+    function updateDynamicCharts() {
+        if (!revenueChartInstance) return;
+
+        // 1. Обновляем график выручки по датам
+        const sortedDates = Object.keys(appData.dailyRevenue).sort();
+        const revenueValues = sortedDates.map(date => appData.dailyRevenue[date]);
+        
+        revenueChartInstance.data.labels = sortedDates;
+        revenueChartInstance.data.datasets[0].data = revenueValues;
+        revenueChartInstance.update();
+
+        // 2. Обновляем столбцы каналов
+        channelsChartInstance.data.datasets[0].data = Object.values(appData.leadsBySource);
+        channelsChartInstance.update();
+
+        // 3. Обновляем график популярных абонементов
+        const skuLabels = Object.keys(appData.salesBySku);
+        const skuValues = Object.values(appData.salesBySku);
+        
+        skuChartInstance.data.labels = skuLabels;
+        skuChartInstance.data.datasets[0].data = skuValues;
+        skuChartInstance.update();
     }
 </script>
 
