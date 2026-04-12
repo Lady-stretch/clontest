@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>РЕСУРС | Система управления</title>
+    <title>РЕСУРС | Управление</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,15 +13,15 @@
     <style>
         :root {
             --bg-deep: #F2F2F7;
-            --glass: rgba(255, 255, 255, 0.8);
-            --glass-border: 1px solid rgba(0, 0, 0, 0.08);
-            --accent: #A68A56; /* Золото */
+            --glass: rgba(255, 255, 255, 0.9);
+            --glass-border: 1px solid rgba(0, 0, 0, 0.05);
+            --accent: #A68A56; 
             --text: #1C1C1E;
             --text-dim: rgba(28, 28, 30, 0.5);
             --ok: #27AE60;
             --warn: #F2994A;
             --crit: #EB5757;
-            --shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
@@ -30,72 +30,84 @@
             background: var(--bg-deep); 
             color: var(--text); 
             overflow-x: hidden;
-            padding-bottom: 80px; /* Отступ под навигацию */
+            padding-bottom: 80px; 
         }
 
-        h1, h2, .serif { font-family: 'Cormorant Garamond', serif; font-weight: 600; }
+        h1, h2, h3, .serif { font-family: 'Cormorant Garamond', serif; font-weight: 600; }
 
-        /* --- NAVIGATION --- */
+        /* --- НАВИГАЦИЯ --- */
         nav {
             position: fixed; bottom: 0; width: 100%; height: 70px;
             background: var(--glass); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
             border-top: var(--glass-border); display: flex; justify-content: space-around;
-            align-items: center; z-index: 1000; box-shadow: 0 -5px 20px rgba(0,0,0,0.03);
+            align-items: center; z-index: 1000; box-shadow: 0 -5px 20px rgba(0,0,0,0.02);
         }
         .nav-item { 
             text-align: center; color: var(--text-dim); font-size: 10px; 
             text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: 0.3s;
+            flex: 1; padding: 10px 0;
         }
         .nav-item.active { color: var(--accent); font-weight: 700; }
         .nav-icon { font-size: 20px; display: block; margin-bottom: 4px; }
 
-        /* --- TABS LOGIC --- */
-        .page { display: none; padding: 30px 20px; animation: fadeIn 0.4s ease; }
+        /* --- ВКЛАДКИ --- */
+        .page { display: none; padding: 30px 20px; animation: fadeIn 0.3s ease; max-width: 800px; margin: 0 auto; }
         .page.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- UI ELEMENTS --- */
+        /* --- КАРТОЧКИ И ФОРМЫ --- */
         .card { 
             background: var(--glass); border: var(--glass-border); 
             border-radius: 20px; padding: 25px; margin-bottom: 20px; box-shadow: var(--shadow);
         }
         .btn {
             background: var(--accent); color: #fff; border: none; border-radius: 12px;
-            padding: 15px 25px; font-weight: 600; width: 100%; cursor: pointer;
-            text-transform: uppercase; letter-spacing: 1px; transition: 0.3s;
+            padding: 16px 25px; font-weight: 600; width: 100%; cursor: pointer;
+            text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; font-size: 13px;
         }
         .btn:active { transform: scale(0.98); opacity: 0.9; }
 
         input, select {
-            width: 100%; background: rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.1);
-            border-radius: 10px; padding: 12px; margin-bottom: 15px; font-family: inherit;
+            width: 100%; background: #ffffff; border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 12px; padding: 14px 16px; margin-bottom: 15px; font-family: inherit; font-size: 15px;
+            color: var(--text); box-shadow: inset 0 2px 4px rgba(0,0,0,0.01);
         }
+        input:focus, select:focus { border-color: var(--accent); outline: none; }
+        label { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-dim); margin-bottom: 8px; font-weight: 600; }
 
-        /* --- STATUS COLORS --- */
-        .indicator { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 8px; }
+        .indicator { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 6px; }
         .bg-ok { background: var(--ok); }
         .bg-warn { background: var(--warn); }
         .bg-crit { background: var(--crit); }
 
-        /* --- VERA AI WINDOW --- */
+        /* Ограничитель для графиков */
+        .chart-container {
+            position: relative;
+            height: 250px; 
+            width: 100%;
+        }
+
+        /* --- ВЕРА --- */
         #vera-trigger {
             position: fixed; bottom: 90px; right: 20px; width: 55px; height: 55px;
             background: var(--accent); border-radius: 50%; display: flex;
             align-items: center; justify-content: center; font-size: 24px;
-            box-shadow: 0 10px 25px rgba(166, 138, 86, 0.3); z-index: 1001; cursor: pointer;
+            box-shadow: 0 10px 25px rgba(166, 138, 86, 0.3); z-index: 1001; cursor: pointer; transition: 0.3s;
         }
+        #vera-trigger:active { transform: scale(0.9); }
+        
         #vera-chat {
-            position: fixed; bottom: 90px; right: 20px; width: 350px; height: 500px;
+            position: fixed; bottom: 90px; right: 20px; width: 340px; height: 450px; max-height: 70vh;
             background: var(--glass); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
-            border: var(--glass-border); border-radius: 25px; display: none;
-            flex-direction: column; z-index: 1002; box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            border: var(--glass-border); border-radius: 20px; display: none;
+            flex-direction: column; z-index: 1002; box-shadow: 0 15px 40px rgba(0,0,0,0.15);
         }
         .chat-header {
             padding: 15px 20px; border-bottom: var(--glass-border);
-            display: flex; justify-content: space-between; align-items: center;
+            display: flex; justify-content: space-between; align-items: center; background: #fff; border-radius: 20px 20px 0 0;
         }
 
-        /* --- ADMIN OVERLAY --- */
+        /* --- ЭКРАН БЛОКИРОВКИ --- */
         #lock-screen {
             position: fixed; inset: 0; background: var(--bg-deep); z-index: 9999;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -106,10 +118,10 @@
 <body>
 
 <div id="lock-screen">
-    <h1 style="font-size: 42px; margin-bottom: 10px;">РЕСУРС</h1>
-    <p style="color: var(--text-dim); margin-bottom: 40px;">Введите кодовое слово для доступа к управлению</p>
-    <input type="password" id="pass-input" placeholder="ПАРОЛЬ" style="text-align: center; font-size: 24px; letter-spacing: 5px;">
-    <button class="btn" onclick="checkPass()">ВОЙТИ В СИСТЕМУ</button>
+    <h1 style="font-size: 36px; margin-bottom: 10px; letter-spacing: 4px;">РЕСУРС</h1>
+    <p style="color: var(--text-dim); margin-bottom: 40px; font-size: 14px;">Авторизация Управляющего</p>
+    <input type="password" id="pass-input" placeholder="Введите кодовое слово" style="text-align: center; max-width: 300px;">
+    <button class="btn" style="max-width: 300px;" onclick="checkPass()">ВОЙТИ В ПАНЕЛЬ</button>
 </div>
 
 <nav id="main-nav" style="display: none;">
@@ -117,7 +129,7 @@
         <span class="nav-icon">📊</span>Сводка
     </div>
     <div class="nav-item" onclick="showPage('input', this)">
-        <span class="nav-icon">➕</span>Ввод
+        <span class="nav-icon">✍️</span>Ввод
     </div>
     <div class="nav-item" onclick="showPage('history', this)">
         <span class="nav-icon">📜</span>Лог
@@ -130,138 +142,135 @@
 <div id="vera-trigger" onclick="toggleVera()" style="display: none;">✨</div>
 <div id="vera-chat">
     <div class="chat-header">
-        <span class="serif" style="color: var(--accent); letter-spacing: 1px;">ВЕРА АССИСТЕНТ</span>
-        <span onclick="toggleVera()" style="cursor: pointer; font-size: 24px;">&times;</span>
+        <span class="serif" style="color: var(--accent); letter-spacing: 1px; font-size: 16px;">ВЕРА | ИИ</span>
+        <span onclick="toggleVera()" style="cursor: pointer; font-size: 28px; line-height: 0.8; color: var(--text-dim);">&times;</span>
     </div>
     <div id="chat-content" style="flex: 1; padding: 15px; overflow-y: auto; font-size: 14px;">
-        <div style="background: #fff; padding: 12px; border-radius: 12px; margin-bottom: 10px; border: var(--glass-border);">
-            Здравия желаю, Николай Сергеевич! Я готова к анализу данных. Введите запрос или проверьте метрики на вкладках.
+        <div style="background: #fff; padding: 12px 16px; border-radius: 12px; margin-bottom: 10px; border: var(--glass-border); box-shadow: 0 2px 5px rgba(0,0,0,0.02);">
+            Здравия желаю, Николай Сергеевич! Я на связи. Чем могу помочь по цифрам?
         </div>
     </div>
-    <div style="padding: 15px; border-top: var(--glass-border); display: flex; gap: 8px;">
-        <input type="text" id="chat-in" placeholder="Спросить Веру..." style="margin-bottom: 0;">
-        <button onclick="askVera()" style="background: var(--accent); border: none; border-radius: 8px; width: 45px; color: #fff;">➤</button>
+    <div style="padding: 15px; border-top: var(--glass-border); display: flex; gap: 10px; background: #fff; border-radius: 0 0 20px 20px;">
+        <input type="text" id="chat-in" placeholder="Запрос..." style="margin-bottom: 0; padding: 10px 15px;">
+        <button onclick="askVera()" style="background: var(--accent); border: none; border-radius: 10px; width: 45px; color: #fff; font-size: 16px;">➤</button>
     </div>
 </div>
 
 <div id="dashboard" class="page">
-    <h2 class="section-title" style="margin-bottom: 25px;">Оперативная сводка</h2>
+    <h2 class="serif" style="font-size: 28px; margin-bottom: 20px;">Оперативная картина</h2>
     
-    <div class="metrics-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-        <div class="card" style="padding: 20px;">
-            <div style="font-size: 11px; color: var(--text-dim); text-transform: uppercase;">Выручка Месяца</div>
-            <div style="font-size: 24px; font-family: serif; margin-top: 5px;">485 200 ₽</div>
-            <div style="font-size: 10px; color: var(--ok); margin-top: 5px;">↑ 12% к плану</div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+        <div class="card" style="padding: 20px; margin-bottom: 0;">
+            <div style="font-size: 10px; color: var(--text-dim); text-transform: uppercase;">Выручка Сегодня</div>
+            <div style="font-size: 22px; font-family: serif; margin-top: 5px;" id="dash-revenue">0 ₽</div>
         </div>
-        <div class="card" style="padding: 20px;">
-            <div style="font-size: 11px; color: var(--text-dim); text-transform: uppercase;">Лиды (ВК)</div>
-            <div style="font-size: 24px; font-family: serif; margin-top: 5px;">142</div>
-            <div style="font-size: 10px; color: var(--warn); margin-top: 5px;">CPL: 450 ₽</div>
+        <div class="card" style="padding: 20px; margin-bottom: 0;">
+            <div style="font-size: 10px; color: var(--text-dim); text-transform: uppercase;">Лидов Всего</div>
+            <div style="font-size: 22px; font-family: serif; margin-top: 5px;" id="dash-leads">0</div>
         </div>
     </div>
 
     <div class="card">
-        <h3 class="serif" style="margin-bottom: 20px;">Динамика за 7 дней</h3>
-        <canvas id="dailyChart" height="200"></canvas>
-    </div>
-
-    <div class="card">
-        <h3 class="serif" style="margin-bottom: 15px;">Статус системы</h3>
-        <div style="display: flex; flex-direction: column; gap: 12px; font-size: 14px;">
-            <div><span class="indicator bg-ok"></span> Маржинальность: 24%</div>
-            <div><span class="indicator bg-warn"></span> Конверсия в приход: 52%</div>
-            <div><span class="indicator bg-crit"></span> Долг (обслуживание): В графике</div>
+        <h3 class="serif" style="margin-bottom: 15px; font-size: 18px;">Динамика выручки</h3>
+        <div class="chart-container">
+            <canvas id="dailyChart"></canvas>
         </div>
     </div>
 </div>
 
 <div id="input" class="page">
-    <h2 class="section-title" style="margin-bottom: 25px;">Зафиксировать итоги</h2>
+    <h2 class="serif" style="font-size: 28px; margin-bottom: 20px;">Зафиксировать итоги</h2>
     
     <div class="card">
-        <h3 class="serif" style="margin-bottom: 15px;">1. Локация и Лиды</h3>
+        <label>Локация</label>
         <select id="entry-location">
             <option>Советская 3</option>
             <option>Коммунистическая 77/2</option>
         </select>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-            <input type="number" placeholder="Лиды ВК">
-            <input type="number" placeholder="Сайт">
-        </div>
     </div>
 
     <div class="card">
-        <h3 class="serif" style="margin-bottom: 15px;">2. Касса (Доходы)</h3>
-        <select id="sale-type">
-            <option>Пробное (990 ₽)</option>
-            <option>Абонемент 16 зан. (11 200 ₽)</option>
-            <option>Абонемент 64 зан. (44 800 ₽)</option>
-            <option>Абонемент ГОД (38 400 ₽)</option>
-            <option>Доп. товар / Детокс</option>
+        <h3 class="serif" style="margin-bottom: 15px; color: var(--accent);">Лиды (Трафик)</h3>
+        <label>Источник</label>
+        <select id="lead-source">
+            <option>ВК</option>
+            <option>2ГИС</option>
+            <option>Яндекс</option>
+            <option>Подруги / Рекомендации</option>
+            <option>Архив / Старая база</option>
+            <option>Одноклассники</option>
+            <option>Сайт</option>
         </select>
-        <input type="number" placeholder="Сумма (если доп)">
+        <label>Количество заявок</label>
+        <input type="number" id="lead-count" placeholder="Например: 5">
+        <button class="btn" style="background: var(--text);" onclick="saveLead()">Добавить лиды</button>
     </div>
 
     <div class="card">
-        <h3 class="serif" style="margin-bottom: 15px;">3. Расходы</h3>
+        <h3 class="serif" style="margin-bottom: 15px; color: var(--ok);">Касса (Приход)</h3>
+        <label>Тип абонемента / Услуги</label>
+        <select id="sale-type">
+            <option>Подписка 3 зан/нед - 990 руб</option>
+            <option>Тест драйв 3 зан на 10 дней - 990 руб</option>
+            <option>8 занятий</option>
+            <option>12 занятий</option>
+            <option>16 занятий</option>
+            <option>24 занятия</option>
+            <option>32 занятия</option>
+            <option>48 занятий</option>
+            <option>64 занятия</option>
+            <option>96 занятий</option>
+            <option>128 занятий</option>
+            <option>Доп. услуги / Детокс</option>
+        </select>
+        <label>Фактическая сумма оплаты (₽)</label>
+        <input type="number" id="sale-amount" placeholder="Введите точную сумму">
+        <button class="btn" onclick="saveSale()">Внести оплату</button>
+    </div>
+
+    <div class="card">
+        <h3 class="serif" style="margin-bottom: 15px; color: var(--crit);">Касса (Расход)</h3>
+        <label>Категория</label>
         <select id="expense-cat">
+            <option>Реклама / Подрядчики</option>
             <option>Такси / Логистика</option>
-            <option>Хоз. нужды / Вода</option>
-            <option>Реклама (ВК/Яндекс)</option>
-            <option>Аренда / Коммуналка</option>
+            <option>Хоз. нужды / Вода / Инвентарь</option>
+            <option>Аренда / Кредит</option>
+            <option>Зарплата / Аванс</option>
             <option>Прочее</option>
         </select>
-        <input type="number" placeholder="Сумма расхода">
+        <label>Сумма расхода (₽)</label>
+        <input type="number" id="expense-amount" placeholder="Введите сумму">
+        <button class="btn" style="background: var(--crit);" onclick="saveExpense()">Учесть расход</button>
     </div>
-
-    <button class="btn" onclick="saveEntry()">ЗАФИКСИРОВАТЬ ДЕНЬ 🦾</button>
 </div>
 
 <div id="history" class="page">
-    <h2 class="section-title" style="margin-bottom: 25px;">История операций</h2>
+    <h2 class="serif" style="font-size: 28px; margin-bottom: 20px;">Лог операций</h2>
     <div id="log-list">
-        <div class="card" style="padding: 15px; font-size: 13px;">
-            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-                <b>12.04.2026</b>
-                <span style="color: var(--ok);">+ 38 400 ₽</span>
-            </div>
-            <div style="color: var(--text-dim);">Абонемент ГОД • Коммунистическая</div>
-        </div>
-        <div class="card" style="padding: 15px; font-size: 13px;">
-            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-                <b>11.04.2026</b>
-                <span style="color: var(--crit);">- 1 240 ₽</span>
-            </div>
-            <div style="color: var(--text-dim);">Заказ воды • Советская</div>
+        <div style="text-align: center; color: var(--text-dim); font-size: 14px; margin-top: 40px;">
+            Операций пока нет. Данные подтянутся после первого ввода.
         </div>
     </div>
 </div>
 
 <div id="strategy" class="page">
-    <h2 class="section-title" style="margin-bottom: 25px;">Инвестор-панель</h2>
+    <h2 class="serif" style="font-size: 28px; margin-bottom: 20px;">Инвестор-панель</h2>
     
-    <div class="card" style="background: var(--text); color: #fff;">
+    <div class="card" style="background: #1C1C1E; color: #fff;">
         <div style="font-size: 11px; opacity: 0.6; text-transform: uppercase;">Общий долг сети</div>
-        <div style="font-size: 32px; font-family: serif; margin: 10px 0;">2 450 000 ₽</div>
+        <div style="font-size: 32px; font-family: serif; margin: 10px 0;">2 500 000 ₽</div>
         <div style="height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px;">
-            <div style="width: 15%; height: 100%; background: var(--accent); border-radius: 2px;"></div>
+            <div style="width: 0%; height: 100%; background: var(--accent); border-radius: 2px;"></div>
         </div>
-        <div style="font-size: 10px; margin-top: 10px; opacity: 0.6;">Выплачено: 450 000 ₽ (18%)</div>
+        <div style="font-size: 10px; margin-top: 10px; opacity: 0.6;">Ожидание выплат</div>
     </div>
 
     <div class="card">
-        <h3 class="serif" style="margin-bottom: 20px;">Прогноз масштабирования</h3>
-        <div style="display: flex; gap: 10px; margin-bottom: 20px;">
-            <div style="flex: 1; text-align: center; border-right: 1px solid rgba(0,0,0,0.05);">
-                <div style="font-size: 20px; font-weight: 700;">3.2</div>
-                <div style="font-size: 9px; color: var(--text-dim); text-transform: uppercase;">LTV / CAC</div>
-            </div>
-            <div style="flex: 1; text-align: center;">
-                <div style="font-size: 20px; font-weight: 700;">8.4 мес</div>
-                <div style="font-size: 9px; color: var(--text-dim); text-transform: uppercase;">Окупаемость точки</div>
-            </div>
+        <h3 class="serif" style="margin-bottom: 20px; font-size: 18px;">Источники лидов (Сводка)</h3>
+        <div class="chart-container">
+            <canvas id="leadsChart"></canvas>
         </div>
-        <canvas id="yearlyChart" height="200"></canvas>
     </div>
 </div>
 
@@ -273,13 +282,14 @@
             document.getElementById('lock-screen').style.display = "none";
             document.getElementById('main-nav').style.display = "flex";
             document.getElementById('vera-trigger').style.display = "flex";
+            showPage('dashboard', document.querySelectorAll('.nav-item')[0]);
             initCharts();
         } else {
-            alert("Неверное кодовое слово, Николай Сергеевич.");
+            alert("Неверное кодовое слово.");
         }
     }
 
-    // --- ПЕРЕКЛЮЧЕНИЕ СТРАНИЦ ---
+    // --- ПЕРЕКЛЮЧЕНИЕ ВКЛАДОК ---
     function showPage(pageId, navEl) {
         document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
         document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
@@ -289,7 +299,7 @@
         window.scrollTo(0,0);
     }
 
-    // --- УПРАВЛЕНИЕ ВЕРОЙ ---
+    // --- ВЕРА ---
     function toggleVera() {
         const chat = document.getElementById('vera-chat');
         chat.style.display = chat.style.display === 'flex' ? 'none' : 'flex';
@@ -300,52 +310,111 @@
         if (!input.value) return;
         
         const content = document.getElementById('chat-content');
-        content.innerHTML += `<div style="text-align: right; margin-bottom: 10px;"><span style="background: var(--accent); color: #fff; padding: 8px 12px; border-radius: 12px; display: inline-block;">${input.value}</span></div>`;
+        content.innerHTML += `<div style="text-align: right; margin-bottom: 10px;"><span style="background: var(--accent); color: #fff; padding: 10px 14px; border-radius: 12px; display: inline-block;">${input.value}</span></div>`;
         
         setTimeout(() => {
-            content.innerHTML += `<div style="background: #fff; padding: 12px; border-radius: 12px; margin-bottom: 10px; border: var(--glass-border);">Принято. Обрабатываю данные по ${input.value}. В текущем темпе мы выйдем в ноль по долгам через 14 месяцев.</div>`;
+            content.innerHTML += `<div style="background: #fff; padding: 12px 16px; border-radius: 12px; margin-bottom: 10px; border: var(--glass-border); box-shadow: 0 2px 5px rgba(0,0,0,0.02);">Николай Сергеевич, запрос отправлен в базу YDB. Скоро функция аналитики будет подключена к реальным данным.</div>`;
             content.scrollTop = content.scrollHeight;
         }, 600);
         input.value = "";
     }
 
-    // --- ИМИТАЦИЯ СОХРАНЕНИЯ ---
-    function saveEntry() {
-        alert("Данные отправлены в базу YDB. Графики обновлены! 🦾");
-        showPage('dashboard', document.querySelectorAll('.nav-item')[0]);
+    // --- ИМИТАЦИЯ ВВОДА И ЛОГОВ ---
+    function addLog(text, amount, type) {
+        const logList = document.getElementById('log-list');
+        if (logList.innerHTML.includes("Операций пока нет")) logList.innerHTML = "";
+        
+        const color = type === 'ok' ? 'var(--ok)' : type === 'crit' ? 'var(--crit)' : 'var(--text)';
+        const sign = type === 'ok' ? '+' : type === 'crit' ? '-' : '';
+        const amountStr = amount ? `<span style="color: ${color}; font-weight: 700;">${sign} ${amount}</span>` : '';
+
+        const logHTML = `
+        <div class="card" style="padding: 16px; font-size: 14px; margin-bottom: 12px;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+                <b style="font-family: serif; font-size: 16px;">Сегодня</b>
+                ${amountStr}
+            </div>
+            <div style="color: var(--text-dim); font-size: 12px;">${text} • ${document.getElementById('entry-location').value}</div>
+        </div>`;
+        
+        logList.insertAdjacentHTML('afterbegin', logHTML);
     }
 
-    // --- ГРАФИКИ ---
+    function saveLead() {
+        const source = document.getElementById('lead-source').value;
+        const count = document.getElementById('lead-count').value;
+        if(!count) { alert('Укажите количество'); return; }
+        
+        addLog(`Лиды: ${source} (${count} шт)`, null, 'warn');
+        document.getElementById('dash-leads').innerText = parseInt(document.getElementById('dash-leads').innerText) + parseInt(count);
+        document.getElementById('lead-count').value = '';
+        alert('Лиды зафиксированы');
+    }
+
+    function saveSale() {
+        const type = document.getElementById('sale-type').value;
+        const amount = document.getElementById('sale-amount').value;
+        if(!amount) { alert('Укажите сумму'); return; }
+
+        addLog(`Продажа: ${type}`, `${amount} ₽`, 'ok');
+        
+        let currentRev = parseInt(document.getElementById('dash-revenue').innerText.replace(/\D/g, ''));
+        if(isNaN(currentRev)) currentRev = 0;
+        document.getElementById('dash-revenue').innerText = (currentRev + parseInt(amount)).toLocaleString('ru-RU') + ' ₽';
+        
+        document.getElementById('sale-amount').value = '';
+        alert('Оплата зафиксирована');
+    }
+
+    function saveExpense() {
+        const cat = document.getElementById('expense-cat').value;
+        const amount = document.getElementById('expense-amount').value;
+        if(!amount) { alert('Укажите сумму'); return; }
+
+        addLog(`Расход: ${cat}`, `${amount} ₽`, 'crit');
+        document.getElementById('expense-amount').value = '';
+        alert('Расход зафиксирован');
+    }
+
+    // --- ГРАФИКИ (ПУСТЫЕ ПРИ СТАРТЕ) ---
     function initCharts() {
-        // Daily Chart
+        // Линейный (Сводка)
         new Chart(document.getElementById('dailyChart'), {
             type: 'line',
             data: {
                 labels: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
                 datasets: [{
                     label: 'Выручка',
-                    data: [12000, 38000, 15000, 42000, 22000, 65000, 48000],
+                    data: [0, 0, 0, 0, 0, 0, 0], // Пустые стартовые данные
                     borderColor: '#A68A56',
-                    tension: 0.4,
-                    fill: false
+                    backgroundColor: 'rgba(166, 138, 86, 0.1)',
+                    fill: true,
+                    tension: 0.4
                 }]
             },
-            options: { plugins: { legend: { display: false } }, scales: { y: { display: false }, x: { grid: { display: false } } } }
+            options: { 
+                maintainAspectRatio: false, // Важно для ограничения высоты
+                plugins: { legend: { display: false } }, 
+                scales: { y: { beginAtZero: true }, x: { grid: { display: false } } } 
+            }
         });
 
-        // Yearly Chart
-        new Chart(document.getElementById('yearlyChart'), {
+        // Столбчатый (Стратегия)
+        new Chart(document.getElementById('leadsChart'), {
             type: 'bar',
             data: {
-                labels: ['Янв', 'Фев', 'Мар', 'Апр'],
+                labels: ['ВК', '2ГИС', 'Яндекс', 'Сайт', 'Реком.'],
                 datasets: [{
-                    label: 'Прибыль',
-                    data: [320000, 380000, 450000, 485000],
-                    backgroundColor: '#A68A56',
-                    borderRadius: 8
+                    label: 'Кол-во лидов',
+                    data: [0, 0, 0, 0, 0], // Пустые стартовые данные
+                    backgroundColor: '#1C1C1E',
+                    borderRadius: 4
                 }]
             },
-            options: { plugins: { legend: { display: false } } }
+            options: { 
+                maintainAspectRatio: false, // Важно для ограничения высоты
+                plugins: { legend: { display: false } } 
+            }
         });
     }
 </script>
