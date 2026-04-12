@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>РЕСУРС | Управление</title>
+    <title>РЕСУРС | Система управления бизнесом</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,186 +13,323 @@
     <style>
         :root {
             --bg-deep: #F2F2F7;
-            --glass: rgba(255, 255, 255, 0.9);
-            --glass-border: 1px solid rgba(0, 0, 0, 0.05);
+            --glass: rgba(255, 255, 255, 0.92);
+            --glass-border: 1px solid rgba(0, 0, 0, 0.08);
             --accent: #A68A56; 
             --text: #1C1C1E;
             --text-dim: rgba(28, 28, 30, 0.5);
             --ok: #27AE60;
             --warn: #F2994A;
             --crit: #EB5757;
-            --shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+            -webkit-tap-highlight-color: transparent; 
+        }
+
         body { 
             font-family: 'Manrope', sans-serif; 
             background: var(--bg-deep); 
             color: var(--text); 
             overflow-x: hidden;
-            padding-bottom: 80px; 
+            padding-bottom: 90px; 
         }
 
-        h1, h2, h3, .serif { font-family: 'Cormorant Garamond', serif; font-weight: 600; }
+        h1, h2, h3, .serif { 
+            font-family: 'Cormorant Garamond', serif; 
+            font-weight: 600; 
+        }
 
         /* --- НАВИГАЦИЯ --- */
         nav {
-            position: fixed; bottom: 0; width: 100%; height: 70px;
-            background: var(--glass); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            border-top: var(--glass-border); display: flex; justify-content: space-around;
-            align-items: center; z-index: 1000; box-shadow: 0 -5px 20px rgba(0,0,0,0.02);
+            position: fixed; 
+            bottom: 0; 
+            width: 100%; 
+            height: 75px;
+            background: var(--glass); 
+            backdrop-filter: blur(25px); 
+            -webkit-backdrop-filter: blur(25px);
+            border-top: var(--glass-border); 
+            display: flex; 
+            justify-content: space-around;
+            align-items: center; 
+            z-index: 1000; 
+            box-shadow: 0 -5px 25px rgba(0,0,0,0.03);
         }
+
         .nav-item { 
-            text-align: center; color: var(--text-dim); font-size: 10px; 
-            text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: 0.3s;
-            flex: 1; padding: 10px 0;
+            text-align: center; 
+            color: var(--text-dim); 
+            font-size: 10px; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            cursor: pointer; 
+            transition: 0.3s;
+            flex: 1; 
+            padding: 12px 0;
         }
-        .nav-item.active { color: var(--accent); font-weight: 700; }
-        .nav-icon { font-size: 20px; display: block; margin-bottom: 4px; }
 
-        /* --- ВКЛАДКИ --- */
-        .page { display: none; padding: 30px 20px; animation: fadeIn 0.3s ease; max-width: 800px; margin: 0 auto; }
-        .page.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+        .nav-item.active { 
+            color: var(--accent); 
+            font-weight: 700; 
+        }
 
-        /* --- КАРТОЧКИ И ФОРМЫ --- */
+        .nav-icon { 
+            font-size: 22px; 
+            display: block; 
+            margin-bottom: 4px; 
+        }
+
+        /* --- СТРАНИЦЫ --- */
+        .page { 
+            display: none; 
+            padding: 30px 5%; 
+            animation: fadeIn 0.4s ease; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+        }
+
+        .page.active { 
+            display: block; 
+        }
+
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(10px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+
+        /* --- КАРТОЧКИ --- */
         .card { 
-            background: var(--glass); border: var(--glass-border); 
-            border-radius: 20px; padding: 25px; margin-bottom: 20px; box-shadow: var(--shadow);
+            background: var(--glass); 
+            border: var(--glass-border); 
+            border-radius: 24px; 
+            padding: 25px; 
+            margin-bottom: 25px; 
+            box-shadow: var(--shadow);
         }
+
         .btn {
-            background: var(--accent); color: #fff; border: none; border-radius: 12px;
-            padding: 16px 25px; font-weight: 600; width: 100%; cursor: pointer;
-            text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; font-size: 13px;
+            background: var(--accent); 
+            color: #fff; 
+            border: none; 
+            border-radius: 14px;
+            padding: 18px 25px; 
+            font-weight: 700; 
+            width: 100%; 
+            cursor: pointer;
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            transition: 0.3s; 
+            font-size: 13px;
         }
-        .btn:active { transform: scale(0.98); opacity: 0.9; }
+
+        .btn:active { 
+            transform: scale(0.97); 
+        }
 
         input, select {
-            width: 100%; background: #ffffff; border: 1px solid rgba(0,0,0,0.1);
-            border-radius: 12px; padding: 14px 16px; margin-bottom: 15px; font-family: inherit; font-size: 15px;
-            color: var(--text); box-shadow: inset 0 2px 4px rgba(0,0,0,0.01);
+            width: 100%; 
+            background: #ffffff; 
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 14px; 
+            padding: 14px 18px; 
+            margin-bottom: 18px; 
+            font-family: inherit; 
+            font-size: 16px;
+            color: var(--text);
         }
-        input:focus, select:focus { border-color: var(--accent); outline: none; }
-        label { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-dim); margin-bottom: 8px; font-weight: 600; }
 
-        .indicator { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 6px; }
-        .bg-ok { background: var(--ok); }
-        .bg-warn { background: var(--warn); }
-        .bg-crit { background: var(--crit); }
+        input:focus { 
+            border-color: var(--accent); 
+            outline: none; 
+        }
 
-        /* Ограничитель для графиков */
-        .chart-container {
-            position: relative;
+        label { 
+            display: block; 
+            font-size: 11px; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            color: var(--text-dim); 
+            margin-bottom: 8px; 
+            font-weight: 700; 
+        }
+
+        /* ГРАФИКИ */
+        .chart-wrap { 
+            position: relative; 
             height: 250px; 
-            width: 100%;
+            width: 100%; 
+            margin-top: 15px; 
         }
 
-        /* --- ВЕРА --- */
-        #vera-trigger {
-            position: fixed; bottom: 90px; right: 20px; width: 55px; height: 55px;
-            background: var(--accent); border-radius: 50%; display: flex;
-            align-items: center; justify-content: center; font-size: 24px;
-            box-shadow: 0 10px 25px rgba(166, 138, 86, 0.3); z-index: 1001; cursor: pointer; transition: 0.3s;
-        }
-        #vera-trigger:active { transform: scale(0.9); }
-        
-        #vera-chat {
-            position: fixed; bottom: 90px; right: 20px; width: 340px; height: 450px; max-height: 70vh;
-            background: var(--glass); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
-            border: var(--glass-border); border-radius: 20px; display: none;
-            flex-direction: column; z-index: 1002; box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-        }
-        .chat-header {
-            padding: 15px 20px; border-bottom: var(--glass-border);
-            display: flex; justify-content: space-between; align-items: center; background: #fff; border-radius: 20px 20px 0 0;
+        /* ЮНИТ-ВИДЖЕТЫ */
+        .unit-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); 
+            gap: 15px; 
+            margin-bottom: 25px; 
         }
 
-        /* --- ЭКРАН БЛОКИРОВКИ --- */
-        #lock-screen {
-            position: fixed; inset: 0; background: var(--bg-deep); z-index: 9999;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            padding: 40px; text-align: center;
+        .unit-item { 
+            background: #fff; 
+            padding: 15px; 
+            border-radius: 18px; 
+            border: var(--glass-border); 
+            text-align: center; 
+        }
+
+        .unit-val { 
+            font-size: 20px; 
+            font-weight: 700; 
+            color: var(--accent); 
+            margin: 5px 0; 
+        }
+
+        .unit-lab { 
+            font-size: 9px; 
+            text-transform: uppercase; 
+            color: var(--text-dim); 
+            letter-spacing: 1px; 
+        }
+
+        /* ВЕРА */
+        #vera-btn {
+            position: fixed; 
+            bottom: 95px; 
+            right: 25px; 
+            width: 60px; 
+            height: 60px;
+            background: var(--accent); 
+            border-radius: 50%; 
+            display: flex;
+            align-items: center; 
+            justify-content: center; 
+            font-size: 26px;
+            box-shadow: 0 12px 30px rgba(166, 138, 86, 0.4); 
+            z-index: 1001; 
+            cursor: pointer;
+        }
+
+        #vera-box {
+            position: fixed; 
+            bottom: 95px; 
+            right: 25px; 
+            width: 350px; 
+            height: 500px;
+            background: var(--glass); 
+            backdrop-filter: blur(30px); 
+            -webkit-backdrop-filter: blur(30px);
+            border: var(--glass-border); 
+            border-radius: 28px; 
+            display: none;
+            flex-direction: column; 
+            z-index: 1002; 
+            box-shadow: 0 25px 60px rgba(0,0,0,0.15); 
+            overflow: hidden;
+        }
+
+        /* БЛОКИРОВКА */
+        #auth {
+            position: fixed; 
+            inset: 0; 
+            background: var(--bg-deep); 
+            z-index: 9999;
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            padding: 40px;
         }
     </style>
 </head>
 <body>
 
-<div id="lock-screen">
-    <h1 style="font-size: 36px; margin-bottom: 10px; letter-spacing: 4px;">РЕСУРС</h1>
-    <p style="color: var(--text-dim); margin-bottom: 40px; font-size: 14px;">Авторизация Управляющего</p>
-    <input type="password" id="pass-input" placeholder="Введите кодовое слово" style="text-align: center; max-width: 300px;">
-    <button class="btn" style="max-width: 300px;" onclick="checkPass()">ВОЙТИ В ПАНЕЛЬ</button>
+<div id="auth">
+    <h1 style="font-size: 48px; margin-bottom: 10px; letter-spacing: 8px;">РЕСУРС</h1>
+    <p style="color: var(--text-dim); margin-bottom: 40px; text-transform: uppercase; font-size: 12px; letter-spacing: 2px;">Ситуационный центр</p>
+    <input type="password" id="pass" placeholder="Кодовое слово" style="text-align: center; max-width: 320px;">
+    <button class="btn" style="max-width: 320px;" onclick="unlockSystem()">ПОДТВЕРДИТЬ ДОСТУП</button>
 </div>
 
-<nav id="main-nav" style="display: none;">
-    <div class="nav-item active" onclick="showPage('dashboard', this)">
-        <span class="nav-icon">📊</span>Сводка
-    </div>
-    <div class="nav-item" onclick="showPage('input', this)">
-        <span class="nav-icon">✍️</span>Ввод
-    </div>
-    <div class="nav-item" onclick="showPage('history', this)">
-        <span class="nav-icon">📜</span>Лог
-    </div>
-    <div class="nav-item" onclick="showPage('strategy', this)">
-        <span class="nav-icon">🏛️</span>Стратегия
-    </div>
+<nav id="nav-bar" style="display: none;">
+    <div class="nav-item active" onclick="switchTab('page-dash', this)"><span class="nav-icon">📊</span>Сводка</div>
+    <div class="nav-item" onclick="switchTab('page-input', this)"><span class="nav-icon">📥</span>Ввод</div>
+    <div class="nav-item" onclick="switchTab('page-log', this)"><span class="nav-icon">📜</span>Журнал</div>
+    <div class="nav-item" onclick="switchTab('page-plan', this)"><span class="nav-icon">🏛️</span>Стратегия</div>
 </nav>
 
-<div id="vera-trigger" onclick="toggleVera()" style="display: none;">✨</div>
-<div id="vera-chat">
-    <div class="chat-header">
-        <span class="serif" style="color: var(--accent); letter-spacing: 1px; font-size: 16px;">ВЕРА | ИИ</span>
-        <span onclick="toggleVera()" style="cursor: pointer; font-size: 28px; line-height: 0.8; color: var(--text-dim);">&times;</span>
+<div id="vera-btn" onclick="toggleVera()" style="display: none;">✨</div>
+<div id="vera-box">
+    <div style="padding: 20px; background: #fff; border-bottom: var(--glass-border); display: flex; justify-content: space-between; align-items: center;">
+        <span class="serif" style="color: var(--accent); letter-spacing: 1px; font-weight: 600;">ВЕРА | ИИ-ДИРЕКТОР</span>
+        <span onclick="toggleVera()" style="cursor: pointer; font-size: 30px; line-height: 0.5;">&times;</span>
     </div>
-    <div id="chat-content" style="flex: 1; padding: 15px; overflow-y: auto; font-size: 14px;">
-        <div style="background: #fff; padding: 12px 16px; border-radius: 12px; margin-bottom: 10px; border: var(--glass-border); box-shadow: 0 2px 5px rgba(0,0,0,0.02);">
-            Здравия желаю, Николай Сергеевич! Я на связи. Чем могу помочь по цифрам?
+    <div id="vera-chat" style="flex: 1; padding: 20px; overflow-y: auto; font-size: 14px;">
+        <div style="background: #fff; padding: 15px; border-radius: 15px; border: var(--glass-border); margin-bottom: 15px;">
+            Николай Сергеевич, здравия желаю! Все системы оцифрованы. Жду Ваших распоряжений по анализу.
         </div>
     </div>
-    <div style="padding: 15px; border-top: var(--glass-border); display: flex; gap: 10px; background: #fff; border-radius: 0 0 20px 20px;">
-        <input type="text" id="chat-in" placeholder="Запрос..." style="margin-bottom: 0; padding: 10px 15px;">
-        <button onclick="askVera()" style="background: var(--accent); border: none; border-radius: 10px; width: 45px; color: #fff; font-size: 16px;">➤</button>
+    <div style="padding: 15px; background: #fff; display: flex; gap: 10px;">
+        <input type="text" id="vera-in" placeholder="Запрос..." style="margin-bottom: 0;">
+        <button onclick="askVera()" style="background: var(--accent); border: none; width: 50px; border-radius: 12px; color: #fff;">➤</button>
     </div>
 </div>
 
-<div id="dashboard" class="page">
-    <h2 class="serif" style="font-size: 28px; margin-bottom: 20px;">Оперативная картина</h2>
+<div id="page-dash" class="page">
+    <h2 class="serif" style="font-size: 32px; margin-bottom: 25px;">Пульс бизнеса</h2>
     
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
-        <div class="card" style="padding: 20px; margin-bottom: 0;">
-            <div style="font-size: 10px; color: var(--text-dim); text-transform: uppercase;">Выручка Сегодня</div>
-            <div style="font-size: 22px; font-family: serif; margin-top: 5px;" id="dash-revenue">0 ₽</div>
-        </div>
-        <div class="card" style="padding: 20px; margin-bottom: 0;">
-            <div style="font-size: 10px; color: var(--text-dim); text-transform: uppercase;">Лидов Всего</div>
-            <div style="font-size: 22px; font-family: serif; margin-top: 5px;" id="dash-leads">0</div>
+    <div class="unit-grid">
+        <div class="unit-item"><div class="unit-lab">Выручка</div><div class="unit-val" id="d-rev">0 ₽</div></div>
+        <div class="unit-item"><div class="unit-lab">ROMI</div><div class="unit-val" id="d-romi">0%</div></div>
+        <div class="unit-item"><div class="unit-lab">CAC</div><div class="unit-val" id="d-cac">0 ₽</div></div>
+        <div class="unit-item"><div class="unit-lab">Лиды</div><div class="unit-val" id="d-leads">0</div></div>
+    </div>
+
+    <div class="card">
+        <h3 class="serif" style="margin-bottom: 15px;">Воронка продаж</h3>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+            <div style="background: var(--bg-deep); height: 35px; border-radius: 8px; position: relative; overflow: hidden;">
+                <div style="background: var(--accent); width: 100%; height: 100%; opacity: 0.8;"></div>
+                <span style="position: absolute; left: 15px; top: 8px; font-size: 11px; font-weight: 700;">ЛИДЫ: <span id="f-leads">0</span></span>
+            </div>
+            <div style="background: var(--bg-deep); height: 35px; border-radius: 8px; position: relative; overflow: hidden;">
+                <div style="background: var(--accent); width: 60%; height: 100%; opacity: 0.6;"></div>
+                <span style="position: absolute; left: 15px; top: 8px; font-size: 11px; font-weight: 700;">ПРОБНЫЕ: <span id="f-trials">0</span></span>
+            </div>
+            <div style="background: var(--bg-deep); height: 35px; border-radius: 8px; position: relative; overflow: hidden;">
+                <div style="background: var(--ok); width: 30%; height: 100%; opacity: 0.6;"></div>
+                <span style="position: absolute; left: 15px; top: 8px; font-size: 11px; font-weight: 700;">ПЕРВИЧНЫЕ: <span id="f-prim">0</span></span>
+            </div>
         </div>
     </div>
 
     <div class="card">
-        <h3 class="serif" style="margin-bottom: 15px; font-size: 18px;">Динамика выручки</h3>
-        <div class="chart-container">
-            <canvas id="dailyChart"></canvas>
-        </div>
+        <h3 class="serif" style="margin-bottom: 10px;">Динамика доходности</h3>
+        <div class="chart-wrap"><canvas id="revChart"></canvas></div>
     </div>
 </div>
 
-<div id="input" class="page">
-    <h2 class="serif" style="font-size: 28px; margin-bottom: 20px;">Зафиксировать итоги</h2>
+<div id="page-input" class="page">
+    <h2 class="serif" style="font-size: 32px; margin-bottom: 25px;">Фиксация результатов</h2>
     
     <div class="card">
-        <label>Локация</label>
-        <select id="entry-location">
+        <label>Выбор даты</label>
+        <input type="date" id="in-date">
+        <label>Студия</label>
+        <select id="in-loc">
             <option>Советская 3</option>
             <option>Коммунистическая 77/2</option>
         </select>
     </div>
 
-    <div class="card">
-        <h3 class="serif" style="margin-bottom: 15px; color: var(--accent);">Лиды (Трафик)</h3>
+    <div class="card" style="border-left: 5px solid var(--accent);">
+        <h3 class="serif" style="margin-bottom: 15px;">Трафик (Лиды)</h3>
         <label>Источник</label>
-        <select id="lead-source">
+        <select id="l-src">
             <option>ВК</option>
             <option>2ГИС</option>
             <option>Яндекс</option>
@@ -201,15 +338,21 @@
             <option>Одноклассники</option>
             <option>Сайт</option>
         </select>
-        <label>Количество заявок</label>
-        <input type="number" id="lead-count" placeholder="Например: 5">
-        <button class="btn" style="background: var(--text);" onclick="saveLead()">Добавить лиды</button>
+        <label>Количество</label>
+        <input type="number" id="l-qty" placeholder="0">
+        <button class="btn" style="background: var(--text);" onclick="addLead()">Внести лиды</button>
     </div>
 
-    <div class="card">
-        <h3 class="serif" style="margin-bottom: 15px; color: var(--ok);">Касса (Приход)</h3>
-        <label>Тип абонемента / Услуги</label>
-        <select id="sale-type">
+    <div class="card" style="border-left: 5px solid var(--ok);">
+        <h3 class="serif" style="margin-bottom: 15px;">Продажи (Касса)</h3>
+        <label>Тип сделки</label>
+        <select id="s-cat">
+            <option value="trial">Пробное занятие</option>
+            <option value="prim">Первичная покупка</option>
+            <option value="sec">Вторичная (Продление)</option>
+        </select>
+        <label>Номенклатура</label>
+        <select id="s-type">
             <option>Подписка 3 зан/нед - 990 руб</option>
             <option>Тест драйв 3 зан на 10 дней - 990 руб</option>
             <option>8 занятий</option>
@@ -221,198 +364,225 @@
             <option>64 занятия</option>
             <option>96 занятий</option>
             <option>128 занятий</option>
-            <option>Доп. услуги / Детокс</option>
         </select>
-        <label>Фактическая сумма оплаты (₽)</label>
-        <input type="number" id="sale-amount" placeholder="Введите точную сумму">
-        <button class="btn" onclick="saveSale()">Внести оплату</button>
+        <label>Сумма оплаты (₽)</label>
+        <input type="number" id="s-val" placeholder="Введите факт">
+        <button class="btn" onclick="addSale()">Зафиксировать продажу</button>
     </div>
 
-    <div class="card">
-        <h3 class="serif" style="margin-bottom: 15px; color: var(--crit);">Касса (Расход)</h3>
+    <div class="card" style="border-left: 5px solid var(--crit);">
+        <h3 class="serif" style="margin-bottom: 15px;">Расходы</h3>
         <label>Категория</label>
-        <select id="expense-cat">
-            <option>Реклама / Подрядчики</option>
+        <select id="e-cat">
+            <option>Реклама (Бюджет)</option>
+            <option>Реклама (Подрядчик)</option>
             <option>Такси / Логистика</option>
-            <option>Хоз. нужды / Вода / Инвентарь</option>
+            <option>Хознужды / Вода</option>
             <option>Аренда / Кредит</option>
-            <option>Зарплата / Аванс</option>
-            <option>Прочее</option>
+            <option>ЗП / Авансы</option>
         </select>
-        <label>Сумма расхода (₽)</label>
-        <input type="number" id="expense-amount" placeholder="Введите сумму">
-        <button class="btn" style="background: var(--crit);" onclick="saveExpense()">Учесть расход</button>
+        <label>Сумма (₽)</label>
+        <input type="number" id="e-val" placeholder="0">
+        <button class="btn" style="background: var(--crit);" onclick="addExpense()">Учесть расход</button>
     </div>
 </div>
 
-<div id="history" class="page">
-    <h2 class="serif" style="font-size: 28px; margin-bottom: 20px;">Лог операций</h2>
+<div id="page-log" class="page">
+    <h2 class="serif" style="font-size: 32px; margin-bottom: 25px;">История операций</h2>
     <div id="log-list">
-        <div style="text-align: center; color: var(--text-dim); font-size: 14px; margin-top: 40px;">
-            Операций пока нет. Данные подтянутся после первого ввода.
-        </div>
+        <p style="text-align: center; color: var(--text-dim); margin-top: 50px;">Данных пока нет.</p>
     </div>
 </div>
 
-<div id="strategy" class="page">
-    <h2 class="serif" style="font-size: 28px; margin-bottom: 20px;">Инвестор-панель</h2>
-    
-    <div class="card" style="background: #1C1C1E; color: #fff;">
-        <div style="font-size: 11px; opacity: 0.6; text-transform: uppercase;">Общий долг сети</div>
-        <div style="font-size: 32px; font-family: serif; margin: 10px 0;">2 500 000 ₽</div>
-        <div style="height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px;">
-            <div style="width: 0%; height: 100%; background: var(--accent); border-radius: 2px;"></div>
-        </div>
-        <div style="font-size: 10px; margin-top: 10px; opacity: 0.6;">Ожидание выплат</div>
+<div id="page-plan" class="page">
+    <h2 class="serif" style="font-size: 32px; margin-bottom: 25px;">Инвестор-панель</h2>
+    <div class="card" style="background: var(--text); color: #fff;">
+        <div style="font-size: 10px; text-transform: uppercase; opacity: 0.6; letter-spacing: 2px;">Долговая нагрузка</div>
+        <div style="font-size: 36px; font-family: serif; margin: 10px 0;">2 500 000 ₽</div>
+        <div style="font-size: 11px; color: var(--warn);">Статус: Обслуживается в графике</div>
     </div>
-
     <div class="card">
-        <h3 class="serif" style="margin-bottom: 20px; font-size: 18px;">Источники лидов (Сводка)</h3>
-        <div class="chart-container">
-            <canvas id="leadsChart"></canvas>
+        <h3 class="serif" style="margin-bottom: 15px;">Эффективность каналов</h3>
+        <div class="chart-wrap">
+            <canvas id="chanChart"></canvas>
         </div>
     </div>
 </div>
 
 <script>
-    // --- ПРОВЕРКА ПАРОЛЯ ---
-    function checkPass() {
-        const pass = document.getElementById('pass-input').value;
-        if (pass === "Ресурс-студия") {
-            document.getElementById('lock-screen').style.display = "none";
-            document.getElementById('main-nav').style.display = "flex";
-            document.getElementById('vera-trigger').style.display = "flex";
-            showPage('dashboard', document.querySelectorAll('.nav-item')[0]);
-            initCharts();
-        } else {
-            alert("Неверное кодовое слово.");
+    // --- ПАРОЛЬ ---
+    function unlockSystem() {
+        const passwordInput = document.getElementById('pass').value;
+        if (passwordInput === "Ресурс-студия") {
+            document.getElementById('auth').style.display = 'none';
+            document.getElementById('nav-bar').style.display = 'flex';
+            document.getElementById('vera-btn').style.display = 'flex';
+            document.getElementById('in-date').valueAsDate = new Date();
+            switchTab('page-dash', document.querySelector('.nav-item'));
+            initializeCharts();
+        } else { 
+            alert("Неверное кодовое слово."); 
         }
     }
 
-    // --- ПЕРЕКЛЮЧЕНИЕ ВКЛАДОК ---
-    function showPage(pageId, navEl) {
-        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-        document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-        
+    // --- НАВИГАЦИЯ ---
+    function switchTab(pageId, navElement) {
+        document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+        document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
         document.getElementById(pageId).classList.add('active');
-        navEl.classList.add('active');
-        window.scrollTo(0,0);
+        navElement.classList.add('active');
+        window.scrollTo(0, 0);
     }
 
     // --- ВЕРА ---
     function toggleVera() {
-        const chat = document.getElementById('vera-chat');
-        chat.style.display = chat.style.display === 'flex' ? 'none' : 'flex';
+        const veraBox = document.getElementById('vera-box');
+        veraBox.style.display = veraBox.style.display === 'flex' ? 'none' : 'flex';
     }
 
     function askVera() {
-        const input = document.getElementById('chat-in');
-        if (!input.value) return;
+        const inputField = document.getElementById('vera-in'); 
+        if (!inputField.value) return;
         
-        const content = document.getElementById('chat-content');
-        content.innerHTML += `<div style="text-align: right; margin-bottom: 10px;"><span style="background: var(--accent); color: #fff; padding: 10px 14px; border-radius: 12px; display: inline-block;">${input.value}</span></div>`;
+        const chatContent = document.getElementById('vera-chat');
+        chatContent.innerHTML += `
+            <div style="text-align: right; margin-bottom: 10px;">
+                <span style="background: var(--accent); color: #fff; padding: 10px; border-radius: 12px; display: inline-block;">
+                    ${inputField.value}
+                </span>
+            </div>`;
         
         setTimeout(() => {
-            content.innerHTML += `<div style="background: #fff; padding: 12px 16px; border-radius: 12px; margin-bottom: 10px; border: var(--glass-border); box-shadow: 0 2px 5px rgba(0,0,0,0.02);">Николай Сергеевич, запрос отправлен в базу YDB. Скоро функция аналитики будет подключена к реальным данным.</div>`;
-            content.scrollTop = content.scrollHeight;
+            chatContent.innerHTML += `
+                <div style="background: #fff; border: var(--glass-border); padding: 15px; border-radius: 15px; margin-bottom: 15px;">
+                    Николай Сергеевич, информация принята. Данные будут учтены при формировании отчетов.
+                </div>`;
+            chatContent.scrollTop = chatContent.scrollHeight;
         }, 600);
-        input.value = "";
+        
+        inputField.value = "";
     }
 
-    // --- ИМИТАЦИЯ ВВОДА И ЛОГОВ ---
-    function addLog(text, amount, type) {
+    // --- ЛОГИКА ВВОДА ---
+    let dashboardStats = { 
+        revenue: 0, 
+        leads: 0, 
+        trials: 0, 
+        primarySales: 0, 
+        spend: 0 
+    };
+
+    function appendToLog(text, value, type) {
         const logList = document.getElementById('log-list');
-        if (logList.innerHTML.includes("Операций пока нет")) logList.innerHTML = "";
+        if (logList.innerHTML.includes("пока нет")) {
+            logList.innerHTML = "";
+        }
         
         const color = type === 'ok' ? 'var(--ok)' : type === 'crit' ? 'var(--crit)' : 'var(--text)';
         const sign = type === 'ok' ? '+' : type === 'crit' ? '-' : '';
-        const amountStr = amount ? `<span style="color: ${color}; font-weight: 700;">${sign} ${amount}</span>` : '';
-
-        const logHTML = `
-        <div class="card" style="padding: 16px; font-size: 14px; margin-bottom: 12px;">
-            <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
-                <b style="font-family: serif; font-size: 16px;">Сегодня</b>
-                ${amountStr}
+        const dateValue = document.getElementById('in-date').value;
+        const locationValue = document.getElementById('in-loc').value;
+        
+        const logHtml = `
+            <div class="card" style="padding: 15px; margin-bottom: 12px; font-size: 14px;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                    <b class="serif">${dateValue}</b>
+                    <span style="color: ${color}; font-weight: 700;">${sign} ${value || ''}</span>
+                </div>
+                <div style="font-size: 12px; color: var(--text-dim);">${text} • ${locationValue}</div>
             </div>
-            <div style="color: var(--text-dim); font-size: 12px;">${text} • ${document.getElementById('entry-location').value}</div>
-        </div>`;
+        `;
         
-        logList.insertAdjacentHTML('afterbegin', logHTML);
+        logList.insertAdjacentHTML('afterbegin', logHtml);
     }
 
-    function saveLead() {
-        const source = document.getElementById('lead-source').value;
-        const count = document.getElementById('lead-count').value;
-        if(!count) { alert('Укажите количество'); return; }
+    function addLead() {
+        const leadQuantity = parseInt(document.getElementById('l-qty').value); 
+        if (!leadQuantity) return;
         
-        addLog(`Лиды: ${source} (${count} шт)`, null, 'warn');
-        document.getElementById('dash-leads').innerText = parseInt(document.getElementById('dash-leads').innerText) + parseInt(count);
-        document.getElementById('lead-count').value = '';
-        alert('Лиды зафиксированы');
+        const leadSource = document.getElementById('l-src').value;
+        dashboardStats.leads += leadQuantity;
+        
+        appendToLog(`Лиды: ${leadSource} (${leadQuantity} шт)`, null, 'text');
+        updateDashboardView(); 
+        document.getElementById('l-qty').value = "";
     }
 
-    function saveSale() {
-        const type = document.getElementById('sale-type').value;
-        const amount = document.getElementById('sale-amount').value;
-        if(!amount) { alert('Укажите сумму'); return; }
-
-        addLog(`Продажа: ${type}`, `${amount} ₽`, 'ok');
+    function addSale() {
+        const saleValue = parseInt(document.getElementById('s-val').value); 
+        if (!saleValue) return;
         
-        let currentRev = parseInt(document.getElementById('dash-revenue').innerText.replace(/\D/g, ''));
-        if(isNaN(currentRev)) currentRev = 0;
-        document.getElementById('dash-revenue').innerText = (currentRev + parseInt(amount)).toLocaleString('ru-RU') + ' ₽';
+        const saleCategory = document.getElementById('s-cat').value;
+        const saleTypeLabel = document.getElementById('s-type').value;
         
-        document.getElementById('sale-amount').value = '';
-        alert('Оплата зафиксирована');
+        dashboardStats.revenue += saleValue;
+        if (saleCategory === 'trial') dashboardStats.trials++;
+        if (saleCategory === 'prim') dashboardStats.primarySales++;
+        
+        appendToLog(`Продажа: ${saleTypeLabel}`, `${saleValue} ₽`, 'ok');
+        updateDashboardView(); 
+        document.getElementById('s-val').value = "";
     }
 
-    function saveExpense() {
-        const cat = document.getElementById('expense-cat').value;
-        const amount = document.getElementById('expense-amount').value;
-        if(!amount) { alert('Укажите сумму'); return; }
-
-        addLog(`Расход: ${cat}`, `${amount} ₽`, 'crit');
-        document.getElementById('expense-amount').value = '';
-        alert('Расход зафиксирован');
+    function addExpense() {
+        const expenseValue = parseInt(document.getElementById('e-val').value); 
+        if (!expenseValue) return;
+        
+        const expenseCategory = document.getElementById('e-cat').value;
+        dashboardStats.spend += expenseValue;
+        
+        appendToLog(`Расход: ${expenseCategory}`, `${expenseValue} ₽`, 'crit');
+        updateDashboardView(); 
+        document.getElementById('e-val').value = "";
     }
 
-    // --- ГРАФИКИ (ПУСТЫЕ ПРИ СТАРТЕ) ---
-    function initCharts() {
-        // Линейный (Сводка)
-        new Chart(document.getElementById('dailyChart'), {
+    function updateDashboardView() {
+        document.getElementById('d-rev').innerText = dashboardStats.revenue.toLocaleString() + " ₽";
+        document.getElementById('d-leads').innerText = dashboardStats.leads;
+        document.getElementById('f-leads').innerText = dashboardStats.leads;
+        document.getElementById('f-trials').innerText = dashboardStats.trials;
+        document.getElementById('f-prim').innerText = dashboardStats.primarySales;
+        
+        const calculatedCac = dashboardStats.primarySales > 0 ? Math.round(dashboardStats.spend / dashboardStats.primarySales) : 0;
+        document.getElementById('d-cac').innerText = calculatedCac + " ₽";
+        
+        const calculatedRomi = dashboardStats.spend > 0 ? Math.round(((dashboardStats.revenue - dashboardStats.spend) / dashboardStats.spend) * 100) : 0;
+        document.getElementById('d-romi').innerText = calculatedRomi + "%";
+    }
+
+    // --- ГРАФИКИ ---
+    function initializeCharts() {
+        const revenueChartContext = document.getElementById('revChart').getContext('2d');
+        new Chart(revenueChartContext, {
             type: 'line',
-            data: {
-                labels: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
-                datasets: [{
-                    label: 'Выручка',
-                    data: [0, 0, 0, 0, 0, 0, 0], // Пустые стартовые данные
-                    borderColor: '#A68A56',
-                    backgroundColor: 'rgba(166, 138, 86, 0.1)',
-                    fill: true,
-                    tension: 0.4
-                }]
+            data: { 
+                labels: ['Начало', 'Середина', 'Конец'], 
+                datasets: [{ 
+                    label: 'Выручка', 
+                    data: [0, 0, 0], 
+                    borderColor: '#A68A56', 
+                    tension: 0.4 
+                }] 
             },
             options: { 
-                maintainAspectRatio: false, // Важно для ограничения высоты
-                plugins: { legend: { display: false } }, 
-                scales: { y: { beginAtZero: true }, x: { grid: { display: false } } } 
+                maintainAspectRatio: false, 
+                plugins: { legend: { display: false } } 
             }
         });
 
-        // Столбчатый (Стратегия)
-        new Chart(document.getElementById('leadsChart'), {
+        const channelsChartContext = document.getElementById('chanChart').getContext('2d');
+        new Chart(channelsChartContext, {
             type: 'bar',
-            data: {
-                labels: ['ВК', '2ГИС', 'Яндекс', 'Сайт', 'Реком.'],
-                datasets: [{
-                    label: 'Кол-во лидов',
-                    data: [0, 0, 0, 0, 0], // Пустые стартовые данные
-                    backgroundColor: '#1C1C1E',
-                    borderRadius: 4
-                }]
+            data: { 
+                labels: ['ВК', 'Яндекс', '2ГИС', 'Сайт'], 
+                datasets: [{ 
+                    label: 'Лиды', 
+                    data: [0, 0, 0, 0], 
+                    backgroundColor: '#1C1C1E' 
+                }] 
             },
             options: { 
-                maintainAspectRatio: false, // Важно для ограничения высоты
+                maintainAspectRatio: false, 
                 plugins: { legend: { display: false } } 
             }
         });
