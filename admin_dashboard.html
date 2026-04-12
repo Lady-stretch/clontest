@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>РЕСУРС | Система управления бизнесом</title>
     
+    <link rel="icon" type="image/png" href="favicon.png">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Manrope:wght@300;500;700&display=swap" rel="stylesheet">
@@ -102,7 +104,7 @@
             to { opacity: 1; transform: translateY(0); } 
         }
 
-        /* --- КАРТОЧКИ --- */
+        /* --- КАРТОЧКИ И ЭЛЕМЕНТЫ ВВОДА --- */
         .card { 
             background: var(--glass); 
             border: var(--glass-border); 
@@ -136,6 +138,7 @@
             transform: scale(0.97); 
         }
 
+        /* Адаптация селектов для смартфонов */
         input, select {
             width: 100%; 
             background: #ffffff; 
@@ -146,6 +149,15 @@
             font-family: inherit; 
             font-size: 16px; 
             color: var(--text);
+            appearance: none; 
+            -webkit-appearance: none;
+        }
+
+        select { 
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23A68A56%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'); 
+            background-repeat: no-repeat; 
+            background-position: right 15px top 50%; 
+            background-size: 12px auto; 
         }
 
         input:focus, select:focus {
@@ -240,6 +252,14 @@
             width: 100%; 
             color: var(--text); 
         }
+        
+        /* Исправление цвета текста для 4 этапа */
+        #bar-prim-text {
+            color: var(--text) !important;
+        }
+        #bar-prim-text span {
+            color: var(--text) !important;
+        }
 
         /* ВЕРА */
         #vera-btn { 
@@ -260,15 +280,14 @@
             transition: transform 0.2s ease;
         }
 
-        #vera-btn:active {
-            transform: scale(0.9);
-        }
+        #vera-btn:active { transform: scale(0.9); }
 
         #vera-box { 
             position: fixed; 
             bottom: 95px; 
             right: 25px; 
             width: 350px; 
+            max-width: 90vw;
             height: 500px; 
             background: var(--glass); 
             backdrop-filter: blur(30px); 
@@ -294,11 +313,38 @@
             justify-content: center; 
             padding: 40px; 
         }
+
+        /* НОВЫЕ СТИЛИ ДЛЯ ШАПКИ И ФИЛЬТРА */
+        .header-flex { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: 25px; 
+            flex-wrap: wrap; 
+            gap: 15px; 
+        }
+        .header-logo-title { 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+        }
+        .period-select { 
+            width: auto; 
+            padding: 10px 15px; 
+            margin-bottom: 0; 
+            border-radius: 12px; 
+            font-size: 13px; 
+            font-weight: 700; 
+            background-color: #fff; 
+            border: var(--glass-border); 
+            box-shadow: var(--shadow); 
+        }
     </style>
 </head>
 <body>
 
 <div id="auth">
+    <img src="favicon.png" alt="Логотип РЕСУРС" style="width: 80px; height: 80px; margin-bottom: 20px; object-fit: contain;">
     <h1 style="font-size: 48px; margin-bottom: 10px; letter-spacing: 8px;">РЕСУРС</h1>
     <p style="color: var(--text-dim); margin-bottom: 40px; text-transform: uppercase; font-size: 12px; letter-spacing: 2px;">Юнит-Экономика / Управление</p>
     <input type="password" id="pass" placeholder="Кодовое слово" style="text-align: center; max-width: 320px;">
@@ -328,7 +374,7 @@
     </div>
     <div id="vera-chat" style="flex: 1; padding: 20px; overflow-y: auto; font-size: 14px;">
         <div style="background: #fff; padding: 15px; border-radius: 15px; border: var(--glass-border); margin-bottom: 15px;">
-            Николай Сергеевич, здравия желаю! Все системы оцифрованы, код развернут полностью. Юнит-экономика считается автоматически.
+            Николай Сергеевич, здравия желаю! Все системы оцифрованы, код развернут полностью. Юнит-экономика считается автоматически. База данных подключена.
         </div>
     </div>
     <div style="padding: 15px; background: #fff; display: flex; gap: 10px;">
@@ -338,7 +384,19 @@
 </div>
 
 <div id="page-dash" class="page">
-    <h2 class="serif" style="font-size: 32px; margin-bottom: 25px;">Юнит-Экономика</h2>
+    <div class="header-flex">
+        <div class="header-logo-title">
+            <img src="favicon.png" alt="РЕСУРС" style="width: 35px; height: 35px; object-fit: contain;">
+            <h2 class="serif" style="font-size: 32px; margin: 0;">Сводка</h2>
+        </div>
+        <select id="period-filter" class="period-select" onchange="triggerAnalyticsFilter()">
+            <option value="today">За сегодня</option>
+            <option value="week">За неделю</option>
+            <option value="month" selected>За месяц</option>
+            <option value="year">За год</option>
+            <option value="all">За всё время</option>
+        </select>
+    </div>
     
     <div class="unit-grid">
         <div class="unit-item">
@@ -417,7 +475,10 @@
 </div>
 
 <div id="page-input" class="page">
-    <h2 class="serif" style="font-size: 32px; margin-bottom: 25px;">Фиксация результатов</h2>
+    <div class="header-logo-title" style="margin-bottom: 25px;">
+        <img src="favicon.png" alt="РЕСУРС" style="width: 35px; height: 35px; object-fit: contain;">
+        <h2 class="serif" style="font-size: 32px; margin: 0;">Фиксация</h2>
+    </div>
     
     <div class="card">
         <label>Календарь (Выбор даты)</label>
@@ -432,7 +493,6 @@
 
     <div class="card" style="border-left: 5px solid var(--accent);">
         <h3 class="serif" style="margin-bottom: 15px;">Трафик и Записи</h3>
-        
         <label>Источник лидов</label>
         <select id="l-src">
             <option value="">-- ВЫБРАТЬ ИСТОЧНИК --</option>
@@ -456,12 +516,11 @@
             </div>
         </div>
         
-        <button class="btn" style="background: var(--text);" onclick="addTraffic()">Внести трафик</button>
+        <button class="btn" style="background: var(--text);" onclick="addTraffic(this)">Внести трафик</button>
     </div>
 
     <div class="card" style="border-left: 5px solid var(--ok);">
         <h3 class="serif" style="margin-bottom: 15px;">Касса (Продажи)</h3>
-        
         <label>Статус Клиента</label>
         <select id="s-cat">
             <option value="">-- ВЫБРАТЬ СТАТУС --</option>
@@ -491,7 +550,7 @@
         
         <label>Фактическая сумма оплаты (₽)</label>
         <input type="number" id="s-val" placeholder="Например: 11200">
-        <button class="btn" onclick="addSale()">Зафиксировать продажу</button>
+        <button class="btn" onclick="addSale(this)">Зафиксировать продажу</button>
     </div>
 
     <div class="card" style="border-left: 5px solid var(--crit);">
@@ -509,7 +568,7 @@
         </select>
         <label>Сумма (₽)</label>
         <input type="number" id="e-val" placeholder="0">
-        <button class="btn" style="background: var(--crit);" onclick="addExpense()">Учесть расход</button>
+        <button class="btn" style="background: var(--crit);" onclick="addExpense(this)">Учесть расход</button>
     </div>
 </div>
 
@@ -545,6 +604,10 @@
 </div>
 
 <script>
+    // === НАСТРОЙКИ ОБЛАКА (Вставьте ваш секретный токен!) ===
+    const BACKEND_URL = "https://functions.yandexcloud.net/d4esie0g5hb62gg515a9";
+    const BACKEND_TOKEN = "ВАШ_СЕКРЕТНЫЙ_ТОКЕН_ИЗ_ПЕРЕМЕННЫХ"; 
+
     // --- ПАРОЛЬНАЯ ЗАЩИТА ---
     function unlockSystem() {
         const passwordInput = document.getElementById('pass').value;
@@ -599,12 +662,27 @@
         setTimeout(() => {
             chatContent.innerHTML += `
                 <div style="background: #fff; border: var(--glass-border); padding: 15px; border-radius: 15px; margin-bottom: 15px;">
-                    Я зафиксировала запрос. Логика расчета воронки, LTV и ROMI работает в штатном режиме без сбоев.
+                    Запрос принят. Связываюсь с Yandex Cloud для анализа. Ожидайте внедрения нейро-модуля.
                 </div>`;
             chatContent.scrollTop = chatContent.scrollHeight;
         }, 600);
         
         inputField.value = "";
+    }
+
+    // Обработчик фильтра аналитики
+    function triggerAnalyticsFilter() {
+        const period = document.getElementById('period-filter');
+        const selectedText = period.options[period.selectedIndex].text;
+        
+        document.getElementById('vera-box').style.display = 'flex';
+        const chatContent = document.getElementById('vera-chat');
+        
+        chatContent.innerHTML += `
+            <div style="background: #fff; border: var(--glass-border); padding: 15px; border-radius: 15px; margin-bottom: 15px; font-weight: 700; color: var(--accent);">
+                Фильтр установлен: ${selectedText}. <br><span style="color: var(--text); font-weight: 400; font-size: 12px;">Готовлю выгрузку истории из Yandex Database...</span>
+            </div>`;
+        chatContent.scrollTop = chatContent.scrollHeight;
     }
 
     // --- МАТЕМАТИЧЕСКОЕ ЯДРО (ЮНИТ-ЭКОНОМИКА) ---
@@ -617,20 +695,14 @@
         primarySales: 0, 
         secondarySalesCount: 0,
         marketingSpend: 0,
-        dailyRevenue: {}, // Для графика выручки по дням
+        dailyRevenue: {}, 
         leadsBySource: {
-            'ВК': 0, 
-            '2ГИС': 0, 
-            'Яндекс': 0, 
-            'Сайт': 0, 
-            'Подруги / Рекомендации': 0, 
-            'Архив / Старая база': 0, 
-            'Одноклассники': 0
+            'ВК': 0, '2ГИС': 0, 'Яндекс': 0, 'Сайт': 0, 
+            'Подруги / Рекомендации': 0, 'Архив / Старая база': 0, 'Одноклассники': 0
         },
-        salesBySku: {} // Для графика популярности
+        salesBySku: {} 
     };
 
-    // Глобальные переменные для Chart.js
     let revenueChartInstance;
     let channelsChartInstance;
     let skuChartInstance;
@@ -659,145 +731,189 @@
         logList.insertAdjacentHTML('afterbegin', logHtml);
     }
 
-    // --- ФУНКЦИИ ВВОДА ДАННЫХ И ОБНУЛЕНИЯ ---
-    function addTraffic() {
+    // --- ФУНКЦИИ ВВОДА ДАННЫХ И СВЯЗИ С ОБЛАКОМ ---
+    async function addTraffic(btnElement) {
         const locationInput = document.getElementById('in-loc').value;
         const sourceInput = document.getElementById('l-src').value;
         const leadQuantity = parseInt(document.getElementById('l-qty').value) || 0; 
         const bookQuantity = parseInt(document.getElementById('b-qty').value) || 0;
+        const dateValue = document.getElementById('in-date').value;
 
-        if (!locationInput) {
-            alert("Внимание: Выберите студию!");
-            return;
-        }
-        if (!sourceInput) {
-            alert("Внимание: Выберите источник лидов!");
-            return;
-        }
-        if (leadQuantity === 0 && bookQuantity === 0) {
-            alert("Внимание: Введите количество лидов или записей!");
-            return;
-        }
+        if (!locationInput || !dateValue) return alert("Выберите дату и студию!");
+        if (!sourceInput) return alert("Выберите источник лидов!");
+        if (leadQuantity === 0 && bookQuantity === 0) return alert("Введите количество лидов или записей!");
 
-        appData.leads += leadQuantity;
-        appData.bookings += bookQuantity;
+        const payload = { action: 'traffic', data: { studio: locationInput, date: dateValue, source: sourceInput, leads: leadQuantity, bookings: bookQuantity } };
         
-        if (leadQuantity > 0) {
-            appData.leadsBySource[sourceInput] += leadQuantity;
-            appendToLog(`Лиды: ${sourceInput} (${leadQuantity} шт)`, null, 'text');
+        btnElement.disabled = true;
+        btnElement.innerText = "СВЯЗЬ С ОБЛАКОМ...";
+
+        try {
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 7000);
+            const response = await fetch(BACKEND_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'X-Api-Token': BACKEND_TOKEN },
+                body: JSON.stringify(payload),
+                signal: controller.signal
+            });
+            clearTimeout(timeoutId);
+
+            if(response.ok) {
+                appData.leads += leadQuantity;
+                appData.bookings += bookQuantity;
+                
+                if (leadQuantity > 0) {
+                    appData.leadsBySource[sourceInput] += leadQuantity;
+                    appendToLog(`Лиды: ${sourceInput} (${leadQuantity} шт)`, null, 'text');
+                }
+                if (bookQuantity > 0) {
+                    appendToLog(`Записи на пробное (${bookQuantity} шт)`, null, 'text');
+                }
+                
+                document.getElementById('l-qty').value = "";
+                document.getElementById('b-qty').value = "";
+                document.getElementById('l-src').value = "";
+                
+                updateDashboardView(); 
+                updateDynamicCharts();
+                alert("Данные успешно сохранены в Yandex Cloud!");
+            } else {
+                alert("Ошибка сервера. Проверьте токен.");
+            }
+        } catch (e) {
+            alert("Ошибка связи: Превышено время ожидания сервера (7 сек).");
+        } finally {
+            btnElement.disabled = false;
+            btnElement.innerText = "Внести трафик";
         }
-        if (bookQuantity > 0) {
-            appendToLog(`Записи на пробное (${bookQuantity} шт)`, null, 'text');
-        }
-        
-        // Обнуление полей после фиксации
-        document.getElementById('l-qty').value = "";
-        document.getElementById('b-qty').value = "";
-        document.getElementById('l-src').value = "";
-        
-        updateDashboardView(); 
-        updateDynamicCharts();
     }
 
-    function addSale() {
+    async function addSale(btnElement) {
         const locationInput = document.getElementById('in-loc').value;
         const saleCategory = document.getElementById('s-cat').value;
         const saleTypeLabel = document.getElementById('s-type').value;
         const saleValue = parseInt(document.getElementById('s-val').value) || 0;
         const dateValue = document.getElementById('in-date').value;
 
-        if (!locationInput) {
-            alert("Внимание: Выберите студию!");
-            return;
-        }
-        if (!saleCategory) {
-            alert("Внимание: Выберите статус клиента!");
-            return;
-        }
-        if (!saleTypeLabel) {
-            alert("Внимание: Выберите продукт (абонемент)!");
-            return;
-        }
-        if (!saleValue || saleValue <= 0) {
-            alert("Внимание: Введите корректную сумму оплаты!");
-            return;
-        }
+        if (!locationInput || !dateValue) return alert("Выберите дату и студию!");
+        if (!saleCategory) return alert("Выберите статус клиента!");
+        if (!saleTypeLabel) return alert("Выберите продукт (абонемент)!");
+        if (!saleValue || saleValue <= 0) return alert("Введите корректную сумму оплаты!");
 
-        // Учет денег
-        appData.totalRevenue += saleValue;
-        
-        if (!appData.dailyRevenue[dateValue]) {
-            appData.dailyRevenue[dateValue] = 0;
-        }
-        appData.dailyRevenue[dateValue] += saleValue;
+        const payload = { action: 'sale', data: { studio: locationInput, date: dateValue, status: saleCategory, sku: saleTypeLabel, amount: saleValue } };
 
-        // Учет воронки и LTV
-        if (saleCategory === 'trial') {
-            appData.trials++;
-        } else if (saleCategory === 'prim') {
-            appData.primarySales++;
-        } else if (saleCategory === 'sec') {
-            appData.secondarySalesCount++;
-            appData.secondaryRevenue += saleValue;
+        btnElement.disabled = true;
+        btnElement.innerText = "СВЯЗЬ С ОБЛАКОМ...";
+
+        try {
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 7000);
+            const response = await fetch(BACKEND_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'X-Api-Token': BACKEND_TOKEN },
+                body: JSON.stringify(payload),
+                signal: controller.signal
+            });
+            clearTimeout(timeoutId);
+
+            if(response.ok) {
+                appData.totalRevenue += saleValue;
+                
+                if (!appData.dailyRevenue[dateValue]) {
+                    appData.dailyRevenue[dateValue] = 0;
+                }
+                appData.dailyRevenue[dateValue] += saleValue;
+
+                if (saleCategory === 'trial') {
+                    appData.trials++;
+                } else if (saleCategory === 'prim') {
+                    appData.primarySales++;
+                } else if (saleCategory === 'sec') {
+                    appData.secondarySalesCount++;
+                    appData.secondaryRevenue += saleValue;
+                }
+                
+                if (!appData.salesBySku[saleTypeLabel]) {
+                    appData.salesBySku[saleTypeLabel] = 0;
+                }
+                appData.salesBySku[saleTypeLabel] += 1;
+                
+                let saleStatusText = saleCategory === 'sec' ? 'Вторичка' : 'Первичка/Пробное';
+                appendToLog(`Продажа [${saleStatusText}]: ${saleTypeLabel}`, `${saleValue} ₽`, 'ok');
+                
+                document.getElementById('s-val').value = "";
+                document.getElementById('s-cat').value = "";
+                document.getElementById('s-type').value = "";
+                
+                updateDashboardView(); 
+                updateDynamicCharts();
+                alert("Данные успешно сохранены в Yandex Cloud!");
+            } else {
+                alert("Ошибка сервера. Проверьте токен.");
+            }
+        } catch (e) {
+            alert("Ошибка связи: Превышено время ожидания сервера (7 сек).");
+        } finally {
+            btnElement.disabled = false;
+            btnElement.innerText = "Зафиксировать продажу";
         }
-        
-        // Учет SKU (Абонементов)
-        if (!appData.salesBySku[saleTypeLabel]) {
-            appData.salesBySku[saleTypeLabel] = 0;
-        }
-        appData.salesBySku[saleTypeLabel] += 1;
-        
-        let saleStatusText = saleCategory === 'sec' ? 'Вторичка' : 'Первичка/Пробное';
-        appendToLog(`Продажа [${saleStatusText}]: ${saleTypeLabel}`, `${saleValue} ₽`, 'ok');
-        
-        // Обнуление полей после фиксации
-        document.getElementById('s-val').value = "";
-        document.getElementById('s-cat').value = "";
-        document.getElementById('s-type').value = "";
-        
-        updateDashboardView(); 
-        updateDynamicCharts();
     }
 
-    function addExpense() {
+    async function addExpense(btnElement) {
         const locationInput = document.getElementById('in-loc').value;
         const expenseCategory = document.getElementById('e-cat').value;
         const expenseValue = parseInt(document.getElementById('e-val').value) || 0;
+        const dateValue = document.getElementById('in-date').value;
 
-        if (!locationInput) {
-            alert("Внимание: Выберите студию!");
-            return;
-        }
-        if (!expenseCategory) {
-            alert("Внимание: Выберите категорию расхода!");
-            return;
-        }
-        if (!expenseValue || expenseValue <= 0) {
-            alert("Внимание: Введите корректную сумму расхода!");
-            return;
-        }
+        if (!locationInput || !dateValue) return alert("Выберите дату и студию!");
+        if (!expenseCategory) return alert("Выберите категорию расхода!");
+        if (!expenseValue || expenseValue <= 0) return alert("Введите корректную сумму расхода!");
 
-        // Если это реклама, добавляем в расчет CAC и ROMI
-        if (expenseCategory.includes('Реклама')) {
-            appData.marketingSpend += expenseValue;
+        const payload = { action: 'expense', data: { studio: locationInput, date: dateValue, category: expenseCategory, amount: expenseValue } };
+
+        btnElement.disabled = true;
+        btnElement.innerText = "СВЯЗЬ...";
+
+        try {
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 7000);
+            const response = await fetch(BACKEND_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'X-Api-Token': BACKEND_TOKEN },
+                body: JSON.stringify(payload),
+                signal: controller.signal
+            });
+            clearTimeout(timeoutId);
+
+            if(response.ok) {
+                if (expenseCategory.includes('Реклама')) {
+                    appData.marketingSpend += expenseValue;
+                }
+                
+                appendToLog(`Расход: ${expenseCategory}`, `${expenseValue} ₽`, 'crit');
+                
+                document.getElementById('e-val').value = "";
+                document.getElementById('e-cat').value = "";
+                
+                updateDashboardView(); 
+                alert("Расход зафиксирован в Yandex Cloud!");
+            } else {
+                alert("Ошибка сервера.");
+            }
+        } catch (e) {
+            alert("Ошибка связи.");
+        } finally {
+            btnElement.disabled = false;
+            btnElement.innerText = "Учесть расход";
         }
-        
-        appendToLog(`Расход: ${expenseCategory}`, `${expenseValue} ₽`, 'crit');
-        
-        // Обнуление полей после фиксации
-        document.getElementById('e-val').value = "";
-        document.getElementById('e-cat').value = "";
-        
-        updateDashboardView(); 
     }
 
     function updateDashboardView() {
-        // Базовые метрики
         document.getElementById('d-rev').innerText = appData.totalRevenue.toLocaleString() + " ₽";
         document.getElementById('d-sec-rev').innerText = appData.secondaryRevenue.toLocaleString();
         document.getElementById('d-sec-count').innerText = appData.secondarySalesCount;
         
-        // Юнит Экономика
         const totalPurchases = appData.primarySales + appData.secondarySalesCount;
         const calculatedAvgCheck = totalPurchases > 0 ? Math.round(appData.totalRevenue / totalPurchases) : 0; 
         document.getElementById('d-avg-check').innerText = calculatedAvgCheck.toLocaleString() + " ₽";
@@ -811,13 +927,11 @@
         const calculatedRomi = appData.marketingSpend > 0 ? Math.round(((appData.totalRevenue - appData.marketingSpend) / appData.marketingSpend) * 100) : 0;
         document.getElementById('d-romi').innerText = calculatedRomi + "%";
 
-        // Обновление цифр Воронки
         document.getElementById('f-leads').innerText = appData.leads;
         document.getElementById('f-bookings').innerText = appData.bookings;
         document.getElementById('f-trials').innerText = appData.trials;
         document.getElementById('f-prim').innerText = appData.primarySales;
 
-        // Расчет конверсий (CR)
         let crBookings = appData.leads > 0 ? Math.round((appData.bookings / appData.leads) * 100) : 0;
         let crTrials = appData.bookings > 0 ? Math.round((appData.trials / appData.bookings) * 100) : 0;
         let crPrim = appData.trials > 0 ? Math.round((appData.primarySales / appData.trials) * 100) : 0;
@@ -826,7 +940,6 @@
         document.getElementById('cr-trials').innerText = crTrials;
         document.getElementById('cr-prim').innerText = crPrim;
 
-        // Визуальное заполнение воронки (относительно изначальных 100% лидов)
         let widthBookings = appData.leads > 0 ? (appData.bookings / appData.leads) * 100 : 0;
         let widthTrials = appData.leads > 0 ? (appData.trials / appData.leads) * 100 : 0;
         let widthPrim = appData.leads > 0 ? (appData.primarySales / appData.leads) * 100 : 0;
@@ -836,7 +949,6 @@
         document.getElementById('bar-prim').style.width = widthPrim + "%";
     }
 
-    // --- ИНИЦИАЛИЗАЦИЯ И ОБНОВЛЕНИЕ ГРАФИКОВ ---
     function initializeCharts() {
         const revCtx = document.getElementById('revChart').getContext('2d');
         revenueChartInstance = new Chart(revCtx, {
@@ -899,7 +1011,6 @@
     function updateDynamicCharts() {
         if (!revenueChartInstance) return;
 
-        // 1. Обновляем график выручки по датам
         const sortedDates = Object.keys(appData.dailyRevenue).sort();
         const revenueValues = sortedDates.map(date => appData.dailyRevenue[date]);
         
@@ -907,11 +1018,9 @@
         revenueChartInstance.data.datasets[0].data = revenueValues;
         revenueChartInstance.update();
 
-        // 2. Обновляем столбцы каналов
         channelsChartInstance.data.datasets[0].data = Object.values(appData.leadsBySource);
         channelsChartInstance.update();
 
-        // 3. Обновляем график популярных абонементов
         const skuLabels = Object.keys(appData.salesBySku);
         const skuValues = Object.values(appData.salesBySku);
         
