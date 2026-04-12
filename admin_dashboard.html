@@ -35,8 +35,8 @@
             font-family: 'Manrope', sans-serif; 
             background: var(--bg-deep); 
             color: var(--text); 
-            overflow-x: hidden;
-            padding-bottom: 90px; 
+            overflow-x: hidden; 
+            padding-bottom: 95px; 
         }
 
         h1, h2, h3, .serif { 
@@ -68,9 +68,9 @@
             text-transform: uppercase; 
             letter-spacing: 1px; 
             cursor: pointer; 
-            transition: 0.3s;
             flex: 1; 
-            padding: 12px 0;
+            padding: 12px 0; 
+            transition: 0.3s; 
         }
 
         .nav-item.active { 
@@ -109,7 +109,7 @@
             border-radius: 24px; 
             padding: 25px; 
             margin-bottom: 25px; 
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow); 
         }
 
         .btn {
@@ -127,7 +127,12 @@
             font-size: 13px;
         }
 
-        .btn:active { 
+        .btn:disabled { 
+            background: #D1D1D6; 
+            cursor: not-allowed; 
+        }
+
+        .btn:active:not(:disabled) { 
             transform: scale(0.97); 
         }
 
@@ -139,13 +144,13 @@
             padding: 14px 18px; 
             margin-bottom: 18px; 
             font-family: inherit; 
-            font-size: 16px;
+            font-size: 16px; 
             color: var(--text);
         }
 
-        input:focus { 
-            border-color: var(--accent); 
-            outline: none; 
+        input:focus, select:focus {
+            border-color: var(--accent);
+            outline: none;
         }
 
         label { 
@@ -194,6 +199,7 @@
             text-transform: uppercase; 
             color: var(--text-dim); 
             letter-spacing: 1px; 
+            font-weight: 800;
         }
 
         .sub-val {
@@ -204,83 +210,93 @@
         }
 
         /* ВОРОНКА */
-        .funnel-bar {
+        .funnel-bar { 
             background: var(--bg-deep); 
-            height: 40px; 
-            border-radius: 8px; 
+            height: 44px; 
+            border-radius: 10px; 
             position: relative; 
-            overflow: hidden;
-            display: flex;
-            align-items: center;
+            overflow: hidden; 
+            display: flex; 
+            align-items: center; 
+            margin-bottom: 12px; 
         }
 
-        .funnel-fill {
+        .funnel-fill { 
             height: 100%; 
             position: absolute; 
             left: 0; 
             top: 0; 
-            transition: width 0.5s ease;
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1); 
         }
 
-        .funnel-text {
+        .funnel-text { 
             position: relative; 
             z-index: 2; 
-            padding-left: 15px; 
+            padding: 0 15px; 
             font-size: 11px; 
-            font-weight: 700;
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            padding-right: 15px;
+            font-weight: 700; 
+            display: flex; 
+            justify-content: space-between; 
+            width: 100%; 
+            color: var(--text); 
+        }
+        
+        #bar-prim-text { 
+            color: #fff; 
         }
 
         /* ВЕРА */
-        #vera-btn {
+        #vera-btn { 
             position: fixed; 
             bottom: 95px; 
             right: 25px; 
             width: 60px; 
-            height: 60px;
+            height: 60px; 
             background: var(--accent); 
             border-radius: 50%; 
-            display: flex;
+            display: flex; 
             align-items: center; 
             justify-content: center; 
-            font-size: 26px;
+            font-size: 26px; 
             box-shadow: 0 12px 30px rgba(166, 138, 86, 0.4); 
             z-index: 1001; 
-            cursor: pointer;
+            cursor: pointer; 
+            transition: transform 0.2s ease;
         }
 
-        #vera-box {
+        #vera-btn:active {
+            transform: scale(0.9);
+        }
+
+        #vera-box { 
             position: fixed; 
             bottom: 95px; 
             right: 25px; 
             width: 350px; 
-            height: 500px;
+            height: 500px; 
             background: var(--glass); 
             backdrop-filter: blur(30px); 
             -webkit-backdrop-filter: blur(30px);
             border: var(--glass-border); 
             border-radius: 28px; 
-            display: none;
+            display: none; 
             flex-direction: column; 
             z-index: 1002; 
             box-shadow: 0 25px 60px rgba(0,0,0,0.15); 
-            overflow: hidden;
+            overflow: hidden; 
         }
 
         /* БЛОКИРОВКА */
-        #auth {
+        #auth { 
             position: fixed; 
             inset: 0; 
             background: var(--bg-deep); 
-            z-index: 9999;
+            z-index: 9999; 
             display: flex; 
             flex-direction: column; 
             align-items: center; 
             justify-content: center; 
-            padding: 40px;
+            padding: 40px; 
         }
     </style>
 </head>
@@ -288,16 +304,24 @@
 
 <div id="auth">
     <h1 style="font-size: 48px; margin-bottom: 10px; letter-spacing: 8px;">РЕСУРС</h1>
-    <p style="color: var(--text-dim); margin-bottom: 40px; text-transform: uppercase; font-size: 12px; letter-spacing: 2px;">Ситуационный центр</p>
+    <p style="color: var(--text-dim); margin-bottom: 40px; text-transform: uppercase; font-size: 12px; letter-spacing: 2px;">Юнит-Экономика / Управление</p>
     <input type="password" id="pass" placeholder="Кодовое слово" style="text-align: center; max-width: 320px;">
-    <button class="btn" style="max-width: 320px;" onclick="unlockSystem()">ПОДТВЕРДИТЬ ДОСТУП</button>
+    <button class="btn" style="max-width: 320px;" onclick="unlockSystem()">ОТКРЫТЬ СИСТЕМУ</button>
 </div>
 
 <nav id="nav-bar" style="display: none;">
-    <div class="nav-item active" onclick="switchTab('page-dash', this)"><span class="nav-icon">📊</span>Сводка</div>
-    <div class="nav-item" onclick="switchTab('page-input', this)"><span class="nav-icon">📥</span>Ввод</div>
-    <div class="nav-item" onclick="switchTab('page-log', this)"><span class="nav-icon">📜</span>Журнал</div>
-    <div class="nav-item" onclick="switchTab('page-plan', this)"><span class="nav-icon">🏛️</span>Стратегия</div>
+    <div class="nav-item active" onclick="switchTab('page-dash', this)">
+        <span class="nav-icon">📊</span>Сводка
+    </div>
+    <div class="nav-item" onclick="switchTab('page-input', this)">
+        <span class="nav-icon">📥</span>Ввод
+    </div>
+    <div class="nav-item" onclick="switchTab('page-log', this)">
+        <span class="nav-icon">📜</span>Журнал
+    </div>
+    <div class="nav-item" onclick="switchTab('page-plan', this)">
+        <span class="nav-icon">🏛️</span>Стратегия
+    </div>
 </nav>
 
 <div id="vera-btn" onclick="toggleVera()" style="display: none;">✨</div>
@@ -308,7 +332,7 @@
     </div>
     <div id="vera-chat" style="flex: 1; padding: 20px; overflow-y: auto; font-size: 14px;">
         <div style="background: #fff; padding: 15px; border-radius: 15px; border: var(--glass-border); margin-bottom: 15px;">
-            Николай Сергеевич, здравия желаю! Математическое ядро запущено. Юнит-экономика считается автоматически.
+            Николай Сергеевич, здравия желаю! Все системы оцифрованы, код развернут полностью. Юнит-экономика считается автоматически.
         </div>
     </div>
     <div style="padding: 15px; background: #fff; display: flex; gap: 10px;">
@@ -324,7 +348,13 @@
         <div class="unit-item">
             <div class="unit-lab">Общая Выручка</div>
             <div class="unit-val" id="d-rev">0 ₽</div>
-            <div class="sub-val" style="color: var(--ok);">Вторичка: <span id="d-sec-rev">0</span> ₽</div>
+            <div class="sub-val" style="color: var(--ok);">Вторичка (Выручка): <span id="d-sec-rev">0</span> ₽</div>
+            <div class="sub-val" style="color: var(--accent); margin-top: 2px;">Вторичка (Продлений): <span id="d-sec-count">0</span> шт</div>
+        </div>
+        <div class="unit-item">
+            <div class="unit-lab">Средний чек</div>
+            <div class="unit-val" id="d-avg-check">0 ₽</div>
+            <div class="sub-val">ARPU</div>
         </div>
         <div class="unit-item">
             <div class="unit-lab">LTV (Жизн. цикл)</div>
@@ -339,13 +369,13 @@
         <div class="unit-item">
             <div class="unit-lab">ROMI</div>
             <div class="unit-val" id="d-romi">0%</div>
-            <div class="sub-val">Окупаемость</div>
+            <div class="sub-val">Окупаемость рекламы</div>
         </div>
     </div>
 
     <div class="card">
         <h3 class="serif" style="margin-bottom: 15px;">Воронка Конверсии</h3>
-        <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: flex; flex-direction: column;">
             
             <div class="funnel-bar">
                 <div class="funnel-fill" style="background: rgba(166, 138, 86, 0.8); width: 100%;"></div>
@@ -358,7 +388,7 @@
             <div class="funnel-bar">
                 <div class="funnel-fill" id="bar-bookings" style="background: rgba(166, 138, 86, 0.6); width: 0%;"></div>
                 <div class="funnel-text">
-                    <span>2. ЗАПИСИ (CR: <span id="cr-bookings">0</span>%)</span>
+                    <span>2. ЗАПИСИ (CR1: <span id="cr-bookings">0</span>%)</span>
                     <span id="f-bookings">0</span>
                 </div>
             </div>
@@ -366,16 +396,16 @@
             <div class="funnel-bar">
                 <div class="funnel-fill" id="bar-trials" style="background: rgba(242, 153, 74, 0.7); width: 0%;"></div>
                 <div class="funnel-text">
-                    <span>3. ДОХОДИМОСТЬ (Пробные) (CR: <span id="cr-trials">0</span>%)</span>
+                    <span>3. ДОХОДИМОСТЬ (Пробные) (CR2: <span id="cr-trials">0</span>%)</span>
                     <span id="f-trials">0</span>
                 </div>
             </div>
 
             <div class="funnel-bar">
-                <div class="funnel-fill" id="bar-prim" style="background: rgba(39, 174, 96, 0.8); width: 0%;"></div>
-                <div class="funnel-text">
-                    <span style="color: #fff;">4. ПОКУПКА 8+ ЗАН. (CR: <span id="cr-prim">0</span>%)</span>
-                    <span style="color: #fff;" id="f-prim">0</span>
+                <div class="funnel-fill" id="bar-prim" style="background: rgba(39, 174, 96, 0.9); width: 0%;"></div>
+                <div class="funnel-text" id="bar-prim-text">
+                    <span>4. ПОКУПКА 8+ ЗАН. (CR3: <span id="cr-prim">0</span>%)</span>
+                    <span id="f-prim">0</span>
                 </div>
             </div>
 
@@ -384,7 +414,9 @@
 
     <div class="card">
         <h3 class="serif" style="margin-bottom: 10px;">Динамика Доходности</h3>
-        <div class="chart-wrap"><canvas id="revChart"></canvas></div>
+        <div class="chart-wrap">
+            <canvas id="revChart"></canvas>
+        </div>
     </div>
 </div>
 
@@ -396,8 +428,9 @@
         <input type="date" id="in-date">
         <label>Студия</label>
         <select id="in-loc">
-            <option>Советская 3</option>
-            <option>Коммунистическая 77/2</option>
+            <option value="">-- ВЫБРАТЬ СТУДИЮ --</option>
+            <option value="Советская 3">Советская 3</option>
+            <option value="Коммунистическая 77/2">Коммунистическая 77/2</option>
         </select>
     </div>
 
@@ -406,13 +439,14 @@
         
         <label>Источник лидов</label>
         <select id="l-src">
-            <option>ВК</option>
-            <option>2ГИС</option>
-            <option>Яндекс</option>
-            <option>Подруги / Рекомендации</option>
-            <option>Архив / Старая база</option>
-            <option>Одноклассники</option>
-            <option>Сайт</option>
+            <option value="">-- ВЫБРАТЬ ИСТОЧНИК --</option>
+            <option value="ВК">ВК</option>
+            <option value="2ГИС">2ГИС</option>
+            <option value="Яндекс">Яндекс</option>
+            <option value="Подруги / Рекомендации">Подруги / Рекомендации</option>
+            <option value="Архив / Старая база">Архив / Старая база</option>
+            <option value="Одноклассники">Одноклассники</option>
+            <option value="Сайт">Сайт</option>
         </select>
         
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
@@ -434,6 +468,7 @@
         
         <label>Статус Клиента</label>
         <select id="s-cat">
+            <option value="">-- ВЫБРАТЬ СТАТУС --</option>
             <option value="trial">Пробное занятие (Доходимость)</option>
             <option value="prim">Первичная покупка абонемента</option>
             <option value="sec">Вторичная покупка (Продление)</option>
@@ -441,19 +476,20 @@
         
         <label>Номенклатура (Продукт)</label>
         <select id="s-type">
-            <option>Пробное занятие</option>
-            <option>Подписка 3 зан/нед</option>
-            <option>Тест драйв 3 зан на 10 дней</option>
-            <option>Безлимит на месяц</option>
-            <option>8 занятий</option>
-            <option>12 занятий</option>
-            <option>16 занятий</option>
-            <option>24 занятия</option>
-            <option>32 занятия</option>
-            <option>48 занятий</option>
-            <option>64 занятия</option>
-            <option>96 занятий</option>
-            <option>128 занятий</option>
+            <option value="">-- ВЫБРАТЬ АБОНЕМЕНТ --</option>
+            <option value="Пробное занятие">Пробное занятие</option>
+            <option value="Подписка 3 зан/нед">Подписка 3 зан/нед</option>
+            <option value="Тест драйв 3 зан на 10 дней">Тест драйв 3 зан на 10 дней</option>
+            <option value="Безлимит на месяц">Безлимит на месяц</option>
+            <option value="8 занятий">8 занятий</option>
+            <option value="12 занятий">12 занятий</option>
+            <option value="16 занятий">16 занятий</option>
+            <option value="24 занятия">24 занятия</option>
+            <option value="32 занятия">32 занятия</option>
+            <option value="48 занятий">48 занятий</option>
+            <option value="64 занятия">64 занятия</option>
+            <option value="96 занятий">96 занятий</option>
+            <option value="128 занятий">128 занятий</option>
         </select>
         
         <label>Фактическая сумма оплаты (₽)</label>
@@ -465,13 +501,14 @@
         <h3 class="serif" style="margin-bottom: 15px;">Расходы</h3>
         <label>Категория</label>
         <select id="e-cat">
-            <option>Реклама (ВК)</option>
-            <option>Реклама (Яндекс)</option>
-            <option>Реклама (Прочее)</option>
-            <option>Такси / Логистика</option>
-            <option>Хознужды / Вода</option>
-            <option>Аренда / Кредит</option>
-            <option>ЗП / Авансы</option>
+            <option value="">-- ВЫБРАТЬ КАТЕГОРИЮ --</option>
+            <option value="Реклама (ВК)">Реклама (ВК)</option>
+            <option value="Реклама (Яндекс)">Реклама (Яндекс)</option>
+            <option value="Реклама (Прочее)">Реклама (Прочее)</option>
+            <option value="Такси / Логистика">Такси / Логистика</option>
+            <option value="Хознужды / Вода">Хознужды / Вода</option>
+            <option value="Аренда / Кредит">Аренда / Кредит</option>
+            <option value="ЗП / Авансы">ЗП / Авансы</option>
         </select>
         <label>Сумма (₽)</label>
         <input type="number" id="e-val" placeholder="0">
@@ -511,7 +548,7 @@
 </div>
 
 <script>
-    // --- ПАРОЛЬ ---
+    // --- ПАРОЛЬНАЯ ЗАЩИТА ---
     function unlockSystem() {
         const passwordInput = document.getElementById('pass').value;
         if (passwordInput === "Ресурс-студия") {
@@ -526,19 +563,28 @@
         }
     }
 
-    // --- НАВИГАЦИЯ ---
+    // --- НАВИГАЦИЯ МЕЖДУ ВКЛАДКАМИ ---
     function switchTab(pageId, navElement) {
-        document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-        document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+        document.querySelectorAll('.page').forEach(page => {
+            page.classList.remove('active');
+        });
+        document.querySelectorAll('.nav-item').forEach(nav => {
+            nav.classList.remove('active');
+        });
+        
         document.getElementById(pageId).classList.add('active');
         navElement.classList.add('active');
         window.scrollTo(0, 0);
     }
 
-    // --- ВЕРА ---
+    // --- ЛОГИКА ВЕРЫ ---
     function toggleVera() {
         const veraBox = document.getElementById('vera-box');
-        veraBox.style.display = veraBox.style.display === 'flex' ? 'none' : 'flex';
+        if (veraBox.style.display === 'flex') {
+            veraBox.style.display = 'none';
+        } else {
+            veraBox.style.display = 'flex';
+        }
     }
 
     function askVera() {
@@ -556,7 +602,7 @@
         setTimeout(() => {
             chatContent.innerHTML += `
                 <div style="background: #fff; border: var(--glass-border); padding: 15px; border-radius: 15px; margin-bottom: 15px;">
-                    Я зафиксировала запрос. Логика расчета LTV и ROMI работает в штатном режиме без сбоев.
+                    Я зафиксировала запрос. Логика расчета воронки, LTV и ROMI работает в штатном режиме без сбоев.
                 </div>`;
             chatContent.scrollTop = chatContent.scrollHeight;
         }, 600);
@@ -576,13 +622,21 @@
         marketingSpend: 0,
         dailyRevenue: {}, // Для графика выручки по дням
         leadsBySource: {
-            'ВК': 0, '2ГИС': 0, 'Яндекс': 0, 'Сайт': 0, 'Подруги / Рекомендации': 0, 'Архив / Старая база': 0, 'Одноклассники': 0
+            'ВК': 0, 
+            '2ГИС': 0, 
+            'Яндекс': 0, 
+            'Сайт': 0, 
+            'Подруги / Рекомендации': 0, 
+            'Архив / Старая база': 0, 
+            'Одноклассники': 0
         },
         salesBySku: {} // Для графика популярности
     };
 
-    // Глобальные переменные для графиков
-    let revenueChartInstance, channelsChartInstance, skuChartInstance;
+    // Глобальные переменные для Chart.js
+    let revenueChartInstance;
+    let channelsChartInstance;
+    let skuChartInstance;
 
     function appendToLog(text, value, type) {
         const logList = document.getElementById('log-list');
@@ -608,43 +662,77 @@
         logList.insertAdjacentHTML('afterbegin', logHtml);
     }
 
+    // --- ФУНКЦИИ ВВОДА ДАННЫХ И ОБНУЛЕНИЯ ---
     function addTraffic() {
+        const locationInput = document.getElementById('in-loc').value;
+        const sourceInput = document.getElementById('l-src').value;
         const leadQuantity = parseInt(document.getElementById('l-qty').value) || 0; 
         const bookQuantity = parseInt(document.getElementById('b-qty').value) || 0;
-        
-        if (leadQuantity === 0 && bookQuantity === 0) return;
-        
-        const leadSource = document.getElementById('l-src').value;
-        
+
+        if (!locationInput) {
+            alert("Внимание: Выберите студию!");
+            return;
+        }
+        if (!sourceInput) {
+            alert("Внимание: Выберите источник лидов!");
+            return;
+        }
+        if (leadQuantity === 0 && bookQuantity === 0) {
+            alert("Внимание: Введите количество лидов или записей!");
+            return;
+        }
+
         appData.leads += leadQuantity;
         appData.bookings += bookQuantity;
         
         if (leadQuantity > 0) {
-            appData.leadsBySource[leadSource] += leadQuantity;
-            appendToLog(`Лиды: ${leadSource} (${leadQuantity} шт)`, null, 'text');
+            appData.leadsBySource[sourceInput] += leadQuantity;
+            appendToLog(`Лиды: ${sourceInput} (${leadQuantity} шт)`, null, 'text');
         }
         if (bookQuantity > 0) {
             appendToLog(`Записи на пробное (${bookQuantity} шт)`, null, 'text');
         }
         
-        updateDashboardView(); 
-        updateDynamicCharts();
-        
+        // Обнуление полей после фиксации
         document.getElementById('l-qty').value = "";
         document.getElementById('b-qty').value = "";
+        document.getElementById('l-src').value = "";
+        
+        updateDashboardView(); 
+        updateDynamicCharts();
     }
 
     function addSale() {
-        const saleValue = parseInt(document.getElementById('s-val').value); 
-        if (!saleValue) return;
-        
+        const locationInput = document.getElementById('in-loc').value;
         const saleCategory = document.getElementById('s-cat').value;
         const saleTypeLabel = document.getElementById('s-type').value;
+        const saleValue = parseInt(document.getElementById('s-val').value) || 0;
         const dateValue = document.getElementById('in-date').value;
-        
+
+        if (!locationInput) {
+            alert("Внимание: Выберите студию!");
+            return;
+        }
+        if (!saleCategory) {
+            alert("Внимание: Выберите статус клиента!");
+            return;
+        }
+        if (!saleTypeLabel) {
+            alert("Внимание: Выберите продукт (абонемент)!");
+            return;
+        }
+        if (!saleValue || saleValue <= 0) {
+            alert("Внимание: Введите корректную сумму оплаты!");
+            return;
+        }
+
         // Учет денег
         appData.totalRevenue += saleValue;
-        appData.dailyRevenue[dateValue] = (appData.dailyRevenue[dateValue] || 0) + saleValue;
+        
+        if (!appData.dailyRevenue[dateValue]) {
+            appData.dailyRevenue[dateValue] = 0;
+        }
+        appData.dailyRevenue[dateValue] += saleValue;
 
         // Учет воронки и LTV
         if (saleCategory === 'trial') {
@@ -657,54 +745,82 @@
         }
         
         // Учет SKU (Абонементов)
-        appData.salesBySku[saleTypeLabel] = (appData.salesBySku[saleTypeLabel] || 0) + 1;
+        if (!appData.salesBySku[saleTypeLabel]) {
+            appData.salesBySku[saleTypeLabel] = 0;
+        }
+        appData.salesBySku[saleTypeLabel] += 1;
         
-        appendToLog(`Продажа [${saleCategory === 'sec' ? 'Вторичка' : 'Первичка'}]: ${saleTypeLabel}`, `${saleValue} ₽`, 'ok');
+        let saleStatusText = saleCategory === 'sec' ? 'Вторичка' : 'Первичка/Пробное';
+        appendToLog(`Продажа [${saleStatusText}]: ${saleTypeLabel}`, `${saleValue} ₽`, 'ok');
+        
+        // Обнуление полей после фиксации
+        document.getElementById('s-val').value = "";
+        document.getElementById('s-cat').value = "";
+        document.getElementById('s-type').value = "";
         
         updateDashboardView(); 
         updateDynamicCharts();
-        document.getElementById('s-val').value = "";
     }
 
     function addExpense() {
-        const expenseValue = parseInt(document.getElementById('e-val').value); 
-        if (!expenseValue) return;
-        
+        const locationInput = document.getElementById('in-loc').value;
         const expenseCategory = document.getElementById('e-cat').value;
-        
+        const expenseValue = parseInt(document.getElementById('e-val').value) || 0;
+
+        if (!locationInput) {
+            alert("Внимание: Выберите студию!");
+            return;
+        }
+        if (!expenseCategory) {
+            alert("Внимание: Выберите категорию расхода!");
+            return;
+        }
+        if (!expenseValue || expenseValue <= 0) {
+            alert("Внимание: Введите корректную сумму расхода!");
+            return;
+        }
+
         // Если это реклама, добавляем в расчет CAC и ROMI
         if (expenseCategory.includes('Реклама')) {
             appData.marketingSpend += expenseValue;
         }
         
         appendToLog(`Расход: ${expenseCategory}`, `${expenseValue} ₽`, 'crit');
-        updateDashboardView(); 
+        
+        // Обнуление полей после фиксации
         document.getElementById('e-val').value = "";
+        document.getElementById('e-cat').value = "";
+        
+        updateDashboardView(); 
     }
 
     function updateDashboardView() {
         // Базовые метрики
         document.getElementById('d-rev').innerText = appData.totalRevenue.toLocaleString() + " ₽";
         document.getElementById('d-sec-rev').innerText = appData.secondaryRevenue.toLocaleString();
-        document.getElementById('d-leads').innerText = appData.leads;
+        document.getElementById('d-sec-count').innerText = appData.secondarySalesCount;
         
         // Юнит Экономика
+        const totalPurchases = appData.primarySales + appData.secondarySalesCount;
+        const calculatedAvgCheck = totalPurchases > 0 ? Math.round(appData.totalRevenue / totalPurchases) : 0; 
+        document.getElementById('d-avg-check').innerText = calculatedAvgCheck.toLocaleString() + " ₽";
+        
         const calculatedCac = appData.primarySales > 0 ? Math.round(appData.marketingSpend / appData.primarySales) : 0;
         document.getElementById('d-cac').innerText = calculatedCac.toLocaleString() + " ₽";
+        
+        const calculatedLtv = appData.primarySales > 0 ? Math.round(appData.secondaryRevenue / appData.primarySales) : 0;
+        document.getElementById('d-ltv').innerText = calculatedLtv.toLocaleString() + " ₽";
         
         const calculatedRomi = appData.marketingSpend > 0 ? Math.round(((appData.totalRevenue - appData.marketingSpend) / appData.marketingSpend) * 100) : 0;
         document.getElementById('d-romi').innerText = calculatedRomi + "%";
 
-        const calculatedLtv = appData.primarySales > 0 ? Math.round(appData.secondaryRevenue / appData.primarySales) : 0;
-        document.getElementById('d-ltv').innerText = calculatedLtv.toLocaleString() + " ₽";
-
-        // Обновление Воронки
+        // Обновление цифр Воронки
         document.getElementById('f-leads').innerText = appData.leads;
         document.getElementById('f-bookings').innerText = appData.bookings;
         document.getElementById('f-trials').innerText = appData.trials;
         document.getElementById('f-prim').innerText = appData.primarySales;
 
-        // Расчет конверсий (CR) и ширины полос
+        // Расчет конверсий (CR)
         let crBookings = appData.leads > 0 ? Math.round((appData.bookings / appData.leads) * 100) : 0;
         let crTrials = appData.bookings > 0 ? Math.round((appData.trials / appData.bookings) * 100) : 0;
         let crPrim = appData.trials > 0 ? Math.round((appData.primarySales / appData.trials) * 100) : 0;
@@ -713,40 +829,76 @@
         document.getElementById('cr-trials').innerText = crTrials;
         document.getElementById('cr-prim').innerText = crPrim;
 
-        // Визуальное заполнение воронки
-        document.getElementById('bar-bookings').style.width = (appData.leads > 0 ? (appData.bookings / appData.leads * 100) : 0) + '%';
-        document.getElementById('bar-trials').style.width = (appData.bookings > 0 ? (appData.trials / appData.bookings * 100) : 0) + '%';
-        document.getElementById('bar-prim').style.width = (appData.trials > 0 ? (appData.primarySales / appData.trials * 100) : 0) + '%';
+        // Визуальное заполнение воронки (относительно изначальных 100% лидов)
+        let widthBookings = appData.leads > 0 ? (appData.bookings / appData.leads) * 100 : 0;
+        let widthTrials = appData.leads > 0 ? (appData.trials / appData.leads) * 100 : 0;
+        let widthPrim = appData.leads > 0 ? (appData.primarySales / appData.leads) * 100 : 0;
+
+        document.getElementById('bar-bookings').style.width = widthBookings + "%";
+        document.getElementById('bar-trials').style.width = widthTrials + "%";
+        document.getElementById('bar-prim').style.width = widthPrim + "%";
     }
 
-    // --- ЖИВЫЕ ГРАФИКИ (Chart.js) ---
+    // --- ИНИЦИАЛИЗАЦИЯ И ОБНОВЛЕНИЕ ГРАФИКОВ ---
     function initializeCharts() {
-        // График Выручки
         const revCtx = document.getElementById('revChart').getContext('2d');
         revenueChartInstance = new Chart(revCtx, {
             type: 'line',
-            data: { labels: [], datasets: [{ label: 'Выручка (₽)', data: [], borderColor: '#A68A56', backgroundColor: 'rgba(166, 138, 86, 0.1)', fill: true, tension: 0.3 }] },
-            options: { maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } }
+            data: { 
+                labels: [], 
+                datasets: [{ 
+                    label: 'Выручка (₽)', 
+                    data: [], 
+                    borderColor: '#A68A56', 
+                    backgroundColor: 'rgba(166, 138, 86, 0.1)', 
+                    fill: true, 
+                    tension: 0.3 
+                }] 
+            },
+            options: { 
+                maintainAspectRatio: false, 
+                plugins: { legend: { display: false } }, 
+                scales: { y: { beginAtZero: true } } 
+            }
         });
 
-        // График Каналов Трафика
         const chanCtx = document.getElementById('chanChart').getContext('2d');
         channelsChartInstance = new Chart(chanCtx, {
             type: 'bar',
-            data: { labels: Object.keys(appData.leadsBySource), datasets: [{ label: 'Лиды', data: Object.values(appData.leadsBySource), backgroundColor: '#1C1C1E', borderRadius: 6 }] },
-            options: { maintainAspectRatio: false, plugins: { legend: { display: false } } }
+            data: { 
+                labels: Object.keys(appData.leadsBySource), 
+                datasets: [{ 
+                    label: 'Лиды', 
+                    data: Object.values(appData.leadsBySource), 
+                    backgroundColor: '#1C1C1E', 
+                    borderRadius: 6 
+                }] 
+            },
+            options: { 
+                maintainAspectRatio: false, 
+                plugins: { legend: { display: false } } 
+            }
         });
 
-        // График SKU (Абонементы)
         const skuCtx = document.getElementById('skuChart').getContext('2d');
         skuChartInstance = new Chart(skuCtx, {
             type: 'bar',
-            data: { labels: [], datasets: [{ label: 'Продано шт.', data: [], backgroundColor: '#27AE60', borderRadius: 6 }] },
-            options: { maintainAspectRatio: false, plugins: { legend: { display: false } } }
+            data: { 
+                labels: [], 
+                datasets: [{ 
+                    label: 'Продано шт.', 
+                    data: [], 
+                    backgroundColor: '#27AE60', 
+                    borderRadius: 6 
+                }] 
+            },
+            options: { 
+                maintainAspectRatio: false, 
+                plugins: { legend: { display: false } } 
+            }
         });
     }
 
-    // Функция обновления данных внутри графиков
     function updateDynamicCharts() {
         if (!revenueChartInstance) return;
 
