@@ -100,8 +100,14 @@
         }
 
         @keyframes fadeIn { 
-            from { opacity: 0; transform: translateY(10px); } 
-            to { opacity: 1; transform: translateY(0); } 
+            from { 
+                opacity: 0; 
+                transform: translateY(10px); 
+            } 
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            } 
         }
 
         /* --- КАРТОЧКИ И ЭЛЕМЕНТЫ ВВОДА --- */
@@ -138,7 +144,6 @@
             transform: scale(0.97); 
         }
 
-        /* Адаптация селектов для смартфонов */
         input, select {
             width: 100%; 
             background: #ffffff; 
@@ -252,13 +257,22 @@
             width: 100%; 
             color: var(--text); 
         }
-        
-        /* Исправление цвета текста для 4 этапа */
-        #bar-prim-text {
-            color: var(--text) !important;
+
+        /* ПРОГРЕСС ПЛАНА */
+        .plan-bar-bg {
+            background: var(--bg-deep);
+            height: 20px;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            margin-top: 8px;
+            margin-bottom: 15px;
         }
-        #bar-prim-text span {
-            color: var(--text) !important;
+
+        .plan-bar-fill {
+            height: 100%;
+            background: var(--ok);
+            transition: 0.5s;
         }
 
         /* ВЕРА */
@@ -280,7 +294,9 @@
             transition: transform 0.2s ease;
         }
 
-        #vera-btn:active { transform: scale(0.9); }
+        #vera-btn:active { 
+            transform: scale(0.9); 
+        }
 
         #vera-box { 
             position: fixed; 
@@ -314,22 +330,29 @@
             padding: 40px; 
         }
 
-        /* НОВЫЕ СТИЛИ ДЛЯ ШАПКИ И ФИЛЬТРА */
+        /* ШАПКА И ФИЛЬТРЫ */
         .header-flex { 
             display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
+            flex-direction: column;
             margin-bottom: 25px; 
-            flex-wrap: wrap; 
             gap: 15px; 
         }
+
         .header-logo-title { 
             display: flex; 
             align-items: center; 
             gap: 12px; 
         }
+
+        .filter-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
         .period-select { 
-            width: auto; 
+            width: 100%; 
+            max-width: 200px;
             padding: 10px 15px; 
             margin-bottom: 0; 
             border-radius: 12px; 
@@ -338,6 +361,21 @@
             background-color: #fff; 
             border: var(--glass-border); 
             box-shadow: var(--shadow); 
+            flex: 1;
+        }
+
+        .custom-date-row {
+            display: none;
+            width: 100%;
+            gap: 10px;
+            margin-top: 5px;
+            align-items: center;
+        }
+
+        .custom-date-row input {
+            margin-bottom: 0;
+            padding: 10px;
+            font-size: 13px;
         }
     </style>
 </head>
@@ -362,7 +400,7 @@
         <span class="nav-icon">📜</span>Журнал
     </div>
     <div class="nav-item" onclick="switchTab('page-plan', this)">
-        <span class="nav-icon">🏛️</span>Стратегия
+        <span class="nav-icon">🎯</span>Стратегия
     </div>
 </nav>
 
@@ -374,7 +412,7 @@
     </div>
     <div id="vera-chat" style="flex: 1; padding: 20px; overflow-y: auto; font-size: 14px;">
         <div style="background: #fff; padding: 15px; border-radius: 15px; border: var(--glass-border); margin-bottom: 15px;">
-            Николай Сергеевич, здравия желаю! Все системы оцифрованы, код развернут полностью. Юнит-экономика считается автоматически. База данных подключена.
+            Николай Сергеевич, здравия желаю! Все системы оцифрованы. Юнит-экономика считается автоматически.
         </div>
     </div>
     <div style="padding: 15px; background: #fff; display: flex; gap: 10px;">
@@ -389,13 +427,30 @@
             <img src="favicon.png" alt="РЕСУРС" style="width: 35px; height: 35px; object-fit: contain;">
             <h2 class="serif" style="font-size: 32px; margin: 0;">Сводка</h2>
         </div>
-        <select id="period-filter" class="period-select" onchange="triggerAnalyticsFilter()">
-            <option value="today">За сегодня</option>
-            <option value="week">За неделю</option>
-            <option value="month" selected>За месяц</option>
-            <option value="year">За год</option>
-            <option value="all">За всё время</option>
-        </select>
+        
+        <div class="filter-row">
+            <select id="dash-studio-filter" class="period-select" onchange="applyFilters()">
+                <option value="all" selected>Все студии (Общее)</option>
+                <option value="Советская 3">Советская 3</option>
+                <option value="Коммунистическая 77/2">Коммунистическая 77/2</option>
+            </select>
+
+            <select id="period-filter" class="period-select" onchange="toggleCustomDate()">
+                <option value="today">За сегодня</option>
+                <option value="week">За неделю</option>
+                <option value="month" selected>За месяц</option>
+                <option value="year">За год</option>
+                <option value="all">За всё время</option>
+                <option value="custom">Свой период...</option>
+            </select>
+        </div>
+
+        <div id="custom-date-wrap" class="custom-date-row">
+            <input type="date" id="date-from">
+            <span style="font-size: 12px; color: var(--text-dim); font-weight: bold;">ДО</span>
+            <input type="date" id="date-to">
+            <button class="btn" style="width: auto; padding: 10px 15px;" onclick="applyFilters()">Применить</button>
+        </div>
     </div>
     
     <div class="unit-grid">
@@ -430,7 +485,6 @@
     <div class="card">
         <h3 class="serif" style="margin-bottom: 15px;">Воронка Конверсии</h3>
         <div style="display: flex; flex-direction: column;">
-            
             <div class="funnel-bar">
                 <div class="funnel-fill" style="background: rgba(166, 138, 86, 0.8); width: 100%;"></div>
                 <div class="funnel-text">
@@ -438,7 +492,6 @@
                     <span id="f-leads">0</span>
                 </div>
             </div>
-
             <div class="funnel-bar">
                 <div class="funnel-fill" id="bar-bookings" style="background: rgba(166, 138, 86, 0.6); width: 0%;"></div>
                 <div class="funnel-text">
@@ -446,23 +499,20 @@
                     <span id="f-bookings">0</span>
                 </div>
             </div>
-
             <div class="funnel-bar">
                 <div class="funnel-fill" id="bar-trials" style="background: rgba(242, 153, 74, 0.7); width: 0%;"></div>
                 <div class="funnel-text">
-                    <span>3. ДОХОДИМОСТЬ (Пробные) (CR2: <span id="cr-trials">0</span>%)</span>
+                    <span>3. ДОХОДИМОСТЬ (CR2: <span id="cr-trials">0</span>%)</span>
                     <span id="f-trials">0</span>
                 </div>
             </div>
-
             <div class="funnel-bar">
                 <div class="funnel-fill" id="bar-prim" style="background: rgba(39, 174, 96, 0.9); width: 0%;"></div>
-                <div class="funnel-text" id="bar-prim-text">
-                    <span>4. ПОКУПКА 8+ ЗАН. (CR3: <span id="cr-prim">0</span>%)</span>
+                <div class="funnel-text">
+                    <span>4. ПОКУПКА (CR3: <span id="cr-prim">0</span>%)</span>
                     <span id="f-prim">0</span>
                 </div>
             </div>
-
         </div>
     </div>
 
@@ -504,7 +554,6 @@
             <option value="Одноклассники">Одноклассники</option>
             <option value="Сайт">Сайт</option>
         </select>
-        
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
             <div>
                 <label>Поступило лидов</label>
@@ -515,7 +564,6 @@
                 <input type="number" id="b-qty" placeholder="0">
             </div>
         </div>
-        
         <button class="btn" style="background: var(--text);" onclick="addTraffic(this)">Внести трафик</button>
     </div>
 
@@ -528,7 +576,6 @@
             <option value="prim">Первичная покупка абонемента</option>
             <option value="sec">Вторичная покупка (Продление)</option>
         </select>
-        
         <label>Номенклатура (Продукт)</label>
         <select id="s-type">
             <option value="">-- ВЫБРАТЬ АБОНЕМЕНТ --</option>
@@ -538,16 +585,10 @@
             <option value="Тест драйв 3 зан на 10 дней">Тест драйв 3 зан на 10 дней</option>
             <option value="Безлимит на месяц">Безлимит на месяц</option>
             <option value="8 занятий">8 занятий</option>
-            <option value="12 занятий">12 занятий</option>
             <option value="16 занятий">16 занятий</option>
-            <option value="24 занятия">24 занятия</option>
             <option value="32 занятия">32 занятия</option>
-            <option value="48 занятий">48 занятий</option>
             <option value="64 занятия">64 занятия</option>
-            <option value="96 занятий">96 занятий</option>
-            <option value="128 занятий">128 занятий</option>
         </select>
-        
         <label>Фактическая сумма оплаты (₽)</label>
         <input type="number" id="s-val" placeholder="Например: 11200">
         <button class="btn" onclick="addSale(this)">Зафиксировать продажу</button>
@@ -560,7 +601,6 @@
             <option value="">-- ВЫБРАТЬ КАТЕГОРИЮ --</option>
             <option value="Реклама (ВК)">Реклама (ВК)</option>
             <option value="Реклама (Яндекс)">Реклама (Яндекс)</option>
-            <option value="Реклама (Прочее)">Реклама (Прочее)</option>
             <option value="Такси / Логистика">Такси / Логистика</option>
             <option value="Хознужды / Вода">Хознужды / Вода</option>
             <option value="Аренда / Кредит">Аренда / Кредит</option>
@@ -575,19 +615,42 @@
 <div id="page-log" class="page">
     <h2 class="serif" style="font-size: 32px; margin-bottom: 25px;">История операций</h2>
     <div id="log-list">
-        <p style="text-align: center; color: var(--text-dim); margin-top: 50px;">Журнал пуст. Внесите первые данные.</p>
+        <p style="text-align: center; color: var(--text-dim); margin-top: 50px;">Загрузка данных...</p>
     </div>
 </div>
 
 <div id="page-plan" class="page">
-    <h2 class="serif" style="font-size: 32px; margin-bottom: 25px;">Инвестор-панель</h2>
+    <h2 class="serif" style="font-size: 32px; margin-bottom: 25px;">Стратегия и Планы</h2>
     
-    <div class="card" style="background: var(--text); color: #fff;">
-        <div style="font-size: 10px; text-transform: uppercase; opacity: 0.6; letter-spacing: 2px;">Долговая нагрузка</div>
-        <div style="font-size: 36px; font-family: serif; margin: 10px 0;">2 500 000 ₽</div>
-        <div style="font-size: 11px; color: var(--warn);">Статус: Обслуживается в графике</div>
+    <div class="card">
+        <h3 class="serif" style="margin-bottom: 15px;">Установка KPI (Плана)</h3>
+        <label>Целевая Студия</label>
+        <select id="plan-studio">
+            <option value="all">Все студии (Общий план)</option>
+            <option value="Советская 3">Советская 3</option>
+            <option value="Коммунистическая 77/2">Коммунистическая 77/2</option>
+        </select>
+        <label>План по Выручке (₽)</label>
+        <input type="number" id="plan-rev-input" placeholder="Например: 1000000">
+        <label>План по Лидам (шт)</label>
+        <input type="number" id="plan-leads-input" placeholder="Например: 300">
+        <button class="btn" onclick="savePlan()">Утвердить план</button>
     </div>
-    
+
+    <div class="card">
+        <h3 class="serif" style="margin-bottom: 15px;">Контроль выполнения (Студия: <span id="active-plan-label" style="color:var(--accent);">Все</span>)</h3>
+        
+        <label>Выручка: <span id="plan-rev-text">0 / 0 ₽ (0%)</span></label>
+        <div class="plan-bar-bg">
+            <div class="plan-bar-fill" id="plan-rev-bar" style="width: 0%;"></div>
+        </div>
+
+        <label>Лиды: <span id="plan-leads-text">0 / 0 шт (0%)</span></label>
+        <div class="plan-bar-bg">
+            <div class="plan-bar-fill" id="plan-leads-bar" style="width: 0%; background: var(--accent);"></div>
+        </div>
+    </div>
+
     <div class="card">
         <h3 class="serif" style="margin-bottom: 15px;">Лиды по Каналам</h3>
         <div class="chart-wrap">
@@ -604,9 +667,36 @@
 </div>
 
 <script>
-    // === НАСТРОЙКИ ОБЛАКА (Вставьте ваш секретный токен!) ===
+    // === НАСТРОЙКИ ОБЛАКА ===
     const BACKEND_URL = "https://functions.yandexcloud.net/d4esie0g5hb62gg515a9";
     const BACKEND_TOKEN = "Resurs_studio-2026"; 
+
+    // Локальные данные и Планы
+    let appData = { 
+        totalRevenue: 0, 
+        secondaryRevenue: 0, 
+        leads: 0, 
+        bookings: 0,
+        trials: 0, 
+        primarySales: 0, 
+        secondarySalesCount: 0, 
+        marketingSpend: 0,
+        dailyRevenue: {}, 
+        leadsBySource: {
+            'ВК': 0, '2ГИС': 0, 'Яндекс': 0, 'Сайт': 0, 
+            'Подруги / Рекомендации': 0, 'Архив / Старая база': 0, 'Одноклассники': 0
+        }, 
+        salesBySku: {},
+        plans: {
+            'all': { rev: 0, leads: 0 },
+            'Советская 3': { rev: 0, leads: 0 },
+            'Коммунистическая 77/2': { rev: 0, leads: 0 }
+        }
+    };
+
+    let revenueChartInstance;
+    let channelsChartInstance;
+    let skuChartInstance;
 
     // --- ПАРОЛЬНАЯ ЗАЩИТА ---
     function unlockSystem() {
@@ -616,14 +706,138 @@
             document.getElementById('nav-bar').style.display = 'flex';
             document.getElementById('vera-btn').style.display = 'flex';
             document.getElementById('in-date').valueAsDate = new Date();
-            switchTab('page-dash', document.querySelector('.nav-item'));
             initializeCharts();
+            switchTab('page-dash', document.querySelector('.nav-item'));
         } else { 
-            alert("Неверное кодовое слово, Николай Сергеевич."); 
+            alert("Неверное кодовое слово."); 
         }
     }
 
-    // --- НАВИГАЦИЯ МЕЖДУ ВКЛАДКАМИ ---
+    // --- ГЛАВНАЯ ФУНКЦИЯ: ЗАГРУЗКА ИЗ ОБЛАКА ---
+    async function loadDataFromServer() {
+        console.log("ПОДКЛЮЧЕНИЕ К YANDEX CLOUD ДЛЯ ЗАГРУЗКИ...");
+        try {
+            const response = await fetch(BACKEND_URL, {
+                method: 'POST',
+                headers: { 
+                    'Content-Type': 'application/json', 
+                    'X-Api-Token': BACKEND_TOKEN 
+                },
+                body: JSON.stringify({ action: 'fetch_summary' })
+            });
+
+            if (response.ok) {
+                const result = await response.json();
+                console.log("ДАННЫЕ ПОЛУЧЕНЫ:", result);
+                processServerData(result);
+            }
+        } catch (e) {
+            console.error("ОШИБКА ЗАГРУЗКИ:", e);
+        }
+    }
+
+    // --- ОБРАБОТКА ДАННЫХ ИЗ БАЗЫ ---
+    function processServerData(raw) {
+        // Очищаем локальные данные перед заливкой
+        appData.totalRevenue = 0; 
+        appData.secondaryRevenue = 0;
+        appData.leads = 0; 
+        appData.bookings = 0; 
+        appData.trials = 0;
+        appData.primarySales = 0; 
+        appData.secondarySalesCount = 0;
+        appData.marketingSpend = 0; // Сбрасываем расходы на рекламу
+        appData.dailyRevenue = {}; 
+        appData.salesBySku = {};
+        // Очищаем источники трафика перед перерасчетом
+        for (let key in appData.leadsBySource) {
+            appData.leadsBySource[key] = 0;
+        }
+
+        // Обработка продаж
+        if (raw.sales && raw.sales.length > 0) {
+            raw.sales.forEach(s => {
+                const val = parseInt(s.payment_amount);
+                const date = s.event_date;
+                
+                appData.totalRevenue += val;
+                
+                if (!appData.dailyRevenue[date]) {
+                    appData.dailyRevenue[date] = 0;
+                }
+                appData.dailyRevenue[date] += val;
+
+                if (s.client_status === 'trial') {
+                    appData.trials++;
+                } else if (s.client_status === 'prim') {
+                    appData.primarySales++;
+                } else if (s.client_status === 'sec') {
+                    appData.secondarySalesCount++;
+                    appData.secondaryRevenue += val;
+                }
+
+                if (!appData.salesBySku[s.product_sku]) {
+                    appData.salesBySku[s.product_sku] = 0;
+                }
+                appData.salesBySku[s.product_sku]++;
+            });
+        }
+
+        // Обработка трафика
+        if (raw.traffic && raw.traffic.length > 0) {
+            raw.traffic.forEach(t => {
+                appData.leads += parseInt(t.leads_count);
+                appData.bookings += parseInt(t.bookings_count);
+                
+                if (!appData.leadsBySource[t.source_name]) {
+                    appData.leadsBySource[t.source_name] = 0;
+                }
+                appData.leadsBySource[t.source_name] += parseInt(t.leads_count);
+            });
+        }
+
+        // Обработка расходов (для подсчета CAC и ROMI)
+        if (raw.expenses && raw.expenses.length > 0) {
+            raw.expenses.forEach(e => {
+                // Если категория содержит слово "Реклама", плюсуем в маркетинг
+                if (e.category && e.category.includes('Реклама')) {
+                    appData.marketingSpend += parseInt(e.expense_amount);
+                }
+            });
+        }
+
+        updateDashboardView();
+        updateDynamicCharts();
+        updatePlanProgress();
+        renderLog(raw);
+    }
+
+    function renderLog(raw) {
+        const logList = document.getElementById('log-list');
+        logList.innerHTML = "";
+        
+        if (!raw.sales || raw.sales.length === 0) {
+            logList.innerHTML = "<p style='text-align: center; color: var(--text-dim); margin-top: 50px;'>Журнал пуст.</p>";
+            return;
+        }
+
+        // Выводим последние 20 продаж в истории (от новых к старым)
+        raw.sales.slice(-20).reverse().forEach(s => {
+            const html = `
+            <div class="card" style="padding:15px; margin-bottom:12px;">
+                <div style="display:flex; justify-content:space-between;">
+                    <b>${s.event_date}</b> 
+                    <span style="color:var(--ok)">+ ${s.payment_amount} ₽</span>
+                </div>
+                <div style="font-size:12px; color:var(--text-dim)">
+                    ${s.product_sku} • ${s.studio_name}
+                </div>
+            </div>`;
+            logList.insertAdjacentHTML('beforeend', html);
+        });
+    }
+
+    // --- НАВИГАЦИЯ ---
     function switchTab(pageId, navElement) {
         document.querySelectorAll('.page').forEach(page => {
             page.classList.remove('active');
@@ -634,399 +848,301 @@
         
         document.getElementById(pageId).classList.add('active');
         navElement.classList.add('active');
+        
+        if (pageId === 'page-dash' || pageId === 'page-log' || pageId === 'page-plan') {
+            loadDataFromServer();
+        }
         window.scrollTo(0, 0);
     }
 
-    // --- ЛОГИКА ВЕРЫ ---
-    function toggleVera() {
-        const veraBox = document.getElementById('vera-box');
-        if (veraBox.style.display === 'flex') {
-            veraBox.style.display = 'none';
+    function toggleCustomDate() {
+        const val = document.getElementById('period-filter').value;
+        const customWrap = document.getElementById('custom-date-wrap');
+        
+        if (val === 'custom') {
+            customWrap.style.display = 'flex';
         } else {
-            veraBox.style.display = 'flex';
+            customWrap.style.display = 'none';
+            applyFilters();
         }
     }
 
-    function askVera() {
-        const inputField = document.getElementById('vera-in'); 
-        if (!inputField.value) return;
-        
-        const chatContent = document.getElementById('vera-chat');
-        chatContent.innerHTML += `
-            <div style="text-align: right; margin-bottom: 10px;">
-                <span style="background: var(--accent); color: #fff; padding: 10px; border-radius: 12px; display: inline-block;">
-                    ${inputField.value}
-                </span>
-            </div>`;
-        
-        setTimeout(() => {
-            chatContent.innerHTML += `
-                <div style="background: #fff; border: var(--glass-border); padding: 15px; border-radius: 15px; margin-bottom: 15px;">
-                    Запрос принят. Связываюсь с Yandex Cloud для анализа. Ожидайте внедрения нейро-модуля.
-                </div>`;
-            chatContent.scrollTop = chatContent.scrollHeight;
-        }, 600);
-        
-        inputField.value = "";
+    function applyFilters() {
+        const studio = document.getElementById('dash-studio-filter').value;
+        document.getElementById('active-plan-label').innerText = (studio === 'all' ? 'Все' : studio);
+        loadDataFromServer();
     }
 
-    // Обработчик фильтра аналитики
-    function triggerAnalyticsFilter() {
-        const period = document.getElementById('period-filter');
-        const selectedText = period.options[period.selectedIndex].text;
+    // --- KPI И ПЛАНЫ ---
+    function savePlan() {
+        const studio = document.getElementById('plan-studio').value;
+        const revPlan = parseInt(document.getElementById('plan-rev-input').value) || 0;
+        const leadsPlan = parseInt(document.getElementById('plan-leads-input').value) || 0;
         
-        document.getElementById('vera-box').style.display = 'flex';
-        const chatContent = document.getElementById('vera-chat');
+        appData.plans[studio].rev = revPlan;
+        appData.plans[studio].leads = leadsPlan;
         
-        chatContent.innerHTML += `
-            <div style="background: #fff; border: var(--glass-border); padding: 15px; border-radius: 15px; margin-bottom: 15px; font-weight: 700; color: var(--accent);">
-                Фильтр установлен: ${selectedText}. <br><span style="color: var(--text); font-weight: 400; font-size: 12px;">Готовлю выгрузку истории из Yandex Database...</span>
-            </div>`;
-        chatContent.scrollTop = chatContent.scrollHeight;
+        alert("План утвержден!");
+        updatePlanProgress();
     }
 
-    // --- МАТЕМАТИЧЕСКОЕ ЯДРО (ЮНИТ-ЭКОНОМИКА) ---
-    let appData = { 
-        totalRevenue: 0,
-        secondaryRevenue: 0,
-        leads: 0, 
-        bookings: 0,
-        trials: 0, 
-        primarySales: 0, 
-        secondarySalesCount: 0,
-        marketingSpend: 0,
-        dailyRevenue: {}, 
-        leadsBySource: {
-            'ВК': 0, '2ГИС': 0, 'Яндекс': 0, 'Сайт': 0, 
-            'Подруги / Рекомендации': 0, 'Архив / Старая база': 0, 'Одноклассники': 0
-        },
-        salesBySku: {} 
-    };
+    function updatePlanProgress() {
+        const studio = document.getElementById('dash-studio-filter').value;
+        const p = appData.plans[studio];
+        
+        const revPct = p.rev > 0 ? Math.min(Math.round((appData.totalRevenue / p.rev) * 100), 100) : 0;
+        const leadPct = p.leads > 0 ? Math.min(Math.round((appData.leads / p.leads) * 100), 100) : 0;
 
-    let revenueChartInstance;
-    let channelsChartInstance;
-    let skuChartInstance;
+        document.getElementById('plan-rev-text').innerText = `${appData.totalRevenue.toLocaleString()} / ${p.rev.toLocaleString()} ₽ (${revPct}%)`;
+        document.getElementById('plan-rev-bar').style.width = revPct + '%';
+        
+        document.getElementById('plan-leads-text').innerText = `${appData.leads} / ${p.leads} шт (${leadPct}%)`;
+        document.getElementById('plan-leads-bar').style.width = leadPct + '%';
+    }
 
-    function appendToLog(text, value, type) {
-        const logList = document.getElementById('log-list');
-        if (logList.innerHTML.includes("Журнал пуст")) {
-            logList.innerHTML = "";
+    // --- ВВОД ДАННЫХ ---
+    async function addTraffic(btn) {
+        const data = { 
+            studio: document.getElementById('in-loc').value, 
+            date: document.getElementById('in-date').value, 
+            source: document.getElementById('l-src').value, 
+            leads: parseInt(document.getElementById('l-qty').value) || 0, 
+            bookings: parseInt(document.getElementById('b-qty').value) || 0 
+        };
+        
+        if (!data.studio || !data.source || !data.date) {
+            alert("Заполните все обязательные поля!");
+            return;
         }
         
-        const color = type === 'ok' ? 'var(--ok)' : type === 'crit' ? 'var(--crit)' : 'var(--text)';
-        const sign = type === 'ok' ? '+' : type === 'crit' ? '-' : '';
-        const dateValue = document.getElementById('in-date').value;
-        const locationValue = document.getElementById('in-loc').value;
+        btn.disabled = true; 
+        btn.innerText = "СОХРАНЕНИЕ...";
         
-        const logHtml = `
-            <div class="card" style="padding: 15px; margin-bottom: 12px; font-size: 14px;">
-                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                    <b class="serif">${dateValue}</b>
-                    <span style="color: ${color}; font-weight: 700;">${sign} ${value || ''}</span>
-                </div>
-                <div style="font-size: 12px; color: var(--text-dim);">${text} • ${locationValue}</div>
-            </div>
-        `;
-        
-        logList.insertAdjacentHTML('afterbegin', logHtml);
-    }
-
-    // --- ФУНКЦИИ ВВОДА ДАННЫХ И СВЯЗИ С ОБЛАКОМ ---
-    async function addTraffic(btnElement) {
-        const locationInput = document.getElementById('in-loc').value;
-        const sourceInput = document.getElementById('l-src').value;
-        const leadQuantity = parseInt(document.getElementById('l-qty').value) || 0; 
-        const bookQuantity = parseInt(document.getElementById('b-qty').value) || 0;
-        const dateValue = document.getElementById('in-date').value;
-
-        if (!locationInput || !dateValue) return alert("Выберите дату и студию!");
-        if (!sourceInput) return alert("Выберите источник лидов!");
-        if (leadQuantity === 0 && bookQuantity === 0) return alert("Введите количество лидов или записей!");
-
-        const payload = { action: 'traffic', data: { studio: locationInput, date: dateValue, source: sourceInput, leads: leadQuantity, bookings: bookQuantity } };
-        
-        btnElement.disabled = true;
-        btnElement.innerText = "СВЯЗЬ С ОБЛАКОМ...";
-
         try {
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 7000);
-            const response = await fetch(BACKEND_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'X-Api-Token': BACKEND_TOKEN },
-                body: JSON.stringify(payload),
-                signal: controller.signal
+            const res = await fetch(BACKEND_URL, { 
+                method: 'POST', 
+                headers: { 
+                    'Content-Type': 'application/json', 
+                    'X-Api-Token': BACKEND_TOKEN 
+                }, 
+                body: JSON.stringify({ action: 'traffic', data }) 
             });
-            clearTimeout(timeoutId);
-
-            if(response.ok) {
-                appData.leads += leadQuantity;
-                appData.bookings += bookQuantity;
-                
-                if (leadQuantity > 0) {
-                    appData.leadsBySource[sourceInput] += leadQuantity;
-                    appendToLog(`Лиды: ${sourceInput} (${leadQuantity} шт)`, null, 'text');
-                }
-                if (bookQuantity > 0) {
-                    appendToLog(`Записи на пробное (${bookQuantity} шт)`, null, 'text');
-                }
-                
-                document.getElementById('l-qty').value = "";
-                document.getElementById('b-qty').value = "";
-                document.getElementById('l-src').value = "";
-                
-                updateDashboardView(); 
-                updateDynamicCharts();
-                alert("Данные успешно сохранены в Yandex Cloud!");
-            } else {
-                alert("Ошибка сервера. Проверьте токен.");
+            
+            if (res.ok) { 
+                alert("Трафик успешно зафиксирован!"); 
+                loadDataFromServer(); 
             }
-        } catch (e) {
-            alert("Ошибка связи: Превышено время ожидания сервера (7 сек).");
-        } finally {
-            btnElement.disabled = false;
-            btnElement.innerText = "Внести трафик";
+        } finally { 
+            btn.disabled = false; 
+            btn.innerText = "Внести трафик"; 
         }
     }
 
-    async function addSale(btnElement) {
-        const locationInput = document.getElementById('in-loc').value;
-        const saleCategory = document.getElementById('s-cat').value;
-        const saleTypeLabel = document.getElementById('s-type').value;
-        const saleValue = parseInt(document.getElementById('s-val').value) || 0;
-        const dateValue = document.getElementById('in-date').value;
-
-        if (!locationInput || !dateValue) return alert("Выберите дату и студию!");
-        if (!saleCategory) return alert("Выберите статус клиента!");
-        if (!saleTypeLabel) return alert("Выберите продукт (абонемент)!");
-        if (!saleValue || saleValue <= 0) return alert("Введите корректную сумму оплаты!");
-
-        const payload = { action: 'sale', data: { studio: locationInput, date: dateValue, status: saleCategory, sku: saleTypeLabel, amount: saleValue } };
-
-        btnElement.disabled = true;
-        btnElement.innerText = "СВЯЗЬ С ОБЛАКОМ...";
-
+    async function addSale(btn) {
+        const data = { 
+            studio: document.getElementById('in-loc').value, 
+            date: document.getElementById('in-date').value, 
+            status: document.getElementById('s-cat').value, 
+            sku: document.getElementById('s-type').value, 
+            amount: parseInt(document.getElementById('s-val').value) || 0 
+        };
+        
+        if (!data.studio || !data.date || !data.status || !data.sku || data.amount <= 0) {
+            alert("Заполните все поля продаж корректно!");
+            return;
+        }
+        
+        btn.disabled = true; 
+        btn.innerText = "СОХРАНЕНИЕ...";
+        
         try {
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 7000);
-            const response = await fetch(BACKEND_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'X-Api-Token': BACKEND_TOKEN },
-                body: JSON.stringify(payload),
-                signal: controller.signal
+            const res = await fetch(BACKEND_URL, { 
+                method: 'POST', 
+                headers: { 
+                    'Content-Type': 'application/json', 
+                    'X-Api-Token': BACKEND_TOKEN 
+                }, 
+                body: JSON.stringify({ action: 'sale', data }) 
             });
-            clearTimeout(timeoutId);
-
-            if(response.ok) {
-                appData.totalRevenue += saleValue;
-                
-                if (!appData.dailyRevenue[dateValue]) {
-                    appData.dailyRevenue[dateValue] = 0;
-                }
-                appData.dailyRevenue[dateValue] += saleValue;
-
-                if (saleCategory === 'trial') {
-                    appData.trials++;
-                } else if (saleCategory === 'prim') {
-                    appData.primarySales++;
-                } else if (saleCategory === 'sec') {
-                    appData.secondarySalesCount++;
-                    appData.secondaryRevenue += saleValue;
-                }
-                
-                if (!appData.salesBySku[saleTypeLabel]) {
-                    appData.salesBySku[saleTypeLabel] = 0;
-                }
-                appData.salesBySku[saleTypeLabel] += 1;
-                
-                let saleStatusText = saleCategory === 'sec' ? 'Вторичка' : 'Первичка/Пробное';
-                appendToLog(`Продажа [${saleStatusText}]: ${saleTypeLabel}`, `${saleValue} ₽`, 'ok');
-                
-                document.getElementById('s-val').value = "";
-                document.getElementById('s-cat').value = "";
-                document.getElementById('s-type').value = "";
-                
-                updateDashboardView(); 
-                updateDynamicCharts();
-                alert("Данные успешно сохранены в Yandex Cloud!");
-            } else {
-                alert("Ошибка сервера. Проверьте токен.");
+            
+            if (res.ok) { 
+                alert("Продажа зафиксирована в базе!"); 
+                loadDataFromServer(); 
             }
-        } catch (e) {
-            alert("Ошибка связи: Превышено время ожидания сервера (7 сек).");
-        } finally {
-            btnElement.disabled = false;
-            btnElement.innerText = "Зафиксировать продажу";
+        } finally { 
+            btn.disabled = false; 
+            btn.innerText = "Зафиксировать продажу"; 
         }
     }
 
-    async function addExpense(btnElement) {
-        const locationInput = document.getElementById('in-loc').value;
-        const expenseCategory = document.getElementById('e-cat').value;
-        const expenseValue = parseInt(document.getElementById('e-val').value) || 0;
-        const dateValue = document.getElementById('in-date').value;
-
-        if (!locationInput || !dateValue) return alert("Выберите дату и студию!");
-        if (!expenseCategory) return alert("Выберите категорию расхода!");
-        if (!expenseValue || expenseValue <= 0) return alert("Введите корректную сумму расхода!");
-
-        const payload = { action: 'expense', data: { studio: locationInput, date: dateValue, category: expenseCategory, amount: expenseValue } };
-
-        btnElement.disabled = true;
-        btnElement.innerText = "СВЯЗЬ...";
-
+    async function addExpense(btn) {
+        const data = { 
+            studio: document.getElementById('in-loc').value, 
+            date: document.getElementById('in-date').value, 
+            category: document.getElementById('e-cat').value, 
+            amount: parseInt(document.getElementById('e-val').value) || 0 
+        };
+        
+        if (!data.studio || !data.date || !data.category || data.amount <= 0) {
+            alert("Заполните все поля расхода!");
+            return;
+        }
+        
+        btn.disabled = true;
+        btn.innerText = "СОХРАНЕНИЕ...";
+        
         try {
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 7000);
-            const response = await fetch(BACKEND_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'X-Api-Token': BACKEND_TOKEN },
-                body: JSON.stringify(payload),
-                signal: controller.signal
+            const res = await fetch(BACKEND_URL, { 
+                method: 'POST', 
+                headers: { 
+                    'Content-Type': 'application/json', 
+                    'X-Api-Token': BACKEND_TOKEN 
+                }, 
+                body: JSON.stringify({ action: 'expense', data }) 
             });
-            clearTimeout(timeoutId);
-
-            if(response.ok) {
-                if (expenseCategory.includes('Реклама')) {
-                    appData.marketingSpend += expenseValue;
-                }
-                
-                appendToLog(`Расход: ${expenseCategory}`, `${expenseValue} ₽`, 'crit');
-                
-                document.getElementById('e-val').value = "";
-                document.getElementById('e-cat').value = "";
-                
-                updateDashboardView(); 
-                alert("Расход зафиксирован в Yandex Cloud!");
-            } else {
-                alert("Ошибка сервера.");
+            
+            if (res.ok) {
+                alert("Расход учтен!"); 
+                loadDataFromServer();
             }
-        } catch (e) {
-            alert("Ошибка связи.");
-        } finally {
-            btnElement.disabled = false;
-            btnElement.innerText = "Учесть расход";
+        } finally { 
+            btn.disabled = false; 
+            btn.innerText = "Учесть расход";
         }
     }
 
+    // --- ОБНОВЛЕНИЕ ИНТЕРФЕЙСА ---
     function updateDashboardView() {
         document.getElementById('d-rev').innerText = appData.totalRevenue.toLocaleString() + " ₽";
         document.getElementById('d-sec-rev').innerText = appData.secondaryRevenue.toLocaleString();
         document.getElementById('d-sec-count').innerText = appData.secondarySalesCount;
         
-        const totalPurchases = appData.primarySales + appData.secondarySalesCount;
-        const calculatedAvgCheck = totalPurchases > 0 ? Math.round(appData.totalRevenue / totalPurchases) : 0; 
-        document.getElementById('d-avg-check').innerText = calculatedAvgCheck.toLocaleString() + " ₽";
+        const totalP = appData.primarySales + appData.secondarySalesCount;
+        document.getElementById('d-avg-check').innerText = (totalP > 0 ? Math.round(appData.totalRevenue / totalP) : 0).toLocaleString() + " ₽";
+        document.getElementById('d-cac').innerText = (appData.primarySales > 0 ? Math.round(appData.marketingSpend / appData.primarySales) : 0).toLocaleString() + " ₽";
         
-        const calculatedCac = appData.primarySales > 0 ? Math.round(appData.marketingSpend / appData.primarySales) : 0;
-        document.getElementById('d-cac').innerText = calculatedCac.toLocaleString() + " ₽";
+        const romi = appData.marketingSpend > 0 ? Math.round(((appData.totalRevenue - appData.marketingSpend) / appData.marketingSpend) * 100) : 0;
+        document.getElementById('d-romi').innerText = romi + "%";
         
-        const calculatedLtv = appData.primarySales > 0 ? Math.round(appData.secondaryRevenue / appData.primarySales) : 0;
-        document.getElementById('d-ltv').innerText = calculatedLtv.toLocaleString() + " ₽";
+        const ltv = appData.primarySales > 0 ? Math.round(appData.secondaryRevenue / appData.primarySales) : 0;
+        document.getElementById('d-ltv').innerText = ltv.toLocaleString() + " ₽";
         
-        const calculatedRomi = appData.marketingSpend > 0 ? Math.round(((appData.totalRevenue - appData.marketingSpend) / appData.marketingSpend) * 100) : 0;
-        document.getElementById('d-romi').innerText = calculatedRomi + "%";
-
         document.getElementById('f-leads').innerText = appData.leads;
         document.getElementById('f-bookings').innerText = appData.bookings;
         document.getElementById('f-trials').innerText = appData.trials;
         document.getElementById('f-prim').innerText = appData.primarySales;
 
-        let crBookings = appData.leads > 0 ? Math.round((appData.bookings / appData.leads) * 100) : 0;
-        let crTrials = appData.bookings > 0 ? Math.round((appData.trials / appData.bookings) * 100) : 0;
-        let crPrim = appData.trials > 0 ? Math.round((appData.primarySales / appData.trials) * 100) : 0;
+        const crB = appData.leads > 0 ? Math.round((appData.bookings / appData.leads) * 100) : 0;
+        const crT = appData.bookings > 0 ? Math.round((appData.trials / appData.bookings) * 100) : 0;
+        const crP = appData.trials > 0 ? Math.round((appData.primarySales / appData.trials) * 100) : 0;
 
-        document.getElementById('cr-bookings').innerText = crBookings;
-        document.getElementById('cr-trials').innerText = crTrials;
-        document.getElementById('cr-prim').innerText = crPrim;
+        document.getElementById('cr-bookings').innerText = crB;
+        document.getElementById('cr-trials').innerText = crT;
+        document.getElementById('cr-prim').innerText = crP;
 
-        let widthBookings = appData.leads > 0 ? (appData.bookings / appData.leads) * 100 : 0;
-        let widthTrials = appData.leads > 0 ? (appData.trials / appData.leads) * 100 : 0;
-        let widthPrim = appData.leads > 0 ? (appData.primarySales / appData.leads) * 100 : 0;
-
-        document.getElementById('bar-bookings').style.width = widthBookings + "%";
-        document.getElementById('bar-trials').style.width = widthTrials + "%";
-        document.getElementById('bar-prim').style.width = widthPrim + "%";
+        document.getElementById('bar-bookings').style.width = crB + "%";
+        document.getElementById('bar-trials').style.width = crT + "%";
+        document.getElementById('bar-prim').style.width = crP + "%";
     }
 
     function initializeCharts() {
-        const revCtx = document.getElementById('revChart').getContext('2d');
-        revenueChartInstance = new Chart(revCtx, {
+        const commonOptions = { 
+            maintainAspectRatio: false, 
+            plugins: { 
+                legend: { display: false } 
+            } 
+        };
+        
+        revenueChartInstance = new Chart(document.getElementById('revChart'), {
             type: 'line',
             data: { 
                 labels: [], 
                 datasets: [{ 
-                    label: 'Выручка (₽)', 
+                    label: 'Выручка', 
                     data: [], 
                     borderColor: '#A68A56', 
-                    backgroundColor: 'rgba(166, 138, 86, 0.1)', 
+                    backgroundColor: 'rgba(166,138,86,0.1)', 
                     fill: true, 
                     tension: 0.3 
                 }] 
             },
-            options: { 
-                maintainAspectRatio: false, 
-                plugins: { legend: { display: false } }, 
-                scales: { y: { beginAtZero: true } } 
-            }
+            options: commonOptions
         });
 
-        const chanCtx = document.getElementById('chanChart').getContext('2d');
-        channelsChartInstance = new Chart(chanCtx, {
-            type: 'bar',
-            data: { 
-                labels: Object.keys(appData.leadsBySource), 
-                datasets: [{ 
-                    label: 'Лиды', 
-                    data: Object.values(appData.leadsBySource), 
-                    backgroundColor: '#1C1C1E', 
-                    borderRadius: 6 
-                }] 
-            },
-            options: { 
-                maintainAspectRatio: false, 
-                plugins: { legend: { display: false } } 
-            }
-        });
-
-        const skuCtx = document.getElementById('skuChart').getContext('2d');
-        skuChartInstance = new Chart(skuCtx, {
+        channelsChartInstance = new Chart(document.getElementById('chanChart'), {
             type: 'bar',
             data: { 
                 labels: [], 
                 datasets: [{ 
-                    label: 'Продано шт.', 
+                    data: [], 
+                    backgroundColor: '#1C1C1E', 
+                    borderRadius: 6 
+                }] 
+            },
+            options: commonOptions
+        });
+
+        skuChartInstance = new Chart(document.getElementById('skuChart'), {
+            type: 'bar',
+            data: { 
+                labels: [], 
+                datasets: [{ 
                     data: [], 
                     backgroundColor: '#27AE60', 
                     borderRadius: 6 
                 }] 
             },
-            options: { 
-                maintainAspectRatio: false, 
-                plugins: { legend: { display: false } } 
-            }
+            options: commonOptions
         });
     }
 
     function updateDynamicCharts() {
         if (!revenueChartInstance) return;
-
-        const sortedDates = Object.keys(appData.dailyRevenue).sort();
-        const revenueValues = sortedDates.map(date => appData.dailyRevenue[date]);
         
+        const sortedDates = Object.keys(appData.dailyRevenue).sort();
         revenueChartInstance.data.labels = sortedDates;
-        revenueChartInstance.data.datasets[0].data = revenueValues;
+        revenueChartInstance.data.datasets[0].data = sortedDates.map(d => appData.dailyRevenue[d]);
         revenueChartInstance.update();
 
+        channelsChartInstance.data.labels = Object.keys(appData.leadsBySource);
         channelsChartInstance.data.datasets[0].data = Object.values(appData.leadsBySource);
         channelsChartInstance.update();
 
-        const skuLabels = Object.keys(appData.salesBySku);
-        const skuValues = Object.values(appData.salesBySku);
-        
-        skuChartInstance.data.labels = skuLabels;
-        skuChartInstance.data.datasets[0].data = skuValues;
+        skuChartInstance.data.labels = Object.keys(appData.salesBySku);
+        skuChartInstance.data.datasets[0].data = Object.values(appData.salesBySku);
         skuChartInstance.update();
+    }
+
+    // --- ЛОГИКА ВЕРЫ ---
+    function toggleVera() {
+        const v = document.getElementById('vera-box');
+        v.style.display = (v.style.display === 'flex' ? 'none' : 'flex');
+    }
+
+    function askVera() {
+        const inputField = document.getElementById('vera-in'); 
+        
+        if (!inputField.value) {
+            return;
+        }
+        
+        const chatBox = document.getElementById('vera-chat');
+        chatBox.innerHTML += `
+            <div style="text-align:right; margin-bottom:10px;">
+                <span style="background:var(--accent); color:#fff; padding:10px; border-radius:12px; display:inline-block;">
+                    ${inputField.value}
+                </span>
+            </div>`;
+        
+        inputField.value = "";
+        
+        setTimeout(() => { 
+            chatBox.innerHTML += `
+                <div style="background:#fff; padding:15px; border-radius:15px; margin-bottom:15px;">
+                    Анализирую данные из базы...
+                </div>`; 
+            chatBox.scrollTop = chatBox.scrollHeight; 
+        }, 600);
     }
 </script>
 
