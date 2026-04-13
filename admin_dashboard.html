@@ -100,14 +100,8 @@
         }
 
         @keyframes fadeIn { 
-            from { 
-                opacity: 0; 
-                transform: translateY(10px); 
-            } 
-            to { 
-                opacity: 1; 
-                transform: translateY(0); 
-            } 
+            from { opacity: 0; transform: translateY(10px); } 
+            to { opacity: 1; transform: translateY(0); } 
         }
 
         /* --- КАРТОЧКИ И ЭЛЕМЕНТЫ ВВОДА --- */
@@ -412,7 +406,7 @@
     </div>
     <div id="vera-chat" style="flex: 1; padding: 20px; overflow-y: auto; font-size: 14px;">
         <div style="background: #fff; padding: 15px; border-radius: 15px; border: var(--glass-border); margin-bottom: 15px;">
-            Николай Сергеевич, здравия желаю! Все системы оцифрованы. Юнит-экономика считается автоматически.
+            Николай Сергеевич, здравия желаю! Все системы оцифрованы. Жду команд.
         </div>
     </div>
     <div style="padding: 15px; background: #fff; display: flex; gap: 10px;">
@@ -455,7 +449,7 @@
     
     <div class="unit-grid">
         <div class="unit-item">
-            <div class="unit-lab">Общая Выручка</div>
+            <div class="unit-lab">Выручка</div>
             <div class="unit-val" id="d-rev">0 ₽</div>
             <div class="sub-val" style="color: var(--ok);">Вторичка (Выручка): <span id="d-sec-rev">0</span> ₽</div>
             <div class="sub-val" style="color: var(--accent); margin-top: 2px;">Вторичка (Продлений): <span id="d-sec-count">0</span> шт</div>
@@ -694,20 +688,44 @@
         }
     };
 
+    let rawServerData = null; // Хранилище сырых данных из БД
     let revenueChartInstance;
     let channelsChartInstance;
     let skuChartInstance;
+
+    // --- ПРОВЕРКА АВТОРИЗАЦИИ ПРИ ЗАГРУЗКЕ СТРАНИЦЫ ---
+    window.onload = function() {
+        if (localStorage.getItem('resurs_auth') === 'true') {
+            document.getElementById('auth').style.display = 'none';
+            document.getElementById('nav-bar').style.display = 'flex';
+            document.getElementById('vera-btn').style.display = 'flex';
+            document.getElementById('in-date').valueAsDate = new Date();
+            
+            // Восстановление планов из памяти браузера
+            const savedPlans = localStorage.getItem('resurs_plans');
+            if (savedPlans) {
+                appData.plans = JSON.parse(savedPlans);
+            }
+
+            initializeCharts();
+            switchTab('page-dash', document.querySelector('.nav-item.active'));
+        }
+    };
 
     // --- ПАРОЛЬНАЯ ЗАЩИТА ---
     function unlockSystem() {
         const passwordInput = document.getElementById('pass').value;
         if (passwordInput === "Ресурс-студия") {
+            // Сохраняем сессию
+            localStorage.setItem('resurs_auth', 'true');
+            
             document.getElementById('auth').style.display = 'none';
             document.getElementById('nav-bar').style.display = 'flex';
             document.getElementById('vera-btn').style.display = 'flex';
             document.getElementById('in-date').valueAsDate = new Date();
+            
             initializeCharts();
-            switchTab('page-dash', document.querySelector('.nav-item'));
+            switchTab('page-dash', document.querySelector('.nav-item.active'));
         } else { 
             alert("Неверное кодовое слово."); 
         }
@@ -727,17 +745,23 @@
             });
 
             if (response.ok) {
-                const result = await response.json();
-                console.log("ДАННЫЕ ПОЛУЧЕНЫ:", result);
-                processServerData(result);
+                rawServerData = await response.json();
+                console.log("ДАННЫЕ ПОЛУЧЕНЫ:", rawServerData);
+                applyFilters(); // Вызываем фильтрацию после получения данных
+                renderLog();    // Отрисовываем журнал
             }
         } catch (e) {
             console.error("ОШИБКА ЗАГРУЗКИ:", e);
         }
     }
 
-    // --- ОБРАБОТКА ДАННЫХ ИЗ БАЗЫ ---
-    function processServerData(raw) {
+    // --- ОБРАБОТКА ДАННЫХ И ФИЛЬТРАЦИЯ ---
+    function applyFilters() {
+        if (!rawServerData) return; // Если данных еще нет, ждем
+        
+        const studioFilter = document.getElementById('dash-studio-filter').value;
+        document.getElementById('active-plan-label').innerText = (studioFilter === 'all' ? 'Все' : studioFilter);
+        
         // Очищаем локальные данные перед заливкой
         appData.totalRevenue = 0; 
         appData.secondaryRevenue = 0;
@@ -746,17 +770,17 @@
         appData.trials = 0;
         appData.primarySales = 0; 
         appData.secondarySalesCount = 0;
-        appData.marketingSpend = 0; // Сбрасываем расходы на рекламу
+        appData.marketingSpend = 0; 
         appData.dailyRevenue = {}; 
         appData.salesBySku = {};
-        // Очищаем источники трафика перед перерасчетом
-        for (let key in appData.leadsBySource) {
-            appData.leadsBySource[key] = 0;
-        }
+        for (let key in appData.leadsBySource) { appData.leadsBySource[key] = 0; }
 
-        // Обработка продаж
-        if (raw.sales && raw.sales.length > 0) {
-            raw.sales.forEach(s => {
+        // Обработка продаж (с учетом фильтра)
+        if (rawServerData.sales && rawServerData.sales.length > 0) {
+            rawServerData.sales.forEach(s => {
+                // ФИЛЬТР ПО СТУДИИ
+                if (studioFilter !== 'all' && s.studio_name !== studioFilter) return;
+
                 const val = parseInt(s.payment_amount);
                 const date = s.event_date;
                 
@@ -783,9 +807,12 @@
             });
         }
 
-        // Обработка трафика
-        if (raw.traffic && raw.traffic.length > 0) {
-            raw.traffic.forEach(t => {
+        // Обработка трафика (с учетом фильтра)
+        if (rawServerData.traffic && rawServerData.traffic.length > 0) {
+            rawServerData.traffic.forEach(t => {
+                // ФИЛЬТР ПО СТУДИИ
+                if (studioFilter !== 'all' && t.studio_name !== studioFilter) return;
+
                 appData.leads += parseInt(t.leads_count);
                 appData.bookings += parseInt(t.bookings_count);
                 
@@ -796,10 +823,12 @@
             });
         }
 
-        // Обработка расходов (для подсчета CAC и ROMI)
-        if (raw.expenses && raw.expenses.length > 0) {
-            raw.expenses.forEach(e => {
-                // Если категория содержит слово "Реклама", плюсуем в маркетинг
+        // Обработка расходов (с учетом фильтра)
+        if (rawServerData.expenses && rawServerData.expenses.length > 0) {
+            rawServerData.expenses.forEach(e => {
+                // ФИЛЬТР ПО СТУДИИ
+                if (studioFilter !== 'all' && e.studio_name !== studioFilter) return;
+
                 if (e.category && e.category.includes('Реклама')) {
                     appData.marketingSpend += parseInt(e.expense_amount);
                 }
@@ -809,28 +838,88 @@
         updateDashboardView();
         updateDynamicCharts();
         updatePlanProgress();
-        renderLog(raw);
     }
 
-    function renderLog(raw) {
+    // --- ПОЛНОЦЕННЫЙ ЖУРНАЛ (ОБЪЕДИНЯЕТ ДОХОДЫ, РАСХОДЫ И ТРАФИК) ---
+    function renderLog() {
+        if (!rawServerData) return;
+        
         const logList = document.getElementById('log-list');
         logList.innerHTML = "";
         
-        if (!raw.sales || raw.sales.length === 0) {
+        let allEvents = [];
+
+        // Собираем продажи
+        if (rawServerData.sales) {
+            rawServerData.sales.forEach(s => {
+                allEvents.push({
+                    type: 'sale',
+                    date: s.event_date,
+                    amount: s.payment_amount,
+                    title: s.product_sku,
+                    studio: s.studio_name
+                });
+            });
+        }
+
+        // Собираем расходы
+        if (rawServerData.expenses) {
+            rawServerData.expenses.forEach(e => {
+                allEvents.push({
+                    type: 'expense',
+                    date: e.event_date,
+                    amount: e.expense_amount,
+                    title: e.category,
+                    studio: e.studio_name
+                });
+            });
+        }
+
+        // Собираем трафик
+        if (rawServerData.traffic) {
+            rawServerData.traffic.forEach(t => {
+                allEvents.push({
+                    type: 'traffic',
+                    date: t.event_date,
+                    amount: null,
+                    title: `Лиды: ${t.source_name} (${t.leads_count} шт)`,
+                    studio: t.studio_name
+                });
+            });
+        }
+
+        if (allEvents.length === 0) {
             logList.innerHTML = "<p style='text-align: center; color: var(--text-dim); margin-top: 50px;'>Журнал пуст.</p>";
             return;
         }
 
-        // Выводим последние 20 продаж в истории (от новых к старым)
-        raw.sales.slice(-20).reverse().forEach(s => {
+        // Сортируем все события по дате (от новых к старым)
+        allEvents.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        // Отрисовываем последние 50 событий
+        allEvents.slice(0, 50).forEach(ev => {
+            let color = 'var(--text)';
+            let sign = '';
+            let amountText = '';
+
+            if (ev.type === 'sale') {
+                color = 'var(--ok)';
+                sign = '+';
+                amountText = `${ev.amount} ₽`;
+            } else if (ev.type === 'expense') {
+                color = 'var(--crit)';
+                sign = '-';
+                amountText = `${ev.amount} ₽`;
+            }
+
             const html = `
             <div class="card" style="padding:15px; margin-bottom:12px;">
                 <div style="display:flex; justify-content:space-between;">
-                    <b>${s.event_date}</b> 
-                    <span style="color:var(--ok)">+ ${s.payment_amount} ₽</span>
+                    <b>${ev.date}</b> 
+                    <span style="color:${color}; font-weight:700;">${sign} ${amountText}</span>
                 </div>
-                <div style="font-size:12px; color:var(--text-dim)">
-                    ${s.product_sku} • ${s.studio_name}
+                <div style="font-size:12px; color:var(--text-dim); margin-top:5px;">
+                    ${ev.title} • ${ev.studio}
                 </div>
             </div>`;
             logList.insertAdjacentHTML('beforeend', html);
@@ -849,6 +938,7 @@
         document.getElementById(pageId).classList.add('active');
         navElement.classList.add('active');
         
+        // Запрашиваем свежие данные при переходе на отчеты
         if (pageId === 'page-dash' || pageId === 'page-log' || pageId === 'page-plan') {
             loadDataFromServer();
         }
@@ -867,12 +957,6 @@
         }
     }
 
-    function applyFilters() {
-        const studio = document.getElementById('dash-studio-filter').value;
-        document.getElementById('active-plan-label').innerText = (studio === 'all' ? 'Все' : studio);
-        loadDataFromServer();
-    }
-
     // --- KPI И ПЛАНЫ ---
     function savePlan() {
         const studio = document.getElementById('plan-studio').value;
@@ -882,14 +966,22 @@
         appData.plans[studio].rev = revPlan;
         appData.plans[studio].leads = leadsPlan;
         
-        alert("План утвержден!");
+        // Сохраняем планы в память браузера, чтобы не сбрасывались
+        localStorage.setItem('resurs_plans', JSON.stringify(appData.plans));
+        
+        alert("План успешно сохранен и привязан к студии!");
+        document.getElementById('plan-rev-input').value = "";
+        document.getElementById('plan-leads-input').value = "";
+        
         updatePlanProgress();
     }
 
     function updatePlanProgress() {
-        const studio = document.getElementById('dash-studio-filter').value;
-        const p = appData.plans[studio];
+        // Берем активную студию из верхнего фильтра сводки
+        const activeStudio = document.getElementById('dash-studio-filter').value;
+        const p = appData.plans[activeStudio];
         
+        // appData.totalRevenue уже отфильтрована по этой студии в applyFilters()
         const revPct = p.rev > 0 ? Math.min(Math.round((appData.totalRevenue / p.rev) * 100), 100) : 0;
         const leadPct = p.leads > 0 ? Math.min(Math.round((appData.leads / p.leads) * 100), 100) : 0;
 
@@ -929,7 +1021,9 @@
             });
             
             if (res.ok) { 
-                alert("Трафик успешно зафиксирован!"); 
+                alert("Трафик успешно зафиксирован!");
+                document.getElementById('l-qty').value = "";
+                document.getElementById('b-qty').value = "";
                 loadDataFromServer(); 
             }
         } finally { 
@@ -966,7 +1060,8 @@
             });
             
             if (res.ok) { 
-                alert("Продажа зафиксирована в базе!"); 
+                alert("Продажа зафиксирована в базе!");
+                document.getElementById('s-val').value = "";
                 loadDataFromServer(); 
             }
         } finally { 
@@ -1002,7 +1097,8 @@
             });
             
             if (res.ok) {
-                alert("Расход учтен!"); 
+                alert("Расход учтен!");
+                document.getElementById('e-val').value = ""; 
                 loadDataFromServer();
             }
         } finally { 
