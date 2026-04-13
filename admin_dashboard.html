@@ -760,50 +760,54 @@
         }
     }
 
-    // --- ЛОГИКА ФИЛЬТРАЦИИ ПО ДАТАМ (НОВЫЙ БЛОК) ---
+    // --- ЛОГИКА ФИЛЬТРАЦИИ ПО ДАТАМ ---
     function isDateInCurrentFilter(dateString) {
         if (!dateString) return false;
         
-        const targetDate = new Date(dateString);
-        targetDate.setHours(0, 0, 0, 0);
-        
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
-
+        // Извлекаем YYYY-MM-DD из строки базы
+        const dStr = dateString.substring(0, 10);
         const filterType = document.getElementById('period-filter').value;
+
+        // Создаем сегодняшнюю дату как строку YYYY-MM-DD в локальном времени клиента
+        const todayObj = new Date();
+        const year = todayObj.getFullYear();
+        const month = String(todayObj.getMonth() + 1).padStart(2, '0');
+        const day = String(todayObj.getDate()).padStart(2, '0');
+        const todayStr = `${year}-${month}-${day}`;
 
         if (filterType === 'all') return true;
 
         if (filterType === 'today') {
-            return targetDate.getTime() === today.getTime();
+            return dStr === todayStr;
         }
 
         if (filterType === 'week') {
-            const day = today.getDay() || 7; // Понедельник = 1, Воскресенье = 7
-            const startOfWeek = new Date(today);
-            startOfWeek.setDate(today.getDate() - day + 1);
-            return targetDate >= startOfWeek && targetDate <= today;
+            const dayOfWeek = todayObj.getDay() || 7;
+            const startOfWeekObj = new Date(todayObj);
+            startOfWeekObj.setDate(todayObj.getDate() - dayOfWeek + 1);
+            
+            const startYear = startOfWeekObj.getFullYear();
+            const startMonth = String(startOfWeekObj.getMonth() + 1).padStart(2, '0');
+            const startDay = String(startOfWeekObj.getDate()).padStart(2, '0');
+            const startStr = `${startYear}-${startMonth}-${startDay}`;
+
+            return dStr >= startStr && dStr <= todayStr;
         }
 
         if (filterType === 'month') {
-            return targetDate.getMonth() === today.getMonth() && targetDate.getFullYear() === today.getFullYear();
+            return dStr.substring(0, 7) === todayStr.substring(0, 7);
         }
 
         if (filterType === 'year') {
-            return targetDate.getFullYear() === today.getFullYear();
+            return dStr.substring(0, 4) === todayStr.substring(0, 4);
         }
 
         if (filterType === 'custom') {
             const fromStr = document.getElementById('date-from').value;
             const toStr = document.getElementById('date-to').value;
-            if (!fromStr || !toStr) return true; // Если поля пустые, не фильтруем
-            
-            const dFrom = new Date(fromStr);
-            dFrom.setHours(0, 0, 0, 0);
-            const dTo = new Date(toStr);
-            dTo.setHours(23, 59, 59, 999);
-            
-            return targetDate >= dFrom && targetDate <= dTo;
+            if (!fromStr || !toStr) return true; 
+            // Прямое строковое сравнение дат YYYY-MM-DD
+            return dStr >= fromStr && dStr <= toStr;
         }
 
         return true;
@@ -834,8 +838,8 @@
                 if (!isDateInCurrentFilter(s.event_date)) return;
                 if (studioFilter !== 'all' && s.studio_name !== studioFilter) return;
 
-                const val = parseInt(s.payment_amount);
-                const date = s.event_date;
+                const val = parseInt(s.payment_amount) || 0;
+                const date = s.event_date.substring(0, 10);
                 
                 appData.totalRevenue += val;
                 
@@ -866,13 +870,13 @@
                 if (!isDateInCurrentFilter(t.event_date)) return;
                 if (studioFilter !== 'all' && t.studio_name !== studioFilter) return;
 
-                appData.leads += parseInt(t.leads_count);
-                appData.bookings += parseInt(t.bookings_count);
+                appData.leads += parseInt(t.leads_count) || 0;
+                appData.bookings += parseInt(t.bookings_count) || 0;
                 
                 if (!appData.leadsBySource[t.source_name]) {
                     appData.leadsBySource[t.source_name] = 0;
                 }
-                appData.leadsBySource[t.source_name] += parseInt(t.leads_count);
+                appData.leadsBySource[t.source_name] += parseInt(t.leads_count) || 0;
             });
         }
 
@@ -883,7 +887,7 @@
                 if (studioFilter !== 'all' && e.studio_name !== studioFilter) return;
 
                 if (e.category && e.category.includes('Реклама')) {
-                    appData.marketingSpend += parseInt(e.expense_amount);
+                    appData.marketingSpend += parseInt(e.expense_amount) || 0;
                 }
             });
         }
@@ -904,9 +908,8 @@
 
         if (rawServerData.sales) {
             rawServerData.sales.forEach(s => {
-                // Применяем фильтр дат и к журналу
                 if(isDateInCurrentFilter(s.event_date)){
-                    allEvents.push({ type: 'sale', date: s.event_date, amount: s.payment_amount, title: s.product_sku, studio: s.studio_name });
+                    allEvents.push({ type: 'sale', date: s.event_date.substring(0, 10), amount: s.payment_amount, title: s.product_sku, studio: s.studio_name });
                 }
             });
         }
@@ -914,7 +917,7 @@
         if (rawServerData.expenses) {
             rawServerData.expenses.forEach(e => {
                 if(isDateInCurrentFilter(e.event_date)){
-                    allEvents.push({ type: 'expense', date: e.event_date, amount: e.expense_amount, title: e.category, studio: e.studio_name });
+                    allEvents.push({ type: 'expense', date: e.event_date.substring(0, 10), amount: e.expense_amount, title: e.category, studio: e.studio_name });
                 }
             });
         }
@@ -922,7 +925,7 @@
         if (rawServerData.traffic) {
             rawServerData.traffic.forEach(t => {
                 if(isDateInCurrentFilter(t.event_date)){
-                    allEvents.push({ type: 'traffic', date: t.event_date, amount: null, title: `Лиды: ${t.source_name} (${t.leads_count} шт)`, studio: t.studio_name });
+                    allEvents.push({ type: 'traffic', date: t.event_date.substring(0, 10), amount: null, title: `Лиды: ${t.source_name} (${t.leads_count} шт)`, studio: t.studio_name });
                 }
             });
         }
@@ -932,7 +935,7 @@
             return;
         }
 
-        allEvents.sort((a, b) => new Date(b.date) - new Date(a.date));
+        allEvents.sort((a, b) => b.date.localeCompare(a.date));
 
         allEvents.slice(0, 50).forEach(ev => {
             let color = 'var(--text)';
@@ -1005,7 +1008,6 @@
         updatePlanProgress();
     }
 
-    // ИСПРАВЛЕННЫЙ РАСЧЕТ ПЛАНА (ОТВЯЗАН ОТ СВОДКИ)
     function updatePlanProgress() {
         const activePlanStudio = document.getElementById('plan-studio').value;
         const p = appData.plans[activePlanStudio] || {rev: 0, leads: 0};
@@ -1016,7 +1018,7 @@
         let currentPlanLeads = 0;
 
         // Пересчитываем выручку и лиды только для выбранной в Стратегии студии, 
-        // но учитывая глобальный фильтр по датам
+        // учитывая глобальный фильтр по датам
         if (rawServerData) {
             if (rawServerData.sales) {
                 rawServerData.sales.forEach(s => {
