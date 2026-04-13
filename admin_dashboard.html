@@ -751,9 +751,32 @@
 
             if (response.ok) {
                 rawServerData = await response.json();
-                console.log("ДАННЫЕ ПОЛУЧЕНЫ:", rawServerData);
-                applyFilters(); // Вызываем фильтрацию после получения данных
-                renderLog();    // Отрисовываем журнал
+                
+                // --- БРОНЯ ОТ YDB (ФОРМАТИРОВАНИЕ ДАТ) ---
+                // Защита от возврата дат в виде "дней с 1970 года" (number)
+                const fixDate = (val) => {
+                    if (!val) return "1970-01-01"; // Заглушка, если даты нет
+                    if (typeof val === 'number') {
+                        // Конвертация дней YDB в нормальную дату YYYY-MM-DD
+                        return new Date(val * 86400000).toISOString().substring(0, 10);
+                    }
+                    if (typeof val === 'string') {
+                        // Очистка от возможных Python байт-тегов "b'2026...'"
+                        let s = val.replace(/b['"]/g, '').replace(/['"]/g, '');
+                        return s.substring(0, 10);
+                    }
+                    return String(val).substring(0, 10);
+                };
+
+                // Принудительно очищаем даты во всех массивах до их использования
+                if (rawServerData.sales) rawServerData.sales.forEach(i => i.event_date = fixDate(i.event_date));
+                if (rawServerData.traffic) rawServerData.traffic.forEach(i => i.event_date = fixDate(i.event_date));
+                if (rawServerData.expenses) rawServerData.expenses.forEach(i => i.event_date = fixDate(i.event_date));
+                // ------------------------------------------
+
+                console.log("ДАННЫЕ ПОЛУЧЕНЫ И ОБРАБОТАНЫ:", rawServerData);
+                applyFilters(); 
+                renderLog();    
             }
         } catch (e) {
             console.error("ОШИБКА ЗАГРУЗКИ:", e);
@@ -764,8 +787,8 @@
     function isDateInCurrentFilter(dateString) {
         if (!dateString) return false;
         
-        // Извлекаем YYYY-MM-DD из строки базы
-        const dStr = dateString.substring(0, 10);
+        // dateString здесь УЖЕ гарантированно чистый YYYY-MM-DD благодаря fixDate
+        const dStr = dateString; 
         const filterType = document.getElementById('period-filter').value;
 
         // Создаем сегодняшнюю дату как строку YYYY-MM-DD в локальном времени клиента
@@ -839,7 +862,7 @@
                 if (studioFilter !== 'all' && s.studio_name !== studioFilter) return;
 
                 const val = parseInt(s.payment_amount) || 0;
-                const date = s.event_date.substring(0, 10);
+                const date = s.event_date; // Уже отформатировано
                 
                 appData.totalRevenue += val;
                 
@@ -909,7 +932,7 @@
         if (rawServerData.sales) {
             rawServerData.sales.forEach(s => {
                 if(isDateInCurrentFilter(s.event_date)){
-                    allEvents.push({ type: 'sale', date: s.event_date.substring(0, 10), amount: s.payment_amount, title: s.product_sku, studio: s.studio_name });
+                    allEvents.push({ type: 'sale', date: s.event_date, amount: s.payment_amount, title: s.product_sku, studio: s.studio_name });
                 }
             });
         }
@@ -917,7 +940,7 @@
         if (rawServerData.expenses) {
             rawServerData.expenses.forEach(e => {
                 if(isDateInCurrentFilter(e.event_date)){
-                    allEvents.push({ type: 'expense', date: e.event_date.substring(0, 10), amount: e.expense_amount, title: e.category, studio: e.studio_name });
+                    allEvents.push({ type: 'expense', date: e.event_date, amount: e.expense_amount, title: e.category, studio: e.studio_name });
                 }
             });
         }
@@ -925,7 +948,7 @@
         if (rawServerData.traffic) {
             rawServerData.traffic.forEach(t => {
                 if(isDateInCurrentFilter(t.event_date)){
-                    allEvents.push({ type: 'traffic', date: t.event_date.substring(0, 10), amount: null, title: `Лиды: ${t.source_name} (${t.leads_count} шт)`, studio: t.studio_name });
+                    allEvents.push({ type: 'traffic', date: t.event_date, amount: null, title: `Лиды: ${t.source_name} (${t.leads_count} шт)`, studio: t.studio_name });
                 }
             });
         }
@@ -1017,8 +1040,6 @@
         let currentPlanRev = 0;
         let currentPlanLeads = 0;
 
-        // Пересчитываем выручку и лиды только для выбранной в Стратегии студии, 
-        // учитывая глобальный фильтр по датам
         if (rawServerData) {
             if (rawServerData.sales) {
                 rawServerData.sales.forEach(s => {
