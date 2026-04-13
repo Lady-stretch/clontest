@@ -579,9 +579,14 @@
             <option value="Тест драйв 3 зан на 10 дней">Тест драйв 3 зан на 10 дней</option>
             <option value="Безлимит на месяц">Безлимит на месяц</option>
             <option value="8 занятий">8 занятий</option>
+            <option value="12 занятий">12 занятий</option>
             <option value="16 занятий">16 занятий</option>
+            <option value="24 занятия">24 занятия</option>
             <option value="32 занятия">32 занятия</option>
+            <option value="48 занятий">48 занятий</option>
             <option value="64 занятия">64 занятия</option>
+            <option value="96 занятий">96 занятий</option>
+            <option value="128 занятий">128 занятий</option>
         </select>
         <label>Фактическая сумма оплаты (₽)</label>
         <input type="number" id="s-val" placeholder="Например: 11200">
@@ -619,7 +624,7 @@
     <div class="card">
         <h3 class="serif" style="margin-bottom: 15px;">Установка KPI (Плана)</h3>
         <label>Целевая Студия</label>
-        <select id="plan-studio">
+        <select id="plan-studio" onchange="updatePlanProgress()">
             <option value="all">Все студии (Общий план)</option>
             <option value="Советская 3">Советская 3</option>
             <option value="Коммунистическая 77/2">Коммунистическая 77/2</option>
@@ -755,12 +760,60 @@
         }
     }
 
+    // --- ЛОГИКА ФИЛЬТРАЦИИ ПО ДАТАМ (НОВЫЙ БЛОК) ---
+    function isDateInCurrentFilter(dateString) {
+        if (!dateString) return false;
+        
+        const targetDate = new Date(dateString);
+        targetDate.setHours(0, 0, 0, 0);
+        
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        const filterType = document.getElementById('period-filter').value;
+
+        if (filterType === 'all') return true;
+
+        if (filterType === 'today') {
+            return targetDate.getTime() === today.getTime();
+        }
+
+        if (filterType === 'week') {
+            const day = today.getDay() || 7; // Понедельник = 1, Воскресенье = 7
+            const startOfWeek = new Date(today);
+            startOfWeek.setDate(today.getDate() - day + 1);
+            return targetDate >= startOfWeek && targetDate <= today;
+        }
+
+        if (filterType === 'month') {
+            return targetDate.getMonth() === today.getMonth() && targetDate.getFullYear() === today.getFullYear();
+        }
+
+        if (filterType === 'year') {
+            return targetDate.getFullYear() === today.getFullYear();
+        }
+
+        if (filterType === 'custom') {
+            const fromStr = document.getElementById('date-from').value;
+            const toStr = document.getElementById('date-to').value;
+            if (!fromStr || !toStr) return true; // Если поля пустые, не фильтруем
+            
+            const dFrom = new Date(fromStr);
+            dFrom.setHours(0, 0, 0, 0);
+            const dTo = new Date(toStr);
+            dTo.setHours(23, 59, 59, 999);
+            
+            return targetDate >= dFrom && targetDate <= dTo;
+        }
+
+        return true;
+    }
+
     // --- ОБРАБОТКА ДАННЫХ И ФИЛЬТРАЦИЯ ---
     function applyFilters() {
         if (!rawServerData) return; // Если данных еще нет, ждем
         
         const studioFilter = document.getElementById('dash-studio-filter').value;
-        document.getElementById('active-plan-label').innerText = (studioFilter === 'all' ? 'Все' : studioFilter);
         
         // Очищаем локальные данные перед заливкой
         appData.totalRevenue = 0; 
@@ -775,10 +828,10 @@
         appData.salesBySku = {};
         for (let key in appData.leadsBySource) { appData.leadsBySource[key] = 0; }
 
-        // Обработка продаж (с учетом фильтра)
+        // Обработка продаж (с учетом фильтра студии И даты)
         if (rawServerData.sales && rawServerData.sales.length > 0) {
             rawServerData.sales.forEach(s => {
-                // ФИЛЬТР ПО СТУДИИ
+                if (!isDateInCurrentFilter(s.event_date)) return;
                 if (studioFilter !== 'all' && s.studio_name !== studioFilter) return;
 
                 const val = parseInt(s.payment_amount);
@@ -810,7 +863,7 @@
         // Обработка трафика (с учетом фильтра)
         if (rawServerData.traffic && rawServerData.traffic.length > 0) {
             rawServerData.traffic.forEach(t => {
-                // ФИЛЬТР ПО СТУДИИ
+                if (!isDateInCurrentFilter(t.event_date)) return;
                 if (studioFilter !== 'all' && t.studio_name !== studioFilter) return;
 
                 appData.leads += parseInt(t.leads_count);
@@ -826,7 +879,7 @@
         // Обработка расходов (с учетом фильтра)
         if (rawServerData.expenses && rawServerData.expenses.length > 0) {
             rawServerData.expenses.forEach(e => {
-                // ФИЛЬТР ПО СТУДИИ
+                if (!isDateInCurrentFilter(e.event_date)) return;
                 if (studioFilter !== 'all' && e.studio_name !== studioFilter) return;
 
                 if (e.category && e.category.includes('Реклама')) {
@@ -840,7 +893,7 @@
         updatePlanProgress();
     }
 
-    // --- ПОЛНОЦЕННЫЙ ЖУРНАЛ (ОБЪЕДИНЯЕТ ДОХОДЫ, РАСХОДЫ И ТРАФИК) ---
+    // --- ПОЛНОЦЕННЫЙ ЖУРНАЛ ---
     function renderLog() {
         if (!rawServerData) return;
         
@@ -849,68 +902,45 @@
         
         let allEvents = [];
 
-        // Собираем продажи
         if (rawServerData.sales) {
             rawServerData.sales.forEach(s => {
-                allEvents.push({
-                    type: 'sale',
-                    date: s.event_date,
-                    amount: s.payment_amount,
-                    title: s.product_sku,
-                    studio: s.studio_name
-                });
+                // Применяем фильтр дат и к журналу
+                if(isDateInCurrentFilter(s.event_date)){
+                    allEvents.push({ type: 'sale', date: s.event_date, amount: s.payment_amount, title: s.product_sku, studio: s.studio_name });
+                }
             });
         }
 
-        // Собираем расходы
         if (rawServerData.expenses) {
             rawServerData.expenses.forEach(e => {
-                allEvents.push({
-                    type: 'expense',
-                    date: e.event_date,
-                    amount: e.expense_amount,
-                    title: e.category,
-                    studio: e.studio_name
-                });
+                if(isDateInCurrentFilter(e.event_date)){
+                    allEvents.push({ type: 'expense', date: e.event_date, amount: e.expense_amount, title: e.category, studio: e.studio_name });
+                }
             });
         }
 
-        // Собираем трафик
         if (rawServerData.traffic) {
             rawServerData.traffic.forEach(t => {
-                allEvents.push({
-                    type: 'traffic',
-                    date: t.event_date,
-                    amount: null,
-                    title: `Лиды: ${t.source_name} (${t.leads_count} шт)`,
-                    studio: t.studio_name
-                });
+                if(isDateInCurrentFilter(t.event_date)){
+                    allEvents.push({ type: 'traffic', date: t.event_date, amount: null, title: `Лиды: ${t.source_name} (${t.leads_count} шт)`, studio: t.studio_name });
+                }
             });
         }
 
         if (allEvents.length === 0) {
-            logList.innerHTML = "<p style='text-align: center; color: var(--text-dim); margin-top: 50px;'>Журнал пуст.</p>";
+            logList.innerHTML = "<p style='text-align: center; color: var(--text-dim); margin-top: 50px;'>Журнал пуст за выбранный период.</p>";
             return;
         }
 
-        // Сортируем все события по дате (от новых к старым)
         allEvents.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-        // Отрисовываем последние 50 событий
         allEvents.slice(0, 50).forEach(ev => {
             let color = 'var(--text)';
             let sign = '';
             let amountText = '';
 
-            if (ev.type === 'sale') {
-                color = 'var(--ok)';
-                sign = '+';
-                amountText = `${ev.amount} ₽`;
-            } else if (ev.type === 'expense') {
-                color = 'var(--crit)';
-                sign = '-';
-                amountText = `${ev.amount} ₽`;
-            }
+            if (ev.type === 'sale') { color = 'var(--ok)'; sign = '+'; amountText = `${ev.amount} ₽`; } 
+            else if (ev.type === 'expense') { color = 'var(--crit)'; sign = '-'; amountText = `${ev.amount} ₽`; }
 
             const html = `
             <div class="card" style="padding:15px; margin-bottom:12px;">
@@ -938,7 +968,6 @@
         document.getElementById(pageId).classList.add('active');
         navElement.classList.add('active');
         
-        // Запрашиваем свежие данные при переходе на отчеты
         if (pageId === 'page-dash' || pageId === 'page-log' || pageId === 'page-plan') {
             loadDataFromServer();
         }
@@ -954,6 +983,7 @@
         } else {
             customWrap.style.display = 'none';
             applyFilters();
+            renderLog();
         }
     }
 
@@ -966,29 +996,55 @@
         appData.plans[studio].rev = revPlan;
         appData.plans[studio].leads = leadsPlan;
         
-        // Сохраняем планы в память браузера, чтобы не сбрасывались
         localStorage.setItem('resurs_plans', JSON.stringify(appData.plans));
         
-        alert("План успешно сохранен и привязан к студии!");
+        alert("План успешно утвержден!");
         document.getElementById('plan-rev-input').value = "";
         document.getElementById('plan-leads-input').value = "";
         
         updatePlanProgress();
     }
 
+    // ИСПРАВЛЕННЫЙ РАСЧЕТ ПЛАНА (ОТВЯЗАН ОТ СВОДКИ)
     function updatePlanProgress() {
-        // Берем активную студию из верхнего фильтра сводки
-        const activeStudio = document.getElementById('dash-studio-filter').value;
-        const p = appData.plans[activeStudio];
+        const activePlanStudio = document.getElementById('plan-studio').value;
+        const p = appData.plans[activePlanStudio] || {rev: 0, leads: 0};
         
-        // appData.totalRevenue уже отфильтрована по этой студии в applyFilters()
-        const revPct = p.rev > 0 ? Math.min(Math.round((appData.totalRevenue / p.rev) * 100), 100) : 0;
-        const leadPct = p.leads > 0 ? Math.min(Math.round((appData.leads / p.leads) * 100), 100) : 0;
+        document.getElementById('active-plan-label').innerText = (activePlanStudio === 'all' ? 'Все' : activePlanStudio);
+        
+        let currentPlanRev = 0;
+        let currentPlanLeads = 0;
 
-        document.getElementById('plan-rev-text').innerText = `${appData.totalRevenue.toLocaleString()} / ${p.rev.toLocaleString()} ₽ (${revPct}%)`;
+        // Пересчитываем выручку и лиды только для выбранной в Стратегии студии, 
+        // но учитывая глобальный фильтр по датам
+        if (rawServerData) {
+            if (rawServerData.sales) {
+                rawServerData.sales.forEach(s => {
+                    if (isDateInCurrentFilter(s.event_date)) {
+                        if (activePlanStudio === 'all' || s.studio_name === activePlanStudio) {
+                            currentPlanRev += parseInt(s.payment_amount) || 0;
+                        }
+                    }
+                });
+            }
+            if (rawServerData.traffic) {
+                rawServerData.traffic.forEach(t => {
+                    if (isDateInCurrentFilter(t.event_date)) {
+                        if (activePlanStudio === 'all' || t.studio_name === activePlanStudio) {
+                            currentPlanLeads += parseInt(t.leads_count) || 0;
+                        }
+                    }
+                });
+            }
+        }
+        
+        const revPct = p.rev > 0 ? Math.min(Math.round((currentPlanRev / p.rev) * 100), 100) : 0;
+        const leadPct = p.leads > 0 ? Math.min(Math.round((currentPlanLeads / p.leads) * 100), 100) : 0;
+
+        document.getElementById('plan-rev-text').innerText = `${currentPlanRev.toLocaleString()} / ${p.rev.toLocaleString()} ₽ (${revPct}%)`;
         document.getElementById('plan-rev-bar').style.width = revPct + '%';
         
-        document.getElementById('plan-leads-text').innerText = `${appData.leads} / ${p.leads} шт (${leadPct}%)`;
+        document.getElementById('plan-leads-text').innerText = `${currentPlanLeads} / ${p.leads} шт (${leadPct}%)`;
         document.getElementById('plan-leads-bar').style.width = leadPct + '%';
     }
 
