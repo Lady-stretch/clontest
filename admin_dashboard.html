@@ -455,6 +455,16 @@
             <div class="sub-val" style="color: var(--accent); margin-top: 2px;">Вторичка (Продлений): <span id="d-sec-count">0</span> шт</div>
         </div>
         <div class="unit-item">
+            <div class="unit-lab">Расходы</div>
+            <div class="unit-val" id="d-exp" style="color: var(--crit);">0 ₽</div>
+            <div class="sub-val">Все категории</div>
+        </div>
+        <div class="unit-item">
+            <div class="unit-lab">Опер. Прибыль</div>
+            <div class="unit-val" id="d-profit" style="color: var(--ok);">0 ₽</div>
+            <div class="sub-val">Доходы минус расходы</div>
+        </div>
+        <div class="unit-item">
             <div class="unit-lab">Средний чек</div>
             <div class="unit-val" id="d-avg-check">0 ₽</div>
             <div class="sub-val">ARPU</div>
@@ -681,6 +691,7 @@
         primarySales: 0, 
         secondarySalesCount: 0, 
         marketingSpend: 0,
+        totalExpenses: 0, // ДОБАВЛЕНО: Для расчета чистой прибыли
         dailyRevenue: {}, 
         leadsBySource: {
             'ВК': 0, '2ГИС': 0, 'Яндекс': 0, 'Сайт': 0, 
@@ -754,15 +765,12 @@
                 rawServerData = await response.json();
                 
                 // --- БРОНЯ ОТ YDB (ФОРМАТИРОВАНИЕ ДАТ) ---
-                // Защита от возврата дат в виде "дней с 1970 года" (number)
                 const fixDate = (val) => {
                     if (!val) return "1970-01-01"; // Заглушка, если даты нет
                     if (typeof val === 'number') {
-                        // Конвертация дней YDB в нормальную дату YYYY-MM-DD
                         return new Date(val * 86400000).toISOString().substring(0, 10);
                     }
                     if (typeof val === 'string') {
-                        // Очистка от возможных Python байт-тегов "b'2026...'"
                         let s = val.replace(/b['"]/g, '').replace(/['"]/g, '');
                         return s.substring(0, 10);
                     }
@@ -852,6 +860,7 @@
         appData.primarySales = 0; 
         appData.secondarySalesCount = 0;
         appData.marketingSpend = 0; 
+        appData.totalExpenses = 0; // ДОБАВЛЕНО
         appData.dailyRevenue = {}; 
         appData.salesBySku = {};
         for (let key in appData.leadsBySource) { appData.leadsBySource[key] = 0; }
@@ -910,8 +919,11 @@
                 if (!isDateInCurrentFilter(e.event_date)) return;
                 if (studioFilter !== 'all' && e.studio_name !== studioFilter) return;
 
+                const expVal = parseInt(e.expense_amount) || 0; // ДОБАВЛЕНО
+                appData.totalExpenses += expVal; // ДОБАВЛЕНО
+
                 if (e.category && e.category.includes('Реклама')) {
-                    appData.marketingSpend += parseInt(e.expense_amount) || 0;
+                    appData.marketingSpend += expVal; // ИЗМЕНЕНО
                 }
             });
         }
@@ -1102,8 +1114,10 @@
             
             if (res.ok) { 
                 alert("Трафик успешно зафиксирован!");
+                // ДОБАВЛЕНО: Очистка строк после успешной отправки
                 document.getElementById('l-qty').value = "";
                 document.getElementById('b-qty').value = "";
+                document.getElementById('l-src').value = ""; 
                 loadDataFromServer(); 
             }
         } finally { 
@@ -1141,7 +1155,10 @@
             
             if (res.ok) { 
                 alert("Продажа зафиксирована в базе!");
+                // ДОБАВЛЕНО: Очистка строк после успешной отправки
                 document.getElementById('s-val').value = "";
+                document.getElementById('s-cat').value = ""; 
+                document.getElementById('s-type').value = ""; 
                 loadDataFromServer(); 
             }
         } finally { 
@@ -1178,7 +1195,9 @@
             
             if (res.ok) {
                 alert("Расход учтен!");
+                // ДОБАВЛЕНО: Очистка строк после успешной отправки
                 document.getElementById('e-val').value = ""; 
+                document.getElementById('e-cat').value = ""; 
                 loadDataFromServer();
             }
         } finally { 
@@ -1190,6 +1209,14 @@
     // --- ОБНОВЛЕНИЕ ИНТЕРФЕЙСА ---
     function updateDashboardView() {
         document.getElementById('d-rev').innerText = appData.totalRevenue.toLocaleString() + " ₽";
+        
+        // ДОБАВЛЕНО: Обновление виджетов Расходов и Прибыли
+        document.getElementById('d-exp').innerText = appData.totalExpenses.toLocaleString() + " ₽";
+        const profit = appData.totalRevenue - appData.totalExpenses;
+        const profitEl = document.getElementById('d-profit');
+        profitEl.innerText = profit.toLocaleString() + " ₽";
+        profitEl.style.color = profit >= 0 ? 'var(--ok)' : 'var(--crit)'; // Зеленый если плюс, красный если минус
+
         document.getElementById('d-sec-rev').innerText = appData.secondaryRevenue.toLocaleString();
         document.getElementById('d-sec-count').innerText = appData.secondarySalesCount;
         
@@ -1295,10 +1322,12 @@
         v.style.display = (v.style.display === 'flex' ? 'none' : 'flex');
     }
 
-    function askVera() {
+    // ДОБАВЛЕНО: Интеграция с реальным бэкендом (vera_analyze)
+    async function askVera() {
         const inputField = document.getElementById('vera-in'); 
+        const userText = inputField.value;
         
-        if (!inputField.value) {
+        if (!userText) {
             return;
         }
         
@@ -1306,19 +1335,40 @@
         chatBox.innerHTML += `
             <div style="text-align:right; margin-bottom:10px;">
                 <span style="background:var(--accent); color:#fff; padding:10px; border-radius:12px; display:inline-block;">
-                    ${inputField.value}
+                    ${userText}
                 </span>
             </div>`;
         
         inputField.value = "";
         
-        setTimeout(() => { 
-            chatBox.innerHTML += `
-                <div style="background:#fff; padding:15px; border-radius:15px; margin-bottom:15px;">
-                    Анализирую данные из базы...
-                </div>`; 
-            chatBox.scrollTop = chatBox.scrollHeight; 
-        }, 600);
+        const loadingId = "vera-load-" + Date.now();
+        chatBox.innerHTML += `
+            <div id="${loadingId}" style="background:#fff; padding:15px; border-radius:15px; margin-bottom:15px;">
+                Анализирую данные из базы...
+            </div>`; 
+        chatBox.scrollTop = chatBox.scrollHeight; 
+
+        try {
+            const res = await fetch(BACKEND_URL, {
+                method: 'POST',
+                headers: { 
+                    'Content-Type': 'application/json', 
+                    'X-Api-Token': BACKEND_TOKEN 
+                },
+                body: JSON.stringify({ action: 'vera_analyze' })
+            });
+
+            if (res.ok) {
+                const data = await res.json();
+                document.getElementById(loadingId).innerHTML = data.vera_answer || "Анализ завершен.";
+            } else {
+                document.getElementById(loadingId).innerHTML = "Ошибка связи с сервером базы данных.";
+            }
+        } catch (e) {
+            document.getElementById(loadingId).innerHTML = "Критическая ошибка: невозможно подключиться к 'Монолиту'.";
+        }
+        
+        chatBox.scrollTop = chatBox.scrollHeight;
     }
 </script>
 
