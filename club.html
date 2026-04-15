@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.add('light-theme');
+        }
+    </script>
+
     <script type="text/javascript">
     // --- Yandex.Metrika counter ---
     (function(m,e,t,r,i,k,a){
@@ -52,6 +58,28 @@
             --transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
+        /* --- НОВОЕ: ПЕРЕМЕННЫЕ ДЛЯ СВЕТЛОЙ ТЕМЫ --- */
+        :root.light-theme {
+            --bg-deep: #F4F4F9;
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: 1px solid rgba(0, 0, 0, 0.05);
+            --text-main: #080814;
+        }
+        :root.light-theme body { background-image: none; }
+        :root.light-theme .brand-name { color: var(--text-main); }
+        :root.light-theme .back-link { color: rgba(0,0,0,0.5); }
+        :root.light-theme .back-link:hover { color: var(--text-main); }
+        :root.light-theme header.scrolled { background: rgba(244, 244, 249, 0.9); border-bottom: 1px solid rgba(0,0,0,0.05); }
+        :root.light-theme .flag-overlay { background: linear-gradient(to top, rgba(244, 244, 249, 1) 10%, rgba(244, 244, 249, 0) 80%); }
+        :root.light-theme .input-field-custom { background: rgba(0,0,0,0.03); color: var(--text-main); border-color: rgba(0,0,0,0.1); }
+        :root.light-theme #payment-modal h2 { color: var(--text-main); }
+        :root.light-theme #payment-modal button[onclick="closePayment()"] { color: rgba(0,0,0,0.5) !important; }
+        :root.light-theme #ls-ai-chat { background: rgba(244, 244, 249, 0.98); }
+        :root.light-theme .chat-input-area { background: rgba(230, 230, 235, 1); border-top: 1px solid rgba(0,0,0,0.05); }
+        :root.light-theme .chat-input { color: var(--text-main); background: rgba(255,255,255,0.8); border-color: rgba(0,0,0,0.1); }
+        :root.light-theme .msg-assistant { background: rgba(0,0,0,0.05); color: var(--text-main); }
+        :root.light-theme .msg-user { color: #000; }
+
         /* --- GLOBAL RESET & ANDROID FIX --- */
         * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
         html { scroll-behavior: smooth; }
@@ -64,6 +92,7 @@
             font-family: var(--font-main); 
             line-height: 1.6;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+            transition: background 0.6s ease, color 0.6s ease;
         }
 
         h1, h2, h3, .serif { font-family: var(--font-serif); font-weight: 300; }
@@ -86,7 +115,7 @@
         }
         .btn:hover { background: var(--accent-gold); color: #fff; transform: translateY(-2px); }
 
-        .btn-fill { background: var(--accent-gold); color: #fff; }
+        .btn-fill { background: var(--accent-gold); color: #fff !important; }
 
         /* Styles for Modal Inputs */
         .input-field-custom { 
@@ -103,7 +132,7 @@
         header { position: fixed; top: 0; width: 100%; padding: 20px 5%; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; z-index: 2000; transition: var(--transition); background: transparent; }
         header.scrolled { background: rgba(10, 10, 25, 0.2); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border-bottom: 1px solid rgba(255,255,255,0.05); }
 
-        .brand-name { font-family: var(--font-serif); font-size: 20px; letter-spacing: 12px; text-transform: uppercase; color: #fff; text-align: center; }
+        .brand-name { font-family: var(--font-serif); font-size: 20px; letter-spacing: 12px; text-transform: uppercase; color: #fff; text-align: center; transition: var(--transition); }
 
         .back-link { font-size: 10px; text-transform: uppercase; letter-spacing: 3px; color: rgba(255,255,255,0.5); display: flex; align-items: center; gap: 8px; transition: var(--transition); }
         .back-link:hover { color: #fff; transform: translateX(-3px); }
@@ -118,7 +147,7 @@
         }
 
         /* --- 3-BLOCK GRID --- */
-        .club-grid { padding: 60px 5% 100px; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; max-width: 1400px; margin: 0 auto; }
+        .club-grid { padding: 40px 5% 100px; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; max-width: 1400px; margin: 0 auto; }
         
         .flag-card {
             position: relative; height: 500px; display: flex; flex-direction: column; justify-content: flex-end; padding: 40px;
@@ -128,11 +157,11 @@
         
         .flag-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: 1s ease; opacity: 0.5; z-index: 0; color: transparent;}
         .flag-card:hover .flag-bg { transform: scale(1.05); opacity: 0.7; }
-        .flag-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(8,8,20,1) 10%, rgba(8,8,20,0) 80%); z-index: 1; }
+        .flag-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(8,8,20,1) 10%, rgba(8,8,20,0) 80%); z-index: 1; transition: background 0.6s ease; }
 
         .flag-content { position: relative; z-index: 2; display: flex; flex-direction: column; height: 100%; justify-content: flex-end; }
-        .flag-title { font-size: clamp(24px, 3vw, 32px); color: var(--accent-gold); margin-bottom: 15px; letter-spacing: 1px; line-height: 1.2; }
-        .flag-desc { font-size: 15px; opacity: 0.8; margin-bottom: 30px; line-height: 1.6; }
+        .flag-title { font-size: clamp(24px, 3vw, 32px); color: var(--accent-gold); margin-bottom: 15px; letter-spacing: 1px; line-height: 1.2; transition: var(--transition); }
+        .flag-desc { font-size: 15px; opacity: 0.8; margin-bottom: 30px; line-height: 1.6; transition: var(--transition); }
 
         /* --- AI CHAT WIDGET CSS --- */
         #ls-ai-button {
@@ -154,23 +183,25 @@
             border: 1px solid rgba(197, 160, 89, 0.3); border-radius: 25px; 
             z-index: 10000; flex-direction: column; overflow: hidden;
             box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
         .chat-active { display: flex !important; animation: slideIn 0.3s ease-out; }
         @keyframes slideIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         
         .chat-messages { flex-grow: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 12px; }
-        .msg { padding: 12px 16px; border-radius: 15px; font-size: 14px; line-height: 1.5; max-width: 85%; }
+        .msg { padding: 12px 16px; border-radius: 15px; font-size: 14px; line-height: 1.5; max-width: 85%; transition: var(--transition); }
         .msg-assistant { background: rgba(255, 255, 255, 0.08); color: white; align-self: flex-start; border-radius: 15px 15px 15px 4px; }
         .msg-user { background: rgba(197, 160, 89, 0.2); color: #FFD1DC; align-self: flex-end; border: 1px solid rgba(197, 160, 89, 0.3); border-radius: 15px 15px 4px 15px; }
         
-        .chat-input-area { padding: 15px 20px; background: rgba(0, 0, 0, 0.4); display: flex; align-items: center; gap: 10px; border-top: 1px solid rgba(255, 255, 255, 0.05); }
-        .chat-input { flex-grow: 1; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 10px 15px; color: white; font-size: 16px; outline: none; }
+        .chat-input-area { padding: 15px 20px; background: rgba(0, 0, 0, 0.4); display: flex; align-items: center; gap: 10px; border-top: 1px solid rgba(255, 255, 255, 0.05); transition: var(--transition); }
+        .chat-input { flex-grow: 1; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 10px 15px; color: white; font-size: 16px; outline: none; transition: var(--transition); }
         
         /* --- RESPONSIVE --- */
         @media (max-width: 900px) {
-            .club-grid { grid-template-columns: 1fr; gap: 30px; }
+            .club-grid { grid-template-columns: 1fr; gap: 30px; padding-top: 20px; }
             .flag-card { height: 450px; padding: 30px; }
+            .test-drive-card { flex-direction: column; text-align: center; padding: 30px !important; }
+            .test-drive-card .btn { width: 100%; }
         }
         @media (max-width: 600px) {
             header { padding: 15px 20px !important; }
@@ -182,7 +213,8 @@
             .section-label { font-size: 11px; letter-spacing: 4px; }
             
             #ls-ai-chat { bottom: 0; right: 0; width: 100% !important; height: 100dvh !important; border-radius: 0; max-height: 100dvh;}
-            .chat-input-area { padding-bottom: calc(15px + env(safe-area-inset-bottom)); background: rgba(10, 10, 25, 1); }
+            .chat-input-area { padding-bottom: calc(15px + env(safe-area-inset-bottom)); }
+            :root:not(.light-theme) .chat-input-area { background: rgba(10, 10, 25, 1); }
         }
     </style>
 </head>
@@ -194,7 +226,8 @@
         <span>На главную</span>
     </a>
     <div class="brand-name">РЕСУРС</div>
-    <div style="display: flex; justify-content: flex-end;">
+    <div style="display: flex; justify-content: flex-end; align-items: center; gap: 15px;">
+        <div onclick="toggleTheme()" style="font-size: 10px; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; opacity: 0.7; transition: var(--transition);">Свет / Тень</div>
         <img src="logo_header_final.png" style="height: 35px; width: 35px; border-radius: 6px; opacity: 0.8;">
     </div>
 </header>
@@ -210,6 +243,16 @@
         Закрытая цифровая экосистема: пошаговые флагманские курсы, детокс-программы и огромная библиотека тренировок для красивого и здорового тела.
     </p>
 </section>
+
+<div style="padding: 0 5%; max-width: 1400px; margin: 0 auto;">
+    <div class="glass test-drive-card" style="padding: 40px 50px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 25px; border: 1px solid rgba(197, 160, 89, 0.4); box-shadow: 0 10px 40px rgba(197, 160, 89, 0.05);">
+        <div style="flex: 1; min-width: 280px;">
+            <h2 class="serif" style="font-size: 32px; color: var(--accent-gold); margin-bottom: 10px;">Попробуйте клуб за 300₽</h2>
+            <p style="opacity: 0.8; font-size: 15px; max-width: 600px;">Тест-драйв: 3 дня полного доступа ко всем флагманским программам и закрытой библиотеке. Оцените формат изнутри без риска.</p>
+        </div>
+        <a href="javascript:void(0)" class="btn btn-fill" onclick="openPayment('Тест-драйв')">Начать Тест-Драйв</a>
+    </div>
+</div>
 
 <section class="club-grid" id="courses">
     
@@ -297,14 +340,28 @@
 </div>
 
 <script>
+    // --- НОВОЕ: Функция переключения темы ---
+    function toggleTheme() {
+        var root = document.documentElement;
+        if (root.classList.contains('light-theme')) {
+            root.classList.remove('light-theme');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            root.classList.add('light-theme');
+            localStorage.setItem('theme', 'light');
+        }
+    }
+
     // --- НАСТРОЙКИ ОПЛАТЫ ---
     var CLOUD_FUNCTION_URL = 'https://functions.yandexcloud.net/d4eg7hphveek8g1co3fr'; 
     var currentProduct = '';
 
+    // --- НОВОЕ: Добавлен Тест-драйв ---
     var prices = {
         'Стройность': 5000,
         'Детокс': 3000,
-        'Все включено': 1600
+        'Все включено': 1600,
+        'Тест-драйв': 300
     };
 
     window.addEventListener('scroll', function() {
@@ -358,6 +415,14 @@
             });
 
             var data = await response.json();
+
+            // Проверка на ошибку (например, если Тест-драйв уже использован)
+            if (data.error) {
+                alert(data.error);
+                btn.innerText = 'Оплатить доступ';
+                btn.disabled = false;
+                return;
+            }
 
             if (data.confirmation_url) {
                 window.location.href = data.confirmation_url;
