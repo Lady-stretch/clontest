@@ -80,6 +80,11 @@
         :root.light-theme .msg-assistant { background: rgba(0,0,0,0.05); color: var(--text-main); }
         :root.light-theme .msg-user { color: #000; }
 
+        /* --- ИКОНКИ СВЕТЛОЙ/ТЕМНОЙ ТЕМЫ --- */
+        :root.light-theme .theme-icon-moon { display: none !important; }
+        :root.light-theme .theme-icon-sun { display: block !important; }
+        .theme-toggle-btn:hover { opacity: 1 !important; transform: scale(1.1); }
+
         /* --- GLOBAL RESET & ANDROID FIX --- */
         * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
         html { scroll-behavior: smooth; }
@@ -227,7 +232,10 @@
     </a>
     <div class="brand-name">РЕСУРС</div>
     <div style="display: flex; justify-content: flex-end; align-items: center; gap: 15px;">
-        <div onclick="toggleTheme()" style="font-size: 10px; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; opacity: 0.7; transition: var(--transition);">Свет / Тень</div>
+        <div onclick="toggleTheme()" class="theme-toggle-btn" style="cursor: pointer; opacity: 0.7; transition: var(--transition); display: flex; align-items: center; justify-content: center; width: 35px; height: 35px;">
+            <svg class="theme-icon-moon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: block;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            <svg class="theme-icon-sun" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </div>
         <img src="logo_header_final.png" style="height: 35px; width: 35px; border-radius: 6px; opacity: 0.8;">
     </div>
 </header>
@@ -340,7 +348,6 @@
 </div>
 
 <script>
-    // --- НОВОЕ: Функция переключения темы ---
     function toggleTheme() {
         var root = document.documentElement;
         if (root.classList.contains('light-theme')) {
@@ -356,7 +363,6 @@
     var CLOUD_FUNCTION_URL = 'https://functions.yandexcloud.net/d4eg7hphveek8g1co3fr'; 
     var currentProduct = '';
 
-    // --- НОВОЕ: Добавлен Тест-драйв ---
     var prices = {
         'Стройность': 5000,
         'Детокс': 3000,
@@ -398,6 +404,15 @@
             return;
         }
 
+        // --- НОВОЕ: ЛОКАЛЬНАЯ ЗАЩИТА ТЕСТ-ДРАЙВА (МАКСИМУМ 2 РАЗА) ---
+        if (currentProduct === 'Тест-драйв') {
+            var testDriveCount = parseInt(localStorage.getItem('testDriveCount') || '0');
+            if (testDriveCount >= 2) {
+                alert('Вы исчерпали лимит Тест-драйва на этом устройстве (максимум 2 раза). Пожалуйста, выберите основной тариф для продолжения.');
+                return;
+            }
+        }
+
         btn.innerText = 'Связь с банком...';
         btn.disabled = true;
 
@@ -416,7 +431,7 @@
 
             var data = await response.json();
 
-            // Проверка на ошибку (например, если Тест-драйв уже использован)
+            // Проверка на ошибку с сервера
             if (data.error) {
                 alert(data.error);
                 btn.innerText = 'Оплатить доступ';
@@ -425,6 +440,12 @@
             }
 
             if (data.confirmation_url) {
+                // Если ЮKassa отдала ссылку, увеличиваем счетчик попыток Тест-драйва на 1
+                if (currentProduct === 'Тест-драйв') {
+                    var count = parseInt(localStorage.getItem('testDriveCount') || '0');
+                    localStorage.setItem('testDriveCount', count + 1);
+                }
+                
                 window.location.href = data.confirmation_url;
             } else {
                 alert('Ошибка при создании платежа. Попробуйте позже.');
