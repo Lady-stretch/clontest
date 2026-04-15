@@ -436,15 +436,15 @@
 <div id="navOverlay" class="glass-sidebar">
     <div class="close-arrow" onclick="toggleNav()">←</div>
     <div class="nav-links">
-        <a href="#about" onclick="toggleNav()">О студии</a>
-        <a href="#directions" onclick="toggleNav()">РАСПИСАНИЕ</a>
-        <a href="future-packages.html" style="color: var(--accent-gold);">АБОНЕМЕНТЫ</a>
-        <a href="club.html">100% похудение</a>
-        <a href="#" onclick="toggleNav(); toggleChat(); return false;">Вера (ИИ помощник)</a>
-        <a href="community.html" style="font-size: 24px; margin: 15px 0;">Пульс студии (Аналитика)</a>
-        <a href="survey.html" style="font-size: 24px; margin: 15px 0;">Опрос & Бонус</a>
-        <a href="#footer" onclick="toggleNav()">Контакты</a>
-    </div>
+    <a href="#about" onclick="toggleNav()">О студии</a>
+    <a href="#schedule" onclick="toggleNav()">РАСПИСАНИЕ</a>
+    <a href="future-packages.html" style="color: var(--accent-gold);">АБОНЕМЕНТЫ</a>
+    <a href="club.html">100% похудение</a>
+    <a href="#" onclick="toggleNav(); toggleChat(); return false;">Вера (ИИ помощник)</a>
+    <a href="community.html" style="font-size: 24px; margin: 15px 0;">Пульс студии (Аналитика)</a>
+    <a href="survey.html" style="font-size: 24px; margin: 15px 0;">Опрос & Бонус</a>
+    <a href="#footer" onclick="toggleNav()">Контакты</a>
+</div>
 </div>
 
 <header id="header">
@@ -766,10 +766,16 @@
         <form id="tgForm">
             <input type="text" id="userName" placeholder="ВАШЕ ИМЯ" required>
             <input type="tel" id="userPhone" placeholder="+7 (___) ___-__-__" required>
+            
+            <div style="margin-bottom: 20px; font-size: 10px; opacity: 0.6; text-align: left; display: flex; gap: 10px;">
+                <input type="checkbox" checked required style="width: 15px; height: 15px; margin: 0;">
+                <span>Нажимая кнопку, вы соглашаетесь с <a href="privacy.html" style="text-decoration: underline;">Политикой конфиденциальности</a> и <a href="offer.html" style="text-decoration: underline;">Офертой</a></span>
+            </div>
+            
             <button type="submit" class="btn btn-lens" style="width: 100%; padding: 20px;">Запросить доступ • 990₽</button>
         </form>
     </div> 
-</div> 
+</div>
 
 <div id="promo-widget">
     <div class="promo-close" onclick="document.getElementById('promo-widget').style.display='none'">&times;</div>
@@ -1000,6 +1006,24 @@
         }
     }
     document.getElementById('ls-ai-input').onkeypress = (e) => { if(e.key === 'Enter') sendMessage(); };
+</script>
+    <div id="cookie-notice" class="glass" style="position: fixed; bottom: 20px; left: 20px; right: 20px; z-index: 5000; padding: 15px 25px; border-radius: 15px; display: none; align-items: center; justify-content: space-between; gap: 20px; border: 1px solid var(--accent-gold);">
+    <span style="font-size: 12px; opacity: 0.9;">Мы используем файлы cookie, чтобы сайт «Ресурса» работал лучше. <a href="privacy.html" style="text-decoration: underline;">Подробнее</a></span>
+    <button onclick="acceptCookies()" class="btn-lens" style="padding: 8px 20px; font-size: 10px; text-transform: uppercase; border-color: var(--accent-gold); color: var(--accent-gold);">ОК</button>
+</div>
+
+<script>
+    // Проверка Куки
+    function acceptCookies() {
+        localStorage.setItem('cookiesAccepted', 'true');
+        document.getElementById('cookie-notice').style.display = 'none';
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        if (!localStorage.getItem('cookiesAccepted')) {
+            document.getElementById('cookie-notice').style.display = 'flex';
+        }
+    });
 </script>
 </body>
 </html>
