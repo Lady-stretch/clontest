@@ -348,13 +348,20 @@
     }
 
     function showFinal() {
-        // Убрали вывод результата на экран, чтобы сохранить интригу и заставить перейти в ВК
-        const vkBtn = document.getElementById('vk-link');
+        // ВОЗВРАЩАЕМ ВАШУ ИСХОДНУЮ ЛОГИКУ ВЕРДИКТА
+        let verdict = "";
+        if (totalPoints >= 16) verdict = "Ваш био-возраст: 18-25 лет. Ресурс на пике!";
+        else if (totalPoints >= 10) verdict = "Ваш био-возраст: 35-40 лет. Нужна подзарядка.";
+        else verdict = "Критический дефицит ресурса. Требуется восстановление.";
+
+        const resultText = document.getElementById('result-text');
+        resultText.innerText = verdict;
+        resultText.style.display = 'block'; // Показываем текст
         
-        // Формируем ссылку, которая откроет диалог ВК с уже набранным текстом "Разбор теста"
-        // Это безотказный метод для мобильных устройств
+        // ВОЗВРАЩАЕМ ВАШУ ИДЕАЛЬНУЮ СВЯЗКУ С ВЕРОЙ ЧЕРЕЗ REF
+        const vkBtn = document.getElementById('vk-link');
         vkBtn.onclick = () => {
-            window.location.href = `https://vk.com/im?sel=-221142875&text=Разбор%20теста`;
+            window.location.href = `https://vk.me/-221142875?ref=quiz_${totalPoints}`;
         };
     }
 </script>
