@@ -58,7 +58,7 @@
             --transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
-        /* --- НОВОЕ: ПЕРЕМЕННЫЕ ДЛЯ СВЕТЛОЙ ТЕМЫ --- */
+        /* --- ПЕРЕМЕННЫЕ ДЛЯ СВЕТЛОЙ ТЕМЫ --- */
         :root.light-theme {
             --bg-deep: #F4F4F9;
             --glass-bg: rgba(255, 255, 255, 0.7);
@@ -80,12 +80,26 @@
         :root.light-theme .msg-assistant { background: rgba(0,0,0,0.05); color: var(--text-main); }
         :root.light-theme .msg-user { color: #000; }
 
-        /* --- ИКОНКИ СВЕТЛОЙ/ТЕМНОЙ ТЕМЫ --- */
-        :root.light-theme .theme-icon-moon { display: none !important; }
-        :root.light-theme .theme-icon-sun { display: block !important; }
-        .theme-toggle-btn:hover { opacity: 1 !important; transform: scale(1.1); }
+        /* --- КНОПКА СВЕТ/ТЕНЬ --- */
+        .theme-btn {
+            font-size: 10px; text-transform: uppercase; letter-spacing: 2px;
+            cursor: pointer; transition: var(--transition);
+            display: flex; align-items: center; justify-content: center;
+            padding: 8px 18px; border-radius: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-main);
+            font-weight: 500;
+        }
+        .theme-btn:hover { background: rgba(255, 255, 255, 0.15); transform: scale(1.05); }
+        
+        :root.light-theme .theme-btn {
+            background: rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        :root.light-theme .theme-btn:hover { background: rgba(0, 0, 0, 0.1); }
 
-        /* --- GLOBAL RESET & ANDROID FIX --- */
+        /* --- GLOBAL RESET --- */
         * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
         html { scroll-behavior: smooth; }
         html, body {
@@ -122,7 +136,6 @@
 
         .btn-fill { background: var(--accent-gold); color: #fff !important; }
 
-        /* Styles for Modal Inputs */
         .input-field-custom { 
             width: 100%; padding: 15px; 
             background: rgba(255,255,255,0.05); 
@@ -168,7 +181,7 @@
         .flag-title { font-size: clamp(24px, 3vw, 32px); color: var(--accent-gold); margin-bottom: 15px; letter-spacing: 1px; line-height: 1.2; transition: var(--transition); }
         .flag-desc { font-size: 15px; opacity: 0.8; margin-bottom: 30px; line-height: 1.6; transition: var(--transition); }
 
-        /* --- AI CHAT WIDGET CSS --- */
+        /* --- AI CHAT WIDGET --- */
         #ls-ai-button {
             position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px;
             background: var(--accent-gold); border: none; border-radius: 50%;
@@ -232,10 +245,7 @@
     </a>
     <div class="brand-name">РЕСУРС</div>
     <div style="display: flex; justify-content: flex-end; align-items: center; gap: 15px;">
-        <div onclick="toggleTheme()" class="theme-toggle-btn" style="cursor: pointer; opacity: 0.7; transition: var(--transition); display: flex; align-items: center; justify-content: center; width: 35px; height: 35px;">
-            <svg class="theme-icon-moon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: block;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-            <svg class="theme-icon-sun" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-        </div>
+        <div id="theme-toggle-btn" onclick="toggleTheme()" class="theme-btn">СВЕТ</div>
         <img src="logo_header_final.png" style="height: 35px; width: 35px; border-radius: 6px; opacity: 0.8;">
     </div>
 </header>
@@ -348,14 +358,27 @@
 </div>
 
 <script>
+    // Настройка кнопки при загрузке страницы
+    window.addEventListener('DOMContentLoaded', () => {
+        var btn = document.getElementById('theme-toggle-btn');
+        if (document.documentElement.classList.contains('light-theme')) {
+            if (btn) btn.innerText = 'ТЕНЬ';
+        } else {
+            if (btn) btn.innerText = 'СВЕТ';
+        }
+    });
+
     function toggleTheme() {
         var root = document.documentElement;
+        var btn = document.getElementById('theme-toggle-btn');
         if (root.classList.contains('light-theme')) {
             root.classList.remove('light-theme');
             localStorage.setItem('theme', 'dark');
+            if (btn) btn.innerText = 'СВЕТ';
         } else {
             root.classList.add('light-theme');
             localStorage.setItem('theme', 'light');
+            if (btn) btn.innerText = 'ТЕНЬ';
         }
     }
 
@@ -404,11 +427,18 @@
             return;
         }
 
-        // --- НОВОЕ: ЛОКАЛЬНАЯ ЗАЩИТА ТЕСТ-ДРАЙВА (МАКСИМУМ 2 РАЗА) ---
+        // --- ЛОКАЛЬНАЯ ЗАЩИТА ТЕСТ-ДРАЙВА (1 РАЗ НА УСТРОЙСТВО) ---
         if (currentProduct === 'Тест-драйв') {
-            var testDriveCount = parseInt(localStorage.getItem('testDriveCount') || '0');
-            if (testDriveCount >= 2) {
-                alert('Вы исчерпали лимит Тест-драйва на этом устройстве (максимум 2 раза). Пожалуйста, выберите основной тариф для продолжения.');
+            if (localStorage.getItem('testDriveUsed') === 'true') {
+                alert('Вы уже использовали Тест-драйв на этом устройстве. Пожалуйста, выберите основной тариф для продолжения.');
+                return;
+            }
+        }
+
+        // --- ЛОКАЛЬНАЯ ЗАЩИТА ПРОМОКОДА (1 РАЗ НА УСТРОЙСТВО) ---
+        if (promo) {
+            if (localStorage.getItem('promoUsed') === 'true') {
+                alert('Вы уже использовали промокод на этом устройстве. Для покупки введите актуальные данные без промокода.');
                 return;
             }
         }
@@ -431,7 +461,6 @@
 
             var data = await response.json();
 
-            // Проверка на ошибку с сервера
             if (data.error) {
                 alert(data.error);
                 btn.innerText = 'Оплатить доступ';
@@ -440,10 +469,12 @@
             }
 
             if (data.confirmation_url) {
-                // Если ЮKassa отдала ссылку, увеличиваем счетчик попыток Тест-драйва на 1
+                // Если оплата пошла успешно, ставим метки в браузере навсегда
                 if (currentProduct === 'Тест-драйв') {
-                    var count = parseInt(localStorage.getItem('testDriveCount') || '0');
-                    localStorage.setItem('testDriveCount', count + 1);
+                    localStorage.setItem('testDriveUsed', 'true');
+                }
+                if (promo) {
+                    localStorage.setItem('promoUsed', 'true');
                 }
                 
                 window.location.href = data.confirmation_url;
