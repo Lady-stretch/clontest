@@ -332,12 +332,6 @@
             gap: 15px; 
         }
 
-        .header-logo-title { 
-            display: flex; 
-            align-items: center; 
-            gap: 12px; 
-        }
-
         .filter-row {
             display: flex;
             gap: 10px;
@@ -405,8 +399,8 @@
         <span onclick="toggleVera()" style="cursor: pointer; font-size: 30px; line-height: 0.5;">&times;</span>
     </div>
     <div id="vera-chat" style="flex: 1; padding: 20px; overflow-y: auto; font-size: 14px;">
-        <div style="background: #fff; padding: 15px; border-radius: 15px; border: var(--glass-border); margin-bottom: 15px;">
-            Николай Сергеевич, здравия желаю! Все системы оцифрованы. Жду команд.
+        <div style="background: #fff; padding: 15px; border-radius: 15px; border: var(--glass-border); margin-bottom: 15px;" id="vera-welcome-msg">
+            Здравия желаю! Все системы оцифрованы. Жду команд.
         </div>
     </div>
     <div style="padding: 15px; background: #fff; display: flex; gap: 10px;">
@@ -417,9 +411,14 @@
 
 <div id="page-dash" class="page">
     <div class="header-flex">
-        <div class="header-logo-title">
-            <img src="favicon.png" alt="РЕСУРС" style="width: 35px; height: 35px; object-fit: contain;">
-            <h2 class="serif" style="font-size: 32px; margin: 0;">Сводка</h2>
+        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <img src="favicon.png" alt="РЕСУРС" style="width: 35px; height: 35px; object-fit: contain;">
+                <h2 class="serif" style="font-size: 32px; margin: 0;">Сводка</h2>
+            </div>
+            <div onclick="logout()" style="cursor: pointer; font-size: 10px; font-weight: 800; color: var(--text-dim); border: 1px solid rgba(0,0,0,0.1); padding: 8px 12px; border-radius: 12px; text-transform: uppercase; letter-spacing: 1px;">
+                Выход 🚪
+            </div>
         </div>
         
         <div class="filter-row">
@@ -718,6 +717,10 @@
             document.getElementById('vera-btn').style.display = 'flex';
             document.getElementById('in-date').valueAsDate = new Date();
             
+            // Персонализация Веры при входе
+            const uName = localStorage.getItem('resurs_user') || 'Николай Сергеевич';
+            document.getElementById('vera-welcome-msg').innerText = `${uName}, здравия желаю! Все системы оцифрованы. Жду команд.`;
+            
             // Восстановление планов из памяти браузера
             const savedPlans = localStorage.getItem('resurs_plans');
             if (savedPlans) {
@@ -732,19 +735,37 @@
     // --- ПАРОЛЬНАЯ ЗАЩИТА ---
     function unlockSystem() {
         const passwordInput = document.getElementById('pass').value;
-        if (passwordInput === "Ресурс-студия") {
-            // Сохраняем сессию
-            localStorage.setItem('resurs_auth', 'true');
-            
-            document.getElementById('auth').style.display = 'none';
-            document.getElementById('nav-bar').style.display = 'flex';
-            document.getElementById('vera-btn').style.display = 'flex';
-            document.getElementById('in-date').valueAsDate = new Date();
-            
-            initializeCharts();
-            switchTab('page-dash', document.querySelector('.nav-item.active'));
+        let userName = "";
+        
+        if (passwordInput === "Ресурс-Николай" || passwordInput === "Ресурс-студия") {
+            userName = "Николай Сергеевич";
+        } else if (passwordInput === "Ресурс-Ольга") {
+            userName = "Ольга Алексеевна";
         } else { 
-            alert("Неверное кодовое слово."); 
+            alert("Неверное кодовое слово. Используйте Ресурс-Николай или Ресурс-Ольга"); 
+            return;
+        }
+
+        // Сохраняем сессию
+        localStorage.setItem('resurs_auth', 'true');
+        localStorage.setItem('resurs_user', userName);
+        
+        document.getElementById('auth').style.display = 'none';
+        document.getElementById('nav-bar').style.display = 'flex';
+        document.getElementById('vera-btn').style.display = 'flex';
+        document.getElementById('in-date').valueAsDate = new Date();
+        
+        document.getElementById('vera-welcome-msg').innerText = `${userName}, здравия желаю! Системы загружены. Жду команд.`;
+        
+        initializeCharts();
+        switchTab('page-dash', document.querySelector('.nav-item.active'));
+    }
+
+    // --- ФУНКЦИЯ ВЫХОДА ---
+    function logout() {
+        if (confirm("Выйти из системы управления?")) {
+            localStorage.clear(); 
+            location.reload();    
         }
     }
 
@@ -781,7 +802,14 @@
                 if (rawServerData.sales) rawServerData.sales.forEach(i => i.event_date = fixDate(i.event_date));
                 if (rawServerData.traffic) rawServerData.traffic.forEach(i => i.event_date = fixDate(i.event_date));
                 if (rawServerData.expenses) rawServerData.expenses.forEach(i => i.event_date = fixDate(i.event_date));
-                // ------------------------------------------
+                
+                // Маппинг планов из базы
+                if (rawServerData.plans) {
+                    rawServerData.plans.forEach(p => { 
+                        appData.plans[p.studio_name] = { rev: p.rev_plan, leads: p.leads_plan }; 
+                    });
+                    localStorage.setItem('resurs_plans', JSON.stringify(appData.plans));
+                }
 
                 console.log("ДАННЫЕ ПОЛУЧЕНЫ И ОБРАБОТАНЫ:", rawServerData);
                 applyFilters(); 
@@ -796,11 +824,9 @@
     function isDateInCurrentFilter(dateString) {
         if (!dateString) return false;
         
-        // dateString здесь УЖЕ гарантированно чистый YYYY-MM-DD благодаря fixDate
         const dStr = dateString; 
         const filterType = document.getElementById('period-filter').value;
 
-        // Создаем сегодняшнюю дату как строку YYYY-MM-DD в локальном времени клиента
         const todayObj = new Date();
         const year = todayObj.getFullYear();
         const month = String(todayObj.getMonth() + 1).padStart(2, '0');
@@ -838,7 +864,6 @@
             const fromStr = document.getElementById('date-from').value;
             const toStr = document.getElementById('date-to').value;
             if (!fromStr || !toStr) return true; 
-            // Прямое строковое сравнение дат YYYY-MM-DD
             return dStr >= fromStr && dStr <= toStr;
         }
 
@@ -847,7 +872,7 @@
 
     // --- ОБРАБОТКА ДАННЫХ И ФИЛЬТРАЦИЯ ---
     function applyFilters() {
-        if (!rawServerData) return; // Если данных еще нет, ждем
+        if (!rawServerData) return; 
         
         const studioFilter = document.getElementById('dash-studio-filter').value;
         
@@ -865,7 +890,7 @@
         appData.salesBySku = {};
         for (let key in appData.leadsBySource) { appData.leadsBySource[key] = 0; }
 
-        // Обработка продаж (с учетом фильтра студии И даты)
+        // Обработка продаж
         if (rawServerData.sales && rawServerData.sales.length > 0) {
             rawServerData.sales.forEach(s => {
                 if (!isDateInCurrentFilter(s.event_date)) return;
@@ -897,7 +922,7 @@
             });
         }
 
-        // Обработка трафика (с учетом фильтра)
+        // Обработка трафика
         if (rawServerData.traffic && rawServerData.traffic.length > 0) {
             rawServerData.traffic.forEach(t => {
                 if (!isDateInCurrentFilter(t.event_date)) return;
@@ -913,7 +938,7 @@
             });
         }
 
-        // Обработка расходов (с учетом фильтра)
+        // Обработка расходов
         if (rawServerData.expenses && rawServerData.expenses.length > 0) {
             rawServerData.expenses.forEach(e => {
                 if (!isDateInCurrentFilter(e.event_date)) return;
@@ -945,8 +970,7 @@
         if (rawServerData.sales) {
             rawServerData.sales.forEach(s => {
                 if(isDateInCurrentFilter(s.event_date)){
-                    // ДОБАВЛЕНО: передача id для удаления
-                    allEvents.push({ id: s.id, type: 'sale', date: s.event_date, amount: s.payment_amount, title: s.product_sku, studio: s.studio_name });
+                    allEvents.push({ id: s.sale_id, type: 'sale', date: s.event_date, amount: s.payment_amount, title: s.product_sku, studio: s.studio_name });
                 }
             });
         }
@@ -954,8 +978,7 @@
         if (rawServerData.expenses) {
             rawServerData.expenses.forEach(e => {
                 if(isDateInCurrentFilter(e.event_date)){
-                    // ДОБАВЛЕНО: передача id для удаления
-                    allEvents.push({ id: e.id, type: 'expense', date: e.event_date, amount: e.expense_amount, title: e.category, studio: e.studio_name });
+                    allEvents.push({ id: e.expense_id, type: 'expense', date: e.event_date, amount: e.expense_amount, title: e.category, studio: e.studio_name });
                 }
             });
         }
@@ -963,8 +986,7 @@
         if (rawServerData.traffic) {
             rawServerData.traffic.forEach(t => {
                 if(isDateInCurrentFilter(t.event_date)){
-                    // ДОБАВЛЕНО: передача id для удаления
-                    allEvents.push({ id: t.id, type: 'traffic', date: t.event_date, amount: null, title: `Лиды: ${t.source_name} (${t.leads_count} шт)`, studio: t.studio_name });
+                    allEvents.push({ id: t.record_id, type: 'traffic', date: t.event_date, amount: null, title: `Лиды: ${t.source_name} (${t.leads_count} шт)`, studio: t.studio_name });
                 }
             });
         }
@@ -1018,7 +1040,7 @@
             
             if (res.ok) {
                 alert("Запись успешно удалена.");
-                loadDataFromServer(); // Обновляем графики и логи
+                loadDataFromServer(); 
             } else {
                 alert("Не удалось удалить запись. Сервер вернул ошибку.");
             }
@@ -1064,13 +1086,11 @@
         const revPlan = parseInt(document.getElementById('plan-rev-input').value) || 0;
         const leadsPlan = parseInt(document.getElementById('plan-leads-input').value) || 0;
         
-        // Локальное сохранение для мгновенного отображения
         appData.plans[studio].rev = revPlan;
         appData.plans[studio].leads = leadsPlan;
         localStorage.setItem('resurs_plans', JSON.stringify(appData.plans));
         
         try {
-            // Отправляем план в облако, чтобы Ольга его тоже видела
             const res = await fetch(BACKEND_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', 'X-Api-Token': BACKEND_TOKEN },
@@ -1300,64 +1320,74 @@
             } 
         };
         
-        revenueChartInstance = new Chart(document.getElementById('revChart'), {
-            type: 'line',
-            data: { 
-                labels: [], 
-                datasets: [{ 
-                    label: 'Выручка', 
-                    data: [], 
-                    borderColor: '#A68A56', 
-                    backgroundColor: 'rgba(166,138,86,0.1)', 
-                    fill: true, 
-                    tension: 0.3 
-                }] 
-            },
-            options: commonOptions
-        });
+        if (document.getElementById('revChart')) {
+            revenueChartInstance = new Chart(document.getElementById('revChart'), {
+                type: 'line',
+                data: { 
+                    labels: [], 
+                    datasets: [{ 
+                        label: 'Выручка', 
+                        data: [], 
+                        borderColor: '#A68A56', 
+                        backgroundColor: 'rgba(166,138,86,0.1)', 
+                        fill: true, 
+                        tension: 0.3 
+                    }] 
+                },
+                options: commonOptions
+            });
+        }
 
-        channelsChartInstance = new Chart(document.getElementById('chanChart'), {
-            type: 'bar',
-            data: { 
-                labels: [], 
-                datasets: [{ 
-                    data: [], 
-                    backgroundColor: '#1C1C1E', 
-                    borderRadius: 6 
-                }] 
-            },
-            options: commonOptions
-        });
+        if (document.getElementById('chanChart')) {
+            channelsChartInstance = new Chart(document.getElementById('chanChart'), {
+                type: 'bar',
+                data: { 
+                    labels: [], 
+                    datasets: [{ 
+                        data: [], 
+                        backgroundColor: '#1C1C1E', 
+                        borderRadius: 6 
+                    }] 
+                },
+                options: commonOptions
+            });
+        }
 
-        skuChartInstance = new Chart(document.getElementById('skuChart'), {
-            type: 'bar',
-            data: { 
-                labels: [], 
-                datasets: [{ 
-                    data: [], 
-                    backgroundColor: '#27AE60', 
-                    borderRadius: 6 
-                }] 
-            },
-            options: commonOptions
-        });
+        if (document.getElementById('skuChart')) {
+            skuChartInstance = new Chart(document.getElementById('skuChart'), {
+                type: 'bar',
+                data: { 
+                    labels: [], 
+                    datasets: [{ 
+                        data: [], 
+                        backgroundColor: '#27AE60', 
+                        borderRadius: 6 
+                    }] 
+                },
+                options: commonOptions
+            });
+        }
     }
 
     function updateDynamicCharts() {
-        if (!revenueChartInstance) return;
-        
-        const sortedDates = Object.keys(appData.dailyRevenue).sort();
-        revenueChartInstance.data.labels = sortedDates;
-        revenueChartInstance.data.datasets[0].data = sortedDates.map(d => appData.dailyRevenue[d]);
-        revenueChartInstance.update();
+        if (revenueChartInstance) {
+            const sortedDates = Object.keys(appData.dailyRevenue).sort();
+            revenueChartInstance.data.labels = sortedDates;
+            revenueChartInstance.data.datasets[0].data = sortedDates.map(d => appData.dailyRevenue[d]);
+            revenueChartInstance.update();
+        }
 
-        channelsChartInstance.data.labels = Object.keys(appData.leadsBySource);
-        channelsChartInstance.data.datasets[0].data = Object.values(appData.leadsBySource);
-        channelsChartInstance.update();
+        if (channelsChartInstance) {
+            channelsChartInstance.data.labels = Object.keys(appData.leadsBySource);
+            channelsChartInstance.data.datasets[0].data = Object.values(appData.leadsBySource);
+            channelsChartInstance.update();
+        }
 
-        skuChartInstance.data.labels = Object.keys(appData.salesBySku);
-        skuChartInstance.data.datasets[0].data = Object.values(appData.salesBySku);
-        skuChartInstance.update();
+        if (skuChartInstance) {
+            skuChartInstance.data.labels = Object.keys(appData.salesBySku);
+            skuChartInstance.data.datasets[0].data = Object.values(appData.salesBySku);
+            skuChartInstance.update();
+        }
     }
 
     // --- ЛОГИКА ВЕРЫ ---
@@ -1392,13 +1422,14 @@
         chatBox.scrollTop = chatBox.scrollHeight; 
 
         try {
+            const uName = localStorage.getItem('resurs_user') || 'Николай Сергеевич';
             const res = await fetch(BACKEND_URL, {
                 method: 'POST',
                 headers: { 
                     'Content-Type': 'application/json', 
                     'X-Api-Token': BACKEND_TOKEN 
                 },
-                body: JSON.stringify({ action: 'vera_analyze', prompt: userText })
+                body: JSON.stringify({ action: 'vera_analyze', prompt: userText, user_name: uName })
             });
 
             if (res.ok) {
