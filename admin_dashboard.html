@@ -691,7 +691,7 @@
         primarySales: 0, 
         secondarySalesCount: 0, 
         marketingSpend: 0,
-        totalExpenses: 0, // ДОБАВЛЕНО: Для расчета чистой прибыли
+        totalExpenses: 0, 
         dailyRevenue: {}, 
         leadsBySource: {
             'ВК': 0, '2ГИС': 0, 'Яндекс': 0, 'Сайт': 0, 
@@ -860,7 +860,7 @@
         appData.primarySales = 0; 
         appData.secondarySalesCount = 0;
         appData.marketingSpend = 0; 
-        appData.totalExpenses = 0; // ДОБАВЛЕНО
+        appData.totalExpenses = 0; 
         appData.dailyRevenue = {}; 
         appData.salesBySku = {};
         for (let key in appData.leadsBySource) { appData.leadsBySource[key] = 0; }
@@ -872,7 +872,7 @@
                 if (studioFilter !== 'all' && s.studio_name !== studioFilter) return;
 
                 const val = parseInt(s.payment_amount) || 0;
-                const date = s.event_date; // Уже отформатировано
+                const date = s.event_date; 
                 
                 appData.totalRevenue += val;
                 
@@ -919,11 +919,11 @@
                 if (!isDateInCurrentFilter(e.event_date)) return;
                 if (studioFilter !== 'all' && e.studio_name !== studioFilter) return;
 
-                const expVal = parseInt(e.expense_amount) || 0; // ДОБАВЛЕНО
-                appData.totalExpenses += expVal; // ДОБАВЛЕНО
+                const expVal = parseInt(e.expense_amount) || 0; 
+                appData.totalExpenses += expVal; 
 
                 if (e.category && e.category.includes('Реклама')) {
-                    appData.marketingSpend += expVal; // ИЗМЕНЕНО
+                    appData.marketingSpend += expVal; 
                 }
             });
         }
@@ -933,7 +933,7 @@
         updatePlanProgress();
     }
 
-    // --- ПОЛНОЦЕННЫЙ ЖУРНАЛ ---
+    // --- ПОЛНОЦЕННЫЙ ЖУРНАЛ С КНОПКОЙ СТОРНО ---
     function renderLog() {
         if (!rawServerData) return;
         
@@ -945,7 +945,8 @@
         if (rawServerData.sales) {
             rawServerData.sales.forEach(s => {
                 if(isDateInCurrentFilter(s.event_date)){
-                    allEvents.push({ type: 'sale', date: s.event_date, amount: s.payment_amount, title: s.product_sku, studio: s.studio_name });
+                    // ДОБАВЛЕНО: передача id для удаления
+                    allEvents.push({ id: s.id, type: 'sale', date: s.event_date, amount: s.payment_amount, title: s.product_sku, studio: s.studio_name });
                 }
             });
         }
@@ -953,7 +954,8 @@
         if (rawServerData.expenses) {
             rawServerData.expenses.forEach(e => {
                 if(isDateInCurrentFilter(e.event_date)){
-                    allEvents.push({ type: 'expense', date: e.event_date, amount: e.expense_amount, title: e.category, studio: e.studio_name });
+                    // ДОБАВЛЕНО: передача id для удаления
+                    allEvents.push({ id: e.id, type: 'expense', date: e.event_date, amount: e.expense_amount, title: e.category, studio: e.studio_name });
                 }
             });
         }
@@ -961,7 +963,8 @@
         if (rawServerData.traffic) {
             rawServerData.traffic.forEach(t => {
                 if(isDateInCurrentFilter(t.event_date)){
-                    allEvents.push({ type: 'traffic', date: t.event_date, amount: null, title: `Лиды: ${t.source_name} (${t.leads_count} шт)`, studio: t.studio_name });
+                    // ДОБАВЛЕНО: передача id для удаления
+                    allEvents.push({ id: t.id, type: 'traffic', date: t.event_date, amount: null, title: `Лиды: ${t.source_name} (${t.leads_count} шт)`, studio: t.studio_name });
                 }
             });
         }
@@ -982,7 +985,7 @@
             else if (ev.type === 'expense') { color = 'var(--crit)'; sign = '-'; amountText = `${ev.amount} ₽`; }
 
             const html = `
-            <div class="card" style="padding:15px; margin-bottom:12px;">
+            <div class="card" style="padding:15px; margin-bottom:12px; position:relative;">
                 <div style="display:flex; justify-content:space-between;">
                     <b>${ev.date}</b> 
                     <span style="color:${color}; font-weight:700;">${sign} ${amountText}</span>
@@ -990,9 +993,38 @@
                 <div style="font-size:12px; color:var(--text-dim); margin-top:5px;">
                     ${ev.title} • ${ev.studio}
                 </div>
+                <span onclick="deleteEntry('${ev.type}', '${ev.id}')" 
+                      style="position:absolute; bottom:10px; right:15px; cursor:pointer; opacity:0.5; font-size: 16px;">🗑️</span>
             </div>`;
             logList.insertAdjacentHTML('beforeend', html);
         });
+    }
+
+    // --- ФУНКЦИЯ УДАЛЕНИЯ (СТОРНО) ---
+    async function deleteEntry(type, id) {
+        if (!id || id === 'undefined') {
+            alert("Ошибка: Запись еще не синхронизирована с базой (нет ID). Обновите страницу.");
+            return;
+        }
+
+        if (!confirm("Удалить эту запись из базы данных (Сторно)? Это действие необратимо.")) return;
+        
+        try {
+            const res = await fetch(BACKEND_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'X-Api-Token': BACKEND_TOKEN },
+                body: JSON.stringify({ action: 'delete_entry', data: { type, id } })
+            });
+            
+            if (res.ok) {
+                alert("Запись успешно удалена.");
+                loadDataFromServer(); // Обновляем графики и логи
+            } else {
+                alert("Не удалось удалить запись. Сервер вернул ошибку.");
+            }
+        } catch (e) { 
+            alert("Ошибка сети при попытке удаления."); 
+        }
     }
 
     // --- НАВИГАЦИЯ ---
@@ -1026,21 +1058,37 @@
         }
     }
 
-    // --- KPI И ПЛАНЫ ---
-    function savePlan() {
+    // --- KPI И ПЛАНЫ (Синхронизация с БД) ---
+    async function savePlan() {
         const studio = document.getElementById('plan-studio').value;
         const revPlan = parseInt(document.getElementById('plan-rev-input').value) || 0;
         const leadsPlan = parseInt(document.getElementById('plan-leads-input').value) || 0;
         
+        // Локальное сохранение для мгновенного отображения
         appData.plans[studio].rev = revPlan;
         appData.plans[studio].leads = leadsPlan;
-        
         localStorage.setItem('resurs_plans', JSON.stringify(appData.plans));
         
-        alert("План успешно утвержден!");
+        try {
+            // Отправляем план в облако, чтобы Ольга его тоже видела
+            const res = await fetch(BACKEND_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'X-Api-Token': BACKEND_TOKEN },
+                body: JSON.stringify({ 
+                    action: 'save_plan', 
+                    data: { studio, rev: revPlan, leads: leadsPlan } 
+                })
+            });
+            if (res.ok) {
+                alert("План успешно утвержден и синхронизирован с базой!");
+            }
+        } catch (e) { 
+            console.error("Ошибка синхронизации плана", e);
+            alert("План сохранен локально, но произошла ошибка при отправке в базу."); 
+        }
+
         document.getElementById('plan-rev-input').value = "";
         document.getElementById('plan-leads-input').value = "";
-        
         updatePlanProgress();
     }
 
@@ -1114,7 +1162,6 @@
             
             if (res.ok) { 
                 alert("Трафик успешно зафиксирован!");
-                // ДОБАВЛЕНО: Очистка строк после успешной отправки
                 document.getElementById('l-qty').value = "";
                 document.getElementById('b-qty').value = "";
                 document.getElementById('l-src').value = ""; 
@@ -1155,7 +1202,6 @@
             
             if (res.ok) { 
                 alert("Продажа зафиксирована в базе!");
-                // ДОБАВЛЕНО: Очистка строк после успешной отправки
                 document.getElementById('s-val').value = "";
                 document.getElementById('s-cat').value = ""; 
                 document.getElementById('s-type').value = ""; 
@@ -1195,7 +1241,6 @@
             
             if (res.ok) {
                 alert("Расход учтен!");
-                // ДОБАВЛЕНО: Очистка строк после успешной отправки
                 document.getElementById('e-val').value = ""; 
                 document.getElementById('e-cat').value = ""; 
                 loadDataFromServer();
@@ -1210,12 +1255,11 @@
     function updateDashboardView() {
         document.getElementById('d-rev').innerText = appData.totalRevenue.toLocaleString() + " ₽";
         
-        // ДОБАВЛЕНО: Обновление виджетов Расходов и Прибыли
         document.getElementById('d-exp').innerText = appData.totalExpenses.toLocaleString() + " ₽";
         const profit = appData.totalRevenue - appData.totalExpenses;
         const profitEl = document.getElementById('d-profit');
         profitEl.innerText = profit.toLocaleString() + " ₽";
-        profitEl.style.color = profit >= 0 ? 'var(--ok)' : 'var(--crit)'; // Зеленый если плюс, красный если минус
+        profitEl.style.color = profit >= 0 ? 'var(--ok)' : 'var(--crit)';
 
         document.getElementById('d-sec-rev').innerText = appData.secondaryRevenue.toLocaleString();
         document.getElementById('d-sec-count').innerText = appData.secondarySalesCount;
@@ -1322,7 +1366,6 @@
         v.style.display = (v.style.display === 'flex' ? 'none' : 'flex');
     }
 
-    // ДОБАВЛЕНО: Интеграция с реальным бэкендом (vera_analyze)
     async function askVera() {
         const inputField = document.getElementById('vera-in'); 
         const userText = inputField.value;
@@ -1355,7 +1398,7 @@
                     'Content-Type': 'application/json', 
                     'X-Api-Token': BACKEND_TOKEN 
                 },
-                body: JSON.stringify({ action: 'vera_analyze' })
+                body: JSON.stringify({ action: 'vera_analyze', prompt: userText })
             });
 
             if (res.ok) {
