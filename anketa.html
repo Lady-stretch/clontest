@@ -158,6 +158,22 @@
 
         .inn-bonus { background: rgba(197, 160, 89, 0.05); border: 1px dashed rgba(197, 160, 89, 0.4); padding: 15px; margin-top: 15px; border-radius: 8px; font-size: 12px; line-height: 1.5; opacity: 0.8; }
 
+        /* 🔥 СТИЛИ ДЛЯ ГАЛОЧЕК СОГЛАСИЯ */
+        .checkbox-group {
+            display: flex; align-items: flex-start; gap: 12px; margin-bottom: 30px;
+            font-size: 12px; opacity: 0.85; line-height: 1.5; text-align: left;
+        }
+        .checkbox-group input[type="checkbox"] {
+            width: 18px; height: 18px; margin-top: 2px;
+            accent-color: var(--accent-gold); cursor: pointer; flex-shrink: 0;
+        }
+        .checkbox-group label {
+            display: inline; font-size: 12px; text-transform: none; letter-spacing: normal;
+            font-weight: 400; color: inherit; text-shadow: none; margin: 0; cursor: pointer;
+        }
+        .checkbox-group a { color: var(--accent-gold); text-decoration: underline; transition: 0.3s; }
+        .checkbox-group a:hover { opacity: 0.7; }
+
         .btn-lens {
             display: flex; align-items: center; justify-content: center; width: 100%; text-align: center; padding: 22px;
             background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px) saturate(160%);
@@ -299,19 +315,26 @@
             </select>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;">
-            <div class="input-group">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-bottom: 35px;">
+            <div class="input-group" style="margin-bottom: 0;">
                 <label class="required">Дата тренировки</label>
                 <input type="date" id="booking_date" required>
             </div>
-            <div class="input-group">
+            <div class="input-group" style="margin-bottom: 0;">
                 <label class="required">Время</label>
                 <input type="time" id="booking_time" required>
             </div>
-            <div class="input-group">
+            <div class="input-group" style="margin-bottom: 0;">
                 <label class="required">Практика</label>
                 <input type="text" id="booking_type" placeholder="Например: МФР" required>
             </div>
+        </div>
+
+        <div class="checkbox-group">
+            <input type="checkbox" id="consent_part1" required>
+            <label for="consent_part1">
+                Я даю <a href="https://resurs-stretch.ru/consent.html" target="_blank">согласие на обработку персональных данных</a> и подтверждаю, что ознакомлен(а) с <a href="https://resurs-stretch.ru/privacy.html" target="_blank">политикой конфиденциальности</a> и <a href="https://resurs-stretch.ru/offer.html" target="_blank">договором оферты</a>.
+            </label>
         </div>
 
         <div class="buttons-row">
@@ -365,7 +388,13 @@
             </select>
         </div>
 
-        <button class="btn-lens" style="background: rgba(197, 160, 89, 0.15); border-color: var(--accent-gold);" onclick="submitPart2()">К абонементам</button>
+        <div style="text-align: center; margin-bottom: 25px;">
+            <span style="display: inline-block; background: rgba(197, 160, 89, 0.1); border: 1px dashed var(--accent-gold); color: var(--accent-gold); padding: 8px 15px; border-radius: 20px; font-size: 13px; font-weight: 600;">
+                🎁 Не забудьте: Ваши +2 занятия в подарок ждут на следующем шаге!
+            </span>
+        </div>
+
+        <button class="btn-lens" style="background: rgba(197, 160, 89, 0.15); border-color: var(--accent-gold);" onclick="submitPart2()">СОХРАНИТЬ И ПОСМОТРЕТЬ АБОНЕМЕНТЫ (+2 ЗАНЯТИЯ ЖДУТ)</button>
     </div>
 
     <div id="giftSection" style="display: none;">
@@ -376,6 +405,13 @@
             <span style="display: inline-block; background: rgba(197, 160, 89, 0.1); border: 1px dashed var(--accent-gold); color: var(--accent-gold); padding: 8px 15px; border-radius: 20px; font-size: 13px; font-weight: 600;">
                 🎁 При покупке любого абонемента сегодня: +2 занятия в подарок!
             </span>
+        </div>
+
+        <div class="checkbox-group" style="justify-content: center; max-width: 500px; margin: 0 auto 30px;">
+            <input type="checkbox" id="consent_part3">
+            <label for="consent_part3">
+                Перед покупкой подтверждаю ознакомление с <a href="https://resurs-stretch.ru/privacy.html" target="_blank">политикой конфиденциальности</a> и <a href="https://resurs-stretch.ru/offer.html" target="_blank">договором оферты</a>.
+            </label>
         </div>
 
         <div class="gift-grid">
@@ -446,7 +482,6 @@
         }
     }
 
-    // Проверяем сохраненную тему при загрузке
     if (localStorage.getItem('resurs_theme') === 'light') {
         document.documentElement.classList.add('light-theme');
         document.getElementById('themeToggleBtn').innerText = 'Тень';
@@ -479,7 +514,7 @@
 
     let userPhone = "";
 
-    // Валидация
+    // Валидация Первой Части
     function validateForm() {
         const requiredFields = ['fio', 'birth_date', 'contraindications', 'user_goal', 'booking_date', 'booking_time', 'booking_type'];
         for (let id of requiredFields) {
@@ -496,6 +531,12 @@
             alert("Введи полный номер телефона для связи ✨"); 
             document.getElementById('phone').focus();
             return false; 
+        }
+
+        // Проверка галочки согласия на первой странице
+        if (!document.getElementById('consent_part1').checked) {
+            alert('Пожалуйста, подтвердите согласие на обработку данных и ознакомление с документами (поставьте галочку).');
+            return false;
         }
 
         return true;
@@ -638,6 +679,13 @@
 
     // 🔥 АВТОМАТИЗАЦИЯ +2 ЗАНЯТИЙ В ЧЕКЕ
     async function buySubscription(price, title, btnElement) {
+        
+        // Проверка галочки согласия перед покупкой абонемента
+        if (!document.getElementById('consent_part3').checked) {
+            alert('Пожалуйста, подтвердите ознакомление с политикой и офертой перед выбором абонемента (поставьте галочку).');
+            return;
+        }
+
         const originalText = btnElement.innerText;
         btnElement.innerText = "СВЯЗЬ С БАНКОМ...";
         btnElement.disabled = true;
