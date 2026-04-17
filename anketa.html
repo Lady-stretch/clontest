@@ -21,14 +21,14 @@
         var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
         if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
     })(document, window, "tmr-code");
-</script>
+    </script>
 
-<noscript>
-    <div>
-        <img src="https://mc.yandex.ru/watch/108177329" style="position:absolute; left:-9999px;" alt="" />
-        <img src="https://top-fwz1.mail.ru/counter?id=3755240;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" />
-    </div>
-</noscript>
+    <noscript>
+        <div>
+            <img src="https://mc.yandex.ru/watch/108177329" style="position:absolute; left:-9999px;" alt="" />
+            <img src="https://top-fwz1.mail.ru/counter?id=3755240;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" />
+        </div>
+    </noscript>
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -45,21 +45,47 @@
     <style>
         :root {
             --bg-deep: #080814;
+            --text-main: #F4F4F9;
             --accent-gold: #C5A059;
             --border: 1px solid rgba(255, 255, 255, 0.08);
+            --glass-bg: rgba(255, 255, 255, 0.02);
             --font-serif: 'Cormorant Garamond', serif;
             --font-main: 'Manrope', sans-serif;
             --transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
+        /* --- СВЕТЛАЯ ТЕМА --- */
+        :root.light-theme {
+            --bg-deep: #F4F4F9;
+            --text-main: #080814;
+            --border: 1px solid rgba(0, 0, 0, 0.1);
+            --glass-bg: rgba(0, 0, 0, 0.03);
+        }
+        :root.light-theme body {
+            background-image: none; 
+            color: var(--text-main);
+        }
+        :root.light-theme header {
+            background: rgba(244, 244, 249, 0.85);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        :root.light-theme .logo-text { color: var(--text-main); }
+        :root.light-theme .hero-overlay { background: linear-gradient(to bottom, rgba(244,244,249,0.4), var(--bg-deep)); }
+        :root.light-theme input, :root.light-theme select, :root.light-theme textarea { color: var(--text-main); border-bottom: 1px solid rgba(0, 0, 0, 0.2); }
+        :root.light-theme select { background: #EAEAEA; }
+        :root.light-theme ::placeholder { color: rgba(0, 0, 0, 0.4); }
+        :root.light-theme .theme-btn { border-color: rgba(0,0,0,0.2); color: var(--text-main); }
+        :root.light-theme .btn-lens { color: var(--text-main); border-color: rgba(0,0,0,0.2); }
+
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
         body {
             background: var(--bg-deep);
-            color: #F4F4F9;
+            color: var(--text-main);
             font-family: var(--font-main);
             line-height: 1.6;
             overflow-x: hidden;
+            transition: var(--transition);
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
         }
 
@@ -70,10 +96,27 @@
             background: rgba(10, 10, 25, 0.15); 
             backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
         }
         .logo-wrap { display: flex; align-items: center; gap: 15px; }
         .logo-img { height: 40px; border-radius: 8px; opacity: 0.9; }
-        .logo-text { font-family: var(--font-serif); font-size: 20px; letter-spacing: 12px; text-transform: uppercase; color: #fff; margin-right: -12px;}
+        .logo-text { font-family: var(--font-serif); font-size: 20px; letter-spacing: 12px; text-transform: uppercase; color: #fff; margin-right: -12px; transition: var(--transition);}
+
+        .theme-btn {
+            background: rgba(255,255,255,0.05); 
+            border: 1px solid rgba(255,255,255,0.15); 
+            border-radius: 8px; 
+            padding: 6px 14px; 
+            color: var(--accent-gold); 
+            font-family: var(--font-main); 
+            font-size: 10px; 
+            font-weight: 600;
+            text-transform: uppercase; 
+            cursor: pointer; 
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+        .theme-btn:hover { background: rgba(197, 160, 89, 0.1); border-color: var(--accent-gold); }
 
         .hero {
             height: 60vh; width: 100%; position: relative;
@@ -83,7 +126,7 @@
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
             min-width: 100%; min-height: 100%; z-index: -2; object-fit: cover; opacity: 0.6;
         }
-        .hero-overlay { position: absolute; inset: 0; z-index: -1; background: linear-gradient(to bottom, rgba(8,8,20,0.3), var(--bg-deep)); }
+        .hero-overlay { position: absolute; inset: 0; z-index: -1; background: linear-gradient(to bottom, rgba(8,8,20,0.3), var(--bg-deep)); transition: var(--transition); }
         .hero-content { text-align: center; z-index: 1; padding: 0 20px; margin-top: 50px;}
         .hero-content h2 { font-family: var(--font-serif); font-size: clamp(32px, 8vw, 64px); font-weight: 300; letter-spacing: 4px; margin-bottom: 10px; }
         .hero-content p { font-size: 10px; letter-spacing: 6px; text-transform: uppercase; color: var(--accent-gold); }
@@ -91,14 +134,17 @@
         .container { max-width: 800px; margin: -60px auto 100px; position: relative; z-index: 10; padding: 0 20px; }
 
         .glass-card {
-            background: rgba(255, 255, 255, 0.02);
+            background: var(--glass-bg);
             backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
             border: var(--border); padding: 60px 40px;
             border-radius: 12px; box-shadow: 0 30px 60px rgba(0,0,0,0.5); margin-bottom: 30px;
+            transition: var(--transition);
         }
 
         .input-group { margin-bottom: 35px; position: relative; }
-        label { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; opacity: 0.9; margin-bottom: 8px; font-weight: 600; color: var(--accent-gold); text-shadow: 0 1px 2px rgba(0,0,0,0.5); }
+        label { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; opacity: 0.9; margin-bottom: 8px; font-weight: 600; color: var(--accent-gold); text-shadow: 0 1px 2px rgba(0,0,0,0.1); }
+        .required::after { content: ' *'; color: #ff4a4a; }
+        
         input, select, textarea {
             width: 100%; background: transparent; border: none; border-bottom: 1px solid rgba(255,255,255,0.2);
             padding: 12px 0; color: #fff; font-size: 18px; font-family: var(--font-serif); transition: 0.3s;
@@ -106,18 +152,24 @@
         input:focus, select:focus, textarea:focus { border-color: var(--accent-gold); outline: none; }
         ::placeholder { color: rgba(255,255,255,0.4); font-size: 16px; }
         select { background: rgba(8, 8, 20, 0.9); }
+        
+        ::-webkit-calendar-picker-indicator { filter: invert(0.8) sepia(1) saturate(3) hue-rotate(350deg); cursor: pointer; }
+        :root.light-theme ::-webkit-calendar-picker-indicator { filter: none; }
 
         .inn-bonus { background: rgba(197, 160, 89, 0.05); border: 1px dashed rgba(197, 160, 89, 0.4); padding: 15px; margin-top: 15px; border-radius: 8px; font-size: 12px; line-height: 1.5; opacity: 0.8; }
 
         .btn-lens {
-            display: block; width: 100%; text-align: center; padding: 22px;
+            display: flex; align-items: center; justify-content: center; width: 100%; text-align: center; padding: 22px;
             background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px) saturate(160%);
             -webkit-backdrop-filter: blur(15px) saturate(160%); border: 1px solid rgba(255, 255, 255, 0.15);
-            color: #fff; text-transform: uppercase; letter-spacing: 5px; font-size: 11px; cursor: pointer;
+            color: #fff; text-transform: uppercase; letter-spacing: 2px; font-size: 11px; font-weight: 600; cursor: pointer;
             border-radius: 8px; transition: var(--transition);
         }
-        .btn-lens:hover:not(:disabled) { transform: scale(1.02); background: rgba(197, 160, 89, 0.2); border-color: var(--accent-gold); box-shadow: 0 10px 30px rgba(197, 160, 89, 0.3); }
+        .btn-lens:hover:not(:disabled) { transform: translateY(-2px); background: rgba(197, 160, 89, 0.2); border-color: var(--accent-gold); box-shadow: 0 10px 30px rgba(197, 160, 89, 0.3); }
         .btn-lens:disabled { opacity: 0.5; cursor: not-allowed; }
+        
+        .buttons-row { display: flex; gap: 15px; flex-wrap: wrap; }
+        .buttons-row .btn-lens { flex: 1; min-width: 250px; }
 
         /* 🔥 МОДАЛКА ЮKASSA */
         .modal {
@@ -136,7 +188,6 @@
         }
         #payment-form-container { width: 100%; min-height: 400px; margin-top: 20px; display: flex; justify-content: center; }
 
-        /* 🔥 СТИЛИ ДЛЯ ПРИЛОЖЕНИЙ (МЕРЦАНИЕ) */
         @keyframes shimmer {
             0% { background-position: -200% center; }
             100% { background-position: 200% center; }
@@ -153,6 +204,8 @@
         }
         .app-btn:hover { border-color: var(--accent-gold); box-shadow: 0 5px 15px rgba(197, 160, 89, 0.2); transform: translateY(-2px);}
         .app-btn img { height: 24px; filter: invert(1); }
+        :root.light-theme .app-btn img { filter: invert(0); }
+        :root.light-theme .app-btn { color: #000; }
         .app-text span { display: block; font-size: 8px; opacity: 0.7; text-transform: uppercase; color: var(--accent-gold);}
         .app-text b { font-size: 13px; font-family: var(--font-main); letter-spacing: 1px;}
 
@@ -181,7 +234,10 @@
         <img src="logo_header_final.png" alt="Логотип" class="logo-img">
         <div class="logo-text">РЕСУРС</div>
     </div>
-    <div style="font-size: 9px; letter-spacing: 2px; opacity: 0.5; text-transform: uppercase;">Сыктывкар</div>
+    <div style="display: flex; align-items: center; gap: 15px;">
+        <div style="font-size: 9px; letter-spacing: 2px; opacity: 0.5; text-transform: uppercase; display: none; @media(min-width: 400px){display: block;}">Сыктывкар</div>
+        <button id="themeToggleBtn" class="theme-btn" onclick="toggleTheme()">Свет</button>
+    </div>
 </header>
 
 <div id="resetDot" style="position: fixed; top: 90px; right: 10px; width: 15px; height: 15px; background: rgba(255,255,255,0.05); border-radius: 50%; cursor: pointer; z-index: 9999; border: 1px solid rgba(255,255,255,0.1);" onclick="localStorage.clear(); location.reload();" title="Сбросить память"></div>
@@ -203,18 +259,18 @@
         <h3 style="font-family: var(--font-serif); font-size: 28px; margin-bottom: 40px; text-align: center;">Данные для входа в клуб</h3>
         
         <div class="input-group">
-            <label>Твое Имя</label>
-            <input type="text" id="fio" placeholder="Как мы можем к тебе обращаться?">
+            <label class="required">ФИО полностью</label>
+            <input type="text" id="fio" placeholder="Например: Иванова Анна Сергеевна" required>
         </div>
 
         <div class="input-group">
-            <label>Твой номер для связи</label>
-            <input type="tel" id="phone">
+            <label class="required">Твой номер для связи</label>
+            <input type="tel" id="phone" required>
         </div>
 
         <div class="input-group">
-            <label>Дата рождения (День Х)</label>
-            <input type="date" id="birth_date">
+            <label class="required">Дата рождения</label>
+            <input type="date" id="birth_date" required>
         </div>
 
         <div class="input-group">
@@ -226,44 +282,51 @@
         </div>
 
         <div class="input-group">
-            <label>Медицинские противопоказания</label>
-            <textarea id="contraindications" rows="2" placeholder="Травмы, ограничения, рекомендации врача (если нет, оставь пустым)"></textarea>
+            <label class="required">Медицинские противопоказания</label>
+            <textarea id="contraindications" rows="2" placeholder="Травмы, ограничения, рекомендации врача (если нет, напишите слово «нет»)" required></textarea>
         </div>
 
         <div class="input-group">
-            <label>Какую цель ставите на ближайшее время?</label>
-            <textarea id="user_goal" rows="2" placeholder="Например: сесть на шпагат, избавиться от боли в спине, похудеть..."></textarea>
+            <label class="required">Какую цель ставите на ближайшее время?</label>
+            <textarea id="user_goal" rows="2" placeholder="Например: сесть на шпагат, избавиться от боли в спине, похудеть..." required></textarea>
         </div>
 
         <div class="input-group">
-            <label>Выбери пространство</label>
-            <select id="studio">
+            <label class="required">Выбери пространство</label>
+            <select id="studio" required>
                 <option value="Коммунистическая">Коммунистическая, 77/2</option>
                 <option value="Советская">Советская, 3</option>
             </select>
         </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;">
             <div class="input-group">
-                <label>Дата</label>
-                <input type="text" id="booking_date" placeholder="ДД.ММ">
+                <label class="required">Дата тренировки</label>
+                <input type="date" id="booking_date" required>
             </div>
             <div class="input-group">
-                <label>Время</label>
-                <input type="text" id="booking_time" placeholder="00:00">
+                <label class="required">Время</label>
+                <input type="time" id="booking_time" required>
             </div>
             <div class="input-group">
-                <label>Практика</label>
-                <input type="text" id="booking_type" placeholder="МФР">
+                <label class="required">Практика</label>
+                <input type="text" id="booking_type" placeholder="Например: МФР" required>
             </div>
         </div>
 
-        <button class="btn-lens" id="btnPay" style="background: rgba(197, 160, 89, 0.15); border-color: var(--accent-gold); font-size: 13px;" onclick="submitPart1()">ОТПРАВИТЬ И ОПЛАТИТЬ (455 ₽)</button>
+        <div class="buttons-row">
+            <button class="btn-lens" id="btnPaid" onclick="submitPart1(true)">Отправить (если оплачено)</button>
+            <button class="btn-lens" id="btnPay" style="background: rgba(197, 160, 89, 0.15); border-color: var(--accent-gold);" onclick="submitPart1(false)">ОТПРАВИТЬ И ОПЛАТИТЬ (455 ₽)</button>
+        </div>
     </div>
 
     <div class="glass-card" id="formPart2" style="display:none;">
         <h3 style="font-family: var(--font-serif); font-size: 28px; margin-bottom: 20px; text-align: center;">Твое состояние</h3>
-        <p style="text-align: center; font-size: 12px; opacity: 0.6; margin-bottom: 40px;">Помоги нам стать еще лучше для тебя</p>
+        
+        <div style="background: rgba(197, 160, 89, 0.05); border: 1px solid rgba(197, 160, 89, 0.3); border-left: 4px solid var(--accent-gold); padding: 20px; border-radius: 8px; margin-bottom: 35px; text-align: center;">
+            <span style="display: block; font-size: 14px; font-weight: 600; color: var(--accent-gold); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;">Заполняется после тренировки</span>
+            <p style="font-size: 13px; opacity: 0.8; line-height: 1.5;">Сейчас вы можете закрыть эту страницу. Сразу после занятия перейдите по этой же ссылке снова и поделитесь своими впечатлениями!</p>
+        </div>
 
         <div class="input-group">
             <label>Насколько профессионален был тренер? (1-10)</label>
@@ -284,12 +347,36 @@
             </select>
         </div>
 
-        <button class="btn-lens" onclick="submitPart2()">Забрать секретный бонус</button>
+        <div class="input-group">
+            <label>Готовы ли порекомендовать нашу студию знакомым?</label>
+            <select id="recommend">
+                <option value="Обязательно">Да, с удовольствием</option>
+                <option value="Возможно">Возможно</option>
+                <option value="Пока нет">Пока нет</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label>Планируете ли покупать абонемент?</label>
+            <select id="plan_buy">
+                <option value="Да">Да, уже выбираю</option>
+                <option value="Думаю">Пока думаю</option>
+                <option value="Нет">Пока нет</option>
+            </select>
+        </div>
+
+        <button class="btn-lens" style="background: rgba(197, 160, 89, 0.15); border-color: var(--accent-gold);" onclick="submitPart2()">К абонементам</button>
     </div>
 
     <div id="giftSection" style="display: none;">
         <h3 style="font-family: var(--font-serif); font-size: 36px; text-align: center; color: var(--accent-gold);">Твой подарок активен</h3>
-        <p style="text-align: center; font-size: 12px; opacity: 0.6; margin-bottom: 40px; text-transform: uppercase; letter-spacing: 2px;">Только 24 часа после первой тренировки</p>
+        <p style="text-align: center; font-size: 12px; opacity: 0.6; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 2px;">Только 24 часа после первой тренировки</p>
+        
+        <div style="text-align: center; margin-bottom: 40px;">
+            <span style="display: inline-block; background: rgba(197, 160, 89, 0.1); border: 1px dashed var(--accent-gold); color: var(--accent-gold); padding: 8px 15px; border-radius: 20px; font-size: 13px; font-weight: 600;">
+                🎁 При покупке любого абонемента сегодня: +2 занятия в подарок!
+            </span>
+        </div>
 
         <div class="gift-grid">
             <div class="gift-card">
@@ -344,6 +431,27 @@
 </div>
 
 <script>
+    // --- ПЕРЕКЛЮЧЕНИЕ ТЕМЫ ---
+    function toggleTheme() {
+        const root = document.documentElement;
+        const btn = document.getElementById('themeToggleBtn');
+        if (root.classList.contains('light-theme')) {
+            root.classList.remove('light-theme');
+            btn.innerText = 'Свет';
+            localStorage.setItem('resurs_theme', 'dark');
+        } else {
+            root.classList.add('light-theme');
+            btn.innerText = 'Тень';
+            localStorage.setItem('resurs_theme', 'light');
+        }
+    }
+
+    // Проверяем сохраненную тему при загрузке
+    if (localStorage.getItem('resurs_theme') === 'light') {
+        document.documentElement.classList.add('light-theme');
+        document.getElementById('themeToggleBtn').innerText = 'Тень';
+    }
+
     // 🔥 УМНАЯ ПАМЯТЬ БРАУЗЕРА (localStorage)
     document.addEventListener("DOMContentLoaded", () => {
         const step = localStorage.getItem('anketa_step');
@@ -362,26 +470,55 @@
     if(urlParams.get('type')) document.getElementById('booking_type').value = urlParams.get('type');
     if(urlParams.get('time')) document.getElementById('booking_time').value = urlParams.get('time');
 
+    // Маска телефона
     const phoneMask = IMask(document.getElementById('phone'), { mask: '+{7} (000) 000-00-00', lazy: false });
     
+    // Ссылки на Яндекс Облако
     const CLOUD_URL_MAIN = "https://functions.yandexcloud.net/d4ev3d22o0ip0tb8qant"; 
     const CLOUD_URL_PAY = "https://functions.yandexcloud.net/d4el388cufj9g6egpam3"; 
 
     let userPhone = "";
 
-    async function submitPart1() {
-        const btnPay = document.getElementById('btnPay');
-        
+    // Валидация
+    function validateForm() {
+        const requiredFields = ['fio', 'birth_date', 'contraindications', 'user_goal', 'booking_date', 'booking_time', 'booking_type'];
+        for (let id of requiredFields) {
+            const el = document.getElementById(id);
+            if (!el.value || el.value.trim() === '') {
+                alert('Пожалуйста, заполни все обязательные поля со звездочкой (*)');
+                el.focus();
+                return false;
+            }
+        }
+
         userPhone = phoneMask.unmaskedValue;
-        if (userPhone.length < 11) { alert("Введи полный номер телефона для связи ✨"); return; }
+        if (userPhone.length < 11) { 
+            alert("Введи полный номер телефона для связи ✨"); 
+            document.getElementById('phone').focus();
+            return false; 
+        }
+
+        return true;
+    }
+
+    async function submitPart1(isAlreadyPaid) {
+        if (!validateForm()) return;
+
+        const btnPay = document.getElementById('btnPay');
+        const btnPaid = document.getElementById('btnPaid');
         
         btnPay.disabled = true;
-        btnPay.innerText = "ОТПРАВЛЯЕМ И ГОТОВИМ ОПЛАТУ...";
+        btnPaid.disabled = true;
+
+        if (isAlreadyPaid) {
+            btnPaid.innerText = "ОТПРАВЛЯЕМ...";
+        } else {
+            btnPay.innerText = "ОТПРАВЛЯЕМ И ГОТОВИМ ОПЛАТУ...";
+        }
 
         const bookingData = `${document.getElementById('booking_date').value} | ${document.getElementById('booking_time').value} | ${document.getElementById('booking_type').value}`;
-        const userName = document.getElementById('fio').value || 'Не указано';
+        const userName = document.getElementById('fio').value;
 
-        // 🔥 Запоминаем данные клиента, чтобы не спрашивать их на этапе абонементов
         localStorage.setItem('userPhone', userPhone);
         localStorage.setItem('userName', userName);
 
@@ -398,6 +535,12 @@
         };
 
         fetch(CLOUD_URL_MAIN, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(mainData) }).catch(e=>console.log("Error", e));
+
+        if (isAlreadyPaid) {
+            localStorage.setItem('anketa_step', 'part2');
+            goToPart2();
+            return;
+        }
 
         try {
             const payRes = await fetch(CLOUD_URL_PAY, {
@@ -416,14 +559,12 @@
             if (payData.confirmation_token) {
                 localStorage.setItem('anketa_step', 'part2');
                 
-                // Настраиваем тексты в модалке
                 document.getElementById('modalTitle').innerText = 'Оплата пробного';
                 document.getElementById('modalSubtitle').innerText = 'Безопасный платеж 455 ₽';
                 
                 document.getElementById('orderModal').style.display = 'flex';
                 document.body.style.overflow = 'hidden';
                 
-                // Очищаем контейнер перед рендером
                 document.getElementById('payment-form-container').innerHTML = '';
                 
                 const checkout = new window.YooMoneyCheckoutWidget({
@@ -444,7 +585,9 @@
         }
 
         btnPay.innerText = "ОТПРАВИТЬ И ОПЛАТИТЬ (455 ₽)";
+        btnPaid.innerText = "Отправить (если оплачено)";
         btnPay.disabled = false;
+        btnPaid.disabled = false;
     }
 
     function goToPart2() {
@@ -457,7 +600,6 @@
         document.getElementById('orderModal').style.display = 'none';
         document.body.style.overflow = 'auto';
         
-        // Переходим ко второй части только если мы были на первой
         const step = localStorage.getItem('anketa_step');
         if (step !== 'done' && step !== 'part2') {
             goToPart2();
@@ -474,7 +616,9 @@
             phone: localStorage.getItem('userPhone') || phoneMask.unmaskedValue, 
             rate_trainer: document.getElementById('rate_trainer').value,
             trainer_comment: document.getElementById('trainer_comment').value,
-            ready: document.getElementById('ready').value
+            ready: document.getElementById('ready').value,
+            recommend: document.getElementById('recommend').value, 
+            plan_buy: document.getElementById('plan_buy').value    
         };
 
         try {
@@ -492,13 +636,12 @@
         }
     }
 
-    // 🔥 НОВАЯ ФУНКЦИЯ ДЛЯ ОПЛАТЫ АБОНЕМЕНТОВ
+    // 🔥 АВТОМАТИЗАЦИЯ +2 ЗАНЯТИЙ В ЧЕКЕ
     async function buySubscription(price, title, btnElement) {
         const originalText = btnElement.innerText;
         btnElement.innerText = "СВЯЗЬ С БАНКОМ...";
         btnElement.disabled = true;
 
-        // Достаем телефон и имя из памяти телефона
         const savedPhone = localStorage.getItem('userPhone') || '';
         const savedName = localStorage.getItem('userName') || 'Резидент';
 
@@ -510,21 +653,19 @@
                     amount: price,
                     name: savedName,
                     phone: savedPhone,
-                    description: `Абонемент РЕСУРС: ${title}`
+                    description: `Абонемент РЕСУРС: ${title} (+2 занятия в подарок)`
                 })
             });
             
             const payData = await payRes.json();
             
             if (payData.confirmation_token) {
-                // Настраиваем тексты в модалке для абонементов
                 document.getElementById('modalTitle').innerText = title;
                 document.getElementById('modalSubtitle').innerText = `Безопасный платеж ${price} ₽`;
                 
                 document.getElementById('orderModal').style.display = 'flex';
                 document.body.style.overflow = 'hidden';
                 
-                // Очищаем старый виджет, если он там был с первого шага
                 document.getElementById('payment-form-container').innerHTML = '';
 
                 const checkout = new window.YooMoneyCheckoutWidget({
