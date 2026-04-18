@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>РЕСУРС | Система управления бизнесом</title>
+    <title id="tab-title">РЕСУРС | Система управления бизнесом</title>
     
     <link rel="icon" type="image/png" href="favicon.png">
     
@@ -138,7 +138,7 @@
             transform: scale(0.97); 
         }
 
-        input, select {
+        input, select, textarea {
             width: 100%; 
             background: #ffffff; 
             border: 1px solid rgba(0,0,0,0.1);
@@ -152,6 +152,11 @@
             -webkit-appearance: none;
         }
 
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
         select { 
             background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23A68A56%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'); 
             background-repeat: no-repeat; 
@@ -159,7 +164,7 @@
             background-size: 12px auto; 
         }
 
-        input:focus, select:focus {
+        input:focus, select:focus, textarea:focus {
             border-color: var(--accent);
             outline: none;
         }
@@ -311,8 +316,8 @@
             overflow: hidden; 
         }
 
-        /* БЛОКИРОВКА */
-        #auth { 
+        /* БЛОКИРОВКА И НАСТРОЙКИ */
+        #auth, #config-modal { 
             position: fixed; 
             inset: 0; 
             background: var(--bg-deep); 
@@ -322,6 +327,23 @@
             align-items: center; 
             justify-content: center; 
             padding: 40px; 
+        }
+
+        #config-modal {
+            display: none;
+            overflow-y: auto;
+            justify-content: flex-start;
+            padding: 20px;
+        }
+
+        .config-box {
+            background: var(--glass);
+            padding: 25px;
+            border-radius: 24px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: var(--shadow);
+            margin-top: 20px;
         }
 
         /* ШАПКА И ФИЛЬТРЫ */
@@ -371,10 +393,37 @@
 
 <div id="auth">
     <img src="favicon.png" alt="Логотип РЕСУРС" style="width: 80px; height: 80px; margin-bottom: 20px; object-fit: contain;">
-    <h1 style="font-size: 48px; margin-bottom: 10px; letter-spacing: 8px;">РЕСУРС</h1>
+    <h1 id="brand-auth-title" style="font-size: 48px; margin-bottom: 10px; letter-spacing: 8px;">РЕСУРС</h1>
     <p style="color: var(--text-dim); margin-bottom: 40px; text-transform: uppercase; font-size: 12px; letter-spacing: 2px;">Юнит-Экономика / Управление</p>
     <input type="password" id="pass" placeholder="Кодовое слово" style="text-align: center; max-width: 320px;">
     <button class="btn" style="max-width: 320px;" onclick="unlockSystem()">ОТКРЫТЬ СИСТЕМУ</button>
+</div>
+
+<div id="config-modal">
+    <div class="config-box">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h2 class="serif" style="font-size: 28px;">Настройки Бренда</h2>
+            <span onclick="closeConfig()" style="cursor: pointer; font-size: 28px; line-height: 0.5;">&times;</span>
+        </div>
+        <p style="font-size: 12px; color: var(--text-dim); margin-bottom: 20px;">Впишите данные. Каждый пункт с новой строки.</p>
+        
+        <label>Название Бренда (в шапке)</label>
+        <input type="text" id="cfg-brand" value="РЕСУРС">
+        
+        <label>Подразделения (Локации / Студии)</label>
+        <textarea id="cfg-units"></textarea>
+        
+        <label>Номенклатура (Услуги / Абонементы)</label>
+        <textarea id="cfg-products"></textarea>
+        
+        <label>Каналы трафика</label>
+        <textarea id="cfg-sources"></textarea>
+        
+        <label>Категории расходов</label>
+        <textarea id="cfg-expenses"></textarea>
+
+        <button class="btn" onclick="saveConfig()">Применить настройки</button>
+    </div>
 </div>
 
 <nav id="nav-bar" style="display: none;">
@@ -414,19 +463,17 @@
         <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
             <div style="display: flex; align-items: center; gap: 12px;">
                 <img src="favicon.png" alt="РЕСУРС" style="width: 35px; height: 35px; object-fit: contain;">
-                <h2 class="serif" style="font-size: 32px; margin: 0;">Сводка</h2>
+                <h2 class="serif" style="font-size: 32px; margin: 0;" id="brand-dash-title">Сводка</h2>
             </div>
-            <div onclick="logout()" style="cursor: pointer; font-size: 10px; font-weight: 800; color: var(--text-dim); border: 1px solid rgba(0,0,0,0.1); padding: 8px 12px; border-radius: 12px; text-transform: uppercase; letter-spacing: 1px;">
-                Выход 🚪
+            <div style="display: flex; gap: 10px;">
+                <div onclick="openConfigPrompt()" style="cursor: pointer; font-size: 16px; padding: 6px; border-radius: 8px;">⚙️</div>
+                <div onclick="logout()" style="cursor: pointer; font-size: 10px; font-weight: 800; color: var(--text-dim); border: 1px solid rgba(0,0,0,0.1); padding: 8px 12px; border-radius: 12px; text-transform: uppercase; letter-spacing: 1px;">Выход 🚪</div>
             </div>
         </div>
         
         <div class="filter-row">
             <select id="dash-studio-filter" class="period-select" onchange="applyFilters()">
-                <option value="all" selected>Общая сводка</option>
-                <option value="Советская 3">Советская 3</option>
-                <option value="Коммунистическая 77/2">Коммунистическая 77/2</option>
-            </select>
+                </select>
 
             <select id="period-filter" class="period-select" onchange="toggleCustomDate()">
                 <option value="today">За сегодня</option>
@@ -529,34 +576,23 @@
 
 <div id="page-input" class="page">
     <div class="header-logo-title" style="margin-bottom: 25px;">
-        <img src="favicon.png" alt="РЕСУРС" style="width: 35px; height: 35px; object-fit: contain;">
-        <h2 class="serif" style="font-size: 32px; margin: 0;">Фиксация</h2>
+        <img src="favicon.png" alt="Логотип" style="width: 35px; height: 35px; object-fit: contain;">
+        <h2 class="serif" style="font-size: 32px; margin: 0; display: inline-block; vertical-align: top; margin-left: 10px;">Фиксация</h2>
     </div>
     
     <div class="card">
         <label>Календарь (Выбор даты)</label>
         <input type="date" id="in-date">
-        <label>Студия</label>
+        <label>Студия / Локация</label>
         <select id="in-loc">
-            <option value="">-- ВЫБРАТЬ СТУДИЮ --</option>
-            <option value="Советская 3">Советская 3</option>
-            <option value="Коммунистическая 77/2">Коммунистическая 77/2</option>
-        </select>
+            </select>
     </div>
 
     <div class="card" style="border-left: 5px solid var(--accent);">
         <h3 class="serif" style="margin-bottom: 15px;">Трафик и Записи</h3>
         <label>Источник лидов</label>
         <select id="l-src">
-            <option value="">-- ВЫБРАТЬ ИСТОЧНИК --</option>
-            <option value="ВК">ВК</option>
-            <option value="2ГИС">2ГИС</option>
-            <option value="Яндекс">Яндекс</option>
-            <option value="Подруги / Рекомендации">Подруги / Рекомендации</option>
-            <option value="Архив / Старая база">Архив / Старая база</option>
-            <option value="Одноклассники">Одноклассники</option>
-            <option value="Сайт">Сайт</option>
-        </select>
+            </select>
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
             <div>
                 <label>Поступило лидов</label>
@@ -576,29 +612,12 @@
         <select id="s-cat">
             <option value="">-- ВЫБРАТЬ СТАТУС --</option>
             <option value="trial">Пробное занятие (Доходимость)</option>
-            <option value="prim">Первичная покупка абонемента</option>
-            <option value="sec">Вторичная покупка (Продление)</option>
+            <option value="prim">Первичная продажа</option>
+            <option value="sec">Вторичная продажа (Продление)</option>
         </select>
-        <label>Номенклатура (Продукт)</label>
+        <label>Номенклатура (Продукт / Абонемент)</label>
         <select id="s-type">
-            <option value="">-- ВЫБРАТЬ АБОНЕМЕНТ --</option>
-            <option value="Пробное занятие">Пробное занятие</option>
-            <option value="Разовое занятие">Разовое занятие</option>
-            <option value="Депозит (Бронь)">Депозит (Бронь)</option>
-            <option value="Персональное занятие">Персональное занятие</option>
-            <option value="Подписка 3 зан/нед">Подписка 3 зан/нед</option>
-            <option value="Тест драйв 3 зан на 10 дней">Тест драйв 3 зан на 10 дней</option>
-            <option value="Безлимит на месяц">Безлимит на месяц</option>
-            <option value="8 занятий">8 занятий</option>
-            <option value="12 занятий">12 занятий</option>
-            <option value="16 занятий">16 занятий</option>
-            <option value="24 занятия">24 занятия</option>
-            <option value="32 занятия">32 занятия</option>
-            <option value="48 занятий">48 занятий</option>
-            <option value="64 занятия">64 занятия</option>
-            <option value="96 занятий">96 занятий</option>
-            <option value="128 занятий">128 занятий</option>
-        </select>
+            </select>
         <label>Фактическая сумма оплаты (₽)</label>
         <input type="number" id="s-val" placeholder="Например: 11200">
         <button class="btn" onclick="addSale(this)">Зафиксировать продажу</button>
@@ -608,14 +627,7 @@
         <h3 class="serif" style="margin-bottom: 15px;">Расходы</h3>
         <label>Категория</label>
         <select id="e-cat">
-            <option value="">-- ВЫБРАТЬ КАТЕГОРИЮ --</option>
-            <option value="Реклама (ВК)">Реклама (ВК)</option>
-            <option value="Реклама (Яндекс)">Реклама (Яндекс)</option>
-            <option value="Такси / Логистика">Такси / Логистика</option>
-            <option value="Хознужды / Вода">Хознужды / Вода</option>
-            <option value="Аренда / Кредит">Аренда / Кредит</option>
-            <option value="ЗП / Авансы">ЗП / Авансы</option>
-        </select>
+            </select>
         <label>Сумма (₽)</label>
         <input type="number" id="e-val" placeholder="0">
         <button class="btn" style="background: var(--crit);" onclick="addExpense(this)">Учесть расход</button>
@@ -634,12 +646,9 @@
     
     <div class="card">
         <h3 class="serif" style="margin-bottom: 15px;">Установка KPI (Плана)</h3>
-        <label>Целевая Студия</label>
+        <label>Целевая Локация</label>
         <select id="plan-studio" onchange="updatePlanProgress()">
-            <option value="all">Все студии (Общий план)</option>
-            <option value="Советская 3">Советская 3</option>
-            <option value="Коммунистическая 77/2">Коммунистическая 77/2</option>
-        </select>
+            </select>
         <label>План по Выручке (₽)</label>
         <input type="number" id="plan-rev-input" placeholder="Например: 1000000">
         <label>План по Лидам (шт)</label>
@@ -648,7 +657,7 @@
     </div>
 
     <div class="card">
-        <h3 class="serif" style="margin-bottom: 15px;">Контроль выполнения (Студия: <span id="active-plan-label" style="color:var(--accent);">Все</span>)</h3>
+        <h3 class="serif" style="margin-bottom: 15px;">Контроль выполнения (<span id="active-plan-label" style="color:var(--accent);">Все</span>)</h3>
         
         <label>Выручка: <span id="plan-rev-text">0 / 0 ₽ (0%)</span></label>
         <div class="plan-bar-bg">
@@ -669,7 +678,7 @@
     </div>
 
     <div class="card">
-        <h3 class="serif" style="margin-bottom: 15px;">Популярность Абонементов (SKU)</h3>
+        <h3 class="serif" style="margin-bottom: 15px;">Популярность Услуг (SKU)</h3>
         <div class="chart-wrap">
             <canvas id="skuChart"></canvas>
         </div>
@@ -677,52 +686,122 @@
 </div>
 
 <script>
-    // === НАСТРОЙКИ ОБЛАКА ===
+    // === НАСТРОЙКИ ОБЛАКА (Yandex Cloud) ===
     const BACKEND_URL = "https://functions.yandexcloud.net/d4esie0g5hb62gg515a9";
     const BACKEND_TOKEN = "Resurs_studio-2026"; 
 
-    // Локальные данные и Планы
+    // === ДИНАМИЧЕСКИЙ КОНФИГУРАТОР (Вшиты ваши данные) ===
+    let sysConfig = {
+        brand: "РЕСУРС",
+        units: ["Советская 3", "Коммунистическая 77/2"],
+        products: [
+            "Пробное занятие", "Разовое занятие", "Депозит (Бронь)", "Персональное занятие", 
+            "Подписка 3 зан/нед", "Тест драйв 3 зан на 10 дней", "Безлимит на месяц", 
+            "8 занятий", "12 занятий", "16 занятий", "24 занятия", "32 занятия", 
+            "48 занятий", "64 занятия", "96 занятий", "128 занятий"
+        ],
+        sources: ["ВК", "2ГИС", "Яндекс", "Подруги / Рекомендации", "Архив / Старая база", "Одноклассники", "Сайт"],
+        expenses: ["Реклама (ВК)", "Реклама (Яндекс)", "Такси / Логистика", "Хознужды / Вода", "Аренда / Кредит", "ЗП / Авансы"]
+    };
+
     let appData = { 
-        totalRevenue: 0, 
-        secondaryRevenue: 0, 
-        leads: 0, 
-        bookings: 0,
-        trials: 0, 
-        primarySales: 0, 
-        secondarySalesCount: 0, 
-        marketingSpend: 0,
-        totalExpenses: 0, 
-        dailyRevenue: {}, 
-        leadsBySource: {
-            'ВК': 0, '2ГИС': 0, 'Яндекс': 0, 'Сайт': 0, 
-            'Подруги / Рекомендации': 0, 'Архив / Старая база': 0, 'Одноклассники': 0
-        }, 
-        salesBySku: {},
-        plans: {
-            'all': { rev: 0, leads: 0 },
-            'Советская 3': { rev: 0, leads: 0 },
-            'Коммунистическая 77/2': { rev: 0, leads: 0 }
-        }
+        totalRevenue: 0, secondaryRevenue: 0, leads: 0, bookings: 0, trials: 0, 
+        primarySales: 0, secondarySalesCount: 0, marketingSpend: 0, totalExpenses: 0, 
+        dailyRevenue: {}, leadsBySource: {}, salesBySku: {}, plans: {}
     };
 
     let rawServerData = null; // Хранилище сырых данных из БД
-    let revenueChartInstance;
-    let channelsChartInstance;
-    let skuChartInstance;
+    let revenueChartInstance; let channelsChartInstance; let skuChartInstance;
+
+    // --- ЗАГРУЗКА НАСТРОЕК В ИНТЕРФЕЙС ---
+    function loadSettings() {
+        const saved = localStorage.getItem('core_sys_config');
+        if (saved) {
+            sysConfig = JSON.parse(saved);
+        }
+        
+        document.getElementById('tab-title').innerText = sysConfig.brand + " | Система управления";
+        document.getElementById('brand-auth-title').innerText = sysConfig.brand;
+        document.getElementById('brand-dash-title').innerText = "Сводка: " + sysConfig.brand;
+
+        populateSelect('dash-studio-filter', sysConfig.units, true, "Общая сводка");
+        populateSelect('in-loc', sysConfig.units, false);
+        populateSelect('plan-studio', sysConfig.units, true, "Все локации (Общий план)");
+        populateSelect('l-src', sysConfig.sources, false);
+        populateSelect('s-type', sysConfig.products, false);
+        populateSelect('e-cat', sysConfig.expenses, false);
+    }
+
+    function populateSelect(id, array, includeAll, allText) {
+        const select = document.getElementById(id);
+        if (!select) return;
+        select.innerHTML = "";
+        if (includeAll) {
+            select.innerHTML += `<option value="all">${allText}</option>`;
+        } else {
+            select.innerHTML += `<option value="">-- ВЫБРАТЬ --</option>`;
+        }
+        array.forEach(item => {
+            select.innerHTML += `<option value="${item}">${item}</option>`;
+        });
+    }
+
+    // --- ПАНЕЛЬ АДМИНИСТРАТОРА (Шестеренка) ---
+    function openConfigPrompt() {
+        const pwd = prompt("Введите мастер-пароль для доступа к настройкам:");
+        if (pwd === "Boss admin 1981") {
+            document.getElementById('cfg-brand').value = sysConfig.brand;
+            document.getElementById('cfg-units').value = sysConfig.units.join('\n');
+            document.getElementById('cfg-products').value = sysConfig.products.join('\n');
+            document.getElementById('cfg-sources').value = sysConfig.sources.join('\n');
+            document.getElementById('cfg-expenses').value = sysConfig.expenses.join('\n');
+            document.getElementById('config-modal').style.display = 'flex';
+        } else if (pwd !== null) {
+            alert("Неверный пароль конфигуратора.");
+        }
+    }
+
+    function closeConfig() {
+        document.getElementById('config-modal').style.display = 'none';
+    }
+
+    function saveConfig() {
+        const newBrand = document.getElementById('cfg-brand').value.trim() || "РЕСУРС";
+        const newUnits = document.getElementById('cfg-units').value.split('\n').map(s => s.trim()).filter(s => s);
+        const newProducts = document.getElementById('cfg-products').value.split('\n').map(s => s.trim()).filter(s => s);
+        const newSources = document.getElementById('cfg-sources').value.split('\n').map(s => s.trim()).filter(s => s);
+        const newExpenses = document.getElementById('cfg-expenses').value.split('\n').map(s => s.trim()).filter(s => s);
+
+        if (newUnits.length === 0 || newProducts.length === 0) {
+            alert("Списки локаций и услуг не могут быть пустыми!");
+            return;
+        }
+
+        sysConfig.brand = newBrand;
+        sysConfig.units = newUnits;
+        sysConfig.products = newProducts;
+        sysConfig.sources = newSources;
+        sysConfig.expenses = newExpenses;
+
+        localStorage.setItem('core_sys_config', JSON.stringify(sysConfig));
+        
+        alert("Настройки применены.");
+        location.reload();
+    }
 
     // --- ПРОВЕРКА АВТОРИЗАЦИИ ПРИ ЗАГРУЗКЕ СТРАНИЦЫ ---
     window.onload = function() {
+        loadSettings(); // Сначала грузим настройки интерфейса
+        
         if (localStorage.getItem('resurs_auth') === 'true') {
             document.getElementById('auth').style.display = 'none';
             document.getElementById('nav-bar').style.display = 'flex';
             document.getElementById('vera-btn').style.display = 'flex';
             document.getElementById('in-date').valueAsDate = new Date();
             
-            // Персонализация Веры при входе
             const uName = localStorage.getItem('resurs_user') || 'Николай Сергеевич';
             document.getElementById('vera-welcome-msg').innerText = `${uName}, здравия желаю! Все системы оцифрованы. Жду команд.`;
             
-            // Восстановление планов из памяти браузера
             const savedPlans = localStorage.getItem('resurs_plans');
             if (savedPlans) {
                 appData.plans = JSON.parse(savedPlans);
@@ -747,7 +826,6 @@
             return;
         }
 
-        // Сохраняем сессию
         localStorage.setItem('resurs_auth', 'true');
         localStorage.setItem('resurs_user', userName);
         
@@ -762,7 +840,6 @@
         switchTab('page-dash', document.querySelector('.nav-item.active'));
     }
 
-    // --- ФУНКЦИЯ ВЫХОДА ---
     function logout() {
         if (confirm("Выйти из системы управления?")) {
             localStorage.clear(); 
@@ -786,9 +863,8 @@
             if (response.ok) {
                 rawServerData = await response.json();
                 
-                // --- БРОНЯ ОТ YDB (ФОРМАТИРОВАНИЕ ДАТ) ---
                 const fixDate = (val) => {
-                    if (!val) return "1970-01-01"; // Заглушка, если даты нет
+                    if (!val) return "1970-01-01"; 
                     if (typeof val === 'number') {
                         return new Date(val * 86400000).toISOString().substring(0, 10);
                     }
@@ -799,12 +875,10 @@
                     return String(val).substring(0, 10);
                 };
 
-                // Принудительно очищаем даты во всех массивах до их использования
                 if (rawServerData.sales) rawServerData.sales.forEach(i => i.event_date = fixDate(i.event_date));
                 if (rawServerData.traffic) rawServerData.traffic.forEach(i => i.event_date = fixDate(i.event_date));
                 if (rawServerData.expenses) rawServerData.expenses.forEach(i => i.event_date = fixDate(i.event_date));
                 
-                // Маппинг планов из базы
                 if (rawServerData.plans) {
                     rawServerData.plans.forEach(p => { 
                         appData.plans[p.studio_name] = { rev: p.rev_plan, leads: p.leads_plan }; 
@@ -835,10 +909,7 @@
         const todayStr = `${year}-${month}-${day}`;
 
         if (filterType === 'all') return true;
-
-        if (filterType === 'today') {
-            return dStr === todayStr;
-        }
+        if (filterType === 'today') return dStr === todayStr;
 
         if (filterType === 'week') {
             const dayOfWeek = todayObj.getDay() || 7;
@@ -853,13 +924,8 @@
             return dStr >= startStr && dStr <= todayStr;
         }
 
-        if (filterType === 'month') {
-            return dStr.substring(0, 7) === todayStr.substring(0, 7);
-        }
-
-        if (filterType === 'year') {
-            return dStr.substring(0, 4) === todayStr.substring(0, 4);
-        }
+        if (filterType === 'month') return dStr.substring(0, 7) === todayStr.substring(0, 7);
+        if (filterType === 'year') return dStr.substring(0, 4) === todayStr.substring(0, 4);
 
         if (filterType === 'custom') {
             const fromStr = document.getElementById('date-from').value;
@@ -877,21 +943,16 @@
         
         const studioFilter = document.getElementById('dash-studio-filter').value;
         
-        // Очищаем локальные данные перед заливкой
-        appData.totalRevenue = 0; 
-        appData.secondaryRevenue = 0;
-        appData.leads = 0; 
-        appData.bookings = 0; 
-        appData.trials = 0;
-        appData.primarySales = 0; 
-        appData.secondarySalesCount = 0;
-        appData.marketingSpend = 0; 
-        appData.totalExpenses = 0; 
-        appData.dailyRevenue = {}; 
-        appData.salesBySku = {};
-        for (let key in appData.leadsBySource) { appData.leadsBySource[key] = 0; }
+        appData.totalRevenue = 0; appData.secondaryRevenue = 0;
+        appData.leads = 0; appData.bookings = 0; appData.trials = 0;
+        appData.primarySales = 0; appData.secondarySalesCount = 0;
+        appData.marketingSpend = 0; appData.totalExpenses = 0; 
+        appData.dailyRevenue = {}; appData.salesBySku = {};
+        
+        // Сброс счетчиков трафика на основе текущих настроек
+        appData.leadsBySource = {};
+        sysConfig.sources.forEach(s => appData.leadsBySource[s] = 0);
 
-        // Обработка продаж
         if (rawServerData.sales && rawServerData.sales.length > 0) {
             rawServerData.sales.forEach(s => {
                 if (!isDateInCurrentFilter(s.event_date)) return;
@@ -923,7 +984,6 @@
             });
         }
 
-        // Обработка трафика
         if (rawServerData.traffic && rawServerData.traffic.length > 0) {
             rawServerData.traffic.forEach(t => {
                 if (!isDateInCurrentFilter(t.event_date)) return;
@@ -932,14 +992,13 @@
                 appData.leads += parseInt(t.leads_count) || 0;
                 appData.bookings += parseInt(t.bookings_count) || 0;
                 
-                if (!appData.leadsBySource[t.source_name]) {
+                if (appData.leadsBySource[t.source_name] === undefined) {
                     appData.leadsBySource[t.source_name] = 0;
                 }
                 appData.leadsBySource[t.source_name] += parseInt(t.leads_count) || 0;
             });
         }
 
-        // Обработка расходов
         if (rawServerData.expenses && rawServerData.expenses.length > 0) {
             rawServerData.expenses.forEach(e => {
                 if (!isDateInCurrentFilter(e.event_date)) return;
@@ -948,7 +1007,7 @@
                 const expVal = parseInt(e.expense_amount) || 0; 
                 appData.totalExpenses += expVal; 
 
-                if (e.category && e.category.includes('Реклама')) {
+                if (e.category && e.category.toLowerCase().includes('реклама')) {
                     appData.marketingSpend += expVal; 
                 }
             });
@@ -1087,6 +1146,7 @@
         const revPlan = parseInt(document.getElementById('plan-rev-input').value) || 0;
         const leadsPlan = parseInt(document.getElementById('plan-leads-input').value) || 0;
         
+        if (!appData.plans[studio]) appData.plans[studio] = {rev:0, leads:0};
         appData.plans[studio].rev = revPlan;
         appData.plans[studio].leads = leadsPlan;
         localStorage.setItem('resurs_plans', JSON.stringify(appData.plans));
