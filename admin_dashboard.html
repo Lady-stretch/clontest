@@ -422,7 +422,7 @@
         <label>Категории расходов</label>
         <textarea id="cfg-expenses"></textarea>
 
-        <button class="btn" onclick="saveConfig()">Применить настройки</button>
+        <button class="btn" id="save-cfg-btn" onclick="saveConfig()">Применить настройки</button>
     </div>
 </div>
 
@@ -690,7 +690,7 @@
     const BACKEND_URL = "https://functions.yandexcloud.net/d4esie0g5hb62gg515a9";
     const BACKEND_TOKEN = "Resurs_studio-2026"; 
 
-    // === ДИНАМИЧЕСКИЙ КОНФИГУРАТОР (Вшиты ваши данные) ===
+    // === ДИНАМИЧЕСКИЙ КОНФИГУРАТОР (Базовые настройки) ===
     let sysConfig = {
         brand: "РЕСУРС",
         units: ["Советская 3", "Коммунистическая 77/2"],
@@ -710,16 +710,39 @@
         dailyRevenue: {}, leadsBySource: {}, salesBySku: {}, plans: {}
     };
 
-    let rawServerData = null; // Хранилище сырых данных из БД
+    let rawServerData = null; 
     let revenueChartInstance; let channelsChartInstance; let skuChartInstance;
 
-    // --- ЗАГРУЗКА НАСТРОЕК В ИНТЕРФЕЙС ---
-    function loadSettings() {
-        const saved = localStorage.getItem('core_sys_config');
-        if (saved) {
-            sysConfig = JSON.parse(saved);
+    // --- НОВАЯ ФУНКЦИЯ: ЗАГРУЗКА НАСТРОЕК ИЗ ОБЛАКА ---
+    async function loadGlobalSettings() {
+        try {
+            const res = await fetch(BACKEND_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'X-Api-Token': BACKEND_TOKEN },
+                body: JSON.stringify({ action: 'fetch_settings' })
+            });
+
+            if (res.ok) {
+                const cloudConfig = await res.json();
+                if (cloudConfig && cloudConfig.brand) {
+                    sysConfig = cloudConfig;
+                }
+            } else {
+                console.log("Облачные настройки не найдены, используем локальные/базовые.");
+                const saved = localStorage.getItem('core_sys_config');
+                if (saved) {
+                    sysConfig = JSON.parse(saved);
+                }
+            }
+        } catch (e) {
+            console.error("Ошибка загрузки настроек", e);
+            const saved = localStorage.getItem('core_sys_config');
+            if (saved) {
+                sysConfig = JSON.parse(saved);
+            }
         }
-        
+
+        // Применение настроек в UI
         document.getElementById('tab-title').innerText = sysConfig.brand + " | Система управления";
         document.getElementById('brand-auth-title').innerText = sysConfig.brand;
         document.getElementById('brand-dash-title').innerText = "Сводка: " + sysConfig.brand;
@@ -746,7 +769,7 @@
         });
     }
 
-    // --- ПАНЕЛЬ АДМИНИСТРАТОРА (Шестеренка) ---
+    // --- ПАНЕЛЬ АДМИНИСТРАТОРА ---
     function openConfigPrompt() {
         const pwd = prompt("Введите мастер-пароль для доступа к настройкам:");
         if (pwd === "Boss admin 1981") {
@@ -765,7 +788,8 @@
         document.getElementById('config-modal').style.display = 'none';
     }
 
-    function saveConfig() {
+    // --- НОВАЯ ФУНКЦИЯ: СОХРАНЕНИЕ НАСТРОЕК В ОБЛАКО ---
+    async function saveConfig() {
         const newBrand = document.getElementById('cfg-brand').value.trim() || "РЕСУРС";
         const newUnits = document.getElementById('cfg-units').value.split('\n').map(s => s.trim()).filter(s => s);
         const newProducts = document.getElementById('cfg-products').value.split('\n').map(s => s.trim()).filter(s => s);
@@ -777,21 +801,45 @@
             return;
         }
 
-        sysConfig.brand = newBrand;
-        sysConfig.units = newUnits;
-        sysConfig.products = newProducts;
-        sysConfig.sources = newSources;
-        sysConfig.expenses = newExpenses;
+        const payload = {
+            brand: newBrand,
+            units: newUnits,
+            products: newProducts,
+            sources: newSources,
+            expenses: newExpenses
+        };
 
-        localStorage.setItem('core_sys_config', JSON.stringify(sysConfig));
-        
-        alert("Настройки применены.");
-        location.reload();
+        const btn = document.getElementById('save-cfg-btn');
+        const originalText = btn.innerText;
+        btn.innerText = "СОХРАНЕНИЕ В ОБЛАКО...";
+        btn.disabled = true;
+
+        try {
+            const res = await fetch(BACKEND_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'X-Api-Token': BACKEND_TOKEN },
+                body: JSON.stringify({ action: 'save_settings', data: payload })
+            });
+
+            if (res.ok) {
+                alert("Настройки успешно синхронизированы с Yandex Cloud!");
+                location.reload();
+            } else {
+                alert("Ошибка при сохранении в облако.");
+                btn.disabled = false;
+                btn.innerText = originalText;
+            }
+        } catch (e) {
+            console.error("Ошибка сети", e);
+            alert("Ошибка сети при сохранении в облако.");
+            btn.disabled = false;
+            btn.innerText = originalText;
+        }
     }
 
     // --- ПРОВЕРКА АВТОРИЗАЦИИ ПРИ ЗАГРУЗКЕ СТРАНИЦЫ ---
-    window.onload = function() {
-        loadSettings(); // Сначала грузим настройки интерфейса
+    window.onload = async function() {
+        await loadGlobalSettings(); // Асинхронно ждем загрузки настроек из облака
         
         if (localStorage.getItem('resurs_auth') === 'true') {
             document.getElementById('auth').style.display = 'none';
@@ -847,9 +895,9 @@
         }
     }
 
-    // --- ГЛАВНАЯ ФУНКЦИЯ: ЗАГРУЗКА ИЗ ОБЛАКА ---
+    // --- ГЛАВНАЯ ФУНКЦИЯ: ЗАГРУЗКА ДАННЫХ ИЗ ОБЛАКА ---
     async function loadDataFromServer() {
-        console.log("ПОДКЛЮЧЕНИЕ К YANDEX CLOUD ДЛЯ ЗАГРУЗКИ...");
+        console.log("ПОДКЛЮЧЕНИЕ К YANDEX CLOUD ДЛЯ ЗАГРУЗКИ ДАННЫХ УЧЕТА...");
         try {
             const response = await fetch(BACKEND_URL, {
                 method: 'POST',
