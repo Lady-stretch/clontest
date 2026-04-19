@@ -713,7 +713,7 @@
     let rawServerData = null; 
     let revenueChartInstance; let channelsChartInstance; let skuChartInstance;
 
-    // --- НОВАЯ ФУНКЦИЯ: ЗАГРУЗКА НАСТРОЕК ИЗ ОБЛАКА ---
+    // --- НОВАЯ ФУНКЦИЯ: ЗАГРУЗКА И ПРИМЕНЕНИЕ НАСТРОЕК ИЗ ОБЛАКА ---
     async function loadGlobalSettings() {
         try {
             const res = await fetch(BACKEND_URL, {
@@ -726,6 +726,7 @@
                 const cloudConfig = await res.json();
                 if (cloudConfig && cloudConfig.brand) {
                     sysConfig = cloudConfig;
+                    renderAllSelects(); // ВАЖНО: принудительная перерисовка списков!
                 }
             } else {
                 console.log("Облачные настройки не найдены, используем локальные/базовые.");
@@ -733,6 +734,7 @@
                 if (saved) {
                     sysConfig = JSON.parse(saved);
                 }
+                renderAllSelects();
             }
         } catch (e) {
             console.error("Ошибка загрузки настроек", e);
@@ -740,9 +742,12 @@
             if (saved) {
                 sysConfig = JSON.parse(saved);
             }
+            renderAllSelects();
         }
+    }
 
-        // Применение настроек в UI
+    // --- ВЫНЕСЕННАЯ ФУНКЦИЯ ДЛЯ ОТРИСОВКИ ---
+    function renderAllSelects() {
         document.getElementById('tab-title').innerText = sysConfig.brand + " | Система управления";
         document.getElementById('brand-auth-title').innerText = sysConfig.brand;
         document.getElementById('brand-dash-title').innerText = "Сводка: " + sysConfig.brand;
@@ -788,7 +793,6 @@
         document.getElementById('config-modal').style.display = 'none';
     }
 
-    // --- НОВАЯ ФУНКЦИЯ: СОХРАНЕНИЕ НАСТРОЕК В ОБЛАКО ---
     async function saveConfig() {
         const newBrand = document.getElementById('cfg-brand').value.trim() || "РЕСУРС";
         const newUnits = document.getElementById('cfg-units').value.split('\n').map(s => s.trim()).filter(s => s);
