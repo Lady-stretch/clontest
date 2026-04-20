@@ -876,26 +876,30 @@
         finally { submitBtn.innerText = "Запросить доступ • 990₽"; submitBtn.disabled = false; }
     });
 
-    // --- ЛОГИКА PROMO WIDGET ---
+    // 1. НАСТРОЙКИ АКЦИИ
     const promoConfig = {
-        endDate: "2026-03-25T23:59:59", 
-        title: "Акция ПЕРЕХОД",
-        text: "Скидка до 40% на годовой абонемент 64 занятия. Только до 25.03.2026.",
+        startDate: "2026-04-21T09:00:00", // СТАРТ: Завтра в 09:00
+        endDate: "2026-04-23T23:59:59",   // ФИНИШ: 23 апреля в полночь
+        title: "Акция ВЕСЕННИЙ РЕСУРС",
+        text: "Скидка до 43% на годовой абонемент 64 занятия. Только до 23.04.2026.",
         btnText: "Забрать скидку",
-        btnLink: "promo-perehod.html",
-        showFallback: true, 
-        fallbackTitle: "Тело как опора",
-        fallbackText: "Инвестируйте 50 минут в себя. Коврики в студии уже ждут вас сегодня. ✨"
+        btnLink: "sale.html",             
+        showFallback: false,              
+        fallbackTitle: "",
+        fallbackText: ""
     };
 
     let promoTimerInterval;
 
+    // 2. УМНАЯ ЛОГИКА ЗАПУСКА (Замените старую функцию этой!)
     function initPromo() {
         const widget = document.getElementById('promo-widget');
+        const start = new Date(promoConfig.startDate).getTime();
         const end = new Date(promoConfig.endDate).getTime();
         const now = new Date().getTime();
 
-        if (end > now) {
+        // Показываем только если время пришло, но еще не кончилось
+        if (now >= start && now <= end) {
             document.getElementById('p-title').innerText = promoConfig.title;
             document.getElementById('p-text').innerText = promoConfig.text;
             document.getElementById('p-btn').innerText = promoConfig.btnText;
@@ -905,18 +909,11 @@
             updatePromoTimer(end);
             promoTimerInterval = setInterval(() => updatePromoTimer(end), 1000);
         } else {
-            if (promoConfig.showFallback) {
-                document.getElementById('p-title').innerText = promoConfig.fallbackTitle;
-                document.getElementById('p-text').innerText = promoConfig.fallbackText;
-                document.getElementById('p-timer-box').style.display = 'none';
-                document.getElementById('p-btn').style.display = 'none';
-                widget.style.display = 'flex';
-            } else {
-                widget.style.display = 'none';
-            }
+            // В остальное время (до старта или после конца) — скрыто
+            widget.style.display = 'none'; 
         }
     }
-
+    
     function updatePromoTimer(endTime) {
         const now = new Date().getTime();
         const distance = endTime - now;
