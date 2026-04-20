@@ -387,6 +387,20 @@
             padding: 10px;
             font-size: 13px;
         }
+
+        /* Заголовки секций сводки */
+        .section-title {
+            margin-top: 15px; 
+            margin-bottom: 15px; 
+            color: var(--text-dim); 
+            font-size: 12px; 
+            text-transform: uppercase; 
+            letter-spacing: 2px;
+            font-weight: 800;
+        }
+        .section-title.pnl-title {
+            color: var(--accent);
+        }
     </style>
 </head>
 <body>
@@ -493,9 +507,10 @@
         </div>
     </div>
     
+    <h3 class="section-title">Операционный Учет (ДДС)</h3>
     <div class="unit-grid">
         <div class="unit-item">
-            <div class="unit-lab">Выручка</div>
+            <div class="unit-lab">Поступления (Касса)</div>
             <div class="unit-val" id="d-rev">0 ₽</div>
             <div class="sub-val" style="color: var(--ok);">Вторичка (Выручка): <span id="d-sec-rev">0</span> ₽</div>
             <div class="sub-val" style="color: var(--accent); margin-top: 2px;">Вторичка (Продлений): <span id="d-sec-count">0</span> шт</div>
@@ -506,10 +521,33 @@
             <div class="sub-val">Все категории</div>
         </div>
         <div class="unit-item">
-            <div class="unit-lab">Опер. Прибыль</div>
+            <div class="unit-lab">Остаток Денег</div>
             <div class="unit-val" id="d-profit" style="color: var(--ok);">0 ₽</div>
-            <div class="sub-val">Доходы минус расходы</div>
+            <div class="sub-val">ДДС: Касса минус расходы</div>
         </div>
+    </div>
+
+    <h3 class="section-title pnl-title">Управленческий Учет (P&L - Прибыль)</h3>
+    <div class="unit-grid">
+        <div class="unit-item" style="border-color: var(--accent);">
+            <div class="unit-lab">Отработано Услуг (Выручка P&L)</div>
+            <div class="unit-val" id="pnl-rev">0 ₽</div>
+            <div class="sub-val">Расчет по коэффициентам</div>
+        </div>
+        <div class="unit-item" style="border-color: var(--accent);">
+            <div class="unit-lab">Чистая Прибыль (P&L)</div>
+            <div class="unit-val" id="pnl-profit">0 ₽</div>
+            <div class="sub-val">Отработанное минус расходы</div>
+        </div>
+        <div class="unit-item" style="border-color: var(--accent); background: rgba(166,138,86,0.05);">
+            <div class="unit-lab">Рентабельность (Маржа)</div>
+            <div class="unit-val" id="pnl-margin">0%</div>
+            <div class="sub-val">Доля чистой прибыли</div>
+        </div>
+    </div>
+
+    <h3 class="section-title">Маркетинг и Метрики</h3>
+    <div class="unit-grid">
         <div class="unit-item">
             <div class="unit-lab">Средний чек</div>
             <div class="unit-val" id="d-avg-check">0 ₽</div>
@@ -567,7 +605,7 @@
     </div>
 
     <div class="card">
-        <h3 class="serif" style="margin-bottom: 10px;">Динамика Доходности</h3>
+        <h3 class="serif" style="margin-bottom: 10px;">Динамика Доходности (ДДС)</h3>
         <div class="chart-wrap">
             <canvas id="revChart"></canvas>
         </div>
@@ -705,7 +743,7 @@
     };
 
     let appData = { 
-        totalRevenue: 0, secondaryRevenue: 0, leads: 0, bookings: 0, trials: 0, 
+        totalRevenue: 0, secondaryRevenue: 0, pnlRevenue: 0, leads: 0, bookings: 0, trials: 0, 
         primarySales: 0, secondarySalesCount: 0, marketingSpend: 0, totalExpenses: 0, 
         dailyRevenue: {}, leadsBySource: {}, salesBySku: {}, plans: {}
     };
@@ -989,13 +1027,55 @@
         return true;
     }
 
+    // --- ВЫЧИСЛЕНИЕ P&L (ЖЕСТКО В КОДЕ) ---
+    function getPnlChunks(saleDateStr, amount, sku) {
+        // Утвержденная сетка признания дохода
+        const grid = {
+            "Пробное занятие": [1.0], "Разовое занятие": [1.0], "Персональное занятие": [1.0],
+            "Безлимит на месяц": [1.0], "Тест драйв 3 зан на 10 дней": [1.0], "Подписка 3 зан/нед": [1.0],
+            "Депозит (Бронь)": [0.0],
+            "8 занятий": [0.70, 0.30],
+            "12 занятий": [0.333, 0.333, 0.334],
+            "16 занятий": [0.35, 0.35, 0.30],
+            "24 занятия": [0.25, 0.25, 0.25, 0.25],
+            "32 занятия": Array(6).fill(1/6), // ~16.6% на 6 мес
+            "48 занятий": Array(8).fill(1/8), // 12.5% на 8 мес
+            "64 занятия": Array(11).fill(1/11), // ~9.1% на 11 мес
+            "96 занятий": Array(14).fill(1/14), // ~7.14% на 14 мес
+            "128 занятий": Array(12).fill(1/12) // ~8.33% на 12 мес (для активных)
+        };
+
+        let pattern = grid[sku];
+        if (!pattern) pattern = [1.0]; // Если услуга не найдена, признаем сразу
+
+        let chunks = [];
+        let baseDate = new Date(saleDateStr);
+
+        for (let i = 0; i < pattern.length; i++) {
+            let chunkDate = new Date(baseDate);
+            chunkDate.setMonth(baseDate.getMonth() + i);
+
+            // Формируем дату YYYY-MM-DD для проверки фильтром
+            let y = chunkDate.getFullYear();
+            let m = String(chunkDate.getMonth() + 1).padStart(2, '0');
+            let d = String(chunkDate.getDate()).padStart(2, '0');
+            let dateStr = `${y}-${m}-${d}`;
+
+            chunks.push({
+                date: dateStr,
+                amount: amount * pattern[i]
+            });
+        }
+        return chunks;
+    }
+
     // --- ОБРАБОТКА ДАННЫХ И ФИЛЬТРАЦИЯ ---
     function applyFilters() {
         if (!rawServerData) return; 
         
         const studioFilter = document.getElementById('dash-studio-filter').value;
         
-        appData.totalRevenue = 0; appData.secondaryRevenue = 0;
+        appData.totalRevenue = 0; appData.secondaryRevenue = 0; appData.pnlRevenue = 0;
         appData.leads = 0; appData.bookings = 0; appData.trials = 0;
         appData.primarySales = 0; appData.secondarySalesCount = 0;
         appData.marketingSpend = 0; appData.totalExpenses = 0; 
@@ -1007,12 +1087,24 @@
 
         if (rawServerData.sales && rawServerData.sales.length > 0) {
             rawServerData.sales.forEach(s => {
-                if (!isDateInCurrentFilter(s.event_date)) return;
-                if (studioFilter !== 'all' && s.studio_name !== studioFilter) return;
-
                 const val = parseInt(s.payment_amount) || 0;
                 const date = s.event_date; 
-                
+                const sku = s.product_sku;
+                const studio = s.studio_name;
+
+                if (studioFilter !== 'all' && studio !== studioFilter) return;
+
+                // 1. СТРАТЕГИЯ: РАСЧЕТ P&L (Размазываем доход независимо от фильтра, потом ловим нужные куски)
+                const chunks = getPnlChunks(date, val, sku);
+                chunks.forEach(chunk => {
+                    if (isDateInCurrentFilter(chunk.date)) {
+                        appData.pnlRevenue += chunk.amount;
+                    }
+                });
+
+                // 2. ОПЕРАЦИОНКА: СТАНДАРТНЫЙ ДДС (Смотрим только на дату самой продажи)
+                if (!isDateInCurrentFilter(date)) return;
+
                 appData.totalRevenue += val;
                 
                 if (!appData.dailyRevenue[date]) {
@@ -1029,10 +1121,10 @@
                     appData.secondaryRevenue += val;
                 }
 
-                if (!appData.salesBySku[s.product_sku]) {
-                    appData.salesBySku[s.product_sku] = 0;
+                if (!appData.salesBySku[sku]) {
+                    appData.salesBySku[sku] = 0;
                 }
-                appData.salesBySku[s.product_sku]++;
+                appData.salesBySku[sku]++;
             });
         }
 
@@ -1384,16 +1476,39 @@
         }
     }
 
-    // --- ОБНОВЛЕНИЕ ИНТЕРФЕЙСА ---
+    // --- ОБНОВЛЕНИЕ ИНТЕРФЕЙСА С УЧЕТОМ P&L ---
     function updateDashboardView() {
+        // --- ДДС ВИДЖЕТЫ ---
         document.getElementById('d-rev').innerText = appData.totalRevenue.toLocaleString() + " ₽";
-        
         document.getElementById('d-exp').innerText = appData.totalExpenses.toLocaleString() + " ₽";
-        const profit = appData.totalRevenue - appData.totalExpenses;
-        const profitEl = document.getElementById('d-profit');
-        profitEl.innerText = profit.toLocaleString() + " ₽";
-        profitEl.style.color = profit >= 0 ? 'var(--ok)' : 'var(--crit)';
+        
+        const ddsProfit = appData.totalRevenue - appData.totalExpenses;
+        const ddsProfitEl = document.getElementById('d-profit');
+        if(ddsProfitEl) {
+            ddsProfitEl.innerText = ddsProfit.toLocaleString() + " ₽";
+            ddsProfitEl.style.color = ddsProfit >= 0 ? 'var(--ok)' : 'var(--crit)';
+        }
 
+        // --- НОВЫЕ P&L ВИДЖЕТЫ ---
+        const pnlRevEl = document.getElementById('pnl-rev');
+        if (pnlRevEl) pnlRevEl.innerText = Math.round(appData.pnlRevenue).toLocaleString() + " ₽";
+
+        const pnlProfit = appData.pnlRevenue - appData.totalExpenses;
+        const pnlProfitEl = document.getElementById('pnl-profit');
+        if (pnlProfitEl) {
+            pnlProfitEl.innerText = Math.round(pnlProfit).toLocaleString() + " ₽";
+            pnlProfitEl.style.color = pnlProfit >= 0 ? 'var(--ok)' : 'var(--crit)';
+        }
+
+        const pnlMargin = appData.pnlRevenue > 0 ? Math.round((pnlProfit / appData.pnlRevenue) * 100) : 0;
+        const pnlMarginEl = document.getElementById('pnl-margin');
+        if (pnlMarginEl) {
+            pnlMarginEl.innerText = pnlMargin + "%";
+            // Зеленый если >= 20%, желтый если просто плюс, красный если минус
+            pnlMarginEl.style.color = pnlMargin >= 20 ? 'var(--ok)' : (pnlMargin >= 0 ? 'var(--warn)' : 'var(--crit)');
+        }
+
+        // --- МАРКЕТИНГ И ПРОЧЕЕ ---
         document.getElementById('d-sec-rev').innerText = appData.secondaryRevenue.toLocaleString();
         document.getElementById('d-sec-count').innerText = appData.secondarySalesCount;
         
@@ -1439,7 +1554,7 @@
                 data: { 
                     labels: [], 
                     datasets: [{ 
-                        label: 'Выручка', 
+                        label: 'Выручка (ДДС)', 
                         data: [], 
                         borderColor: '#A68A56', 
                         backgroundColor: 'rgba(166,138,86,0.1)', 
