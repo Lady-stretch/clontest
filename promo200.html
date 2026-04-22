@@ -2,7 +2,6 @@
 <html lang="ru">
 <head>
     <script type="text/javascript">
-    // --- Yandex.Metrika ---
     (function(m,e,t,r,i,k,a){
         m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
         m[i].l=1*new Date();
@@ -15,6 +14,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>РЕСУРС | Пробное 200р</title>
+    <link rel="icon" type="image/png" href="logo_header_final.png">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,16 +22,26 @@
 
     <style>
         :root {
-            --bg-deep: #080814; 
-            --glass-bg: rgba(255, 255, 255, 0.03); 
-            --glass-border: 1px solid rgba(255, 255, 255, 0.1); 
+            --bg-deep: #F4F4F9; 
+            --glass-bg: rgba(255, 255, 255, 0.9); 
+            --glass-border: 1px solid rgba(197, 160, 89, 0.2); 
             --accent-gold: #C5A059; 
-            --text-main: #F4F4F9;
+            --text-main: #080814;
+            --btn-bg: rgba(0, 0, 0, 0.03);
             --font-main: 'Manrope', sans-serif;
             --font-serif: 'Cormorant Garamond', serif;
+            --transition: all 0.4s ease;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; }
+        body.dark-theme {
+            --bg-deep: #080814; 
+            --glass-bg: rgba(255, 255, 255, 0.03); 
+            --glass-border: 1px solid rgba(255, 255, 255, 0.08); 
+            --text-main: #F4F4F9;
+            --btn-bg: rgba(255, 255, 255, 0.03);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent;}
         
         body {
             background: var(--bg-deep);
@@ -43,22 +53,64 @@
             justify-content: center;
             min-height: 100vh;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+            transition: var(--transition);
+        }
+
+        /* --- НАДЕЖНАЯ ШАПКА --- */
+        header { 
+            position: fixed; top: 0; width: 100%; padding: 15px 5%; 
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 2000; 
+            background: var(--glass-bg); 
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: var(--glass-border);
+            transition: var(--transition);
+        }
+        
+        body.dark-theme header { background: rgba(8, 8, 20, 0.85); }
+
+        .header-left, .header-right { width: 25%; display: flex; align-items: center; }
+        .header-right { justify-content: flex-end; }
+        .header-center { width: 50%; display: flex; justify-content: center; }
+
+        .brand-name { font-family: var(--font-serif); font-size: 20px; letter-spacing: 12px; text-transform: uppercase; color: var(--text-main); margin-right: -12px;}
+        header img { height: 35px; width: 35px; border-radius: 8px; object-fit: cover; }
+        
+        .theme-toggle {
+            font-size: 11px; font-weight: 600; letter-spacing: 2px;
+            cursor: pointer; color: var(--accent-gold); background: none;
+            border: 1px solid var(--accent-gold); padding: 6px 12px;
+            border-radius: 8px; transition: 0.3s; text-transform: uppercase;
+        }
+        .theme-toggle:hover { background: var(--accent-gold); color: #fff; }
+
+        /* --- КАРТОЧКА --- */
+        .promo-wrapper {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 5% 40px;
         }
 
         .promo-card {
-            width: 92%;
-            max-width: 900px;
+            width: 100%;
+            max-width: 950px;
             background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
             border: var(--glass-border);
-            border-radius: 24px;
+            border-radius: 20px;
             display: flex;
             flex-direction: row;
             overflow: hidden;
-            box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
         }
+        
+        body.dark-theme .promo-card { box-shadow: 0 30px 80px rgba(0,0,0,0.5); }
 
+        /* --- ВИЗУАЛ (200₽) --- */
         .promo-visual {
             flex: 1;
             background: linear-gradient(135deg, #1a1a2e 0%, #080814 100%);
@@ -80,90 +132,166 @@
         }
 
         .price-hero { position: relative; z-index: 1; text-align: center; }
-        .price-big { font-family: var(--font-serif); font-size: 120px; color: var(--accent-gold); line-height: 1; font-weight: 300; }
-        .price-sub { font-size: 14px; letter-spacing: 5px; text-transform: uppercase; opacity: 0.6; margin-top: -10px; }
+        .price-big { font-family: var(--font-serif); font-size: 110px; color: var(--accent-gold); line-height: 1; font-weight: 300; }
+        .price-sub { font-size: 13px; letter-spacing: 5px; text-transform: uppercase; opacity: 0.7; margin-top: -5px; color: #fff;}
 
-        .promo-content { flex: 1.2; padding: 60px 50px; display: flex; flex-direction: column; justify-content: center; }
-        .promo-title { font-family: var(--font-serif); font-size: 38px; line-height: 1.1; margin-bottom: 20px; font-weight: 300; }
-        .promo-desc { font-size: 15px; opacity: 0.8; margin-bottom: 30px; }
+        /* --- КОНТЕНТ --- */
+        .promo-content { flex: 1.2; padding: 50px 45px; display: flex; flex-direction: column; justify-content: center; }
+        .promo-title { font-family: var(--font-serif); font-size: 36px; line-height: 1.1; margin-bottom: 20px; font-weight: 600; color: var(--text-main); }
+        .promo-desc { font-size: 15px; opacity: 0.9; margin-bottom: 25px; line-height: 1.6;}
 
         .offer-box {
-            background: rgba(255,255,255,0.03);
+            background: var(--btn-bg);
             border: 1px solid rgba(197,160,89,0.2);
             border-radius: 12px;
             padding: 20px;
-            margin-bottom: 35px;
+            margin-bottom: 30px;
         }
-        .offer-box p { font-size: 14px; margin-bottom: 10px; display: flex; gap: 10px; }
+        .offer-title { color: var(--accent-gold); font-weight: 700; margin-bottom: 12px; font-size: 14px; }
+        .offer-box p { font-size: 14px; margin-bottom: 10px; display: flex; gap: 10px; opacity: 0.9;}
         .offer-box p:last-child { margin-bottom: 0; }
-        .offer-box span { color: var(--accent-gold); }
+        .offer-box span { color: var(--accent-gold); font-weight: bold; }
 
+        /* --- КНОПКИ --- */
+        .buttons-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* Синяя кнопка ВК */
         .btn-vk {
-            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
             background: #0077FF;
             color: #fff;
-            text-align: center;
-            padding: 22px;
+            padding: 20px;
             border-radius: 10px;
             text-decoration: none;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
-            font-size: 14px;
-            transition: 0.3s;
-            cursor: pointer;
+            font-size: 13px;
+            transition: var(--transition);
+            box-shadow: 0 10px 30px rgba(0, 119, 255, 0.2);
         }
+        .btn-vk:hover { transform: translateY(-2px); box-shadow: 0 15px 40px rgba(0, 119, 255, 0.4); }
 
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 0.5; }
-            100% { transform: scale(1.2); opacity: 0.8; }
+        /* Прозрачная кнопка с золотым контуром */
+        .btn-outline {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--accent-gold);
+            padding: 18px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 12px;
+            transition: var(--transition);
         }
+        .btn-outline:hover { background: var(--accent-gold); color: #080814; }
 
+        @keyframes pulse { 0% { transform: scale(1); opacity: 0.5; } 100% { transform: scale(1.2); opacity: 0.8; } }
+
+        /* --- АДАПТИВ --- */
         @media (max-width: 850px) {
-            .promo-card { flex-direction: column; margin-top: 20px; }
-            .promo-visual { min-height: 200px; }
-            .price-big { font-size: 80px; }
+            .promo-card { flex-direction: column; margin-top: 10px; }
+            .promo-visual { min-height: 220px; }
+            .price-big { font-size: 90px; }
             .promo-content { padding: 40px 25px; }
-            .promo-title { font-size: 28px; text-align: center; }
+            .promo-title { font-size: 30px; text-align: center; }
             .promo-desc { text-align: center; }
+            .header-left, .header-right { width: 20%; }
+            .header-center { width: 60%; }
+        }
+
+        @media (max-width: 600px) {
+            header { padding: 15px 20px; }
+            .brand-name { font-size: 16px; letter-spacing: 8px; margin-right: -8px;}
+            .btn-vk, .btn-outline { font-size: 12px; padding: 16px; }
         }
     </style>
 </head>
-<body>
+<body class="dark-theme">
 
-    <div class="promo-card">
-        <div class="promo-visual">
-            <div class="price-hero">
-                <div class="price-big">200₽</div>
-                <div class="price-sub">Пробное занятие</div>
-            </div>
+    <header>
+        <div class="header-left">
+            <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">СВЕТ</button>
         </div>
+        <div class="header-center">
+            <div class="brand-name">РЕСУРС</div>
+        </div>
+        <div class="header-right">
+            <img src="logo_header_final.png" alt="Логотип">
+        </div>
+    </header>
 
-        <div class="promo-content">
-            <h1 class="promo-title">Результат, который вы почувствуете телом</h1>
+    <div class="promo-wrapper">
+        <div class="promo-card">
             
-            <p class="promo-desc">
-                Помогаем избавиться от болей в спине, исправить осанку и обрести стройность. Забудьте о зажимах и стрессе — мы даем энергию через научный подход.
-            </p>
-            
-            <div class="offer-box">
-                <p><span>✔</span> Скидки до 43% до 23 апреля</p>
-                <p><span>✔</span> Максимальная выгода — 19 200 руб.</p>
-                <p><span>✔</span> Отложенная активация абонемента</p>
+            <div class="promo-visual">
+                <div class="price-hero">
+                    <div class="price-big">200₽</div>
+                    <div class="price-sub">Пробное занятие</div>
+                </div>
             </div>
-            
-            <a href="vk://vk.com/im?sel=-221142875&ref=promo_200" id="vk-button" class="btn-vk">
-                Записаться за 200 р.
-            </a>
-            
-            <p style="text-align: center; font-size: 11px; opacity: 0.4; margin-top: 20px; text-transform: uppercase; letter-spacing: 1px;">
-                Сыктывкар: Советская 3 | Коммунистическая 77/2
-            </p>
+
+            <div class="promo-content">
+                <h1 class="promo-title">Результат, который вы почувствуете телом</h1>
+                
+                <p class="promo-desc">
+                    Помогаем избавиться от болей в спине, исправить осанку и обрести стройность. Забудьте о зажимах и стрессе — мы даем энергию через научный подход.
+                </p>
+                
+                <div class="offer-box">
+                    <div class="offer-title">Только до 23 апреля:</div>
+                    <p><span>✔</span> Скидки до 43%.</p>
+                    <p><span>✔</span> Максимальная выгода — 19 200 рублей.</p>
+                    <p><span>✔</span> Отложенная активация абонемента.</p>
+                </div>
+                
+                <div class="buttons-group">
+                    <a href="vk://vk.com/im?sel=-221142875&ref=promo_200" id="vk-button" class="btn-vk">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15.07 2H8.93C3.33 2 2 3.33 2 8.93v6.14C2 20.67 3.33 22 8.93 22h6.14c5.6 0 6.93-1.33 6.93-6.93V8.93C22 3.33 20.67 2 15.07 2zm3.1 13.08c0 .12-.04.22-.11.3-.08.08-.19.12-.32.12h-1.5c-.32 0-.6-.11-.84-.33-.24-.22-.44-.52-.61-.88-.23-.49-.46-.86-.68-1.12-.22-.26-.45-.39-.68-.39-.1 0-.19.02-.28.07-.09.05-.16.12-.21.21-.1.17-.15.42-.15.76v.88c0 .2-.06.36-.17.47s-.27.17-.47.17h-.8c-.78 0-1.48-.24-2.11-.73-.63-.49-1.16-1.16-1.59-2.02-.44-.86-.87-1.89-1.28-3.08-.05-.14-.02-.26.08-.36.1-.1.24-.15.42-.15h1.56c.16 0 .29.05.38.16.09.11.14.24.15.4.15.54.34 1.05.58 1.54.24.49.5.91.77 1.25.27.34.52.51.74.51.08 0 .15-.02.2-.07.05-.05.08-.11.1-.19.04-.21.06-.55.06-1.01V9.5c-.01-.35-.1-.61-.26-.78-.16-.17-.4-.28-.7-.34-.1-.02-.15-.08-.15-.17 0-.08.04-.15.13-.21.19-.13.48-.2.88-.2h1.54c.26 0 .46.06.6.18.14.12.21.32.21.61v2.33c0 .16.02.28.06.35.04.07.1.11.18.11.1 0 .23-.08.38-.23.15-.15.34-.39.56-.72.22-.33.45-.75.68-1.27.06-.14.16-.25.29-.33.13-.08.28-.12.45-.12h1.61c.19 0 .34.05.45.14.11.09.15.22.11.38-.19.72-.47 1.34-.84 1.87-.37.53-.74.92-1.1 1.16-.1.08-.15.16-.15.25 0 .07.04.14.11.22.18.2.4.48.65.84s.46.73.61 1.09c.1.25.15.48.15.7z"/>
+                        </svg>
+                        Записаться через ВКонтакте
+                    </a>
+                    
+                    <a href="promo-perehod.html" class="btn-outline">
+                        Посмотреть абонементы по акции
+                    </a>
+                </div>
+                
+                <p style="text-align: center; font-size: 11px; opacity: 0.4; margin-top: 25px; text-transform: uppercase; letter-spacing: 1px;">
+                    Сыктывкар: Советская 3 | Коммунистическая 77/2
+                </p>
+            </div>
         </div>
     </div>
 
     <script>
-        // Скрипт-подстраховка: если приложение не открылось за 500мс, идем через браузер
+        // Смена темы
+        function toggleTheme() {
+            const body = document.body;
+            const btn = document.getElementById('themeToggle');
+            body.classList.toggle('dark-theme');
+            
+            if (body.classList.contains('dark-theme')) {
+                btn.innerText = 'СВЕТ';
+            } else {
+                btn.innerText = 'ТЕНЬ';
+            }
+        }
+
+        // Скрипт-подстраховка для диплинка ВК
         document.getElementById('vk-button').addEventListener('click', function(e) {
             var start = new Date().getTime();
             setTimeout(function() {
