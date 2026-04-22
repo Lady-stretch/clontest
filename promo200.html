@@ -2,6 +2,7 @@
 <html lang="ru">
 <head>
     <script type="text/javascript">
+    // --- Yandex.Metrika ---
     (function(m,e,t,r,i,k,a){
         m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
         m[i].l=1*new Date();
@@ -41,7 +42,6 @@
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            /* Легкий шум на фоне для премиальности */
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
         }
 
@@ -59,7 +59,6 @@
             box-shadow: 0 40px 100px rgba(0,0,0,0.5);
         }
 
-        /* Визуальный блок вместо фото */
         .promo-visual {
             flex: 1;
             background: linear-gradient(135deg, #1a1a2e 0%, #080814 100%);
@@ -71,7 +70,6 @@
             min-height: 300px;
         }
 
-        /* Абстрактное золотое свечение (CSS) */
         .promo-visual::before {
             content: '';
             position: absolute;
@@ -81,49 +79,13 @@
             animation: pulse 8s infinite alternate;
         }
 
-        .price-hero {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-        }
+        .price-hero { position: relative; z-index: 1; text-align: center; }
+        .price-big { font-family: var(--font-serif); font-size: 120px; color: var(--accent-gold); line-height: 1; font-weight: 300; }
+        .price-sub { font-size: 14px; letter-spacing: 5px; text-transform: uppercase; opacity: 0.6; margin-top: -10px; }
 
-        .price-big {
-            font-family: var(--font-serif);
-            font-size: 120px;
-            color: var(--accent-gold);
-            line-height: 1;
-            font-weight: 300;
-        }
-
-        .price-sub {
-            font-size: 14px;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            opacity: 0.6;
-            margin-top: -10px;
-        }
-
-        .promo-content {
-            flex: 1.2;
-            padding: 60px 50px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .promo-title {
-            font-family: var(--font-serif);
-            font-size: 38px;
-            line-height: 1.1;
-            margin-bottom: 20px;
-            font-weight: 300;
-        }
-
-        .promo-desc {
-            font-size: 15px;
-            opacity: 0.8;
-            margin-bottom: 30px;
-        }
+        .promo-content { flex: 1.2; padding: 60px 50px; display: flex; flex-direction: column; justify-content: center; }
+        .promo-title { font-family: var(--font-serif); font-size: 38px; line-height: 1.1; margin-bottom: 20px; font-weight: 300; }
+        .promo-desc { font-size: 15px; opacity: 0.8; margin-bottom: 30px; }
 
         .offer-box {
             background: rgba(255,255,255,0.03);
@@ -132,14 +94,7 @@
             padding: 20px;
             margin-bottom: 35px;
         }
-
-        .offer-box p {
-            font-size: 14px;
-            margin-bottom: 10px;
-            display: flex;
-            gap: 10px;
-        }
-        
+        .offer-box p { font-size: 14px; margin-bottom: 10px; display: flex; gap: 10px; }
         .offer-box p:last-child { margin-bottom: 0; }
         .offer-box span { color: var(--accent-gold); }
 
@@ -156,16 +111,14 @@
             letter-spacing: 1px;
             font-size: 14px;
             transition: 0.3s;
+            cursor: pointer;
         }
-
-        .btn-vk:active { transform: scale(0.98); }
 
         @keyframes pulse {
             0% { transform: scale(1); opacity: 0.5; }
             100% { transform: scale(1.2); opacity: 0.8; }
         }
 
-        /* Адаптив для ВК (мобильные) */
         @media (max-width: 850px) {
             .promo-card { flex-direction: column; margin-top: 20px; }
             .promo-visual { min-height: 200px; }
@@ -199,7 +152,7 @@
                 <p><span>✔</span> Отложенная активация абонемента</p>
             </div>
             
-            <a href="https://vk.me/-221142875?ref=promo_200" class="btn-vk">
+            <a href="vk://vk.com/im?sel=-221142875&ref=promo_200" id="vk-button" class="btn-vk">
                 Записаться за 200 р.
             </a>
             
@@ -208,6 +161,19 @@
             </p>
         </div>
     </div>
+
+    <script>
+        // Скрипт-подстраховка: если приложение не открылось за 500мс, идем через браузер
+        document.getElementById('vk-button').addEventListener('click', function(e) {
+            var start = new Date().getTime();
+            setTimeout(function() {
+                var end = new Date().getTime();
+                if (end - start < 1000) {
+                    window.location.href = "https://vk.me/-221142875?ref=promo_200";
+                }
+            }, 500);
+        });
+    </script>
 
 </body>
 </html>
