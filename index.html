@@ -2,7 +2,8 @@
 <html lang="ru">
 <head>
     <script>
-        const savedTheme = localStorage.getItem('theme') || 'light';
+        // ИЗМЕНЕНО: Теперь по умолчанию стоит темная тема ('dark')
+        const savedTheme = localStorage.getItem('theme') || 'dark';
         document.documentElement.setAttribute('data-theme', savedTheme);
     </script>
 
@@ -275,18 +276,18 @@
         .hero-content { position: relative; z-index: 2; text-align: center; max-width: 900px; width: 100%; }
         
         .hero-title {
-    display: block; 
-    text-align: center; 
-    text-transform: uppercase;
-    font-family: var(--font-serif); 
-    font-weight: 300; 
-    margin: 0 auto 30px !important;
-    /* Оптимальный размер: от 28px до 64px */
-    font-size: clamp(28px, 4.5vw, 64px); 
-    /* Элегантный интервал между буквами */
-    letter-spacing: clamp(3px, 1.2vw, 8px); 
-    line-height: 1.2;
-}
+            display: block; 
+            text-align: center; 
+            text-transform: uppercase;
+            font-family: var(--font-serif); 
+            font-weight: 300; 
+            margin: 0 auto 30px !important;
+            /* Оптимальный размер: от 28px до 64px */
+            font-size: clamp(28px, 4.5vw, 64px); 
+            /* Элегантный интервал между буквами */
+            letter-spacing: clamp(3px, 1.2vw, 8px); 
+            line-height: 1.2;
+        }
         
         .hero-tagline { font-family: var(--font-serif); font-style: italic; font-size: clamp(18px, 4vw, 30px); opacity: 0.9; margin-bottom: 60px; }
 
@@ -344,6 +345,15 @@
         /* --- БЛОК С РАСПИСАНИЕМ --- */
         .schedule-section { padding: 80px 5% 120px; text-align: center; }
 
+        /* --- БЛОК FAQ --- */
+        .faq-section { padding: 60px 5% 100px; max-width: 1000px; margin: 0 auto; }
+        .faq-item { margin-bottom: 20px; border-radius: 20px; overflow: hidden; border: var(--glass-border); transition: var(--transition); }
+        .faq-question { padding: 25px 30px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 16px; letter-spacing: 1px; }
+        .faq-question::after { content: '+'; font-size: 26px; color: var(--accent-gold); transition: transform 0.4s ease; font-weight: 300; }
+        .faq-item.active .faq-question::after { transform: rotate(45deg); }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.6s ease, padding 0.6s ease; opacity: 0.8; font-size: 15px; padding: 0 30px; line-height: 1.7; }
+        .faq-item.active .faq-answer { max-height: 500px; padding: 0 30px 25px; }
+
         /* --- FOOTER --- */
         footer { padding: 100px 5% 50px; border-top: var(--glass-border); text-align: center; background: var(--elem-bg); }
         .footer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-bottom: 80px; text-align: left; }
@@ -374,6 +384,9 @@
             .hero-title { font-size: 32px !important; letter-spacing: 5px !important; }
             .inline-packages { padding: 40px 20px; }
             .header-right { gap: 8px; }
+            .faq-question { font-size: 15px; padding: 20px; }
+            .faq-answer { font-size: 14px; padding: 0 20px; }
+            .faq-item.active .faq-answer { padding: 0 20px 20px; }
         }
         
         /* --- МОДАЛЬНЫЕ ОКНА И ФОРМЫ --- */
@@ -688,6 +701,41 @@
     </div>
 </section>
 
+<section class="faq-section" id="faq">
+    <span class="section-label">Частые вопросы</span>
+    <h2 class="serif" style="font-size: clamp(32px, 5vw, 48px); margin-bottom: 50px; text-align: center;">Отвечаем на главное</h2>
+    
+    <div class="faq-item glass">
+        <div class="faq-question">В какой одежде и обуви приходить на занятия?</div>
+        <div class="faq-answer">
+            Выбирайте удобную, не сковывающую движения одежду (лосины, шорты, топ или майка). <br><br>
+            <strong style="color: var(--accent-gold);">Важно по обуви:</strong><br>
+            — <b>Для активных и силовых тренировок</b> желательно приходить в кроссовках (обязательно с чистой подошвой). На степах мы работаем только в кроссовках!<br>
+            — <b>Для спокойных практик</b> (Стретчинг, Здоровая спина, Пилатес, МФР, Аэро) мы занимаемся в носочках (лучше использовать антискользящие).
+        </div>
+    </div>
+
+    <div class="faq-item glass">
+        <div class="faq-question">Кому противопоказана растяжка и фитнес?</div>
+        <div class="faq-answer">
+            Основные противопоказания: свежие травмы позвоночника и суставов, острые воспалительные процессы, тяжелые стадии варикоза, грыжи в стадии обострения, недавние операции. Беременным девушкам (со 2 триместра) разрешены только специализированные классы. При любых сомнениях мы всегда настоятельно рекомендуем проконсультироваться с вашим лечащим врачом. Перед первой тренировкой мы также попросим вас заполнить небольшую анкету о здоровье.
+        </div>
+    </div>
+
+    <div class="faq-item glass">
+        <div class="faq-question">Я никогда ничем не занималась, мне будет сложно?</div>
+        <div class="faq-answer">
+            Абсолютно нет! Мы выступаем за мягкий, бережный фитнес без стресса для организма. У нас нет задачи «убить» вас на тренировке. Все направления подходят для новичков. Наши тренеры всегда предлагают альтернативные (базовые) варианты упражнений и внимательно следят за техникой выполнения каждой девушки. Мы рекомендуем начать знакомство со студией с направлений «Здоровая спина», «МФР» или базового «Стретчинга».
+        </div>
+    </div>
+    
+    <div class="faq-item glass">
+        <div class="faq-question">Что нужно взять с собой на первую тренировку?</div>
+        <div class="faq-answer">
+            Возьмите с собой паспорт (понадобится для оформления) и бутылочку для воды. Если вам нет 18 лет, понадобится письменное разрешение от родителей. В самой студии есть абсолютно всё необходимое оборудование (коврики, роллы, блоки), которое мы тщательно обрабатываем после каждого занятия.
+        </div>
+    </div>
+</section>
 <section class="reviews-section" id="reviews" style="padding: 60px 5%; text-align: center;">
     <span class="section-label" style="margin-bottom: 20px;">Голоса резидентов</span>
     <h2 style="font-size: clamp(32px, 5vw, 48px); margin-bottom: 50px;">Что говорят о Ресурсе</h2>
@@ -891,7 +939,7 @@
 
     let promoTimerInterval;
 
-    // 2. УМНАЯ ЛОГИКА ЗАПУСКА (Замените старую функцию этой!)
+    // 2. УМНАЯ ЛОГИКА ЗАПУСКА
     function initPromo() {
         const widget = document.getElementById('promo-widget');
         const start = new Date(promoConfig.startDate).getTime();
@@ -1003,9 +1051,22 @@
         }
     }
     document.getElementById('ls-ai-input').onkeypress = (e) => { if(e.key === 'Enter') sendMessage(); };
+
+    // --- Логика работы аккордеона FAQ ---
+    document.querySelectorAll('.faq-question').forEach(item => {
+        item.addEventListener('click', () => {
+            const parent = item.parentElement;
+            // Закрываем другие открытые вкладки
+            document.querySelectorAll('.faq-item').forEach(child => {
+                if (child !== parent) child.classList.remove('active');
+            });
+            parent.classList.toggle('active');
+        });
+    });
 </script>
-    <div id="cookie-notice" class="glass" style="position: fixed; bottom: 20px; left: 20px; right: 20px; z-index: 5000; padding: 15px 25px; border-radius: 15px; display: none; align-items: center; justify-content: space-between; gap: 20px; border: 1px solid var(--accent-gold);">
-    <span style="font-size: 12px; opacity: 0.9;">Мы используем файлы cookie, чтобы сайт «Ресурса» работал лучше. <a href="privacy.html" style="text-decoration: underline;">Подробнее</a></span>
+
+    <div id="cookie-notice" class="glass" style="position: fixed; bottom: 20px; left: 20px; z-index: 5000; padding: 15px 25px; border-radius: 15px; display: none; align-items: center; justify-content: space-between; gap: 15px; border: 1px solid var(--accent-gold); max-width: 400px; width: calc(100% - 100px); flex-wrap: wrap;">
+    <span style="font-size: 12px; opacity: 0.9; flex: 1; min-width: 200px;">Мы используем файлы cookie, чтобы сайт «Ресурса» работал лучше. <a href="privacy.html" style="text-decoration: underline;">Подробнее</a></span>
     <button onclick="acceptCookies()" class="btn-lens" style="padding: 8px 20px; font-size: 10px; text-transform: uppercase; border-color: var(--accent-gold); color: var(--accent-gold);">ОК</button>
 </div>
 
