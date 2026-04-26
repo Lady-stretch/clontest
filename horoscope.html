@@ -6,8 +6,9 @@
     
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#020204">
     
-    <title>РЕСУРС | Прогноз Веры Веровны</title>
+    <title>РЕСУРС | Астро-Синхронизация</title>
     
     <link rel="icon" type="image/png" href="logo_header_final.png">
     <link rel="apple-touch-icon" href="logo_header_final.png">
@@ -19,270 +20,251 @@
     <style>
         :root {
             --gold: #C5A059;
-            --bg-deep: #010103;
+            --bg-deep: #020204;
             --glass: rgba(255, 255, 255, 0.02);
             --border: 1px solid rgba(197, 160, 89, 0.2);
             --font-serif: 'Cormorant Garamond', serif;
             --font-main: 'Manrope', sans-serif;
-            --transit: all 1.2s cubic-bezier(0.25, 1, 0.3, 1);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
         
         body {
-            background-color: var(--bg-deep);
-            color: #ffffff;
-            font-family: var(--font-main);
-            height: 100vh; width: 100vw;
-            overflow: hidden;
-            perspective: 2000px;
+            background-color: var(--bg-deep); color: #ffffff;
+            font-family: var(--font-main); height: 100vh; width: 100vw;
+            overflow: hidden; -webkit-font-smoothing: antialiased;
         }
 
-        /* ----------------------------------------------------------- */
-        /* СЦЕНА 0: ГОЛЛИВУДСКИЙ КОСМОС */
-        /* ----------------------------------------------------------- */
+        /* АНИМАЦИИ ЗВЕЗД (БЕЗОПАСНЫЙ ФОН) */
+        .deep-space {
+            position: fixed; inset: 0; z-index: 1;
+            background: radial-gradient(circle at 50% 100%, #0a0a1a 0%, #020204 100%);
+        }
+        #stars-canvas { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.8; }
+
+        /* СЦЕНА 0: НАДЕЖНАЯ КИНЕМАТОГРАФИЯ (Без багов 3D) */
         #scene-cosmos {
             position: fixed; inset: 0; z-index: 10;
-            display: flex; align-items: center; justify-content: center;
-            transition: var(--transit); transform-style: preserve-3d;
-            background: radial-gradient(circle at 50% 50%, #050510 0%, #010103 100%);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            transition: 1s cubic-bezier(0.25, 1, 0.5, 1);
         }
-        #scene-cosmos.hidden { transform: translateZ(2000px); opacity: 0; pointer-events: none; }
+        #scene-cosmos.hidden { opacity: 0; transform: scale(1.2); pointer-events: none; }
 
-        /* Тысячи звезд */
-        #stars-canvas { position: absolute; inset: 0; z-index: 1; }
-
-        .system-wrap {
-            position: relative; width: 400px; height: 400px;
-            transform-style: preserve-3d; transform: rotateX(15deg);
+        .solar-system {
+            position: relative; width: 250px; height: 250px; margin-bottom: 60px;
         }
-
-        /* 3D ЗЕМЛЯ С ОЧЕРТАНИЯМИ МАТЕРИКОВ */
-        .earth-sphere {
-            position: absolute; inset: 0;
-            border-radius: 50%;
-            background: url('https://img.freepik.com/free-vector/world-map-silhouette_23-2147500859.jpg?size=626&ext=jpg') repeat-x;
-            background-size: 200% 100%;
-            background-color: #050a1a;
-            /* Эффект атмосферы и теней */
-            box-shadow: inset -40px -40px 80px #000, 
-                        inset 10px 10px 40px rgba(135, 206, 235, 0.4),
-                        0 0 60px rgba(135, 206, 235, 0.1);
-            animation: rotateEarth 60s linear infinite;
+        
+        /* Глобус Земли через градиенты (не ломается на iOS) */
+        .earth-globe {
+            position: absolute; inset: 0; border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #1e3c72 0%, #091221 80%, #000 100%);
+            box-shadow: 
+                inset -20px -20px 40px rgba(0,0,0,0.9), 
+                inset 10px 10px 30px rgba(135, 206, 235, 0.3),
+                0 0 50px rgba(30, 60, 114, 0.6);
+            overflow: hidden;
         }
-        .earth-sphere::after {
-            content: ''; position: absolute; inset: 0; border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.1) 0%, transparent 70%);
+        
+        /* Псевдо-материки для объема */
+        .earth-globe::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
+            opacity: 0.1; animation: spinEarth 40s linear infinite;
         }
 
+        /* Орбита и Луна */
         .moon-orbit {
-            position: absolute; top: -150px; left: -150px; width: 700px; height: 700px;
-            border-radius: 50%; transform-style: preserve-3d;
-            animation: rotateOrbit 40s linear infinite;
+            position: absolute; top: 50%; left: 50%; width: 350px; height: 350px;
+            margin-top: -175px; margin-left: -175px;
+            border-radius: 50%; border: 1px dashed rgba(255,255,255,0.1);
+            animation: spinOrbit 25s linear infinite;
+        }
+        .moon-globe {
+            position: absolute; top: 0; left: 50%; width: 30px; height: 30px;
+            margin-top: -15px; margin-left: -15px; border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #f0f0f0 0%, #a0a0a0 70%, #333 100%);
+            box-shadow: inset -5px -5px 10px rgba(0,0,0,0.8), 0 0 15px rgba(255,255,255,0.3);
         }
 
-        /* 3D ЛУНА-ШАР */
-        .moon-sphere {
-            position: absolute; top: 50%; right: -30px; width: 60px; height: 60px;
-            background: radial-gradient(circle at 30% 30%, #f0f0f0 0%, #a0a0a0 100%);
-            border-radius: 50%;
-            box-shadow: inset -10px -10px 20px #000, 0 0 20px rgba(255,255,255,0.2);
-            transform: translateY(-50%) rotateY(0deg);
-        }
-
-        .intro-ui { position: absolute; bottom: 12%; width: 100%; text-align: center; z-index: 20; }
-        .intro-title { font-family: var(--font-serif); font-size: 42px; letter-spacing: 12px; color: var(--gold); text-transform: uppercase; margin-bottom: 20px; opacity: 0.9; }
-        .btn-sync {
-            background: rgba(255,255,255,0.03); border: 1px solid var(--gold);
+        .intro-title { font-family: var(--font-serif); font-size: 40px; letter-spacing: 12px; color: var(--gold); text-transform: uppercase; margin-bottom: 30px; text-align: center; }
+        .btn-enter {
+            background: rgba(255,255,255,0.02); border: 1px solid var(--gold);
             color: #fff; padding: 20px 50px; border-radius: 4px;
             font-size: 11px; text-transform: uppercase; letter-spacing: 5px;
             cursor: pointer; backdrop-filter: blur(10px); transition: 0.5s;
         }
-        .btn-sync:hover { background: var(--gold); color: #000; letter-spacing: 7px; }
+        .btn-enter:hover { background: var(--gold); color: #000; letter-spacing: 7px; }
 
-        /* ----------------------------------------------------------- */
-        /* ИНТЕРФЕЙС И ВЫБОР */
-        /* ----------------------------------------------------------- */
+        /* ШАПКА */
         header { 
             position: fixed; top: 0; width: 100%; padding: 20px 5%; 
             display: flex; justify-content: space-between; align-items: center; 
             z-index: 2000; opacity: 0; pointer-events: none; transition: 1s;
         }
-        header.active { opacity: 1; pointer-events: all; background: rgba(1, 1, 3, 0.4); backdrop-filter: blur(20px); }
-        .logo { font-family: var(--font-serif); font-size: 24px; letter-spacing: 8px; text-transform: uppercase; color: var(--gold); }
+        header.active { opacity: 1; pointer-events: all; background: rgba(2,2,4,0.4); backdrop-filter: blur(15px); }
+        .logo { font-family: var(--font-serif); font-size: 20px; letter-spacing: 8px; text-transform: uppercase; color: var(--gold); }
 
+        /* СЦЕНА 1: ВЫБОР ЗНАКА */
         #scene-grid {
             position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
-            opacity: 0; pointer-events: none; transform: translateZ(-500px); transition: var(--transit); z-index: 5;
+            opacity: 0; pointer-events: none; transition: 0.8s; z-index: 20;
         }
-        #scene-grid.active { opacity: 1; pointer-events: all; transform: translateZ(0); }
+        #scene-grid.active { opacity: 1; pointer-events: all; }
 
-        .grid-container {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
-            width: 90%; max-width: 650px;
+        .grid-wrap {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px;
+            width: 90%; max-width: 500px; padding-top: 40px;
         }
-        .sign-card {
-            background: var(--glass); border: var(--border); padding: 30px 10px;
-            border-radius: 0; cursor: pointer; text-align: center; transition: 0.4s;
+        .sign-btn {
+            background: var(--glass); border: var(--border); padding: 25px 5px;
+            border-radius: 12px; cursor: pointer; text-align: center; transition: 0.3s;
+            backdrop-filter: blur(10px);
         }
-        .sign-card:hover { border-color: #fff; background: rgba(255,255,255,0.05); transform: translateY(-5px); }
-        .sign-card span { display: block; margin-top: 10px; font-size: 10px; text-transform: uppercase; letter-spacing: 3px; opacity: 0.6; }
+        .sign-btn:hover { border-color: var(--gold); background: rgba(197, 160, 89, 0.1); transform: translateY(-3px); }
+        .sign-name { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: #fff; margin-top: 10px; opacity: 0.8;}
+        .sign-icon { font-size: 24px; color: var(--gold); opacity: 0.8; }
 
-        /* ----------------------------------------------------------- */
-        /* КАРТОЧКА И ЧАТ С ВЕРОЙ */
-        /* ----------------------------------------------------------- */
+        /* СЦЕНА 2: ОБЩАЯ КАРТОЧКА */
         #scene-result {
-            position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
-            opacity: 0; pointer-events: none; transition: var(--transit); z-index: 100;
-            background: rgba(0,0,0,0.8); backdrop-filter: blur(20px);
+            position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            opacity: 0; pointer-events: none; transition: 0.8s; z-index: 30; padding: 20px;
         }
         #scene-result.active { opacity: 1; pointer-events: all; }
 
-        .story-layout { width: 100%; max-width: 400px; display: flex; flex-direction: column; gap: 20px; padding: 20px; }
-        
-        .magic-card {
-            background: linear-gradient(180deg, #05050A 0%, #0A0A14 100%);
+        .card-main {
+            width: 100%; max-width: 400px; background: rgba(5,5,10,0.6);
             border: 1px solid rgba(197, 160, 89, 0.4); border-radius: 20px;
-            padding: 40px 30px; position: relative; overflow: hidden;
-            box-shadow: 0 30px 100px rgba(0,0,0,0.5);
+            padding: 40px 30px; backdrop-filter: blur(25px); box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            text-align: center;
         }
-
-        .vera-chat-window {
-            display: none; position: fixed; inset: 0; z-index: 3000;
-            background: rgba(1, 1, 3, 0.95); padding: 40px 20px;
-            flex-direction: column; align-items: center; animation: fadeIn 0.5s ease;
-        }
-        .vera-chat-window.active { display: flex; }
-
-        .chat-container {
-            width: 100%; max-width: 450px; height: 100%; display: flex; flex-direction: column;
-        }
-        .chat-header { border-bottom: var(--border); padding-bottom: 20px; margin-bottom: 30px; text-align: center; }
-        .chat-header h2 { font-family: var(--font-serif); font-size: 28px; color: var(--gold); letter-spacing: 2px; }
-
-        .message { margin-bottom: 25px; padding: 20px; border-radius: 15px; font-size: 15px; line-height: 1.7; animation: slideUp 0.6s ease forwards; opacity: 0; }
-        .message.vera { background: rgba(197, 160, 89, 0.05); border: 1px solid rgba(197, 160, 89, 0.1); color: #f4f4f9; align-self: flex-start; }
+        .card-title { font-family: var(--font-serif); font-size: 36px; color: var(--gold); text-transform: uppercase; letter-spacing: 4px; margin-bottom: 20px; }
+        .card-text { font-size: 15px; line-height: 1.6; color: #eee; margin-bottom: 30px; font-weight: 300; }
         
-        .btn-detailed {
-            width: 100%; background: transparent; border: 1px solid var(--gold); color: var(--gold);
-            padding: 20px; border-radius: 12px; cursor: pointer; text-transform: uppercase;
-            letter-spacing: 2px; font-weight: 700; font-size: 11px; margin-top: 15px; transition: 0.4s;
+        .btn-action {
+            display: block; width: 100%; background: transparent; border: 1px solid var(--gold);
+            color: var(--gold); padding: 18px; border-radius: 10px; font-size: 11px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: 0.3s;
         }
-        .btn-detailed:hover { background: var(--gold); color: #000; }
+        .btn-action:hover { background: var(--gold); color: #000; }
+
+        /* СЦЕНА 3: ЗАКРЫТЫЙ ЧАТ ВЕРЫ ВЕРОВНЫ (18+) */
+        #scene-chat {
+            position: fixed; inset: 0; background: rgba(2,2,4,0.95); z-index: 4000;
+            display: flex; flex-direction: column; align-items: center;
+            opacity: 0; pointer-events: none; transition: 0.5s; padding: 40px 20px 20px;
+        }
+        #scene-chat.active { opacity: 1; pointer-events: all; }
+
+        .chat-wrap { width: 100%; max-width: 450px; height: 100%; display: flex; flex-direction: column; }
+        .chat-header { text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px; margin-bottom: 20px; }
+        .chat-name { font-family: var(--font-serif); font-size: 28px; color: var(--gold); margin-bottom: 5px; }
+        .chat-status { font-size: 9px; text-transform: uppercase; letter-spacing: 2px; color: #aaa; }
+
+        .chat-history { flex-grow: 1; overflow-y: auto; padding-right: 5px; display: flex; flex-direction: column; gap: 15px; }
+        
+        .msg { background: rgba(255,255,255,0.05); padding: 18px; border-radius: 15px 15px 15px 0; font-size: 14px; line-height: 1.6; border: 1px solid rgba(255,255,255,0.05); animation: popIn 0.5s ease; }
+        .msg.vera { background: rgba(197, 160, 89, 0.1); border-color: rgba(197, 160, 89, 0.3); border-radius: 15px 15px 15px 0; color: #fff; }
+
+        .typing { font-size: 12px; color: var(--gold); font-style: italic; margin-bottom: 15px; display: none; }
 
         /* АНИМАЦИИ */
-        @keyframes rotateEarth { from { background-position: 0% 0%; } to { background-position: 200% 0%; } }
-        @keyframes rotateOrbit { from { transform: rotateX(75deg) rotateZ(0deg); } to { transform: rotateX(75deg) rotateZ(360deg); } }
-        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes spinEarth { 100% { background-position: -200% 0; } }
+        @keyframes spinOrbit { 100% { transform: rotate(360deg); } }
+        @keyframes popIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
     </style>
 </head>
 <body>
 
-<canvas id="stars-canvas"></canvas>
+<div class="deep-space"><canvas id="stars-canvas"></canvas></div>
 
 <div id="scene-cosmos">
-    <div class="sun-glow" style="position: absolute; width: 1000px; height: 1000px; background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 70%); transform: translateZ(-1000px);"></div>
-    <div class="system-wrap">
-        <div class="earth-sphere"></div>
-        <div class="moon-orbit">
-            <div class="moon-sphere"></div>
-        </div>
+    <div class="solar-system">
+        <div class="earth-globe"></div>
+        <div class="moon-orbit"><div class="moon-globe"></div></div>
     </div>
-    <div class="intro-ui">
-        <div class="intro-title">Ресурс</div>
-        <button class="btn-sync" onclick="openGrid()">Настроить связь</button>
-    </div>
+    <div class="intro-title">Синхронизация</div>
+    <button class="btn-enter" onclick="openGrid()">Войти в поток</button>
 </div>
 
 <header id="main-header">
     <div class="logo">Ресурс</div>
-    <img src="logo_header_final.png" style="height: 30px; border-radius: 5px;">
+    <img src="logo_header_final.png" style="height: 25px; border-radius: 4px;">
 </header>
 
 <div id="scene-grid">
-    <div class="grid-container">
-        <div class="sign-card" onclick="showAstro('Овен')">♈ <span>Овен</span></div>
-        <div class="sign-card" onclick="showAstro('Телец')">♉ <span>Телец</span></div>
-        <div class="sign-card" onclick="showAstro('Близнецы')">♊ <span>Близнецы</span></div>
-        <div class="sign-card" onclick="showAstro('Рак')">♋ <span>Рак</span></div>
-        <div class="sign-card" onclick="showAstro('Лев')">♌ <span>Лев</span></div>
-        <div class="sign-card" onclick="showAstro('Дева')">♍ <span>Дева</span></div>
-        <div class="sign-card" onclick="showAstro('Весы')">♎ <span>Весы</span></div>
-        <div class="sign-card" onclick="showAstro('Скорпион')">♏ <span>Скорпион</span></div>
-        <div class="sign-card" onclick="showAstro('Стрелец')">♐ <span>Стрелец</span></div>
-        <div class="sign-card" onclick="showAstro('Козерог')">♑ <span>Козерог</span></div>
-        <div class="sign-card" onclick="showAstro('Водолей')">♒ <span>Водолей</span></div>
-        <div class="sign-card" onclick="showAstro('Рыбы')">♓ <span>Рыбы</span></div>
+    <div class="grid-wrap">
+        <div class="sign-btn" onclick="showResult('Овен')"><div class="sign-icon">♈</div><div class="sign-name">Овен</div></div>
+        <div class="sign-btn" onclick="showResult('Телец')"><div class="sign-icon">♉</div><div class="sign-name">Телец</div></div>
+        <div class="sign-btn" onclick="showResult('Близнецы')"><div class="sign-icon">♊</div><div class="sign-name">Близнецы</div></div>
+        <div class="sign-btn" onclick="showResult('Рак')"><div class="sign-icon">♋</div><div class="sign-name">Рак</div></div>
+        <div class="sign-btn" onclick="showResult('Лев')"><div class="sign-icon">♌</div><div class="sign-name">Лев</div></div>
+        <div class="sign-btn" onclick="showResult('Дева')"><div class="sign-icon">♍</div><div class="sign-name">Дева</div></div>
+        <div class="sign-btn" onclick="showResult('Весы')"><div class="sign-icon">♎</div><div class="sign-name">Весы</div></div>
+        <div class="sign-btn" onclick="showResult('Скорпион')"><div class="sign-icon">♏</div><div class="sign-name">Скорпион</div></div>
+        <div class="sign-btn" onclick="showResult('Стрелец')"><div class="sign-icon">♐</div><div class="sign-name">Стрелец</div></div>
+        <div class="sign-btn" onclick="showResult('Козерог')"><div class="sign-icon">♑</div><div class="sign-name">Козерог</div></div>
+        <div class="sign-btn" onclick="showResult('Водолей')"><div class="sign-icon">♒</div><div class="sign-name">Водолей</div></div>
+        <div class="sign-btn" onclick="showResult('Рыбы')"><div class="sign-icon">♓</div><div class="sign-name">Рыбы</div></div>
     </div>
 </div>
 
 <div id="scene-result">
-    <div class="story-layout">
-        <div class="magic-card">
-            <div style="font-family: var(--font-serif); font-size: 32px; color: var(--gold); text-align: center; margin-bottom: 20px;" id="sign-title">Скорпион</div>
-            <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.4); margin-bottom: 15px; text-align: center;">Общий фон на сегодня</div>
-            <div id="short-text" style="line-height: 1.7; font-weight: 300; margin-bottom: 25px;"></div>
-            <button class="btn-detailed" onclick="openPrivateChat()">Подробный разбор 18+</button>
-        </div>
-        <div style="text-align: center; font-size: 10px; color: var(--gold); letter-spacing: 2px; cursor: pointer; opacity: 0.5;" onclick="location.reload()">Вернуться к звездам</div>
+    <div class="card-main">
+        <div class="card-title" id="res-title">Скорпион</div>
+        <div class="card-text" id="res-text">Настройка связи со звездами...</div>
+        <button class="btn-action" onclick="openChat()">Интимный прогноз (18+)</button>
+        <div style="margin-top: 25px; font-size: 10px; letter-spacing: 2px; color: #888; text-transform: uppercase; cursor: pointer;" onclick="location.reload()">Вернуться в космос</div>
     </div>
 </div>
 
-<div class="vera-chat-window" id="vera-chat">
-    <div class="chat-container">
+<div id="scene-chat">
+    <div class="chat-wrap">
         <div class="chat-header">
-            <h2>Вера Веровна Верова</h2>
-            <div style="font-size: 10px; text-transform: uppercase; color: var(--gold); letter-spacing: 2px;">Ваш персональный астролог</div>
+            <div class="chat-name">Вера Веровна Верова</div>
+            <div class="chat-status">Штатный Астролог Студии Ресурс</div>
         </div>
-        <div id="chat-messages" style="overflow-y: auto; flex-grow: 1; padding-right: 10px;">
-            </div>
-        <button class="btn-detailed" style="background: var(--gold); color: #000; margin-bottom: 20px;" onclick="window.location.href='https://vk.me/resurs_syktyvkar'">Записаться на практику</button>
-        <div style="text-align: center; font-size: 11px; opacity: 0.5; cursor: pointer;" onclick="document.getElementById('vera-chat').classList.remove('active')">Закрыть секретный чат</div>
+        <div class="chat-history" id="chat-box">
+            <div class="msg vera">Здравствуй, дорогая. Я ждала тебя. Сейчас я считаю энергию твоего знака на сегодня...</div>
+        </div>
+        <div class="typing" id="typing-indicator">Вера Веровна печатает сообщение...</div>
+        
+        <button class="btn-action" style="background: var(--gold); color: #000; margin-top: 15px;" onclick="window.location.href='https://vk.me/resurs_syktyvkar'">Записаться в студию</button>
+        <div style="text-align: center; font-size: 10px; color: #888; text-transform: uppercase; margin-top: 20px; cursor: pointer;" onclick="document.getElementById('scene-chat').classList.remove('active')">Закрыть чат</div>
     </div>
 </div>
 
 <script>
-    // --- ЗВЕЗДНОЕ НЕБО (Canvas) ---
+    // ВСТАВЬ СЮДА СВОЮ ССЫЛКУ НА ЯНДЕКС ФУНКЦИЮ
+    const BACKEND_URL = "https://functions.yandexcloud.net/ТВОЙ_АЙДИ_ФУНКЦИИ"; 
+
+    // Отрисовка Звездного фона на Canvas
     const canvas = document.getElementById('stars-canvas');
     const ctx = canvas.getContext('2d');
     let stars = [];
 
     function initStars() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        stars = [];
-        for(let i=0; i<400; i++) {
-            stars.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                size: Math.random() * 1.5,
-                opacity: Math.random(),
-                speed: Math.random() * 0.02
-            });
-        }
+        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+        stars = Array.from({length: 300}, () => ({
+            x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+            size: Math.random() * 1.5, opacity: Math.random(), speed: (Math.random() * 0.02) + 0.005
+        }));
     }
-
-    function animateStars() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    function drawStars() {
+        ctx.clearRect(0,0,canvas.width,canvas.height);
         stars.forEach(s => {
             s.opacity += s.speed;
-            if(s.opacity > 1 || s.opacity < 0) s.speed = -s.speed;
+            if(s.opacity > 1 || s.opacity < 0) s.speed *= -1;
             ctx.fillStyle = `rgba(255, 255, 255, ${s.opacity})`;
-            ctx.beginPath();
-            ctx.arc(s.x, s.y, s.size, 0, Math.PI*2);
-            ctx.fill();
+            ctx.beginPath(); ctx.arc(s.x, s.y, s.size, 0, Math.PI*2); ctx.fill();
         });
-        requestAnimationFrame(animateStars);
+        requestAnimationFrame(drawStars);
     }
-
     window.addEventListener('resize', initStars);
-    initStars();
-    animateStars();
+    initStars(); drawStars();
 
-    // --- ЛОГИКА ПРИЛОЖЕНИЯ ---
-    let userSign = "";
+    // Логика переходов
+    let currentSign = "";
 
     function openGrid() {
         document.getElementById('scene-cosmos').classList.add('hidden');
@@ -292,47 +274,62 @@
         }, 1000);
     }
 
-    function showAstro(sign) {
-        userSign = sign;
+    function showResult(sign) {
+        currentSign = sign;
         document.getElementById('scene-grid').classList.remove('active');
         setTimeout(() => {
             document.getElementById('scene-result').classList.add('active');
-            document.getElementById('sign-title').innerText = sign;
+            document.getElementById('res-title').innerText = sign;
             
             const hash = Math.abs(sign.split('').reduce((a,b)=>((a<<5)-a)+b.charCodeAt(0),0) + new Date().getDate());
-            const texts = [
-                "Сегодня звезды настраивают вас на созидание. Ваша энергия стабильна, что позволяет решать сложные задачи без напряжения.",
-                "День обещает быть ярким. Венера в гармонии с вашим знаком, что придает вам особого шарма в общении с окружающими.",
-                "Сегодня важно прислушаться к интуиции. Космос посылает сигналы, которые помогут найти ответы на старые вопросы."
+            const desc = [
+                "Сегодняшний день несет в себе спокойную, заземляющую энергию. Идеальное время, чтобы прислушаться к своему телу.",
+                "Ваша интуиция сегодня на пике. Звезды выстроились так, что любая забота о себе принесет двойной результат.",
+                "День наполнен мягким светом Луны. Позвольте себе отпустить суету и сконцентрироваться на внутреннем балансе."
             ];
-            document.getElementById('short-text').innerText = texts[hash % 3];
-        }, 800);
+            document.getElementById('res-text').innerText = desc[hash % 3];
+        }, 600);
     }
 
-    function openPrivateChat() {
-        const chat = document.getElementById('vera-chat');
-        chat.classList.add('active');
-        const box = document.getElementById('chat-messages');
-        box.innerHTML = "";
-
-        const hash = Math.abs(userSign.split('').reduce((a,b)=>((a<<5)-a)+b.charCodeAt(0),0) + new Date().getDate());
+    async function openChat() {
+        document.getElementById('scene-chat').classList.add('active');
+        const typing = document.getElementById('typing-indicator');
+        const box = document.getElementById('chat-box');
         
-        const messages = [
-            `Здравствуй, дорогая. Я Вера Веровна, и я рада, что ты заглянула ко мне в этот интимный уголок.`,
-            `Твой знак ${userSign} сегодня просто сияет. Ты даже не представляешь, какой магнетизм ты излучаешь. Знаешь, сегодня тот день, когда твоя женская сила может вскружить голову любому.`,
-            `Я вижу в твоей карте тонкую нить страсти. Вечером возможен очень интересный поворот в личной жизни... Будь готова к комплиментам, которых ты заслуживаешь как никто другой.`,
-            `Но чтобы этот огонь не угас, твоему телу нужна разрядка. Твои бедра и спина сегодня копят энергию, которую нужно направить в правильное русло. Жду тебя на практике, мы раскроем твой ресурс на 100%.`
-        ];
+        // Оставляем только первое приветствие при каждом открытии
+        box.innerHTML = '<div class="msg vera">Здравствуй, дорогая. Я ждала тебя. Сейчас я считаю энергию твоего знака на сегодня...</div>';
+        typing.style.display = 'block';
 
-        messages.forEach((msg, i) => {
-            setTimeout(() => {
-                const div = document.createElement('div');
-                div.className = "message vera";
-                div.innerText = msg;
-                box.appendChild(div);
-                box.scrollTop = box.scrollHeight;
-            }, i * 1500);
-        });
+        try {
+            // ОТПРАВЛЯЕМ ЗАПРОС НА ТВОЙ PYTHON БЭКЕНД
+            const response = await fetch(BACKEND_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    messages: [{"role": "user", "text": `[АСТРО_ЗАПРОС] ${currentSign}`}]
+                })
+            });
+
+            const data = await response.json();
+            const answer = data.answer || "Звезды сегодня шепчут о твоей красоте, но связь с космосом немного прервалась. Приходи на практику, чтобы восстановить баланс.";
+            
+            typing.style.display = 'none';
+            
+            // Добавляем ответ от Веры
+            const div = document.createElement('div');
+            div.className = "msg vera";
+            // Заменяем переносы строк на <br> для красоты
+            div.innerHTML = answer.replace(/\n/g, '<br>');
+            box.appendChild(div);
+            box.scrollTop = box.scrollHeight;
+
+        } catch (error) {
+            typing.style.display = 'none';
+            const errDiv = document.createElement('div');
+            errDiv.className = "msg vera";
+            errDiv.innerText = "Звездная пыль забила каналы связи. Но я точно знаю одно: твоему телу сегодня нужен отдых. Жду тебя на релакс-практике.";
+            box.appendChild(errDiv);
+        }
     }
 </script>
 
