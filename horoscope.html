@@ -19,18 +19,18 @@
     <style>
         :root {
             --gold: #C5A059;
-            --bg-deep: #020204;
-            --glass: rgba(255, 255, 255, 0.02);
-            --border: 1px solid rgba(197, 160, 89, 0.2);
+            --bg-deep: #010103;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: 1px solid rgba(197, 160, 89, 0.25);
             --font-serif: 'Cormorant Garamond', serif;
             --font-main: 'Manrope', sans-serif;
-            --transit: all 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+            --transit: all 1.2s cubic-bezier(0.25, 1, 0.3, 1);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
         
         body {
-            background-color: var(--bg-deep); color: #ffffff;
+            background-color: var(--bg-deep); color: #fff;
             font-family: var(--font-main); height: 100vh; width: 100vw;
             overflow: hidden; perspective: 1200px;
         }
@@ -38,153 +38,178 @@
         /* --- ФОН ЗВЕЗД --- */
         #stars-canvas { position: fixed; inset: 0; z-index: 1; pointer-events: none; }
 
-        /* --- СЦЕНА 0: ГОЛЛИВУДСКИЙ КОСМОС --- */
+        /* --- СЦЕНА 0: ГОЛЛИВУДСКИЙ КОСМОС (ТРОЙНАЯ ОРБИТА) --- */
         #scene-cosmos {
-            position: fixed; inset: 0; z-index: 10;
+            position: fixed; inset: 0; z-index: 100;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
-            transition: var(--transit); transform-style: preserve-3d;
+            transition: var(--transit);
         }
-        #scene-cosmos.hidden { opacity: 0; transform: translateZ(1000px); pointer-events: none; }
+        #scene-cosmos.hidden { opacity: 0; transform: scale(1.1); pointer-events: none; }
 
+        .solar-system {
+            position: absolute; top: 50%; left: 50%; width: 0; height: 0;
+            transform-style: preserve-3d;
+            transform: rotateX(75deg); /* Сильный наклон для 3D эллипса */
+            pointer-events: none;
+        }
+
+        /* СОЛНЦЕ */
         .sun {
-            position: absolute; width: 800px; height: 800px;
-            background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,215,0,0.8) 15%, rgba(255,140,0,0.3) 40%, transparent 60%);
-            border-radius: 50%; transform: translateZ(-800px) translateY(-150px);
-            filter: blur(20px); box-shadow: 0 0 200px rgba(255, 140, 0, 0.4); pointer-events: none;
+            position: absolute; top: 50%; left: 50%; width: 500px; height: 500px;
+            margin: -250px 0 0 -250px; border-radius: 50%;
+            background: radial-gradient(circle, #ffffff 0%, rgba(255,215,0,0.5) 15%, rgba(255,140,0,0.1) 40%, transparent 65%);
+            transform: rotateX(-75deg); /* Чтобы солнце смотрело в камеру */
+            animation: pulseSun 8s ease-in-out infinite alternate;
         }
 
-        .orbit-container {
-            position: relative; width: 300px; height: 300px;
-            transform-style: preserve-3d; transform: rotateX(75deg); pointer-events: none;
+        /* ОРБИТА ЗЕМЛИ ВОКРУГ СОЛНЦА */
+        .earth-orbit-path {
+            position: absolute; top: 50%; left: 50%; width: 660px; height: 660px;
+            margin: -330px 0 0 -330px; border: 1px dashed rgba(255,255,255,0.08); border-radius: 50%;
+        }
+        
+        .earth-group {
+            position: absolute; top: 50%; left: 50%; width: 0; height: 0;
+            transform-style: preserve-3d;
+            animation: orbitSun 90s linear infinite; /* Земля медленно летит по орбите */
         }
 
-        .earth {
-            position: absolute; top: 50%; left: 50%; width: 140px; height: 140px;
-            margin-top: -70px; margin-left: -70px; border-radius: 50%;
+        /* ЗЕМЛЯ */
+        .earth-sphere {
+            position: absolute; top: 50%; left: 50%; width: 130px; height: 130px;
+            margin: -65px 0 0 -65px; border-radius: 50%;
             background: radial-gradient(circle at 30% 30%, #1e3c72 0%, #091221 80%, #000 100%);
-            box-shadow: inset -10px -10px 30px rgba(0,0,0,0.9), 0 0 40px rgba(30, 60, 114, 0.6);
-            transform: rotateX(-75deg);
+            box-shadow: inset -15px -15px 30px rgba(0,0,0,0.9), 0 0 40px rgba(30, 60, 114, 0.6);
+            transform: rotateX(-75deg); /* Земля всегда смотрит в камеру */
         }
-        .earth::after {
+        .earth-sphere::after {
             content: ''; position: absolute; inset: 0; border-radius: 50%;
             background: url('https://www.transparenttextures.com/patterns/cubes.png');
-            opacity: 0.1; animation: spinBg 30s linear infinite;
+            opacity: 0.15; animation: spinPlanet 30s linear infinite;
         }
 
-        .moon-pivot {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            transform-style: preserve-3d; animation: spinOrbit 20s linear infinite;
+        /* ОРБИТА ЛУНЫ ВОКРУГ ЗЕМЛИ */
+        .moon-orbit-path {
+            position: absolute; top: 50%; left: 50%; width: 220px; height: 220px;
+            margin: -110px 0 0 -110px; border: 1px dashed rgba(255,255,255,0.15); border-radius: 50%;
         }
-        .moon-orbit-line {
-            position: absolute; inset: 0; border-radius: 50%;
-            border: 1px dashed rgba(255,255,255,0.15);
+
+        .moon-group {
+            position: absolute; top: 50%; left: 50%; width: 0; height: 0;
+            transform-style: preserve-3d;
+            animation: orbitMoon 15s linear infinite; /* Луна летит быстрее */
         }
-        .moon {
-            position: absolute; top: 50%; right: -20px; width: 40px; height: 40px;
-            margin-top: -20px; border-radius: 50%;
+
+        /* ЛУНА */
+        .moon-sphere {
+            position: absolute; top: 50%; left: 50%; width: 34px; height: 34px;
+            margin: -17px 0 0 -17px; border-radius: 50%;
             background: radial-gradient(circle at 30% 30%, #fff 0%, #a0a0a0 60%, #333 100%);
-            box-shadow: 0 0 20px rgba(255,255,255,0.3);
-            animation: counterSpinMoon 20s linear infinite;
+            box-shadow: 0 0 15px rgba(255,255,255,0.4);
+            transform: rotateX(-75deg); /* Луна всегда смотрит в камеру */
         }
 
-        .ui-container { position: absolute; bottom: 12%; text-align: center; z-index: 50; }
-        .intro-title { font-family: var(--font-serif); font-size: 38px; letter-spacing: 12px; color: var(--gold); text-transform: uppercase; margin-bottom: 30px; }
-        .btn-enter { background: rgba(255,255,255,0.02); border: 1px solid var(--gold); color: #fff; padding: 20px 40px; border-radius: 4px; font-size: 11px; text-transform: uppercase; letter-spacing: 5px; cursor: pointer; backdrop-filter: blur(10px); transition: 0.5s; pointer-events: all; }
-        .btn-enter:hover { background: var(--gold); color: #000; letter-spacing: 7px; }
+        /* Анимации орбит (хитрая математика, чтобы сферы не искажались) */
+        @keyframes orbitSun {
+            0% { transform: rotateZ(0deg) translateX(330px) rotateZ(0deg); }
+            100% { transform: rotateZ(360deg) translateX(330px) rotateZ(-360deg); }
+        }
+        @keyframes orbitMoon {
+            0% { transform: rotateZ(0deg) translateX(110px) rotateZ(0deg); }
+            100% { transform: rotateZ(360deg) translateX(110px) rotateZ(-360deg); }
+        }
+        @keyframes pulseSun { 0% { filter: blur(30px); } 100% { filter: blur(50px); } }
+        @keyframes spinPlanet { 100% { background-position: -200% 0; } }
+
+        .ui-container { position: absolute; bottom: 12%; text-align: center; z-index: 500; width: 100%; }
+        .intro-title { font-family: var(--font-serif); font-size: 40px; letter-spacing: 12px; color: var(--gold); text-transform: uppercase; margin-bottom: 30px; }
+        .btn-enter { background: rgba(255,255,255,0.02); border: 1px solid var(--gold); color: #fff; padding: 22px 50px; border-radius: 6px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 5px; cursor: pointer; backdrop-filter: blur(10px); transition: 0.5s; pointer-events: all; }
+        .btn-enter:hover { background: var(--gold); color: #000; letter-spacing: 8px; box-shadow: 0 0 30px rgba(197, 160, 89, 0.4); }
 
         /* --- ШАПКА --- */
         header { position: fixed; top: 0; width: 100%; padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; z-index: 2000; opacity: 0; pointer-events: none; transition: 1s; }
-        header.active { opacity: 1; pointer-events: all; background: rgba(2,2,4,0.4); backdrop-filter: blur(15px); }
-        .logo { font-family: var(--font-serif); font-size: 20px; letter-spacing: 8px; text-transform: uppercase; color: var(--gold); }
+        header.active { opacity: 1; pointer-events: all; background: rgba(1,1,3,0.6); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .logo { font-family: var(--font-serif); font-size: 24px; letter-spacing: 8px; text-transform: uppercase; color: var(--gold); }
 
-        /* --- СЦЕНА 1: ВЫБОР ЗНАКА --- */
+        /* --- СЦЕНА 1: СЕТКА ЗНАКОВ --- */
         #scene-grid { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 0.8s; z-index: 20; }
         #scene-grid.active { opacity: 1; pointer-events: all; }
-        .grid-wrap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; width: 90%; max-width: 500px; padding-top: 40px; }
-        .sign-btn { background: var(--glass); border: var(--border); padding: 25px 5px; border-radius: 12px; cursor: pointer; text-align: center; transition: 0.3s; backdrop-filter: blur(10px); }
-        .sign-btn:hover { border-color: var(--gold); background: rgba(197, 160, 89, 0.1); transform: translateY(-3px); }
+        .grid-wrap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; width: 90%; max-width: 550px; padding-top: 40px; }
+        .sign-btn { background: var(--glass); border: var(--border); padding: 25px 5px; border-radius: 14px; cursor: pointer; text-align: center; transition: 0.3s; backdrop-filter: blur(10px); }
+        .sign-btn:hover { border-color: #fff; background: rgba(197, 160, 89, 0.1); transform: translateY(-5px); }
         .sign-name { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: #fff; margin-top: 10px; opacity: 0.8;}
-        .sign-icon { font-size: 24px; color: var(--gold); opacity: 0.8; }
+        .sign-icon { font-size: 28px; color: var(--gold); opacity: 0.9; }
 
         /* --- СЦЕНА 2: ВЕРТИКАЛЬНАЯ КАРТОЧКА --- */
-        #scene-result { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 0.8s; z-index: 30; background: rgba(0,0,0,0.6); backdrop-filter: blur(10px); }
+        #scene-result { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 0.8s; z-index: 30; background: rgba(0,0,0,0.8); backdrop-filter: blur(15px); }
         #scene-result.active { opacity: 1; pointer-events: all; }
 
         .story-frame {
-            width: 100%; max-width: 400px; height: 90vh; max-height: 800px;
+            width: 92%; max-width: 420px; height: 90vh; max-height: 850px;
             background: linear-gradient(180deg, #05050A 0%, #0A0A14 100%);
-            border: 1px solid rgba(197, 160, 89, 0.4); border-radius: 24px;
+            border: 1px solid rgba(197, 160, 89, 0.4); border-radius: 28px;
             display: flex; flex-direction: column; overflow: hidden;
-            box-shadow: 0 30px 80px rgba(0,0,0,0.8);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.9);
         }
 
         .canvas-area {
             width: 100%; height: 35%; position: relative; flex-shrink: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(197, 160, 89, 0.05) 0%, transparent 70%);
+            background: radial-gradient(circle at 50% 50%, rgba(197, 160, 89, 0.08) 0%, transparent 80%);
             display: flex; align-items: center; justify-content: center; border-bottom: var(--border);
         }
-        #constellation-canvas { width: 250px; height: 250px; }
-        .bg-sign { position: absolute; font-family: var(--font-serif); font-size: 55px; color: #fff; opacity: 0.03; text-transform: uppercase; letter-spacing: 10px; pointer-events: none; }
+        #constellation-canvas { width: 280px; height: 280px; }
+        .bg-sign { position: absolute; font-family: var(--font-serif); font-size: 65px; color: #fff; opacity: 0.02; text-transform: uppercase; letter-spacing: 15px; pointer-events: none; }
 
-        .info-area { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; overflow: hidden; }
+        .info-area { padding: 30px 25px; flex-grow: 1; display: flex; flex-direction: column; overflow: hidden; }
         
         .res-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; flex-shrink: 0;}
-        .res-sign { font-family: var(--font-serif); font-size: 28px; color: var(--gold); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 5px; }
-        .moon-box { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.05); padding: 5px 12px; border-radius: 15px; border: var(--border); }
-        .moon-icon { font-size: 12px; }
-        .moon-text { font-size: 9px; text-transform: uppercase; letter-spacing: 1px; color: #ccc; }
+        .res-sign { font-family: var(--font-serif); font-size: 34px; color: var(--gold); text-transform: uppercase; letter-spacing: 4px; margin-bottom: 5px; }
+        .moon-box { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.05); padding: 6px 14px; border-radius: 20px; border: var(--border); }
+        .moon-icon { font-size: 14px; }
+        .moon-text { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #ddd; }
 
-        .energy-wrap { margin-bottom: 15px; flex-shrink: 0; }
-        .energy-label { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.5); display: flex; justify-content: space-between; margin-bottom: 8px; }
+        .energy-wrap { margin-bottom: 20px; flex-shrink: 0; }
+        .energy-label { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.5); display: flex; justify-content: space-between; margin-bottom: 10px; }
         .energy-track { width: 100%; height: 3px; background: rgba(255,255,255,0.1); border-radius: 2px; }
-        .energy-fill { height: 100%; background: var(--gold); width: 0%; transition: width 1.5s ease-out; box-shadow: 0 0 10px var(--gold); }
+        .energy-fill { height: 100%; background: var(--gold); width: 0%; transition: width 2s cubic-bezier(0.25, 1, 0.5, 1); box-shadow: 0 0 15px var(--gold); }
         
         /* Зона скролла для длинного текста */
-        .scroll-text-area {
-            flex-grow: 1; overflow-y: auto; padding-right: 5px; margin-bottom: 20px;
-        }
-        /* Прячем скроллбар для эстетики */
+        .scroll-text-area { flex-grow: 1; overflow-y: auto; padding-right: 10px; margin-bottom: 20px; }
         .scroll-text-area::-webkit-scrollbar { width: 0px; }
         
-        .res-text { font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.85); font-weight: 300; }
+        .res-text { font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.85); font-weight: 300; }
         .res-text b { color: var(--gold); font-weight: 600; }
 
-        .btn-action { display: block; width: 100%; background: var(--gold); color: #000; padding: 18px; border-radius: 12px; border: none; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: 0.3s; flex-shrink: 0;}
-        .btn-action:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(197, 160, 89, 0.4); }
+        .btn-action { display: block; width: 100%; background: var(--gold); color: #000; padding: 20px; border-radius: 14px; border: none; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: 0.3s; flex-shrink: 0;}
+        .btn-action:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(197, 160, 89, 0.5); }
 
-        /* --- ОКНО 18+ (АГЕ-ГЕЙТ) --- */
-        #modal-age { position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 4000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 0.4s; backdrop-filter: blur(10px); }
+        /* --- ОКНО 18+ (МОДАЛКА) --- */
+        #modal-age { position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 4000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 0.4s; backdrop-filter: blur(15px); }
         #modal-age.active { opacity: 1; pointer-events: all; }
-        .age-box { background: rgba(10,10,15,0.95); border: var(--border); padding: 40px; border-radius: 20px; text-align: center; max-width: 350px; width: 90%; }
-        .age-title { font-family: var(--font-serif); font-size: 28px; color: var(--gold); margin-bottom: 15px; }
-        .age-btns { display: flex; gap: 10px; margin-top: 25px; }
-        .btn-age { flex: 1; padding: 15px; background: transparent; border: 1px solid var(--gold); color: #fff; border-radius: 8px; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; font-size: 10px; transition: 0.3s;}
+        .age-box { background: #0A0A14; border: var(--border); padding: 45px 35px; border-radius: 24px; text-align: center; max-width: 360px; width: 90%; box-shadow: 0 30px 80px rgba(0,0,0,0.9); }
+        .age-title { font-family: var(--font-serif); font-size: 32px; color: var(--gold); margin-bottom: 15px; }
+        .age-btns { display: flex; gap: 12px; margin-top: 30px; }
+        .btn-age { flex: 1; padding: 18px; background: transparent; border: 1px solid var(--gold); color: #fff; border-radius: 10px; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; font-size: 10px; transition: 0.3s; font-weight: 600;}
         .btn-age.yes { background: var(--gold); color: #000; }
 
         /* --- СЦЕНА 3: ЧАТ С ВЕРОЙ --- */
         #scene-chat { position: fixed; inset: 0; background: rgba(2,2,4,0.98); z-index: 5000; display: flex; flex-direction: column; align-items: center; opacity: 0; pointer-events: none; transition: 0.5s; padding: 40px 20px 20px; }
         #scene-chat.active { opacity: 1; pointer-events: all; }
-        .chat-wrap { width: 100%; max-width: 450px; height: 100%; display: flex; flex-direction: column; }
-        .chat-header { text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px; margin-bottom: 20px; }
-        .chat-name { font-family: var(--font-serif); font-size: 28px; color: var(--gold); margin-bottom: 5px; }
-        .chat-status { font-size: 9px; text-transform: uppercase; letter-spacing: 2px; color: #aaa; }
-        .chat-history { flex-grow: 1; overflow-y: auto; padding-right: 5px; display: flex; flex-direction: column; gap: 15px; }
-        .msg { background: rgba(197, 160, 89, 0.1); padding: 20px; border-radius: 15px 15px 15px 0; font-size: 15px; line-height: 1.7; border: 1px solid rgba(197, 160, 89, 0.3); color: #fff; animation: popIn 0.5s ease; }
-        .typing { font-size: 12px; color: var(--gold); font-style: italic; margin-bottom: 15px; display: none; }
+        .chat-wrap { width: 100%; max-width: 480px; height: 100%; display: flex; flex-direction: column; }
+        .chat-header { text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px; margin-bottom: 20px; }
+        .chat-name { font-family: var(--font-serif); font-size: 32px; color: var(--gold); margin-bottom: 5px; }
+        .chat-status { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: #aaa; }
+        .chat-history { flex-grow: 1; overflow-y: auto; padding-right: 10px; display: flex; flex-direction: column; gap: 20px; }
+        .msg { background: rgba(197, 160, 89, 0.1); padding: 22px; border-radius: 20px 20px 20px 0; font-size: 15px; line-height: 1.7; border: 1px solid rgba(197, 160, 89, 0.3); color: #fff; animation: popIn 0.5s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.5);}
+        .typing { font-size: 13px; color: var(--gold); font-style: italic; margin-bottom: 15px; display: none; text-align: center; }
 
-        /* АНИМАЦИИ */
-        @keyframes spinBg { 100% { background-position: -200% 0; } }
-        @keyframes spinOrbit { 100% { transform: rotateZ(360deg); } }
-        @keyframes counterSpinMoon { 0% { transform: rotateZ(0deg) rotateX(-75deg); } 100% { transform: rotateZ(-360deg) rotateX(-75deg); } }
-        @keyframes popIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes popIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
-        @media (max-height: 700px) {
+        @media (max-width: 500px) {
+            .solar-system { transform: rotateX(75deg) scale(0.65); } /* Чуть уменьшаем орбиты для мобилок */
+            .intro-title { font-size: 30px; letter-spacing: 8px; }
+            .grid-wrap { grid-template-columns: repeat(2, 1fr); padding-top: 60px; }
             .story-frame { height: 95vh; }
-            .canvas-area { height: 30%; }
-            .info-area { padding: 15px 20px; }
-            .res-sign { font-size: 24px; }
-            .res-text { font-size: 13px; }
-            .btn-action { padding: 15px; }
         }
     </style>
 </head>
@@ -193,14 +218,20 @@
 <canvas id="stars-canvas"></canvas>
 
 <div id="scene-cosmos">
-    <div class="sun"></div>
-    <div class="orbit-container">
-        <div class="earth"></div>
-        <div class="moon-pivot">
-            <div class="moon-orbit-line"></div>
-            <div class="moon"></div>
+    <div class="solar-system">
+        <div class="sun"></div>
+        <div class="earth-orbit-path"></div>
+        
+        <div class="earth-group">
+            <div class="earth-sphere"></div>
+            <div class="moon-orbit-path"></div>
+            
+            <div class="moon-group">
+                <div class="moon-sphere"></div>
+            </div>
         </div>
     </div>
+    
     <div class="ui-container">
         <div class="intro-title">Синхронизация</div>
         <button class="btn-enter" onclick="openGrid()">Войти в поток</button>
@@ -209,7 +240,7 @@
 
 <header id="main-header">
     <div class="logo">Ресурс</div>
-    <img src="logo_header_final.png" style="height: 25px; border-radius: 4px;">
+    <img src="logo_header_final.png" style="height: 30px; border-radius: 5px;">
 </header>
 
 <div id="scene-grid">
@@ -233,7 +264,7 @@
     <div class="story-frame">
         <div class="canvas-area">
             <div class="bg-sign" id="bg-sign-text">Овен</div>
-            <canvas id="constellation-canvas" width="250" height="250"></canvas>
+            <canvas id="constellation-canvas" width="280" height="280"></canvas>
         </div>
         <div class="info-area">
             <div class="res-header">
@@ -248,7 +279,7 @@
 
             <div class="energy-wrap">
                 <div class="energy-label">
-                    <span>Телесный ресурс</span>
+                    <span>Уровень жизненной энергии</span>
                     <b id="out-energy-num">0%</b>
                 </div>
                 <div class="energy-track"><div class="energy-fill" id="out-energy-bar"></div></div>
@@ -260,7 +291,7 @@
 
             <div>
                 <button class="btn-action" onclick="checkAge()">Глубокий прогноз от Веры</button>
-                <div style="text-align: center; font-size: 9px; color: #fff; opacity: 0.4; text-transform: uppercase; letter-spacing: 2px; margin-top: 15px; cursor: pointer;" onclick="location.reload()">Выбрать другой знак</div>
+                <div style="text-align: center; font-size: 9px; color: #fff; opacity: 0.3; text-transform: uppercase; letter-spacing: 2px; margin-top: 20px; cursor: pointer;" onclick="location.reload()">Выбрать другой знак</div>
             </div>
         </div>
     </div>
@@ -268,8 +299,8 @@
 
 <div id="modal-age">
     <div class="age-box">
-        <div class="age-title">Связь с астрологом</div>
-        <div style="font-size: 14px; color: #ccc; line-height: 1.5;">Вера формирует прогноз индивидуально. Подтвердите, что вам уже исполнилось 18 лет.</div>
+        <div class="age-title">Настройка потока</div>
+        <div style="font-size: 15px; color: #ccc; line-height: 1.6;">Вера формирует прогноз индивидуально. Подтвердите, что вам уже исполнилось 18 лет.</div>
         <div class="age-btns">
             <button class="btn-age" onclick="startChat(false)">Младше 18</button>
             <button class="btn-age yes" onclick="startChat(true)">Мне есть 18</button>
@@ -281,19 +312,18 @@
     <div class="chat-wrap">
         <div class="chat-header">
             <div class="chat-name">Вера Веровна Верова</div>
-            <div class="chat-status">Астролог студии Ресурс</div>
+            <div class="chat-status">Эксперт-Астролог студии Ресурс</div>
         </div>
         <div class="chat-history" id="chat-box"></div>
         <div class="typing" id="typing-indicator">Вера Веровна настраивает связь со звездами...</div>
         
-        <button class="btn-action" style="margin-top: 20px;" onclick="goToVk()">Записаться на практику</button>
-        <div style="text-align: center; font-size: 10px; color: #888; text-transform: uppercase; margin-top: 20px; cursor: pointer;" onclick="document.getElementById('scene-chat').classList.remove('active')">Закрыть прогноз</div>
+        <button class="btn-action" style="margin-top: 25px;" onclick="goToVk()">Записаться на практику</button>
+        <div style="text-align: center; font-size: 10px; color: #888; text-transform: uppercase; margin-top: 25px; cursor: pointer;" onclick="document.getElementById('scene-chat').classList.remove('active')">Закрыть прогноз</div>
     </div>
 </div>
 
 <script>
-    // --- ТВОЙ БЭКЕНД АСТРОЛОГА ---
-    // ВСТАВЬ СЮДА СВОЙ URL ФУНКЦИИ
+    // --- ТОТ САМЫЙ БЭКЕНД АСТРОЛОГА ---
     const ASTRO_BACKEND_URL = "https://functions.yandexcloud.net/d4eppsqi3i8dpface6dr"; 
 
     // --- ФОНОВЫЕ ЗВЕЗДЫ ---
@@ -303,7 +333,7 @@
 
     function initBgStars() {
         bgCanvas.width = window.innerWidth; bgCanvas.height = window.innerHeight;
-        bgStars = Array.from({length: 300}, () => ({
+        bgStars = Array.from({length: 400}, () => ({
             x: Math.random() * bgCanvas.width, y: Math.random() * bgCanvas.height,
             size: Math.random() * 1.5, opacity: Math.random(), speed: (Math.random() * 0.02) + 0.005
         }));
@@ -356,7 +386,7 @@
         setTimeout(() => {
             document.getElementById('main-header').classList.add('active');
             document.getElementById('scene-grid').classList.add('active');
-        }, 1000);
+        }, 800);
     }
 
     // --- ГЕНЕРАЦИЯ ПОЛНОГО БАЗОВОГО ПРОГНОЗА ВО ФРОНТЕНДЕ ---
@@ -373,17 +403,15 @@
             document.getElementById('moon-icon').innerText = moon.i;
             document.getElementById('moon-text').innerText = moon.n;
 
-            // Математика хэширования
             const dayKey = new Date().toISOString().slice(0,10);
             let h = 0; let s = sign + dayKey;
             for(let i=0; i<s.length; i++) h = Math.imul(31, h) + s.charCodeAt(i) | 0;
             h = Math.abs(h);
 
-            const energy = 40 + (h % 56); // Энергия от 40 до 95%
+            const energy = 40 + (h % 58);
             document.getElementById('out-energy-num').innerText = energy + "%";
-            setTimeout(() => { document.getElementById('out-energy-bar').style.width = energy + "%"; }, 500);
+            setTimeout(() => { document.getElementById('out-energy-bar').style.width = energy + "%"; }, 600);
 
-            // ПОЛНЫЙ ТЕКСТ (ЖИЗНЬ, ЛЮБОВЬ, ДЕНЬГИ, ТЕЛО)
             const intros = [
                 "Сегодня звезды выстроились так, что ваша природная энергия выходит на первый план. День сулит неожиданные озарения и требует доверия к своей интуиции.",
                 "Энергетика этого дня располагает к глубоким трансформациям. Планеты советуют замедлиться и прислушаться к внутреннему голосу — ответы уже внутри вас.",
@@ -402,12 +430,11 @@
             
             const zone = ASTRO_DATA[sign].zone;
             const leads = [
-                `Но помните: космические вибрации проходят через ваше физическое тело. Сильная энергия может создать блоки в зоне <b>${zone}</b>. Звезды настоятельно рекомендуют мягкую практику, чтобы снять зажимы.`,
+                `Но помните: космические вибрации проходят через физическое тело. Сильная энергия может создать блоки в зоне <b>${zone}</b>. Звезды настоятельно рекомендуют мягкую практику, чтобы снять зажимы.`,
                 `Чтобы реализовать потенциал этого дня, вашему телу нужна свобода. Эмоциональный фон сегодня влияет на <b>${zone}</b>. Добавьте плавности и вытяжения, чтобы энергия текла без препятствий.`,
                 `Вселенная дает вам много ресурса, но важно его усвоить. Ваша точка контроля на сегодня — <b>${zone}</b>. Подарите себе час заботы о теле, чтобы сбросить накопившийся стресс.`
             ];
             
-            // Собираем длинный текст
             const fullText = `${intros[h % intros.length]}<br><br>${love[(h+1) % love.length]}<br><br>${finance[(h+2) % finance.length]}<br><br>${leads[(h+3) % leads.length]}`;
             
             document.getElementById('res-desc').innerHTML = fullText;
@@ -421,12 +448,12 @@
     }
 
     function renderLoop() {
-        ctx.clearRect(0, 0, 250, 250);
+        ctx.clearRect(0, 0, 280, 280);
         const data = ASTRO_DATA[selectedSign] || ASTRO_DATA['Овен'];
         animSeed += 0.05;
-        const scale = 250 / 100;
+        const scale = 280 / 100;
 
-        ctx.beginPath(); ctx.strokeStyle = "rgba(255, 255, 255, 0.2)"; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.strokeStyle = "rgba(255, 255, 255, 0.15)"; ctx.lineWidth = 1.5;
         data.l.forEach(line => {
             const p1 = data.s[line[0]]; const p2 = data.s[line[1]];
             ctx.moveTo(p1[0] * scale, p1[1] * scale); ctx.lineTo(p2[0] * scale, p2[1] * scale);
@@ -445,7 +472,6 @@
         requestAnimationFrame(renderLoop);
     }
 
-    // --- ЛОГИКА ЧАТА С ВЕРОЙ ---
     function checkAge() { document.getElementById('modal-age').classList.add('active'); }
 
     async function startChat(isAdult) {
@@ -461,7 +487,7 @@
         try {
             const response = await fetch(ASTRO_BACKEND_URL, {
                 method: 'POST', headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ sign: selectedSign, is_adult: isAdult })
+                body: JSON.stringify({ messages: [{role:"user", text: `[АСТРО_ЗАПРОС] ${selectedSign} (18+: ${isAdult})`}] })
             });
             const data = await response.json();
             
@@ -473,6 +499,7 @@
             box.scrollTop = box.scrollHeight;
 
         } catch (error) {
+            console.error("Ошибка связи:", error);
             typing.style.display = 'none';
             const div = document.createElement('div');
             div.className = "msg vera";
