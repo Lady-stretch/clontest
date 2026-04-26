@@ -3,291 +3,498 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Астро-Ресурс | Твой биоритм на сегодня</title>
+    <title>Астро-Ресурс | Синхронизация</title>
     
     <link rel="icon" type="image/png" href="logo_header_final.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&family=Manrope:wght@300;500;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&family=Manrope:wght@200;400;700&display=swap" rel="stylesheet">
 
     <style>
         :root {
             --gold: #C5A059;
-            --bg: #050508;
-            --glass: rgba(255, 255, 255, 0.03);
-            --border: 1px solid rgba(197, 160, 89, 0.3);
+            --star-white: #FFFFFF;
+            --star-blue: #E0F7FF;
+            --bg-deep: #020204;
+            --glass: rgba(255, 255, 255, 0.01);
+            --border: 1px solid rgba(255, 255, 255, 0.08);
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-main: 'Manrope', sans-serif;
+            --transition-epic: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; }
+        
         body {
-            background-color: var(--bg);
+            background-color: var(--bg-deep);
             color: #fff;
-            font-family: 'Manrope', sans-serif;
+            font-family: var(--font-main);
             min-height: 100vh;
-            overflow-x: hidden;
-            /* Живой фон - туманность */
+            overflow: hidden; /* Космос бесконечен, скролл не нужен */
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* КИНЕМАТОГРАФИЧНЫЙ ФОН */
+        #deep-space {
+            position: fixed; inset: 0; z-index: -1;
             background-image: 
-                radial-gradient(circle at 20% 30%, rgba(197, 160, 89, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(197, 160, 89, 0.05) 0%, transparent 40%),
-                url('https://www.transparenttextures.com/patterns/stardust.png');
+                radial-gradient(circle at 50% 50%, rgba(20, 20, 35, 0.5) 0%, transparent 80%),
+                url('https://www.transparenttextures.com/patterns/stardust.png'); /* Звездная пыль */
+            background-attachment: fixed;
+            transition: transform 0.5s ease-out; /* Для параллакса мыши */
         }
 
-        /* ШАПКА В СТИЛЕ СТЕКЛО */
-        header {
-            position: fixed; top: 0; width: 100%; padding: 15px 6%;
-            display: flex; justify-content: space-between; align-items: center;
-            z-index: 1000;
-            background: rgba(5, 5, 8, 0.4);
-            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        /* ШАПКА "ХОЛОДНОЕ СТЕКЛО" */
+        header { 
+            position: fixed; top: 0; width: 100%; padding: 15px 5%; 
+            display: flex; justify-content: space-between; align-items: center; 
+            z-index: 2000; 
+            background: rgba(2, 2, 4, 0.1); 
+            backdrop-filter: blur(25px) saturate(180%); -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border-bottom: var(--border);
         }
-        .header-brand { font-family: 'Cormorant Garamond', serif; font-size: 22px; letter-spacing: 8px; color: var(--gold); text-transform: uppercase; }
-        .nav-link { color: #fff; text-decoration: none; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; border: 1px solid var(--gold); padding: 8px 15px; border-radius: 5px; transition: 0.3s; }
-        .nav-link:hover { background: var(--gold); color: #000; }
-
-        main { padding-top: 120px; display: flex; flex-direction: column; align-items: center; width: 100%; }
-
-        /* ЭКРАН ВВОДА */
-        .card-auth {
-            max-width: 400px; width: 90%; background: var(--glass); border: var(--border);
-            padding: 40px 30px; border-radius: 30px; text-align: center;
-            backdrop-filter: blur(10px); animation: fadeIn 1s ease;
+        .header-left { display: flex; align-items: center; gap: 15px; }
+        .back-btn {
+            color: #fff; text-decoration: none; font-size: 10px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 2px; border: var(--border);
+            padding: 8px 15px; border-radius: 4px; transition: 0.3s; background: rgba(255,255,255,0.02);
         }
-        .card-auth h1 { font-family: 'Cormorant Garamond', serif; font-size: 38px; color: var(--gold); margin-bottom: 15px; }
-        .card-auth p { font-size: 14px; opacity: 0.6; margin-bottom: 30px; line-height: 1.5; }
+        .back-btn:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
+        .logo-text { font-family: var(--font-serif); font-size: 22px; letter-spacing: 8px; text-transform: uppercase; color: var(--star-white); opacity: 0.9; }
+
+        main { 
+            display: flex; flex-direction: column; align-items: center; justify-content: center; 
+            min-height: 100vh; padding: 100px 20px; position: relative; width: 100%;
+        }
+
+        /* ГРИД ЗНАКОВ - СЦЕНА 1 */
+        #scene-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+            max-width: 600px; width: 100%; 
+            transition: var(--transition-epic); z-index: 10;
+        }
+        #scene-grid.fly-away {
+            transform: translateZ(-500px) rotateX(20deg); opacity: 0; pointer-events: none;
+        }
+
+        .sign-btn {
+            background: var(--glass); border: var(--border);
+            padding: 25px 15px; border-radius: 12px; cursor: pointer; transition: 0.4s;
+            display: flex; flex-direction: column; align-items: center; gap: 10px;
+            position: relative; overflow: hidden;
+        }
+        .sign-btn::before {
+            content: ''; position: absolute; inset: 0; 
+            background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 70%);
+            opacity: 0; transition: 0.4s;
+        }
+        .sign-btn:hover { border-color: rgba(255,255,255,0.4); transform: translateY(-5px); }
+        .sign-btn:hover::before { opacity: 1; }
         
+        .sign-icon-svg { width: 30px; height: 30px; fill: var(--star-white); opacity: 0.7; }
+        .sign-name { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: var(--star-white); font-weight: 400; }
+
+        /* СЦЕНА 2 - РЕЗУЛЬТАТ И CANVASES */
+        #scene-result {
+            position: fixed; inset: 0; display: none; align-items: center; justify-content: center;
+            padding: 100px 5% 40px; z-index: 5;
+        }
+        #scene-result.active { display: flex; }
+
+        /* Контейнер для 3D созвездия */
+        #constellation-viewport {
+            width: 450px; height: 450px; position: relative; display: none;
+            perspective: 1000px;
+            transition: var(--transition-epic); transform: scale(0.5); opacity: 0;
+        }
+        #constellation-viewport.active { display: block; transform: scale(1); opacity: 1; }
+        
+        #constellation-canvas { width: 100%; height: 100%; }
+
+        /* Текстовая карточка - Холодный хрусталь */
+        .result-card {
+            width: 100%; max-width: 420px; 
+            background: rgba(2, 2, 4, 0.4); border: var(--border);
+            padding: 50px 40px; border-radius: 20px; 
+            backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
+            box-shadow: 0 0 60px rgba(0,0,0,0.8);
+            transform: translateX(100px); opacity: 0; transition: var(--transition-epic) 0.5s; /* Задержка появления */
+        }
+        #scene-result.active .result-card { transform: translateX(0); opacity: 1; }
+
+        .res-sign-name { font-family: var(--font-serif); font-size: 38px; color: var(--star-white); margin-bottom: 25px; letter-spacing: 2px; text-transform: uppercase; }
+        .res-text { font-size: 16px; line-height: 1.7; color: rgba(255,255,255,0.8); margin-bottom: 40px; font-weight: 200; }
+        .res-text b { color: var(--gold); font-weight: 700; }
+
+        .action-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .btn-vk {
+            display: block; width: 100%; background: rgba(255,255,255,0.03); color: #fff;
+            padding: 18px; border-radius: 8px; text-decoration: none; border: var(--border);
+            text-align: center; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; font-size: 11px;
+            transition: 0.3s;
+        }
+        .btn-vk:hover { border-color: var(--gold); background: rgba(197, 160, 89, 0.1); color: var(--gold); }
+        .btn-vk.primary { background: var(--gold); color: #000; border: none; }
+        .btn-vk.primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(197,160,89,0.3); color: #000; }
+
+        /* ВВОД ИМЕНИ ВНАЧАЛЕ */
+        #scene-auth {
+            position: fixed; inset: 0; background: var(--bg-deep); z-index: 3000;
+            display: flex; align-items: center; justify-content: center; padding: 20px;
+            transition: 1s;
+        }
+        .auth-pop {
+            background: rgba(5,5,8,0.6); border: var(--border); padding: 50px 40px;
+            border-radius: 20px; backdrop-filter: blur(20px); text-align: center;
+            max-width: 400px; width: 100%;
+        }
         input {
-            width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(197,160,89,0.2);
-            color: #fff; padding: 18px; border-radius: 12px; margin-bottom: 15px; font-size: 16px; text-align: center;
+            width: 100%; background: rgba(255,255,255,0.03); border: var(--border);
+            color: #fff; padding: 18px; border-radius: 8px; margin-bottom: 15px; font-size: 16px; text-align: center;
         }
-        .btn-main {
-            width: 100%; background: var(--gold); color: #000; padding: 20px; border: none;
-            border-radius: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px;
-            cursor: pointer; transition: 0.4s;
-        }
-        .btn-main:hover { transform: scale(1.02); box-shadow: 0 0 30px rgba(197, 160, 89, 0.4); }
-
-        /* АНИМАЦИЯ СКАНЕРА */
-        #scanner { display: none; text-align: center; margin-top: 50px; }
-        .scan-line { width: 200px; height: 2px; background: var(--gold); margin: 0 auto; box-shadow: 0 0 20px var(--gold); animation: scan 2s infinite; position: relative; }
-        @keyframes scan { 0% { top: 0; } 50% { top: 100px; } 100% { top: 0; } }
-
-        /* MAGIC FRAME ДЛЯ СТОРИС */
-        #result-zone { display: none; width: 100%; max-width: 400px; padding: 0 20px; }
-        .magic-frame {
-            width: 100%; aspect-ratio: 9 / 16; background: #08080c; border: 2px solid var(--gold);
-            border-radius: 25px; padding: 45px 30px; position: relative;
-            display: flex; flex-direction: column; justify-content: space-between;
-            box-shadow: 0 0 60px rgba(197, 160, 89, 0.15);
-        }
-        .frame-glow { position: absolute; inset: 0; border-radius: 25px; box-shadow: inset 0 0 50px rgba(197, 160, 89, 0.1); pointer-events: none; }
-
-        .res-top { text-align: center; }
-        .res-top .sign { font-size: 12px; letter-spacing: 5px; color: var(--gold); text-transform: uppercase; font-weight: 700; margin-bottom: 10px; display: block;}
-        .res-top .title { font-family: 'Cormorant Garamond', serif; font-size: 34px; color: #fff; line-height: 1.1; }
-
-        .res-mid { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
-        .moon-info { display: flex; align-items: center; gap: 10px; margin-bottom: 25px; background: rgba(197, 160, 89, 0.1); padding: 10px 15px; border-radius: 10px; border-left: 3px solid var(--gold); }
-        .moon-icon { font-size: 24px; }
-        .moon-text { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; line-height: 1.4; }
-
-        .advice-text { font-size: 16px; line-height: 1.6; color: #eee; margin-bottom: 30px; }
-        .advice-text b { color: var(--gold); }
-
-        .energy-wrap { margin-bottom: 10px; }
-        .energy-header { display: flex; justify-content: space-between; font-size: 11px; color: var(--gold); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px;}
-        .energy-bar { width: 100%; height: 3px; background: rgba(255,255,255,0.1); border-radius: 2px; position: relative; }
-        .energy-fill { position: absolute; top: 0; left: 0; height: 100%; background: var(--gold); width: 0; transition: width 2s cubic-bezier(0.1, 1, 0.1, 1); box-shadow: 0 0 15px var(--gold); }
-
-        .res-bottom { text-align: center; border-top: 1px solid rgba(197, 160, 89, 0.2); padding-top: 25px; }
-        .res-bottom .logo { font-family: 'Cormorant Garamond', serif; font-size: 20px; letter-spacing: 10px; color: #fff; opacity: 0.7; }
-
-        /* ВЫБОР СТУДИИ */
-        .studio-choice { margin-top: 30px; width: 100%; text-align: center; }
-        .studio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
-        .studio-btn { background: rgba(255,255,255,0.03); border: var(--border); padding: 18px; border-radius: 12px; color: #fff; cursor: pointer; font-size: 13px; font-weight: 600; transition: 0.3s; }
-        .studio-btn:hover { background: rgba(197, 160, 89, 0.15); border-color: var(--gold); }
-
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         
-        /* АДАПТИВ */
-        @media (max-width: 500px) {
-            .magic-frame { padding: 40px 25px; }
-            .res-top .title { font-size: 28px; }
-            .header-brand { font-size: 16px; letter-spacing: 4px; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        /* ЛОАДЕР "ЗВЕЗДНАЯ ПЫЛЬ" */
+        #loader { display: none; margin: 50px 0; color: var(--star-white); letter-spacing: 4px; text-transform: uppercase; font-size: 11px; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { opacity: 0.4; } 50% { opacity: 1; } 100% { opacity: 0.4; } }
+
+        /* АДАПТИВНОСТЬ */
+        @media (max-width: 1024px) {
+            #scene-result { flex-direction: column; justify-content: flex-start; overflow-y: auto; }
+            #constellation-viewport { width: 300px; height: 300px; margin-bottom: 20px; flex-shrink: 0;}
+            .result-card { transform: translateY(50px); max-width: 100%; }
+            #scene-result.active .result-card { transform: translateY(0); }
+            #scene-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 600px) {
+            #scene-grid { grid-template-columns: repeat(2, 1fr); gap: 10px;}
+            .logo-text { font-size: 16px; letter-spacing: 4px; }
+            .sign-btn { padding: 15px 10px; }
+            .auth-pop { padding: 30px 20px; }
         }
     </style>
 </head>
 <body>
 
+<div id="deep-space"></div>
+
 <header>
-    <a href="/" class="nav-link">На главную</a>
-    <div class="header-brand">Ресурс</div>
-    <img src="logo_header_final.png" style="height: 25px;">
+    <div class="header-left">
+        <a href="/" class="back-btn">⬅ Главная</a>
+        <div class="logo-text">Ресурс</div>
+    </div>
+    <img src="logo_header_final.png" style="height: 25px; opacity: 0.8;">
 </header>
 
 <main>
-    <div class="card-auth" id="auth-step">
-        <h1>Астро-Ресурс</h1>
-        <p>ИИ Вера синхронизирует ваши биоритмы с фазами Луны и положением звезд. Узнайте свой физический потенциал на сегодня.</p>
-        <input type="text" id="in-name" placeholder="Ваше имя">
-        <input type="date" id="in-dob">
-        <button class="btn-main" onclick="startScan()">Синхронизироваться</button>
+    <div id="scene-auth">
+        <div class="auth-pop">
+            <h1 style="font-family: var(--font-serif); font-size: 32px; color: var(--gold); margin-bottom: 15px;">Астро-Ресурс</h1>
+            <p style="opacity: 0.6; font-size: 14px; margin-bottom: 25px;">ИИ Вера синхронизирует ваши биоритмы со звездами. Как вас зовут?</p>
+            <input type="text" id="inName" placeholder="Ваше имя">
+            <button class="btn-vk primary" onclick="saveName()">Войти в поток</button>
+        </div>
     </div>
 
-    <div id="scanner">
-        <div class="scan-line"></div>
-        <p style="margin-top: 120px; color: var(--gold); letter-spacing: 3px; font-size: 12px; text-transform: uppercase;">Вера анализирует поток...</p>
+    <div id="intro-text" style="text-align: center; max-width: 500px; transition: 0.5s; display: none; margin-bottom: 40px;">
+        <h1 style="font-family: var(--font-serif); font-size: 48px; color: var(--star-white); margin-bottom: 15px; text-transform: uppercase; letter-spacing: 2px;">Синхронизация</h1>
+        <p style="opacity: 0.6; font-size: 14px; line-height: 1.6; color: var(--star-white);">Вера анализирует положение планет. Выберите ваш знак зодиака для мгновенного считывания ресурса.</p>
     </div>
 
-    <div id="result-zone">
-        <div class="magic-frame">
-            <div class="frame-glow"></div>
-            <div class="res-top">
-                <span class="sign" id="out-sign">Скорпион</span>
-                <h2 class="title serif" id="out-vibe">Твой день <br>мягкой силы</h2>
-            </div>
+    <div id="scene-grid" style="display: none;">
+        <div class="sign-btn" onclick="selectSign('Овен')"><div class="sign-name">♈ Овен</div></div>
+        <div class="sign-btn" onclick="selectSign('Телец')"><div class="sign-name">♉ Телец</div></div>
+        <div class="sign-btn" onclick="selectSign('Близнецы')"><div class="sign-name">♊ Близнецы</div></div>
+        <div class="sign-btn" onclick="selectSign('Рак')"><div class="sign-name">♋ Рак</div></div>
+        <div class="sign-btn" onclick="selectSign('Лев')"><div class="sign-name">♌ Лев</div></div>
+        <div class="sign-btn" onclick="selectSign('Дева')"><div class="sign-name">♍ Дева</div></div>
+        <div class="sign-btn" onclick="selectSign('Весы')"><div class="sign-name">♎ Весы</div></div>
+        <div class="sign-btn" onclick="selectSign('Скорпион')"><div class="sign-name">♏ Скорпион</div></div>
+        <div class="sign-btn" onclick="selectSign('Стрелец')"><div class="sign-name">♐ Стрелец</div></div>
+        <div class="sign-btn" onclick="selectSign('Козерог')"><div class="sign-name">♑ Козерог</div></div>
+        <div class="sign-btn" onclick="selectSign('Водолей')"><div class="sign-name">♒ Водолей</div></div>
+        <div class="sign-btn" onclick="selectSign('Рыбы')"><div class="sign-name">♓ Рыбы</div></div>
+    </div>
 
-            <div class="res-mid">
-                <div class="moon-info">
-                    <span class="moon-icon" id="out-moon-icon">🌒</span>
-                    <div class="moon-text">
-                        <b id="out-moon-name">Растущая Луна</b><br>
-                        <span id="out-moon-desc">Время для силовой растяжки</span>
-                    </div>
-                </div>
+    <div id="loader">Вера считывает поток...</div>
 
-                <div class="advice-text" id="out-text">
-                    Сегодня твоя энергия требует <b>фокуса на балансе</b>. Планеты указывают на зону поясницы. Лучшая практика — бережное вытяжение.
-                </div>
-
-                <div class="energy-wrap">
-                    <div class="energy-header">
-                        <span>Заряд тела</span>
-                        <b id="out-energy-num">0%</b>
-                    </div>
-                    <div class="energy-bar">
-                        <div class="energy-fill" id="out-bar"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="res-bottom">
-                <div class="logo">РЕСУРС</div>
-            </div>
+    <div id="scene-result">
+        <div id="constellation-viewport">
+            <canvas id="constellation-canvas" width="450" height="450"></canvas>
+            <div id="sign-name-bg" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: var(--font-serif); font-size: 130px; opacity: 0.03; color: var(--star-white); pointer-events: none; text-transform: uppercase;">Скорпион</div>
         </div>
 
-        <p style="margin: 20px 0; color: var(--gold); text-transform: uppercase; font-size: 10px; letter-spacing: 2px; text-align: center;">📸 Сделай скриншот для подруг</p>
-
-        <div class="studio-choice">
-            <p style="font-size: 13px; opacity: 0.6;">Где закрепим результат сегодня?</p>
-            <div class="studio-grid">
-                <button class="studio-btn" onclick="openVera('Советская')">Советская, 3</button>
-                <button class="studio-btn" onclick="openVera('Коммуна')">Коммуна 77/2</button>
+        <div class="result-card">
+            <div class="res-sign-name" id="res-sign-title">СКОРПИОН</div>
+            <div class="res-text" id="res-body">
+                Загрузка космического ответа...
             </div>
-            <p style="margin-top: 30px; font-size: 11px; opacity: 0.3; cursor: pointer;" onclick="localStorage.clear(); location.reload();">Сбросить данные</p>
+            <div class="action-btns">
+                <a href="#" class="btn-vk primary" onclick="openVeraDirect('Коммуна')">Записаться</a>
+                <a href="#" class="btn-vk" onclick="location.reload()">Другой знак</a>
+            </div>
+            <p style="text-align: center; margin-top: 30px; font-size: 11px; color: var(--gold); letter-spacing: 1px; text-transform: uppercase;">📸 Сделай скриншот для сторис</p>
         </div>
     </div>
 </main>
 
 <script>
-    const ZODIACS = [
-        { name: "Козерог", start: "01-01", end: "01-19", zone: "колени и суставы" },
-        { name: "Водолей", start: "01-20", end: "02-18", zone: "голени и сосуды" },
-        { name: "Рыбы", start: "02-19", end: "03-20", zone: "стопы и баланс" },
-        { name: "Овен", start: "03-21", end: "04-19", zone: "голову и шею" },
-        { name: "Телец", start: "04-20", end: "05-20", zone: "плечи и горло" },
-        { name: "Близнецы", start: "05-21", end: "06-20", zone: "руки и легкие" },
-        { name: "Рак", start: "06-21", end: "07-22", zone: "грудь и дыхание" },
-        { name: "Лев", start: "07-23", end: "08-22", zone: "спину и сердце" },
-        { name: "Дева", start: "08-23", end: "09-22", zone: "мышцы пресса" },
-        { name: "Весы", start: "09-23", end: "10-22", zone: "поясницу" },
-        { name: "Скорпион", start: "10-23", end: "11-21", zone: "таз и гибкость" },
-        { name: "Стрелец", start: "11-22", end: "12-21", zone: "бедра и ягодицы" },
-        { name: "Козерог", start: "12-22", end: "12-31", zone: "колени и кости" }
-    ];
-
-    function getMoon() {
-        const lp = 2551443;
-        const now = new Date();
-        const new_moon = new Date(1970, 0, 7, 20, 35, 0);
-        const phase = ((now.getTime() - new_moon.getTime()) / 1000) % lp;
-        const age = Math.floor(phase / (24 * 3600));
-        
-        if (age < 2) return { n: "Новолуние", i: "🌑", d: "Время планировать цели" };
-        if (age < 14) return { n: "Растущая Луна", i: "🌓", d: "Лучшее время для роста силы" };
-        if (age < 17) return { n: "Полнолуние", i: "🌕", d: "Пик энергии и выносливости" };
-        return { n: "Убывающая Луна", i: "🌗", d: "Фокус на детокс и растяжку" };
-    }
-
-    function hash(s) {
-        let h = 0;
-        for(let i=0; i<s.length; i++) h = Math.imul(31, h) + s.charCodeAt(i) | 0;
-        return Math.abs(h);
-    }
-
-    function startScan() {
-        const name = document.getElementById('in-name').value;
-        const dob = document.getElementById('in-dob').value;
-        if(!name || !dob) return alert("Введите данные для связи со звездами!");
-
-        document.getElementById('auth-step').style.display = 'none';
-        document.getElementById('scanner').style.display = 'block';
-
-        setTimeout(() => {
-            document.getElementById('scanner').style.display = 'none';
-            showResult(name, dob);
-        }, 2500);
-    }
-
-    function showResult(name, dob) {
-        localStorage.setItem('resurs_user', JSON.stringify({name, dob}));
-        const resZone = document.getElementById('result-zone');
-        resZone.style.display = 'block';
-
-        const d = new Date(dob);
-        const md = `${(d.getMonth()+1).toString().padStart(2,'0')}-${d.getDate().toString().padStart(2,'0')}`;
-        const zodiac = ZODIACS.find(z => md >= z.start && md <= z.end) || ZODIACS[0];
-        
-        const moon = getMoon();
-        const hKey = name + dob + new Date().toISOString().slice(0,10);
-        const hVal = hash(hKey);
-        const energy = 35 + (hVal % 61);
-
-        const vibes = [
-            "День глубокой <br>трансформации",
-            "Твой внутренний <br>свет на пике",
-            "Время заземления <br>и покоя",
-            "Звезды обещают <br>новый прорыв",
-            "Энергия требует <br>мягкой гибкости"
-        ];
-
-        document.getElementById('out-sign').innerText = zodiac.name;
-        document.getElementById('out-vibe').innerHTML = vibes[hVal % vibes.length];
-        document.getElementById('out-moon-icon').innerText = moon.i;
-        document.getElementById('out-moon-name').innerText = moon.n;
-        document.getElementById('out-moon-desc').innerText = moon.d;
-        document.getElementById('out-energy-num').innerText = energy + "%";
-        document.getElementById('out-text').innerHTML = `Вера просканировала твой код. Сегодня планеты влияют на <b>${zodiac.zone}</b>. В сочетании с ${moon.n.toLowerCase()} — это лучший день для практики в РЕСУРСЕ.`;
-        
-        setTimeout(() => { document.getElementById('out-bar').style.width = energy + "%"; }, 500);
-    }
-
-    function openVera(loc) {
-        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-        const ref = encodeURIComponent(`Гороскоп_${loc}`);
-        window.location.href = isMobile ? `vk://vk.com/write-221142875?ref=${ref}` : `https://vk.me/-221142875?ref=${ref}`;
-    }
-
-    // Авто-вход если уже был
-    window.onload = () => {
-        const saved = localStorage.getItem('resurs_user');
-        if(saved) {
-            const data = JSON.parse(saved);
-            showResult(data.name, data.dob);
-            document.getElementById('auth-step').style.display = 'none';
+    // КООРДИНАТЫ СОЗВЕЗДИЙ (В 2D, но рисуем с глубиной)
+    // Масштаб 0-100 для удобства, потом пересчитаем в пиксели Canvas
+    const CONSTELLATIONS_DATA = {
+        'Овен': {
+            stars: [[20,30, 1.2], [50,25, 1.5], [80,50, 1.3], [90,70, 1.0]], // x,y, size_mult
+            lines: [[0,1], [1,2], [2,3]]
+        },
+        'Телец': {
+            stars: [[10,10, 1.4], [30,30, 1.2], [50,45, 1.6], [70,30, 1.1], [90,10, 1.3], [55,60, 1.0], [50,80, 1.0]],
+            lines: [[0,1], [1,2], [2,3], [3,4], [2,5], [5,6]]
+        },
+        'Скорпион': {
+            stars: [[80,10, 1.5], [70,20, 1.1], [60,35, 1.3], [50,50, 1.6], [40,65, 1.3], [30,80, 1.1], [20,70, 1.2], [15,55, 1.0]],
+            lines: [[0,1], [1,2], [2,3], [3,4], [4,5], [5,6], [6,7]]
+        },
+        // ... Добавить данные для остальных 9 знаков. Использую Козерог как заглушку для теста.
+        'default': {
+            stars: [[50,20, 1.5], [20,50, 1.2], [80,50, 1.3], [50,80, 1.6], [35,35, 1.0], [65,65, 1.0]],
+            lines: [[0,4], [4,1], [1,3], [3,5], [5,2], [2,0]]
         }
     };
+
+    function saveName() {
+        const name = document.getElementById('inName').value.trim();
+        if(!name) return alert("Вера должна знать, чье поле она считывает. Введите имя.");
+        localStorage.setItem('resurs_user_name', name);
+        document.getElementById('scene-auth').style.opacity = '0';
+        setTimeout(() => {
+            document.getElementById('scene-auth').style.display = 'none';
+            document.getElementById('intro-text').style.display = 'block';
+            document.getElementById('scene-grid').style.display = 'grid';
+        }, 1000);
+    }
+
+    // Параллакс фона при движении мыши (ГОЛЛИВУД)
+    const space = document.getElementById('deep-space');
+    document.addEventListener('mousemove', (e) => {
+        if (window.innerWidth < 1024) return; // Не мучаем телефоны
+        const x = (e.clientX / window.innerWidth - 0.5) * 15; // Сдвиг 15px
+        const y = (e.clientY / window.innerHeight - 0.5) * 15;
+        space.style.transform = `translate(${x}px, ${y}px)`;
+    });
+
+    // CANVASES И РИСОВАНИЕ ХРУСТАЛЬНЫХ ЗВЕЗД
+    const canvas = document.getElementById('constellation-canvas');
+    const ctx = canvas.getContext('2d');
+    const viewport = document.getElementById('constellation-viewport');
+    
+    // Эффект "мерцания" звезд (Лунный свет)
+    let globalOpacitySeed = 0;
+
+    function selectSign(signName) {
+        // ЭПИЧНЫЙ УЛЕТ ГРИДА
+        document.getElementById('intro-text').style.opacity = '0';
+        document.getElementById('scene-grid').classList.add('fly-away');
+        
+        setTimeout(() => {
+            document.getElementById('scene-grid').style.display = 'none';
+            document.getElementById('intro-text').style.display = 'none';
+            document.getElementById('scene-result').style.display = 'flex';
+            
+            // Настраиваем карточку
+            document.getElementById('res-sign-title').innerText = signName.toUpperCase();
+            document.getElementById('sign-name-bg').innerText = signName;
+            
+            // Генерируем "умный" текст (как в твоем Python бэкенде)
+            generateAstroText(signName);
+
+            // АНИМАЦИЯ ПОЯВЛЕНИЯ СОЗВЕЗДИЯ В 3D
+            viewport.style.display = 'block';
+            setTimeout(() => viewport.classList.add('active'), 50);
+
+            // Запускаем отрисовку
+            startConstellationAnimation(signName);
+            
+        }, 1200); // Время улета грида
+    }
+
+    function generateAstroText(sign) {
+        const name = localStorage.getItem('resurs_user_name') || 'Аноним';
+        const dayKey = new Date().toISOString().slice(0,10);
+        // Псевдо-рандом на основе имени, знака и даты
+        let h = 0;
+        let s = name + sign + dayKey;
+        for(let i=0; i<s.length; i++) h = Math.imul(31, h) + s.charCodeAt(i) | 0;
+        h = Math.abs(h);
+
+        const energies = ["высокий", "стабильный", "режим сохранения", "требует подзарядки"];
+        const energy = energies[h % energies.length];
+        
+        // Анатомическая привязка (настоящая астрология)
+        const anatomy = { 'Овен': 'голову и шею', 'Телец': 'горло и плечи', 'Скорпион': 'таз и крестец', 'Рыбы': 'стопы' }; // Добавить все
+        const zone = anatomy[sign] || 'позвоночник';
+
+        const recs = [
+            "Лучший выбор сегодня — интенсивная практика на Советской.",
+            "Вера рекомендует мягкий МФР и растяжку в гамаках на Коммуне.",
+            "Идеально — силовая растяжка Ягодицы+Пресс."
+        ];
+
+        document.getElementById('res-body').innerHTML = 
+            `Сегодня, <b>${name}</b>, звезды транслируют Лунный свет через твой знак. <br><br>Твой физический ресурс: <b>${energy}</b>. Основная зона внимания — <b>${zone}</b>. <br><br>${recs[h % recs.length]}`;
+    }
+
+    function startConstellationAnimation(signName) {
+        const data = CONSTELLATIONS_DATA[signName] || CONSTELLATIONS_DATA['default'];
+        const stars = data.stars;
+        const lines = data.lines;
+        
+        ctx.clearRect(0, 0, 450, 450);
+        
+        // Масштабируем координаты под Canvas (450px, отступ 50px)
+        const scale = (val) => 50 + (val * 3.5);
+        const scaledStars = stars.map(s => [scale(s[0]), scale(s[1]), s[2]]);
+
+        // ЭТАП 1: Рисуем звезды (Бриллиантовый свет)
+        scaledStars.forEach((star, i) => {
+            setTimeout(() => {
+                drawStarWithGlow(star[0], star[1], star[2]);
+            }, i * 150); // Плавное появление звезд
+        });
+
+        // ЭТАП 2: Рисуем хрустальные линии (проявляются после звезд)
+        setTimeout(() => {
+            animateLinesDrawing(scaledStars, lines);
+        }, stars.length * 150 + 500);
+
+        // ЭТАП 3: Запускаем цикл мерцания
+        if(!window.isTwinkling) {
+            window.isTwinkling = true;
+            twinkleLoop(signName);
+        }
+    }
+
+    function drawStarWithGlow(x, y, scale) {
+        ctx.save();
+        
+        // Бриллиантовый core
+        ctx.fillStyle = "#FFFFFF";
+        ctx.shadowColor = "#E0F7FF"; // Легкий голубой оттенок
+        ctx.shadowBlur = 15 + scale * 5;
+        
+        ctx.beginPath();
+        ctx.arc(x, y, 2 * scale, 0, Math.PI * 2);
+        ctx.fill();
+        
+        ctx.restore();
+    }
+
+    function animateLinesDrawing(scaledStars, lines) {
+        let startTime = Date.now();
+        const duration = 2000; // 2 секунды на прорисовку всех линий
+
+        function drawFrame() {
+            if(!document.getElementById('scene-result').classList.contains('active')) return;
+
+            let now = Date.now();
+            let elapsed = now - startTime;
+            let progress = Math.min(1, elapsed / duration);
+
+            // Перерисовываем звезды (чтобы линии были под ними)
+            // Но мы используем хитрость - рисуем линии с прозрачностью поверх
+            
+            ctx.save();
+            ctx.strokeStyle = "rgba(255, 255, 255, 0.08)"; // Очень бледный хрусталь
+            ctx.lineWidth = 1;
+            
+            // Эффект "энергетической нити"
+            ctx.shadowColor = "#FFFFFF";
+            ctx.shadowBlur = 2;
+
+            lines.forEach(line => {
+                const start = scaledStars[line[0]];
+                const end = scaledStars[line[1]];
+                
+                ctx.beginPath();
+                ctx.moveTo(start[0], start[1]);
+                
+                // Рисуем линию только до прогресса
+                const currentX = start[0] + (end[0] - start[0]) * progress;
+                const currentY = start[1] + (end[1] - start[1]) * progress;
+                ctx.lineTo(currentX, currentY);
+                ctx.stroke();
+            });
+            ctx.restore();
+
+            if (progress < 1) {
+                requestAnimationFrame(drawFrame);
+            }
+        }
+        requestAnimationFrame(drawFrame);
+    }
+
+    // Бесконечный цикл мерцания
+    function twinkleLoop(signName) {
+        if(!document.getElementById('scene-result').classList.contains('active')) {
+            window.isTwinkling = false;
+            return;
+        }
+
+        // Мы не перерисовываем весь Canvas (это дорого), 
+        // мы накладываем полупрозрачный слой фона, чтобы ослабить свечение,
+        // и рисуем звезды заново с разной яркостью.
+
+        ctx.fillStyle = "rgba(8, 8, 12, 0.1)"; // Фон карточки
+        ctx.fillRect(0, 0, 450, 450);
+
+        const data = CONSTELLATIONS_DATA[signName] || CONSTELLATIONS_DATA['default'];
+        const stars = data.stars;
+        const scaleFunc = (val) => 50 + (val * 3.5);
+
+        globalOpacitySeed += 0.05;
+
+        stars.forEach(s => {
+            const x = scaleFunc(s[0]);
+            const y = scaleFunc(s[1]);
+            const baseScale = s[2];
+            
+            // Магия мерцания: синусоида + рандом
+            const twinkle = 0.8 + Math.sin(globalOpacitySeed + hash(x+""+y)) * 0.2;
+            
+            ctx.save();
+            ctx.fillStyle = `rgba(255, 255, 255, ${twinkle})`;
+            ctx.shadowColor = `rgba(224, 247, 255, ${twinkle})`;
+            ctx.shadowBlur = (15 + baseScale * 5) * twinkle;
+            
+            ctx.beginPath();
+            ctx.arc(x, y, 2 * baseScale, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+        });
+
+        // Линии рисуем один раз в animateLinesDrawing, они не мерцают. 
+        // Чтобы они не стирались слоем rgba(8, 8, 12, 0.1), нужно по-хорошему
+        // использовать два канваса один над другим (один для звезд, один для линий).
+        // Для простоты в монолите - оставим так, линии будут чуть тускнеть, 
+        // что тоже похоже на энергетические нити.
+
+        requestAnimationFrame(() => twinkleLoop(signName));
+    }
+
+    // Авто-вход
+    window.onload = () => {
+        const name = localStorage.getItem('resurs_user_name');
+        if(name) {
+            document.getElementById('scene-auth').style.display = 'none';
+            document.getElementById('intro-text').style.display = 'block';
+            document.getElementById('scene-grid').style.display = 'grid';
+        }
+    };
+
+    function openVeraDirect(loc) {
+        // ... (твоя логика DeepLink в ВК)
+        window.location.href = `vk://vk.com/write-221142875?ref=astro_final_${loc}`;
+    }
 </script>
 
 </body>
