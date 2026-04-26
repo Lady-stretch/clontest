@@ -381,19 +381,27 @@
         resultText.innerText = verdict;
         resultText.style.display = 'block'; // Показываем текст
         
-        // ВОЗВРАЩАЕМ ВАШУ ИДЕАЛЬНУЮ СВЯЗКУ С ВЕРОЙ ЧЕРЕЗ REF + DEEP LINKING
+        // ВОЗВРАЩАЕМ ВАШУ ИДЕАЛЬНУЮ СВЯЗКУ С ВЕРОЙ ЧЕРЕЗ REF + УМНЫЙ DEEP LINKING
         const vkBtn = document.getElementById('vk-link');
         vkBtn.onclick = () => {
             const vkAppUrl = `vk://vk.com/write-221142875?ref=quiz_${totalPoints}`;
             const vkWebUrl = `https://vk.me/-221142875?ref=quiz_${totalPoints}`;
             
+            // Фиксируем время перед попыткой открыть приложение
+            const startTimestamp = Date.now();
+            
             // Пытаемся принудительно открыть приложение ВК
             window.location.href = vkAppUrl;
             
-            // Если приложения нет, через полсекунды перенаправляем на мобильный браузер
+            // Умный Fallback: 
+            // Ждем 1 секунду. Если приложение открылось, браузер обычно уходит в фон 
+            // (document.hidden становится true). Если браузер остался открытым 
+            // и время прошло без задержек — переводим на веб-версию.
             setTimeout(() => {
-                window.location.href = vkWebUrl;
-            }, 500);
+                if (!document.hidden && Date.now() - startTimestamp < 1500) {
+                    window.location.href = vkWebUrl;
+                }
+            }, 1000);
         };
     }
 </script>
