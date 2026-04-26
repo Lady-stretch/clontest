@@ -25,14 +25,21 @@
             --font-serif: 'Cormorant Garamond', serif;
             --font-main: 'Manrope', sans-serif;
             --transit: all 1.2s cubic-bezier(0.25, 1, 0.3, 1);
+            
+            /* Переменные для идеального 3D без искажений на iPhone */
+            --tilt: 65deg;
+            --tilt-inv: -65deg;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
         
         body {
             background-color: var(--bg-deep); color: #fff;
-            font-family: var(--font-main); height: 100vh; width: 100vw;
-            overflow: hidden; perspective: 1200px;
+            font-family: var(--font-main); 
+            height: 100vh; height: 100dvh; /* dvh фиксит проблему адресной строки на iOS */
+            width: 100vw;
+            overflow: hidden; 
+            perspective: 1200px;
         }
 
         /* --- ФОН ЗВЕЗД --- */
@@ -43,13 +50,15 @@
             position: fixed; inset: 0; z-index: 100;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             transition: var(--transit);
+            perspective: 1000px; /* Локальная перспектива для Safari */
         }
         #scene-cosmos.hidden { opacity: 0; transform: scale(1.1); pointer-events: none; }
 
         .solar-system {
             position: absolute; top: 50%; left: 50%; width: 0; height: 0;
             transform-style: preserve-3d;
-            transform: rotateX(75deg); /* Наклон всей системы */
+            -webkit-transform-style: preserve-3d; /* Фикс для iPhone */
+            transform: rotateX(var(--tilt));
             pointer-events: none;
         }
 
@@ -58,7 +67,8 @@
             position: absolute; top: 50%; left: 50%; width: 500px; height: 500px;
             margin: -250px 0 0 -250px; border-radius: 50%;
             background: radial-gradient(circle, #ffffff 0%, rgba(255,215,0,0.5) 15%, rgba(255,140,0,0.1) 40%, transparent 65%);
-            transform: rotateX(-75deg); /* Выравниваем к камере */
+            transform: rotateX(var(--tilt-inv));
+            -webkit-transform: rotateX(var(--tilt-inv));
             animation: pulseSun 8s ease-in-out infinite alternate;
         }
 
@@ -72,15 +82,17 @@
             margin: -110px 0 0 -110px; border: 1px dashed rgba(255,255,255,0.15); border-radius: 50%;
         }
 
-        /* КОНТЕЙНЕРЫ ВРАЩЕНИЯ (Двойное контр-вращение спасает от формы "яйца") */
+        /* КОНТЕЙНЕРЫ ВРАЩЕНИЯ */
         .earth-group {
             position: absolute; top: 50%; left: 50%; width: 0; height: 0;
             transform-style: preserve-3d;
+            -webkit-transform-style: preserve-3d;
             animation: orbitSun 90s linear infinite;
         }
         .moon-group {
             position: absolute; top: 50%; left: 50%; width: 0; height: 0;
             transform-style: preserve-3d;
+            -webkit-transform-style: preserve-3d;
             animation: orbitMoon 15s linear infinite;
         }
 
@@ -90,7 +102,10 @@
             margin: -65px 0 0 -65px; border-radius: 50%;
             background: radial-gradient(circle at 30% 30%, #1e3c72 0%, #091221 80%, #000 100%);
             box-shadow: inset -15px -15px 30px rgba(0,0,0,0.9), 0 0 40px rgba(30, 60, 114, 0.6);
-            transform: rotateX(-75deg); /* Контр-наклон для идеального шара */
+            transform: rotateX(var(--tilt-inv));
+            -webkit-transform: rotateX(var(--tilt-inv)); /* Контр-наклон для идеального шара на iPhone */
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
         }
         .earth-sphere::after {
             content: ''; position: absolute; inset: 0; border-radius: 50%;
@@ -103,10 +118,12 @@
             margin: -17px 0 0 -17px; border-radius: 50%;
             background: radial-gradient(circle at 30% 30%, #fff 0%, #a0a0a0 60%, #333 100%);
             box-shadow: 0 0 15px rgba(255,255,255,0.4);
-            transform: rotateX(-75deg); /* Контр-наклон для идеального шара */
+            transform: rotateX(var(--tilt-inv));
+            -webkit-transform: rotateX(var(--tilt-inv));
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
         }
 
-        /* МАГИЯ АНИМАЦИИ ОРБИТ БЕЗ ИСКАЖЕНИЙ */
         @keyframes orbitSun {
             0% { transform: rotateZ(0deg) translateX(330px) rotateZ(0deg); }
             100% { transform: rotateZ(360deg) translateX(330px) rotateZ(-360deg); }
@@ -120,31 +137,47 @@
 
         .ui-container { position: absolute; bottom: 12%; text-align: center; z-index: 500; width: 100%; }
         .intro-title { font-family: var(--font-serif); font-size: 40px; letter-spacing: 12px; color: var(--gold); text-transform: uppercase; margin-bottom: 30px; }
-        .btn-enter { background: rgba(255,255,255,0.02); border: 1px solid var(--gold); color: #fff; padding: 22px 50px; border-radius: 6px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 5px; cursor: pointer; backdrop-filter: blur(10px); transition: 0.5s; pointer-events: all; }
+        .btn-enter { background: rgba(255,255,255,0.02); border: 1px solid var(--gold); color: #fff; padding: 22px 50px; border-radius: 6px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 5px; cursor: pointer; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); transition: 0.5s; pointer-events: all; }
         .btn-enter:hover { background: var(--gold); color: #000; letter-spacing: 8px; box-shadow: 0 0 30px rgba(197, 160, 89, 0.4); }
 
         /* --- ШАПКА --- */
         header { position: fixed; top: 0; width: 100%; padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; z-index: 2000; opacity: 0; pointer-events: none; transition: 1s; }
-        header.active { opacity: 1; pointer-events: all; background: rgba(1,1,3,0.6); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.05); }
+        header.active { 
+            opacity: 1; pointer-events: all; 
+            background: rgba(10, 10, 15, 0.4); 
+            backdrop-filter: blur(15px); 
+            -webkit-backdrop-filter: blur(15px); /* Фикс для стекла на iPhone */
+            border-bottom: 1px solid rgba(255,255,255,0.05); 
+        }
         .logo { font-family: var(--font-serif); font-size: 24px; letter-spacing: 8px; text-transform: uppercase; color: var(--gold); }
 
         /* --- СЦЕНА 1: СЕТКА ЗНАКОВ --- */
         #scene-grid { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 0.8s; z-index: 20; }
         #scene-grid.active { opacity: 1; pointer-events: all; }
         .grid-wrap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; width: 90%; max-width: 550px; padding-top: 40px; }
-        .sign-btn { background: var(--glass); border: var(--border); padding: 25px 5px; border-radius: 14px; cursor: pointer; text-align: center; transition: 0.3s; backdrop-filter: blur(10px); }
+        .sign-btn { 
+            background: rgba(255, 255, 255, 0.03); border: var(--border); padding: 20px 5px; 
+            border-radius: 14px; cursor: pointer; text-align: center; transition: 0.3s; 
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); 
+        }
         .sign-btn:hover { border-color: #fff; background: rgba(197, 160, 89, 0.1); transform: translateY(-5px); }
         .sign-name { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: #fff; margin-top: 10px; opacity: 0.8;}
-        .sign-icon { font-size: 28px; color: var(--gold); opacity: 0.9; }
+        .sign-icon { font-size: 26px; color: var(--gold); opacity: 0.9; }
 
         /* --- СЦЕНА 2: ВЕРТИКАЛЬНАЯ КАРТОЧКА --- */
-        #scene-result { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 0.8s; z-index: 30; background: rgba(0,0,0,0.8); backdrop-filter: blur(15px); }
+        #scene-result { 
+            position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; 
+            opacity: 0; pointer-events: none; transition: 0.8s; z-index: 30; 
+            background: rgba(2, 2, 4, 0.5); /* Полупрозрачность, чтобы видеть звезды */
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+        }
         #scene-result.active { opacity: 1; pointer-events: all; }
 
         .story-frame {
-            width: 92%; max-width: 420px; height: 90vh; max-height: 850px;
-            background: linear-gradient(180deg, #05050A 0%, #0A0A14 100%);
-            border: 1px solid rgba(197, 160, 89, 0.4); border-radius: 28px;
+            width: 92%; max-width: 420px; height: 90vh; height: 90dvh; max-height: 850px;
+            background: linear-gradient(180deg, rgba(5,5,10,0.8) 0%, rgba(10,10,20,0.9) 100%); /* Стеклянная карточка */
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(197, 160, 89, 0.3); border-radius: 28px;
             display: flex; flex-direction: column; overflow: hidden;
             box-shadow: 0 40px 100px rgba(0,0,0,0.9);
         }
@@ -181,37 +214,49 @@
         .btn-action:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(197, 160, 89, 0.5); }
 
         /* --- ОКНО 18+ (МОДАЛКА) --- */
-        #modal-age { position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 4000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 0.4s; backdrop-filter: blur(15px); }
+        #modal-age { 
+            position: fixed; inset: 0; z-index: 4000; display: flex; align-items: center; justify-content: center; 
+            opacity: 0; pointer-events: none; transition: 0.4s; 
+            background: rgba(0,0,0,0.6); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); 
+        }
         #modal-age.active { opacity: 1; pointer-events: all; }
-        .age-box { background: #0A0A14; border: var(--border); padding: 45px 35px; border-radius: 24px; text-align: center; max-width: 360px; width: 90%; box-shadow: 0 30px 80px rgba(0,0,0,0.9); }
+        .age-box { background: rgba(10,10,20,0.95); border: var(--border); padding: 45px 35px; border-radius: 24px; text-align: center; max-width: 360px; width: 90%; box-shadow: 0 30px 80px rgba(0,0,0,0.9); }
         .age-title { font-family: var(--font-serif); font-size: 32px; color: var(--gold); margin-bottom: 15px; }
         .age-btns { display: flex; gap: 12px; margin-top: 30px; }
         .btn-age { flex: 1; padding: 18px; background: transparent; border: 1px solid var(--gold); color: #fff; border-radius: 10px; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; font-size: 10px; transition: 0.3s; font-weight: 600;}
         .btn-age.yes { background: var(--gold); color: #000; }
 
         /* --- СЦЕНА 3: ЧАТ С ВЕРОЙ --- */
-        #scene-chat { position: fixed; inset: 0; background: rgba(2,2,4,0.98); z-index: 5000; display: flex; flex-direction: column; align-items: center; opacity: 0; pointer-events: none; transition: 0.5s; padding: 40px 20px 20px; }
+        #scene-chat { 
+            position: fixed; inset: 0; z-index: 5000; display: flex; flex-direction: column; align-items: center; 
+            opacity: 0; pointer-events: none; transition: 0.5s; padding: 40px 20px 20px; 
+            background: rgba(2, 2, 4, 0.7); /* Прозрачность для звезд */
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+        }
         #scene-chat.active { opacity: 1; pointer-events: all; }
         .chat-wrap { width: 100%; max-width: 480px; height: 100%; display: flex; flex-direction: column; }
         .chat-header { text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px; margin-bottom: 20px; }
         .chat-name { font-family: var(--font-serif); font-size: 32px; color: var(--gold); margin-bottom: 5px; }
         .chat-status { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: #aaa; }
         .chat-history { flex-grow: 1; overflow-y: auto; padding-right: 10px; display: flex; flex-direction: column; gap: 20px; }
-        .msg { background: rgba(197, 160, 89, 0.1); padding: 22px; border-radius: 20px 20px 20px 0; font-size: 15px; line-height: 1.7; border: 1px solid rgba(197, 160, 89, 0.3); color: #fff; animation: popIn 0.5s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.5);}
+        .msg { background: rgba(10, 10, 20, 0.6); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 22px; border-radius: 20px 20px 20px 0; font-size: 15px; line-height: 1.7; border: 1px solid rgba(197, 160, 89, 0.3); color: #fff; animation: popIn 0.5s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.5);}
         .typing { font-size: 13px; color: var(--gold); font-style: italic; margin-bottom: 15px; display: none; text-align: center; }
 
         @keyframes popIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* АДАПТАЦИЯ ПОД СМАРТФОНЫ */
+        /* АДАПТАЦИЯ ПОД СМАРТФОНЫ (Включая iPhone 11 Pro) */
         @media (max-width: 768px) {
-            .solar-system { transform: rotateX(75deg) scale(0.6); } /* Идеально помещается на экране iPhone */
+            .solar-system { transform: rotateX(var(--tilt)) scale(0.55); } /* Идеальный размер для мобилок */
             .intro-title { font-size: 30px; letter-spacing: 8px; }
-            .grid-wrap { grid-template-columns: repeat(2, 1fr); padding-top: 60px; }
-            .story-frame { height: 95vh; }
+            .grid-wrap { grid-template-columns: repeat(3, 1fr); gap: 10px; padding-top: 60px; }
+            .sign-btn { padding: 15px 5px; } /* Делаем кнопки чуть компактнее */
+            .story-frame { height: 93dvh; } /* Защита от нижнего меню Safari */
+            .info-area { padding: 20px 20px; }
         }
-        @media (max-width: 400px) {
-            .solar-system { transform: rotateX(75deg) scale(0.45); } /* Для самых маленьких экранов */
+        @media (max-width: 370px) {
+            .solar-system { transform: rotateX(var(--tilt)) scale(0.45); }
             .btn-enter { padding: 18px 40px; }
+            .grid-wrap { grid-template-columns: repeat(2, 1fr); } /* 2 колонки для очень узких экранов */
         }
     </style>
 </head>
