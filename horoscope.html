@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <script type="text/javascript">
+    // --- Yandex.Metrika counter ---
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108177329', 'ym');
+    ym(108177329, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+
+    // --- Top.Mail.Ru counter ---
+    var _tmr = window._tmr || (window._tmr = []);
+    _tmr.push({id: "3755240", type: "pageView", start: (new Date()).getTime()});
+    (function (d, w, id) {
+        if (d.getElementById(id)) return;
+        var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
+        ts.src = "https://top-fwz1.mail.ru/js/code.js";
+        var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
+        if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
+    })(document, window, "tmr-code");
+    </script>
+
+    <noscript>
+        <div>
+            <img src="https://mc.yandex.ru/watch/108177329" style="position:absolute; left:-9999px;" alt="" />
+            <img src="https://top-fwz1.mail.ru/counter?id=3755240;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" />
+        </div>
+    </noscript>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>РЕСУРС | Спортивный Астро-прогноз</title>
+    
+    <meta name="description" content="Узнайте свой физический ресурс на сегодня. Персональный астро-прогноз для вашего тела от искусственного интеллекта Веры.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://resurs-stretch.ru/horoscope.html">
+
+    <link rel="icon" type="image/png" href="logo_header_final.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Manrope:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-deep: #05050A; 
+            --accent-gold: #C5A059; 
+            --text-main: #F4F4F9;
+            --text-muted: rgba(244, 244, 249, 0.6);
+            --glass-bg: rgba(20, 20, 28, 0.6); 
+            --glass-border: 1px solid rgba(197, 160, 89, 0.2); 
+            --font-main: 'Manrope', sans-serif;
+            --font-serif: 'Cormorant Garamond', serif;
+            --transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
+        
+        body {
+            background: var(--bg-deep);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-image: radial-gradient(circle at 50% 0%, rgba(197, 160, 89, 0.05) 0%, transparent 70%);
+        }
+
+        /* --- ЗВЕЗДНЫЙ ФОН --- */
+        #stars-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .serif { font-family: var(--font-serif); font-weight: 300; }
+
+        header { 
+            padding: 20px 5%; 
+            display: flex; 
+            justify-content: space-between;
+            align-items: center; 
+            z-index: 2000; 
+            background: rgba(5, 5, 10, 0.8); 
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: var(--glass-border);
+            position: fixed;
+            top: 0; width: 100%;
+        }
+
+        .brand-name { font-family: var(--font-serif); font-size: 20px; letter-spacing: 12px; text-transform: uppercase; color: var(--accent-gold); text-align: center;}
+        
+        main {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 20px 60px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        /* --- ФОРМА ВВОДА --- */
+        .auth-card {
+            background: var(--glass-bg);
+            border: var(--glass-border);
+            padding: 40px 30px;
+            border-radius: 24px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+            display: none;
+            animation: fadeIn 0.8s ease forwards;
+        }
+        .auth-card.active { display: block; }
+
+        .auth-title { font-size: 28px; color: var(--accent-gold); margin-bottom: 10px; }
+        .auth-desc { font-size: 15px; color: var(--text-muted); margin-bottom: 30px; line-height: 1.5; }
+
+        .input-group { margin-bottom: 20px; text-align: left; }
+        .input-group label { display: block; font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+        .input-group input {
+            width: 100%;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            color: #fff;
+            padding: 16px;
+            border-radius: 12px;
+            font-family: var(--font-main);
+            font-size: 16px;
+            transition: var(--transition);
+        }
+        .input-group input:focus { border-color: var(--accent-gold); background: rgba(197, 160, 89, 0.05); }
+
+        .btn-gold {
+            display: inline-block;
+            padding: 18px 40px;
+            background: var(--accent-gold);
+            color: #05050A;
+            border-radius: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 13px;
+            margin-top: 10px;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            width: 100%;
+        }
+        .btn-gold:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(197, 160, 89, 0.3); }
+
+        /* --- MAGIC FRAME (9:16 ДЛЯ СТОРИС) --- */
+        .result-wrapper { display: none; animation: fadeIn 0.8s ease forwards; width: 100%; }
+        .result-wrapper.active { display: block; }
+
+        .story-frame {
+            position: relative;
+            width: 100%;
+            max-width: 400px; /* Идеально для телефона и по центру на ПК */
+            aspect-ratio: 9 / 16;
+            margin: 0 auto;
+            background: linear-gradient(145deg, #0f0f15 0%, #05050A 100%);
+            border: 1px solid rgba(197, 160, 89, 0.4);
+            border-radius: 28px;
+            padding: 35px 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(197, 160, 89, 0.05), inset 0 0 40px rgba(0,0,0,0.8);
+        }
+
+        /* Декор в углах рамки */
+        .story-frame::before, .story-frame::after {
+            content: ''; position: absolute; width: 60px; height: 60px; border: 1px solid var(--accent-gold); opacity: 0.3;
+        }
+        .story-frame::before { top: 15px; left: 15px; border-right: none; border-bottom: none; border-top-left-radius: 16px; }
+        .story-frame::after { bottom: 15px; right: 15px; border-left: none; border-top: none; border-bottom-right-radius: 16px; }
+
+        .frame-header { text-align: center; z-index: 2; }
+        .zodiac-sign { font-size: 20px; letter-spacing: 4px; text-transform: uppercase; color: var(--accent-gold); margin-bottom: 5px; }
+        .user-name { font-size: 14px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px;}
+
+        .frame-body { z-index: 2; text-align: left; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
+        
+        .daily-vibe { font-size: 24px; color: #fff; line-height: 1.3; margin-bottom: 20px; }
+        .anatomy-focus { background: rgba(197, 160, 89, 0.1); border-left: 3px solid var(--accent-gold); padding: 15px; border-radius: 0 12px 12px 0; margin-bottom: 25px;}
+        .anatomy-focus-title { font-size: 11px; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;}
+        .anatomy-focus-text { font-size: 15px; color: #fff; line-height: 1.5; }
+
+        .energy-section { margin-bottom: 20px; }
+        .energy-title { display: flex; justify-content: space-between; font-size: 12px; color: var(--text-muted); text-transform: uppercase; margin-bottom: 8px; letter-spacing: 1px;}
+        .energy-bar-bg { width: 100%; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden; }
+        .energy-bar-fill { height: 100%; background: var(--accent-gold); width: 0%; transition: width 1.5s ease-out; }
+
+        .trainer-match { font-size: 14px; color: var(--text-muted); border-top: 1px dashed rgba(255,255,255,0.1); padding-top: 15px; line-height: 1.5;}
+
+        .frame-footer { text-align: center; z-index: 2; }
+        .frame-logo { font-family: var(--font-serif); font-size: 18px; letter-spacing: 8px; color: rgba(255,255,255,0.4); }
+
+        .pulse-text {
+            font-size: 12px; color: var(--accent-gold); letter-spacing: 1px; text-transform: uppercase; margin-top: 25px;
+            animation: pulseOpacity 2s infinite;
+        }
+        @keyframes pulseOpacity { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- ВЫБОР СТУДИИ --- */
+        .studio-selection { margin-top: 30px; display: none; }
+        .studio-title { font-size: 14px; color: var(--text-muted); margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
+        .studio-btns { display: flex; flex-direction: column; gap: 10px; }
+        .studio-btn {
+            background: rgba(255,255,255,0.03); border: 1px solid rgba(197, 160, 89, 0.3); color: #fff;
+            padding: 16px; border-radius: 12px; font-family: var(--font-main); font-size: 15px; cursor: pointer; transition: var(--transition);
+        }
+        .studio-btn:hover { background: rgba(197, 160, 89, 0.1); border-color: var(--accent-gold); }
+
+        /* Модалка Веры */
+        .vera-modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(5,5,10,0.9); backdrop-filter: blur(10px);
+            display: flex; align-items: center; justify-content: center; z-index: 3000;
+            opacity: 0; pointer-events: none; transition: opacity 0.5s; padding: 20px;
+        }
+        .vera-modal.active { opacity: 1; pointer-events: all; }
+        .vera-card {
+            background: var(--glass-bg); border: var(--glass-border); padding: 40px 30px;
+            border-radius: 24px; text-align: center; max-width: 400px; width: 100%;
+        }
+        .vera-card h3 { color: var(--accent-gold); font-family: var(--font-serif); font-size: 24px; margin-bottom: 15px; }
+        .vera-card p { color: #fff; line-height: 1.6; margin-bottom: 25px; font-size: 15px; }
+
+        @media (max-width: 500px) {
+            .story-frame { border-radius: 20px; padding: 25px 20px; aspect-ratio: auto; height: 75vh; max-height: 650px;}
+            .daily-vibe { font-size: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="stars-canvas"></canvas>
+
+<header>
+    <div style="width: 30px;"></div>
+    <div class="brand-name">РЕСУРС</div>
+    <div><img src="logo_header_final.png" style="height: 30px; border-radius: 6px; opacity: 0.8;" alt="Логотип"></div>
+</header>
+
+<main>
+    <div class="container">
+        
+        <div class="auth-card" id="step-form">
+            <h1 class="serif auth-title">Синхронизация</h1>
+            <p class="auth-desc">Введите данные, чтобы ИИ-директор «Вера» рассчитала ваш телесный ресурс на сегодня.</p>
+            
+            <div class="input-group">
+                <label>Ваше имя</label>
+                <input type="text" id="userName" placeholder="Александра">
+            </div>
+            <div class="input-group">
+                <label>Дата рождения</label>
+                <input type="date" id="userDate">
+            </div>
+            
+            <button class="btn-gold" onclick="generateHoroscope()">Получить прогноз</button>
+        </div>
+
+        <div class="result-wrapper" id="step-result">
+            <div class="story-frame" id="storyFrame">
+                <div class="frame-header">
+                    <div class="zodiac-sign serif" id="resSign">СКОРПИОН</div>
+                    <div class="user-name" id="resName">АЛЕКСАНДРА</div>
+                </div>
+
+                <div class="frame-body">
+                    <div class="daily-vibe serif" id="resVibe">Сегодня Луна в гармонии с вашей энергией. Время для глубокого восстановления.</div>
+                    
+                    <div class="anatomy-focus">
+                        <div class="anatomy-focus-title">Зона внимания сегодня</div>
+                        <div class="anatomy-focus-text" id="resAnatomy">Таз и крестец. Рекомендуется МФР или мягкий пилатес для снятия зажимов.</div>
+                    </div>
+
+                    <div class="energy-section">
+                        <div class="energy-title">
+                            <span>Уровень энергии</span>
+                            <span id="resEnergyVal">0%</span>
+                        </div>
+                        <div class="energy-bar-bg">
+                            <div class="energy-bar-fill" id="resEnergyBar"></div>
+                        </div>
+                    </div>
+
+                    <div class="trainer-match" id="resTrainer">Идеальный проводник сегодня: Ольга (Коммунистическая). Ваш резонанс на пике.</div>
+                </div>
+
+                <div class="frame-footer">
+                    <div class="frame-logo">РЕСУРС</div>
+                </div>
+            </div>
+
+            <div class="pulse-text">✨ Сделай скриншот и поделись в сторис</div>
+
+            <div class="studio-selection" id="studioSelection">
+                <div class="studio-title">Где закрепим ресурс сегодня?</div>
+                <div class="studio-btns">
+                    <button class="studio-btn" onclick="selectStudio('Советская')">Советская, 3</button>
+                    <button class="studio-btn" onclick="selectStudio('Коммунистическая')">Коммунистическая, 77/2</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<div class="vera-modal" id="veraModal">
+    <div class="vera-card">
+        <h3>Подтверждение Звезд</h3>
+        <p id="veraMessage">Загрузка космического ответа...</p>
+        <button class="btn-gold" onclick="goToVK()">Записаться в ВК</button>
+    </div>
+</div>
+
+<script>
+    // --- АНИМАЦИЯ ЗВЕЗДНОГО ФОНА ---
+    const canvas = document.getElementById('stars-canvas');
+    const ctx = canvas.getContext('2d');
+    let width, height, stars = [];
+    
+    function initStars() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+        stars = [];
+        for (let i = 0; i < 150; i++) {
+            stars.push({
+                x: Math.random() * width, y: Math.random() * height,
+                r: Math.random() * 1.5,
+                o: Math.random(), d: Math.random() * 0.02
+            });
+        }
+    }
+    window.addEventListener('resize', initStars);
+    initStars();
+
+    function drawStars() {
+        ctx.clearRect(0, 0, width, height);
+        ctx.fillStyle = '#C5A059';
+        stars.forEach(s => {
+            s.o += s.d;
+            if (s.o > 1 || s.o < 0) s.d = -s.d;
+            ctx.globalAlpha = Math.max(0, Math.min(1, s.o)) * 0.8;
+            ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2); ctx.fill();
+        });
+        requestAnimationFrame(drawStars);
+    }
+    drawStars();
+
+    // --- АСТРО-ЛОГИКА ---
+    const ZODIACS = [
+        { sign: "Козерог", start: "01-01", end: "01-19", zone: "Колени, суставы, кости.", rec: "Пилатес и глубокая работа с суставами." },
+        { sign: "Водолей", start: "01-20", end: "02-18", zone: "Голени и сосуды.", rec: "Активная растяжка для разгона лимфы." },
+        { sign: "Рыбы", start: "02-19", end: "03-20", zone: "Стопы и лимфа.", rec: "МФР и Релакс-йога. Заземляемся." },
+        { sign: "Овен", start: "03-21", end: "04-19", zone: "Голова и шея.", rec: "Снимаем спазмы воротниковой зоны. МФР." },
+        { sign: "Телец", start: "04-20", end: "05-20", zone: "Горло и шея.", rec: "Аэройога для вытяжения и легкости." },
+        { sign: "Близнецы", start: "05-21", end: "06-20", zone: "Плечи и руки.", rec: "Раскрытие грудного отдела и плечевого пояса." },
+        { sign: "Рак", start: "06-21", end: "07-22", zone: "Грудь и диафрагма.", rec: "Дыхательные практики и Релакс." },
+        { sign: "Лев", start: "07-23", end: "08-22", zone: "Спина и осанка.", rec: "Королевская Здоровая спина." },
+        { sign: "Дева", start: "08-23", end: "09-22", zone: "Брюшная полость.", rec: "Пилатес, акцент на кор." },
+        { sign: "Весы", start: "09-23", end: "10-22", zone: "Поясница.", rec: "Бережная Здоровая спина и гамаки." },
+        { sign: "Скорпион", start: "10-23", end: "11-21", zone: "Таз и ТБС.", rec: "Раскрытие таза, шпагаты." },
+        { sign: "Стрелец", start: "11-22", end: "12-21", zone: "Бедра и ягодицы.", rec: "Силовая растяжка, Ягодицы+Пресс." },
+        { sign: "Козерог", start: "12-22", end: "12-31", zone: "Колени, суставы, кости.", rec: "Пилатес и глубокая работа с суставами." }
+    ];
+
+    // Тренеры (те, у кого дата null - не участвуют в подборе, пока не впишешь дату)
+    const TRAINERS = [
+        { name: "Ольга", dob: "1985-11-14", studio: "Коммунистическая" },
+        { name: "Лолита", dob: null, studio: "Коммунистическая" },
+        { name: "Александра", dob: "2009-07-18", studio: "Советская" },
+        { name: "Юлия", dob: "1981-08-21", studio: "Советская" },
+        { name: "Дарья", dob: "2003-01-03", studio: "Советская" },
+        { name: "Ирина", dob: null, studio: "Советская" },
+        { name: "София", dob: null, studio: "Советская" }
+    ];
+
+    const PLANETS = ["Луна", "Венера", "Марс", "Юпитер", "Меркурий", "Сатурн"];
+    const ASPECTS = ["в гармонии с вашей энергией", "требует баланса", "дает заряд бодрости", "усиливает интуицию", "подсвечивает зоны напряжения"];
+
+    function getZodiac(dateStr) {
+        if (!dateStr) return null;
+        const d = new Date(dateStr);
+        const md = (d.getMonth() + 1).toString().padStart(2, '0') + "-" + d.getDate().toString().padStart(2, '0');
+        return ZODIACS.find(z => md >= z.start && md <= z.end) || ZODIACS[0];
+    }
+
+    // Простенький генератор на основе даты (чтобы прогноз менялся каждый день, но был фиксирован для юзера сегодня)
+    function pseudoRandom(seedStr) {
+        let hash = 0;
+        for (let i = 0; i < seedStr.length; i++) hash = Math.imul(31, hash) + seedStr.charCodeAt(i) | 0;
+        let t = hash += 0x6D2B79F5;
+        t = Math.imul(t ^ t >>> 15, t | 1);
+        t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+        return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    }
+
+    // --- ПРОВЕРКА СОХРАНЕННОГО ПОЛЬЗОВАТЕЛЯ ---
+    window.onload = () => {
+        const savedUser = localStorage.getItem('resurs_astro_user');
+        if (savedUser) {
+            const user = JSON.parse(savedUser);
+            renderHoroscope(user.name, user.dob);
+        } else {
+            document.getElementById('step-form').classList.add('active');
+        }
+    };
+
+    function generateHoroscope() {
+        const name = document.getElementById('userName').value.trim();
+        const dob = document.getElementById('userDate').value;
+        
+        if (!name || !dob) { alert("Пожалуйста, заполните все поля"); return; }
+        
+        localStorage.setItem('resurs_astro_user', JSON.stringify({name, dob}));
+        renderHoroscope(name, dob);
+    }
+
+    function renderHoroscope(name, dob) {
+        document.getElementById('step-form').classList.remove('active');
+        const zInfo = getZodiac(dob);
+        
+        const todayStr = new Date().toISOString().slice(0,10);
+        const seed = name + dob + todayStr;
+        const r1 = pseudoRandom(seed + "1");
+        const r2 = pseudoRandom(seed + "2");
+        const r3 = pseudoRandom(seed + "3");
+
+        // Энергия (от 30 до 100)
+        const energy = Math.floor(30 + r1 * 70);
+        const planet = PLANETS[Math.floor(r2 * PLANETS.length)];
+        const aspect = ASPECTS[Math.floor(r3 * ASPECTS.length)];
+
+        // Подбор тренера (только тех, у кого есть dob)
+        const activeTrainers = TRAINERS.filter(t => t.dob);
+        let trainerRec = "";
+        if (activeTrainers.length > 0) {
+            const pickedTrainer = activeTrainers[Math.floor(pseudoRandom(seed + "4") * activeTrainers.length)];
+            trainerRec = `Идеальный проводник сегодня: ${pickedTrainer.name} (${pickedTrainer.studio}). Ваш резонанс на пике.`;
+        }
+
+        document.getElementById('resSign').innerText = zInfo.sign;
+        document.getElementById('resName').innerText = name;
+        document.getElementById('resVibe').innerText = `Сегодня ${planet} ${aspect}.`;
+        document.getElementById('resAnatomy').innerText = `${zInfo.zone} ${zInfo.rec}`;
+        document.getElementById('resEnergyVal').innerText = `${energy}%`;
+        document.getElementById('resTrainer').innerText = trainerRec;
+
+        document.getElementById('step-result').classList.add('active');
+        
+        // Анимация полоски
+        setTimeout(() => {
+            document.getElementById('resEnergyBar').style.width = `${energy}%`;
+        }, 500);
+
+        setTimeout(() => {
+            document.getElementById('studioSelection').style.display = 'block';
+        }, 1500);
+    }
+
+    let selectedAction = "";
+
+    function selectStudio(studio) {
+        const modal = document.getElementById('veraModal');
+        const msg = document.getElementById('veraMessage');
+        const todayStr = new Date().toISOString().slice(0,10);
+        const r = pseudoRandom(studio + todayStr); // Разный текст каждый день для каждой студии
+
+        if (studio === "Советская") {
+            const texts = [
+                "Верный выбор. Советская, 3 сегодня находится в активном секторе Солнца. Это усилит твой внутренний огонь.",
+                "Отлично. Сегодня на Советской особенная концентрация земной энергии. Твоя растяжка будет глубже.",
+                "Звезды одобряют. Энергия центра города сегодня идеально резонирует с твоим биоритмом."
+            ];
+            msg.innerText = texts[Math.floor(r * texts.length)];
+            selectedAction = "Запись Советская (Гороскоп)";
+        } else {
+            const texts = [
+                "Твоя интуиция не подвела. Коммунистическая сегодня под покровительством Венеры. Мягкое пространство для восстановления.",
+                "Лунный свет благоволит тихим переулкам. На Коммунистической ты найдешь нужную глубину практики.",
+                "Идеально. Сегодня это пространство наполнено спокойствием, которое так необходимо твоей нервной системе."
+            ];
+            msg.innerText = texts[Math.floor(r * texts.length)];
+            selectedAction = "Запись Коммунистическая (Гороскоп)";
+        }
+
+        modal.classList.add('active');
+    }
+
+    function goToVK() {
+        const vkAppUrl = `vk://vk.com/write-221142875?ref=astro_${encodeURIComponent(selectedAction)}`;
+        const vkWebUrl = `https://vk.me/-221142875?ref=astro_${encodeURIComponent(selectedAction)}`;
+        
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        if (isMobile) {
+            window.location.href = vkAppUrl;
+        } else {
+            window.location.href = vkWebUrl;
+        }
+    }
+</script>
+
+</body>
+</html>
