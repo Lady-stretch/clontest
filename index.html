@@ -40,14 +40,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>РЕСУРС | Студия фитнеса и растяжки в Сыктывкаре</title>
-    <meta name="description" content="Студия фитнеса и растяжки РЕСУРС в Сыктывкаре. Авторский фитнес-подход: избавляем от болей в спине и возвращаем легкость телу за 50 минут. МФР, здоровая спина, аэройога.">
-    <meta name="keywords" content="растяжка Сыктывкар, здоровая спина, фитнес студия, МФР массаж, аэройога, пилатес, похудение, женский фитнес">
-    
-    <meta property="og:title" content="Студия состояния РЕСУРС | Сыктывкар">
-    <meta property="og:description" content="Избавляем от болей в спине и возвращаем легкость телу за 50 минут.">
-    <meta property="og:image" content="philosophy.jpg">
-    <meta property="og:type" content="website">
+    <meta name="description" content="Студия РЕСУРС в Сыктывкаре. Избавляем от болей в спине за 50 минут. Мягкий фитнес, аэройога, здоровая спина и МФР. Запишитесь на тест-драйв за 990₽!">
+    <meta name="keywords" content="растяжка сыктывкар, фитнес сыктывкар, здоровая спина, аэройога, мфр массаж, пилатес, студия ресурс сыктывкар, купить тренировки сыктывкар">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://resurs-stretch.ru/">
 
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="РЕСУРС | Студия твоего состояния в Сыктывкаре">
+    <meta property="og:description" content="Избавляем от болей в спине за 50 минут. Приходите на тест-драйв за 990₽.">
+    <meta property="og:url" content="https://resurs-stretch.ru/">
+    <meta property="og:image" content="https://resurs-stretch.ru/logo_header_final.png">
+    <meta property="og:site_name" content="РЕСУРС">
+    <meta property="og:locale" content="ru_RU">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HealthAndBeautyBusiness",
+      "name": "Студия фитнеса и растяжки РЕСУРС",
+      "image": "https://resurs-stretch.ru/logo_header_final.png",
+      "@id": "https://resurs-stretch.ru",
+      "url": "https://resurs-stretch.ru",
+      "telephone": "+79087155557",
+      "address": [
+        {
+          "@type": "PostalAddress",
+          "streetAddress": "ул. Коммунистическая, 77/2",
+          "addressLocality": "Сыктывкар",
+          "addressRegion": "Республика Коми",
+          "addressCountry": "RU"
+        },
+        {
+          "@type": "PostalAddress",
+          "streetAddress": "ул. Советская, 3",
+          "addressLocality": "Сыктывкар",
+          "addressRegion": "Республика Коми",
+          "addressCountry": "RU"
+        }
+      ],
+      "priceRange": "990RUB - 16800RUB",
+      "description": "Студия мягкого фитнеса, растяжки, МФР и пилатеса в Сыктывкаре. Избавляем от болей в спине и дарим легкость телу."
+    }
+    </script>
     <link rel="icon" type="image/png" href="logo_header_final.png">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -55,6 +89,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Manrope:wght@200;300;400;500;600&display=swap" rel="stylesheet">
     
     <script src="https://reservi.ru/widget-fit1c.v2/js/config.js" data-fit-salon-id="02977247-3381-4559-b9ef-1cf88d2731a2"></script>
+    <script src="https://unpkg.com/imask"></script>
+    <script src="https://yookassa.ru/checkout-widget/v1/checkout-widget.js"></script>
 
     <style>
         /* CSS ПЕРЕМЕННЫЕ ДЛЯ СВЕТЛОЙ (ОСНОВНОЙ) ТЕМЫ */
@@ -63,7 +99,7 @@
             --glass-bg: rgba(255, 255, 255, 0.85); 
             --glass-border: 1px solid rgba(0, 0, 0, 0.08); 
             --accent-gold: #B38639; 
-            --text-main: #080814;
+            --text-main: #05050A; /* Улучшенная читаемость текста в светлой теме */
             --text-dim: rgba(8, 8, 20, 0.7);
             --elem-bg: rgba(0, 0, 0, 0.04);
             --elem-border: rgba(0, 0, 0, 0.1);
@@ -107,9 +143,11 @@
             line-height: 1.6;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
             transition: background-color 0.5s ease, color 0.5s ease;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
         }
 
-        h1, h2, h3, .serif { font-family: var(--font-serif); font-weight: 300; }
+        h1, h2, h3, .serif { font-family: var(--font-serif); font-weight: 600; letter-spacing: 1px; }
         a { text-decoration: none; color: inherit; transition: var(--transition); }
         ul { list-style: none; }
 
@@ -189,7 +227,7 @@
         .brand-name { 
             font-family: var(--font-serif); font-size: 22px; 
             letter-spacing: 12px; text-transform: uppercase; color: var(--text-main); 
-            font-weight: 600; margin-right: -12px; /* Компенсация letter-spacing */
+            font-weight: 600; margin-right: -12px;
         }
 
         header img { filter: drop-shadow(0 0 5px rgba(0,0,0,0.1)); transition: 0.4s; }
@@ -209,7 +247,6 @@
         .nav-trigger span:nth-child(3) { top: 27px; }
         .nav-trigger span:nth-child(4) { top: 34px; }
 
-        /* Анимация при нажатии 4-полосного бургера */
         .nav-trigger.active span:nth-child(1) { top: 23px; transform: rotate(45deg); width: 28px; }
         .nav-trigger.active span:nth-child(2) { opacity: 0; transform: translateX(-15px); }
         .nav-trigger.active span:nth-child(3) { opacity: 0; transform: translateX(15px); }
@@ -282,9 +319,7 @@
             font-family: var(--font-serif); 
             font-weight: 300; 
             margin: 0 auto 30px !important;
-            /* Оптимальный размер: от 28px до 64px */
             font-size: clamp(28px, 4.5vw, 64px); 
-            /* Элегантный интервал между буквами */
             letter-spacing: clamp(3px, 1.2vw, 8px); 
             line-height: 1.2;
         }
@@ -390,12 +425,15 @@
         }
         
         /* --- МОДАЛЬНЫЕ ОКНА И ФОРМЫ --- */
-        .modal { display: none; position: fixed; inset: 0; z-index: 3000; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); align-items: center; justify-content: center; padding: 20px; }
-        .modal-content { width: 100%; max-width: 500px; padding: 60px 40px; position: relative; text-align: center; border-radius: 30px; }
+        .modal { display: none; position: fixed; inset: 0; z-index: 3000; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); align-items: center; justify-content: center; padding: 20px; overflow-y: auto; -webkit-overflow-scrolling: touch;}
+        .modal-content { width: 100%; max-width: 500px; padding: 60px 40px; position: relative; text-align: center; border-radius: 30px; margin: auto; background: var(--bg-deep); border: var(--glass-border);}
         .modal-close { position: absolute; top: 20px; right: 30px; font-size: 40px; cursor: pointer; color: var(--text-dim); transition: 0.3s; }
         .modal-close:hover { color: var(--accent-gold); }
         .modal input { width: 100%; background: var(--elem-bg); border: 1px solid var(--elem-border); padding: 18px; color: var(--text-main); font-size: 16px; margin-bottom: 20px; border-radius: 12px; }
+        .modal input:focus { border-color: var(--accent-gold); outline: none; }
         
+        #payment-form { width: 100%; min-height: 450px; margin: 0 auto; display: flex; justify-content: center; }
+
         /* --- PROMO WIDGET --- */
         #promo-widget {
             position: fixed; top: 110px; left: 30px; width: 320px; z-index: 1500; padding: 25px; border-radius: 20px;
@@ -736,31 +774,42 @@
         </div>
     </div>
 </section>
+
 <section class="reviews-section" id="reviews" style="padding: 60px 5%; text-align: center;">
     <span class="section-label" style="margin-bottom: 20px;">Голоса резидентов</span>
     <h2 style="font-size: clamp(32px, 5vw, 48px); margin-bottom: 50px;">Что говорят о Ресурсе</h2>
     
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; text-align: left;">
+        
         <div class="glass" style="padding: 40px; border-radius: 30px;">
             <div style="color: var(--accent-gold); margin-bottom: 15px; font-size: 20px;">★★★★★</div>
-            <p style="font-style: italic; opacity: 0.8; line-height: 1.6; margin-bottom: 20px;">«Гармонично, спокойно, умение слушать себя. То, что нужно мне, чтобы перестать все время бежать без оглядки. В студии чисто, уютно.»</p>
-            <div style="font-weight: 600; font-family: var(--font-serif); letter-spacing: 1px;">АННА Г.</div>
+            <p style="font-style: italic; opacity: 0.8; line-height: 1.6; margin-bottom: 20px;">«Обожаю занятия! Инструкторы настоящие профессионалы своего дела: внимательно следят за техникой, поддерживают и мотивируют. Особенно полюбились курсы "Здоровая спина" и "МФР": тело стало гибче, боли в спине исчезли, появилось ощущение легкости и энергии.»</p>
+            <div style="font-weight: 600; font-family: var(--font-serif); letter-spacing: 1px;">ОЛЬГА ИВОНИНСКАЯ</div>
+            <div style="font-size: 10px; opacity: 0.5; margin-top: 5px;">Источник: 2ГИС</div>
         </div>
+        
         <div class="glass" style="padding: 40px; border-radius: 30px;">
             <div style="color: var(--accent-gold); margin-bottom: 15px; font-size: 20px;">★★★★★</div>
-            <p style="font-style: italic; opacity: 0.8; line-height: 1.6; margin-bottom: 20px;">«Отличная студия, хожу с удовольствием. Приятное общение, учет индивидуальных особенностей. Появилась энергия, стала меньше уставать.»</p>
-            <div style="font-weight: 600; font-family: var(--font-serif); letter-spacing: 1px;">АЛЛИТА Д.</div>
+            <p style="font-style: italic; opacity: 0.8; line-height: 1.6; margin-bottom: 20px;">«Моя любовь с Lady Stretch началась после первого занятия. Все тренеры классные, тренировки на любой вкус и уровень подготовки. С Ольгой Мартыновой всегда весело и эффективно. Студия — это больше, чем просто спорт, это душевная атмосфера.»</p>
+            <div style="font-weight: 600; font-family: var(--font-serif); letter-spacing: 1px;">ОКСАНА АЛЕКСЕЕВА</div>
+            <div style="font-size: 10px; opacity: 0.5; margin-top: 5px;">Источник: 2ГИС</div>
         </div>
+        
         <div class="glass" style="padding: 40px; border-radius: 30px;">
             <div style="color: var(--accent-gold); margin-bottom: 15px; font-size: 20px;">★★★★★</div>
-            <p style="font-style: italic; opacity: 0.8; line-height: 1.6; margin-bottom: 20px;">«Здесь не просто тренируют тело, а создают настроение. Тренеры заряжают энергией, музыка подобрана идеально.»</p>
-            <div style="font-weight: 600; font-family: var(--font-serif); letter-spacing: 1px;">ЕЛЕНА М.</div>
+            <p style="font-style: italic; opacity: 0.8; line-height: 1.6; margin-bottom: 20px;">«Моя любимая студия! Место, куда после работы с радостью бежишь, а после тренировки окрылённый порхаешь домой. Много разных направлений: силовые, кардио, пилатес, гамаки. Тренерский состав отличный. Искренняя рекомендация!»</p>
+            <div style="font-weight: 600; font-family: var(--font-serif); letter-spacing: 1px;">АНАСТАСИЯ Ч.</div>
+            <div style="font-size: 10px; opacity: 0.5; margin-top: 5px;">Источник: 2ГИС</div>
         </div>
+        
     </div>
 
-    <div style="margin-top: 50px;">
-        <a href="https://yandex.ru/maps/org/lady_stretch/228595216007?si=0qh6az827ftdx3mj4jxmmemb28" target="_blank" class="btn btn-lens">
-            Читать больше на Яндекс.Картах
+    <div style="margin-top: 50px; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+        <a href="https://go.2gis.com/H0XBA" target="_blank" class="btn btn-lens">
+            Отзывы (Коммунистическая)
+        </a>
+        <a href="https://go.2gis.com/YJ2vF" target="_blank" class="btn btn-lens">
+            Отзывы (Советская)
         </a>
     </div>
 </section>
@@ -811,7 +860,11 @@
         <div class="modal-close" onclick="closeModal()">&times;</div>
         <h2 class="serif">Вход в Ресурс</h2>
         <p style="margin-bottom: 25px; opacity: 0.8;">Оставьте контакты для активации доступа</p>
+        
         <form id="tgForm">
+            <input type="hidden" id="selectedPackage" value="Тест-драйв Ресурс">
+            <input type="hidden" id="selectedPrice" value="990"> 
+
             <input type="text" id="userName" placeholder="ВАШЕ ИМЯ" required>
             <input type="tel" id="userPhone" placeholder="+7 (___) ___-__-__" required>
             
@@ -820,8 +873,9 @@
                 <span>Нажимая кнопку, вы соглашаетесь с <a href="privacy.html" style="text-decoration: underline;">Политикой конфиденциальности</a> и <a href="offer.html" style="text-decoration: underline;">Офертой</a></span>
             </div>
             
-            <button type="submit" class="btn btn-lens" style="width: 100%; padding: 20px;">Запросить доступ • 990₽</button>
+            <button type="submit" class="btn btn-lens" style="width: 100%; padding: 20px;">Оплатить доступ • 990₽</button>
         </form>
+        <div id="payment-form" style="margin-top: 20px;"></div>
     </div> 
 </div>
 
@@ -895,33 +949,99 @@
         document.body.style.overflow = overlay.classList.contains('active') ? 'hidden' : 'auto';
     }
 
-    // --- Модалка ---
-    function openModal() { document.getElementById('orderModal').style.display = 'flex'; document.body.style.overflow = 'hidden'; }
-    function closeModal() { document.getElementById('orderModal').style.display = 'none'; document.body.style.overflow = 'auto'; }
+    // --- ИЗМЕНЕНО: Логика Модалки, Маски и Оплаты (YooKassa + ВК Лиды) ---
+    const CLOUD_URL = "https://functions.yandexcloud.net/d4el388cufj9g6egpam3";
+    const phoneElement = document.getElementById('userPhone');
+    const maskOptions = { mask: '+{7} (000) 000-00-00', lazy: false };
+    const phoneMask = IMask(phoneElement, maskOptions);
 
-    // --- Telegram Лиды ---
-    const BOT_TOKEN = "8315361350:AAFQsVfRRODxIZicTSG5xI64RImtTNMhWXE";
-    const CHAT_ID = "-1003687605233";
+    function openModal() { 
+        document.getElementById('orderModal').style.display = 'flex'; 
+        document.body.style.overflow = 'hidden'; 
+        
+        // Сброс формы при новом открытии
+        document.getElementById('tgForm').style.display = 'block';
+        document.getElementById('payment-form').innerHTML = '';
+        document.querySelector('#orderModal p').style.display = 'block';
+        document.querySelector('#orderModal h2').innerText = 'Вход в Ресурс';
+        
+        const btn = document.querySelector('#tgForm button');
+        btn.innerText = 'Оплатить доступ • 990₽';
+        btn.disabled = false;
+        phoneMask.value = '';
+    }
+    
+    function closeModal() { 
+        document.getElementById('orderModal').style.display = 'none'; 
+        document.body.style.overflow = 'auto'; 
+    }
+
+    // Закрытие по клику вне окна
+    window.onclick = function(event) {
+        if (event.target == document.getElementById('orderModal')) closeModal();
+    }
 
     document.getElementById('tgForm').addEventListener('submit', async function(e) {
         e.preventDefault();
-        const submitBtn = this.querySelector('button');
-        const name = document.getElementById('userName').value;
-        const phone = document.getElementById('userPhone').value;
-        const fullMessage = `💎 **НОВЫЙ ЛИД: РЕСУРС**\n\n👤 Резидент: ${name}\n📞 Контакт: ${phone}\n🏙 Город: Сыктывкар\n🌐 Источник: Основной сайт`;
+        
+        if (phoneMask.unmaskedValue.length !== 11) {
+            alert('Пожалуйста, введите номер телефона полностью.');
+            return;
+        }
+        
+        const btn = this.querySelector('button');
+        btn.innerText = 'СВЯЗЬ С БАНКОМ...';
+        btn.disabled = true;
 
-        submitBtn.innerText = "ОТПРАВКА...";
-        submitBtn.disabled = true;
+        const name = document.getElementById('userName').value;
+        const phone = phoneMask.unmaskedValue; 
+        const packageType = document.getElementById('selectedPackage').value;
+        const price = document.getElementById('selectedPrice').value;
 
         try {
-            const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+            const response = await fetch(CLOUD_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ chat_id: CHAT_ID, text: fullMessage, parse_mode: 'Markdown' })
+                body: JSON.stringify({
+                    amount: price,
+                    name: name,
+                    phone: phone,
+                    description: packageType
+                })
             });
-            if (response.ok) { alert('Благодарим! Заявка принята. Куратор свяжется с вами в ближайшее время.'); closeModal(); this.reset(); }
-        } catch (error) { alert('Ошибка сети'); } 
-        finally { submitBtn.innerText = "Запросить доступ • 990₽"; submitBtn.disabled = false; }
+
+            if (!response.ok) throw new Error('Облако вернуло ошибку');
+            
+            const data = await response.json();
+
+            if (data.confirmation_token) {
+                document.getElementById('tgForm').style.display = 'none';
+                document.querySelector('#orderModal p').style.display = 'none';
+                document.querySelector('#orderModal h2').innerText = 'Оплата';
+                
+                const checkout = new window.YooMoneyCheckoutWidget({
+                    confirmation_token: data.confirmation_token,
+                    return_url: 'https://lady-stretch.github.io/thanks.html', 
+                    customization: {
+                        modal: false, 
+                        width: '100%' 
+                    },
+                    error_callback: (error) => { 
+                        alert('Ошибка виджета оплаты.');
+                        console.error(error); 
+                    }
+                });
+
+                checkout.render('payment-form');
+            } else {
+                throw new Error('Токен не получен');
+            }
+        } catch (error) {
+            console.error('Детали ошибки:', error);
+            alert('Не удалось связаться с банком. Убедитесь, что Облако активно.');
+            btn.disabled = false;
+            btn.innerText = 'Попробовать снова';
+        }
     });
 
     // 1. НАСТРОЙКИ АКЦИИ
