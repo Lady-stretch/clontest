@@ -381,27 +381,22 @@
         resultText.innerText = verdict;
         resultText.style.display = 'block'; // Показываем текст
         
-        // ВОЗВРАЩАЕМ ВАШУ ИДЕАЛЬНУЮ СВЯЗКУ С ВЕРОЙ ЧЕРЕЗ REF + УМНЫЙ DEEP LINKING
+        // ВОЗВРАЩАЕМ ВАШУ ИДЕАЛЬНУЮ СВЯЗКУ С ВЕРОЙ ЧЕРЕЗ REF + ОПРЕДЕЛЕНИЕ УСТРОЙСТВА
         const vkBtn = document.getElementById('vk-link');
         vkBtn.onclick = () => {
             const vkAppUrl = `vk://vk.com/write-221142875?ref=quiz_${totalPoints}`;
             const vkWebUrl = `https://vk.me/-221142875?ref=quiz_${totalPoints}`;
             
-            // Фиксируем время перед попыткой открыть приложение
-            const startTimestamp = Date.now();
+            // Простая и надежная проверка на мобильное устройство (телефон или планшет)
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
             
-            // Пытаемся принудительно открыть приложение ВК
-            window.location.href = vkAppUrl;
-            
-            // Умный Fallback: 
-            // Ждем 1 секунду. Если приложение открылось, браузер обычно уходит в фон 
-            // (document.hidden становится true). Если браузер остался открытым 
-            // и время прошло без задержек — переводим на веб-версию.
-            setTimeout(() => {
-                if (!document.hidden && Date.now() - startTimestamp < 1500) {
-                    window.location.href = vkWebUrl;
-                }
-            }, 1000);
+            if (isMobile) {
+                // Если с телефона - сразу открываем приложение, без таймеров и возвратов
+                window.location.href = vkAppUrl;
+            } else {
+                // Если с компьютера/ноутбука - открываем браузерную веб-версию
+                window.location.href = vkWebUrl;
+            }
         };
     }
 </script>
