@@ -44,54 +44,96 @@
         /* --- ФОН ЗВЕЗД --- */
         #stars-canvas { position: fixed; inset: 0; z-index: 1; pointer-events: none; }
 
-        /* --- СЦЕНА 0: КОСМОС (ИДЕАЛЬНЫЕ КРУГИ SAFARI) --- */
+        /* --- СЦЕНА 0: КОСМОС (ПРОДВИНУТЫЙ ФИКС 3D ОРБИТ) --- */
         #scene-cosmos {
             position: fixed; inset: 0; z-index: 100;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             transition: var(--transit);
+            perspective: 2000px; -webkit-perspective: 2000px;
         }
         #scene-cosmos.hidden { opacity: 0; transform: scale(1.1); pointer-events: none; }
 
-        /* Упрощенная 3D модель, которая не ломается в iOS */
-        .system-wrap {
-            position: absolute; top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            width: 600px; height: 600px;
-            pointer-events: none;
+        /* Центральный якорь системы с общим наклоном */
+        .solar-system {
+            position: absolute; top: 50%; left: 50%; width: 0; height: 0;
+            transform: rotateX(70deg);
+            transform-style: preserve-3d; -webkit-transform-style: preserve-3d;
         }
 
+        /* Солнце смотрит прямо в камеру (Контр-наклон) */
         .sun {
-            position: absolute; top: 50%; left: 50%; width: 300px; height: 300px;
-            margin: -150px 0 0 -150px; border-radius: 50%;
+            position: absolute; top: -150px; left: -150px; width: 300px; height: 300px;
+            border-radius: 50%;
             background: radial-gradient(circle, #fff 0%, rgba(255,215,0,0.8) 20%, rgba(255,140,0,0.2) 50%, transparent 70%);
             box-shadow: 0 0 80px rgba(255, 180, 0, 0.6);
+            transform: rotateX(-70deg);
             animation: pulseSun 6s ease-in-out infinite alternate;
         }
 
-        .orbit {
-            position: absolute; top: 50%; left: 50%;
-            transform: translate(-50%, -50%) rotateX(70deg); /* Овальная орбита */
+        /* Орбиты и их пути */
+        .earth-orbit-path {
+            position: absolute; top: -250px; left: -250px; width: 500px; height: 500px;
             border: 1px dashed rgba(255,255,255,0.15); border-radius: 50%;
         }
-        .orbit.earth { width: 500px; height: 500px; animation: spin 40s linear infinite; }
-        
-        /* Планеты без 3D-матриц, чтобы не было "яиц" */
-        .planet-container {
-            position: absolute; top: 0; left: 50%;
-            width: 100px; height: 100px; margin: -50px 0 0 -50px;
-            animation: counter-spin 40s linear infinite; /* Отменяем вращение для самой планеты */
+        .earth-orbit {
+            position: absolute; top: 0; left: 0;
+            transform-style: preserve-3d; -webkit-transform-style: preserve-3d;
+            animation: spinOrbit 40s linear infinite;
         }
         
+        /* Сдвигаем на радиус орбиты */
+        .earth-pos {
+            position: absolute; top: 0; left: 0; transform: translateX(250px);
+            transform-style: preserve-3d; -webkit-transform-style: preserve-3d;
+        }
+        
+        /* Гасим вращение Земли вокруг своей оси, чтобы она не крутилась по орбите как привязанная */
+        .earth-counter {
+            position: absolute; top: 0; left: 0;
+            transform-style: preserve-3d; -webkit-transform-style: preserve-3d;
+            animation: spinCounter 40s linear infinite;
+        }
+        
+        /* Сама Земля - возвращаем ей "лицо" к камере */
         .earth-sphere {
-            width: 100%; height: 100%; border-radius: 50%; aspect-ratio: 1/1;
+            position: absolute; top: -50px; left: -50px; width: 100px; height: 100px;
+            border-radius: 50%;
             background: radial-gradient(circle at 30% 30%, #1e3c72 0%, #091221 80%, #000 100%);
             box-shadow: inset -15px -15px 30px rgba(0,0,0,0.9), 0 0 30px rgba(30, 60, 114, 0.6);
-            transform: rotateX(-70deg); /* Контр-наклон к камере = идеальный круг */
+            transform: rotateX(-70deg);
         }
 
-        @keyframes spin { 100% { transform: translate(-50%, -50%) rotateX(70deg) rotateZ(360deg); } }
-        @keyframes counter-spin { 100% { transform: rotateZ(-360deg); } }
-        @keyframes pulseSun { 0% { transform: scale(0.95); opacity: 0.8;} 100% { transform: scale(1.05); opacity: 1;} }
+        /* Луна: повторяет логику Земли */
+        .moon-orbit-path {
+            position: absolute; top: -85px; left: -85px; width: 170px; height: 170px;
+            border: 1px dashed rgba(255,255,255,0.2); border-radius: 50%;
+        }
+        .moon-orbit {
+            position: absolute; top: 0; left: 0;
+            transform-style: preserve-3d; -webkit-transform-style: preserve-3d;
+            animation: spinOrbit 10s linear infinite;
+        }
+        .moon-pos {
+            position: absolute; top: 0; left: 0; transform: translateX(85px);
+            transform-style: preserve-3d; -webkit-transform-style: preserve-3d;
+        }
+        .moon-counter {
+            position: absolute; top: 0; left: 0;
+            transform-style: preserve-3d; -webkit-transform-style: preserve-3d;
+            animation: spinCounter 10s linear infinite;
+        }
+        .moon-sphere {
+            position: absolute; top: -14px; left: -14px; width: 28px; height: 28px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #fff 0%, #a0a0a0 60%, #333 100%);
+            box-shadow: 0 0 15px rgba(255,255,255,0.5);
+            transform: rotateX(-70deg);
+        }
+
+        /* Ключевые кадры для орбит */
+        @keyframes spinOrbit { 0% { transform: rotateZ(0deg); } 100% { transform: rotateZ(360deg); } }
+        @keyframes spinCounter { 0% { transform: rotateZ(0deg); } 100% { transform: rotateZ(-360deg); } }
+        @keyframes pulseSun { 0% { transform: rotateX(-70deg) scale(0.95); opacity: 0.8;} 100% { transform: rotateX(-70deg) scale(1.05); opacity: 1;} }
 
         .ui-container { position: absolute; bottom: 12%; text-align: center; z-index: 500; width: 100%; }
         .intro-title { font-family: var(--font-serif); font-size: 40px; letter-spacing: 12px; color: var(--gold); text-transform: uppercase; margin-bottom: 30px; }
@@ -103,7 +145,7 @@
             position: fixed; top: 0; left: 0; width: 100%; padding: 20px 5%; 
             display: flex; justify-content: space-between; align-items: center; 
             z-index: 2000; opacity: 0; transition: 1s; 
-            pointer-events: none; /* ПРОПУСКАЕТ КЛИКИ */
+            pointer-events: none; /* ПРОПУСКАЕТ КЛИКИ СКВОЗЬ СЕБЯ */
         }
         header.active { 
             opacity: 1; 
@@ -141,7 +183,7 @@
 
         .story-frame {
             width: 100%; max-width: 440px; margin: 0 auto; 
-            height: 75vh; max-height: 700px; min-height: 550px; /* Карточка НЕ удлиняется бесконечно */
+            height: 82vh; max-height: 800px; min-height: 550px; /* УВЕЛИЧЕНО ОКНО КАРТОЧКИ */
             background: rgba(15, 15, 22, 0.45); /* Матовое стекло */
             backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(197, 160, 89, 0.3); border-radius: 28px;
@@ -150,11 +192,11 @@
         }
 
         .canvas-area {
-            width: 100%; height: 240px; position: relative; flex-shrink: 0;
+            width: 100%; height: 210px; position: relative; flex-shrink: 0; /* УЖАЛИ КАНВАС, БОЛЬШЕ МЕСТА ДЛЯ ТЕКСТА */
             background: radial-gradient(circle at 50% 50%, rgba(197, 160, 89, 0.08) 0%, transparent 80%);
             display: flex; align-items: center; justify-content: center; border-bottom: var(--border);
         }
-        #constellation-canvas { width: 240px; height: 240px; }
+        #constellation-canvas { width: 210px; height: 210px; }
         .bg-sign { position: absolute; font-family: var(--font-serif); font-size: 60px; color: #fff; opacity: 0.02; text-transform: uppercase; letter-spacing: 15px; pointer-events: none; }
 
         .info-area { padding: 25px; display: flex; flex-direction: column; flex: 1; overflow: hidden; }
@@ -228,16 +270,14 @@
 
         /* АДАПТАЦИЯ ПОД СМАРТФОНЫ */
         @media (max-width: 768px) {
-            .system-wrap { transform: translate(-50%, -50%) scale(0.65); } /* Идеальный масштаб для Айфона */
+            .solar-system { transform: rotateX(70deg) scale(0.65); } /* Идеальный масштаб */
             .intro-title { font-size: 32px; letter-spacing: 10px; }
-            .grid-wrap { grid-template-columns: repeat(2, 1fr); gap: 12px; } /* 2 колонки, как просил */
+            .grid-wrap { grid-template-columns: repeat(2, 1fr); gap: 12px; } /* 2 колонки */
             .sign-btn { padding: 20px 5px; } 
-            .canvas-area { height: 200px; }
-            #constellation-canvas { width: 200px; height: 200px; }
             .info-area { padding: 20px; }
         }
         @media (max-width: 380px) {
-            .system-wrap { transform: translate(-50%, -50%) scale(0.5); }
+            .solar-system { transform: rotateX(70deg) scale(0.5); }
             .btn-enter { padding: 18px 40px; }
         }
     </style>
@@ -247,11 +287,24 @@
 <canvas id="stars-canvas"></canvas>
 
 <div id="scene-cosmos">
-    <div class="system-wrap">
+    <div class="solar-system">
         <div class="sun"></div>
-        <div class="orbit earth">
-            <div class="planet-container">
-                <div class="earth-sphere"></div>
+        <div class="earth-orbit-path"></div>
+        
+        <div class="earth-orbit">
+            <div class="earth-pos">
+                <div class="earth-counter">
+                    <div class="earth-sphere"></div>
+                    
+                    <div class="moon-orbit-path"></div>
+                    <div class="moon-orbit">
+                        <div class="moon-pos">
+                            <div class="moon-counter">
+                                <div class="moon-sphere"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -288,7 +341,7 @@
     <div class="story-frame">
         <div class="canvas-area">
             <div class="bg-sign" id="bg-sign-text">Овен</div>
-            <canvas id="constellation-canvas" width="280" height="280"></canvas>
+            <canvas id="constellation-canvas" width="210" height="210"></canvas>
         </div>
         <div class="info-area">
             <div class="res-header">
@@ -505,10 +558,10 @@
     }
 
     function renderLoop() {
-        ctx.clearRect(0, 0, 280, 280);
+        ctx.clearRect(0, 0, 210, 210); /* Адаптировано под новый размер */
         const data = ASTRO_DATA[selectedSign] || ASTRO_DATA['Овен'];
         animSeed += 0.05;
-        const scale = (window.innerWidth < 768) ? 2.1 : 2.5; 
+        const scale = 2.1; /* Чуть уменьшено для нового окна канваса */
 
         ctx.beginPath(); ctx.strokeStyle = "rgba(255, 255, 255, 0.15)"; ctx.lineWidth = 1.5;
         data.l.forEach(line => {
