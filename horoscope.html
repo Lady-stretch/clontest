@@ -35,7 +35,7 @@
             overflow: hidden; perspective: 1200px;
         }
 
-        /* --- ФОН ЗВЕЗД (КАНВАС) --- */
+        /* --- ФОН ЗВЕЗД --- */
         #stars-canvas { position: fixed; inset: 0; z-index: 1; pointer-events: none; }
 
         /* --- СЦЕНА 0: ГОЛЛИВУДСКИЙ КОСМОС --- */
@@ -50,12 +50,12 @@
             position: absolute; width: 800px; height: 800px;
             background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,215,0,0.8) 15%, rgba(255,140,0,0.3) 40%, transparent 60%);
             border-radius: 50%; transform: translateZ(-800px) translateY(-150px);
-            filter: blur(20px); box-shadow: 0 0 200px rgba(255, 140, 0, 0.4);
+            filter: blur(20px); box-shadow: 0 0 200px rgba(255, 140, 0, 0.4); pointer-events: none;
         }
 
         .orbit-container {
             position: relative; width: 300px; height: 300px;
-            transform-style: preserve-3d; transform: rotateX(75deg);
+            transform-style: preserve-3d; transform: rotateX(75deg); pointer-events: none;
         }
 
         .earth {
@@ -87,8 +87,9 @@
             animation: counterSpinMoon 20s linear infinite;
         }
 
-        .intro-title { font-family: var(--font-serif); font-size: 38px; letter-spacing: 12px; color: var(--gold); text-transform: uppercase; margin-top: 80px; margin-bottom: 30px; text-align: center; }
-        .btn-enter { background: rgba(255,255,255,0.02); border: 1px solid var(--gold); color: #fff; padding: 20px 40px; border-radius: 4px; font-size: 11px; text-transform: uppercase; letter-spacing: 5px; cursor: pointer; backdrop-filter: blur(10px); transition: 0.5s; }
+        .ui-container { position: absolute; bottom: 12%; text-align: center; z-index: 50; }
+        .intro-title { font-family: var(--font-serif); font-size: 38px; letter-spacing: 12px; color: var(--gold); text-transform: uppercase; margin-bottom: 30px; }
+        .btn-enter { background: rgba(255,255,255,0.02); border: 1px solid var(--gold); color: #fff; padding: 20px 40px; border-radius: 4px; font-size: 11px; text-transform: uppercase; letter-spacing: 5px; cursor: pointer; backdrop-filter: blur(10px); transition: 0.5s; pointer-events: all; }
         .btn-enter:hover { background: var(--gold); color: #000; letter-spacing: 7px; }
 
         /* --- ШАПКА --- */
@@ -105,7 +106,7 @@
         .sign-name { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: #fff; margin-top: 10px; opacity: 0.8;}
         .sign-icon { font-size: 24px; color: var(--gold); opacity: 0.8; }
 
-        /* --- СЦЕНА 2: ВЕРТИКАЛЬНАЯ КАРТОЧКА С БАЗОВЫМ ПРОГНОЗОМ --- */
+        /* --- СЦЕНА 2: ВЕРТИКАЛЬНАЯ КАРТОЧКА --- */
         #scene-result { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 0.8s; z-index: 30; background: rgba(0,0,0,0.6); backdrop-filter: blur(10px); }
         #scene-result.active { opacity: 1; pointer-events: all; }
 
@@ -125,24 +126,30 @@
         #constellation-canvas { width: 250px; height: 250px; }
         .bg-sign { position: absolute; font-family: var(--font-serif); font-size: 55px; color: #fff; opacity: 0.03; text-transform: uppercase; letter-spacing: 10px; pointer-events: none; }
 
-        .info-area { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; overflow-y: auto; }
+        .info-area { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; overflow: hidden; }
         
-        .res-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px;}
+        .res-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; flex-shrink: 0;}
         .res-sign { font-family: var(--font-serif); font-size: 28px; color: var(--gold); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 5px; }
         .moon-box { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.05); padding: 5px 12px; border-radius: 15px; border: var(--border); }
         .moon-icon { font-size: 12px; }
         .moon-text { font-size: 9px; text-transform: uppercase; letter-spacing: 1px; color: #ccc; }
 
-        /* Энергия и Базовый текст */
-        .energy-wrap { margin-bottom: 15px; }
+        .energy-wrap { margin-bottom: 15px; flex-shrink: 0; }
         .energy-label { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.5); display: flex; justify-content: space-between; margin-bottom: 8px; }
         .energy-track { width: 100%; height: 3px; background: rgba(255,255,255,0.1); border-radius: 2px; }
         .energy-fill { height: 100%; background: var(--gold); width: 0%; transition: width 1.5s ease-out; box-shadow: 0 0 10px var(--gold); }
         
-        .res-text { font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.85); margin-bottom: 20px; font-weight: 300; }
+        /* Зона скролла для длинного текста */
+        .scroll-text-area {
+            flex-grow: 1; overflow-y: auto; padding-right: 5px; margin-bottom: 20px;
+        }
+        /* Прячем скроллбар для эстетики */
+        .scroll-text-area::-webkit-scrollbar { width: 0px; }
+        
+        .res-text { font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.85); font-weight: 300; }
         .res-text b { color: var(--gold); font-weight: 600; }
 
-        .btn-action { display: block; width: 100%; background: var(--gold); color: #000; padding: 18px; border-radius: 12px; border: none; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: 0.3s; margin-top: auto;}
+        .btn-action { display: block; width: 100%; background: var(--gold); color: #000; padding: 18px; border-radius: 12px; border: none; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: 0.3s; flex-shrink: 0;}
         .btn-action:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(197, 160, 89, 0.4); }
 
         /* --- ОКНО 18+ (АГЕ-ГЕЙТ) --- */
@@ -176,7 +183,7 @@
             .canvas-area { height: 30%; }
             .info-area { padding: 15px 20px; }
             .res-sign { font-size: 24px; }
-            .res-text { font-size: 13px; margin-bottom: 15px; }
+            .res-text { font-size: 13px; }
             .btn-action { padding: 15px; }
         }
     </style>
@@ -194,8 +201,10 @@
             <div class="moon"></div>
         </div>
     </div>
-    <div class="intro-title">Синхронизация</div>
-    <button class="btn-enter" onclick="openGrid()">Войти в поток</button>
+    <div class="ui-container">
+        <div class="intro-title">Синхронизация</div>
+        <button class="btn-enter" onclick="openGrid()">Войти в поток</button>
+    </div>
 </div>
 
 <header id="main-header">
@@ -227,33 +236,31 @@
             <canvas id="constellation-canvas" width="250" height="250"></canvas>
         </div>
         <div class="info-area">
-            <div>
-                <div class="res-header">
-                    <div>
-                        <div class="res-sign" id="res-sign">Овен</div>
-                        <div class="moon-box">
-                            <span class="moon-icon" id="moon-icon">🌕</span>
-                            <span class="moon-text" id="moon-text">Полнолуние</span>
-                        </div>
+            <div class="res-header">
+                <div>
+                    <div class="res-sign" id="res-sign">Овен</div>
+                    <div class="moon-box">
+                        <span class="moon-icon" id="moon-icon">🌕</span>
+                        <span class="moon-text" id="moon-text">Полнолуние</span>
                     </div>
                 </div>
+            </div>
 
-                <div class="energy-wrap">
-                    <div class="energy-label">
-                        <span>Телесный ресурс</span>
-                        <b id="out-energy-num">0%</b>
-                    </div>
-                    <div class="energy-track"><div class="energy-fill" id="out-energy-bar"></div></div>
+            <div class="energy-wrap">
+                <div class="energy-label">
+                    <span>Телесный ресурс</span>
+                    <b id="out-energy-num">0%</b>
                 </div>
+                <div class="energy-track"><div class="energy-fill" id="out-energy-bar"></div></div>
+            </div>
 
-                <div class="res-text" id="res-desc">
-                    Анализ звездного потока...
-                </div>
+            <div class="scroll-text-area">
+                <div class="res-text" id="res-desc">Анализ звездного потока...</div>
             </div>
 
             <div>
                 <button class="btn-action" onclick="checkAge()">Глубокий прогноз от Веры</button>
-                <div style="text-align: center; font-size: 9px; color: #fff; opacity: 0.4; text-transform: uppercase; letter-spacing: 2px; margin-top: 20px; cursor: pointer;" onclick="location.reload()">Выбрать другой знак</div>
+                <div style="text-align: center; font-size: 9px; color: #fff; opacity: 0.4; text-transform: uppercase; letter-spacing: 2px; margin-top: 15px; cursor: pointer;" onclick="location.reload()">Выбрать другой знак</div>
             </div>
         </div>
     </div>
@@ -286,8 +293,8 @@
 
 <script>
     // --- ТВОЙ БЭКЕНД АСТРОЛОГА ---
-    const ASTRO_BACKEND_URL = "
-https://functions.yandexcloud.net/d4eppsqi3i8dpface6dr"; 
+    // ВСТАВЬ СЮДА СВОЙ URL ФУНКЦИИ
+    const ASTRO_BACKEND_URL = "https://functions.yandexcloud.net/d4eppsqi3i8dpface6dr"; 
 
     // --- ФОНОВЫЕ ЗВЕЗДЫ ---
     const bgCanvas = document.getElementById('stars-canvas');
@@ -352,7 +359,7 @@ https://functions.yandexcloud.net/d4eppsqi3i8dpface6dr";
         }, 1000);
     }
 
-    // --- ГЕНЕРАЦИЯ БАЗОВОГО ПРОГНОЗА ВО ФРОНТЕНДЕ ---
+    // --- ГЕНЕРАЦИЯ ПОЛНОГО БАЗОВОГО ПРОГНОЗА ВО ФРОНТЕНДЕ ---
     function showResult(sign) {
         selectedSign = sign;
         document.getElementById('scene-grid').classList.remove('active');
@@ -372,26 +379,45 @@ https://functions.yandexcloud.net/d4eppsqi3i8dpface6dr";
             for(let i=0; i<s.length; i++) h = Math.imul(31, h) + s.charCodeAt(i) | 0;
             h = Math.abs(h);
 
-            const energy = 35 + (h % 61); // От 35 до 95%
+            const energy = 40 + (h % 56); // Энергия от 40 до 95%
             document.getElementById('out-energy-num').innerText = energy + "%";
-            
             setTimeout(() => { document.getElementById('out-energy-bar').style.width = energy + "%"; }, 500);
 
-            const zone = ASTRO_DATA[sign].zone;
-            const vibes = [
-                `Сегодня планеты направляют энергию в <b>${zone}</b>. День требует баланса и мягкости. Лучшая стратегия — бережное вытяжение.`,
-                `Ваш ресурс на сегодня сформирован. Обратите внимание на <b>${zone}</b> — там может копиться напряжение. Звезды советуют добавить плавности.`,
-                `Активная фаза. Ваше тело готово к свершениям, но <b>${zone}</b> нуждается в особой подготовке перед нагрузкой.`
+            // ПОЛНЫЙ ТЕКСТ (ЖИЗНЬ, ЛЮБОВЬ, ДЕНЬГИ, ТЕЛО)
+            const intros = [
+                "Сегодня звезды выстроились так, что ваша природная энергия выходит на первый план. День сулит неожиданные озарения и требует доверия к своей интуиции.",
+                "Энергетика этого дня располагает к глубоким трансформациям. Планеты советуют замедлиться и прислушаться к внутреннему голосу — ответы уже внутри вас.",
+                "Сегодняшний день обещает быть динамичным. Космические транзиты открывают новые двери, главное — не бояться сделать первый шаг навстречу переменам."
+            ];
+            const love = [
+                "В сфере чувств Венера обещает гармонию. Если вы в поиске — возможна интригующая встреча. Если в отношениях — идеальное время для откровенного разговора и сближения.",
+                "Романтическая сфера сегодня может преподнести сюрприз. Ваш магнетизм на пике, вы притягиваете взгляды. Позвольте себе быть легкой и принимающей.",
+                "Сегодня звезды советуют направить любовь в первую очередь на себя. Балуйте себя, и этот внутренний свет мгновенно отразится на отношениях с окружающими."
+            ];
+            const finance = [
+                "В рабочих и финансовых вопросах Сатурн требует структуры. Избегайте импульсивных трат, но смело инвестируйте в свое развитие и здоровье — это окупится вдвойне.",
+                "Меркурий благоволит переговорам и новым идеям. Возможны неожиданные денежные поступления или интересные предложения. Будьте внимательны к знакам.",
+                "Финансовый фон стабилен. Хороший день для планирования бюджета и завершения старых дел. Ваша целеустремленность сегодня обязательно будет замечена."
             ];
             
-            document.getElementById('res-desc').innerHTML = vibes[h % 3];
+            const zone = ASTRO_DATA[sign].zone;
+            const leads = [
+                `Но помните: космические вибрации проходят через ваше физическое тело. Сильная энергия может создать блоки в зоне <b>${zone}</b>. Звезды настоятельно рекомендуют мягкую практику, чтобы снять зажимы.`,
+                `Чтобы реализовать потенциал этого дня, вашему телу нужна свобода. Эмоциональный фон сегодня влияет на <b>${zone}</b>. Добавьте плавности и вытяжения, чтобы энергия текла без препятствий.`,
+                `Вселенная дает вам много ресурса, но важно его усвоить. Ваша точка контроля на сегодня — <b>${zone}</b>. Подарите себе час заботы о теле, чтобы сбросить накопившийся стресс.`
+            ];
+            
+            // Собираем длинный текст
+            const fullText = `${intros[h % intros.length]}<br><br>${love[(h+1) % love.length]}<br><br>${finance[(h+2) % finance.length]}<br><br>${leads[(h+3) % leads.length]}`;
+            
+            document.getElementById('res-desc').innerHTML = fullText;
 
             startDrawing(sign);
         }, 800);
     }
 
     function startDrawing(sign) {
-        if(!window.animating) { window.animating = true; renderLoop(sign); }
+        if(!window.animating) { window.animating = true; renderLoop(); }
     }
 
     function renderLoop() {
@@ -450,7 +476,7 @@ https://functions.yandexcloud.net/d4eppsqi3i8dpface6dr";
             typing.style.display = 'none';
             const div = document.createElement('div');
             div.className = "msg vera";
-            div.innerText = "Дорогая, звезды сейчас перестраивают свои маршруты, и связь немного прервалась. Но я чувствую, что твоему телу сегодня точно нужна забота. Приходи к нам в РЕСУРС.";
+            div.innerText = "Звездная пыль забила каналы связи... Но я точно знаю: твоему телу сегодня нужна забота. Приходи на практику в РЕСУРС.";
             box.appendChild(div);
         }
     }
