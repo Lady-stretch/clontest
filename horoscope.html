@@ -4,11 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     
+    <title>РЕСУРС | Астро-Синхронизация и глубокие прогнозы</title>
+    <meta name="description" content="Индивидуальный астрологический прогноз от Веры. Синхронизация с вашим телом, расчет жизненной энергии и глубокий разбор транзитов.">
+    <meta name="keywords" content="астрология, гороскоп, прогноз, натальная карта, ресурс, телесные практики, созвездия, лунные циклы">
+    <meta property="og:title" content="РЕСУРС | Астро-Синхронизация">
+    <meta property="og:description" content="Узнай свой глубокий астрологический прогноз и уровень жизненной энергии на сегодня.">
+    <meta property="og:type" content="website">
+    
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#020204">
     
-    <title>РЕСУРС | Астро-Синхронизация</title>
     <link rel="icon" type="image/png" href="logo_header_final.png">
     <link rel="apple-touch-icon" href="logo_header_final.png">
     
@@ -38,182 +44,170 @@
         /* --- ФОН ЗВЕЗД --- */
         #stars-canvas { position: fixed; inset: 0; z-index: 1; pointer-events: none; }
 
-        /* --- СЦЕНА 0: КОСМОС (ПОЛНЫЙ ФИКС ДЛЯ SAFARI) --- */
+        /* --- СЦЕНА 0: КОСМОС (ИДЕАЛЬНЫЕ КРУГИ SAFARI) --- */
         #scene-cosmos {
             position: fixed; inset: 0; z-index: 100;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             transition: var(--transit);
-            perspective: 2000px;
-            -webkit-perspective: 2000px;
         }
         #scene-cosmos.hidden { opacity: 0; transform: scale(1.1); pointer-events: none; }
 
-        /* Изолированная система, где каждый элемент вращается независимо */
-        .solar-system {
+        /* Упрощенная 3D модель, которая не ломается в iOS */
+        .system-wrap {
             position: absolute; top: 50%; left: 50%;
-            transform-style: preserve-3d; -webkit-transform-style: preserve-3d;
-            transform: rotateX(65deg) scale(1); /* Наклон оси */
+            transform: translate(-50%, -50%);
+            width: 600px; height: 600px;
+            pointer-events: none;
         }
 
         .sun {
-            position: absolute; top: -150px; left: -150px;
-            width: 300px; height: 300px; border-radius: 50%;
+            position: absolute; top: 50%; left: 50%; width: 300px; height: 300px;
+            margin: -150px 0 0 -150px; border-radius: 50%;
             background: radial-gradient(circle, #fff 0%, rgba(255,215,0,0.8) 20%, rgba(255,140,0,0.2) 50%, transparent 70%);
             box-shadow: 0 0 80px rgba(255, 180, 0, 0.6);
-            transform: rotateX(-65deg); -webkit-transform: rotateX(-65deg); /* Контр-наклон к камере */
+            animation: pulseSun 6s ease-in-out infinite alternate;
         }
 
-        .earth-orbit {
-            position: absolute; top: -300px; left: -300px;
-            width: 600px; height: 600px; border-radius: 50%;
-            border: 1px dashed rgba(255,255,255,0.15);
-            transform-style: preserve-3d; -webkit-transform-style: preserve-3d;
-            animation: spin 45s linear infinite; /* Вращение по орбите */
-        }
-
-        .earth-wrap {
-            position: absolute; top: 50%; left: 100%;
-            margin: -50px 0 0 -50px; width: 100px; height: 100px;
-            transform-style: preserve-3d; -webkit-transform-style: preserve-3d;
-            animation: counter-spin 45s linear infinite; /* Защита от вращения текстуры Земли */
-        }
-
-        .earth-sphere {
-            width: 100%; height: 100%; border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, #1e3c72 0%, #091221 80%, #000 100%);
-            box-shadow: inset -15px -15px 30px rgba(0,0,0,0.9), 0 0 30px rgba(30, 60, 114, 0.7);
-            transform: rotateX(-65deg); -webkit-transform: rotateX(-65deg); /* Контр-наклон к камере */
-        }
-
-        .moon-orbit {
+        .orbit {
             position: absolute; top: 50%; left: 50%;
-            width: 180px; height: 180px; margin: -90px 0 0 -90px;
-            border-radius: 50%; border: 1px dashed rgba(255,255,255,0.2);
-            transform-style: preserve-3d; -webkit-transform-style: preserve-3d;
-            animation: spin 12s linear infinite;
+            transform: translate(-50%, -50%) rotateX(70deg); /* Овальная орбита */
+            border: 1px dashed rgba(255,255,255,0.15); border-radius: 50%;
+        }
+        .orbit.earth { width: 500px; height: 500px; animation: spin 40s linear infinite; }
+        
+        /* Планеты без 3D-матриц, чтобы не было "яиц" */
+        .planet-container {
+            position: absolute; top: 0; left: 50%;
+            width: 100px; height: 100px; margin: -50px 0 0 -50px;
+            animation: counter-spin 40s linear infinite; /* Отменяем вращение для самой планеты */
+        }
+        
+        .earth-sphere {
+            width: 100%; height: 100%; border-radius: 50%; aspect-ratio: 1/1;
+            background: radial-gradient(circle at 30% 30%, #1e3c72 0%, #091221 80%, #000 100%);
+            box-shadow: inset -15px -15px 30px rgba(0,0,0,0.9), 0 0 30px rgba(30, 60, 114, 0.6);
+            transform: rotateX(-70deg); /* Контр-наклон к камере = идеальный круг */
         }
 
-        .moon-wrap {
-            position: absolute; top: 50%; left: 100%;
-            margin: -14px 0 0 -14px; width: 28px; height: 28px;
-            transform-style: preserve-3d; -webkit-transform-style: preserve-3d;
-            animation: counter-spin 12s linear infinite;
-        }
-
-        .moon-sphere {
-            width: 100%; height: 100%; border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, #fff 0%, #a0a0a0 60%, #333 100%);
-            box-shadow: 0 0 15px rgba(255,255,255,0.5);
-            transform: rotateX(-65deg); -webkit-transform: rotateX(-65deg);
-        }
-
-        @keyframes spin { 100% { transform: rotateZ(360deg); } }
+        @keyframes spin { 100% { transform: translate(-50%, -50%) rotateX(70deg) rotateZ(360deg); } }
         @keyframes counter-spin { 100% { transform: rotateZ(-360deg); } }
+        @keyframes pulseSun { 0% { transform: scale(0.95); opacity: 0.8;} 100% { transform: scale(1.05); opacity: 1;} }
 
         .ui-container { position: absolute; bottom: 12%; text-align: center; z-index: 500; width: 100%; }
-        .intro-title { font-family: var(--font-serif); font-size: 38px; letter-spacing: 16px; color: var(--gold); text-transform: uppercase; margin-bottom: 35px; }
-        .btn-enter { background: transparent; border: 1px solid var(--gold); color: #fff; padding: 22px 55px; border-radius: 8px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 5px; cursor: pointer; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); transition: 0.5s; pointer-events: auto; }
+        .intro-title { font-family: var(--font-serif); font-size: 40px; letter-spacing: 12px; color: var(--gold); text-transform: uppercase; margin-bottom: 30px; }
+        .btn-enter { background: rgba(255,255,255,0.02); border: 1px solid var(--gold); color: #fff; padding: 22px 50px; border-radius: 6px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 5px; cursor: pointer; backdrop-filter: blur(10px); transition: 0.5s; pointer-events: auto; }
         .btn-enter:hover { background: var(--gold); color: #000; letter-spacing: 8px; box-shadow: 0 0 30px rgba(197, 160, 89, 0.4); }
 
         /* --- СТЕКЛЯННАЯ ШАПКА --- */
         header { 
             position: fixed; top: 0; left: 0; width: 100%; padding: 20px 5%; 
             display: flex; justify-content: space-between; align-items: center; 
-            z-index: 2000; opacity: 0; pointer-events: none; transition: 1s; 
+            z-index: 2000; opacity: 0; transition: 1s; 
+            pointer-events: none; /* ПРОПУСКАЕТ КЛИКИ */
         }
         header.active { 
-            opacity: 1; pointer-events: auto; 
-            background: rgba(10, 10, 15, 0.2); /* Очень прозрачная база */
-            backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); /* Сильное стекло */
+            opacity: 1; 
+            background: rgba(10, 10, 15, 0.25); 
+            backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); /* Мощное стекло */
             border-bottom: 1px solid rgba(255,255,255,0.08); 
         }
-        .logo { font-family: var(--font-serif); font-size: 24px; letter-spacing: 8px; text-transform: uppercase; color: var(--gold); }
+        .logo { font-family: var(--font-serif); font-size: 24px; letter-spacing: 8px; text-transform: uppercase; color: var(--gold); pointer-events: auto; }
 
-        /* --- СЦЕНА 1: СЕТКА ЗНАКОВ --- */
-        #scene-grid { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 0.8s; z-index: 20; }
+        /* --- СЦЕНА 1: СЕТКА ЗНАКОВ (СО СКРОЛЛОМ) --- */
+        #scene-grid { 
+            position: fixed; inset: 0; z-index: 20; opacity: 0; pointer-events: none; transition: 0.8s; 
+            overflow-y: auto; -webkit-overflow-scrolling: touch; /* СКРОЛЛ РАБОТАЕТ */
+            padding: 110px 5% 50px; /* Отступы, чтобы шапка не перекрывала */
+        }
         #scene-grid.active { opacity: 1; pointer-events: auto; }
-        .grid-wrap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; width: 90%; max-width: 550px; padding-top: 40px; }
+        
+        .grid-wrap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; max-width: 550px; margin: 0 auto; }
         .sign-btn { 
-            background: rgba(15, 15, 22, 0.4); border: var(--border); padding: 25px 10px; 
+            background: rgba(255, 255, 255, 0.03); border: var(--border); padding: 25px 5px; 
             border-radius: 14px; cursor: pointer; text-align: center; transition: 0.3s; 
             backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); 
         }
         .sign-btn:hover { border-color: #fff; background: rgba(197, 160, 89, 0.1); transform: translateY(-5px); }
-        .sign-name { font-family: var(--font-main); font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: #fff; margin-top: 15px; opacity: 0.9;}
-        .sign-icon { font-size: 32px; } /* Оставили для стандартных Apple Emoji */
+        .sign-name { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: #fff; margin-top: 10px; opacity: 0.8;}
+        .sign-icon { font-size: 26px; color: var(--gold); }
 
-        /* --- СЦЕНА 2: КАРТОЧКА СО СВОБОДНЫМ СКРОЛЛОМ --- */
+        /* --- СЦЕНА 2: УМНАЯ ПОДВИЖНАЯ КАРТОЧКА --- */
         #scene-result { 
-            position: fixed; inset: 0; z-index: 30; 
-            opacity: 0; pointer-events: none; transition: 0.8s; 
-            background: transparent; /* Полностью прозрачный фон сцены */
-            overflow-y: auto; /* Свободный скролл всего экрана */
-            -webkit-overflow-scrolling: touch;
-            padding-top: 110px; /* Отступ от стеклянной шапки */
-            padding-bottom: 60px;
+            position: fixed; inset: 0; z-index: 30; opacity: 0; pointer-events: none; transition: 0.8s; 
+            overflow-y: auto; -webkit-overflow-scrolling: touch; /* Главный скролл страницы */
+            padding: 100px 5% 150px; /* Большой отступ снизу позволяет "задвинуть" карточку под шапку */
         }
         #scene-result.active { opacity: 1; pointer-events: auto; }
 
         .story-frame {
-            width: 92%; max-width: 480px; margin: 0 auto; 
-            background: rgba(15, 15, 22, 0.4); /* Полупрозрачная карточка */
-            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); /* Матовое стекло карточки */
+            width: 100%; max-width: 440px; margin: 0 auto; 
+            height: 75vh; max-height: 700px; min-height: 550px; /* Карточка НЕ удлиняется бесконечно */
+            background: rgba(15, 15, 22, 0.45); /* Матовое стекло */
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(197, 160, 89, 0.3); border-radius: 28px;
             display: flex; flex-direction: column; overflow: hidden;
             box-shadow: 0 40px 100px rgba(0,0,0,0.8);
-            margin-bottom: 30px; /* Чтобы можно было прокрутить до конца */
         }
 
         .canvas-area {
-            width: 100%; height: 280px; position: relative; flex-shrink: 0;
+            width: 100%; height: 240px; position: relative; flex-shrink: 0;
             background: radial-gradient(circle at 50% 50%, rgba(197, 160, 89, 0.08) 0%, transparent 80%);
             display: flex; align-items: center; justify-content: center; border-bottom: var(--border);
         }
-        #constellation-canvas { width: 260px; height: 260px; }
+        #constellation-canvas { width: 240px; height: 240px; }
         .bg-sign { position: absolute; font-family: var(--font-serif); font-size: 60px; color: #fff; opacity: 0.02; text-transform: uppercase; letter-spacing: 15px; pointer-events: none; }
 
-        .info-area { padding: 35px 30px; display: flex; flex-direction: column; }
+        .info-area { padding: 25px; display: flex; flex-direction: column; flex: 1; overflow: hidden; }
         
-        .res-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
+        .res-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; flex-shrink: 0;}
         .res-sign { font-family: var(--font-serif); font-size: 34px; color: var(--gold); text-transform: uppercase; letter-spacing: 4px; margin-bottom: 5px; }
-        .moon-box { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.05); padding: 8px 16px; border-radius: 20px; border: var(--border); }
+        .moon-box { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.05); padding: 6px 14px; border-radius: 20px; border: var(--border); }
         .moon-icon { font-size: 14px; }
         .moon-text { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #ddd; }
 
-        .energy-wrap { margin-bottom: 30px; }
+        .energy-wrap { margin-bottom: 20px; flex-shrink: 0;}
         .energy-label { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.5); display: flex; justify-content: space-between; margin-bottom: 10px; }
         .energy-track { width: 100%; height: 3px; background: rgba(255,255,255,0.1); border-radius: 2px; }
         .energy-fill { height: 100%; background: var(--gold); width: 0%; transition: width 2s cubic-bezier(0.25, 1, 0.5, 1); box-shadow: 0 0 15px var(--gold); }
         
-        .res-text { font-size: 15px; line-height: 1.7; color: rgba(255,255,255,0.9); font-weight: 300; margin-bottom: 35px; }
+        /* ВНУТРЕННИЙ СКРОЛЛ ДЛЯ ТЕКСТА (Если не влезает) */
+        .scroll-text-area { 
+            flex: 1; /* Занимает всё оставшееся место */
+            overflow-y: auto; -webkit-overflow-scrolling: touch; 
+            padding-right: 10px; margin-bottom: 20px; 
+        }
+        .scroll-text-area::-webkit-scrollbar { width: 3px; }
+        .scroll-text-area::-webkit-scrollbar-thumb { background: rgba(197, 160, 89, 0.3); border-radius: 3px; }
+        
+        .res-text { font-size: 15px; line-height: 1.6; color: rgba(255,255,255,0.9); font-weight: 300; }
         .res-text b { color: var(--gold); font-weight: 600; }
 
         .btn-action { 
-            display: block; width: 100%; background: var(--gold); color: #000; padding: 22px; 
-            border-radius: 12px; border: none; font-size: 12px; font-weight: 800; 
-            text-transform: uppercase; letter-spacing: 2px; cursor: pointer; 
+            display: block; width: 100%; background: var(--gold); color: #000; padding: 20px; 
+            border-radius: 14px; border: none; font-size: 11px; font-weight: 800; 
+            text-transform: uppercase; letter-spacing: 2px; cursor: pointer; flex-shrink: 0;
             transition: 0.3s; position: relative; z-index: 50;
         }
         .btn-action:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(197, 160, 89, 0.5); }
 
-        /* --- ОКНО "СБОР ДАТЫ РОЖДЕНИЯ" --- */
+        /* --- УМНЫЙ СБОР ДАТЫ РОЖДЕНИЯ --- */
         #modal-age { 
             position: fixed; inset: 0; z-index: 4000; display: flex; align-items: center; justify-content: center; 
             opacity: 0; pointer-events: none; transition: 0.4s; 
             background: rgba(0,0,0,0.7); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); 
         }
         #modal-age.active { opacity: 1; pointer-events: auto !important; }
-        .age-box { background: rgba(15,15,22,0.95); border: var(--border); padding: 45px 30px; border-radius: 24px; text-align: center; max-width: 380px; width: 90%; box-shadow: 0 30px 80px rgba(0,0,0,0.9); }
-        .age-title { font-family: var(--font-serif); font-size: 28px; color: var(--gold); margin-bottom: 15px; }
+        .age-box { background: rgba(15,15,22,0.95); border: var(--border); padding: 40px 30px; border-radius: 24px; text-align: center; max-width: 360px; width: 90%; box-shadow: 0 30px 80px rgba(0,0,0,0.9); }
+        .age-title { font-family: var(--font-serif); font-size: 28px; color: var(--gold); margin-bottom: 10px; }
         
-        .dob-inputs { display: flex; gap: 12px; justify-content: center; margin-top: 30px; margin-bottom: 30px; }
+        .dob-inputs { display: flex; gap: 10px; justify-content: center; margin-top: 25px; margin-bottom: 25px; }
         .dob-inputs input {
             background: rgba(255,255,255,0.05); border: 1px solid rgba(197, 160, 89, 0.4);
-            color: #fff; padding: 18px 10px; border-radius: 12px; text-align: center;
-            font-family: var(--font-main); font-size: 18px; width: 30%; font-weight: 600;
+            color: #fff; padding: 15px 10px; border-radius: 10px; text-align: center;
+            font-family: var(--font-main); font-size: 16px; width: 30%;
         }
-        .dob-inputs input:focus { border-color: var(--gold); outline: none; background: rgba(255,255,255,0.1); }
-        .dob-inputs input::placeholder { color: rgba(255,255,255,0.2); font-weight: 300; font-size: 14px;}
+        .dob-inputs input:focus { border-color: var(--gold); outline: none; }
+        .dob-inputs input::placeholder { color: rgba(255,255,255,0.2); }
 
         /* --- СЦЕНА 3: ЧАТ С ВЕРОЙ --- */
         #scene-chat { 
@@ -232,19 +226,19 @@
 
         @keyframes popIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* АДАПТАЦИЯ ПОД СМАРТФОНЫ (ИДЕАЛЬНЫЙ МАСШТАБ ДЛЯ IPHONE) */
+        /* АДАПТАЦИЯ ПОД СМАРТФОНЫ */
         @media (max-width: 768px) {
-            .solar-system { transform: rotateX(65deg) scale(0.6); -webkit-transform: rotateX(65deg) scale(0.6); }
-            .intro-title { font-size: 32px; letter-spacing: 12px; }
-            .grid-wrap { grid-template-columns: repeat(2, 1fr); gap: 12px; padding-top: 60px; } /* 2 колонки как на скрине */
-            .sign-btn { padding: 20px 10px; } 
-            .canvas-area { height: 230px; }
-            #constellation-canvas { width: 230px; height: 230px; }
-            .info-area { padding: 30px 20px; }
+            .system-wrap { transform: translate(-50%, -50%) scale(0.65); } /* Идеальный масштаб для Айфона */
+            .intro-title { font-size: 32px; letter-spacing: 10px; }
+            .grid-wrap { grid-template-columns: repeat(2, 1fr); gap: 12px; } /* 2 колонки, как просил */
+            .sign-btn { padding: 20px 5px; } 
+            .canvas-area { height: 200px; }
+            #constellation-canvas { width: 200px; height: 200px; }
+            .info-area { padding: 20px; }
         }
         @media (max-width: 380px) {
-            .solar-system { transform: rotateX(65deg) scale(0.48); -webkit-transform: rotateX(65deg) scale(0.48); }
-            .btn-enter { padding: 18px 40px; font-size: 10px; }
+            .system-wrap { transform: translate(-50%, -50%) scale(0.5); }
+            .btn-enter { padding: 18px 40px; }
         }
     </style>
 </head>
@@ -253,18 +247,11 @@
 <canvas id="stars-canvas"></canvas>
 
 <div id="scene-cosmos">
-    <div class="solar-system">
+    <div class="system-wrap">
         <div class="sun"></div>
-        
-        <div class="earth-orbit">
-            <div class="earth-wrap">
+        <div class="orbit earth">
+            <div class="planet-container">
                 <div class="earth-sphere"></div>
-                
-                <div class="moon-orbit">
-                    <div class="moon-wrap">
-                        <div class="moon-sphere"></div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -277,7 +264,7 @@
 
 <header id="main-header">
     <div class="logo">Ресурс</div>
-    <img src="logo_header_final.png" style="height: 30px; border-radius: 5px;">
+    <img src="logo_header_final.png" style="height: 30px; border-radius: 5px; pointer-events: auto;">
 </header>
 
 <div id="scene-grid">
@@ -322,11 +309,13 @@
                 <div class="energy-track"><div class="energy-fill" id="out-energy-bar"></div></div>
             </div>
 
-            <div class="res-text" id="res-desc">Анализ звездного потока...</div>
+            <div class="scroll-text-area">
+                <div class="res-text" id="res-desc">Анализ звездного потока...</div>
+            </div>
 
             <div>
                 <button class="btn-action" onclick="checkAge()">Глубокий прогноз от Веры</button>
-                <div style="text-align: center; font-size: 9px; color: #fff; opacity: 0.3; text-transform: uppercase; letter-spacing: 2px; margin-top: 25px; cursor: pointer;" onclick="location.reload()">Выбрать другой знак</div>
+                <div style="text-align: center; font-size: 9px; color: #fff; opacity: 0.3; text-transform: uppercase; letter-spacing: 2px; margin-top: 15px; cursor: pointer;" onclick="location.reload()">Выбрать другой знак</div>
             </div>
         </div>
     </div>
@@ -335,7 +324,7 @@
 <div id="modal-age">
     <div class="age-box">
         <div class="age-title">Точность прогноза</div>
-        <div style="font-size: 14px; color: rgba(255,255,255,0.7); line-height: 1.6;">Для расчета астрологических транзитов Вере необходима дата вашего рождения:</div>
+        <div style="font-size: 14px; color: #ccc; line-height: 1.6;">Для расчета астрологических транзитов Вере необходима дата вашего рождения:</div>
         
         <div class="dob-inputs">
             <input type="number" id="dob-d" placeholder="ДД" min="1" max="31">
@@ -519,7 +508,7 @@
         ctx.clearRect(0, 0, 280, 280);
         const data = ASTRO_DATA[selectedSign] || ASTRO_DATA['Овен'];
         animSeed += 0.05;
-        const scale = (window.innerWidth < 768) ? 2.3 : 2.8; 
+        const scale = (window.innerWidth < 768) ? 2.1 : 2.5; 
 
         ctx.beginPath(); ctx.strokeStyle = "rgba(255, 255, 255, 0.15)"; ctx.lineWidth = 1.5;
         data.l.forEach(line => {
@@ -544,7 +533,7 @@
         document.getElementById('modal-age').classList.add('active'); 
     }
 
-    // --- УМНЫЙ ФИЛЬТР ВОЗРАСТА ---
+    // --- УМНЫЙ ФИЛЬТР ВОЗРАСТА ДЛЯ ВЕРЫ ---
     function verifyDobAndStart() {
         const d = document.getElementById('dob-d').value;
         const m = document.getElementById('dob-m').value;
@@ -558,7 +547,6 @@
         
         errorMsg.style.display = 'none';
         
-        // Считаем возраст под капотом
         const dob = new Date(y, m - 1, d);
         const diffMs = Date.now() - dob.getTime();
         const ageDt = new Date(diffMs); 
