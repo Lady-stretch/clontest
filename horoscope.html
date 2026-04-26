@@ -24,8 +24,9 @@
             --font-serif: 'Cormorant Garamond', serif;
             --font-main: 'Manrope', sans-serif;
             --transit: all 1.2s cubic-bezier(0.25, 1, 0.3, 1);
-            --tilt: 70deg;
-            --tilt-inv: -70deg;
+            /* Уменьшил наклон, чтобы Safari не искажал сферы */
+            --tilt: 60deg; 
+            --tilt-inv: -60deg;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
@@ -35,18 +36,19 @@
             font-family: var(--font-main); 
             height: 100vh; height: 100dvh; 
             width: 100vw; overflow: hidden; 
-            perspective: 1200px;
+            perspective: 1000px;
         }
 
         /* --- ФОН ЗВЕЗД --- */
         #stars-canvas { position: fixed; inset: 0; z-index: 1; pointer-events: none; }
 
-        /* --- СЦЕНА 0: КОСМОС (ИДЕАЛЬНЫЙ 3D ДЛЯ IPHONE) --- */
+        /* --- СЦЕНА 0: КОСМОС (ЖЕСТКИЙ ФИКС IPHONE) --- */
         #scene-cosmos {
             position: fixed; inset: 0; z-index: 100;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             transition: var(--transit);
             perspective: 1500px; 
+            -webkit-perspective: 1500px;
         }
         #scene-cosmos.hidden { opacity: 0; transform: scale(1.1); pointer-events: none; }
 
@@ -54,10 +56,11 @@
             position: absolute; top: 50%; left: 50%; width: 0; height: 0;
             transform-style: preserve-3d; -webkit-transform-style: preserve-3d;
             transform: rotateX(var(--tilt));
+            -webkit-transform: rotateX(var(--tilt));
             pointer-events: none;
         }
 
-        /* СОЛНЦЕ (Без filter:blur, чтобы не ломать 3D на iPhone) */
+        /* СОЛНЦЕ */
         .sun {
             position: absolute; top: 50%; left: 50%; width: 400px; height: 400px;
             margin: -200px 0 0 -200px; border-radius: 50%;
@@ -89,14 +92,16 @@
             animation: orbitMoon 15s linear infinite;
         }
 
-        /* ЗЕМЛЯ И ЛУНА */
+        /* ЗЕМЛЯ И ЛУНА (С фиксом aspect-ratio) */
         .earth-sphere {
-            position: absolute; top: 50%; left: 50%; width: 110px; height: 110px;
+            position: absolute; top: 50%; left: 50%; 
+            width: 110px; height: 110px; aspect-ratio: 1/1; /* Фикс для Safari */
             margin: -55px 0 0 -55px; border-radius: 50%;
             background: radial-gradient(circle at 30% 30%, #1e3c72 0%, #091221 80%, #000 100%);
             box-shadow: inset -15px -15px 30px rgba(0,0,0,0.9), 0 0 30px rgba(30, 60, 114, 0.8);
             transform: rotateX(var(--tilt-inv));
             -webkit-transform: rotateX(var(--tilt-inv)); 
+            transform-origin: center center;
             backface-visibility: hidden; -webkit-backface-visibility: hidden;
         }
         .earth-sphere::after {
@@ -106,12 +111,14 @@
         }
 
         .moon-sphere {
-            position: absolute; top: 50%; left: 50%; width: 28px; height: 28px;
+            position: absolute; top: 50%; left: 50%; 
+            width: 28px; height: 28px; aspect-ratio: 1/1;
             margin: -14px 0 0 -14px; border-radius: 50%;
             background: radial-gradient(circle at 30% 30%, #fff 0%, #a0a0a0 60%, #333 100%);
             box-shadow: 0 0 15px rgba(255,255,255,0.5);
             transform: rotateX(var(--tilt-inv));
             -webkit-transform: rotateX(var(--tilt-inv));
+            transform-origin: center center;
             backface-visibility: hidden; -webkit-backface-visibility: hidden;
         }
 
@@ -142,9 +149,9 @@
         }
         header.active { 
             opacity: 1; pointer-events: auto; 
-            background: rgba(5, 5, 10, 0.5); /* Полупрозрачная */
-            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); /* Мощное стекло */
-            border-bottom: 1px solid rgba(255,255,255,0.05); 
+            background: rgba(10, 10, 15, 0.2); /* Сделали светлее для эффекта стекла */
+            backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); /* Мощный блюр */
+            border-bottom: 1px solid rgba(255,255,255,0.08); 
         }
         .logo { font-family: var(--font-serif); font-size: 24px; letter-spacing: 8px; text-transform: uppercase; color: var(--gold); }
 
@@ -165,18 +172,18 @@
         #scene-result { 
             position: fixed; inset: 0; z-index: 30; 
             opacity: 0; pointer-events: none; transition: 0.8s; 
-            background: transparent; /* Полностью прозрачно, чтобы видеть звезды */
-            overflow-y: auto; /* ГЛАВНОЕ: Позволяет скроллить всю страницу */
+            background: transparent; 
+            overflow-y: auto; 
             -webkit-overflow-scrolling: touch;
-            padding-top: 110px; /* Отступ от стеклянной шапки */
+            padding-top: 110px; 
             padding-bottom: 60px;
         }
         #scene-result.active { opacity: 1; pointer-events: auto; }
 
         .story-frame {
-            width: 92%; max-width: 440px; margin: 0 auto; /* Центрируем по горизонтали */
-            background: rgba(15, 15, 22, 0.35); /* Матовое стекло */
-            backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+            width: 92%; max-width: 440px; margin: 0 auto; 
+            background: rgba(15, 15, 22, 0.35); /* Матовое стекло карточки */
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(197, 160, 89, 0.3); border-radius: 28px;
             display: flex; flex-direction: column; overflow: hidden;
             box-shadow: 0 40px 100px rgba(0,0,0,0.8);
@@ -203,9 +210,8 @@
         .energy-track { width: 100%; height: 3px; background: rgba(255,255,255,0.1); border-radius: 2px; }
         .energy-fill { height: 100%; background: var(--gold); width: 0%; transition: width 2s cubic-bezier(0.25, 1, 0.5, 1); box-shadow: 0 0 15px var(--gold); }
         
-        /* Зона скролла для самого текста (чтобы карточка не была бесконечной) */
         .scroll-text-area { 
-            max-height: 320px; /* Ограничиваем высоту текста */
+            max-height: 320px; 
             overflow-y: auto; -webkit-overflow-scrolling: touch;
             padding-right: 10px; margin-bottom: 25px; 
         }
@@ -219,22 +225,28 @@
             display: block; width: 100%; background: var(--gold); color: #000; padding: 20px; 
             border-radius: 14px; border: none; font-size: 11px; font-weight: 800; 
             text-transform: uppercase; letter-spacing: 2px; cursor: pointer; 
-            transition: 0.3s; position: relative; z-index: 50; /* Фикс кликабельности */
+            transition: 0.3s; position: relative; z-index: 50;
         }
         .btn-action:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(197, 160, 89, 0.5); }
 
-        /* --- ОКНО 18+ (МОДАЛКА) --- */
+        /* --- ОКНО "СБОР ДАТЫ РОЖДЕНИЯ" ВМЕСТО КНОПОК 18+ --- */
         #modal-age { 
             position: fixed; inset: 0; z-index: 4000; display: flex; align-items: center; justify-content: center; 
             opacity: 0; pointer-events: none; transition: 0.4s; 
             background: rgba(0,0,0,0.7); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); 
         }
         #modal-age.active { opacity: 1; pointer-events: auto !important; }
-        .age-box { background: rgba(15,15,22,0.95); border: var(--border); padding: 45px 35px; border-radius: 24px; text-align: center; max-width: 360px; width: 90%; box-shadow: 0 30px 80px rgba(0,0,0,0.9); }
-        .age-title { font-family: var(--font-serif); font-size: 32px; color: var(--gold); margin-bottom: 15px; }
-        .age-btns { display: flex; gap: 12px; margin-top: 30px; }
-        .btn-age { flex: 1; padding: 18px; background: transparent; border: 1px solid var(--gold); color: #fff; border-radius: 10px; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; font-size: 10px; transition: 0.3s; font-weight: 600;}
-        .btn-age.yes { background: var(--gold); color: #000; }
+        .age-box { background: rgba(15,15,22,0.95); border: var(--border); padding: 40px 30px; border-radius: 24px; text-align: center; max-width: 360px; width: 90%; box-shadow: 0 30px 80px rgba(0,0,0,0.9); }
+        .age-title { font-family: var(--font-serif); font-size: 28px; color: var(--gold); margin-bottom: 10px; }
+        
+        .dob-inputs { display: flex; gap: 10px; justify-content: center; margin-top: 25px; margin-bottom: 25px; }
+        .dob-inputs input {
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(197, 160, 89, 0.4);
+            color: #fff; padding: 15px 10px; border-radius: 10px; text-align: center;
+            font-family: var(--font-main); font-size: 16px; width: 30%;
+        }
+        .dob-inputs input:focus { border-color: var(--gold); outline: none; }
+        .dob-inputs input::placeholder { color: rgba(255,255,255,0.2); }
 
         /* --- СЦЕНА 3: ЧАТ С ВЕРОЙ --- */
         #scene-chat { 
@@ -255,16 +267,16 @@
 
         /* АДАПТАЦИЯ ПОД СМАРТФОНЫ */
         @media (max-width: 768px) {
-            .solar-system { transform: rotateX(var(--tilt)) scale(0.5); }
+            .solar-system { transform: rotateX(var(--tilt)) scale(0.5); -webkit-transform: rotateX(var(--tilt)) scale(0.5); }
             .intro-title { font-size: 30px; letter-spacing: 8px; }
             .grid-wrap { grid-template-columns: repeat(3, 1fr); gap: 10px; padding-top: 60px; }
             .sign-btn { padding: 15px 5px; } 
-            #scene-result { padding-top: 90px; } /* Чуть меньше отступ на мобилке */
+            #scene-result { padding-top: 90px; } 
             .canvas-area { height: 230px; }
             #constellation-canvas { width: 230px; height: 230px; }
         }
         @media (max-width: 380px) {
-            .solar-system { transform: rotateX(var(--tilt)) scale(0.4); }
+            .solar-system { transform: rotateX(var(--tilt)) scale(0.4); -webkit-transform: rotateX(var(--tilt)) scale(0.4); }
             .btn-enter { padding: 18px 40px; }
             .grid-wrap { grid-template-columns: repeat(2, 1fr); }
             .scroll-text-area { max-height: 280px; }
@@ -357,12 +369,17 @@
 
 <div id="modal-age">
     <div class="age-box">
-        <div class="age-title">Настройка потока</div>
-        <div style="font-size: 15px; color: #ccc; line-height: 1.6;">Вера формирует прогноз индивидуально. Подтвердите, что вам уже исполнилось 18 лет.</div>
-        <div class="age-btns">
-            <button class="btn-age" onclick="startChat(false)">Младше 18</button>
-            <button class="btn-age yes" onclick="startChat(true)">Мне есть 18</button>
+        <div class="age-title">Точность прогноза</div>
+        <div style="font-size: 14px; color: #ccc; line-height: 1.6;">Для расчета астрологических транзитов Вере необходима дата вашего рождения:</div>
+        
+        <div class="dob-inputs">
+            <input type="number" id="dob-d" placeholder="ДД" min="1" max="31">
+            <input type="number" id="dob-m" placeholder="ММ" min="1" max="12">
+            <input type="number" id="dob-y" placeholder="ГГГГ" min="1900" max="2024">
         </div>
+        
+        <button class="btn-action" onclick="verifyDobAndStart()">Синхронизировать</button>
+        <div id="dob-error" style="color: #ff4444; font-size: 12px; margin-top: 15px; display: none;">Пожалуйста, введите корректную дату</div>
     </div>
 </div>
 
@@ -446,7 +463,6 @@
         }, 800);
     }
 
-    // --- 10 000 ВАРИАНТОВ ТЕКСТА ---
     function showResult(sign) {
         selectedSign = sign;
         document.getElementById('scene-grid').classList.remove('active');
@@ -501,7 +517,7 @@
                 "Финансовый фон стабилен. День идеален для планирования бюджета и завершения давно зависших дел.",
                 "Сегодня ваша целеустремленность будет замечена. Не стесняйтесь заявлять о своих амбициях в профессиональной сфере.",
                 "Звезды намекают: чтобы впустить новые деньги, нужно освободить пространство. Отличный день для разбора рабочих завалов.",
-                "Возможны нестандарт решения старых проблем. Ваш ум сегодня остр как никогда — используйте это для карьерного рывка.",
+                "Возможны нестандартные решения старых проблем. Ваш ум сегодня остр как никогда — используйте это для карьерного рывка.",
                 "Не торопитесь с крупными тратами. Энергия дня требует бережного отношения к ресурсам и финансовой подушке.",
                 "Сегодня командная работа принесет больше плодов, чем одиночное плавание. Делегируйте и доверяйте партнерам.",
                 "Интуиция подскажет верный путь в бизнесе. Если сделка вызывает сомнения — лучше взять паузу до завтра.",
@@ -561,6 +577,30 @@
 
     function checkAge() { 
         document.getElementById('modal-age').classList.add('active'); 
+    }
+
+    // --- УМНЫЙ ФИЛЬТР ВОЗРАСТА ---
+    function verifyDobAndStart() {
+        const d = document.getElementById('dob-d').value;
+        const m = document.getElementById('dob-m').value;
+        const y = document.getElementById('dob-y').value;
+        const errorMsg = document.getElementById('dob-error');
+
+        if (!d || !m || !y || d < 1 || d > 31 || m < 1 || m > 12 || y < 1900 || y > new Date().getFullYear()) {
+            errorMsg.style.display = 'block';
+            return;
+        }
+        
+        errorMsg.style.display = 'none';
+        
+        // Считаем возраст под капотом
+        const dob = new Date(y, m - 1, d);
+        const diffMs = Date.now() - dob.getTime();
+        const ageDt = new Date(diffMs); 
+        const age = Math.abs(ageDt.getUTCFullYear() - 1970);
+        
+        // Запускаем чат, передавая true, если возраст >= 18
+        startChat(age >= 18);
     }
 
     async function startChat(isAdult) {
