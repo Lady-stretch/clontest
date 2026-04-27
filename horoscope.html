@@ -251,7 +251,7 @@
         .dob-inputs input:focus { border-color: var(--gold); outline: none; }
         .dob-inputs input::placeholder { color: rgba(255,255,255,0.2); }
 
-        /* --- СЦЕНА 3: ЧАТ С ВЕРОЙ --- */
+        /* --- СЦЕНА 3: ИНТЕРАКТИВНЫЙ ЧАТ С ВЕРОЙ --- */
         #scene-chat { 
             position: fixed; inset: 0; z-index: 5000; display: flex; flex-direction: column; align-items: center; 
             opacity: 0; pointer-events: none; transition: 0.5s; padding: 40px 20px 20px; 
@@ -259,20 +259,26 @@
         }
         #scene-chat.active { opacity: 1; pointer-events: auto; }
         .chat-wrap { width: 100%; max-width: 480px; height: 100%; display: flex; flex-direction: column; }
-        .chat-header { text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px; margin-bottom: 20px; }
+        .chat-header { text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px; margin-bottom: 20px; flex-shrink: 0;}
         .chat-name { font-family: var(--font-serif); font-size: 32px; color: var(--gold); margin-bottom: 5px; }
         .chat-status { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: #aaa; }
+        
         .chat-history { flex-grow: 1; overflow-y: auto; padding-right: 10px; display: flex; flex-direction: column; gap: 20px; }
-        .msg { background: rgba(15, 15, 22, 0.7); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 22px; border-radius: 20px 20px 20px 0; font-size: 15px; line-height: 1.7; border: 1px solid rgba(197, 160, 89, 0.3); color: #fff; animation: popIn 0.5s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.5);}
-        .typing { font-size: 13px; color: var(--gold); font-style: italic; margin-bottom: 15px; display: none; text-align: center; }
+        
+        /* Стили для сообщений Веры и Пользователя */
+        .msg { padding: 20px; font-size: 15px; line-height: 1.7; animation: popIn 0.4s ease; max-width: 85%; }
+        .msg.vera { background: rgba(15, 15, 22, 0.7); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 20px 20px 20px 0; border: 1px solid rgba(197, 160, 89, 0.3); color: #fff; align-self: flex-start; box-shadow: 0 10px 30px rgba(0,0,0,0.5);}
+        .msg.user { background: var(--gold); color: #000; border-radius: 20px 20px 0 20px; align-self: flex-end; font-weight: 500; box-shadow: 0 5px 20px rgba(197, 160, 89, 0.3); }
+        
+        .typing { font-size: 13px; color: var(--gold); font-style: italic; margin-bottom: 15px; display: none; text-align: center; flex-shrink: 0;}
 
         @keyframes popIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
         /* АДАПТАЦИЯ ПОД СМАРТФОНЫ */
         @media (max-width: 768px) {
-            .solar-system { transform: rotateX(70deg) scale(0.65); } /* Идеальный масштаб */
+            .solar-system { transform: rotateX(70deg) scale(0.65); }
             .intro-title { font-size: 32px; letter-spacing: 10px; }
-            .grid-wrap { grid-template-columns: repeat(2, 1fr); gap: 12px; } /* 2 колонки */
+            .grid-wrap { grid-template-columns: repeat(2, 1fr); gap: 12px; }
             .sign-btn { padding: 20px 5px; } 
             .info-area { padding: 20px; }
         }
@@ -396,11 +402,17 @@
             <div class="chat-name">Вера Венера</div>
             <div class="chat-status">Эксперт-Астролог студии Ресурс</div>
         </div>
+        
         <div class="chat-history" id="chat-box"></div>
         <div class="typing" id="typing-indicator">Вера Венера настраивает связь со звездами...</div>
         
-        <button class="btn-action" style="margin-top: 25px;" onclick="goToVk()">Записаться на практику</button>
-        <div style="text-align: center; font-size: 10px; color: #888; text-transform: uppercase; margin-top: 25px; cursor: pointer;" onclick="document.getElementById('scene-chat').classList.remove('active')">Закрыть прогноз</div>
+        <div style="display: flex; gap: 10px; margin-top: 10px; flex-shrink: 0; padding-bottom: 10px;">
+            <input type="text" id="astro-chat-input" placeholder="Спросите Веру (о любви, деньгах, теле)..." style="flex-grow: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(197, 160, 89, 0.4); border-radius: 12px; padding: 12px 15px; color: #fff; font-family: var(--font-main); font-size: 15px; outline: none; transition: 0.3s;">
+            <button onclick="sendAstroMessage()" style="background: var(--gold); border: none; width: 48px; height: 48px; border-radius: 12px; cursor: pointer; color: #000; font-size: 18px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: 0.3s;">➤</button>
+        </div>
+        
+        <button class="btn-action" style="margin-top: 15px;" onclick="goToVk()">Записаться на практику</button>
+        <div style="text-align: center; font-size: 10px; color: #888; text-transform: uppercase; margin-top: 20px; cursor: pointer; flex-shrink: 0;" onclick="document.getElementById('scene-chat').classList.remove('active')">Закрыть прогноз</div>
     </div>
 </div>
 
@@ -434,18 +446,18 @@
 
     // --- СОЗВЕЗДИЯ ---
     const ASTRO_DATA = {
-        'Овен': { s: [[30,50],[50,40],[70,60],[80,80]], l: [[0,1],[1,2],[2,3]], zone: 'шею и голову' },
-        'Телец': { s: [[20,20],[40,40],[55,55],[75,40],[90,20],[50,75],[45,95]], l: [[0,1],[1,2],[2,3],[3,4],[2,5],[5,6]], zone: 'плечи и горло' },
-        'Близнецы': { s: [[35,25],[35,75],[65,25],[65,75],[50,50]], l: [[0,2],[1,3],[0,4],[1,4],[2,4],[3,4]], zone: 'руки и грудной отдел' },
-        'Рак': { s: [[60,30],[60,60],[40,85],[80,85]], l: [[0,1],[1,2],[1,3]], zone: 'диафрагму' },
-        'Лев': { s: [[80,75],[50,75],[30,55],[40,25],[70,25],[85,45]], l: [[0,1],[1,2],[2,3],[3,4],[4,5],[5,0]], zone: 'спину и осанку' },
-        'Дева': { s: [[25,35],[45,55],[65,45],[85,65],[55,85],[35,75]], l: [[0,1],[1,2],[2,3],[3,4],[4,5],[5,1]], zone: 'мышцы кора' },
-        'Весы': { s: [[50,25],[30,55],[70,55],[50,85]], l: [[0,1],[0,2],[1,3],[2,3]], zone: 'поясницу' },
-        'Скорпион': { s: [[85,25],[70,35],[55,50],[45,65],[35,85],[20,90],[15,75],[25,60]], l: [[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,7]], zone: 'таз и ТБС' },
-        'Стрелец': { s: [[35,75],[55,55],[85,35],[75,65],[90,85],[45,35]], l: [[0,1],[1,2],[2,3],[3,4],[4,1],[1,5]], zone: 'бедра и ягодицы' },
-        'Козерог': { s: [[25,35],[55,25],[85,45],[75,85],[45,90]], l: [[0,1],[1,2],[2,3],[3,4],[4,0]], zone: 'суставы и колени' },
-        'Водолей': { s: [[25,45],[45,35],[65,55],[85,45],[75,85],[55,75]], l: [[0,1],[1,2],[2,3],[3,4],[4,5],[5,1]], zone: 'голени и сосуды' },
-        'Рыбы': { s: [[25,25],[45,45],[75,40],[85,65],[65,85],[35,75]], l: [[0,1],[1,2],[2,3],[3,4],[4,5],[5,1]], zone: 'стопы и лимфу' }
+        'Овен': { s: [[30,50],[50,40],[70,60],[80,80]], l: [[0,1],[1,2],[2,3]] },
+        'Телец': { s: [[20,20],[40,40],[55,55],[75,40],[90,20],[50,75],[45,95]], l: [[0,1],[1,2],[2,3],[3,4],[2,5],[5,6]] },
+        'Близнецы': { s: [[35,25],[35,75],[65,25],[65,75],[50,50]], l: [[0,2],[1,3],[0,4],[1,4],[2,4],[3,4]] },
+        'Рак': { s: [[60,30],[60,60],[40,85],[80,85]], l: [[0,1],[1,2],[1,3]] },
+        'Лев': { s: [[80,75],[50,75],[30,55],[40,25],[70,25],[85,45]], l: [[0,1],[1,2],[2,3],[3,4],[4,5],[5,0]] },
+        'Дева': { s: [[25,35],[45,55],[65,45],[85,65],[55,85],[35,75]], l: [[0,1],[1,2],[2,3],[3,4],[4,5],[5,1]] },
+        'Весы': { s: [[50,25],[30,55],[70,55],[50,85]], l: [[0,1],[0,2],[1,3],[2,3]] },
+        'Скорпион': { s: [[85,25],[70,35],[55,50],[45,65],[35,85],[20,90],[15,75],[25,60]], l: [[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,7]] },
+        'Стрелец': { s: [[35,75],[55,55],[85,35],[75,65],[90,85],[45,35]], l: [[0,1],[1,2],[2,3],[3,4],[4,1],[1,5]] },
+        'Козерог': { s: [[25,35],[55,25],[85,45],[75,85],[45,90]], l: [[0,1],[1,2],[2,3],[3,4],[4,0]] },
+        'Водолей': { s: [[25,45],[45,35],[65,55],[85,45],[75,85],[55,75]], l: [[0,1],[1,2],[2,3],[3,4],[4,5],[5,1]] },
+        'Рыбы': { s: [[25,25],[45,45],[75,40],[85,65],[65,85],[35,75]], l: [[0,1],[1,2],[2,3],[3,4],[4,5],[5,1]] }
     };
 
     let selectedSign = "";
@@ -531,18 +543,18 @@
                 "Хорошее время для того, чтобы монетизировать свои таланты. Ваше хобби может стать новым источником дохода."
             ];
             
-            const zone = ASTRO_DATA[sign].zone;
+            // ИЗМЕНЕНО: Рекомендации по телу больше не привязаны к конкретным суставам/мышцам. Нативный призыв.
             const leads = [
-                `Космические вибрации всегда проходят через тело. Сегодня может возникнуть напряжение, воздействующее на <b>${zone}</b>. Рекомендуется мягкая практика для снятия блоков.`,
-                `Для реализации потенциала этого дня телу нужна свобода. Эмоциональный фон сегодня влияет на <b>${zone}</b>. Добавьте вытяжения, чтобы энергия текла без препятствий.`,
-                `Вселенная дает вам ресурс, но его важно правильно усвоить. Ваша точка контроля на сегодня — <b>${zone}</b>. Подарите себе заботу о теле, чтобы сбросить стресс.`,
-                `Накопленная за день динамика требует выхода. Астрологи советуют обратить внимание на <b>${zone}</b>. Плавные, растягивающие движения вернут вам гармонию.`,
-                `Тело — проводник космической энергии. Если <b>${zone}</b> зажата, поток блокируется. Уделите время глубокому дыханию и растяжке этой области.`,
-                `Ваше тело сегодня очень восприимчиво. Особенно бережно стоит отнестись к зоне, за которую отвечает ваш знак: это <b>${zone}</b>. Мягкая проработка вернет вам силы.`,
-                `Чтобы мысли были ясными, тело должно быть расслабленным. Звезды указывают, что <b>${zone}</b> нуждается в заботе. Расслабление этой зоны придаст вам уверенности.`,
-                `Энергетический баланс начинается с физического комфорта. Сделайте фокус на <b>${zone}</b> — снимите спазмы через правильное движение и любовь к себе.`,
-                `Сегодня важно не перегружать себя. Ваша ахиллесова пята в такие дни — <b>${zone}</b>. Легкая практика МФР или стретчинг станут лучшим завершением дня.`,
-                `Слушайте свое тело так же внимательно, как подсказки интуиции. Сегодня <b>${zone}</b> может сигнализировать о накопленной усталости. Дайте ей заслуженный отдых.`
+                "Космические вибрации всегда проходят через тело. Сегодня отличный день, чтобы сбросить накопившееся напряжение на мягкой практике растяжки.",
+                "Для реализации потенциала этого дня телу нужна свобода. Добавьте вытяжения и активности, чтобы энергия текла без препятствий — ждем вас на коврике.",
+                "Вселенная дает вам ресурс, но его важно правильно усвоить. Подарите себе заботу о теле и приходите на расслабляющую тренировку.",
+                "Накопленная за день динамика требует выхода. Плавные, осознанные движения на занятии вернут вам внутреннюю гармонию.",
+                "Тело — проводник космической энергии. Если есть зажимы, поток блокируется. Уделите время глубокому дыханию и растяжке в нашей студии.",
+                "Ваше тело сегодня очень восприимчиво. Бережная проработка мышц и связок на тренировке вернет вам силы и легкость.",
+                "Чтобы мысли были ясными, тело должно быть расслабленным. Вечерняя практика в гамаке или на коврике придаст вам уверенности.",
+                "Энергетический баланс начинается с физического комфорта. Снимите стресс через правильное движение и любовь к себе на занятии.",
+                "Сегодня важно не перегружать себя. Легкая практика МФР или бережный стретчинг станут лучшим завершением дня.",
+                "Слушайте свое тело так же внимательно, как подсказки интуиции. Если чувствуете усталость, дайте себе заслуженный отдых на релакс-направлении."
             ];
             
             const fullText = `${intros[h % intros.length]}<br><br>${love[(h+1) % love.length]}<br><br>${finance[(h+2) % finance.length]}<br><br>${leads[(h+3) % leads.length]}`;
@@ -558,10 +570,10 @@
     }
 
     function renderLoop() {
-        ctx.clearRect(0, 0, 210, 210); /* Адаптировано под новый размер */
+        ctx.clearRect(0, 0, 210, 210); 
         const data = ASTRO_DATA[selectedSign] || ASTRO_DATA['Овен'];
         animSeed += 0.05;
-        const scale = 2.1; /* Чуть уменьшено для нового окна канваса */
+        const scale = 2.1; 
 
         ctx.beginPath(); ctx.strokeStyle = "rgba(255, 255, 255, 0.15)"; ctx.lineWidth = 1.5;
         data.l.forEach(line => {
@@ -586,7 +598,10 @@
         document.getElementById('modal-age').classList.add('active'); 
     }
 
-    // --- УМНЫЙ ФИЛЬТР ВОЗРАСТА ДЛЯ ВЕРЫ ---
+    // --- УМНЫЙ ЧАТ: ИСТОРИЯ И ЛОГИКА ---
+    let astroChatHistory = [];
+    let isAdultGlobal = false;
+
     function verifyDobAndStart() {
         const d = document.getElementById('dob-d').value;
         const m = document.getElementById('dob-m').value;
@@ -609,6 +624,7 @@
     }
 
     async function startChat(isAdult) {
+        isAdultGlobal = isAdult;
         document.getElementById('modal-age').classList.remove('active');
         document.getElementById('scene-chat').classList.add('active');
         
@@ -618,14 +634,21 @@
         box.innerHTML = '';
         typing.style.display = 'block';
 
+        // Инициализация истории чата с первым системным запросом
+        astroChatHistory = [{role:"user", text: `[АСТРО_ЗАПРОС] ${selectedSign} (18+: ${isAdultGlobal})`}];
+
         try {
             const response = await fetch(ASTRO_BACKEND_URL, {
                 method: 'POST', headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ messages: [{role:"user", text: `[АСТРО_ЗАПРОС] ${selectedSign} (18+: ${isAdult})`}] })
+                body: JSON.stringify({ messages: astroChatHistory })
             });
             const data = await response.json();
             
             typing.style.display = 'none';
+            
+            // Сохраняем ответ Веры в историю
+            astroChatHistory.push({role: "assistant", text: data.answer});
+            
             const div = document.createElement('div');
             div.className = "msg vera";
             div.innerHTML = data.answer.replace(/\n/g, '<br>');
@@ -641,6 +664,62 @@
             box.appendChild(div);
         }
     }
+
+    // НОВАЯ ФУНКЦИЯ ДЛЯ ОТПРАВКИ ВОПРОСОВ ВЕРЕ
+    async function sendAstroMessage() {
+        const input = document.getElementById('astro-chat-input');
+        const textDisplay = input.value.trim();
+        if(!textDisplay) return;
+
+        const box = document.getElementById('chat-box');
+        const typing = document.getElementById('typing-indicator');
+
+        // Рисуем сообщение пользователя
+        const userDiv = document.createElement('div');
+        userDiv.className = "msg user";
+        userDiv.innerText = textDisplay;
+        box.appendChild(userDiv);
+        box.scrollTop = box.scrollHeight;
+
+        input.value = "";
+        typing.style.display = 'block';
+
+        // Мы скрыто прокидываем тег в каждое сообщение, чтобы Бэкенд Яндекса не потерял знак зодиака
+        const textToSend = `[АСТРО_ЗАПРОС] ${selectedSign} (18+: ${isAdultGlobal})\nВопрос: ${textDisplay}`;
+        astroChatHistory.push({role: "user", text: textToSend});
+
+        try {
+            const response = await fetch(ASTRO_BACKEND_URL, {
+                method: 'POST', headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ messages: astroChatHistory })
+            });
+            const data = await response.json();
+            
+            typing.style.display = 'none';
+            
+            // Сохраняем и рисуем ответ
+            astroChatHistory.push({role: "assistant", text: data.answer});
+            
+            const veraDiv = document.createElement('div');
+            veraDiv.className = "msg vera";
+            veraDiv.innerHTML = data.answer.replace(/\n/g, '<br>');
+            box.appendChild(veraDiv);
+            box.scrollTop = box.scrollHeight;
+        } catch (error) {
+            console.error("Ошибка связи:", error);
+            typing.style.display = 'none';
+            const div = document.createElement('div');
+            div.className = "msg vera";
+            div.innerText = "Связь со звездами прервалась... Попробуй спросить еще раз.";
+            box.appendChild(div);
+            box.scrollTop = box.scrollHeight;
+        }
+    }
+
+    // Отправка по кнопке Enter
+    document.getElementById('astro-chat-input').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') sendAstroMessage();
+    });
 
     function goToVk() {
         const isMob = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
