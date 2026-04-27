@@ -4,12 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     
-    <title>РЕСУРС | Астро-Синхронизация и глубокие прогнозы</title>
-    <meta name="description" content="Индивидуальный астрологический прогноз от Веры. Синхронизация с вашим телом, расчет жизненной энергии и глубокий разбор транзитов.">
-    <meta name="keywords" content="астрология, гороскоп, прогноз, натальная карта, ресурс, телесные практики, созвездия, лунные циклы">
-    <meta property="og:title" content="РЕСУРС | Астро-Синхронизация">
-    <meta property="og:description" content="Узнай свой глубокий астрологический прогноз и уровень жизненной энергии на сегодня.">
+    <title>РЕСУРС | Глубокие астро-прогнозы</title>
+    <meta name="description" content="Индивидуальный астрологический прогноз от Веры Венеры. Синхронизация с вашим телом, расчет жизненной энергии и нативные рекомендации телесных практик для каждого знака зодиака.">
+    <meta name="keywords" content="астрология, гороскоп, прогноз на сегодня, натальная карта, ресурс, фитнес, растяжка, созвездия, лунные циклы, женская энергия, медитация, вера венера">
+    <meta name="author" content="Студия Ресурс">
+    
+    <meta property="og:title" content="РЕСУРС | Глубокие астро-прогнозы">
+    <meta property="og:description" content="Узнай свой глубокий астрологический прогноз и уровень жизненной энергии на сегодня от Веры Венеры.">
     <meta property="og:type" content="website">
+    <meta property="og:image" content="logo_header_final.png">
+    <meta property="og:site_name" content="Студия фитнеса и растяжки РЕСУРС">
+    <meta property="og:locale" content="ru_RU">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Астро-Синхронизация | Студия Ресурс",
+      "description": "Индивидуальный астрологический прогноз и расчет жизненной энергии.",
+      "applicationCategory": "LifestyleApplication",
+      "operatingSystem": "All",
+      "author": {
+        "@type": "Organization",
+        "name": "Студия фитнеса и растяжки Ресурс"
+      }
+    }
+    </script>
     
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -21,6 +41,34 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;1,400&family=Manrope:wght@200;300;400;600;700&display=swap" rel="stylesheet">
+
+    <script type="text/javascript">
+    // --- Yandex.Metrika counter ---
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108177329', 'ym');
+    ym(108177329, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+
+    // --- Top.Mail.Ru counter ---
+    var _tmr = window._tmr || (window._tmr = []);
+    _tmr.push({id: "3755240", type: "pageView", start: (new Date()).getTime()});
+    (function (d, w, id) {
+        if (d.getElementById(id)) return;
+        var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
+        ts.src = "https://top-fwz1.mail.ru/js/code.js";
+        var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
+        if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
+    })(document, window, "tmr-code");
+    </script>
+    <noscript>
+        <div>
+            <img src="https://mc.yandex.ru/watch/108177329" style="position:absolute; left:-9999px;" alt="" />
+            <img src="https://top-fwz1.mail.ru/counter?id=3755240;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" />
+        </div>
+    </noscript>
 
     <style>
         :root {
@@ -68,6 +116,7 @@
             box-shadow: 0 0 80px rgba(255, 180, 0, 0.6);
             transform: rotateX(-70deg);
             animation: pulseSun 6s ease-in-out infinite alternate;
+            backface-visibility: hidden; -webkit-backface-visibility: hidden;
         }
 
         /* Орбиты и их пути */
@@ -101,6 +150,7 @@
             background: radial-gradient(circle at 30% 30%, #1e3c72 0%, #091221 80%, #000 100%);
             box-shadow: inset -15px -15px 30px rgba(0,0,0,0.9), 0 0 30px rgba(30, 60, 114, 0.6);
             transform: rotateX(-70deg);
+            backface-visibility: hidden; -webkit-backface-visibility: hidden;
         }
 
         /* Луна: повторяет логику Земли */
@@ -128,6 +178,7 @@
             background: radial-gradient(circle at 30% 30%, #fff 0%, #a0a0a0 60%, #333 100%);
             box-shadow: 0 0 15px rgba(255,255,255,0.5);
             transform: rotateX(-70deg);
+            backface-visibility: hidden; -webkit-backface-visibility: hidden;
         }
 
         /* Ключевые кадры для орбит */
@@ -274,16 +325,19 @@
 
         @keyframes popIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* АДАПТАЦИЯ ПОД СМАРТФОНЫ */
+        /* ИСПРАВЛЕННАЯ АДАПТАЦИЯ ПОД СМАРТФОНЫ (ФИКС ИСКАЖЕНИЯ ПЛАНЕТ) */
         @media (max-width: 768px) {
-            .solar-system { transform: rotateX(70deg) scale(0.65); }
+            #scene-cosmos { perspective: 3000px; -webkit-perspective: 3000px; } /* Смягчаем перспективу для мобилок */
+            /* Меняем порядок: сначала scale, потом rotateX, чтобы избежать яйцевидности */
+            .solar-system { transform: scale(0.65) rotateX(70deg); }
+            
             .intro-title { font-size: 32px; letter-spacing: 10px; }
             .grid-wrap { grid-template-columns: repeat(2, 1fr); gap: 12px; }
             .sign-btn { padding: 20px 5px; } 
             .info-area { padding: 20px; }
         }
         @media (max-width: 380px) {
-            .solar-system { transform: rotateX(70deg) scale(0.5); }
+            .solar-system { transform: scale(0.5) rotateX(70deg); }
             .btn-enter { padding: 18px 40px; }
         }
     </style>
@@ -543,7 +597,6 @@
                 "Хорошее время для того, чтобы монетизировать свои таланты. Ваше хобби может стать новым источником дохода."
             ];
             
-            // ИЗМЕНЕНО: Рекомендации по телу больше не привязаны к конкретным суставам/мышцам. Нативный призыв.
             const leads = [
                 "Космические вибрации всегда проходят через тело. Сегодня отличный день, чтобы сбросить накопившееся напряжение на мягкой практике растяжки.",
                 "Для реализации потенциала этого дня телу нужна свобода. Добавьте вытяжения и активности, чтобы энергия текла без препятствий — ждем вас на коврике.",
@@ -598,6 +651,14 @@
         document.getElementById('modal-age').classList.add('active'); 
     }
 
+    // --- ФУНКЦИЯ ДЛЯ ПРЕВРАЩЕНИЯ ТЕКСТА [BUTTON] В КНОПКИ ---
+    function parseButtons(text) {
+        const buttonRegex = /\[BUTTON:(.*?)\|(.*?)\]/g;
+        return text.replace(buttonRegex, function(match, btnText, btnLink) {
+            return `<a href="${btnLink.trim()}" target="_blank" style="display: block; margin: 15px 0; padding: 16px 20px; background: var(--gold); color: #000; text-decoration: none; border-radius: 12px; font-weight: 800; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; box-shadow: 0 5px 15px rgba(197, 160, 89, 0.4); text-align: center; transition: 0.3s;">${btnText.trim()}</a>`;
+        });
+    }
+
     // --- УМНЫЙ ЧАТ: ИСТОРИЯ И ЛОГИКА ---
     let astroChatHistory = [];
     let isAdultGlobal = false;
@@ -634,7 +695,6 @@
         box.innerHTML = '';
         typing.style.display = 'block';
 
-        // Инициализация истории чата с первым системным запросом
         astroChatHistory = [{role:"user", text: `[АСТРО_ЗАПРОС] ${selectedSign} (18+: ${isAdultGlobal})`}];
 
         try {
@@ -645,13 +705,15 @@
             const data = await response.json();
             
             typing.style.display = 'none';
-            
-            // Сохраняем ответ Веры в историю
             astroChatHistory.push({role: "assistant", text: data.answer});
             
             const div = document.createElement('div');
             div.className = "msg vera";
-            div.innerHTML = data.answer.replace(/\n/g, '<br>');
+            
+            let formattedText = data.answer.replace(/\n/g, '<br>');
+            formattedText = parseButtons(formattedText);
+            div.innerHTML = formattedText;
+            
             box.appendChild(div);
             box.scrollTop = box.scrollHeight;
 
@@ -665,7 +727,6 @@
         }
     }
 
-    // НОВАЯ ФУНКЦИЯ ДЛЯ ОТПРАВКИ ВОПРОСОВ ВЕРЕ
     async function sendAstroMessage() {
         const input = document.getElementById('astro-chat-input');
         const textDisplay = input.value.trim();
@@ -674,7 +735,6 @@
         const box = document.getElementById('chat-box');
         const typing = document.getElementById('typing-indicator');
 
-        // Рисуем сообщение пользователя
         const userDiv = document.createElement('div');
         userDiv.className = "msg user";
         userDiv.innerText = textDisplay;
@@ -684,7 +744,6 @@
         input.value = "";
         typing.style.display = 'block';
 
-        // Мы скрыто прокидываем тег в каждое сообщение, чтобы Бэкенд Яндекса не потерял знак зодиака
         const textToSend = `[АСТРО_ЗАПРОС] ${selectedSign} (18+: ${isAdultGlobal})\nВопрос: ${textDisplay}`;
         astroChatHistory.push({role: "user", text: textToSend});
 
@@ -696,13 +755,15 @@
             const data = await response.json();
             
             typing.style.display = 'none';
-            
-            // Сохраняем и рисуем ответ
             astroChatHistory.push({role: "assistant", text: data.answer});
             
             const veraDiv = document.createElement('div');
             veraDiv.className = "msg vera";
-            veraDiv.innerHTML = data.answer.replace(/\n/g, '<br>');
+            
+            let formattedText = data.answer.replace(/\n/g, '<br>');
+            formattedText = parseButtons(formattedText);
+            veraDiv.innerHTML = formattedText;
+            
             box.appendChild(veraDiv);
             box.scrollTop = box.scrollHeight;
         } catch (error) {
@@ -716,7 +777,6 @@
         }
     }
 
-    // Отправка по кнопке Enter
     document.getElementById('astro-chat-input').addEventListener('keypress', function (e) {
         if (e.key === 'Enter') sendAstroMessage();
     });
