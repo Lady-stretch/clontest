@@ -325,13 +325,13 @@
 
         @keyframes popIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* ИСПРАВЛЕННАЯ АДАПТАЦИЯ ПОД СМАРТФОНЫ (ФИКС ИСКАЖЕНИЯ ПЛАНЕТ) */
+        /* ИСПРАВЛЕННАЯ АДАПТАЦИЯ ПОД СМАРТФОНЫ (ФИКС ИСКАЖЕНИЯ ПЛАНЕТ И ТЕКСТА) */
         @media (max-width: 768px) {
             #scene-cosmos { perspective: 3000px; -webkit-perspective: 3000px; } /* Смягчаем перспективу для мобилок */
             /* Меняем порядок: сначала scale, потом rotateX, чтобы избежать яйцевидности */
             .solar-system { transform: scale(0.65) rotateX(70deg); }
             
-            .intro-title { font-size: 32px; letter-spacing: 10px; }
+            .intro-title { font-size: 24px !important; letter-spacing: 4px !important; white-space: nowrap; margin-bottom: 20px; padding: 0 10px; }
             .grid-wrap { grid-template-columns: repeat(2, 1fr); gap: 12px; }
             .sign-btn { padding: 20px 5px; } 
             .info-area { padding: 20px; }
@@ -339,6 +339,7 @@
         @media (max-width: 380px) {
             .solar-system { transform: scale(0.5) rotateX(70deg); }
             .btn-enter { padding: 18px 40px; }
+            .intro-title { font-size: 20px !important; letter-spacing: 3px !important; }
         }
     </style>
 </head>
