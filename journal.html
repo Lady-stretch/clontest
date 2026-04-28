@@ -6,7 +6,6 @@
         document.documentElement.setAttribute('data-theme', savedTheme);
         if (savedTheme === 'light') { document.documentElement.classList.add('light-theme'); }
     </script>
-
     <script type="text/javascript">
     (function(m,e,t,r,i,k,a){
         m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -21,9 +20,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    <title>Журнал РЕСУРС | Экспертный блог о движении и здоровье</title>
-    <meta name="description" content="Статьи от тренеров студии растяжки и движения РЕСУРС. Учим понимать свое тело, избавляться от боли в спине и восстанавливать ресурсное состояние.">
-    <meta name="keywords" content="растяжка, фитнес блог, здоровая спина, мфр, шпагат без боли, лимфодренаж, ресурс сыктывкар">
+    <title>Журнал РЕСУРС | Экспертный блог о движении и здоровье в Сыктывкаре</title>
+    <meta name="description" content="Масштабный проект студии РЕСУРС. Читайте статьи от топ-тренеров о том, как избавиться от боли, правильно тянуться и восстановить энергию.">
+    <meta name="keywords" content="фитнес блог, растяжка сыктывкар, здоровая спина, мфр, шпагат без боли, лимфодренаж, ресурс">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://resurs-stretch.ru/journal.html">
 
@@ -31,111 +30,56 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Manrope:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
         :root { 
-            --bg-deep: #F4F4F9; 
-            --glass-border: 1px solid rgba(0, 0, 0, 0.08); 
-            --accent-gold: #B38639; 
-            --text-main: #05050A; 
-            --elem-bg: rgba(0, 0, 0, 0.04); 
-            --elem-border: rgba(0, 0, 0, 0.1); 
-            --nav-bg: rgba(244, 244, 249, 0.95); 
-            --font-main: 'Manrope', sans-serif; 
-            --font-serif: 'Cormorant Garamond', serif; 
-            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+            --bg-deep: #F4F4F9; --glass-border: 1px solid rgba(0, 0, 0, 0.08); --accent-gold: #B38639; 
+            --text-main: #05050A; --elem-bg: rgba(0, 0, 0, 0.04); --elem-border: rgba(0, 0, 0, 0.1); 
+            --nav-bg: rgba(244, 244, 249, 0.95); --font-main: 'Manrope', sans-serif; 
+            --font-serif: 'Cormorant Garamond', serif; --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
         }
-        
         [data-theme="dark"] { 
-            --bg-deep: #080814; 
-            --glass-border: 1px solid rgba(255, 255, 255, 0.08); 
-            --accent-gold: #C5A059; 
-            --text-main: #F4F4F9; 
-            --elem-bg: rgba(255, 255, 255, 0.05); 
-            --elem-border: rgba(255, 255, 255, 0.15); 
+            --bg-deep: #080814; --glass-border: 1px solid rgba(255, 255, 255, 0.08); --accent-gold: #C5A059; 
+            --text-main: #F4F4F9; --elem-bg: rgba(255, 255, 255, 0.05); --elem-border: rgba(255, 255, 255, 0.15); 
             --nav-bg: rgba(8, 8, 20, 0.95); 
         }
-        
         * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
         html { scroll-behavior: smooth; }
         body { 
-            background: var(--bg-deep); 
-            color: var(--text-main); 
-            font-family: var(--font-main); 
-            line-height: 1.6; 
+            background: var(--bg-deep); color: var(--text-main); font-family: var(--font-main); line-height: 1.6; 
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
-            transition: background-color 0.5s ease, color 0.5s ease;
-            -webkit-font-smoothing: antialiased;
-            padding-top: 90px; 
+            transition: background-color 0.5s ease, color 0.5s ease; -webkit-font-smoothing: antialiased; padding-top: 90px; 
         }
-
         a { text-decoration: none; color: inherit; transition: var(--transition); }
-
-        /* Шапка */
-        header { 
-            position: fixed; top: 0; width: 100%; padding: 15px 5%; 
-            display: flex; justify-content: space-between; align-items: center; 
-            z-index: 1000; background: var(--nav-bg); border-bottom: var(--glass-border); 
-            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); 
-        }
+        header { position: fixed; top: 0; width: 100%; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: var(--nav-bg); border-bottom: var(--glass-border); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); }
         .header-left { display: flex; align-items: center; gap: 15px; }
         .logo-img { height: 35px; width: auto; }
         .back-link { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; font-weight: 600; opacity: 0.7; }
         .back-link:hover { color: var(--accent-gold); opacity: 1; }
-        
         .brand-name { font-family: var(--font-serif); font-size: 24px; letter-spacing: 12px; text-transform: uppercase; margin-right: -12px; }
-        
-        #themeToggle { 
-            padding: 8px 15px; font-size: 10px; font-weight: 600; letter-spacing: 2px; 
-            border-radius: 8px; border: 1px solid var(--elem-border); background: var(--elem-bg); 
-            cursor: pointer; color: var(--text-main); text-transform: uppercase; 
-        }
+        #themeToggle { padding: 8px 15px; font-size: 10px; font-weight: 600; letter-spacing: 2px; border-radius: 8px; border: 1px solid var(--elem-border); background: var(--elem-bg); cursor: pointer; color: var(--text-main); text-transform: uppercase; }
         #themeToggle:hover { border-color: var(--accent-gold); }
-
-        /* Контейнер журнала */
         .journal-container { max-width: 1200px; margin: 0 auto; padding: 40px 5%; }
-        
         .journal-header { text-align: center; margin-bottom: 50px; }
         .journal-category { font-size: 11px; text-transform: uppercase; letter-spacing: 4px; color: var(--accent-gold); font-weight: 600; display: block; margin-bottom: 15px; }
         .journal-title { font-family: var(--font-serif); font-size: clamp(36px, 5vw, 54px); line-height: 1.1; margin-bottom: 20px; }
         .journal-subtitle { font-size: 16px; opacity: 0.7; max-width: 600px; margin: 0 auto; }
-
-        /* Блоки РСЯ */
-        .ad-banner {
-            width: 100%; padding: 20px; margin: 40px 0; text-align: center;
-            background: rgba(197, 160, 89, 0.05); border: 1px dashed rgba(197, 160, 89, 0.3);
-            border-radius: 15px; font-size: 11px; opacity: 0.5; letter-spacing: 2px; text-transform: uppercase;
-        }
-
-        /* Сетка статей */
-        .journal-grid { 
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; 
-        }
-        
-        .article-card { 
-            display: flex; flex-direction: column; background: var(--elem-bg); 
-            border: var(--glass-border); border-radius: 24px; overflow: hidden; 
-            transition: var(--transition); 
-        }
+        .seo-intro-block { background: var(--elem-bg); border: var(--glass-border); border-radius: 20px; padding: 40px; margin-bottom: 50px; border-left: 4px solid var(--accent-gold); }
+        .seo-intro-block h2 { font-family: var(--font-serif); font-size: 28px; margin-bottom: 15px; color: var(--accent-gold); }
+        .seo-intro-block p { font-size: 16px; opacity: 0.9; line-height: 1.8; margin-bottom: 15px; }
+        .ad-banner { width: 100%; padding: 20px; margin: 40px 0; text-align: center; background: rgba(197, 160, 89, 0.05); border: 1px dashed rgba(197, 160, 89, 0.3); border-radius: 15px; font-size: 11px; opacity: 0.5; letter-spacing: 2px; text-transform: uppercase; }
+        .journal-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
+        .article-card { display: flex; flex-direction: column; background: var(--elem-bg); border: var(--glass-border); border-radius: 24px; overflow: hidden; transition: var(--transition); }
         .article-card:hover { transform: translateY(-8px); border-color: var(--accent-gold); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
-        
         .card-img { width: 100%; height: 240px; object-fit: cover; border-bottom: var(--glass-border); }
         .card-body { padding: 30px; display: flex; flex-direction: column; flex-grow: 1; }
         .card-tag { font-size: 10px; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 2px; font-weight: 600; margin-bottom: 12px; }
         .card-title { font-family: var(--font-serif); font-size: 24px; line-height: 1.2; margin-bottom: 15px; }
         .card-excerpt { font-size: 14px; opacity: 0.7; line-height: 1.6; margin-bottom: 20px; flex-grow: 1; }
         .card-footer { display: flex; justify-content: space-between; align-items: center; font-size: 12px; opacity: 0.5; border-top: 1px solid var(--elem-border); padding-top: 15px; }
-
-        /* Подвал */
         footer { padding: 60px 5% 40px; border-top: var(--glass-border); background: var(--elem-bg); margin-top: 60px; text-align: center; }
-        
-        @media (max-width: 768px) {
-            header { padding: 15px 5%; }
-            .brand-name { font-size: 18px; letter-spacing: 6px; margin-right: -6px; }
-            .logo-img { height: 28px; }
-            .journal-title { font-size: 32px; }
-        }
+        @media (max-width: 768px) { header { padding: 15px 5%; } .brand-name { font-size: 18px; letter-spacing: 6px; margin-right: -6px; } .logo-img { height: 28px; } .journal-title { font-size: 32px; } .seo-intro-block { padding: 25px; } }
     </style>
 </head>
 <body>
@@ -153,25 +97,30 @@
     
     <div class="journal-header">
         <span class="journal-category">Экспертный блог</span>
-        <h1 class="journal-title">Журнал твоего состояния</h1>
-        <p class="journal-subtitle">Практические советы от тренеров студии РЕСУРС. Учим понимать свое тело, избавляться от зажимов и находить энергию в движении.</p>
+        <h1 class="journal-title">Манифест Твоего Тела</h1>
+        <p class="journal-subtitle">Официальный журнал студии РЕСУРС в Сыктывкаре. Меняем подход к фитнесу: от насилия над собой к любви, осознанности и здоровью.</p>
+    </div>
+
+    <div class="seo-intro-block">
+        <h2>Почему мы создали этот журнал?</h2>
+        <p>Современная фитнес-индустрия часто продает иллюзии: быстрые результаты через боль, жесткие ограничения и выгорание. В студии растяжки и движения <strong>РЕСУРС</strong> мы выбрали другой путь. Наша миссия — научить вас слушать свое тело, понимать биомеханику движений и возвращать утраченную свободу без травм.</p>
+        <p>Здесь, на страницах нашего журнала, главный эксперт студии Ольга Мартынова и наша команда делятся выжимкой мирового опыта в области физической культуры, реабилитации и психологии. Мы разбираем реальные проблемы жителей Сыктывкара: от болей в пояснице из-за сидячей работы до хронических утренних отеков. Наша цель — привлечь внимание миллионов к бережному фитнесу и создать здоровую привычку заботы о себе.</p>
     </div>
 
     <div class="ad-banner" id="yandex_rtb_R-A-XXXXXX-1">
-        Место для рекламы Яндекса (РСЯ)
+        Место для рекламы РСЯ (Верхний блок)
     </div>
 
     <div class="journal-grid">
-        
         <a href="mfr-spine.html" class="article-card">
-            <img src="https://storage.yandexcloud.net/resurs-content/journal/mrf-main.jpg.jpg" alt="МФР для спины" class="card-img" onerror="this.src='https://via.placeholder.com/600x400?text=МФР'">
+            <img src="https://storage.yandexcloud.net/resurs-content/journal/mfr-main.jpg" alt="МФР для спины" class="card-img" onerror="this.src='https://via.placeholder.com/600x400?text=МФР'">
             <div class="card-body">
                 <span class="card-tag">Здоровая спина</span>
                 <h2 class="card-title">Почему болит спина при сидячей работе?</h2>
-                <p class="card-excerpt">Разбираемся, как слипшаяся фасция влияет на самочувствие, и как техника МФР заменяет массаж за 15 минут в день.</p>
+                <p class="card-excerpt">Глубокий разбор биомеханики: как слипшаяся фасция отравляет жизнь, и почему 15 минут МФР эффективнее часа классического массажа.</p>
                 <div class="card-footer">
                     <span>Читать статью →</span>
-                    <span>4 мин</span>
+                    <span>5 мин</span>
                 </div>
             </div>
         </a>
@@ -181,10 +130,10 @@
             <div class="card-body">
                 <span class="card-tag">Гибкость</span>
                 <h2 class="card-title">Шпагат после 30 лет: мифы и реальность</h2>
-                <p class="card-excerpt">Почему классическая растяжка "через боль" не работает, и как научить нервную систему безопасно расслабляться.</p>
+                <p class="card-excerpt">Разоблачаем мифы фитнес-индустрии. Как перехитрить рефлекс растяжения и научить нервную систему расслабляться без боли.</p>
                 <div class="card-footer">
                     <span>Читать статью →</span>
-                    <span>3 мин</span>
+                    <span>4 мин</span>
                 </div>
             </div>
         </a>
@@ -193,19 +142,18 @@
             <img src="https://storage.yandexcloud.net/resurs-content/journal/detox-main.jpg" alt="Лимфодренаж и детокс" class="card-img" onerror="this.src='https://via.placeholder.com/600x400?text=Детокс'">
             <div class="card-body">
                 <span class="card-tag">Питание и Детокс</span>
-                <h2 class="card-title">Лимфодренаж: как убрать утренние отеки</h2>
-                <p class="card-excerpt">Как запустить метаболизм и процесс похудения без жестких диет с помощью правильного движения.</p>
+                <h2 class="card-title">Лимфодренаж: как убрать отеки без диет</h2>
+                <p class="card-excerpt">Анатомия лимфатической системы. Почему вода задерживается в теле, и как правильные движения запускают процесс естественного похудения.</p>
                 <div class="card-footer">
                     <span>Читать статью →</span>
-                    <span>5 мин</span>
+                    <span>6 мин</span>
                 </div>
             </div>
         </a>
-
     </div>
 
     <div class="ad-banner" id="yandex_rtb_R-A-XXXXXX-2">
-        Место для рекламы Яндекса (РСЯ)
+        Место для рекламы РСЯ (Нижний блок)
     </div>
 
 </main>
@@ -219,28 +167,20 @@
 </footer>
 
 <script>
-    // Логика переключения светлой/темной темы
     function toggleTheme() {
         const html = document.documentElement;
         const currentTheme = html.getAttribute('data-theme');
         const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        
         html.setAttribute('data-theme', newTheme);
         localStorage.setItem('theme', newTheme);
-        
         if (newTheme === 'light') { html.classList.add('light-theme'); } 
         else { html.classList.remove('light-theme'); }
-        
         document.getElementById('themeToggle').innerText = newTheme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
     }
-
     window.addEventListener('DOMContentLoaded', () => {
         const theme = document.documentElement.getAttribute('data-theme');
         document.getElementById('themeToggle').innerText = theme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
     });
-
-    // Заглушка для скриптов РСЯ, которые мы добавим после регистрации
-    // window.yaContextCb = window.yaContextCb || [];
 </script>
 
 </body>
