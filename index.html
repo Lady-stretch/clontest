@@ -279,6 +279,7 @@
         .glass-sidebar.active .nav-links a:nth-child(5) { transition-delay: 0.7s; }
         .glass-sidebar.active .nav-links a:nth-child(6) { transition-delay: 0.8s; }
         .glass-sidebar.active .nav-links a:nth-child(7) { transition-delay: 0.9s; }
+        .glass-sidebar.active .nav-links a:nth-child(8) { transition-delay: 1.0s; }
 
         .close-arrow {
             position: absolute; top: 40px; left: 40px;
@@ -394,6 +395,26 @@
         .footer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-bottom: 80px; text-align: left; }
         .footer-col h4 { font-size: 11px; text-transform: uppercase; letter-spacing: 3px; color: var(--accent-gold); margin-bottom: 25px; }
 
+        /* --- ЖУРНАЛ КНОПКИ (Добавлено) --- */
+        #journal-float-btn {
+            position: fixed; bottom: 25px; left: 25px; width: 60px; height: 60px;
+            background: var(--nav-bg); border: 1px solid var(--accent-gold); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; z-index: 9998;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2); backdrop-filter: blur(10px); transition: 0.3s;
+        }
+        #journal-float-btn:hover {
+            transform: translateY(-5px); background: var(--accent-gold);
+            box-shadow: 0 15px 30px rgba(197, 160, 89, 0.4);
+        }
+        #journal-float-btn:hover .journal-icon { stroke: #000; }
+        
+        .footer-journal-banner {
+            background: linear-gradient(135deg, rgba(197, 160, 89, 0.1), transparent);
+            border: 1px solid rgba(197, 160, 89, 0.3); border-radius: 24px;
+            padding: 40px; margin-bottom: 60px; display: flex; align-items: center;
+            justify-content: space-between; flex-wrap: wrap; gap: 20px; text-align: left;
+        }
+
         /* --- АДАПТИВ --- */
         @media (max-width: 1100px) {
             .expert-grid, .philosophy, .dir-container { grid-template-columns: 1fr; }
@@ -411,6 +432,11 @@
             .header-center { width: 50%; }
         }
 
+        @media (max-width: 768px) { 
+            #promo-widget { top: 80px; left: 5%; width: 90%; padding: 20px; } 
+            .footer-journal-banner { flex-direction: column; text-align: center; padding: 30px 20px; }
+        }
+
         @media (max-width: 600px) {
             header { padding: 15px 5% !important; }
             .brand-name { font-size: 18px !important; letter-spacing: 6px !important; }
@@ -422,6 +448,7 @@
             .faq-question { font-size: 15px; padding: 20px; }
             .faq-answer { font-size: 14px; padding: 0 20px; }
             .faq-item.active .faq-answer { padding: 0 20px 20px; }
+            #journal-float-btn { bottom: 25px; left: 15px; width: 55px; height: 55px; }
         }
         
         /* --- МОДАЛЬНЫЕ ОКНА И ФОРМЫ --- */
@@ -452,7 +479,6 @@
         .promo-btn { display: block; text-align: center; padding: 12px; background: var(--accent-gold); color: #000; text-decoration: none; border-radius: 8px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; }
         .promo-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(197, 160, 89, 0.4); }
         @keyframes promoFadeIn { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: translateX(0); } }
-        @media (max-width: 768px) { #promo-widget { top: 80px; left: 5%; width: 90%; padding: 20px; } }
 
         /* --- AI CHAT WIDGET --- */
         #ls-ai-button {
@@ -488,6 +514,7 @@
     <div class="close-arrow" onclick="toggleNav()">←</div>
     <div class="nav-links">
         <a href="#about" onclick="toggleNav()">О студии</a>
+        <a href="journal.html" style="color: var(--accent-gold);">ЖУРНАЛ СТУДИИ</a>
         <a href="#schedule" onclick="toggleNav()">РАСПИСАНИЕ</a>
         <a href="future-packages.html" style="color: var(--accent-gold);">АБОНЕМЕНТЫ</a>
         <a href="club.html">100% похудение</a>
@@ -558,7 +585,12 @@
             <p style="opacity: 0.8; font-size: 16px; margin-bottom: 40px; line-height: 1.8;">
                 За 50 минут мы бережно укрепим мышечный корсет, проведем декомпрессию позвоночника и вернем вашему телу естественную осанку. Забудьте о скованности — дышите полной грудью.
             </p>
-            <a href="schedule.html" class="btn btn-lens">Записаться на практику</a>
+            <div style="margin-top: 40px;">
+                <a href="schedule.html" class="btn btn-lens">Записаться на практику</a>
+                <div style="margin-top: 25px;">
+                    <a href="journal.html" style="font-size: 11px; color: var(--accent-gold); text-decoration: none; text-transform: uppercase; letter-spacing: 2px; border-bottom: 1px dashed var(--accent-gold); padding-bottom: 2px; transition: 0.3s; opacity: 0.8;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">Читать научный разбор о болях в спине →</a>
+                </div>
+            </div>
         </div>
         <div class="expert-img-wrap">
             <img src="healthy-back.jpg" alt="Тренировки здоровая спина Сыктывкар">
@@ -836,6 +868,18 @@
     
 <footer id="footer">
     <div style="max-width: 1200px; margin: 0 auto;">
+        
+        <div class="footer-journal-banner glass">
+            <div style="flex: 1; min-width: 280px;">
+                <span style="font-size: 10px; text-transform: uppercase; letter-spacing: 3px; color: var(--accent-gold); margin-bottom: 10px; display: block; font-weight: 600;">База знаний</span>
+                <h3 class="serif" style="font-size: 32px; margin-bottom: 10px; line-height: 1.1;">Экспертный журнал РЕСУРС</h3>
+                <p style="opacity: 0.8; font-size: 14px; margin-bottom: 0;">Научный подход к телу, разбор биомеханики МФР и секреты лимфодренажа от топ-тренеров.</p>
+            </div>
+            <div>
+                <a href="journal.html" class="btn btn-lens" style="padding: 18px 35px; border-color: var(--accent-gold);">Читать статьи</a>
+            </div>
+        </div>
+
         <div style="display: flex; justify-content: space-between; align-items: center; gap: 30px; margin-bottom: 60px; flex-wrap: wrap;">
             <div style="display: flex; align-items: center; gap: 15px;">
                 <img src="logo_header_final.png" alt="Логотип футер" style="height: 40px; border-radius: 8px;">
@@ -913,6 +957,10 @@
 
     <a href="#" class="promo-btn" id="p-btn">Кнопка</a>
 </div>
+
+<a href="journal.html" id="journal-float-btn" aria-label="Читать журнал">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent-gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="journal-icon" style="transition: 0.3s;"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path><path d="M8 7h6"></path><path d="M8 11h8"></path></svg>
+</a>
 
 <div id="ls-ai-widget">
     <button id="ls-ai-button" onclick="toggleChat()">✨</button>
