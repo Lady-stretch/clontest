@@ -42,6 +42,32 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;1,400&family=Manrope:wght@200;300;400;600;700&display=swap" rel="stylesheet">
 
+    <!-- Yandex.RTB Base -->
+    <script>window.yaContextCb=window.yaContextCb||[]</script>
+    <script src="https://yandex.ru/ads/system/context.js" async></script>
+
+    <!-- Yandex.RTB R-A-19181219-16 (Smartphone FloorAd) -->
+    <script>
+    window.yaContextCb.push(() => {
+        Ya.Context.AdvManager.render({
+            "blockId": "R-A-19181219-16",
+            "type": "floorAd",
+            "platform": "touch"
+        })
+    })
+    </script>
+
+    <!-- Yandex.RTB R-A-19181219-17 (Desktop FloorAd) -->
+    <script>
+    window.yaContextCb.push(() => {
+        Ya.Context.AdvManager.render({
+            "blockId": "R-A-19181219-17",
+            "type": "floorAd",
+            "platform": "desktop"
+        })
+    })
+    </script>
+
     <script type="text/javascript">
     // --- Yandex.Metrika counter ---
     (function(m,e,t,r,i,k,a){
@@ -191,17 +217,24 @@
         .btn-enter { background: rgba(255,255,255,0.02); border: 1px solid var(--gold); color: #fff; padding: 22px 50px; border-radius: 6px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 5px; cursor: pointer; backdrop-filter: blur(10px); transition: 0.5s; pointer-events: auto; }
         .btn-enter:hover { background: var(--gold); color: #000; letter-spacing: 8px; box-shadow: 0 0 30px rgba(197, 160, 89, 0.4); }
 
-        /* --- СТЕКЛЯННАЯ ШАПКА --- */
+        .back-link {
+            font-size: 11px; text-transform: uppercase; letter-spacing: 2px;
+            font-weight: 600; text-decoration: none; color: #fff;
+            transition: 0.3s; pointer-events: auto;
+        }
+        .back-link:hover { color: var(--gold); }
+
+        /* --- СТЕКЛЯННАЯ ШАПКА С ИСПРАВЛЕНИЕМ ДЛЯ СМАРТФОНОВ --- */
         header { 
-            position: fixed; top: 0; left: 0; width: 100%; padding: 20px 5%; 
+            position: fixed; top: 0; left: 0; width: 100%; 
+            padding: max(20px, env(safe-area-inset-top)) 5% 20px; 
             display: flex; justify-content: space-between; align-items: center; 
-            z-index: 2000; opacity: 0; transition: 1s; 
-            pointer-events: none; /* ПРОПУСКАЕТ КЛИКИ СКВОЗЬ СЕБЯ */
+            z-index: 2000; transition: background 1s, backdrop-filter 1s; 
+            pointer-events: none; /* ПРОПУСКАЕТ КЛИКИ СКВОЗЬ СЕБЯ, КРОМЕ КНОПОК */
         }
         header.active { 
-            opacity: 1; 
-            background: rgba(10, 10, 15, 0.25); 
-            backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); /* Мощное стекло */
+            background: rgba(10, 10, 15, 0.7); /* Плотное матовое стекло */
+            backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); 
             border-bottom: 1px solid rgba(255,255,255,0.08); 
         }
         .logo { font-family: var(--font-serif); font-size: 24px; letter-spacing: 8px; text-transform: uppercase; color: var(--gold); pointer-events: auto; }
@@ -377,8 +410,13 @@
 </div>
 
 <header id="main-header">
-    <div class="logo">Ресурс</div>
-    <img src="logo_header_final.png" style="height: 30px; border-radius: 5px; pointer-events: auto;">
+    <div style="display: flex; align-items: center; gap: 15px; pointer-events: auto;">
+        <a href="index.html" class="back-link">← На главную</a>
+    </div>
+    <div style="display: flex; align-items: center; gap: 15px; pointer-events: auto;">
+        <div class="logo">Ресурс</div>
+        <img src="logo_header_final.png" style="height: 30px; border-radius: 5px;">
+    </div>
 </header>
 
 <div id="scene-grid">
