@@ -906,8 +906,8 @@
             document.getElementById('vera-btn').style.display = 'flex';
             document.getElementById('in-date').valueAsDate = new Date();
             
-            const uName = localStorage.getItem('resurs_user') || 'Николай Сергеевич';
-            document.getElementById('vera-welcome-msg').innerText = `${uName}, здравия желаю! Все системы оцифрованы. Жду команд.`;
+            const uName = localStorage.getItem('resurs_user') || 'Руководитель';
+    document.getElementById('vera-welcome-msg').innerText = `${uName}, здравия желаю! Все системы оцифрованы. Жду команд.`;
             
             const savedPlans = localStorage.getItem('resurs_plans');
             if (savedPlans) {
@@ -922,26 +922,28 @@
     // --- ПАРОЛЬНАЯ ЗАЩИТА ---
     function unlockSystem() {
         const passwordInput = document.getElementById('pass').value;
-        let userName = "";
+        let userData = null;
         
         if (passwordInput === "Ресурс-Николай" || passwordInput === "Ресурс-студия") {
-            userName = "Николай Сергеевич";
+            userData = { name: "Николай Сергеевич", dob: "1981-10-28" };
         } else if (passwordInput === "Ресурс-Ольга") {
-            userName = "Ольга Алексеевна";
+            userData = { name: "Ольга Алексеевна", dob: "1985-11-14" }; // Пример
         } else { 
-            alert("Неверное кодовое слово. Используйте Ресурс-Николай или Ресурс-Ольга"); 
+            alert("Неверное кодовое слово!"); 
             return;
         }
 
         localStorage.setItem('resurs_auth', 'true');
-        localStorage.setItem('resurs_user', userName);
+        // Сохраняем только имя для корректного отображения
+        localStorage.setItem('resurs_user', userData.name);
         
         document.getElementById('auth').style.display = 'none';
         document.getElementById('nav-bar').style.display = 'flex';
         document.getElementById('vera-btn').style.display = 'flex';
         document.getElementById('in-date').valueAsDate = new Date();
         
-        document.getElementById('vera-welcome-msg').innerText = `${userName}, здравия желаю! Системы загружены. Жду команд.`;
+        // Теперь здесь будет просто "Николай Сергеевич, здравия желаю!"
+        document.getElementById('vera-welcome-msg').innerText = `${userData.name}, здравия желаю! Системы загружены. Жду команд.`;
         
         initializeCharts();
         switchTab('page-dash', document.querySelector('.nav-item.active'));
