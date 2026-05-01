@@ -487,7 +487,8 @@
         
         <div class="filter-row">
             <select id="dash-studio-filter" class="period-select" onchange="applyFilters()">
-                </select>
+                <!-- Заполняется динамически -->
+            </select>
 
             <select id="period-filter" class="period-select" onchange="toggleCustomDate()">
                 <option value="today">За сегодня</option>
@@ -623,14 +624,16 @@
         <input type="date" id="in-date">
         <label>Студия / Локация</label>
         <select id="in-loc">
-            </select>
+            <!-- Заполняется динамически -->
+        </select>
     </div>
 
     <div class="card" style="border-left: 5px solid var(--accent);">
         <h3 class="serif" style="margin-bottom: 15px;">Трафик и Записи</h3>
         <label>Источник лидов</label>
         <select id="l-src">
-            </select>
+            <!-- Заполняется динамически -->
+        </select>
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
             <div>
                 <label>Поступило лидов</label>
@@ -655,7 +658,8 @@
         </select>
         <label>Номенклатура (Продукт / Абонемент)</label>
         <select id="s-type">
-            </select>
+            <!-- Заполняется динамически -->
+        </select>
         <label>Фактическая сумма оплаты (₽)</label>
         <input type="number" id="s-val" placeholder="Например: 11200">
         <button class="btn" onclick="addSale(this)">Зафиксировать продажу</button>
@@ -665,7 +669,8 @@
         <h3 class="serif" style="margin-bottom: 15px;">Расходы</h3>
         <label>Категория</label>
         <select id="e-cat">
-            </select>
+            <!-- Заполняется динамически -->
+        </select>
         <label>Сумма (₽)</label>
         <input type="number" id="e-val" placeholder="0">
         <button class="btn" style="background: var(--crit);" onclick="addExpense(this)">Учесть расход</button>
@@ -686,11 +691,18 @@
         <h3 class="serif" style="margin-bottom: 15px;">Установка KPI (Плана)</h3>
         <label>Целевая Локация</label>
         <select id="plan-studio" onchange="updatePlanProgress()">
-            </select>
+            <!-- Заполняется динамически -->
+        </select>
+        <label>Период плана (Выбор месяца / года)</label>
+        <input type="month" id="plan-month-input" onchange="updatePlanProgress()">
+        
         <label>План по Выручке (₽)</label>
         <input type="number" id="plan-rev-input" placeholder="Например: 1000000">
         <label>План по Лидам (шт)</label>
         <input type="number" id="plan-leads-input" placeholder="Например: 300">
+        <label>План по Продлениям (шт)</label>
+        <input type="number" id="plan-sec-input" placeholder="Например: 150">
+        
         <button class="btn" onclick="savePlan()">Утвердить план</button>
     </div>
 
@@ -705,6 +717,11 @@
         <label>Лиды: <span id="plan-leads-text">0 / 0 шт (0%)</span></label>
         <div class="plan-bar-bg">
             <div class="plan-bar-fill" id="plan-leads-bar" style="width: 0%; background: var(--accent);"></div>
+        </div>
+
+        <label>Продления (Вторичка): <span id="plan-sec-text">0 / 0 шт (0%)</span></label>
+        <div class="plan-bar-bg">
+            <div class="plan-bar-fill" id="plan-sec-bar" style="width: 0%; background: var(--warn);"></div>
         </div>
     </div>
 
@@ -971,7 +988,9 @@
                 
                 if (rawServerData.plans) {
                     rawServerData.plans.forEach(p => { 
-                        appData.plans[p.studio_name] = { rev: p.rev_plan, leads: p.leads_plan }; 
+                        // Поддержка как старого, так и нового формата с месяцем
+                        const planKey = p.period ? `${p.studio_name}_${p.period}` : p.studio_name;
+                        appData.plans[planKey] = { rev: p.rev_plan, leads: p.leads_plan, sec: p.sec_plan || 0 }; 
                     });
                     localStorage.setItem('resurs_plans', JSON.stringify(appData.plans));
                 }
@@ -1287,12 +1306,17 @@
     // --- KPI И ПЛАНЫ (Синхронизация с БД) ---
     async function savePlan() {
         const studio = document.getElementById('plan-studio').value;
+        const viewMonth = document.getElementById('plan-month-input').value; // Например '2026-05'
         const revPlan = parseInt(document.getElementById('plan-rev-input').value) || 0;
         const leadsPlan = parseInt(document.getElementById('plan-leads-input').value) || 0;
+        const secPlan = parseInt(document.getElementById('plan-sec-input').value) || 0;
         
-        if (!appData.plans[studio]) appData.plans[studio] = {rev:0, leads:0};
-        appData.plans[studio].rev = revPlan;
-        appData.plans[studio].leads = leadsPlan;
+        const planKey = viewMonth ? `${studio}_${viewMonth}` : studio;
+
+        if (!appData.plans[planKey]) appData.plans[planKey] = {rev:0, leads:0, sec:0};
+        appData.plans[planKey].rev = revPlan;
+        appData.plans[planKey].leads = leadsPlan;
+        appData.plans[planKey].sec = secPlan;
         localStorage.setItem('resurs_plans', JSON.stringify(appData.plans));
         
         try {
@@ -1301,7 +1325,7 @@
                 headers: { 'Content-Type': 'application/json', 'X-Api-Token': BACKEND_TOKEN },
                 body: JSON.stringify({ 
                     action: 'save_plan', 
-                    data: { studio, rev: revPlan, leads: leadsPlan } 
+                    data: { studio, period: viewMonth, rev: revPlan, leads: leadsPlan, sec: secPlan } 
                 })
             });
             if (res.ok) {
@@ -1314,31 +1338,47 @@
 
         document.getElementById('plan-rev-input').value = "";
         document.getElementById('plan-leads-input').value = "";
+        document.getElementById('plan-sec-input').value = "";
         updatePlanProgress();
     }
 
     function updatePlanProgress() {
         const activePlanStudio = document.getElementById('plan-studio').value;
-        const p = appData.plans[activePlanStudio] || {rev: 0, leads: 0};
+        const viewMonth = document.getElementById('plan-month-input').value; // Фильтр месяца в разделе планов
         
-        document.getElementById('active-plan-label').innerText = (activePlanStudio === 'all' ? 'Все' : activePlanStudio);
+        const planKey = viewMonth ? `${activePlanStudio}_${viewMonth}` : activePlanStudio;
+        const p = appData.plans[planKey] || appData.plans[activePlanStudio] || {rev: 0, leads: 0, sec: 0};
+        
+        let labelText = activePlanStudio === 'all' ? 'Все' : activePlanStudio;
+        if (viewMonth) labelText += ` (${viewMonth})`;
+        document.getElementById('active-plan-label').innerText = labelText;
         
         let currentPlanRev = 0;
         let currentPlanLeads = 0;
+        let currentPlanSec = 0;
+
+        // Если месяц не выбран - используем глобальный фильтр. Если выбран - считаем именно этот месяц
+        const isTargetMonth = (dateStr) => {
+            if (!viewMonth) return isDateInCurrentFilter(dateStr);
+            return dateStr && dateStr.startsWith(viewMonth);
+        };
 
         if (rawServerData) {
             if (rawServerData.sales) {
                 rawServerData.sales.forEach(s => {
-                    if (isDateInCurrentFilter(s.event_date)) {
+                    if (isTargetMonth(s.event_date)) {
                         if (activePlanStudio === 'all' || s.studio_name === activePlanStudio) {
                             currentPlanRev += parseInt(s.payment_amount) || 0;
+                            if (s.client_status === 'sec') {
+                                currentPlanSec++;
+                            }
                         }
                     }
                 });
             }
             if (rawServerData.traffic) {
                 rawServerData.traffic.forEach(t => {
-                    if (isDateInCurrentFilter(t.event_date)) {
+                    if (isTargetMonth(t.event_date)) {
                         if (activePlanStudio === 'all' || t.studio_name === activePlanStudio) {
                             currentPlanLeads += parseInt(t.leads_count) || 0;
                         }
@@ -1349,12 +1389,20 @@
         
         const revPct = p.rev > 0 ? Math.min(Math.round((currentPlanRev / p.rev) * 100), 100) : 0;
         const leadPct = p.leads > 0 ? Math.min(Math.round((currentPlanLeads / p.leads) * 100), 100) : 0;
+        const secPct = p.sec > 0 ? Math.min(Math.round((currentPlanSec / p.sec) * 100), 100) : 0;
 
-        document.getElementById('plan-rev-text').innerText = `${currentPlanRev.toLocaleString()} / ${p.rev.toLocaleString()} ₽ (${revPct}%)`;
+        document.getElementById('plan-rev-text').innerText = `${currentPlanRev.toLocaleString()} / ${p.rev ? p.rev.toLocaleString() : 0} ₽ (${revPct}%)`;
         document.getElementById('plan-rev-bar').style.width = revPct + '%';
         
-        document.getElementById('plan-leads-text').innerText = `${currentPlanLeads} / ${p.leads} шт (${leadPct}%)`;
+        document.getElementById('plan-leads-text').innerText = `${currentPlanLeads} / ${p.leads || 0} шт (${leadPct}%)`;
         document.getElementById('plan-leads-bar').style.width = leadPct + '%';
+
+        const secTextEl = document.getElementById('plan-sec-text');
+        const secBarEl = document.getElementById('plan-sec-bar');
+        if(secTextEl && secBarEl) {
+            secTextEl.innerText = `${currentPlanSec} / ${p.sec || 0} шт (${secPct}%)`;
+            secBarEl.style.width = secPct + '%';
+        }
     }
 
     // --- ВВОД ДАННЫХ ---
@@ -1651,13 +1699,25 @@
 
         try {
             const uName = localStorage.getItem('resurs_user') || 'Николай Сергеевич';
+
+            // --- КЛЮЧЕВОЕ ОБНОВЛЕНИЕ ДЛЯ ИИ-ВЕРЫ ---
+            // Собираем то, что вы сейчас видите на экране, и «невидимо» подшиваем к вашему вопросу
+            let contextStr = `\n\n[ДАННЫЕ НА ЭКРАНЕ ПОЛЬЗОВАТЕЛЯ ЗА ВЫБРАННЫЙ ПЕРИОД]:
+            - Выручка ДДС: ${appData.totalRevenue} руб, из них продления ${appData.secondaryRevenue} руб (${appData.secondarySalesCount} шт).
+            - Расходы: ${appData.totalExpenses} руб, Маркетинг: ${appData.marketingSpend} руб.
+            - Лиды всего: ${appData.leads}, Записи: ${appData.bookings}, Пришло: ${appData.trials}, Купили: ${appData.primarySales}.
+            - Источники трафика (шт): ${JSON.stringify(appData.leadsBySource)}.
+            - Проданные абонементы (SKU): ${JSON.stringify(appData.salesBySku)}.`;
+
+            const enhancedPrompt = userText + contextStr;
+
             const res = await fetch(BACKEND_URL, {
                 method: 'POST',
                 headers: { 
                     'Content-Type': 'application/json', 
                     'X-Api-Token': BACKEND_TOKEN 
                 },
-                body: JSON.stringify({ action: 'vera_analyze', prompt: userText, user_name: uName })
+                body: JSON.stringify({ action: 'vera_analyze', prompt: enhancedPrompt, user_name: uName })
             });
 
             if (res.ok) {
