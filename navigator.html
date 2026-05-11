@@ -73,6 +73,7 @@
             --font-serif: 'Cormorant Garamond', serif;
             --glass-bg: rgba(10, 10, 25, 0.65);
             --glass-border: 1px solid rgba(197, 160, 89, 0.3);
+            --header-bg: rgba(8, 8, 20, 0.7); /* 70% прозрачность для темной шапки */
             --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
@@ -83,6 +84,7 @@
             --text-dim: rgba(8, 8, 20, 0.6);
             --glass-bg: rgba(255, 255, 255, 0.85);
             --glass-border: 1px solid rgba(0, 0, 0, 0.1);
+            --header-bg: rgba(244, 244, 249, 0.7); /* 70% прозрачность для светлой шапки */
         }
         :root.light-theme body { background-image: none; color: var(--text-main); }
         :root.light-theme .state-card { background: rgba(0, 0, 0, 0.03); border-color: rgba(0,0,0,0.05); }
@@ -99,38 +101,35 @@
             color: var(--text-main);
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
             margin: 0;
-            padding: 40px 20px;
+            padding: 100px 20px 40px; /* Увеличен отступ сверху из-за фиксированной шапки */
             display: flex;
             justify-content: center;
             transition: var(--transition);
         }
 
-        .container {
-            max-width: 900px;
-            width: 100%;
-            background: var(--glass-bg);
-            backdrop-filter: blur(25px) saturate(180%);
-            -webkit-backdrop-filter: blur(25px) saturate(180%);
-            border-radius: 24px;
-            border: var(--glass-border);
-            padding: 50px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-            transition: var(--transition);
-        }
-
+        /* --- ФИКСИРОВАННАЯ ШАПКА СО СТЕКЛОМ --- */
         .header-top { 
-            position: relative; 
+            position: fixed; 
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            background: var(--header-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: var(--glass-border);
             display: flex; 
             justify-content: center; 
             align-items: center; 
-            margin-bottom: 30px; 
+            z-index: 1000;
+            transition: var(--transition);
         }
         .header-top img { height: 40px; border-radius: 8px; transition: var(--transition); }
         .header-top img:hover { opacity: 0.8; }
 
         .back-btn {
             position: absolute;
-            left: 0;
+            left: 20px;
             color: var(--text-dim);
             text-decoration: none;
             font-size: 11px;
@@ -140,13 +139,12 @@
             align-items: center;
             gap: 8px;
             transition: var(--transition);
-            z-index: 10;
         }
         .back-btn:hover { color: var(--accent-gold); transform: translateX(-4px); }
 
         .theme-btn {
             position: absolute;
-            right: 0;
+            right: 20px;
             background: transparent; 
             border: 1px solid rgba(255,255,255,0.15); 
             border-radius: 8px; 
@@ -160,6 +158,19 @@
             transition: var(--transition);
         }
         .theme-btn:hover { background: rgba(197, 160, 89, 0.1); border-color: var(--accent-gold); }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: var(--glass-bg);
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border-radius: 24px;
+            border: var(--glass-border);
+            padding: 50px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            transition: var(--transition);
+        }
 
         h1 { font-family: var(--font-serif); text-align: center; font-size: 42px; margin-bottom: 10px; font-weight: 300; letter-spacing: 1px; line-height: 1.2; }
         .subtitle { text-align: center; color: var(--text-dim); margin-bottom: 40px; font-size: 16px; line-height: 1.6; max-width: 600px; margin-left: auto; margin-right: auto;}
@@ -271,26 +282,27 @@
         }
         @media (max-width: 500px) {
             .back-text { display: none; }
-            .back-btn { font-size: 20px; left: 0px; top: 10px; }
-            .theme-btn { top: 10px; }
+            .back-btn { font-size: 20px; left: 15px; }
+            .theme-btn { right: 15px; }
         }
     </style>
 </head>
 <body>
 
+<div class="header-top">
+    <a href="index.html" class="back-btn">
+        <span style="font-size: 18px; line-height: 1; padding-bottom: 2px;">←</span> 
+        <span class="back-text">На главную</span>
+    </a>
+    <a href="index.html" style="display: flex;">
+        <img src="logo_header_final.png" alt="РЕСУРС Логотип">
+    </a>
+    <button id="themeToggleBtn" class="theme-btn" onclick="toggleTheme()">Свет</button>
+</div>
+
 <div class="container">
-    <div class="header-top">
-        <a href="index.html" class="back-btn">
-            <span style="font-size: 18px; line-height: 1; padding-bottom: 2px;">←</span> 
-            <span class="back-text">На главную</span>
-        </a>
-        <a href="index.html" style="display: flex;">
-            <img src="logo_header_final.png" alt="РЕСУРС Логотип">
-        </a>
-        <button id="themeToggleBtn" class="theme-btn" onclick="toggleTheme()">Свет</button>
-    </div>
-    
-    <h1 style="display: none;">Диагностика состояния и выбор тренировки | РЕСУРС Сыктывкар</h1> <h1>Мы тебя понимаем.</h1>
+    <h1 style="display: none;">Диагностика состояния и выбор тренировки | РЕСУРС Сыктывкар</h1> 
+    <h1>Мы тебя понимаем.</h1>
     <p class="subtitle">Как ваше тело чувствует себя прямо сейчас? Выберите свое состояние, и мы подскажем практику, которая вернет вам ваш РЕСУРС.</p>
 
     <div class="states-grid" id="statesGrid">
