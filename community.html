@@ -2,6 +2,7 @@
 <html lang="ru">
 <head>
     <script type="text/javascript">
+        // --- Yandex.Metrika counter ---
         (function(m,e,t,r,i,k,a){
             m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
             m[i].l=1*new Date();
@@ -9,6 +10,8 @@
             k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
         })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108177329', 'ym');
         ym(108177329, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+
+        // --- Top.Mail.Ru counter ---
         var _tmr = window._tmr || (window._tmr = []);
         _tmr.push({id: "3755240", type: "pageView", start: (new Date()).getTime()});
         (function (d, w, id) {
@@ -28,6 +31,9 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Живая статистика и результаты опросов резидентов фитнес-студии РЕСУРС в Сыктывкаре. Узнайте, почему сотни женщин доверяют нам свое здоровье и красоту.">
+    <meta name="keywords" content="отзывы растяжка Сыктывкар, результаты тренировок фитнес, статистика студии Ресурс, фитнес комьюнити">
+    
     <title>Выбор комьюнити | РЕСУРС</title>
     <link rel="icon" type="image/png" href="logo_header_final.png">
     
@@ -35,6 +41,20 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Manrope:wght@200;300;400;500;600&display=swap" rel="stylesheet">
     
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Комьюнити и Статистика студии РЕСУРС",
+      "description": "Живой дашборд с результатами опросов наших резидентов. Честные данные о тренировках и предпочтениях.",
+      "url": "https://resurs-stretch.ru/community.html",
+      "publisher": {
+        "@type": "Organization",
+        "name": "РЕСУРС - Студия фитнеса и растяжки"
+      }
+    }
+    </script>
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <style>
@@ -42,12 +62,29 @@
             --bg-deep: #080814; 
             --accent-gold: #C5A059; 
             --text-main: #F4F4F9;
+            --text-dim: rgba(244, 244, 249, 0.6);
             --font-main: 'Manrope', sans-serif;
             --font-serif: 'Cormorant Garamond', serif;
             --glass-bg: rgba(10, 10, 25, 0.65);
             --glass-border: 1px solid rgba(197, 160, 89, 0.3);
             --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
+
+        /* --- СВЕТЛАЯ ТЕМА --- */
+        :root.light-theme {
+            --bg-deep: #F4F4F9;
+            --text-main: #080814;
+            --text-dim: rgba(8, 8, 20, 0.6);
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        :root.light-theme body { background-image: none; color: var(--text-main); }
+        :root.light-theme .chart-card { background: rgba(0, 0, 0, 0.02); border-color: rgba(0,0,0,0.05); }
+        :root.light-theme .theme-btn { border-color: rgba(0,0,0,0.2); color: var(--text-main); }
+        :root.light-theme .modal-content { background: #F4F4F9; border-color: rgba(0,0,0,0.1); }
+        :root.light-theme .modal-content h2 { color: #080814 !important; }
+        :root.light-theme .modal-input { background: #EAEAEA; border-color: rgba(0,0,0,0.2); color: #080814; }
+        :root.light-theme .modal-input:focus { border-color: var(--accent-gold); }
 
         body {
             font-family: var(--font-main);
@@ -58,6 +95,7 @@
             padding: 40px 20px;
             display: flex;
             justify-content: center;
+            transition: var(--transition);
         }
 
         .container {
@@ -70,9 +108,9 @@
             border: var(--glass-border);
             padding: 50px;
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            transition: var(--transition);
         }
 
-        /* Обновленный хедер для кнопки назад */
         .header-top { 
             position: relative; 
             display: flex; 
@@ -86,7 +124,7 @@
         .back-btn {
             position: absolute;
             left: 0;
-            color: rgba(244, 244, 249, 0.6);
+            color: var(--text-dim);
             text-decoration: none;
             font-size: 11px;
             text-transform: uppercase;
@@ -97,13 +135,27 @@
             transition: var(--transition);
             z-index: 10;
         }
-        .back-btn:hover {
-            color: var(--accent-gold);
-            transform: translateX(-4px);
+        .back-btn:hover { color: var(--accent-gold); transform: translateX(-4px); }
+
+        .theme-btn {
+            position: absolute;
+            right: 0;
+            background: transparent; 
+            border: 1px solid rgba(255,255,255,0.15); 
+            border-radius: 8px; 
+            padding: 6px 14px; 
+            color: var(--accent-gold); 
+            font-family: var(--font-main); 
+            font-size: 10px; 
+            font-weight: 600;
+            text-transform: uppercase; 
+            cursor: pointer; 
+            transition: var(--transition);
         }
+        .theme-btn:hover { background: rgba(197, 160, 89, 0.1); border-color: var(--accent-gold); }
 
         h1 { font-family: var(--font-serif); text-align: center; font-size: 42px; margin-bottom: 10px; font-weight: 300; letter-spacing: 2px; }
-        .subtitle { text-align: center; color: rgba(244, 244, 249, 0.6); margin-bottom: 50px; font-size: 16px; line-height: 1.6; }
+        .subtitle { text-align: center; color: var(--text-dim); margin-bottom: 50px; font-size: 16px; line-height: 1.6; }
 
         .dashboard-grid {
             display: grid;
@@ -116,6 +168,7 @@
             padding: 30px;
             border-radius: 16px;
             border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
         }
 
         .chart-card.full-width { grid-column: 1 / -1; }
@@ -137,6 +190,7 @@
             background: rgba(197, 160, 89, 0.05);
             border: 1px solid rgba(197, 160, 89, 0.3);
             border-radius: 16px;
+            transition: var(--transition);
         }
         
         .cta-box h2 { font-family: var(--font-serif); font-size: 32px; font-weight: 300; margin-bottom: 15px; }
@@ -155,6 +209,7 @@
             letter-spacing: 3px;
             transition: var(--transition);
             cursor: pointer;
+            border: none;
         }
 
         .btn-test-drive:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(197, 160, 89, 0.4); }
@@ -169,6 +224,7 @@
             width: 100%; max-width: 450px; padding: 50px 40px; position: relative;
             text-align: center; border-radius: 24px; border: 1px solid rgba(197, 160, 89, 0.3);
             background: rgba(10, 10, 25, 0.85); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+            transition: var(--transition);
         }
         .modal-close {
             position: absolute; top: 20px; right: 25px; font-size: 30px;
@@ -198,6 +254,7 @@
         @media (max-width: 500px) {
             .back-text { display: none; }
             .back-btn { font-size: 20px; left: 0px; top: 10px; }
+            .theme-btn { top: 10px; }
         }
     </style>
 </head>
@@ -212,9 +269,10 @@
         <a href="index.html" style="display: flex;">
             <img src="logo_header_final.png" alt="РЕСУРС Логотип">
         </a>
+        <button id="themeToggleBtn" class="theme-btn" onclick="toggleTheme()">Свет</button>
     </div>
     
-    <h1>Живой пульс студии «РЕСУРС»</h1>
+    <h1 style="display: none;">РЕСУРС: Статистика и результаты фитнес-тренировок</h1> <h1 style="font-size: 42px; margin-bottom: 10px;">Живой пульс студии «РЕСУРС»</h1>
     <p class="subtitle" id="dynamic-subtitle">Узнайте, почему сотни женщин Сыктывкара доверяют нам свое здоровье.<br>Данные основаны на честных ответах наших резидентов.</p>
 
     <div class="dashboard-grid">
@@ -237,7 +295,7 @@
 
     <div class="cta-box">
         <h2>Пора заняться собой</h2>
-        <p style="opacity: 0.7; font-size: 15px;">Тысячи слов не заменят одного ощущения легкости в теле.</p>
+        <p style="color: var(--text-dim); font-size: 15px;">Тысячи слов не заменят одного ощущения легкости в теле.</p>
         <button class="btn-test-drive" id="openPaymentBtn">Ваш тест-драйв • 990₽</button>
     </div>
 </div>
@@ -247,7 +305,7 @@
         <div class="modal-close" onclick="closePaymentModal()">&times;</div>
         
         <h2 style="font-family: var(--font-serif); font-size: 32px; margin-bottom: 15px; color: #fff;">Шаг к ресурсу</h2>
-        <p style="margin-bottom: 30px; font-size: 14px; color: rgba(244, 244, 249, 0.6);">Оставьте контакт забронировать место. Мы перенаправим вас на безопасную оплату.</p>
+        <p style="margin-bottom: 30px; font-size: 14px; color: var(--text-dim);">Оставьте контакт забронировать место. Мы перенаправим вас на безопасную оплату.</p>
         
         <form id="paymentLeadForm">
             <input type="text" id="payName" class="modal-input" placeholder="ВАШЕ ИМЯ" required>
@@ -256,18 +314,60 @@
             <button type="submit" id="paySubmitBtn" class="modal-btn">Оплатить 990₽</button>
             
             <div style="margin-top: 20px; display: flex; align-items: center; justify-content: center; gap: 10px; opacity: 0.5;">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-2h2v2h-2zm0-4V7h2v6h-2z"/></svg>
-                <span style="font-size: 10px; text-transform: uppercase; letter-spacing: 1px;">Защищенный платеж Robokassa</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color: var(--text-main)"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-2h2v2h-2zm0-4V7h2v6h-2z"/></svg>
+                <span style="font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-main)">Защищенный платеж Robokassa</span>
             </div>
         </form>
     </div> 
 </div>
 
 <script>
+    // --- ПЕРЕКЛЮЧЕНИЕ ТЕМЫ ---
+    let currentChartColor = "rgba(244, 244, 249, 0.6)"; // По умолчанию темная тема
+
+    function toggleTheme() {
+        const root = document.documentElement;
+        const btn = document.getElementById('themeToggleBtn');
+        if (root.classList.contains('light-theme')) {
+            root.classList.remove('light-theme');
+            btn.innerText = 'Свет';
+            localStorage.setItem('resurs_theme', 'dark');
+            currentChartColor = "rgba(244, 244, 249, 0.6)";
+        } else {
+            root.classList.add('light-theme');
+            btn.innerText = 'Тень';
+            localStorage.setItem('resurs_theme', 'light');
+            currentChartColor = "rgba(8, 8, 20, 0.6)";
+        }
+        // Перерисовываем графики под новую тему, если они уже загружены
+        if (window.myChartsLoaded) { loadStats(); }
+    }
+
+    if (localStorage.getItem('resurs_theme') === 'light') {
+        document.documentElement.classList.add('light-theme');
+        document.getElementById('themeToggleBtn').innerText = 'Тень';
+        currentChartColor = "rgba(8, 8, 20, 0.6)";
+    }
+
+    // Универсальный коллбэк для тултипов (чтобы показывать проценты)
+    const percentageTooltip = {
+        callbacks: {
+            label: function(context) {
+                let label = context.label || '';
+                if (label) { label += ': '; }
+                let total = context.chart._metasets[context.datasetIndex].total;
+                let value = context.raw;
+                let percentage = Math.round((value / total) * 100) + '%';
+                return label + value + ' чел. (' + percentage + ')';
+            }
+        }
+    };
+
     /* ==========================================
        ЧАСТЬ 1: ЗАГРУЗКА И ОТРИСОВКА СТАТИСТИКИ 
        ========================================== */
     const STATS_URL = 'https://functions.yandexcloud.net/d4e09bhn4sp9p2sqpt7u';
+    let chartInstances = []; // Храним ссылки на графики для их обновления при смене темы
 
     async function loadStats() {
         try {
@@ -279,42 +379,47 @@
             subtitle.innerHTML = `Узнайте, почему сотни женщин Сыктывкара доверяют нам свое здоровье.<br>Данные основаны на честных ответах наших резидентов.<br><br><span style="color: var(--accent-gold); font-size: 12px; letter-spacing: 2px; text-transform: uppercase;">ОБНОВЛЕНО НА ОСНОВЕ ${data.count} АНКЕТ</span>`;
 
             drawCharts(data);
+            window.myChartsLoaded = true;
         } catch (error) {
             console.error('Не удалось загрузить статистику:', error);
         }
     }
 
     function drawCharts(data) {
-        Chart.defaults.font.family = "'Manrope', sans-serif";
-        Chart.defaults.color = "rgba(244, 244, 249, 0.6)";
+        // Уничтожаем старые графики перед перерисовкой (важно при смене темы)
+        chartInstances.forEach(chart => chart.destroy());
+        chartInstances = [];
 
-        new Chart(document.getElementById('vibeChart'), {
+        Chart.defaults.font.family = "'Manrope', sans-serif";
+        Chart.defaults.color = currentChartColor;
+
+        const vibeCtx = new Chart(document.getElementById('vibeChart'), {
             type: 'doughnut',
             data: {
                 labels: ['Мягкий ресурс', 'Активный ресурс'],
                 datasets: [{
                     data: data.vibe_data,
-                    backgroundColor: ['#C5A059', 'rgba(255, 255, 255, 0.15)'],
-                    borderColor: '#080814', borderWidth: 2
+                    backgroundColor: ['#C5A059', 'rgba(197, 160, 89, 0.3)'],
+                    borderWidth: 0
                 }]
             },
-            options: { cutout: '75%', plugins: { legend: { position: 'bottom', labels: { padding: 20 } } } }
+            options: { cutout: '75%', plugins: { legend: { position: 'bottom', labels: { padding: 20 } }, tooltip: percentageTooltip } }
         });
 
-        new Chart(document.getElementById('priorityChart'), {
+        const priorityCtx = new Chart(document.getElementById('priorityChart'), {
             type: 'doughnut',
             data: {
                 labels: ['Экспертность', 'Атмосфера', 'Удобство', 'Цена'],
                 datasets: [{
                     data: data.priority_data,
-                    backgroundColor: ['#C5A059', '#D9B97F', 'rgba(255, 255, 255, 0.3)', 'rgba(255, 255, 255, 0.1)'],
-                    borderColor: '#080814', borderWidth: 2
+                    backgroundColor: ['#C5A059', '#D9B97F', 'rgba(197, 160, 89, 0.5)', 'rgba(197, 160, 89, 0.2)'],
+                    borderWidth: 0
                 }]
             },
-            options: { cutout: '75%', plugins: { legend: { position: 'bottom', labels: { padding: 20 } } } }
+            options: { cutout: '75%', plugins: { legend: { position: 'bottom', labels: { padding: 20 } }, tooltip: percentageTooltip } }
         });
 
-        new Chart(document.getElementById('problemsChart'), {
+        const problemsCtx = new Chart(document.getElementById('problemsChart'), {
             type: 'bar',
             data: {
                 labels: ['Боли в спине и шее', 'Отеки и вес', 'Стресс', 'Усталость'],
@@ -326,15 +431,16 @@
             },
             options: {
                 scales: { 
-                    y: { beginAtZero: true, grid: { color: 'rgba(255, 255, 255, 0.05)' } },
+                    y: { beginAtZero: true, grid: { color: 'rgba(197, 160, 89, 0.1)' } },
                     x: { grid: { display: false } }
                 },
-                plugins: { legend: { display: false } }
+                plugins: { legend: { display: false }, tooltip: percentageTooltip }
             }
         });
+
+        chartInstances.push(vibeCtx, priorityCtx, problemsCtx);
     }
 
-    // Инициализация загрузки статистики при открытии страницы
     loadStats();
 
     /* ==========================================
@@ -344,6 +450,7 @@
     
     document.getElementById('openPaymentBtn').addEventListener('click', function(e) {
         e.preventDefault();
+        try { ym(108177329, 'reachGoal', 'TEST_DRIVE_CLICK'); } catch(e){} // Метрика
         paymentModal.style.display = 'flex';
         document.body.style.overflow = 'hidden'; 
     });
@@ -353,15 +460,14 @@
         document.body.style.overflow = 'auto'; 
     }
 
-    // URL Яндекс.Функции, которая отвечает за анкеты и пересылку в VK
     const VK_LEAD_URL = "https://functions.yandexcloud.net/d4eg243jthg6ruglntjj";
-    
-    // Постоянная ссылка из Робокассы
     const ROBOKASSA_LINK = "https://auth.robokassa.ru/merchant/Invoice/zICwctvJTEqrASoc9pbzYQ"; 
 
     document.getElementById('paymentLeadForm').addEventListener('submit', async function(e) {
         e.preventDefault();
         
+        try { ym(108177329, 'reachGoal', 'TEST_DRIVE_PAY_SUBMIT'); } catch(e){} // Метрика
+
         const btn = document.getElementById('paySubmitBtn');
         const name = document.getElementById('payName').value;
         const phone = document.getElementById('payPhone').value;
@@ -371,7 +477,6 @@
         btn.disabled = true;
 
         try {
-            // Отправляем лид в Яндекс.Функцию (Мозг), которая перешлет его в VK
             await fetch(VK_LEAD_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -384,7 +489,6 @@
         } catch (error) {
             console.error('Ошибка логирования лида:', error);
         } finally {
-            // Перенаправление на Робокассу
             window.location.href = ROBOKASSA_LINK;
         }
     });
