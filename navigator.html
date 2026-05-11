@@ -101,10 +101,11 @@
             color: var(--text-main);
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
             margin: 0;
-            padding: 100px 20px 40px; /* Увеличен отступ сверху из-за фиксированной шапки */
+            padding: 100px 20px 40px; /* Отступ сверху из-за фиксированной шапки */
             display: flex;
             justify-content: center;
             transition: var(--transition);
+            box-sizing: border-box;
         }
 
         /* --- ФИКСИРОВАННАЯ ШАПКА СО СТЕКЛОМ --- */
@@ -119,32 +120,24 @@
             -webkit-backdrop-filter: blur(15px);
             border-bottom: var(--glass-border);
             display: flex; 
-            justify-content: center; 
+            justify-content: space-between; /* Лого слева, кнопка справа */
             align-items: center; 
+            padding: 0 5%; /* Отступы по краям */
             z-index: 1000;
+            box-sizing: border-box;
             transition: var(--transition);
         }
+        
+        .header-top .logo-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        
         .header-top img { height: 40px; border-radius: 8px; transition: var(--transition); }
         .header-top img:hover { opacity: 0.8; }
 
-        .back-btn {
-            position: absolute;
-            left: 20px;
-            color: var(--text-dim);
-            text-decoration: none;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: var(--transition);
-        }
-        .back-btn:hover { color: var(--accent-gold); transform: translateX(-4px); }
-
         .theme-btn {
-            position: absolute;
-            right: 20px;
             background: transparent; 
             border: 1px solid rgba(255,255,255,0.15); 
             border-radius: 8px; 
@@ -160,14 +153,15 @@
         .theme-btn:hover { background: rgba(197, 160, 89, 0.1); border-color: var(--accent-gold); }
 
         .container {
-            max-width: 900px;
+            max-width: 1000px; /* Сделал шире для ПК */
             width: 100%;
             background: var(--glass-bg);
             backdrop-filter: blur(25px) saturate(180%);
             -webkit-backdrop-filter: blur(25px) saturate(180%);
-            border-radius: 24px;
+            border-radius: 16px; /* Строгие углы */
             border: var(--glass-border);
             padding: 50px;
+            box-sizing: border-box;
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
             transition: var(--transition);
         }
@@ -187,7 +181,7 @@
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(255, 255, 255, 0.05);
             padding: 25px;
-            border-radius: 16px;
+            border-radius: 12px; /* Строгие углы */
             cursor: pointer;
             transition: var(--transition);
             text-align: left;
@@ -212,7 +206,7 @@
             display: none;
             background: rgba(197, 160, 89, 0.05);
             border: 1px solid rgba(197, 160, 89, 0.3);
-            border-radius: 16px;
+            border-radius: 12px;
             padding: 40px;
             text-align: center;
             margin-bottom: 50px;
@@ -226,7 +220,9 @@
 
         .btn-primary {
             display: inline-block; background: var(--accent-gold); color: #000;
-            padding: 16px 35px; border-radius: 50px; font-weight: 600; text-decoration: none;
+            padding: 16px 35px; 
+            border-radius: 12px; /* Убрал овальность, сделал строгий прямоугольник */
+            font-weight: 600; text-decoration: none;
             font-size: 12px; text-transform: uppercase; letter-spacing: 2px;
             transition: var(--transition); border: none; cursor: pointer;
         }
@@ -239,7 +235,7 @@
         .link-btn {
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             padding: 20px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px; text-decoration: none; color: var(--text-main); transition: var(--transition);
+            border-radius: 12px; text-decoration: none; color: var(--text-main); transition: var(--transition);
             text-align: center;
         }
         .link-btn:hover { border-color: var(--accent-gold); background: rgba(197, 160, 89, 0.05); transform: translateY(-3px);}
@@ -253,10 +249,13 @@
             border-radius: 16px; padding: 30px; text-align: center; margin-bottom: 40px;
         }
         .vk-btn {
-            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+            display: flex; /* Flex для центровки */
+            align-items: center; justify-content: center; gap: 10px;
             background: #0077FF; color: #fff; padding: 18px 30px; border-radius: 12px;
             text-decoration: none; font-weight: 600; font-size: 14px; transition: var(--transition);
-            margin-top: 15px; width: 100%; max-width: 400px;
+            margin: 15px auto 0; /* Автоматические отступы по бокам выравнивают кнопку по центру */
+            width: 100%; max-width: 400px;
+            box-sizing: border-box; /* Защита от съезжания вбок на смартфонах */
         }
         .vk-btn:hover { background: #0063D6; box-shadow: 0 10px 25px rgba(0, 119, 255, 0.3); transform: translateY(-2px);}
 
@@ -266,7 +265,7 @@
         .app-btn {
             background: linear-gradient(90deg, rgba(255,255,255,0.02) 25%, rgba(197, 160, 89, 0.15) 50%, rgba(255,255,255,0.02) 75%);
             background-size: 200% auto; border: 1px solid rgba(197, 160, 89, 0.3);
-            padding: 12px 20px; border-radius: 8px; display: flex; align-items: center; gap: 10px; text-decoration: none; color: #fff;
+            padding: 12px 20px; border-radius: 10px; display: flex; align-items: center; gap: 10px; text-decoration: none; color: #fff;
             animation: shimmer 4s infinite linear; transition: var(--transition);
         }
         .app-btn:hover { border-color: var(--accent-gold); box-shadow: 0 5px 15px rgba(197, 160, 89, 0.2); transform: translateY(-2px);}
@@ -281,20 +280,14 @@
             h1 { font-size: 32px; }
         }
         @media (max-width: 500px) {
-            .back-text { display: none; }
-            .back-btn { font-size: 20px; left: 15px; }
-            .theme-btn { right: 15px; }
+            .header-top { padding: 0 20px; }
         }
     </style>
 </head>
 <body>
 
 <div class="header-top">
-    <a href="index.html" class="back-btn">
-        <span style="font-size: 18px; line-height: 1; padding-bottom: 2px;">←</span> 
-        <span class="back-text">На главную</span>
-    </a>
-    <a href="index.html" style="display: flex;">
+    <a href="index.html" class="logo-link">
         <img src="logo_header_final.png" alt="РЕСУРС Логотип">
     </a>
     <button id="themeToggleBtn" class="theme-btn" onclick="toggleTheme()">Свет</button>
@@ -354,7 +347,8 @@
     <div class="expert-block">
         <h3 style="font-family: var(--font-serif); font-size: 28px; margin-bottom: 10px;">Нужен совет эксперта?</h3>
         <p style="font-size: 14px; opacity: 0.8; max-width: 500px; margin: 0 auto;">Если вы сомневаетесь, с чего начать, напишите нашему специалисту Вере. Она бесплатно проконсультирует вас и подберет идеальный старт.</p>
-        <a href="https://vk.me/-221142875" target="_blank" class="vk-btn" onclick="ym(108177329, 'reachGoal', 'VK_VERA_CLICK');">
+        
+        <a href="https://vk.me/-221142875" class="vk-btn" onclick="ym(108177329, 'reachGoal', 'VK_VERA_CLICK');">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.162 18.994C6.541 18.994 2.766 14.444 2.618 6H5.972C6.07 12.392 8.7 15.111 10.741 15.658V6H14.004V11.517C16.015 11.298 18.17 9.034 18.895 6H22.158C21.579 9.581 18.98 12.064 17.155 13.068C18.98 13.87 21.908 16.059 22.863 20H19.264C18.491 17.265 16.353 15.158 14.004 14.884V20H13.162V18.994Z" fill="currentColor"/></svg>
             Написать Вере ВКонтакте
         </a>
