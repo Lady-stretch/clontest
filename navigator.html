@@ -73,7 +73,7 @@
             --font-serif: 'Cormorant Garamond', serif;
             --glass-bg: rgba(10, 10, 25, 0.65);
             --glass-border: 1px solid rgba(197, 160, 89, 0.3);
-            --header-bg: rgba(8, 8, 20, 0.7); /* 70% прозрачность для темной шапки */
+            --header-bg: rgba(8, 8, 20, 0.7); 
             --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
@@ -84,7 +84,7 @@
             --text-dim: rgba(8, 8, 20, 0.6);
             --glass-bg: rgba(255, 255, 255, 0.85);
             --glass-border: 1px solid rgba(0, 0, 0, 0.1);
-            --header-bg: rgba(244, 244, 249, 0.7); /* 70% прозрачность для светлой шапки */
+            --header-bg: rgba(244, 244, 249, 0.7); 
         }
         :root.light-theme body { background-image: none; color: var(--text-main); }
         :root.light-theme .state-card { background: rgba(0, 0, 0, 0.03); border-color: rgba(0,0,0,0.05); }
@@ -101,7 +101,7 @@
             color: var(--text-main);
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
             margin: 0;
-            padding: 100px 20px 40px; /* Отступ сверху из-за фиксированной шапки */
+            padding: 100px 20px 40px; 
             display: flex;
             justify-content: center;
             transition: var(--transition);
@@ -120,9 +120,9 @@
             -webkit-backdrop-filter: blur(15px);
             border-bottom: var(--glass-border);
             display: flex; 
-            justify-content: space-between; /* Лого слева, кнопка справа */
+            justify-content: space-between; 
             align-items: center; 
-            padding: 0 5%; /* Отступы по краям */
+            padding: 0 5%; 
             z-index: 1000;
             box-sizing: border-box;
             transition: var(--transition);
@@ -132,10 +132,25 @@
             display: flex;
             align-items: center;
             text-decoration: none;
+            z-index: 2;
         }
         
         .header-top img { height: 40px; border-radius: 8px; transition: var(--transition); }
         .header-top img:hover { opacity: 0.8; }
+
+        /* Текст РЕСУРС строго по центру */
+        .header-title {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: var(--font-serif);
+            font-size: 24px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            font-weight: 500;
+            z-index: 1;
+        }
 
         .theme-btn {
             background: transparent; 
@@ -149,16 +164,17 @@
             text-transform: uppercase; 
             cursor: pointer; 
             transition: var(--transition);
+            z-index: 2;
         }
         .theme-btn:hover { background: rgba(197, 160, 89, 0.1); border-color: var(--accent-gold); }
 
         .container {
-            max-width: 1000px; /* Сделал шире для ПК */
+            max-width: 1000px; 
             width: 100%;
             background: var(--glass-bg);
             backdrop-filter: blur(25px) saturate(180%);
             -webkit-backdrop-filter: blur(25px) saturate(180%);
-            border-radius: 16px; /* Строгие углы */
+            border-radius: 16px; 
             border: var(--glass-border);
             padding: 50px;
             box-sizing: border-box;
@@ -181,7 +197,7 @@
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(255, 255, 255, 0.05);
             padding: 25px;
-            border-radius: 12px; /* Строгие углы */
+            border-radius: 12px; 
             cursor: pointer;
             transition: var(--transition);
             text-align: left;
@@ -221,7 +237,7 @@
         .btn-primary {
             display: inline-block; background: var(--accent-gold); color: #000;
             padding: 16px 35px; 
-            border-radius: 12px; /* Убрал овальность, сделал строгий прямоугольник */
+            border-radius: 12px; 
             font-weight: 600; text-decoration: none;
             font-size: 12px; text-transform: uppercase; letter-spacing: 2px;
             transition: var(--transition); border: none; cursor: pointer;
@@ -249,13 +265,13 @@
             border-radius: 16px; padding: 30px; text-align: center; margin-bottom: 40px;
         }
         .vk-btn {
-            display: flex; /* Flex для центровки */
+            display: flex; 
             align-items: center; justify-content: center; gap: 10px;
             background: #0077FF; color: #fff; padding: 18px 30px; border-radius: 12px;
             text-decoration: none; font-weight: 600; font-size: 14px; transition: var(--transition);
-            margin: 15px auto 0; /* Автоматические отступы по бокам выравнивают кнопку по центру */
+            margin: 15px auto 0; 
             width: 100%; max-width: 400px;
-            box-sizing: border-box; /* Защита от съезжания вбок на смартфонах */
+            box-sizing: border-box; 
         }
         .vk-btn:hover { background: #0063D6; box-shadow: 0 10px 25px rgba(0, 119, 255, 0.3); transform: translateY(-2px);}
 
@@ -281,6 +297,7 @@
         }
         @media (max-width: 500px) {
             .header-top { padding: 0 20px; }
+            .header-title { font-size: 20px; }
         }
     </style>
 </head>
@@ -290,6 +307,9 @@
     <a href="index.html" class="logo-link">
         <img src="logo_header_final.png" alt="РЕСУРС Логотип">
     </a>
+    
+    <div class="header-title">РЕСУРС</div>
+    
     <button id="themeToggleBtn" class="theme-btn" onclick="toggleTheme()">Свет</button>
 </div>
 
@@ -348,7 +368,7 @@
         <h3 style="font-family: var(--font-serif); font-size: 28px; margin-bottom: 10px;">Нужен совет эксперта?</h3>
         <p style="font-size: 14px; opacity: 0.8; max-width: 500px; margin: 0 auto;">Если вы сомневаетесь, с чего начать, напишите нашему специалисту Вере. Она бесплатно проконсультирует вас и подберет идеальный старт.</p>
         
-        <a href="https://vk.me/-221142875" class="vk-btn" onclick="ym(108177329, 'reachGoal', 'VK_VERA_CLICK');">
+        <a href="#" class="vk-btn" onclick="openVK(event)">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.162 18.994C6.541 18.994 2.766 14.444 2.618 6H5.972C6.07 12.392 8.7 15.111 10.741 15.658V6H14.004V11.517C16.015 11.298 18.17 9.034 18.895 6H22.158C21.579 9.581 18.98 12.064 17.155 13.068C18.98 13.87 21.908 16.059 22.863 20H19.264C18.491 17.265 16.353 15.158 14.004 14.884V20H13.162V18.994Z" fill="currentColor"/></svg>
             Написать Вере ВКонтакте
         </a>
@@ -389,6 +409,28 @@
     if (localStorage.getItem('resurs_theme') === 'light') {
         document.documentElement.classList.add('light-theme');
         document.getElementById('themeToggleBtn').innerText = 'Тень';
+    }
+
+    // --- ФУНКЦИЯ ДЛЯ ОТКРЫТИЯ ПРИЛОЖЕНИЯ ВК ---
+    function openVK(e) {
+        e.preventDefault();
+        try { ym(108177329, 'reachGoal', 'VK_VERA_CLICK'); } catch(err){}
+        
+        // Проверяем, мобильное ли это устройство
+        var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        
+        if (isMobile) {
+            // Пытаемся открыть через deep link напрямую в приложение
+            window.location.href = 'vk://vk.com/write-221142875';
+            
+            // Если приложение не установлено, через полсекунды откроется браузер
+            setTimeout(function() {
+                window.location.href = 'https://vk.com/write-221142875';
+            }, 500);
+        } else {
+            // Если это ПК, открываем обычную ссылку в новой вкладке
+            window.open('https://vk.com/write-221142875', '_blank');
+        }
     }
 
     // --- ЛОГИКА ИНТЕРАКТИВА (БАЗА ЗНАНИЙ) ---
