@@ -2,25 +2,45 @@
 <html lang="ru">
 <head>
     <script type="text/javascript">
-        // --- Yandex.Metrika (Advanced Tracking) ---
+        // --- Yandex.Metrika counter ---
         (function(m,e,t,r,i,k,a){
             m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
             m[i].l=1*new Date();
             for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
             k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
         })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108177329', 'ym');
-        ym(108177329, 'init', {ssr:true, webvisor:true, clickmap:true, trackLinks:true, accurateTrackBounce:true});
+        ym(108177329, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+
+        // --- Top.Mail.Ru counter ---
+        var _tmr = window._tmr || (window._tmr = []);
+        _tmr.push({id: "3755240", type: "pageView", start: (new Date()).getTime()});
+        (function (d, w, id) {
+            if (d.getElementById(id)) return;
+            var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
+            ts.src = "https://top-fwz1.mail.ru/js/code.js";
+            var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
+            if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
+        })(document, window, "tmr-code");
     </script>
-    
+    <noscript>
+        <div>
+            <img src="https://mc.yandex.ru/watch/108177329" style="position:absolute; left:-9999px;" alt="" />
+            <img src="https://top-fwz1.mail.ru/counter?id=3755240;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" />
+        </div>
+    </noscript>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Интерактивный калькулятор выгоды студии РЕСУРС. Узнайте, как получить налоговый вычет 13% и кэшбэк на тренировки в Сыктывкаре.">
+    <meta name="description" content="Интерактивный калькулятор выгоды студии РЕСУРС. Узнайте, как получить налоговый вычет 13%, кэшбэк и бонусы на тренировки в Сыктывкаре.">
     <meta name="keywords" content="налоговый вычет фитнес Сыктывкар, кэшбэк за спорт, выгода студия ресурс, стоимость тренировки растяжка">
     
     <title>Инвестиция в себя | Калькулятор выгоды РЕСУРС</title>
     <link rel="icon" type="image/png" href="logo_header_final.png">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Manrope:wght@200;400;600;800&display=swap" rel="stylesheet">
-
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Manrope:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -42,69 +62,134 @@
             --bg-deep: #080814; 
             --accent-gold: #C5A059; 
             --text-main: #F4F4F9;
-            --text-dim: rgba(244, 244, 249, 0.5);
-            --glass: rgba(10, 10, 25, 0.7);
-            --border: 1px solid rgba(197, 160, 89, 0.25);
-            --transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            --text-dim: rgba(244, 244, 249, 0.6);
+            --font-main: 'Manrope', sans-serif;
+            --font-serif: 'Cormorant Garamond', serif;
+            --glass-bg: rgba(10, 10, 25, 0.65);
+            --glass-border: 1px solid rgba(197, 160, 89, 0.3);
+            --header-bg: rgba(8, 8, 20, 0.7); 
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
+        /* --- СВЕТЛАЯ ТЕМА --- */
         :root.light-theme {
-            --bg-deep: #F4F4F9; 
-            --text-main: #080814; 
-            --text-dim: rgba(0, 0, 0, 0.5);
-            --glass: rgba(255, 255, 255, 0.8);
-            --border: 1px solid rgba(0, 0, 0, 0.1);
+            --bg-deep: #F4F4F9;
+            --text-main: #080814;
+            --text-dim: rgba(8, 8, 20, 0.6);
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: 1px solid rgba(0, 0, 0, 0.1);
+            --header-bg: rgba(244, 244, 249, 0.7); 
         }
+        :root.light-theme body { background-image: none; color: var(--text-main); }
+        :root.light-theme .theme-btn { border-color: rgba(0,0,0,0.2); color: var(--text-main); }
+        :root.light-theme .link-btn { background: rgba(0,0,0,0.05); color: var(--text-main); border-color: rgba(0,0,0,0.1); }
+        :root.light-theme .app-btn { color: #000; }
+        :root.light-theme .app-btn img { filter: invert(0); }
+        :root.light-theme .input-box { background: rgba(0,0,0,0.03); border-color: rgba(0,0,0,0.05); }
+        :root.light-theme .stat-card { background: rgba(0,0,0,0.02); border-color: rgba(0,0,0,0.05); }
+        :root.light-theme .info-alert { background: rgba(0,0,0,0.03); }
 
         body {
-            font-family: 'Manrope', sans-serif;
+            font-family: var(--font-main);
             background: var(--bg-deep);
             color: var(--text-main);
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
             margin: 0;
-            padding: 20px;
+            padding: 100px 20px 40px; 
             display: flex;
             justify-content: center;
-            min-height: 100vh;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+            transition: var(--transition);
+            box-sizing: border-box;
+        }
+
+        /* --- ФИКСИРОВАННАЯ ШАПКА СО СТЕКЛОМ --- */
+        .header-top { 
+            position: fixed; 
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            background: var(--header-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: var(--glass-border);
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 0 5%; 
+            z-index: 1000;
+            box-sizing: border-box;
+            transition: var(--transition);
+        }
+        
+        .header-top .logo-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            z-index: 2;
+        }
+        
+        .header-top img { height: 40px; border-radius: 8px; transition: var(--transition); }
+        .header-top img:hover { opacity: 0.8; }
+
+        .header-title {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: var(--font-serif);
+            font-size: 24px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            font-weight: 500;
+            z-index: 1;
+        }
+
+        .theme-btn {
+            background: transparent; 
+            border: 1px solid rgba(255,255,255,0.15); 
+            border-radius: 8px; 
+            padding: 6px 14px; 
+            color: var(--accent-gold); 
+            font-family: var(--font-main); 
+            font-size: 10px; 
+            font-weight: 600;
+            text-transform: uppercase; 
+            cursor: pointer; 
+            transition: var(--transition);
+            z-index: 2;
+        }
+        .theme-btn:hover { background: rgba(197, 160, 89, 0.1); border-color: var(--accent-gold); }
+
+        .container {
+            max-width: 1000px; 
+            width: 100%;
+            background: var(--glass-bg);
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border-radius: 16px; 
+            border: var(--glass-border);
+            padding: 50px;
+            box-sizing: border-box;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
             transition: var(--transition);
         }
 
-        .container {
-            max-width: 600px;
-            width: 100%;
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 32px;
-            border: var(--border);
-            padding: 40px;
-            margin: auto;
-            box-shadow: 0 40px 100px rgba(0,0,0,0.4);
-        }
+        h1 { font-family: var(--font-serif); text-align: center; font-size: 42px; margin-bottom: 10px; font-weight: 300; letter-spacing: 1px; line-height: 1.2; }
+        .subtitle { text-align: center; color: var(--text-dim); margin-bottom: 40px; font-size: 16px; line-height: 1.6; max-width: 600px; margin-left: auto; margin-right: auto;}
 
-        .header { text-align: center; margin-bottom: 40px; position: relative; }
-        .logo { height: 45px; margin-bottom: 20px; opacity: 0.9; }
-        
-        h1 { 
-            font-family: 'Cormorant Garamond', serif; 
-            font-size: clamp(32px, 5vw, 48px); 
-            font-weight: 300; 
-            margin: 0; 
-            color: var(--accent-gold); 
-            line-height: 1.1;
-        }
-
-        .calc-wrapper { margin-top: 40px; }
-
+        /* --- ЭЛЕМЕНТЫ КАЛЬКУЛЯТОРА --- */
         .input-box {
             background: rgba(255,255,255,0.03);
             padding: 30px;
-            border-radius: 20px;
+            border-radius: 16px;
             border: 1px solid rgba(255,255,255,0.05);
             text-align: center;
+            margin-bottom: 30px;
+            transition: var(--transition);
         }
 
-        label { 
+        .input-box label { 
             display: block; 
             font-size: 11px; 
             text-transform: uppercase; 
@@ -124,7 +209,7 @@
         }
 
         .main-price {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: var(--font-serif);
             font-size: 56px;
             font-weight: 400;
             color: var(--accent-gold);
@@ -135,14 +220,14 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 15px;
-            margin-top: 30px;
+            margin-bottom: 30px;
         }
 
         .stat-card {
             background: rgba(197, 160, 89, 0.03);
             border: 1px solid rgba(197, 160, 89, 0.1);
             padding: 20px;
-            border-radius: 16px;
+            border-radius: 12px;
             text-align: center;
             transition: var(--transition);
         }
@@ -155,7 +240,7 @@
 
         .stat-val {
             display: block;
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 600;
             color: var(--accent-gold);
             margin-bottom: 5px;
@@ -169,7 +254,7 @@
         }
 
         .info-alert {
-            margin-top: 30px;
+            margin-top: 15px;
             padding: 20px;
             background: rgba(255,255,255,0.02);
             border-radius: 12px;
@@ -179,104 +264,202 @@
             display: flex;
             gap: 15px;
             align-items: flex-start;
-        }
-
-        .btn-vk {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            width: 100%;
-            background: var(--accent-gold);
-            color: #080814;
-            padding: 22px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 12px;
-            margin-top: 35px;
             transition: var(--transition);
         }
 
-        .btn-vk:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(197, 160, 89, 0.3);
-            filter: brightness(1.1);
+        /* --- НАВИГАЦИОННЫЕ КНОПКИ (СЕО-перелинковка) --- */
+        .links-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 40px;
         }
-
-        .theme-toggle {
-            position: absolute;
-            top: -10px;
-            right: 0;
-            background: transparent;
-            border: 1px solid var(--border);
-            color: var(--accent-gold);
-            padding: 8px 16px;
-            border-radius: 10px;
-            font-size: 10px;
-            cursor: pointer;
-            letter-spacing: 1px;
+        .link-btn {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            padding: 20px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px; text-decoration: none; color: var(--text-main); transition: var(--transition);
+            text-align: center;
         }
+        .link-btn:hover { border-color: var(--accent-gold); background: rgba(197, 160, 89, 0.05); transform: translateY(-3px);}
+        .link-btn span { font-family: var(--font-serif); font-size: 20px; margin-bottom: 5px; color: var(--accent-gold);}
+        .link-btn small { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; opacity: 0.6; }
 
-        @media (max-width: 480px) {
-            .container { padding: 30px 20px; }
+        /* --- КНОПКА ВК ЭКСПЕРТУ --- */
+        .expert-block {
+            background: linear-gradient(135deg, rgba(0, 119, 255, 0.1) 0%, rgba(0, 119, 255, 0.02) 100%);
+            border: 1px solid rgba(0, 119, 255, 0.3);
+            border-radius: 16px; padding: 30px; text-align: center; margin-bottom: 40px;
+        }
+        .vk-btn {
+            display: flex; 
+            align-items: center; justify-content: center; gap: 10px;
+            background: #0077FF; color: #fff; padding: 18px 30px; border-radius: 12px;
+            text-decoration: none; font-weight: 600; font-size: 14px; transition: var(--transition);
+            margin: 15px auto 0; 
+            width: 100%; max-width: 400px;
+            box-sizing: border-box; 
+        }
+        .vk-btn:hover { background: #0063D6; box-shadow: 0 10px 25px rgba(0, 119, 255, 0.3); transform: translateY(-2px);}
+
+        /* --- ПРИЛОЖЕНИЯ --- */
+        @keyframes shimmer { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
+        .app-links { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;}
+        .app-btn {
+            background: linear-gradient(90deg, rgba(255,255,255,0.02) 25%, rgba(197, 160, 89, 0.15) 50%, rgba(255,255,255,0.02) 75%);
+            background-size: 200% auto; border: 1px solid rgba(197, 160, 89, 0.3);
+            padding: 12px 20px; border-radius: 10px; display: flex; align-items: center; gap: 10px; text-decoration: none; color: #fff;
+            animation: shimmer 4s infinite linear; transition: var(--transition);
+        }
+        .app-btn:hover { border-color: var(--accent-gold); box-shadow: 0 5px 15px rgba(197, 160, 89, 0.2); transform: translateY(-2px);}
+        .app-btn img { height: 24px; filter: invert(1); }
+        .app-text span { display: block; font-size: 8px; opacity: 0.7; text-transform: uppercase; color: var(--accent-gold);}
+        .app-text b { font-size: 13px; font-family: var(--font-main); letter-spacing: 1px;}
+
+        @media (max-width: 768px) {
             .grid-stats { grid-template-columns: 1fr; }
+            .links-grid { grid-template-columns: 1fr; }
+            .container { padding: 30px 20px; }
             h1 { font-size: 32px; }
             .main-price { font-size: 44px; }
+        }
+        @media (max-width: 500px) {
+            .header-top { padding: 0 20px; }
+            .header-title { font-size: 20px; }
         }
     </style>
 </head>
 <body>
 
+<div class="header-top">
+    <a href="index.html" class="logo-link">
+        <img src="logo_header_final.png" alt="РЕСУРС Логотип">
+    </a>
+    
+    <div class="header-title">РЕСУРС</div>
+    
+    <button id="themeToggleBtn" class="theme-btn" onclick="toggleTheme()">Свет</button>
+</div>
+
 <div class="container">
-    <div class="header">
-        <button class="theme-toggle" onclick="toggleTheme()" id="tglBtn">СВЕТЛАЯ ТЕМА</button>
-        <img src="logo_header_final.png" alt="РЕСУРС" class="logo">
-        <h1>Инвестируй <br>в состояние</h1>
+    <h1 style="display: none;">Калькулятор выгоды и стоимости | РЕСУРС Сыктывкар</h1> 
+    <h1>Инвестируй в состояние</h1>
+    <p class="subtitle">Занятия в «РЕСУРСЕ» — это не траты, а инвестиции. Потяните ползунок и посчитайте, сколько средств вернется вам обратно.</p>
+
+    <div class="input-box">
+        <label>Стоимость выбранного абонемента</label>
+        <input type="range" id="priceInput" min="4000" max="28000" step="400" value="11200" oninput="liveCalc()">
+        <div class="main-price" id="valPrice">11 200 ₽</div>
     </div>
 
-    <div class="calc-wrapper">
-        <div class="input-box">
-            <label>Стоимость абонемента</label>
-            <input type="range" id="priceInput" min="4000" max="28000" step="400" value="11200" oninput="liveCalc()">
-            <div class="main-price" id="valPrice">11 200 ₽</div>
+    <div class="grid-stats">
+        <div class="stat-card">
+            <span class="stat-val" id="valTax">1 456 ₽</span>
+            <span class="stat-label">Вычет по ИНН (13%)</span>
         </div>
-
-        <div class="grid-stats">
-            <div class="stat-card">
-                <span class="stat-val" id="valTax">1 456 ₽</span>
-                <span class="stat-label">Вычет по ИНН (13%)</span>
-            </div>
-            <div class="stat-card">
-                <span class="stat-val" id="valCash">1 120 ₽</span>
-                <span class="stat-label">Кэшбэк (Статус)</span>
-            </div>
-            <div class="stat-card">
-                <span class="stat-val" id="valBonus">1 500 ₽</span>
-                <span class="stat-label">Бонус за опрос</span>
-            </div>
-            <div class="stat-card">
-                <span class="stat-val" style="font-size: 32px;" id="valFinal">7 124 ₽</span>
-                <span class="stat-label">Твоя реальная инвестиция</span>
-            </div>
+        <div class="stat-card">
+            <span class="stat-val" id="valCash">1 120 ₽</span>
+            <span class="stat-label">Кэшбэк резидента</span>
         </div>
-
-        <div class="info-alert">
-            <span style="font-size: 20px;">💡</span>
-            <span>Мы подготовим все документы для налоговой за тебя. Тебе останется только нажать кнопку в приложении «Мой Налог».</span>
+        <div class="stat-card">
+            <span class="stat-val" id="valBonus">1 500 ₽</span>
+            <span class="stat-label">Бонус за опрос</span>
         </div>
+        <div class="stat-card">
+            <span class="stat-val" style="font-size: 32px;" id="valFinal">7 124 ₽</span>
+            <span class="stat-label">Твоя реальная инвестиция</span>
+        </div>
+    </div>
 
-        <a href="https://vk.me/-221142875" class="btn-vk" onclick="trackLead()">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M13.162 18.994C6.541 18.994 2.766 14.444 2.618 6H5.972C6.07 12.392 8.7 15.111 10.741 15.658V6H14.004V11.517C16.015 11.298 18.17 9.034 18.895 6H22.158C21.579 9.581 18.98 12.064 17.155 13.068C18.98 13.87 21.908 16.059 22.863 20H19.264C18.491 17.265 16.353 15.158 14.004 14.884V20H13.162V18.994Z"/></svg>
-            Забронировать выгоду
+    <div class="info-alert">
+        <span style="font-size: 20px;">💡</span>
+        <span>Мы официально зарегистрированная студия. Подготовим для вас все документы для налоговой — вам останется только нажать кнопку в приложении «Мой Налог».</span>
+    </div>
+    
+    <div class="info-alert">
+        <span style="font-size: 20px;">🎁</span>
+        <span><b>Дополнительные бонусы:</b> дарим 300 ₽ на счет за первую регистрацию в нашем приложении и начисляем 1000 ₽ бонусами ко Дню Рождения!</span>
+    </div>
+
+    <div style="width: 100%; height: 1px; background: rgba(255,255,255,0.05); margin: 40px 0;"></div>
+
+    <h3 style="font-family: var(--font-serif); font-size: 24px; text-align: center; margin-bottom: 25px;">Изучить подробнее</h3>
+    <div class="links-grid">
+        <a href="schedule.html" class="link-btn" onclick="ym(108177329, 'reachGoal', 'GOTO_SCHEDULE');">
+            <span>Расписание</span>
+            <small>Выбрать абонемент</small>
+        </a>
+        <a href="journal.html" class="link-btn" onclick="ym(108177329, 'reachGoal', 'GOTO_JOURNAL');">
+            <span>Журнал</span>
+            <small>Полезные статьи и советы</small>
+        </a>
+        <a href="index.html" class="link-btn" onclick="ym(108177329, 'reachGoal', 'GOTO_MAIN');">
+            <span>Главная</span>
+            <small>Вернуться на сайт</small>
         </a>
     </div>
+
+    <div class="expert-block">
+        <h3 style="font-family: var(--font-serif); font-size: 28px; margin-bottom: 10px;">Проблемы с регистрацией?</h3>
+        <p style="font-size: 14px; opacity: 0.8; max-width: 500px; margin: 0 auto;">Если у вас нет WhatsApp для автоматической регистрации в приложении, не переживайте. Напишите нашему специалисту Вере — она создаст вам аккаунт вручную и поможет авторизоваться.</p>
+        
+        <a href="#" class="vk-btn" onclick="openVK(event)">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.162 18.994C6.541 18.994 2.766 14.444 2.618 6H5.972C6.07 12.392 8.7 15.111 10.741 15.658V6H14.004V11.517C16.015 11.298 18.17 9.034 18.895 6H22.158C21.579 9.581 18.98 12.064 17.155 13.068C18.98 13.87 21.908 16.059 22.863 20H19.264C18.491 17.265 16.353 15.158 14.004 14.884V20H13.162V18.994Z" fill="currentColor"/></svg>
+            Написать Вере ВКонтакте
+        </a>
+    </div>
+
+    <div style="text-align: center;">
+        <p style="font-size: 11px; opacity: 0.6; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px;">Скачайте приложение (Дарим 300 ₽)</p>
+        <div class="app-links">
+            <a href="https://apps.apple.com/ru/app/ресурс-сыктывкар/id6766195387" class="app-btn" target="_blank" onclick="ym(108177329, 'reachGoal', 'APP_IOS_CLICK');">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="App Store">
+                <div class="app-text"><span>Для iPhone</span><b>App Store</b></div>
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=listok.resource&pcampaignid=web_share" class="app-btn" target="_blank" onclick="ym(108177329, 'reachGoal', 'APP_AND_CLICK');">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Android_robot.svg" alt="Google Play">
+                <div class="app-text"><span>Для Android</span><b>Google Play</b></div>
+            </a>
+        </div>
+    </div>
+
 </div>
 
 <script>
-    // Анимация чисел
+    // --- ПЕРЕКЛЮЧЕНИЕ ТЕМЫ ---
+    function toggleTheme() {
+        const root = document.documentElement;
+        const btn = document.getElementById('themeToggleBtn');
+        if (root.classList.contains('light-theme')) {
+            root.classList.remove('light-theme');
+            btn.innerText = 'Свет';
+            localStorage.setItem('resurs_theme', 'dark');
+        } else {
+            root.classList.add('light-theme');
+            btn.innerText = 'Тень';
+            localStorage.setItem('resurs_theme', 'light');
+        }
+    }
+
+    if (localStorage.getItem('resurs_theme') === 'light') {
+        document.documentElement.classList.add('light-theme');
+        document.getElementById('themeToggleBtn').innerText = 'Тень';
+    }
+
+    // --- ФУНКЦИЯ ДЛЯ ОТКРЫТИЯ ПРИЛОЖЕНИЯ ВК ---
+    function openVK(e) {
+        e.preventDefault();
+        try { ym(108177329, 'reachGoal', 'VK_VERA_CLICK'); } catch(err){}
+        
+        var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        
+        if (isMobile) {
+            window.location.href = 'vk://vk.com/write-221142875';
+            setTimeout(function() {
+                window.location.href = 'https://vk.com/write-221142875';
+            }, 500);
+        } else {
+            window.open('https://vk.com/write-221142875', '_blank');
+        }
+    }
+
+    // --- ЛОГИКА КАЛЬКУЛЯТОРА ---
     function animateValue(id, start, end, duration) {
         if (start === end) return;
         const obj = document.getElementById(id);
@@ -299,53 +482,25 @@
         const price = parseInt(document.getElementById('priceInput').value);
         document.getElementById('valPrice').innerText = price.toLocaleString() + ' ₽';
 
-        // Логика расчета
-        const tax = Math.round(price * 0.13);
-        const cashbackPercent = price > 15000 ? 0.15 : 0.10; // PRO: Динамический кэшбэк
+        // Формула выгоды
+        const tax = Math.round(price * 0.13); // Налог 13%
+        const cashbackPercent = price > 15000 ? 0.15 : 0.10; // Кэшбэк 10-15%
         const cash = Math.round(price * cashbackPercent);
-        const bonus = 1500; // Ценность подарков
+        const bonus = 1500; // Ценность подарка (опрос и тд)
         const final = price - tax - cash - bonus;
 
-        // Обновляем значения
         document.getElementById('valTax').innerText = tax.toLocaleString() + ' ₽';
         document.getElementById('valCash').innerText = cash.toLocaleString() + ' ₽';
         document.getElementById('valBonus').innerText = bonus.toLocaleString() + ' ₽';
         
-        // Плавная анимация итога
         animateValue('valFinal', lastFinal, final, 200);
         lastFinal = final;
 
-        // Метрика: Взаимодействие с калькулятором
         if (!window.calcTracked) {
             try { ym(108177329, 'reachGoal', 'CALC_INTERACT'); } catch(e){}
             window.calcTracked = true;
         }
     }
-
-    function trackLead() {
-        try { ym(108177329, 'reachGoal', 'CALC_LEAD_VK'); } catch(e){}
-    }
-
-    // Тема
-    function toggleTheme() {
-        const root = document.documentElement;
-        const btn = document.getElementById('tglBtn');
-        if (root.classList.contains('light-theme')) {
-            root.classList.remove('light-theme');
-            btn.innerText = 'СВЕТЛАЯ ТЕМА';
-            localStorage.setItem('resurs_theme', 'dark');
-        } else {
-            root.classList.add('light-theme');
-            btn.innerText = 'ТЕМНАЯ ТЕМА';
-            localStorage.setItem('resurs_theme', 'light');
-        }
-    }
-
-    if (localStorage.getItem('resurs_theme') === 'light') {
-        document.documentElement.classList.add('light-theme');
-        document.getElementById('tglBtn').innerText = 'ТЕМНАЯ ТЕМА';
-    }
 </script>
-
 </body>
 </html>
