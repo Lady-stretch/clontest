@@ -558,8 +558,8 @@
         navigator.clipboard.writeText(msg).then(() => {
             try { ym(108177329, 'reachGoal', 'PROMO_COPIED'); } catch(e){}
             
-            // Открываем ВК (замени URL на прямую ссылку диалога твоей группы, например https://vk.me/твой_айди)
-            window.open('https://vk.com/im', '_blank'); 
+            // Открываем диалог с группой (автоматически перебросит в приложение на телефоне)
+window.open('https://vk.me/-221142875', '_blank');
             
             this.innerText = "Скопировано! Открываем ВК...";
             this.style.background = "#28a745"; // Зеленый цвет успеха
