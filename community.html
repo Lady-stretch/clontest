@@ -323,7 +323,7 @@
 
 <script>
     // --- ПЕРЕКЛЮЧЕНИЕ ТЕМЫ ---
-    let currentChartColor = "rgba(244, 244, 249, 0.6)"; // По умолчанию темная тема
+    let currentChartColor = "rgba(244, 244, 249, 0.6)";
 
     function toggleTheme() {
         const root = document.documentElement;
@@ -339,8 +339,7 @@
             localStorage.setItem('resurs_theme', 'light');
             currentChartColor = "rgba(8, 8, 20, 0.6)";
         }
-        // Перерисовываем графики под новую тему, если они уже загружены
-        if (window.myChartsLoaded) { loadStats(); }
+        if (window.lastLoadedData) { drawCharts(window.lastLoadedData); }
     }
 
     if (localStorage.getItem('resurs_theme') === 'light') {
@@ -349,16 +348,15 @@
         currentChartColor = "rgba(8, 8, 20, 0.6)";
     }
 
-    // Универсальный коллбэк для тултипов (чтобы показывать проценты)
+    // Универсальный расчет процентов для тултипов
     const percentageTooltip = {
         callbacks: {
             label: function(context) {
                 let label = context.label || '';
-                if (label) { label += ': '; }
-                let total = context.chart._metasets[context.datasetIndex].total;
                 let value = context.raw;
-                let percentage = Math.round((value / total) * 100) + '%';
-                return label + value + ' чел. (' + percentage + ')';
+                let total = context.dataset.data.reduce((a, b) => a + b, 0);
+                let percentage = total > 0 ? Math.round((value / total) * 100) + '%' : '0%';
+                return `${label}: ${value} чел. (${percentage})`;
             }
         }
     };
@@ -367,90 +365,107 @@
        ЧАСТЬ 1: ЗАГРУЗКА И ОТРИСОВКА СТАТИСТИКИ 
        ========================================== */
     const STATS_URL = 'https://functions.yandexcloud.net/d4e09bhn4sp9p2sqpt7u';
-    let chartInstances = []; // Храним ссылки на графики для их обновления при смене темы
+    let chartInstances = [];
 
     async function loadStats() {
         try {
+            console.log("Запрос данных с сервера...");
             const response = await fetch(STATS_URL);
             if (!response.ok) throw new Error('Ошибка сети');
             const data = await response.json();
+            
+            console.log("Данные получены:", data);
+            window.lastLoadedData = data; // Сохраняем для переключения темы
 
             const subtitle = document.getElementById('dynamic-subtitle');
-            subtitle.innerHTML = `Узнайте, почему сотни женщин Сыктывкара доверяют нам свое здоровье.<br>Данные основаны на честных ответах наших резидентов.<br><br><span style="color: var(--accent-gold); font-size: 12px; letter-spacing: 2px; text-transform: uppercase;">ОБНОВЛЕНО НА ОСНОВЕ ${data.count} АНКЕТ</span>`;
+            subtitle.innerHTML = `Узнайте, почему сотни женщин Сыктывкара доверяют нам свое здоровье.<br>Данные основаны на честных ответах наших резидентов.<br><br><span style="color: var(--accent-gold); font-size: 12px; letter-spacing: 2px; text-transform: uppercase;">ОБНОВЛЕНО НА ОСНОВЕ ${data.count || 0} АНКЕТ</span>`;
 
-            drawCharts(data);
-            window.myChartsLoaded = true;
+            // Ждем небольшую паузу, чтобы canvas успели прогрузиться в DOM
+            setTimeout(() => drawCharts(data), 100);
         } catch (error) {
-            console.error('Не удалось загрузить статистику:', error);
+            console.error('Критическая ошибка загрузки:', error);
+            document.getElementById('dynamic-subtitle').innerText = "Ошибка загрузки данных. Попробуйте обновить страницу.";
         }
     }
 
     function drawCharts(data) {
-        // Уничтожаем старые графики перед перерисовкой (важно при смене темы)
+        // Очистка старых графиков
         chartInstances.forEach(chart => chart.destroy());
         chartInstances = [];
+
+        // Проверка наличия библиотеки Chart.js
+        if (typeof Chart === 'undefined') {
+            console.error("Ошибка: Библиотека Chart.js не загружена!");
+            return;
+        }
 
         Chart.defaults.font.family = "'Manrope', sans-serif";
         Chart.defaults.color = currentChartColor;
 
-        const vibeCtx = new Chart(document.getElementById('vibeChart'), {
-            type: 'doughnut',
-            data: {
-                labels: ['Мягкий ресурс', 'Активный ресурс'],
-                datasets: [{
-                    data: data.vibe_data,
-                    backgroundColor: ['#C5A059', 'rgba(197, 160, 89, 0.3)'],
-                    borderWidth: 0
-                }]
-            },
-            options: { cutout: '75%', plugins: { legend: { position: 'bottom', labels: { padding: 20 } }, tooltip: percentageTooltip } }
-        });
-
-        const priorityCtx = new Chart(document.getElementById('priorityChart'), {
-            type: 'doughnut',
-            data: {
-                labels: ['Экспертность', 'Атмосфера', 'Удобство', 'Цена'],
-                datasets: [{
-                    data: data.priority_data,
-                    backgroundColor: ['#C5A059', '#D9B97F', 'rgba(197, 160, 89, 0.5)', 'rgba(197, 160, 89, 0.2)'],
-                    borderWidth: 0
-                }]
-            },
-            options: { cutout: '75%', plugins: { legend: { position: 'bottom', labels: { padding: 20 } }, tooltip: percentageTooltip } }
-        });
-
-        const problemsCtx = new Chart(document.getElementById('problemsChart'), {
-            type: 'bar',
-            data: {
-                labels: ['Боли в спине и шее', 'Отеки и вес', 'Стресс', 'Усталость'],
-                datasets: [{
-                    label: 'Кол-во резидентов',
-                    data: data.problems_data,
-                    backgroundColor: '#C5A059', borderRadius: 6
-                }]
-            },
-            options: {
-                scales: { 
-                    y: { beginAtZero: true, grid: { color: 'rgba(197, 160, 89, 0.1)' } },
-                    x: { grid: { display: false } }
+        // Настройка графиков
+        try {
+            const vibeCtx = new Chart(document.getElementById('vibeChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Мягкий ресурс', 'Активный ресурс'],
+                    datasets: [{
+                        data: data.vibe_data || [0,0],
+                        backgroundColor: ['#C5A059', 'rgba(197, 160, 89, 0.3)'],
+                        borderWidth: 0
+                    }]
                 },
-                plugins: { legend: { display: false }, tooltip: percentageTooltip }
-            }
-        });
+                options: { cutout: '75%', plugins: { legend: { position: 'bottom' }, tooltip: percentageTooltip } }
+            });
 
-        chartInstances.push(vibeCtx, priorityCtx, problemsCtx);
+            const priorityCtx = new Chart(document.getElementById('priorityChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Экспертность', 'Атмосфера', 'Удобство', 'Цена'],
+                    datasets: [{
+                        data: data.priority_data || [0,0,0,0],
+                        backgroundColor: ['#C5A059', '#D9B97F', 'rgba(197, 160, 89, 0.5)', 'rgba(197, 160, 89, 0.2)'],
+                        borderWidth: 0
+                    }]
+                },
+                options: { cutout: '75%', plugins: { legend: { position: 'bottom' }, tooltip: percentageTooltip } }
+            });
+
+            const problemsCtx = new Chart(document.getElementById('problemsChart'), {
+                type: 'bar',
+                data: {
+                    labels: ['Боли в спине', 'Отеки и вес', 'Стресс', 'Усталость'],
+                    datasets: [{
+                        label: 'Кол-во резидентов',
+                        data: data.problems_data || [0,0,0,0],
+                        backgroundColor: '#C5A059', borderRadius: 6
+                    }]
+                },
+                options: {
+                    scales: { 
+                        y: { beginAtZero: true, grid: { color: 'rgba(197, 160, 89, 0.1)' } },
+                        x: { grid: { display: false } }
+                    },
+                    plugins: { legend: { display: false }, tooltip: percentageTooltip }
+                }
+            });
+
+            chartInstances.push(vibeCtx, priorityCtx, problemsCtx);
+            console.log("Графики успешно отрисованы");
+        } catch (err) {
+            console.error("Ошибка при отрисовке графиков:", err);
+        }
     }
 
     loadStats();
 
     /* ==========================================
-       ЧАСТЬ 2: ЛОГИКА УМНОГО ВИДЖЕТА ОПЛАТЫ И ОТПРАВКИ В VK
+       ЧАСТЬ 2: МОДАЛКА ОПЛАТЫ
        ========================================== */
     const paymentModal = document.getElementById('paymentModal');
     
     document.getElementById('openPaymentBtn').addEventListener('click', function(e) {
         e.preventDefault();
-        try { ym(108177329, 'reachGoal', 'TEST_DRIVE_CLICK'); } catch(e){} // Метрика
+        try { ym(108177329, 'reachGoal', 'TEST_DRIVE_CLICK'); } catch(e){}
         paymentModal.style.display = 'flex';
         document.body.style.overflow = 'hidden'; 
     });
@@ -460,37 +475,24 @@
         document.body.style.overflow = 'auto'; 
     }
 
-    const VK_LEAD_URL = "https://functions.yandexcloud.net/d4eg243jthg6ruglntjj";
-    const ROBOKASSA_LINK = "https://auth.robokassa.ru/merchant/Invoice/zICwctvJTEqrASoc9pbzYQ"; 
-
     document.getElementById('paymentLeadForm').addEventListener('submit', async function(e) {
         e.preventDefault();
-        
-        try { ym(108177329, 'reachGoal', 'TEST_DRIVE_PAY_SUBMIT'); } catch(e){} // Метрика
-
         const btn = document.getElementById('paySubmitBtn');
-        const name = document.getElementById('payName').value;
-        const phone = document.getElementById('payPhone').value;
-        
         btn.innerText = "ПЕРЕХОД К ОПЛАТЕ...";
-        btn.style.opacity = "0.7";
         btn.disabled = true;
 
         try {
-            await fetch(VK_LEAD_URL, {
+            await fetch("https://functions.yandexcloud.net/d4eg243jthg6ruglntjj", {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     action: 'payment_lead',
-                    name: name,
-                    phone: phone
+                    name: document.getElementById('payName').value,
+                    phone: document.getElementById('payPhone').value
                 })
             });
-        } catch (error) {
-            console.error('Ошибка логирования лида:', error);
-        } finally {
-            window.location.href = ROBOKASSA_LINK;
-        }
+        } catch (error) { console.error(error); }
+        window.location.href = "https://auth.robokassa.ru/merchant/Invoice/zICwctvJTEqrASoc9pbzYQ";
     });
 </script>
 </body>
