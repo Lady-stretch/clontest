@@ -1,1295 +1,1150 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <script>
-        // ИЗМЕНЕНО: Теперь по умолчанию стоит темная тема ('dark')
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        document.documentElement.setAttribute('data-theme', savedTheme);
-    </script>
-
     <script type="text/javascript">
-    // --- Yandex.Metrika counter ---
-    (function(m,e,t,r,i,k,a){
-        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-        m[i].l=1*new Date();
-        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108177329', 'ym');
-    ym(108177329, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=109130409', 'ym');
 
-    // --- Top.Mail.Ru counter ---
-    var _tmr = window._tmr || (window._tmr = []);
-    _tmr.push({id: "3755240", type: "pageView", start: (new Date()).getTime()});
-    (function (d, w, id) {
-        if (d.getElementById(id)) return;
-        var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
-        ts.src = "https://top-fwz1.mail.ru/js/code.js";
-        var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
-        if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
-    })(document, window, "tmr-code");
+        ym(109130409, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
     </script>
-
-    <noscript>
-        <div>
-            <img src="https://mc.yandex.ru/watch/108177329" style="position:absolute; left:-9999px;" alt="" />
-            <img src="https://top-fwz1.mail.ru/counter?id=3755240;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" />
-        </div>
-    </noscript>
+    <noscript><div><img src="https://mc.yandex.ru/watch/109130409" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>РЕСУРС | Студия фитнеса и растяжки в Сыктывкаре</title>
-    <meta name="description" content="Студия РЕСУРС в Сыктывкаре. Избавляем от болей в спине за 50 минут. Мягкий фитнес, аэройога, здоровая спина и МФР. Запишитесь на тест-драйв за 990₽!">
-    <meta name="keywords" content="растяжка сыктывкар, фитнес сыктывкар, здоровая спина, аэройога, мфр массаж, пилатес, студия ресурс сыктывкар, купить тренировки сыктывкар">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://resurs-stretch.ru/">
+    <title>Кубатурник онлайн: расчет объема круглого леса и веса древесины | Лесовик</title>
+    <meta name="description" content="Бесплатные онлайн-калькуляторы для лесозаготовителей и таксаторов: кубатурник (расчет объема бревна), вычисление веса древесины и полноты насаждений. База знаний и статьи.">
+    <meta name="keywords" content="кубатурник онлайн, расчет объема бревна, объем круглого леса, калькулятор леса, вес древесины, таксация, полнота насаждений, лесовик, справочник лесовода">
+    <link rel="canonical" href="https://lesovik-pro.ru/">
 
+    <meta property="og:title" content="Кубатурник онлайн: расчет объема и веса леса | Лесовик">
+    <meta property="og:description" content="Набор бесплатных инструментов для таксатора: калькулятор кубатуры, веса древесины и полноты насаждений.">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="РЕСУРС | Студия твоего состояния в Сыктывкаре">
-    <meta property="og:description" content="Избавляем от болей в спине за 50 минут. Приходите на тест-драйв за 990₽.">
-    <meta property="og:url" content="https://resurs-stretch.ru/">
-    <meta property="og:image" content="https://resurs-stretch.ru/logo_header_final.png">
-    <meta property="og:site_name" content="РЕСУРС">
-    <meta property="og:locale" content="ru_RU">
+    <meta property="og:url" content="https://lesovik-pro.ru/">
+    <link rel="icon" type="image/jpeg" href="logo.jpeg">
+
+    <meta name="geo.region" content="RU-KO">
+    <meta name="geo.placename" content="Сыктывкар">
+    <meta name="geo.position" content="61.668793;50.836399">
+    <meta name="ICBM" content="61.668793, 50.836399">
 
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "HealthAndBeautyBusiness",
-      "name": "Студия фитнеса и растяжки РЕСУРС",
-      "image": "https://resurs-stretch.ru/logo_header_final.png",
-      "@id": "https://resurs-stretch.ru",
-      "url": "https://resurs-stretch.ru",
-      "telephone": "+79087155557",
-      "address": [
-        {
-          "@type": "PostalAddress",
-          "streetAddress": "ул. Коммунистическая, 77/2",
-          "addressLocality": "Сыктывкар",
-          "addressRegion": "Республика Коми",
-          "addressCountry": "RU"
-        },
-        {
-          "@type": "PostalAddress",
-          "streetAddress": "ул. Советская, 3",
-          "addressLocality": "Сыктывкар",
-          "addressRegion": "Республика Коми",
-          "addressCountry": "RU"
-        }
-      ],
-      "priceRange": "990RUB - 16800RUB",
-      "description": "Студия мягкого фитнеса, растяжки, МФР и пилатеса в Сыктывкаре. Избавляем от болей в спине и дарим легкость телу."
+      "@type": "WebSite",
+      "name": "Лесовик",
+      "alternateName": "Лесовик ПРО",
+      "url": "https://lesovik-pro.ru/",
+      "description": "Профессиональные цифровые инструменты и калькуляторы для таксаторов и лесозаготовителей.",
+      "inLanguage": "ru-RU"
     }
     </script>
-    <link rel="icon" type="image/png" href="logo_header_final.png">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Manrope:wght@200;300;400;500;600&display=swap" rel="stylesheet">
-    
-    <script src="https://reservi.ru/widget-fit1c.v2/js/config.js" data-fit-salon-id="02977247-3381-4559-b9ef-1cf88d2731a2"></script>
-    <script src="https://unpkg.com/imask"></script>
-    <script src="https://yookassa.ru/checkout-widget/v1/checkout-widget.js"></script>
 
     <style>
-        /* CSS ПЕРЕМЕННЫЕ ДЛЯ СВЕТЛОЙ (ОСНОВНОЙ) ТЕМЫ */
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Inter:wght@400;500;600&display=swap');
+
+        /* ПЕРЕМЕННЫЕ */
         :root {
-            --bg-deep: #F4F4F9; 
-            --glass-bg: rgba(255, 255, 255, 0.85); 
-            --glass-border: 1px solid rgba(0, 0, 0, 0.08); 
-            --accent-gold: #B38639; 
-            --text-main: #05050A; /* Улучшенная читаемость текста в светлой теме */
-            --text-dim: rgba(8, 8, 20, 0.7);
-            --elem-bg: rgba(0, 0, 0, 0.04);
-            --elem-border: rgba(0, 0, 0, 0.1);
-            --nav-bg: rgba(244, 244, 249, 0.95);
-            --hero-overlay: linear-gradient(to bottom, rgba(244,244,249,0.3), var(--bg-deep));
-            
-            --font-main: 'Manrope', sans-serif;
-            --font-serif: 'Cormorant Garamond', serif;
-            --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            --bg-paper: #F9FBF9;
+            --text-graphite: #333333;
+            --forest-green: #2D5A27;
+            --forest-light: #8FBC8F;
+            --border-color: #E0E0E0;
+            --card-bg: #FFFFFF;
+            --glass-bg: rgba(249, 251, 249, 0.7);
+            --footer-bg: #2C3531;
         }
 
         /* ТЕМНАЯ ТЕМА */
         [data-theme="dark"] {
-            --bg-deep: #080814; 
-            --glass-bg: rgba(255, 255, 255, 0.02); 
-            --glass-border: 1px solid rgba(255, 255, 255, 0.08); 
-            --accent-gold: #C5A059; 
-            --text-main: #F4F4F9;
-            --text-dim: rgba(244, 244, 249, 0.6);
-            --elem-bg: rgba(255, 255, 255, 0.05);
-            --elem-border: rgba(255, 255, 255, 0.15);
-            --nav-bg: rgba(8, 8, 20, 0.95);
-            --hero-overlay: linear-gradient(to bottom, rgba(8,8,20,0.5), var(--bg-deep));
+            --bg-paper: #1A2421;
+            --text-graphite: #F9FBF9;
+            --forest-green: #8FBC8F;
+            --forest-light: #2D5A27;
+            --border-color: #3A4F46;
+            --card-bg: #22302B;
+            --glass-bg: rgba(26, 36, 33, 0.7);
+            --footer-bg: #111815;
         }
 
-        /* --- GLOBAL RESET --- */
-        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
-        html { scroll-behavior: smooth; }
-        
-        /* ДОБАВЛЕНО ЛЕЧЕНИЕ ДЛЯ ANDROID */
-        html, body {
-            overflow-x: hidden !important;
-            width: 100%;
-            position: relative;
-        }
-
-        body { 
-            background: var(--bg-deep); 
-            color: var(--text-main);
-            font-family: var(--font-main); 
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-paper);
+            color: var(--text-graphite);
+            margin: 0;
+            padding: 0;
             line-height: 1.6;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
-            transition: background-color 0.5s ease, color 0.5s ease;
-            -webkit-font-smoothing: antialiased;
-            text-rendering: optimizeLegibility;
+            transition: background-color 0.3s, color 0.3s;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
-        h1, h2, h3, .serif { font-family: var(--font-serif); font-weight: 600; letter-spacing: 1px; }
-        a { text-decoration: none; color: inherit; transition: var(--transition); }
-        ul { list-style: none; }
+        /* Индикатор прогресса чтения */
+        #reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background-color: var(--forest-green);
+            width: 0%;
+            z-index: 10001;
+            transition: width 0.1s ease-out;
+        }
 
-        /* --- UI COMPONENTS --- */
-        .glass {
+        /* СТЕКЛЯННАЯ ШАПКА */
+        .glass-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
             background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: var(--glass-border);
-            transition: background-color 0.5s ease, border-color 0.5s ease;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            transition: background 0.3s, border-color 0.3s;
         }
 
-        .btn {
-            display: inline-flex; align-items: center; justify-content: center;
-            padding: 18px 45px;
-            border: 1px solid var(--accent-gold);
-            color: var(--accent-gold);
-            text-transform: uppercase; font-size: 11px; letter-spacing: 4px;
-            background: transparent; cursor: pointer; transition: var(--transition);
-            position: relative; overflow: hidden;
-            font-weight: 600;
-        }
-        .btn:hover {
-            background: var(--accent-gold);
-            color: var(--bg-deep);
-            box-shadow: 0 0 40px rgba(197, 160, 89, 0.4);
-            transform: translateY(-2px);
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
         }
 
-        .section-label {
-            text-align: center; font-size: 10px; letter-spacing: 7px;
-            text-transform: uppercase; color: var(--accent-gold);
-            margin-bottom: 40px; display: block; font-weight: 600;
+        .header-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--forest-green);
         }
 
-        .btn-lens {
-            background: var(--elem-bg);
-            backdrop-filter: blur(15px) saturate(160%);
-            -webkit-backdrop-filter: blur(15px) saturate(160%);
-            border: 1px solid var(--elem-border);
-            border-radius: 12px;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            cursor: pointer;
-        }
-        .btn-lens:hover {
-            transform: scale(1.05);
-            border-color: var(--accent-gold);
+        .glass-header h1 {
+            font-family: 'Merriweather', serif;
+            color: var(--forest-green);
+            margin: 0;
+            font-size: 22px;
         }
 
-        /* --- HEADER --- */
-        header {
-            position: fixed; top: 0; width: 100%; padding: 25px 5%;
-            display: flex; justify-content: space-between; align-items: center;
-            z-index: 2000; transition: all 0.5s ease; background: transparent; 
-        }
-
-        header.scrolled { 
-            background: var(--glass-bg) !important; 
-            backdrop-filter: blur(15px) !important; 
-            -webkit-backdrop-filter: blur(15px) !important; 
-            padding: 12px 5% !important; 
-            border-bottom: var(--glass-border);
-        }
-
-        .header-left, .header-right {
-            display: flex; align-items: center; width: 33%;
-        }
-        .header-right {
-            justify-content: flex-end; gap: 15px;
-        }
-        .header-center {
-            width: 34%; display: flex; justify-content: center;
-        }
-
-        header.scrolled .brand-name { font-size: 18px; transition: 0.4s; }
-
-        .brand-name { 
-            font-family: var(--font-serif); font-size: 22px; 
-            letter-spacing: 12px; text-transform: uppercase; color: var(--text-main); 
-            font-weight: 600; margin-right: -12px;
-        }
-
-        header img { filter: drop-shadow(0 0 5px rgba(0,0,0,0.1)); transition: 0.4s; }
-        header.scrolled img { height: 35px !important; width: 35px !important; opacity: 1 !important; }
-
-        /* БУРГЕР ИЗ 4 ЛИНИЙ */
-        .nav-trigger { 
-            position: relative; display: flex; align-items: center; justify-content: center; 
-            z-index: 1100; width: 48px; height: 48px; 
-        }
-        .nav-trigger span { 
-            position: absolute; left: 11px; height: 1.5px; background: var(--text-main); 
-            transition: var(--transition); width: 26px; border-radius: 2px;
-        }
-        .nav-trigger span:nth-child(1) { top: 13px; }
-        .nav-trigger span:nth-child(2) { top: 20px; }
-        .nav-trigger span:nth-child(3) { top: 27px; }
-        .nav-trigger span:nth-child(4) { top: 34px; }
-
-        .nav-trigger.active span:nth-child(1) { top: 23px; transform: rotate(45deg); width: 28px; }
-        .nav-trigger.active span:nth-child(2) { opacity: 0; transform: translateX(-15px); }
-        .nav-trigger.active span:nth-child(3) { opacity: 0; transform: translateX(15px); }
-        .nav-trigger.active span:nth-child(4) { top: 23px; transform: rotate(-45deg); width: 28px; }
-
-        /* --- ШТОРКА МЕНЮ --- */
-        .glass-sidebar {
-    position: fixed; top: 0; left: -100%; width: 100%; height: 100vh;
-    background: var(--nav-bg); 
-    backdrop-filter: blur(25px) saturate(180%); 
-    -webkit-backdrop-filter: blur(25px) saturate(180%); 
-    z-index: 2000; 
-    
-    /* УМНОЕ ВЫРАВНИВАНИЕ И СКРОЛЛ */
-    display: flex; 
-    align-items: flex-start;      /* Прижимаем к верху, чтобы удобно листать */
-    justify-content: center;
-    overflow-y: auto;             /* ВКЛЮЧАЕТ ВЕРТИКАЛЬНЫЙ СКРОЛЛ */
-    padding: 80px 20px 60px;      /* Отступы, чтобы контент не лип к краям */
-    
-    transition: left 0.7s cubic-bezier(0.85, 0, 0.15, 1); 
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
-}
-        .glass-sidebar.active { left: 0; }
-
-        .nav-links { text-align: center; }
-        .nav-links a { 
-            display: block; font-family: var(--font-serif); font-size: 36px; 
-            margin: 25px 0; opacity: 0; transform: translateX(-40px); transition: all 0.6s ease;
-        }
-        .glass-sidebar.active .nav-links a { opacity: 0.9; transform: translateX(0); }
-        .nav-links a:hover { opacity: 1; color: var(--accent-gold); letter-spacing: 2px; }
-
-        .glass-sidebar.active .nav-links a:nth-child(1) { transition-delay: 0.3s; }
-        .glass-sidebar.active .nav-links a:nth-child(2) { transition-delay: 0.4s; }
-        .glass-sidebar.active .nav-links a:nth-child(3) { transition-delay: 0.5s; }
-        .glass-sidebar.active .nav-links a:nth-child(4) { transition-delay: 0.6s; }
-        .glass-sidebar.active .nav-links a:nth-child(5) { transition-delay: 0.7s; }
-        .glass-sidebar.active .nav-links a:nth-child(6) { transition-delay: 0.8s; }
-        .glass-sidebar.active .nav-links a:nth-child(7) { transition-delay: 0.9s; }
-        .glass-sidebar.active .nav-links a:nth-child(8) { transition-delay: 1.0s; }
-
-        .close-arrow {
-            position: absolute; top: 40px; left: 40px;
-            font-size: 30px; cursor: pointer; opacity: 0.5; transition: 0.3s;
-        }
-        .close-arrow:hover { opacity: 1; transform: translateX(-5px); }
-
-        /* Кнопка переключения темы (СВЕТ/ТЕНЬ) */
-        #themeToggle {
-            padding: 0 15px; height: 40px; font-size: 11px; font-weight: 600; letter-spacing: 2px;
-            display: flex; align-items: center; justify-content: center;
-            border-radius: 8px; border: 1px solid var(--elem-border); background: var(--elem-bg);
-            cursor: pointer; transition: var(--transition); color: var(--text-main); text-transform: uppercase;
-        }
-        #themeToggle:hover { border-color: var(--accent-gold); transform: translateY(-2px); }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            min-height: 85vh; width: 100%; position: relative;
-            display: flex; align-items: center; justify-content: center;
-            padding: 100px 5% 60px;
-        }
-        .hero-video-wrap {
-            position: absolute; inset: 0; width: 100%; height: 100%; overflow: hidden; z-index: 0;
-        }
-        .hero-video { width: 100%; height: 100%; object-fit: cover; opacity: 0.5; transition: 0.5s; }
-        [data-theme="dark"] .hero-video { opacity: 0.4; filter: contrast(1.1); }
-        
-        .hero-overlay {
-            position: absolute; inset: 0; background: var(--hero-overlay); z-index: 1; transition: 0.5s;
-        }
-        .hero-content { position: relative; z-index: 2; text-align: center; max-width: 900px; width: 100%; }
-        
-        .hero-title {
-            display: block; 
-            text-align: center; 
+        .header-seo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-graphite);
+            opacity: 0.7;
             text-transform: uppercase;
-            font-family: var(--font-serif); 
-            font-weight: 300; 
-            margin: 0 auto 30px !important;
-            font-size: clamp(28px, 4.5vw, 64px); 
-            letter-spacing: clamp(3px, 1.2vw, 8px); 
-            line-height: 1.2;
+            letter-spacing: 0.5px;
+            display: none;
+        }
+        @media (min-width: 900px) {
+            .header-seo-text { display: block; }
         }
         
-        .hero-tagline { font-family: var(--font-serif); font-style: italic; font-size: clamp(18px, 4vw, 30px); opacity: 0.9; margin-bottom: 60px; }
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
 
-        /* --- НОВЫЙ БЛОК: ЗДОРОВАЯ СПИНА --- */
-        .expert-section { padding: 120px 5%; position: relative; border-bottom: var(--glass-border); }
-        .expert-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; align-items: center; max-width: 1200px; margin: 0 auto; }
+        .theme-toggle {
+            background: transparent;
+            border: 1px solid var(--forest-green);
+            color: var(--forest-green);
+            padding: 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            width: 40px;
+            height: 40px;
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--forest-green);
+            color: var(--bg-paper);
+        }
+
+        main { flex: 1; }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        h2.section-title {
+            font-family: 'Merriweather', serif;
+            color: var(--forest-green);
+            font-size: 24px;
+            border-bottom: 2px solid var(--forest-green);
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+            display: inline-block;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 14px 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            box-sizing: border-box;
+            background-color: var(--card-bg);
+            color: var(--text-graphite);
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            margin-bottom: 24px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .search-input:focus {
+            outline: none;
+            border-color: var(--forest-green);
+            box-shadow: 0 0 5px rgba(45, 90, 39, 0.2);
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .bento-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .bento-card:hover {
+            box-shadow: 4px 4px 15px rgba(0,0,0,0.05);
+            border-color: var(--forest-green);
+        }
+
+        .bento-card h3 {
+            margin-top: 0;
+            font-family: 'Merriweather', serif;
+            color: var(--forest-green);
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .form-group { margin-bottom: 15px; }
+        .form-group label {
+            display: block; font-size: 12px; font-weight: 600;
+            margin-bottom: 5px; text-transform: uppercase; color: var(--forest-green);
+        }
+        .form-group input, .form-group select {
+            width: 100%; padding: 12px; border: 1px solid var(--border-color);
+            border-radius: 8px; box-sizing: border-box;
+            background-color: var(--bg-paper); color: var(--text-graphite);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-calc {
+            background-color: var(--forest-green); color: #fff;
+            border: none; padding: 14px; width: 100%; border-radius: 8px;
+            cursor: pointer; font-weight: 600; text-transform: uppercase; 
+            transition: 0.2s; margin-top: auto;
+        }
+        .btn-calc:hover { background-color: var(--text-graphite); }
+
+        .calc-result {
+            margin-top: 15px; padding: 15px; background-color: var(--bg-paper);
+            border: 1px dashed var(--forest-green); border-radius: 8px;
+            font-weight: 600; text-align: center; display: none; color: var(--text-graphite);
+        }
+
+        /* --- НОВЫЙ БЛОК: СЕТКА ДЛЯ ОСНОВНЫХ ИНСТРУМЕНТОВ --- */
+        .tools-action-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 50px;
+        }
+
+        .tool-btn-card {
+            background: linear-gradient(135deg, var(--forest-green) 0%, #1a3617 100%);
+            border-radius: 12px;
+            padding: 25px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .tool-btn-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.15);
+        }
+
+        .tool-btn-title {
+            color: #FFFFFF;
+            font-family: 'Merriweather', serif;
+            font-size: 22px;
+            margin: 0;
+        }
+
+        .tool-info-trigger {
+            background: rgba(255, 255, 255, 0.15);
+            color: #FFFFFF;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background 0.2s;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .tool-info-trigger:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* --- СТИЛИ МОДАЛЬНОГО ОКНА --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 10005;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+
+        .modal-box {
+            background: var(--card-bg);
+            border: 1px solid var(--forest-green);
+            border-radius: 12px;
+            padding: 30px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: transparent;
+            border: none;
+            font-size: 20px;
+            color: var(--text-graphite);
+            cursor: pointer;
+            opacity: 0.6;
+            transition: opacity 0.2s;
+        }
+
+        .modal-close-btn:hover { opacity: 1; }
+
+        .modal-title {
+            font-family: 'Merriweather', serif;
+            color: var(--forest-green);
+            margin-top: 0;
+            font-size: 24px;
+            margin-bottom: 15px;
+            padding-right: 20px;
+        }
+
+        .modal-desc {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-graphite);
+            margin: 0;
+        }
+
+        /* КАРТОЧКИ СТАТЕЙ */
+        .article-card {
+            cursor: pointer;
+            overflow: hidden; 
+            text-decoration: none;
+            padding: 20px;
+        }
         
-        .expert-img-wrap { border-radius: 40px; overflow: hidden; height: 550px; box-shadow: 0 30px 60px rgba(0,0,0,0.15); border: var(--glass-border); }
-        .expert-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
-        .expert-img-wrap:hover img { transform: scale(1.03); }
-
-        /* --- ЭСТЕТИКА ДВИЖЕНИЯ --- */
-        .club-section { padding: 120px 5%; position: relative; }
-        .practice-row { display: flex; gap: 40px; align-items: stretch; margin-bottom: 60px; }
-        .practice-text { flex: 1; min-width: 320px; order: 1; padding: 60px 50px; border-radius: 40px; display: flex; flex-direction: column; justify-content: center; }
-        .practice-video { flex: 1; min-width: 320px; order: 2; border-radius: 40px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.15); border: var(--glass-border); }
-        .practice-video video { width: 100%; height: 100%; object-fit: cover; min-height: 450px; display: block; }
+        .article-img {
+            width: 100%; height: 200px; object-fit: cover;
+            border-radius: 8px; background-color: var(--border-color); margin-bottom: 15px;
+        }
         
-        /* Чередование блоков на ПК */
-        .practice-row.reverse .practice-text { order: 2; }
-        .practice-row.reverse .practice-video { order: 1; }
-
-        .feature-list { opacity: 0.8; font-size: 15px; margin-bottom: 40px; padding-left: 20px; }
-        .feature-list li { margin-bottom: 12px; position: relative; }
-        .feature-list li::marker { color: var(--accent-gold); }
-
-        /* --- ВСТАВКА АБОНЕМЕНТОВ МЕЖДУ ВИДЕО --- */
-        .inline-packages {
-            padding: 80px 40px; border-radius: 40px; text-align: center; 
-            border: 1px solid rgba(197, 160, 89, 0.4); 
-            background: linear-gradient(135deg, var(--elem-bg), transparent);
-            margin: 80px 0;
-            box-shadow: 0 20px 60px rgba(197, 160, 89, 0.05);
+        .article-card-meta {
+            font-size: 12px; color: #6b7280; font-family: 'Inter', sans-serif;
+            margin-top: auto;
         }
 
-        /* --- PHILOSOPHY --- */
-        .philosophy { padding: 120px 5%; display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center; border-bottom: var(--glass-border); }
-        .philosophy-text { text-align: center; display: flex; flex-direction: column; align-items: center; }
-        .philosophy-img-wrap { position: relative; height: 600px; border-radius: 40px; overflow: hidden; border: var(--glass-border); }
-        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; width: 100%; text-align: center; margin-top: 40px; }
-
-        /* --- НАПРАВЛЕНИЯ (3 КАРТОЧКИ) --- */
-        .directions { padding: 120px 5%; }
-        .dir-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-        .dir-item { height: 550px; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; padding: 50px; border-radius: 30px; }
-        .dir-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.3; transition: 1.2s; z-index: 0; }
-        [data-theme="dark"] .dir-bg { opacity: 0.4; }
-        .dir-item:hover .dir-bg { transform: scale(1.1); opacity: 0.6; }
-        .dir-content { position: relative; z-index: 2; }
-        .dir-title { font-size: 32px; margin-bottom: 15px; }
-        .dir-list { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; opacity: 0.8; list-style: none; }
-        .dir-list li { margin-bottom: 8px; position: relative; padding-left: 20px; }
-        .dir-list li::before { content: '—'; position: absolute; left: 0; color: var(--accent-gold); }
-
-        /* --- БЛОК С РАСПИСАНИЕМ --- */
-        .schedule-section { padding: 80px 5% 120px; text-align: center; }
-
-        /* --- БЛОК FAQ --- */
-        .faq-section { padding: 60px 5% 100px; max-width: 1000px; margin: 0 auto; }
-        .faq-item { margin-bottom: 20px; border-radius: 20px; overflow: hidden; border: var(--glass-border); transition: var(--transition); }
-        .faq-question { padding: 25px 30px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 16px; letter-spacing: 1px; }
-        .faq-question::after { content: '+'; font-size: 26px; color: var(--accent-gold); transition: transform 0.4s ease; font-weight: 300; }
-        .faq-item.active .faq-question::after { transform: rotate(45deg); }
-        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.6s ease, padding 0.6s ease; opacity: 0.8; font-size: 15px; padding: 0 30px; line-height: 1.7; }
-        .faq-item.active .faq-answer { max-height: 500px; padding: 0 30px 25px; }
-
-        /* --- FOOTER --- */
-        footer { padding: 100px 5% 50px; border-top: var(--glass-border); text-align: center; background: var(--elem-bg); }
-        .footer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-bottom: 80px; text-align: left; }
-        .footer-col h4 { font-size: 11px; text-transform: uppercase; letter-spacing: 3px; color: var(--accent-gold); margin-bottom: 25px; }
-
-        /* --- ЖУРНАЛ КНОПКИ (Добавлено) --- */
-        #journal-float-btn {
-            position: fixed; bottom: 25px; left: 25px; width: 60px; height: 60px;
-            background: var(--nav-bg); border: 1px solid var(--accent-gold); border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; z-index: 9998;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2); backdrop-filter: blur(10px); transition: 0.3s;
+        /* --- СТРАНИЦА ОДНОЙ СТАТЬИ И ДОКУМЕНТОВ --- */
+        #article-view, #static-page-view {
+            display: none; 
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 50px;
+            margin-bottom: 40px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
         }
-        #journal-float-btn:hover {
-            transform: translateY(-5px); background: var(--accent-gold);
-            box-shadow: 0 15px 30px rgba(197, 160, 89, 0.4);
+
+        .btn-back {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: transparent; color: var(--forest-green);
+            border: 1px solid var(--forest-green); padding: 8px 16px;
+            border-radius: 8px; cursor: pointer; font-weight: 600;
+            margin-bottom: 30px; text-decoration: none; transition: 0.2s;
         }
-        #journal-float-btn:hover .journal-icon { stroke: #000; }
+
+        .btn-back:hover {
+            background: var(--forest-green); color: var(--bg-paper);
+        }
+
+        .full-article-title {
+            font-family: 'Merriweather', serif;
+            font-size: 36px;
+            color: var(--forest-green);
+            margin-top: 0; margin-bottom: 10px;
+            line-height: 1.3;
+        }
         
-        .footer-journal-banner {
-            background: linear-gradient(135deg, rgba(197, 160, 89, 0.1), transparent);
-            border: 1px solid rgba(197, 160, 89, 0.3); border-radius: 24px;
-            padding: 40px; margin-bottom: 60px; display: flex; align-items: center;
-            justify-content: space-between; flex-wrap: wrap; gap: 20px; text-align: left;
+        .full-article-meta {
+            font-size: 14px; color: #6b7280; margin-bottom: 25px;
+            display: flex; gap: 15px; align-items: center;
         }
 
-        /* --- АДАПТИВ --- */
-        @media (max-width: 1100px) {
-            .expert-grid, .philosophy, .dir-container { grid-template-columns: 1fr; }
-            .expert-img-wrap, .philosophy-img-wrap { height: 400px; }
-            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+        .full-article-cover {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 40px;
         }
 
+        .full-article-content {
+            font-size: 17px;
+            line-height: 1.8;
+            color: var(--text-graphite);
+            white-space: pre-wrap; 
+        }
+
+        .full-article-content h2, .full-article-content h3 {
+            font-family: 'Merriweather', serif;
+            color: var(--forest-green);
+            margin-top: 30px;
+        }
+
+        .full-article-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            display: block;
+            margin: 20px 0;
+        }
+        
+        .full-article-content iframe {
+            max-width: 100%;
+        }
+
+        /* ПОДВАЛ (Footer) */
+        footer {
+            background-color: var(--footer-bg);
+            color: #E0E0E0;
+            padding: 50px 20px 20px;
+            margin-top: auto;
+            font-size: 14px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            fill: #E0E0E0; width: 28px; height: 28px; margin-bottom: 10px;
+        }
+
+        .footer-column h4 {
+            font-family: 'Merriweather', serif;
+            color: #E0E0E0;
+            font-size: 16px;
+            margin-top: 0;
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 10px;
+        }
+
+        .footer-column a {
+            color: #8FBC8F;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: color 0.2s;
+        }
+
+        .footer-column a:hover {
+            color: #FFFFFF;
+            text-decoration: underline;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 12px;
+            opacity: 0.6;
+        }
+
+        .vk-ad-container {
+            margin-bottom: 60px;
+            text-align: center;
+            min-height: 250px;
+        }
+
+        /* МОБИЛЬНАЯ АДАПТАЦИЯ */
         @media (max-width: 900px) {
-            /* Видео всегда сверху текста на мобилках */
-            .practice-row { flex-direction: column; gap: 20px; }
-            .practice-text { order: 2 !important; padding: 40px 25px; }
-            .practice-video { order: 1 !important; }
-            .practice-video video { min-height: 350px; }
-            .header-left, .header-right { width: 25%; }
-            .header-center { width: 50%; }
+            .bento-grid { grid-template-columns: repeat(2, 1fr); }
         }
-
-        @media (max-width: 768px) { 
-            #promo-widget { top: 80px; left: 5%; width: 90%; padding: 20px; } 
-            .footer-journal-banner { flex-direction: column; text-align: center; padding: 30px 20px; }
-        }
-
         @media (max-width: 600px) {
-            header { padding: 15px 5% !important; }
-            .brand-name { font-size: 18px !important; letter-spacing: 6px !important; }
-            #themeToggle { font-size: 9px; padding: 0 10px; height: 35px; }
-            header img { height: 35px !important; width: 35px !important; }
-            .hero-title { font-size: 32px !important; letter-spacing: 5px !important; }
-            .inline-packages { padding: 40px 20px; }
-            .header-right { gap: 8px; }
-            .faq-question { font-size: 15px; padding: 20px; }
-            .faq-answer { font-size: 14px; padding: 0 20px; }
-            .faq-item.active .faq-answer { padding: 0 20px 20px; }
-            #journal-float-btn { bottom: 25px; left: 15px; width: 55px; height: 55px; }
+            .bento-grid { grid-template-columns: 1fr; }
+            .tools-action-grid { grid-template-columns: 1fr; gap: 15px; }
+            .glass-header { padding: 15px 20px; }
+            #article-view, #static-page-view { padding: 20px; }
+            .full-article-title { font-size: 26px; }
+            .footer-content { grid-template-columns: 1fr; gap: 30px; }
         }
-        
-        /* --- МОДАЛЬНЫЕ ОКНА И ФОРМЫ --- */
-        .modal { display: none; position: fixed; inset: 0; z-index: 3000; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); align-items: center; justify-content: center; padding: 20px; overflow-y: auto; -webkit-overflow-scrolling: touch;}
-        .modal-content { width: 100%; max-width: 500px; padding: 60px 40px; position: relative; text-align: center; border-radius: 30px; margin: auto; background: var(--bg-deep); border: var(--glass-border);}
-        .modal-close { position: absolute; top: 20px; right: 30px; font-size: 40px; cursor: pointer; color: var(--text-dim); transition: 0.3s; }
-        .modal-close:hover { color: var(--accent-gold); }
-        .modal input { width: 100%; background: var(--elem-bg); border: 1px solid var(--elem-border); padding: 18px; color: var(--text-main); font-size: 16px; margin-bottom: 20px; border-radius: 12px; }
-        .modal input:focus { border-color: var(--accent-gold); outline: none; }
-        
-        #payment-form { width: 100%; min-height: 450px; margin: 0 auto; display: flex; justify-content: center; }
-
-        /* --- PROMO WIDGET --- */
-        #promo-widget {
-            position: fixed; top: 110px; left: 30px; width: 320px; z-index: 1500; padding: 25px; border-radius: 20px;
-            background: var(--nav-bg); backdrop-filter: blur(20px) saturate(150%); border: 1px solid var(--accent-gold);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2); display: none; flex-direction: column; gap: 15px;
-            animation: promoFadeIn 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-        .promo-close { position: absolute; top: 15px; right: 15px; cursor: pointer; opacity: 0.5; font-size: 18px; transition: 0.3s; line-height: 1; }
-        .promo-close:hover { opacity: 1; color: var(--accent-gold); }
-        .promo-title { font-family: var(--font-serif); font-size: 24px; color: var(--accent-gold); line-height: 1.1; }
-        .promo-text { font-size: 13px; opacity: 0.8; line-height: 1.5; }
-        .promo-timer-box { display: flex; gap: 10px; margin-top: 5px; }
-        .timer-item { background: var(--elem-bg); border: 1px solid var(--elem-border); border-radius: 8px; padding: 8px 5px; text-align: center; flex: 1; }
-        .timer-val { font-size: 18px; font-weight: 600; color: var(--text-main); font-family: var(--font-main); }
-        .timer-label { font-size: 9px; text-transform: uppercase; letter-spacing: 1px; opacity: 0.6; margin-top: 2px; }
-        .promo-btn { display: block; text-align: center; padding: 12px; background: var(--accent-gold); color: #000; text-decoration: none; border-radius: 8px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; }
-        .promo-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(197, 160, 89, 0.4); }
-        @keyframes promoFadeIn { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: translateX(0); } }
-
-        /* --- AI CHAT WIDGET --- */
-        #ls-ai-button {
-            position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px;
-            background: var(--accent-gold); border: none; border-radius: 50%;
-            cursor: pointer; box-shadow: 0 10px 25px rgba(197, 160, 89, 0.4);
-            z-index: 9999; display: flex; align-items: center; justify-content: center;
-            font-size: 24px; animation: ls-pulse 2s infinite;
-        }
-        @keyframes ls-pulse {
-            0% { box-shadow: 0 0 0 0 rgba(197, 160, 89, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(197, 160, 89, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(197, 160, 89, 0); }
-        }
-        #ls-ai-chat {
-            display: none; position: fixed; bottom: 100px; right: 25px; width: 380px;
-            height: 550px; max-height: 80vh; background: var(--nav-bg);
-            backdrop-filter: blur(20px); border: var(--glass-border);
-            border-radius: 25px; z-index: 10000; flex-direction: column; overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
-        }
-        #ls-ai-chat.chat-active { display: flex; animation: slideInChat 0.3s ease-out; }
-        @keyframes slideInChat { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .msg { padding: 12px 16px; border-radius: 15px; margin: 8px 15px; font-size: 14px; line-height: 1.4; max-width: 80%; }
-        .msg-assistant { background: var(--elem-bg); border: 1px solid var(--elem-border); color: var(--text-main); align-self: flex-start; }
-        .msg-user { background: var(--accent-gold); color: #000; align-self: flex-end; }
-        @media (max-width: 600px) { #ls-ai-chat { bottom: 0; right: 0; width: 100%; height: 100dvh; border-radius: 0; } }
     </style>
 </head>
 <body>
 
-<div id="navOverlay" class="glass-sidebar">
-    <div class="close-arrow" onclick="toggleNav()">←</div>
-    <div class="nav-links">
-        <a href="#about" onclick="toggleNav()">О студии</a>
-        <a href="journal.html" style="color: var(--accent-gold);">ЖУРНАЛ СТУДИИ</a>
-        <a href="#schedule" onclick="toggleNav()">РАСПИСАНИЕ</a>
-        <a href="future-packages.html" style="color: var(--accent-gold);">АБОНЕМЕНТЫ</a>
-        <a href="club.html">100% похудение</a>
-        <a href="horoscope.html" style="color: var(--accent-gold); font-style: italic;">Астро-прогноз от Веры Венеры</a>
-        <a href="community.html" style="font-size: 24px; margin: 15px 0;">Пульс студии (Аналитика)</a>
-        <a href="survey.html" style="font-size: 24px; margin: 15px 0;">Опрос & Бонус</a>
-        <a href="#footer" onclick="toggleNav()">Контакты</a>
+    <div id="reading-progress"></div>
+
+    <header class="glass-header">
+        <a href="javascript:void(0)" onclick="goHome()" class="logo-container" id="logo-link">
+            <img src="logo.jpeg" alt="Лесовик" class="header-logo" onerror="this.style.display='none'">
+            <h1>Лесовик</h1>
+        </a>
         
-        <div style="margin-top: 30px; border-top: 1px solid var(--elem-border); padding-top: 20px; display: flex; flex-direction: column; gap: 10px;">
-            <span style="font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-gold); opacity: 0.8;">Решения и практики</span>
-            <a href="anti-office.html" style="font-size: 14px; margin: 0; opacity: 0.8;">Снятие боли в спине</a>
-            <a href="stress-relief.html" style="font-size: 14px; margin: 0; opacity: 0.8;">Антистресс и сон</a>
-            <a href="body-tone.html" style="font-size: 14px; margin: 0; opacity: 0.8;">Похудение и рельеф</a>
-            <a href="split-goals.html" style="font-size: 14px; margin: 0; opacity: 0.8;">Шпагат безопасно</a>
-            <a href="beginners-start.html" style="font-size: 14px; margin: 0; opacity: 0.8;">С чего начать новичку?</a>
+        <div class="header-seo-text">Кубатурник онлайн • Расчет древесины • Справочник таксатора</div>
+        
+        <div class="header-right">
+            <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙</button>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <div id="home-view">
+            <h2 class="section-title">Цифровой Инструментарий</h2>
             
-            <span style="font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-gold); opacity: 0.8; margin-top: 10px;">Фокусные направления</span>
-            <a href="pilates.html" style="font-size: 14px; margin: 0; opacity: 0.8;">Умный Пилатес</a>
-            <a href="body-sculpt.html" style="font-size: 14px; margin: 0; opacity: 0.8;">Стройное тело</a>
+            <div class="bento-grid">
+                
+                <div class="bento-card">
+                    <h3>Объем круглого леса</h3>
+                    <div class="form-group">
+                        <label>Диаметр в верхнем отрубе без коры (см)</label>
+                        <input type="number" id="cub-d" placeholder="Например: 24">
+                    </div>
+                    <div class="form-group">
+                        <label>Длина бревна/хлыста (м)</label>
+                        <input type="number" id="cub-l" placeholder="Например: 6">
+                    </div>
+                    <div class="form-group">
+                        <label>Количество (шт)</label>
+                        <input type="number" id="cub-q" value="1" placeholder="Сколько таких бревен?">
+                    </div>
+                    <button class="btn-calc" onclick="calcCubature()">Рассчитать объем</button>
+                    <div id="cub-result" class="calc-result"></div>
+                </div>
+
+                <div class="bento-card">
+                    <h3>Оценка веса древесины</h3>
+                    <div class="form-group">
+                        <label>Порода (свежесрубленная)</label>
+                        <select id="weight-species">
+                            <optgroup label="Хвойные">
+                                <option value="800">Сосна (~800 кг/м³)</option>
+                                <option value="750">Ель (~750 кг/м³)</option>
+                                <option value="850">Лиственница (~850 кг/м³)</option>
+                                <option value="800">Кедр (~800 кг/м³)</option>
+                                <option value="750">Пихта (~750 кг/м³)</option>
+                            </optgroup>
+                            <optgroup label="Лиственные">
+                                <option value="850">Береза (~850 кг/м³)</option>
+                                <option value="800">Осина (~800 кг/м³)</option>
+                                <option value="1000">Дуб (~1000 кг/м³)</option>
+                                <option value="950">Бук (~950 кг/м³)</option>
+                                <option value="900">Ясень (~900 кг/м³)</option>
+                                <option value="750">Липа (~750 кг/м³)</option>
+                                <option value="800">Ольха (~800 кг/м³)</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Общий объем (м³)</label>
+                        <input type="number" id="weight-v" placeholder="Например: 20">
+                    </div>
+                    <button class="btn-calc" onclick="calcWeight()">Узнать вес груза</button>
+                    <div id="weight-result" class="calc-result"></div>
+                </div>
+
+                <div class="bento-card">
+                    <h3>Расчет штабеля</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                        <div class="form-group">
+                            <label>Длина (м)</label>
+                            <input type="number" id="st-l" placeholder="Например: 10">
+                        </div>
+                        <div class="form-group">
+                            <label>Ширина (м)</label>
+                            <input type="number" id="st-w" placeholder="Например: 6" value="6">
+                        </div>
+                    </div>
+                    
+                    <label style="display: block; font-size: 11px; font-weight: 600; margin-bottom: 4px; text-transform: uppercase; color: var(--forest-green);">Высоты в 3-х точках (м)</label>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5px; margin-bottom: 12px;">
+                        <input type="number" id="st-h1" placeholder="h1" step="0.1" style="width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: 8px; font-family: 'Inter', sans-serif;">
+                        <input type="number" id="st-h2" placeholder="h2" step="0.1" style="width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: 8px; font-family: 'Inter', sans-serif;">
+                        <input type="number" id="st-h3" placeholder="h3" step="0.1" style="width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: 8px; font-family: 'Inter', sans-serif;">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Коэффициент укладки (К)</label>
+                        <select id="st-k">
+                            <option value="0.70">Хвоя, пиловочник (0.70)</option>
+                            <option value="0.65">Листв., пиловочник (0.65)</option>
+                            <option value="0.60">Дрова / Балансы (0.60)</option>
+                        </select>
+                    </div>
+                    
+                    <button class="btn-calc" onclick="calcStack()">Посчитать штабель</button>
+                    <div id="stack-result" class="calc-result"></div>
+                </div>
+
+            </div>
+
+            <div class="tools-action-grid">
+                <a href="journal.html" class="tool-btn-card">
+                    <h3 class="tool-btn-title">Полевой Журнал</h3>
+                    <div class="tool-info-trigger" onclick="openToolInfo(event, 'journal')">?</div>
+                </a>
+                <a href="photo.html" class="tool-btn-card">
+                    <h3 class="tool-btn-title">Фотофиксация</h3>
+                    <div class="tool-info-trigger" onclick="openToolInfo(event, 'photo')">?</div>
+                </a>
+            </div>
+
+            <div class="vk-ad-container">
+                <script async src="https://ad.mail.ru/static/ads-async.js"></script>
+                <ins class="mrg-tag" 
+                    style="display:block;text-decoration: none;"
+                    data-ad-client="ad-2008430" 
+                    data-ad-slot="2008430">
+                </ins>
+                <script>
+                    (MRGtag = window.MRGtag || []).push({})
+                </script>
+            </div>
+
+            <h2 class="section-title">Опыт и Практика</h2>
+            
+            <input type="text" id="article-search" class="search-input" placeholder="🔍 Найти статью по слову, теме или закону..." oninput="filterArticles()">
+
+            <div id="articles-container" class="bento-grid">
+                <p style="color: var(--forest-green); grid-column: 1 / -1;">⏳ Подключаемся к базе Лесовика...</p>
+            </div>
+            
+            <div id="load-more-container" style="text-align: center; display: none; margin-bottom: 40px;">
+                <button id="load-more-btn" class="btn-back" style="margin-bottom: 0; padding: 12px 30px;" onclick="loadMoreArticles()">Показать еще материалы ↓</button>
+            </div>
+
         </div>
-        </div> </div>
-    
-<header id="header">
-    <div class="header-left">
-        <div class="nav-trigger btn-lens" id="navTrigger" onclick="toggleNav()">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
+
+        <div id="article-view">
+            <button class="btn-back" onclick="goHome()">← Назад к материалам</button>
+            <h1 id="full-title" class="full-article-title">Загрузка...</h1>
+            <div id="full-meta" class="full-article-meta"></div>
+            <img id="full-cover" class="full-article-cover" src="" alt="Обложка" style="display: none;">
+            <div id="full-content" class="full-article-content">
+                ⏳ Пожалуйста, подождите...
+            </div>
         </div>
-    </div>
 
-    <div class="header-center">
-        <div class="brand-name">РЕСУРС</div>
-    </div>
-
-    <div class="header-right">
-        <button id="themeToggle" class="btn-lens" onclick="toggleTheme()" aria-label="Переключить тему">ТЕНЬ</button>
-        <img src="logo_header_final.png" alt="Логотип Ресурс" style="height: 40px; width: 40px; border-radius: 8px;">
-    </div>
-</header>
-
-<section class="hero">
-    <div class="hero-video-wrap">
-        <video class="hero-video" autoplay muted loop playsinline poster="bg.jpg">
-            <source src="hero-video.mp4" type="video/mp4">
-        </video>
-    </div>
-    <div class="hero-overlay"></div>
-    
-    <div class="hero-content">
-        <span class="section-label" style="opacity: 0.8; margin-bottom: 20px;">Сыктывкар</span>
-        <h1 class="hero-title">
-    Твоё тело — твой <br>
-    <span style="color: var(--accent-gold); font-style: italic;">главный ресурс</span>
-</h1>
-        <p class="hero-tagline" style="margin-top: 25px;">
-            Избавляем от болей в спине и возвращаем легкость тела за 50 минут
-        </p>
-        
-        <div style="margin-top: 50px; display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-            <button class="btn btn-lens" onclick="openModal()">ЗАБРАТЬ ТЕСТ-ДРАЙВ</button>
-            <a href="wheel.html" class="btn" style="border-color: rgba(197, 160, 89, 0.5);">ИСПЫТАТЬ УДАЧУ</a>
+        <div id="static-page-view">
+            <button class="btn-back" onclick="goHome()">← На главную</button>
+            <h1 id="static-title" class="full-article-title">Документ</h1>
+            <div id="static-content" class="full-article-content">
+                </div>
         </div>
-        
-        <p style="margin-top: 30px; font-size: 15px; text-transform: uppercase; letter-spacing: 4px; opacity: 0.6;">
-            3 тренировки на 10 дней за 990 руб
-        </p>
-    </div>
-</section>
 
-<section class="expert-section" id="healthy-back">
-    <span class="section-label">Фундамент тела</span>
-    <div class="expert-grid">
-        <div style="padding-right: 20px;">
-            <h2 class="serif" style="font-size: clamp(32px, 5vw, 56px); margin-bottom: 30px; line-height: 1.1;">Здоровая спина <br><span style="color: var(--accent-gold); font-style: italic;">и осанка</span></h2>
-            <p style="opacity: 0.8; font-size: 16px; margin-bottom: 20px; line-height: 1.8;">
-                Это основа вашего ресурса. Сидячий образ жизни, гаджеты и постоянный стресс «запирают» напряжение в шее, плечах и пояснице. Наши экспертные тренировки направлены на мягкую и вдумчивую работу с первопричиной боли.
-            </p>
-            <p style="opacity: 0.8; font-size: 16px; margin-bottom: 40px; line-height: 1.8;">
-                За 50 минут мы бережно укрепим мышечный корсет, проведем декомпрессию позвоночника и вернем вашему телу естественную осанку. Забудьте о скованности — дышите полной грудью.
-            </p>
-            <div style="margin-top: 40px;">
-                <a href="schedule.html" class="btn btn-lens">Записаться на практику</a>
-                <div style="margin-top: 25px;">
-                    <a href="journal.html" style="font-size: 11px; color: var(--accent-gold); text-decoration: none; text-transform: uppercase; letter-spacing: 2px; border-bottom: 1px dashed var(--accent-gold); padding-bottom: 2px; transition: 0.3s; opacity: 0.8;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">Читать научный разбор о болях в спине →</a>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <svg class="footer-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L1 21H23L12 2ZM12 6.88L18.17 17.5H5.83L12 6.88Z"/>
+                    <rect x="10.5" y="20" width="3" height="4"/>
+                </svg>
+                <div style="font-weight: 600; font-family: 'Merriweather', serif; font-size: 18px;">Лесовик</div>
+                <div style="font-size: 13px; margin-top: 5px; opacity: 0.8;">Цифровой инструмент таксатора. База знаний, калькуляторы и профильные статьи для специалистов леса.</div>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Правовая информация</h4>
+                <a href="javascript:void(0)" onclick="routeToStaticPage(event, 'policy')">Политика конфиденциальности</a>
+                <a href="javascript:void(0)" onclick="routeToStaticPage(event, 'offer')">Договор-оферта</a>
+            </div>
+
+            <div class="footer-column">
+                <h4>Контакты</h4>
+                <a href="mailto:folgoal@gmail.com">✉️ folgoal@gmail.com</a>
+                <div style="font-size: 12px; margin-top: 15px; opacity: 0.6;">
+                    * Все расчеты калькуляторов носят ознакомительный и справочный характер. Перед принятием решений сверяйтесь с ГОСТ.
                 </div>
             </div>
         </div>
-        <div class="expert-img-wrap">
-            <img src="healthy-back.jpg" alt="Тренировки здоровая спина Сыктывкар">
-        </div>
-    </div>
-</section>
-
-<section class="club-section" id="directions-video">
-    <span class="section-label">Эстетика движения</span>
-    
-    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column;">
         
-        <div class="practice-row">
-            <div class="glass practice-text">
-                <span style="color: var(--accent-gold); font-size: 11px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 15px; display: block; font-weight: 600;">Тотальное расслабление</span>
-                <h3 class="serif" style="font-size: clamp(28px, 4vw, 42px); margin-bottom: 20px; line-height: 1.1;">Миофасциальный релиз (МФР)</h3>
-                <p style="opacity: 0.8; font-size: 15px; margin-bottom: 25px; line-height: 1.7;">
-                    Глубокий самомассаж всего тела с использованием роллов и мячей. Практика, которая за <b>500 рублей</b> дает эффект, практически сопоставимый с часовым сеансом у профессионального массажиста за 2000₽.
-                </p>
-                <ul class="feature-list">
-                    <li>Снимает глубокие мышечные спазмы и триггерные точки</li>
-                    <li>Разгоняет лимфу, эффективно избавляя от затяжных отеков</li>
-                    <li>Восстанавливает природную эластичность фасций и тканей</li>
-                </ul>
-                <a href="schedule.html" class="btn btn-lens" style="align-self: flex-start;">Записаться на МФР</a>
-            </div>
-            <div class="practice-video">
-                <video autoplay muted loop playsinline poster="mfr.jpg">
-                    <source src="mfr-clip.mp4" type="video/mp4">
-                </video>
-            </div>
+        <div class="footer-bottom">
+            &copy; <script>document.write(new Date().getFullYear())</script> Создано для профессионалов леса. Все права защищены.
         </div>
+    </footer>
 
-        <div class="inline-packages glass">
-            <h2 class="serif" style="font-size: clamp(28px, 5vw, 45px); margin-bottom: 20px;">
-                Ресурс, который <span style="color: var(--accent-gold); font-style: italic;">всегда с тобой</span>
-            </h2>
-            <p style="opacity: 0.8; max-width: 600px; margin: 0 auto 40px; font-size: 16px; line-height: 1.6;">
-                Продолжай практику там, где тебе удобно. Выбери выгодный абонемент для занятий в нашей уютной камерной студии или присоединяйся к закрытому онлайн-клубу из любой точки мира.
-            </p>
-            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
-                <a href="future-packages.html" class="btn btn-lens" style="padding: 20px 40px; min-width: 250px; background: var(--bg-deep);">Абонементы в студию</a>
-                <a href="club.html" class="btn btn-lens" style="padding: 20px 40px; min-width: 250px; border-color: var(--accent-gold);">Онлайн-клуб</a>
-            </div>
-        </div>
-
-        <div class="practice-row reverse">
-            <div class="practice-video">
-                <video autoplay muted loop playsinline poster="jackson.jpg">
-                    <source src="Упражнение Майкл Джексон Ls.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div class="glass practice-text">
-                <span style="color: var(--accent-gold); font-size: 11px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 15px; display: block; font-weight: 600;">Полет и грация</span>
-                <h3 class="serif" style="font-size: clamp(28px, 4vw, 42px); margin-bottom: 20px; line-height: 1.1;">Аэростретчинг (в гамаке)</h3>
-                <p style="opacity: 0.8; font-size: 15px; margin-bottom: 25px; line-height: 1.7;">
-                    Бросьте вызов гравитации. Плотный гамак берет на себя часть вашего веса, позволяя мягко и максимально безопасно вытянуть позвоночник без какой-либо осевой нагрузки.
-                </p>
-                <ul class="feature-list">
-                    <li>Безопасная декомпрессия межпозвоночных дисков</li>
-                    <li>Мгновенное включение глубоких мышц-стабилизаторов</li>
-                    <li>Развитие баланса, гибкости и невероятное чувство полета</li>
-                </ul>
-                <a href="schedule.html" class="btn btn-lens" style="align-self: flex-start;">Попробовать в гамаке</a>
-            </div>
-        </div>
-
-    </div>
-</section>
-
-<section class="philosophy" id="about">
-    <div class="philosophy-text" style="flex: 1; min-width: 320px;">
-        <span class="section-label">Наша философия</span>
-        <h2 style="font-size: clamp(32px, 5vw, 64px); margin-bottom: 30px; line-height: 1.1;">Тело как ресурс</h2>
-        <p style="font-size: 18px; font-style: italic; opacity: 0.8; line-height: 1.8; max-width: 500px;">
-            «Мы создали пространство в Сыктывкаре, где каждая минута — это инвестиция в ваше долголетие и внутреннюю опору.»
-        </p>
-        
-        <div class="stats-grid">
-            <div>
-                <h4 style="font-size: 36px; color: var(--accent-gold);">50</h4>
-                <p style="font-size: 11px; text-transform: uppercase; letter-spacing: 2px; opacity: 0.7;">Минут практика</p>
-            </div>
-            <div>
-                <h4 style="font-size: 36px; color: var(--accent-gold);">12</h4>
-                <p style="font-size: 11px; text-transform: uppercase; letter-spacing: 2px; opacity: 0.7;">Направлений</p>
-            </div>
+    <div id="tool-modal" class="modal-overlay" onclick="closeToolInfo(event)">
+        <div class="modal-box" onclick="event.stopPropagation()">
+            <button class="modal-close-btn" onclick="closeToolInfo(event)">✕</button>
+            <h3 id="modal-title" class="modal-title"></h3>
+            <p id="modal-desc" class="modal-desc"></p>
         </div>
     </div>
 
-    <div class="philosophy-img-wrap">
-        <img src="philosophy.jpg" alt="Философия Ресурс" style="width: 100%; height: 100%; object-fit: cover;">
-    </div>
-</section>
-
-<section class="directions" id="directions-grid">
-    <span class="section-label">Твои практики</span>
-    <div class="dir-container">
-        <div class="dir-item glass">
-            <img src="relax.jpg" class="dir-bg" alt="Спокойные практики"> 
-            <div class="dir-content">
-                <h3 class="dir-title">Спокойствие</h3>
-                <ul class="dir-list">
-                    <li>Пилатес и МФР</li>
-                    <li>Здоровая спина</li>
-                    <li>Йога релакс</li>
-                    <li>Стретчинг</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="dir-item glass">
-            <img src="drive.jpg" class="dir-bg" alt="Активные тренировки"> 
-            <div class="dir-content">
-                <h3 class="dir-title">Энергия</h3>
-                <ul class="dir-list">
-                    <li>Ягодицы + Пресс</li>
-                    <li>Табата</li>
-                    <li>Делай тело</li>
-                    <li>Функциональная тренировка</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="dir-item glass">
-            <img src="air.jpg" class="dir-bg" alt="Практики в воздухе"> 
-            <div class="dir-content">
-                <h3 class="dir-title">Легкость</h3>
-                <ul class="dir-list">
-                    <li>Аэро-растяжка</li>
-                    <li>Здоровая спина и гамаки</li>
-                    <li>Индивидуальные сессии</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="schedule-section" id="schedule">
-    <span class="section-label">Ритм студии</span>
-    <div style="text-align: center; max-width: 800px; margin: 0 auto;">
-        <h2 style="font-size: clamp(32px, 5vw, 48px); margin-bottom: 30px;">Твое время в студии</h2>
-        <p style="opacity: 0.8; margin-bottom: 50px; font-size: 18px;">
-            Выбери удобный день и направление. Запись доступна на две недели вперед.
-        </p>
-        <a href="schedule.html" class="btn btn-lens" style="padding: 25px 60px; font-weight: 600;">
-            Открыть расписание
-        </a>
-    </div>
-</section>
-
-<section style="padding: 40px 5% 80px;">
-    <div class="glass" style="max-width: 1200px; margin: 0 auto; border-radius: 40px; overflow: hidden;">
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
-            
-            <div style="padding: 60px 40px; position: relative; border-right: var(--glass-border);">
-                <span style="font-size: 10px; text-transform: uppercase; letter-spacing: 3px; color: var(--accent-gold); margin-bottom: 15px; display: block; font-weight: 600;">Аналитика</span>
-                <h3 class="serif" style="font-size: 36px; margin-bottom: 20px; line-height: 1.1;">Живой пульс<br>нашего комьюнити</h3>
-                <p style="opacity: 0.7; font-size: 14px; margin-bottom: 40px; line-height: 1.6;">
-                    Мы оцифровали ответы сотен наших резидентов. Узнайте прямо сейчас, с какими болями приходят женщины Сыктывкара, что они ценят больше всего и почему выбирают «РЕСУРС».
-                </p>
-                <a href="community.html" class="btn btn-lens" style="padding: 15px 30px; font-size: 10px; width: 100%;">
-                    Смотреть статистику
-                </a>
-            </div>
-
-            <div style="padding: 60px 40px; position: relative; background: var(--elem-bg);">
-                <span style="font-size: 10px; text-transform: uppercase; letter-spacing: 3px; color: var(--accent-gold); margin-bottom: 15px; display: block; font-weight: 600;">Твой голос</span>
-                <h3 class="serif" style="font-size: 36px; margin-bottom: 20px; line-height: 1.1; color: var(--accent-gold);">Станьте соавтором<br>студии будущего</h3>
-                <p style="opacity: 0.7; font-size: 14px; margin-bottom: 40px; line-height: 1.6;">
-                    Ваше мнение — фундамент нашего развития. Инвестируйте 7 минут в прохождение аудита, чтобы мы сделали студию идеальной для вас, и <b>заберите гарантированный бонус</b> (подарок к абонементу).
-                </p>
-                <a href="survey.html" class="btn btn-lens" style="padding: 15px 30px; font-size: 10px; width: 100%; border-color: var(--accent-gold);">
-                    Пройти опрос и забрать бонус
-                </a>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<section style="padding: 0 5% 80px;">
-    <div class="glass" style="max-width: 1200px; margin: 0 auto; border-radius: 40px; padding: 60px 50px; border: 1px solid var(--accent-gold); position: relative; overflow: hidden; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 40px; background: linear-gradient(135deg, rgba(197, 160, 89, 0.05), transparent);">
-        
-        <div style="position: absolute; inset: 0; background-image: radial-gradient(circle at 80% 20%, rgba(197, 160, 89, 0.15), transparent 50%); pointer-events: none;"></div>
-        
-        <div style="flex: 1; min-width: 300px; position: relative; z-index: 2;">
-            <span style="font-size: 10px; text-transform: uppercase; letter-spacing: 3px; color: var(--accent-gold); margin-bottom: 15px; display: block; font-weight: 600;">Синхронизация с телом</span>
-            <h3 class="serif" style="font-size: clamp(32px, 4vw, 42px); margin-bottom: 20px; line-height: 1.1;">Глубокий астро-прогноз<br><span style="color: var(--accent-gold); font-style: italic;">от Веры Венеры</span></h3>
-            <p style="opacity: 0.8; font-size: 15px; line-height: 1.7; max-width: 500px; margin-bottom: 0;">
-                Звезды напрямую влияют на наше тело. Узнайте свой уровень жизненной энергии на сегодня, получите индивидуальный расчет транзитов и поймите, какая практика сейчас нужна вашему организму.
-            </p>
-        </div>
-        
-        <div style="position: relative; z-index: 2; display: flex; gap: 15px; flex-wrap: wrap;">
-            <a href="horoscope.html" class="btn btn-lens" style="padding: 22px 45px; background: var(--accent-gold); color: #000; box-shadow: 0 15px 30px rgba(197, 160, 89, 0.2);">Получить прогноз</a>
-            <a href="wheel.html" class="btn" style="padding: 22px 45px; border-color: rgba(197, 160, 89, 0.5);">Испытать удачу</a>
-        </div>
-    </div>
-</section>
-<section class="faq-section" id="faq">
-    <span class="section-label">Частые вопросы</span>
-    <h2 class="serif" style="font-size: clamp(32px, 5vw, 48px); margin-bottom: 50px; text-align: center;">Отвечаем на главное</h2>
-    
-    <div class="faq-item glass">
-        <div class="faq-question">В какой одежде и обуви приходить на занятия?</div>
-        <div class="faq-answer">
-            Выбирайте удобную, не сковывающую движения одежду (лосины, шорты, топ или майка). <br><br>
-            <strong style="color: var(--accent-gold);">Важно по обуви:</strong><br>
-            — <b>Для активных и силовых тренировок</b> желательно приходить в кроссовках (обязательно с чистой подошвой). На степах мы работаем только в кроссовках!<br>
-            — <b>Для спокойных практик</b> (Стретчинг, Здоровая спина, Пилатес, МФР, Аэро) мы занимаемся в носочках (лучше использовать антискользящие).
-        </div>
-    </div>
-
-    <div class="faq-item glass">
-        <div class="faq-question">Кому противопоказана растяжка и фитнес?</div>
-        <div class="faq-answer">
-            Основные противопоказания: свежие травмы позвоночника и суставов, острые воспалительные процессы, тяжелые стадии варикоза, грыжи в стадии обострения, недавние операции. Беременным девушкам (со 2 триместра) разрешены только специализированные классы. При любых сомнениях мы всегда настоятельно рекомендуем проконсультироваться с вашим лечащим врачом. Перед первой тренировкой мы также попросим вас заполнить небольшую анкету о здоровье.
-        </div>
-    </div>
-
-    <div class="faq-item glass">
-        <div class="faq-question">Я никогда ничем не занималась, мне будет сложно?</div>
-        <div class="faq-answer">
-            Абсолютно нет! Мы выступаем за мягкий, бережный фитнес без стресса для организма. У нас нет задачи «убить» вас на тренировке. Все направления подходят для новичков. Наши тренеры всегда предлагают альтернативные (базовые) варианты упражнений и внимательно следят за техникой выполнения каждой девушки. Мы рекомендуем начать знакомство со студией с направлений «Здоровая спина», «МФР» или базового «Стретчинга».
-        </div>
-    </div>
-    
-    <div class="faq-item glass">
-        <div class="faq-question">Что нужно взять с собой на первую тренировку?</div>
-        <div class="faq-answer">
-            Возьмите с собой паспорт (понадобится для оформления) и бутылочку для воды. Если вам нет 18 лет, понадобится письменное разрешение от родителей. В самой студии есть абсолютно всё необходимое оборудование (коврики, роллы, блоки), которое мы тщательно обрабатываем после каждого занятия.
-        </div>
-    </div>
-</section>
-
-<section class="reviews-section" id="reviews" style="padding: 60px 5%; text-align: center;">
-    <span class="section-label" style="margin-bottom: 20px;">Голоса резидентов</span>
-    <h2 style="font-size: clamp(32px, 5vw, 48px); margin-bottom: 50px;">Что говорят о Ресурсе</h2>
-    
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; text-align: left;">
-        
-        <div class="glass" style="padding: 40px; border-radius: 30px;">
-            <div style="color: var(--accent-gold); margin-bottom: 15px; font-size: 20px;">★★★★★</div>
-            <p style="font-style: italic; opacity: 0.8; line-height: 1.6; margin-bottom: 20px;">«Обожаю занятия! Инструкторы настоящие профессионалы своего дела: внимательно следят за техникой, поддерживают и мотивируют. Особенно полюбились курсы "Здоровая спина" и "МФР": тело стало гибче, боли в спине исчезли, появилось ощущение легкости и энергии.»</p>
-            <div style="font-weight: 600; font-family: var(--font-serif); letter-spacing: 1px;">ОЛЬГА ИВОНИНСКАЯ</div>
-            <div style="font-size: 10px; opacity: 0.5; margin-top: 5px;">Источник: 2ГИС</div>
-        </div>
-        
-        <div class="glass" style="padding: 40px; border-radius: 30px;">
-            <div style="color: var(--accent-gold); margin-bottom: 15px; font-size: 20px;">★★★★★</div>
-            <p style="font-style: italic; opacity: 0.8; line-height: 1.6; margin-bottom: 20px;">«Моя любовь с Lady Stretch началась после первого занятия. Все тренеры классные, тренировки на любой вкус и уровень подготовки. С Ольгой Мартыновой всегда весело и эффективно. Студия — это больше, чем просто спорт, это душевная атмосфера.»</p>
-            <div style="font-weight: 600; font-family: var(--font-serif); letter-spacing: 1px;">ОКСАНА АЛЕКСЕЕВА</div>
-            <div style="font-size: 10px; opacity: 0.5; margin-top: 5px;">Источник: 2ГИС</div>
-        </div>
-        
-        <div class="glass" style="padding: 40px; border-radius: 30px;">
-            <div style="color: var(--accent-gold); margin-bottom: 15px; font-size: 20px;">★★★★★</div>
-            <p style="font-style: italic; opacity: 0.8; line-height: 1.6; margin-bottom: 20px;">«Моя любимая студия! Место, куда после работы с радостью бежишь, а после тренировки окрылённый порхаешь домой. Много разных направлений: силовые, кардио, пилатес, гамаки. Тренерский состав отличный. Искренняя рекомендация!»</p>
-            <div style="font-weight: 600; font-family: var(--font-serif); letter-spacing: 1px;">АНАСТАСИЯ Ч.</div>
-            <div style="font-size: 10px; opacity: 0.5; margin-top: 5px;">Источник: 2ГИС</div>
-        </div>
-        
-    </div>
-
-    <div style="margin-top: 50px; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
-        <a href="https://go.2gis.com/H0XBA" target="_blank" class="btn btn-lens">
-            Отзывы (Коммунистическая)
-        </a>
-        <a href="https://go.2gis.com/YJ2vF" target="_blank" class="btn btn-lens">
-            Отзывы (Советская)
-        </a>
-    </div>
-</section>
-    
-<footer id="footer">
-    <div style="max-width: 1200px; margin: 0 auto;">
-        
-        <div class="footer-journal-banner glass">
-            <div style="flex: 1; min-width: 280px;">
-                <span style="font-size: 10px; text-transform: uppercase; letter-spacing: 3px; color: var(--accent-gold); margin-bottom: 10px; display: block; font-weight: 600;">База знаний</span>
-                <h3 class="serif" style="font-size: 32px; margin-bottom: 10px; line-height: 1.1;">Экспертный журнал РЕСУРС</h3>
-                <p style="opacity: 0.8; font-size: 14px; margin-bottom: 0;">Научный подход к телу, разбор биомеханики МФР и секреты лимфодренажа от топ-тренеров.</p>
-            </div>
-            <div>
-                <a href="journal.html" class="btn btn-lens" style="padding: 18px 35px; border-color: var(--accent-gold);">Читать статьи</a>
-            </div>
-        </div>
-
-        <div style="display: flex; justify-content: space-between; align-items: center; gap: 30px; margin-bottom: 60px; flex-wrap: wrap;">
-            <div style="display: flex; align-items: center; gap: 15px;">
-                <img src="logo_header_final.png" alt="Логотип футер" style="height: 40px; border-radius: 8px;">
-                <span class="serif" style="font-size: 24px; letter-spacing: 2px; color: var(--accent-gold);">РЕСУРС</span>
-            </div>
-            
-            <div style="display: flex; gap: 20px; align-items: center; border-left: 1px solid var(--elem-border); padding-left: 25px;">
-                <a href="https://vk.com/resurs_syktyvkar" target="_blank" style="transition: 0.3s; opacity: 0.8;">
-                    <svg width="24" height="24" viewBox="0 0 24 24" style="fill: var(--accent-gold);"><path d="M15.07 2H8.93C3.33 2 2 3.33 2 8.93v6.14C2 20.67 3.33 22 8.93 22h6.14c5.6 0 6.93-1.33 6.93-6.93V8.93C22 3.33 20.67 2 15.07 2zm3.1 13.08c0 .12-.04.22-.11.3-.08.08-.19.12-.32.12h-1.5c-.32 0-.6-.11-.84-.33-.24-.22-.44-.52-.61-.88-.23-.49-.46-.86-.68-1.12-.22-.26-.45-.39-.68-.39-.1 0-.19.02-.28.07-.09.05-.16.12-.21.21-.1.17-.15.42-.15.76v.88c0 .2-.06.36-.17.47s-.27.17-.47.17h-.8c-.78 0-1.48-.24-2.11-.73-.63-.49-1.16-1.16-1.59-2.02-.44-.86-.87-1.89-1.28-3.08-.05-.14-.02-.26.08-.36.1-.1.24-.15.42-.15h1.56c.16 0 .29.05.38.16.09.11.14.24.15.4.15.54.34 1.05.58 1.54.24.49.5.91.77 1.25.27.34.52.51.74.51.08 0 .15-.02.2-.07.05-.05.08-.11.1-.19.04-.21.06-.55.06-1.01V9.5c-.01-.35-.1-.61-.26-.78-.16-.17-.4-.28-.7-.34-.1-.02-.15-.08-.15-.17 0-.08.04-.15.13-.21.19-.13.48-.2.88-.2h1.54c.26 0 .46.06.6.18.14.12.21.32.21.61v2.33c0 .16.02.28.06.35.04.07.1.11.18.11.1 0 .23-.08.38-.23.15-.15.34-.39.56-.72.22-.33.45-.75.68-1.27.06-.14.16-.25.29-.33.13-.08.28-.12.45-.12h1.61c.19 0 .34.05.45.14.11.09.15.22.11.38-.19.72-.47 1.34-.84 1.87-.37.53-.74.92-1.1 1.16-.1.08-.15.16-.15.25 0 .07.04.14.11.22.18.2.4.48.65.84s.46.73.61 1.09c.1.25.15.48.15.7z"/></svg>
-                </a>
-                <a href="https://t.me/LS_Club_Syktyvkar_bot" target="_blank" style="transition: 0.3s; opacity: 0.8;">
-                    <svg width="24" height="24" viewBox="0 0 24 24" style="fill: var(--accent-gold);"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.11.02-1.93 1.23-5.46 3.62-.51.35-.98.53-1.39.52-.46-.01-1.33-.26-1.98-.48-.8-.27-1.43-.42-1.37-.89.03-.25.38-.51 1.07-.78 4.2-1.82 7-3.03 8.41-3.63 4.02-1.71 4.86-2.01 5.4-2.02.12 0 .38.03.55.17.14.12.18.28.2.4z"/></svg>
-                </a>
-            </div>
-        </div>
-
-        <div class="footer-grid">
-            <div>
-                <h4>Локации</h4>
-                <p style="font-size: 13px; opacity: 0.8; line-height: 1.8;">Сыктывкар, ул. Советская 3<br>Сыктывкар, ул. Коммунистическая 77/2</p>
-            </div>
-            <div>
-                <h4>Документы</h4>
-                <a href="privacy.html" style="font-size: 13px; opacity: 0.8; display:block; margin-bottom:8px;">Политика конфиденциальности</a>
-                <a href="offer.html" style="font-size: 13px; opacity: 0.8; display:block; margin-bottom:8px;">Договор оферты</a>
-                <a href="consent.html" style="font-size: 13px; opacity: 0.8; display:block;">Согласие на ОПД</a>
-            </div>
-            <div>
-                <h4>Реквизиты</h4>
-                <p style="font-size: 12px; opacity: 0.6; line-height: 1.6;">ИП Худяков Николай Сергеевич<br>ИНН 111801576622<br>ОГРН 323110000009152<br><a href="tel:+79087155557">+7 (908) 715-55-57</a></p>
-            </div>
-        </div>
-        
-        <p style="margin-top: 60px; font-size: 10px; opacity: 0.5; letter-spacing: 3px; text-transform: uppercase;">
-    © 2026 РЕСУРС | Студия фитнеса, растяжки и движения. Все права защищены.
-</p>
-    </div>
-</footer>
-
-<div class="modal" id="orderModal">
-    <div class="modal-content glass">
-        <div class="modal-close" onclick="closeModal()">&times;</div>
-        <h2 class="serif">Вход в Ресурс</h2>
-        <p style="margin-bottom: 25px; opacity: 0.8;">Оставьте контакты для активации доступа</p>
-        
-        <form id="tgForm">
-            <input type="hidden" id="selectedPackage" value="Тест-драйв Ресурс">
-            <input type="hidden" id="selectedPrice" value="990"> 
-
-            <input type="text" id="userName" placeholder="ВАШЕ ИМЯ" required>
-            <input type="tel" id="userPhone" placeholder="+7 (___) ___-__-__" required>
-            
-            <div style="margin-bottom: 20px; font-size: 10px; opacity: 0.6; text-align: left; display: flex; gap: 10px;">
-                <input type="checkbox" checked required style="width: 15px; height: 15px; margin: 0;">
-                <span>Нажимая кнопку, вы соглашаетесь с <a href="privacy.html" style="text-decoration: underline;">Политикой конфиденциальности</a> и <a href="offer.html" style="text-decoration: underline;">Офертой</a></span>
-            </div>
-            
-            <button type="submit" class="btn btn-lens" style="width: 100%; padding: 20px;">Оплатить доступ • 990₽</button>
-        </form>
-        <div id="payment-form" style="margin-top: 20px;"></div>
-    </div> 
-</div>
-
-<div id="promo-widget">
-    <div class="promo-close" onclick="document.getElementById('promo-widget').style.display='none'">&times;</div>
-    <div class="promo-title" id="p-title">Заголовок</div>
-    <div class="promo-text" id="p-text">Текст акции</div>
-    
-    <div class="promo-timer-box" id="p-timer-box">
-        <div class="timer-item"><div class="timer-val" id="t-days">00</div><div class="timer-label">Дней</div></div>
-        <div class="timer-item"><div class="timer-val" id="t-hours">00</div><div class="timer-label">Часов</div></div>
-        <div class="timer-item"><div class="timer-val" id="t-mins">00</div><div class="timer-label">Минут</div></div>
-        <div class="timer-item"><div class="timer-val" id="t-secs">00</div><div class="timer-label">Секунд</div></div>
-    </div>
-
-    <a href="#" class="promo-btn" id="p-btn">Кнопка</a>
-</div>
-
-<a href="journal.html" id="journal-float-btn" aria-label="Читать журнал">
-    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent-gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="journal-icon" style="transition: 0.3s;"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path><path d="M8 7h6"></path><path d="M8 11h8"></path></svg>
-</a>
-
-<div id="ls-ai-widget">
-    <button id="ls-ai-button" onclick="toggleChat()">✨</button>
-
-    <div id="ls-ai-chat"> 
-        <div style="background: rgba(179, 134, 57, 0.1); padding: 20px; border-bottom: 1px solid rgba(179, 134, 57, 0.2); display: flex; justify-content: space-between; align-items: center;">
-            <span class="serif" style="color: var(--accent-gold); letter-spacing: 1px; font-size: 14px; font-weight:600;">RESOURCE AI</span>
-            <span onclick="toggleChat()" style="cursor: pointer; opacity: 0.5; font-size: 20px; line-height: 1;">&times;</span>
-        </div>
-
-        <div id="ls-ai-messages" style="flex: 1; overflow-y: auto; display: flex; flex-direction: column; padding: 10px 0;">
-            <div class="msg msg-assistant">Привет! Я ваш проводник в мире «Ресурса». Чем могу помочь? ✨</div>
-        </div>
-
-        <div style="padding: 15px; background: var(--elem-bg); border-top: var(--glass-border); display: flex; gap: 10px;">
-            <input type="text" id="ls-ai-input" placeholder="Ваш вопрос..." style="flex-grow: 1; background: var(--bg-deep); border: 1px solid var(--elem-border); border-radius: 12px; padding: 10px 15px; color: var(--text-main); font-size: 16px; outline: none;">
-            <button onclick="sendMessage()" style="background: var(--accent-gold); border: none; width: 45px; height: 45px; border-radius: 12px; cursor: pointer; color: #000; font-size: 18px;">➤</button>
-        </div>
-    </div>
-</div>
-
-<script>
-    // --- ПЕРЕКЛЮЧЕНИЕ ТЕМЫ (СВЕТ / ТЕНЬ) ---
-    function toggleTheme() {
-        const html = document.documentElement;
-        const currentTheme = html.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        
-        html.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-        
-        const btn = document.getElementById('themeToggle');
-        btn.innerText = newTheme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
-    }
-
-    // Установка правильного текста кнопки при загрузке
-    window.addEventListener('DOMContentLoaded', () => {
-        const theme = document.documentElement.getAttribute('data-theme');
-        document.getElementById('themeToggle').innerText = theme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
-    });
-
-    // --- Скролл и Меню ---
-    window.addEventListener('scroll', () => {
-        const header = document.getElementById('header');
-        if (window.scrollY > 50) header.classList.add('scrolled');
-        else header.classList.remove('scrolled');
-    });
-
-    function toggleNav() {
-        const overlay = document.getElementById('navOverlay');
-        const trigger = document.getElementById('navTrigger');
-        trigger.classList.toggle('active');
-        overlay.classList.toggle('active');
-        document.body.style.overflow = overlay.classList.contains('active') ? 'hidden' : 'auto';
-    }
-
-    // --- ИЗМЕНЕНО: Логика Модалки, Маски и Оплаты (YooKassa + ВК Лиды) ---
-    const CLOUD_URL = "https://functions.yandexcloud.net/d4el388cufj9g6egpam3";
-    const phoneElement = document.getElementById('userPhone');
-    const maskOptions = { mask: '+{7} (000) 000-00-00', lazy: false };
-    const phoneMask = IMask(phoneElement, maskOptions);
-
-    function openModal() { 
-        document.getElementById('orderModal').style.display = 'flex'; 
-        document.body.style.overflow = 'hidden'; 
-        
-        // Сброс формы при новом открытии
-        document.getElementById('tgForm').style.display = 'block';
-        document.getElementById('payment-form').innerHTML = '';
-        document.querySelector('#orderModal p').style.display = 'block';
-        document.querySelector('#orderModal h2').innerText = 'Вход в Ресурс';
-        
-        const btn = document.querySelector('#tgForm button');
-        btn.innerText = 'Оплатить доступ • 990₽';
-        btn.disabled = false;
-        phoneMask.value = '';
-    }
-    
-    function closeModal() { 
-        document.getElementById('orderModal').style.display = 'none'; 
-        document.body.style.overflow = 'auto'; 
-    }
-
-    // Закрытие по клику вне окна
-    window.onclick = function(event) {
-        if (event.target == document.getElementById('orderModal')) closeModal();
-    }
-
-    document.getElementById('tgForm').addEventListener('submit', async function(e) {
-        e.preventDefault();
-        
-        if (phoneMask.unmaskedValue.length !== 11) {
-            alert('Пожалуйста, введите номер телефона полностью.');
-            return;
-        }
-        
-        const btn = this.querySelector('button');
-        btn.innerText = 'СВЯЗЬ С БАНКОМ...';
-        btn.disabled = true;
-
-        const name = document.getElementById('userName').value;
-        const phone = phoneMask.unmaskedValue; 
-        const packageType = document.getElementById('selectedPackage').value;
-        const price = document.getElementById('selectedPrice').value;
-
-        try {
-            const response = await fetch(CLOUD_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    amount: price,
-                    name: name,
-                    phone: phone,
-                    description: packageType
-                })
-            });
-
-            if (!response.ok) throw new Error('Облако вернуло ошибку');
-            
-            const data = await response.json();
-
-            if (data.confirmation_token) {
-                document.getElementById('tgForm').style.display = 'none';
-                document.querySelector('#orderModal p').style.display = 'none';
-                document.querySelector('#orderModal h2').innerText = 'Оплата';
-                
-                const checkout = new window.YooMoneyCheckoutWidget({
-                    confirmation_token: data.confirmation_token,
-                    return_url: 'https://lady-stretch.github.io/thanks.html', 
-                    customization: {
-                        modal: false, 
-                        width: '100%' 
-                    },
-                    error_callback: (error) => { 
-                        alert('Ошибка виджета оплаты.');
-                        console.error(error); 
-                    }
-                });
-
-                checkout.render('payment-form');
-            } else {
-                throw new Error('Токен не получен');
+    <script>
+        // --- ЛОГИКА МОДАЛЬНОГО ОКНА ---
+        const toolsDescriptions = {
+            'journal': {
+                title: 'Полевой Журнал',
+                desc: 'Профессиональный инструмент для таксации. Заменяет бумажную перечетную ведомость: точковка деревьев, автоматический расчет запаса на гектар и экспорт данных прямо в лесу.'
+            },
+            'photo': {
+                title: 'Юридическая фотофиксация',
+                desc: 'Автономный модуль для фиксации нарушений. Автоматически впекает точные GPS-координаты, время и номер объекта в пиксели снимка делянки для официальных актов проверки.'
             }
-        } catch (error) {
-            console.error('Детали ошибки:', error);
-            alert('Не удалось связаться с банком. Убедитесь, что Облако активно.');
-            btn.disabled = false;
-            btn.innerText = 'Попробовать снова';
-        }
-    });
+        };
 
-    // 1. НАСТРОЙКИ АКЦИИ
-    const promoConfig = {
-        startDate: "2026-04-21T09:00:00", // СТАРТ: Завтра в 09:00
-        endDate: "2026-04-23T23:59:59",   // ФИНИШ: 23 апреля в полночь
-        title: "Акция ВЕСЕННИЙ РЕСУРС",
-        text: "Скидка до 43% на годовой абонемент 64 занятия. Только до 23.04.2026.",
-        btnText: "Посмотреть цены",
-        btnLink: "promo-perehod.html",             
-        showFallback: false,              
-        fallbackTitle: "",
-        fallbackText: ""
-    };
-
-    let promoTimerInterval;
-
-    // 2. УМНАЯ ЛОГИКА ЗАПУСКА
-    function initPromo() {
-        const widget = document.getElementById('promo-widget');
-        const start = new Date(promoConfig.startDate).getTime();
-        const end = new Date(promoConfig.endDate).getTime();
-        const now = new Date().getTime();
-
-        // Показываем только если время пришло, но еще не кончилось
-        if (now >= start && now <= end) {
-            document.getElementById('p-title').innerText = promoConfig.title;
-            document.getElementById('p-text').innerText = promoConfig.text;
-            document.getElementById('p-btn').innerText = promoConfig.btnText;
-            document.getElementById('p-btn').href = promoConfig.btnLink;
+        function openToolInfo(event, toolKey) {
+            event.preventDefault(); // Останавливаем переход по ссылке
+            event.stopPropagation();
             
-            widget.style.display = 'flex';
-            updatePromoTimer(end);
-            promoTimerInterval = setInterval(() => updatePromoTimer(end), 1000);
-        } else {
-            // В остальное время (до старта или после конца) — скрыто
-            widget.style.display = 'none'; 
-        }
-    }
-    
-    function updatePromoTimer(endTime) {
-        const now = new Date().getTime();
-        const distance = endTime - now;
-
-        if (distance < 0) {
-            clearInterval(promoTimerInterval);
-            initPromo(); 
-            return;
+            document.getElementById('modal-title').innerText = toolsDescriptions[toolKey].title;
+            document.getElementById('modal-desc').innerText = toolsDescriptions[toolKey].desc;
+            document.getElementById('tool-modal').style.display = 'flex';
         }
 
-        const d = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const s = Math.floor((distance % (1000 * 60)) / 1000);
+        function closeToolInfo(event) {
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            document.getElementById('tool-modal').style.display = 'none';
+        }
 
-        document.getElementById('t-days').innerText = d < 10 ? '0' + d : d;
-        document.getElementById('t-hours').innerText = h < 10 ? '0' + h : h;
-        document.getElementById('t-mins').innerText = m < 10 ? '0' + m : m;
-        document.getElementById('t-secs').innerText = s < 10 ? '0' + s : s;
-    }
+        // --- ПЕРЕКЛЮЧЕНИЕ ТЕМЫ (СВЕТ/ТЕНЬ) ---
+        function toggleTheme() {
+            const body = document.documentElement;
+            const btn = document.getElementById('themeBtn');
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                btn.innerHTML = '🌙';
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                btn.innerHTML = '☀️';
+            }
+        }
 
-    // --- ИИ Чат ---
-    const API_URL = 'https://d5d8t5f83og17j8u7ue7.y5sm01em.apigw.yandexcloud.net/ask';
-    let chatHistory = JSON.parse(sessionStorage.getItem('resurs_chat_history')) || [];
-
-    function parseButtons(text) {
-        const buttonRegex = /\[BUTTON:(.*?)\|(.*?)\]/g;
-        return text.replace(buttonRegex, function(match, btnText, btnLink) {
-            return `<div style="margin-top: 15px; margin-bottom: 5px;"><a href="${btnLink.trim()}" target="_blank" style="display: inline-block; padding: 10px 20px; background: var(--accent-gold); color: #000; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 12px; text-transform: uppercase;">${btnText.trim()}</a></div>`;
+        // --- ИНДИКАТОР ПРОГРЕССА ---
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("reading-progress").style.width = scrolled + "%";
         });
-    }
 
-    window.addEventListener('DOMContentLoaded', () => {
-        initPromo(); // Запуск виджета акции
-
-        if (chatHistory.length > 0) {
-            document.getElementById('ls-ai-messages').innerHTML = '<div class="msg msg-assistant">Привет! Я ваш проводник в мире «Ресурса». Чем могу помочь? ✨</div>';
-            chatHistory.forEach(msg => renderMsg(msg.text, msg.role === 'user' ? 'user' : 'assistant'));
+        // --- КАЛЬКУЛЯТОРЫ ---
+        function calcCubature() {
+            const d = parseFloat(document.getElementById('cub-d').value);
+            const l = parseFloat(document.getElementById('cub-l').value);
+            const q = parseFloat(document.getElementById('cub-q').value) || 1; 
+            const resBox = document.getElementById('cub-result');
+            
+            if(d > 0 && l > 0 && q > 0) {
+                const v_single = ((Math.PI * Math.pow(d, 2)) / 40000) * l;
+                const v_total = v_single * q;
+                resBox.style.display = 'block';
+                resBox.innerHTML = `Объем ${q} шт: <b>${v_total.toFixed(3)} м³</b><br><small style="font-size:10px; color:gray;">*Геометрический расчет. Сверяйте с ГОСТ 2708-75</small>`;
+            } else {
+                alert("Введите корректный диаметр, длину и количество.");
+            }
         }
-    });
 
-    function toggleChat() {
-        document.getElementById('ls-ai-chat').classList.toggle('chat-active');
-        if (document.getElementById('ls-ai-chat').classList.contains('chat-active')) document.getElementById('ls-ai-input').focus();
-    }
+        function calcWeight() {
+            const density = parseFloat(document.getElementById('weight-species').value);
+            const v = parseFloat(document.getElementById('weight-v').value);
+            const resBox = document.getElementById('weight-result');
+            if(v > 0) {
+                const weightKg = density * v; 
+                resBox.style.display = 'block';
+                resBox.innerHTML = `Масса груза: <b>${(weightKg / 1000).toFixed(2)} тонн</b>`;
+            } else {
+                alert("Введите корректный объем.");
+            }
+        }
 
-    function renderMsg(text, type, id = null) {
-        const div = document.createElement('div');
-        div.className = `msg msg-${type}`;
-        if(id) div.id = id;
-        if (type === 'user') div.textContent = text; 
-        else div.innerHTML = parseButtons(text);
+        function calcStack() {
+            const l = parseFloat(document.getElementById('st-l').value);
+            const w = parseFloat(document.getElementById('st-w').value);
+            const h1 = parseFloat(document.getElementById('st-h1').value) || 0;
+            const h2 = parseFloat(document.getElementById('st-h2').value) || 0;
+            const h3 = parseFloat(document.getElementById('st-h3').value) || 0;
+            const k = parseFloat(document.getElementById('st-k').value);
+            const resBox = document.getElementById('stack-result');
+
+            if(l > 0 && w > 0 && (h1+h2+h3) > 0) {
+                const hAvg = (h1 + h2 + h3) / 3;
+                const vSklad = l * w * hAvg;
+                const vPlot = vSklad * k;
+                resBox.style.display = 'block';
+                resBox.innerHTML = `Скл. объем: <b>${vSklad.toFixed(2)} м³</b><br>Плотный (чистый): <b>${vPlot.toFixed(2)} м³</b><br><small style="font-size:10px; color:gray;">*Ср. высота: ${hAvg.toFixed(2)} м</small>`;
+            } else {
+                alert("Введите габариты штабеля и хотя бы одну высоту.");
+            }
+        }
+
+        // --- РОУТИНГ И РАБОТА С БАЗОЙ (SPA) ---
+        const API_URL = 'https://functions.yandexcloud.net/d4ecn5ag33dcdd2deivd';
+        let articlesData = [];
         
-        const container = document.getElementById('ls-ai-messages');
-        container.appendChild(div);
-        container.scrollTop = container.scrollHeight;
-    }
+        let currentOffset = 0;
+        const ARTICLES_LIMIT = 9; 
 
-    async function sendMessage() {
-        const input = document.getElementById('ls-ai-input');
-        const text = input.value.trim();
-        if (!text) return;
+        async function initApp() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const postSlug = urlParams.get('post');
+            const postId = urlParams.get('id');
+            const staticPage = urlParams.get('page'); 
 
-        renderMsg(text, 'user');
-        chatHistory.push({ role: 'user', text: text });
-        sessionStorage.setItem('resurs_chat_history', JSON.stringify(chatHistory));
-        input.value = "";
+            if (staticPage) {
+                renderStaticPage(staticPage);
+                fetchArticlesData(); 
+                return;
+            }
 
-        const loaderId = 'loader-' + Date.now();
-        renderMsg('Сверяюсь с ресурсом...', 'assistant', loaderId);
+            await fetchArticlesData(); 
 
-        try {
-            const res = await fetch(API_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ messages: chatHistory }) 
-            });
-            const data = await res.json();
-            document.getElementById(loaderId)?.remove();
+            if (postSlug) {
+                const targetArticle = articlesData.find(a => a.slug === postSlug);
+                if (targetArticle) renderArticleView(targetArticle.id);
+                else renderArticleView('not-found');
+            } else if (postId) {
+                renderArticleView(postId);
+            } else {
+                renderHomeView();
+            }
+        }
+
+        async function fetchArticlesData(append = false) {
+            try {
+                if (!append) {
+                    currentOffset = 0;
+                    articlesData = [];
+                }
+                
+                const response = await fetch(`${API_URL}?action=list&limit=${ARTICLES_LIMIT}&offset=${currentOffset}&t=${new Date().getTime()}`);
+                const data = await response.json();
+                
+                if (data.articles) {
+                    let fetchedArticles = data.articles;
+                    
+                    if (append) {
+                        articlesData = articlesData.concat(fetchedArticles);
+                    } else {
+                        articlesData = fetchedArticles;
+                    }
+
+                    articlesData.sort((a, b) => {
+                        const parseDate = (dateStr) => {
+                            if (!dateStr) return 0;
+                            const str = String(dateStr).trim();
+                            const ruDateMatch = str.match(/(\d{1,2})\.(\d{1,2})\.(\d{2,4})/);
+                            if (ruDateMatch) {
+                                let year = parseInt(ruDateMatch[3], 10);
+                                if (year < 100) year += 2000;
+                                const month = parseInt(ruDateMatch[2], 10) - 1;
+                                const day = parseInt(ruDateMatch[1], 10);
+                                return new Date(year, month, day).getTime();
+                            }
+                            const parsed = Date.parse(str);
+                            if (!isNaN(parsed)) return parsed;
+                            return 0;
+                        };
+                        const timeB = parseDate(b.published_at);
+                        const timeA = parseDate(a.published_at);
+                        if (timeB !== timeA) return timeB - timeA;
+                        return (b.id || 0) - (a.id || 0);
+                    }); 
+                    
+                    const loadMoreBtn = document.getElementById('load-more-container');
+                    if (loadMoreBtn) {
+                        if (fetchedArticles.length === ARTICLES_LIMIT) {
+                            loadMoreBtn.style.display = 'block';
+                        } else {
+                            loadMoreBtn.style.display = 'none';
+                        }
+                    }
+                }
+            } catch (error) {
+                console.error('Ошибка загрузки данных', error);
+                document.getElementById('articles-container').innerHTML = '<p style="color: red; grid-column: 1 / -1;">Ошибка сети при подключении к YDB.</p>';
+            }
+        }
+
+        async function loadMoreArticles() {
+            const btn = document.getElementById('load-more-btn');
+            btn.innerText = 'Загрузка...';
+            btn.disabled = true;
             
-            const answerText = data.answer || "Извините, не удалось получить ответ. Напишите нам в ВК.";
-            chatHistory.push({ role: 'assistant', text: answerText });
-            sessionStorage.setItem('resurs_chat_history', JSON.stringify(chatHistory));
-            renderMsg(answerText, 'assistant');
-        } catch (e) { 
-            document.getElementById(loaderId).innerHTML = "Ошибка связи. <a href='https://vk.com/resurs_syktyvkar' target='_blank' style='color: var(--accent-gold);'>Напишите нам в ВК!</a>"; 
+            currentOffset += ARTICLES_LIMIT;
+            await fetchArticlesData(true);
+            filterArticles(); 
+            
+            btn.innerText = 'Показать еще материалы ↓';
+            btn.disabled = false;
         }
-    }
-    document.getElementById('ls-ai-input').onkeypress = (e) => { if(e.key === 'Enter') sendMessage(); };
 
-    // --- Логика работы аккордеона FAQ ---
-    document.querySelectorAll('.faq-question').forEach(item => {
-        item.addEventListener('click', () => {
-            const parent = item.parentElement;
-            // Закрываем другие открытые вкладки
-            document.querySelectorAll('.faq-item').forEach(child => {
-                if (child !== parent) child.classList.remove('active');
+        function renderArticlesGrid(articlesList) {
+            const container = document.getElementById('articles-container');
+            if (articlesList.length > 0) {
+                container.innerHTML = '';
+                articlesList.forEach(article => {
+                    const imgUrl = article.cover_image_url && article.cover_image_url.trim() !== "" 
+                        ? article.cover_image_url 
+                        : 'https://placehold.co/600x400/2D5A27/FFF?text=Фото+в+пути';
+                    
+                    const textLength = article.content ? article.content.replace(/<[^>]+>/g, '').split(/\s+/).length : 0;
+                    const readTime = Math.max(1, Math.ceil(textLength / 150));
+                    const dateStr = article.published_at || '';
+                    
+                    const linkUrl = article.slug ? `?post=${article.slug}` : `?id=${article.id}`;
+                    
+                    container.innerHTML += `
+                        <a href="${linkUrl}" class="bento-card article-card" onclick="routeToArticle(event, '${article.id}', '${article.slug}')">
+                            <img src="${imgUrl}" alt="Обложка" class="article-img">
+                            <h3 style="margin-bottom: 5px;">${article.title}</h3>
+                            <div class="article-card-meta">${dateStr} &nbsp;•&nbsp; ⏱ ~${readTime} мин</div>
+                        </a>
+                    `;
+                });
+            } else {
+                container.innerHTML = '<p style="grid-column: 1 / -1;">По вашему запросу ничего не найдено.</p>';
+            }
+        }
+
+        function filterArticles() {
+            const query = document.getElementById('article-search').value.toLowerCase();
+            const loadMoreBtn = document.getElementById('load-more-container');
+            
+            if (query !== '') {
+                if (loadMoreBtn) loadMoreBtn.style.display = 'none';
+            } else {
+                if (loadMoreBtn && articlesData.length > 0 && (articlesData.length % ARTICLES_LIMIT === 0)) {
+                    loadMoreBtn.style.display = 'block';
+                }
+            }
+            
+            const filtered = articlesData.filter(article => {
+                const titleMatch = article.title && article.title.toLowerCase().includes(query);
+                const contentMatch = article.content && article.content.toLowerCase().includes(query);
+                return titleMatch || contentMatch;
             });
-            parent.classList.toggle('active');
-        });
-    });
-</script>
-
-    <div id="cookie-notice" class="glass" style="position: fixed; bottom: 20px; left: 20px; z-index: 5000; padding: 15px 25px; border-radius: 15px; display: none; align-items: center; justify-content: space-between; gap: 15px; border: 1px solid var(--accent-gold); max-width: 400px; width: calc(100% - 100px); flex-wrap: wrap;">
-    <span style="font-size: 12px; opacity: 0.9; flex: 1; min-width: 200px;">Мы используем файлы cookie, чтобы сайт «Ресурса» работал лучше. <a href="privacy.html" style="text-decoration: underline;">Подробнее</a></span>
-    <button onclick="acceptCookies()" class="btn-lens" style="padding: 8px 20px; font-size: 10px; text-transform: uppercase; border-color: var(--accent-gold); color: var(--accent-gold);">ОК</button>
-</div>
-
-<script>
-    // Проверка Куки
-    function acceptCookies() {
-        localStorage.setItem('cookiesAccepted', 'true');
-        document.getElementById('cookie-notice').style.display = 'none';
-    }
-
-    window.addEventListener('DOMContentLoaded', () => {
-        if (!localStorage.getItem('cookiesAccepted')) {
-            document.getElementById('cookie-notice').style.display = 'flex';
+            renderArticlesGrid(filtered);
         }
-    });
-</script>
+
+        function renderHomeView() {
+            document.getElementById('article-view').style.display = 'none';
+            document.getElementById('static-page-view').style.display = 'none';
+            document.getElementById('home-view').style.display = 'block';
+            
+            const searchInput = document.getElementById('article-search');
+            if(searchInput) searchInput.value = '';
+
+            renderArticlesGrid(articlesData);
+            
+            const loadMoreBtn = document.getElementById('load-more-container');
+            if (loadMoreBtn && articlesData.length > 0 && (articlesData.length % ARTICLES_LIMIT === 0)) {
+                loadMoreBtn.style.display = 'block';
+            }
+        }
+
+        function routeToStaticPage(event, pageType) {
+            event.preventDefault();
+            window.history.pushState({}, "", `?page=${pageType}`); 
+            renderStaticPage(pageType);
+        }
+
+        function renderStaticPage(pageType) {
+            document.getElementById('home-view').style.display = 'none';
+            document.getElementById('article-view').style.display = 'none';
+            document.getElementById('static-page-view').style.display = 'block';
+            window.scrollTo(0, 0);
+
+            const titleEl = document.getElementById('static-title');
+            const contentEl = document.getElementById('static-content');
+
+            if (pageType === 'policy') {
+                titleEl.innerText = 'Политика конфиденциальности';
+                contentEl.innerHTML = `
+                    <h3>1. Общие положения</h3>
+                    <p>Настоящая политика обработки персональных данных составлена в соответствии с требованиями Федерального закона от 27.07.2006. №152-ФЗ «О персональных данных» и определяет порядок обработки персональных данных и меры по обеспечению безопасности персональных данных ИП Худяков Николай Сергеевич (далее — Оператор).</p>
+                    <h3>2. Данные, которые мы собираем</h3>
+                    <p>Оператор не собирает персональные данные, позволяющие идентифицировать личность (ФИО, адрес, телефон), без добровольного согласия пользователя. Сайт использует системы аналитики (Яндекс.Метрика), которые могут собирать обезличенные данные: IP-адрес, тип устройства, время нахождения на сайте, cookies и данные Вебвизора.</p>
+                    <h3>3. Цели обработки</h3>
+                    <p>Цель обработки обезличенных данных — улучшение работы сайта, анализ посещаемости и показ релевантной рекламы.</p>
+                    <h3>4. Реквизиты Оператора</h3>
+                    <p>ИП Худяков Николай Сергеевич<br>
+                    ИНН: 111801576622<br>
+                    ОГРН: 323110000009152<br>
+                    Email для связи: folgoal@gmail.com</p>
+                `;
+            } else if (pageType === 'offer') {
+                titleEl.innerText = 'Договор-оферта';
+                contentEl.innerHTML = `
+                    <h3>1. Предмет соглашения</h3>
+                    <p>Сайт «Лесовик» (lesovik-pro.ru) предоставляет пользователю доступ к информационным материалам и программным инструментам (калькуляторам) для лесного хозяйства.</p>
+                    <h3>2. Отказ от ответственности</h3>
+                    <p><strong>Все результаты расчетов, полученные с помощью инструментов на сайте lesovik-pro.ru, носят исключительно справочный и ознакомительный характер.</strong> Оператор не несет ответственности за любые убытки или ошибки, возникшие в результате использования данных расчетов в профессиональной деятельности, отчетности или при заключении сделок. Пользователь обязан перепроверять результаты расчетов в соответствии с действующими государственными стандартами (ГОСТ) и нормативными актами.</p>
+                    <h3>3. Интеллектуальная собственность</h3>
+                    <p>Контент сайта является собственностью ИП Худяков Н. С. Копирование материалов допускается только с активной ссылкой на первоисточник.</p>
+                    <h3>4. Реквизиты Оператора</h3>
+                    <p>ИП Худяков Николай Сергеевич<br>
+                    ИНН: 111801576622<br>
+                    ОГРН: 323110000009152<br>
+                    Email для связи: folgoal@gmail.com</p>
+                `;
+            } else {
+                titleEl.innerText = 'Страница не найдена';
+                contentEl.innerHTML = '<p>Запрошенный документ не существует.</p>';
+            }
+        }
+
+        function routeToArticle(event, id, slug) {
+            event.preventDefault();
+            const newUrl = slug ? `?post=${slug}` : `?id=${id}`;
+            window.history.pushState({}, "", newUrl); 
+            renderArticleView(id); 
+        }
+
+        function renderArticleView(id) {
+            document.getElementById('home-view').style.display = 'none';
+            document.getElementById('static-page-view').style.display = 'none';
+            document.getElementById('article-view').style.display = 'block';
+            window.scrollTo(0, 0); 
+
+            const article = articlesData.find(a => a.id === id);
+            
+            if(article) {
+                document.getElementById('full-title').innerText = article.title;
+                
+                const textLength = article.content ? article.content.replace(/<[^>]+>/g, '').split(/\s+/).length : 0;
+                const readTime = Math.max(1, Math.ceil(textLength / 150));
+                const views = article.view_count || 0;
+                
+                let metaHtml = '';
+                if(article.published_at) metaHtml += `<span>📅 ${article.published_at}</span>`;
+                metaHtml += `<span>👁 ${views} просмотров</span>`;
+                metaHtml += `<span>⏱ ~${readTime} мин чтения</span>`;
+                document.getElementById('full-meta').innerHTML = metaHtml;
+                
+                const coverImg = document.getElementById('full-cover');
+                if (article.cover_image_url && article.cover_image_url.trim() !== "") {
+                    coverImg.src = article.cover_image_url;
+                    coverImg.style.display = 'block';
+                } else {
+                    coverImg.style.display = 'none';
+                }
+
+                let finalContent = "";
+                if (article.rutube_iframe && article.rutube_iframe.trim() !== "") {
+                    finalContent += `<div style="margin-bottom: 30px;">${article.rutube_iframe}</div>`;
+                }
+                
+                if (article.content && article.content.trim() !== "") {
+                    finalContent += article.content;
+                } else {
+                    finalContent += `<p><i>Текст статьи скоро появится.</i></p>`;
+                }
+                
+                document.getElementById('full-content').innerHTML = finalContent;
+                
+                setTimeout(() => {
+                    fetch(API_URL, {
+                        method: 'POST',
+                        body: JSON.stringify({ action: 'increment_view', id: article.id })
+                    }).catch(e => console.log('Счетчик не сработал', e));
+                }, 2000);
+
+            } else {
+                document.getElementById('full-title').innerText = "Статья не найдена";
+                document.getElementById('full-meta').innerHTML = "";
+                document.getElementById('full-content').innerHTML = "<p>Возможно, материал был удален или ссылка устарела.</p>";
+                document.getElementById('full-cover').style.display = 'none';
+            }
+        }
+
+        function goHome() {
+            window.history.pushState({}, document.title, window.location.pathname);
+            renderHomeView();
+        }
+
+        window.onpopstate = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const postSlug = urlParams.get('post');
+            const postId = urlParams.get('id');
+            const staticPage = urlParams.get('page');
+            
+            if (staticPage) {
+                renderStaticPage(staticPage);
+            } else if (postSlug) {
+                const targetArticle = articlesData.find(a => a.slug === postSlug);
+                if (targetArticle) renderArticleView(targetArticle.id);
+            } else if (postId) {
+                renderArticleView(postId);
+            } else {
+                renderHomeView();
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', initApp);
+    </script>
 </body>
 </html>
