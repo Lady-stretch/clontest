@@ -6,6 +6,7 @@
         document.documentElement.setAttribute('data-theme', savedTheme);
         if (savedTheme === 'light') { document.documentElement.classList.add('light-theme'); }
     </script>
+    
     <script type="text/javascript">
     (function(m,e,t,r,i,k,a){
         m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -53,26 +54,46 @@
             background: var(--bg-deep); color: var(--text-main); font-family: var(--font-main); line-height: 1.6; 
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
             transition: background-color 0.5s ease, color 0.5s ease; -webkit-font-smoothing: antialiased; padding-top: 90px; 
+            display: flex; flex-direction: column; min-height: 100vh;
         }
+        
+        /* Прогресс чтения */
+        #reading-progress { position: fixed; top: 0; left: 0; height: 3px; background-color: var(--accent-gold); width: 0%; z-index: 10001; transition: width 0.1s ease-out; }
+
         a { text-decoration: none; color: inherit; transition: var(--transition); }
         header { position: fixed; top: 0; width: 100%; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: var(--nav-bg); border-bottom: var(--glass-border); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); }
         .header-left { display: flex; align-items: center; gap: 15px; }
         .logo-img { height: 35px; width: auto; }
         .back-link { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; font-weight: 600; opacity: 0.7; }
         .back-link:hover { color: var(--accent-gold); opacity: 1; }
-        .brand-name { font-family: var(--font-serif); font-size: 24px; letter-spacing: 12px; text-transform: uppercase; margin-right: -12px; }
+        .brand-name { font-family: var(--font-serif); font-size: 24px; letter-spacing: 12px; text-transform: uppercase; margin-right: -12px; cursor: pointer; }
         #themeToggle { padding: 8px 15px; font-size: 10px; font-weight: 600; letter-spacing: 2px; border-radius: 8px; border: 1px solid var(--elem-border); background: var(--elem-bg); cursor: pointer; color: var(--text-main); text-transform: uppercase; }
         #themeToggle:hover { border-color: var(--accent-gold); }
-        .journal-container { max-width: 1200px; margin: 0 auto; padding: 40px 5%; }
+
+        .journal-container { max-width: 1200px; margin: 0 auto; padding: 40px 5%; flex: 1; }
+        
+        /* SPA Виды */
+        #home-view { display: block; animation: fadeIn 0.5s; }
+        #article-view { display: none; animation: fadeIn 0.5s; max-width: 800px; margin: 0 auto; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Элементы главной страницы */
         .journal-header { text-align: center; margin-bottom: 50px; }
         .journal-category { font-size: 11px; text-transform: uppercase; letter-spacing: 4px; color: var(--accent-gold); font-weight: 600; display: block; margin-bottom: 15px; }
         .journal-title { font-family: var(--font-serif); font-size: clamp(36px, 5vw, 54px); line-height: 1.1; margin-bottom: 20px; }
         .journal-subtitle { font-size: 16px; opacity: 0.7; max-width: 600px; margin: 0 auto; }
-        .seo-intro-block { background: var(--elem-bg); border: var(--glass-border); border-radius: 20px; padding: 40px; margin-bottom: 30px; border-left: 4px solid var(--accent-gold); }
+        
+        .expert-block { display: flex; align-items: center; gap: 25px; background: var(--elem-bg); padding: 30px; border-radius: 24px; border: var(--glass-border); margin-bottom: 30px; flex-wrap: wrap; }
+        .expert-photo { width: 110px; height: 110px; border-radius: 50%; overflow: hidden; border: 2px solid var(--accent-gold); flex-shrink: 0; margin: 0 auto; }
+        .expert-photo img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .seo-intro-block { background: var(--elem-bg); border: var(--glass-border); border-radius: 20px; padding: 40px; margin-bottom: 50px; border-left: 4px solid var(--accent-gold); }
         .seo-intro-block h2 { font-family: var(--font-serif); font-size: 28px; margin-bottom: 15px; color: var(--accent-gold); }
         .seo-intro-block p { font-size: 16px; opacity: 0.9; line-height: 1.8; margin-bottom: 15px; }
-        .journal-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
-        .article-card { display: flex; flex-direction: column; background: var(--elem-bg); border: var(--glass-border); border-radius: 24px; overflow: hidden; transition: var(--transition); }
+
+        /* Сетка и карточки */
+        .journal-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; margin-bottom: 40px; }
+        .article-card { display: flex; flex-direction: column; background: var(--elem-bg); border: var(--glass-border); border-radius: 24px; overflow: hidden; transition: var(--transition); cursor: pointer; }
         .article-card:hover { transform: translateY(-8px); border-color: var(--accent-gold); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
         .card-img { width: 100%; height: 240px; object-fit: cover; border-bottom: var(--glass-border); }
         .card-body { padding: 30px; display: flex; flex-direction: column; flex-grow: 1; }
@@ -84,151 +105,185 @@
         .btn-lens { background: var(--elem-bg); backdrop-filter: blur(15px); border: 1px solid var(--elem-border); border-radius: 12px; transition: 0.4s; cursor: pointer; text-transform: uppercase; font-size: 11px; letter-spacing: 2px; font-weight: 600; color: var(--text-main); }
         .btn-lens:hover { border-color: var(--accent-gold); transform: scale(1.05); }
 
-        footer { padding: 60px 5% 40px; border-top: var(--glass-border); background: var(--elem-bg); margin-top: 60px; text-align: center; }
-        @media (max-width: 768px) { header { padding: 15px 5%; } .brand-name { font-size: 18px; letter-spacing: 6px; margin-right: -6px; } .logo-img { height: 28px; } .journal-title { font-size: 32px; } .seo-intro-block { padding: 25px; } }
+        /* Стили окна чтения статьи */
+        .btn-back-article { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: var(--text-main); border: 1px solid var(--elem-border); padding: 10px 20px; border-radius: 12px; cursor: pointer; font-weight: 600; text-transform: uppercase; font-size: 11px; letter-spacing: 2px; margin-bottom: 30px; transition: var(--transition); }
+        .btn-back-article:hover { border-color: var(--accent-gold); background: var(--elem-bg); }
+
+        .full-article-title { font-family: var(--font-serif); font-size: clamp(32px, 5vw, 46px); color: var(--text-main); margin-bottom: 15px; line-height: 1.1; }
+        .full-article-meta { font-size: 12px; opacity: 0.5; margin-bottom: 30px; display: flex; gap: 20px; text-transform: uppercase; letter-spacing: 1px; }
+        .full-article-cover { width: 100%; max-height: 450px; object-fit: cover; border-radius: 24px; margin-bottom: 40px; border: var(--glass-border); }
+        
+        .full-article-content { font-size: 17px; line-height: 1.8; opacity: 0.95; }
+        .full-article-content p { margin-bottom: 20px; }
+        .full-article-content h2, .full-article-content h3 { font-family: var(--font-serif); color: var(--accent-gold); margin: 40px 0 20px; line-height: 1.2; }
+        .full-article-content h2 { font-size: 32px; }
+        .full-article-content img { max-width: 100%; height: auto; border-radius: 12px; margin: 25px 0; }
+        
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 20px; margin: 35px 0; border: var(--glass-border); background: #000; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+
+        footer { padding: 60px 5% 40px; border-top: var(--glass-border); background: var(--elem-bg); margin-top: auto; text-align: center; }
+        
+        @media (max-width: 768px) { 
+            header { padding: 15px 5%; } 
+            .brand-name { font-size: 18px; letter-spacing: 6px; margin-right: -6px; } 
+            .logo-img { height: 28px; } 
+            .journal-title { font-size: 32px; } 
+            .seo-intro-block { padding: 25px; } 
+            .full-article-title { font-size: 28px; }
+        }
     </style>
 </head>
 <body>
 
+<div id="reading-progress"></div>
+
 <header>
     <div class="header-left">
         <img src="logo_header_final.png" alt="РЕСУРС" class="logo-img" onerror="this.style.display='none'">
-        <a href="index.html" class="back-link">← На главную</a>
+        <a href="index.html" class="back-link" id="header-back-btn">← На главную</a>
     </div>
-    <div class="brand-name">Ресурс</div>
+    <div class="brand-name" onclick="goHome()">Ресурс</div>
     <button id="themeToggle" onclick="toggleTheme()" aria-label="Переключить тему">ТЕНЬ</button>
 </header>
 
 <main class="journal-container">
     
-    <div class="journal-header">
-        <span class="journal-category">Экспертный блог</span>
-        <h1 class="journal-title">Манифест Твоего Тела</h1>
-        <p class="journal-subtitle">Официальный журнал студии РЕСУРС в Сыктывкаре. Меняем подход к фитнесу: от насилия над собой к любви, осознанности и здоровью.</p>
+    <div id="home-view">
+        <div class="journal-header">
+            <span class="journal-category">Экспертный блог</span>
+            <h1 class="journal-title">Манифест Твоего Тела</h1>
+            <p class="journal-subtitle">Официальный журнал студии РЕСУРС в Сыктывкаре. Меняем подход к фитнесу: от насилия над собой к любви, осознанности и здоровью.</p>
+        </div>
+
+        <div class="expert-block">
+            <div class="expert-photo">
+                <img src="https://storage.yandexcloud.net/resurs-content/journal/olga-trainer.jpg" alt="Ольга Мартынова" onerror="this.src='https://via.placeholder.com/110?text=Ольга'">
+            </div>
+            <div style="flex: 1; min-width: 250px; text-align: left;">
+                <h3 style="font-family: var(--font-serif); font-size: 26px; margin-bottom: 5px; color: var(--accent-gold);">Ольга Мартынова</h3>
+                <span style="font-size: 11px; text-transform: uppercase; letter-spacing: 2px; opacity: 0.6; display: block; margin-bottom: 10px;">Главный эксперт студии</span>
+                <p style="font-size: 14px; opacity: 0.9; line-height: 1.6; margin: 0;">
+                    <strong>Научный подход:</strong> Дипломированный специалист, применяющий методики доказательной фитнес-медицины и нейробиомеханики для восстановления ресурсного состояния организма без медикаментов. Все материалы блога проходят строгую проверку.
+                </p>
+            </div>
+        </div>
+
+        <div class="seo-intro-block">
+            <h2>Зачем мы пишем этот Журнал?</h2>
+            <p>В мире, где фитнес часто ассоциируется с изнурительными марафонами, болью и жесткими рамками, мы создали совершенно иное пространство. Студия <strong>РЕСУРС</strong> — это территория, где заканчивается гонка за идеалами и начинается глубокий, осознанный диалог с собственным телом. Мы убеждены: истинная трансформация и здоровье приходят не через насилие над собой, а через понимание тонких настроек своей биомеханики и нервной системы.</p>
+            <p>В этом блоге мы переводим сложный язык нейрофизиологии, реабилитации и анатомии на понятный и применимый в жизни формат. Наша миссия — дать вам рабочие, научно обоснованные инструменты, которые захочется применять каждый день, меняя свое состояние к лучшему.</p>
+        </div>
+
+        <div id="dynamic-grid" class="journal-grid">
+            </div>
+        
+        <div id="load-more-container" style="text-align: center; display: none; margin-bottom: 60px;">
+            <button id="load-more-btn" class="btn-lens" style="padding: 12px 30px;" onclick="loadMoreArticles()">Показать свежие статьи ↓</button>
+        </div>
+
+        <h2 style="font-family: var(--font-serif); font-size: 28px; text-align: center; color: var(--accent-gold); margin-bottom: 30px; opacity: 0.8;">Ранние публикации</h2>
+
+        <div class="journal-grid">
+            <a href="mfr-spine.html" class="article-card">
+                <img src="https://storage.yandexcloud.net/resurs-content/journal/mfr-main.jpg" alt="МФР для спины" class="card-img" onerror="this.src='https://via.placeholder.com/600x400?text=МФР'">
+                <div class="card-body">
+                    <span class="card-tag">Здоровая спина</span>
+                    <h2 class="card-title">Почему болит спина при сидячей работе?</h2>
+                    <p class="card-excerpt">Глубокий разбор биомеханики: как слипшаяся фасция отравляет жизнь, и почему 15 минут МФР эффективнее часа классического массажа.</p>
+                    <div class="card-footer">
+                        <span>Читать статью →</span>
+                        <span>5 мин</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="splits-30.html" class="article-card">
+                <img src="https://storage.yandexcloud.net/resurs-content/journal/splits-main.jpg" alt="Растяжка на шпагат" class="card-img" onerror="this.src='https://via.placeholder.com/600x400?text=Шпагат'">
+                <div class="card-body">
+                    <span class="card-tag">Гибкость</span>
+                    <h2 class="card-title">Шпагат после 30 лет: мифы и реальность</h2>
+                    <p class="card-excerpt">Разоблачаем мифы фитнес-индустрии. Как перехитрить рефлекс растяжения и научить нервную систему расслабляться без боли.</p>
+                    <div class="card-footer">
+                        <span>Читать статью →</span>
+                        <span>4 мин</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="detox-drainage.html" class="article-card">
+                <img src="https://storage.yandexcloud.net/resurs-content/journal/detox-main.jpg" alt="Лимфодренаж и детокс" class="card-img" onerror="this.src='https://via.placeholder.com/600x400?text=Детокс'">
+                <div class="card-body">
+                    <span class="card-tag">Питание и Детокс</span>
+                    <h2 class="card-title">Лимфодренаж: как убрать отеки без диет</h2>
+                    <p class="card-excerpt">Анатомия лимфатической системы. Почему вода задерживается в теле, и как правильные движения запускают процесс естественного похудения.</p>
+                    <div class="card-footer">
+                        <span>Читать статью →</span>
+                        <span>6 мин</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="stretching-mistake.html" class="article-card">
+                <img src="https://storage.yandexcloud.net/resurs-content/journal/stretching-mistake-main.jpg" alt="Ошибки на растяжке" class="card-img" onerror="this.src='https://via.placeholder.com/600x400?text=Растяжка'">
+                <div class="card-body">
+                    <span class="card-tag">Биомеханика</span>
+                    <h2 class="card-title">Главная ошибка на растяжке: почему шпагат через боль ведет к травмам</h2>
+                    <p class="card-excerpt">Разбираем с точки зрения нейрофизиологии, почему попытки тянуться через боль блокируют гибкость и цементируют зажимы в теле.</p>
+                    <div class="card-footer">
+                        <span>Читать статью →</span>
+                        <span>4 мин</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="pelvic-floor-health.html" class="article-card">
+                <img src="https://storage.yandexcloud.net/resurs-content/journal/pelvic-floor-main.jpg" alt="Тазовое дно" class="card-img" onerror="this.src='https://via.placeholder.com/600x400?text=Здоровье'">
+                <div class="card-body">
+                    <span class="card-tag">Женское здоровье</span>
+                    <h2 class="card-title">Плоский живот: почему скручивания подходят не всем</h2>
+                    <p class="card-excerpt">Почему погоня за быстрыми результатами и ошибки в технике вредят тазовому дну. Как сделать живот плоским правильно.</p>
+                    <div class="card-footer">
+                        <span>Читать статью →</span>
+                        <span>6 мин</span>
+                    </div>
+                </div>
+            </a>
+            
+            <div class="article-card" style="border: 1px dashed rgba(197, 160, 89, 0.5); background: rgba(197, 160, 89, 0.02); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px; cursor: default;">
+                <div style="font-size: 40px; margin-bottom: 15px; opacity: 0.8;">⚡</div>
+                <span class="card-tag" style="color: var(--text-main); opacity: 0.5;">Скоро в журнале</span>
+                <h2 class="card-title" style="color: var(--accent-gold); font-size: 22px;">Шея, стресс и головная боль</h2>
+                <p class="card-excerpt" style="font-style: italic; font-size: 14px; margin: 0 auto; flex-grow: 0;">Разберем биомеханику: как спазмированная трапеция перекрывает кровоток и лишает энергии.</p>
+            </div>
+        </div>
     </div>
 
-    <div style="display: flex; align-items: center; gap: 25px; background: var(--elem-bg); padding: 30px; border-radius: 24px; border: var(--glass-border); margin-bottom: 30px; flex-wrap: wrap;">
-        <div style="width: 110px; height: 110px; border-radius: 50%; overflow: hidden; border: 2px solid var(--accent-gold); flex-shrink: 0; margin: 0 auto;">
-            <img src="https://storage.yandexcloud.net/resurs-content/journal/olga-trainer.jpg" alt="Ольга Мартынова" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='https://via.placeholder.com/110?text=Ольга'">
+    <div id="article-view">
+        <button class="btn-back-article" onclick="goHome()">← Назад в журнал</button>
+        
+        <h1 id="full-title" class="full-article-title">Загрузка...</h1>
+        <div id="full-meta" class="full-article-meta"></div>
+        
+        <img id="full-cover" class="full-article-cover" src="" alt="Обложка" style="display: none;">
+        
+        <div id="video-wrapper" class="video-container" style="display: none;"></div>
+        
+        <div id="full-content" class="full-article-content">
+            <p style="text-align: center; opacity: 0.5;">Настройка ресурсного состояния...</p>
         </div>
-        <div style="flex: 1; min-width: 250px; text-align: left;">
-            <h3 style="font-family: var(--font-serif); font-size: 26px; margin-bottom: 5px; color: var(--accent-gold);">Ольга Мартынова</h3>
-            <span style="font-size: 11px; text-transform: uppercase; letter-spacing: 2px; opacity: 0.6; display: block; margin-bottom: 10px;">Главный эксперт студии</span>
-            <p style="font-size: 14px; opacity: 0.9; line-height: 1.6; margin: 0;">
-                <strong>Научный подход:</strong> Дипломированный специалист, применяющий методики доказательной фитнес-медицины и нейробиомеханики для восстановления ресурсного состояния организма без медикаментов. Все материалы блога проходят строгую проверку на безопасность и пользу.
-            </p>
-        </div>
-    </div>
-
-    <div class="seo-intro-block">
-        <h2>Зачем мы пишем этот Журнал?</h2>
-        <p>В мире, где фитнес часто ассоциируется с изнурительными марафонами, болью и жесткими рамками, мы создали совершенно иное пространство. Студия <strong>РЕСУРС</strong> — это территория, где заканчивается гонка за идеалами и начинается глубокий, осознанный диалог с собственным телом. Мы убеждены: истинная трансформация и здоровье приходят не через насилие над собой, а через понимание тонких настроек своей биомеханики и нервной системы.</p>
-        <p>В этом блоге мы переводим сложный язык нейрофизиологии, реабилитации и анатомии на понятный и применимый в жизни формат. Мы честно разбираем то, что актуально для каждого жителя Сыктывкара: как постоянный стресс блокирует лимфоток, почему классическая «закачка» спины не избавляет от боли, и как вернуть себе энергию после долгого рабочего дня. Наша миссия — дать вам рабочие, научно обоснованные инструменты, которые захочется применять каждый день, меняя свое состояние к лучшему.</p>
     </div>
 
     <script>
     window.yaContextCb.push(() => {
-        Ya.Context.AdvManager.render({
-            "blockId": "R-A-19181219-5",
-            "type": "floorAd",
-            "platform": "touch"
-        })
-    })
-    </script>
-
-    <div class="journal-grid">
-        <a href="mfr-spine.html" class="article-card">
-            <img src="https://storage.yandexcloud.net/resurs-content/journal/mfr-main.jpg" alt="МФР для спины" class="card-img" onerror="this.src='https://via.placeholder.com/600x400?text=МФР'">
-            <div class="card-body">
-                <span class="card-tag">Здоровая спина</span>
-                <h2 class="card-title">Почему болит спина при сидячей работе?</h2>
-                <p class="card-excerpt">Глубокий разбор биомеханики: как слипшаяся фасция отравляет жизнь, и почему 15 минут МФР эффективнее часа классического массажа.</p>
-                <div class="card-footer">
-                    <span>Читать статью →</span>
-                    <span>5 мин</span>
-                </div>
-            </div>
-        </a>
-
-        <a href="splits-30.html" class="article-card">
-            <img src="https://storage.yandexcloud.net/resurs-content/journal/splits-main.jpg" alt="Растяжка на шпагат" class="card-img" onerror="this.src='https://via.placeholder.com/600x400?text=Шпагат'">
-            <div class="card-body">
-                <span class="card-tag">Гибкость</span>
-                <h2 class="card-title">Шпагат после 30 лет: мифы и реальность</h2>
-                <p class="card-excerpt">Разоблачаем мифы фитнес-индустрии. Как перехитрить рефлекс растяжения и научить нервную систему расслабляться без боли.</p>
-                <div class="card-footer">
-                    <span>Читать статью →</span>
-                    <span>4 мин</span>
-                </div>
-            </div>
-        </a>
-
-        <a href="detox-drainage.html" class="article-card">
-            <img src="https://storage.yandexcloud.net/resurs-content/journal/detox-main.jpg" alt="Лимфодренаж и детокс" class="card-img" onerror="this.src='https://via.placeholder.com/600x400?text=Детокс'">
-            <div class="card-body">
-                <span class="card-tag">Питание и Детокс</span>
-                <h2 class="card-title">Лимфодренаж: как убрать отеки без диет</h2>
-                <p class="card-excerpt">Анатомия лимфатической системы. Почему вода задерживается в теле, и как правильные движения запускают процесс естественного похудения.</p>
-                <div class="card-footer">
-                    <span>Читать статью →</span>
-                    <span>6 мин</span>
-                </div>
-            </div>
-        </a>
-
-        <a href="stretching-mistake.html" class="article-card">
-            <img src="https://storage.yandexcloud.net/resurs-content/journal/stretching-mistake-main.jpg" alt="Ошибки на растяжке" class="card-img" onerror="this.src='https://via.placeholder.com/600x400?text=Растяжка+без+боли'">
-            <div class="card-body">
-                <span class="card-tag">Биомеханика и Растяжка</span>
-                <h2 class="card-title">Главная ошибка на растяжке: почему шпагат через боль ведет к травмам</h2>
-                <p class="card-excerpt">Разбираем с точки зрения нейрофизиологии, почему попытки тянуться через боль блокируют гибкость и цементируют зажимы в теле.</p>
-                <div class="card-footer">
-                    <span>Читать статью →</span>
-                    <span>4 мин</span>
-                </div>
-            </div>
-        </a>
-
-        <a href="pelvic-floor-health.html" class="article-card">
-            <img src="https://storage.yandexcloud.net/resurs-content/journal/pelvic-floor-main.jpg" alt="Женское здоровье и тазовое дно" class="card-img" onerror="this.src='https://via.placeholder.com/600x400?text=Женское+здоровье'">
-            <div class="card-body">
-                <span class="card-tag">Женское здоровье</span>
-                <h2 class="card-title">Плоский живот и женское здоровье: почему классические скручивания подходят не всем</h2>
-                <p class="card-excerpt">Почему погоня за быстрыми результатами и ошибки в технике вредят тазовому дну. Как сделать живот плоским правильно.</p>
-                <div class="card-footer">
-                    <span>Читать статью →</span>
-                    <span>6 мин</span>
-                </div>
-            </div>
-        </a>
-
-        <div class="article-card" style="border: 1px dashed rgba(197, 160, 89, 0.5); background: rgba(197, 160, 89, 0.02); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px;">
-            <div style="font-size: 40px; margin-bottom: 15px; opacity: 0.8;">⚡</div>
-            <span class="card-tag" style="color: var(--text-main); opacity: 0.5;">Выход 20 – 25 мая</span>
-            <h2 class="card-title" style="color: var(--accent-gold); font-size: 22px;">Шея, стресс и головная боль</h2>
-            <p class="card-excerpt" style="font-style: italic; font-size: 14px; margin: 0 auto; flex-grow: 0;">Разберем биомеханику шейного отдела: как спазмированная трапеция перекрывает кровоток и лишает нас энергии.</p>
-        </div>
-
-    </div>
-
-    <script>
+        Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-5", "type": "floorAd", "platform": "touch" })
+    });
     window.yaContextCb.push(() => {
-        Ya.Context.AdvManager.render({
-            "blockId": "R-A-19181219-6",
-            "type": "floorAd",
-            "platform": "touch"
-        })
-    })
-    </script>
-
-    <script>
+        Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-6", "type": "floorAd", "platform": "touch" })
+    });
     window.yaContextCb.push(() => {
-        Ya.Context.AdvManager.render({
-            "blockId": "R-A-19181219-7",
-            "type": "floorAd",
-            "platform": "desktop"
-        })
-    })
+        Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-7", "type": "floorAd", "platform": "desktop" })
+    });
     </script>
 
 </main>
@@ -237,11 +292,12 @@
     <div style="max-width: 1200px; margin: 0 auto;">
         <div style="font-family: var(--font-serif); font-size: 20px; letter-spacing: 8px; margin-bottom: 20px; text-transform: uppercase;">Ресурс</div>
         <p style="font-size: 12px; opacity: 0.6; line-height: 1.6; margin-bottom: 30px;">Сыктывкар, ул. Советская 3 | ул. Коммунистическая 77/2<br>ИП Худяков Николай Сергеевич</p>
-        <div style="font-size: 10px; opacity: 0.4; letter-spacing: 2px; text-transform: uppercase;">© 2026 Студия растяжки и движения Ресурс. Экспертный блог.</div>
+        <div style="font-size: 10px; opacity: 0.4; letter-spacing: 2px; text-transform: uppercase;">© <script>document.write(new Date().getFullYear())</script> Студия растяжки и движения Ресурс. Экспертный блог.</div>
     </div>
 </footer>
 
 <script>
+    // --- ТЕМА И ПРОГРЕСС ЧТЕНИЯ ---
     function toggleTheme() {
         const html = document.documentElement;
         const currentTheme = html.getAttribute('data-theme');
@@ -252,10 +308,238 @@
         else { html.classList.remove('light-theme'); }
         document.getElementById('themeToggle').innerText = newTheme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
     }
-    window.addEventListener('DOMContentLoaded', () => {
+
+    window.addEventListener('scroll', () => {
+        if (document.getElementById('article-view').style.display === 'block') {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("reading-progress").style.width = scrolled + "%";
+        } else {
+            document.getElementById("reading-progress").style.width = "0%";
+        }
+    });
+
+    // --- ЛОГИКА SPA (БАЗА ЯДБ) ---
+    const API_URL = 'https://functions.yandexcloud.net/d4eqj03a2p0lq05nm4k4';
+    let articlesData = [];
+    let currentOffset = 0;
+    const ARTICLES_LIMIT = 6; 
+
+    async function initApp() {
         const theme = document.documentElement.getAttribute('data-theme');
         document.getElementById('themeToggle').innerText = theme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
-    });
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const postSlug = urlParams.get('slug');
+        const postId = urlParams.get('id');
+
+        await fetchArticlesData(); 
+
+        if (postSlug) {
+            const targetArticle = articlesData.find(a => a.slug === postSlug);
+            if (targetArticle) renderArticleView(targetArticle.id);
+        } else if (postId) {
+            renderArticleView(postId);
+        } else {
+            renderHomeView();
+        }
+    }
+
+    async function fetchArticlesData(append = false) {
+        try {
+            if (!append) {
+                currentOffset = 0;
+                articlesData = [];
+            }
+            
+            const response = await fetch(`${API_URL}?action=list&limit=${ARTICLES_LIMIT}&offset=${currentOffset}&t=${new Date().getTime()}`);
+            const data = await response.json();
+            
+            if (data.articles) {
+                let fetchedArticles = data.articles;
+                
+                if (append) {
+                    articlesData = articlesData.concat(fetchedArticles);
+                } else {
+                    articlesData = fetchedArticles;
+                }
+
+                // Сортировка свежих наверху
+                articlesData.sort((a, b) => {
+                    const parseDate = (d) => {
+                        if (!d) return 0;
+                        const match = String(d).match(/(\d{4})-(\d{2})-(\d{2})/);
+                        if (match) return new Date(match[1], match[2]-1, match[3]).getTime();
+                        return 0;
+                    };
+                    return parseDate(b.published_at) - parseDate(a.published_at);
+                }); 
+                
+                const loadMoreBtn = document.getElementById('load-more-container');
+                if (loadMoreBtn) {
+                    if (fetchedArticles.length === ARTICLES_LIMIT) {
+                        loadMoreBtn.style.display = 'block';
+                    } else {
+                        loadMoreBtn.style.display = 'none';
+                    }
+                }
+            }
+        } catch (error) {
+            console.error('Ошибка загрузки данных из БД', error);
+        }
+    }
+
+    async function loadMoreArticles() {
+        const btn = document.getElementById('load-more-btn');
+        btn.innerText = 'Загрузка...';
+        btn.disabled = true;
+        
+        currentOffset += ARTICLES_LIMIT;
+        await fetchArticlesData(true);
+        renderArticlesGrid(articlesData); 
+        
+        btn.innerText = 'Показать свежие статьи ↓';
+        btn.disabled = false;
+    }
+
+    function renderArticlesGrid(articlesList) {
+        const container = document.getElementById('dynamic-grid');
+        if (articlesList.length > 0) {
+            container.innerHTML = '';
+            articlesList.forEach(article => {
+                const imgUrl = article.cover_image_url && article.cover_image_url.trim() !== "" 
+                    ? article.cover_image_url 
+                    : 'https://placehold.co/600x400/05050A/B38639?text=Ресурс';
+                
+                // Создаем короткое описание, очищая HTML
+                const plainText = article.content ? article.content.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim() : '';
+                const excerpt = plainText.length > 120 ? plainText.substring(0, 120) + '...' : plainText;
+                const readTime = Math.max(1, Math.ceil(plainText.split(/\s+/).length / 150));
+                
+                const linkUrl = article.slug ? `?slug=${article.slug}` : `?id=${article.id}`;
+                
+                container.innerHTML += `
+                    <a href="${linkUrl}" class="article-card" onclick="routeToArticle(event, '${article.id}', '${article.slug}')">
+                        <img src="${imgUrl}" alt="${article.title}" class="card-img" onerror="this.src='https://placehold.co/600x400/05050A/B38639?text=Ресурс'">
+                        <div class="card-body">
+                            <span class="card-tag">Блог</span>
+                            <h2 class="card-title">${article.title}</h2>
+                            <p class="card-excerpt">${excerpt}</p>
+                            <div class="card-footer">
+                                <span>Читать статью →</span>
+                                <span>~${readTime} мин • 👁 ${article.view_count || 0}</span>
+                            </div>
+                        </div>
+                    </a>
+                `;
+            });
+        }
+    }
+
+    function renderHomeView() {
+        document.getElementById('article-view').style.display = 'none';
+        document.getElementById('home-view').style.display = 'block';
+        document.title = "Журнал РЕСУРС | Экспертный блог";
+        document.getElementById('header-back-btn').href = "index.html";
+        document.getElementById('header-back-btn').innerText = "← На главную";
+        renderArticlesGrid(articlesData);
+    }
+
+    function routeToArticle(event, id, slug) {
+        event.preventDefault();
+        const newUrl = slug ? `?slug=${slug}` : `?id=${id}`;
+        window.history.pushState({}, "", newUrl); 
+        renderArticleView(id); 
+    }
+
+    function renderArticleView(id) {
+        document.getElementById('home-view').style.display = 'none';
+        document.getElementById('article-view').style.display = 'block';
+        window.scrollTo(0, 0); 
+        
+        document.getElementById('header-back-btn').href = "javascript:void(0)";
+        document.getElementById('header-back-btn').innerText = "← В журнал";
+        document.getElementById('header-back-btn').onclick = goHome;
+
+        const article = articlesData.find(a => a.id === id);
+        
+        if(article) {
+            document.title = `${article.title} | Журнал РЕСУРС`;
+            document.getElementById('full-title').innerText = article.title;
+            
+            const plainText = article.content ? article.content.replace(/<[^>]+>/g, '') : '';
+            const readTime = Math.max(1, Math.ceil(plainText.split(/\s+/).length / 150));
+            
+            let metaHtml = '';
+            if(article.published_at) metaHtml += `<span>📅 ${article.published_at}</span>`;
+            metaHtml += `<span>👁 ${(article.view_count || 0) + 1}</span>`;
+            metaHtml += `<span>⏱ ~${readTime} мин чтения</span>`;
+            document.getElementById('full-meta').innerHTML = metaHtml;
+            
+            const coverImg = document.getElementById('full-cover');
+            if (article.cover_image_url && article.cover_image_url.trim() !== "") {
+                coverImg.src = article.cover_image_url;
+                coverImg.style.display = 'block';
+            } else {
+                coverImg.style.display = 'none';
+            }
+
+            const videoWrapper = document.getElementById('video-wrapper');
+            if (article.rutube_iframe && article.rutube_iframe.trim() !== "") {
+                videoWrapper.innerHTML = article.rutube_iframe;
+                videoWrapper.style.display = 'block';
+            } else {
+                videoWrapper.style.display = 'none';
+                videoWrapper.innerHTML = '';
+            }
+            
+            if (article.content && article.content.trim() !== "") {
+                document.getElementById('full-content').innerHTML = article.content;
+            } else {
+                document.getElementById('full-content').innerHTML = `<p><i>Текст статьи скоро появится.</i></p>`;
+            }
+            
+            // Накрутка просмотров
+            setTimeout(() => {
+                fetch(API_URL, {
+                    method: 'POST',
+                    body: JSON.stringify({ action: 'increment_view', id: article.id })
+                }).catch(e => console.log('Счетчик не сработал', e));
+            }, 2000);
+
+        } else {
+            document.title = "Статья не найдена";
+            document.getElementById('full-title').innerText = "Статья не найдена";
+            document.getElementById('full-meta').innerHTML = "";
+            document.getElementById('full-content').innerHTML = "<p>Возможно, материал был удален или ссылка устарела.</p>";
+            document.getElementById('full-cover').style.display = 'none';
+            document.getElementById('video-wrapper').style.display = 'none';
+        }
+    }
+
+    function goHome(e) {
+        if(e) e.preventDefault();
+        window.history.pushState({}, document.title, window.location.pathname);
+        renderHomeView();
+    }
+
+    window.onpopstate = function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const postSlug = urlParams.get('slug');
+        const postId = urlParams.get('id');
+        
+        if (postSlug) {
+            const targetArticle = articlesData.find(a => a.slug === postSlug);
+            if (targetArticle) renderArticleView(targetArticle.id);
+        } else if (postId) {
+            renderArticleView(postId);
+        } else {
+            renderHomeView();
+        }
+    };
+
+    window.addEventListener('DOMContentLoaded', initApp);
 </script>
 
 </body>
