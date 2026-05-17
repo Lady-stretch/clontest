@@ -171,6 +171,15 @@
         .ql-snow .ql-stroke { transition: stroke 0.3s; }
         .ql-snow .ql-picker-label:hover .ql-stroke, .ql-snow button:hover .ql-stroke { stroke: var(--accent-gold); }
 
+        /* ОСВЕТЛЕНИЕ ПЛЕЙСХОЛДЕРА В QUILL */
+        .ql-editor.ql-blank::before {
+            color: rgba(0, 0, 0, 0.5) !important;
+            font-style: normal !important;
+        }
+        [data-theme="dark"] .ql-editor.ql-blank::before {
+            color: rgba(255, 255, 255, 0.6) !important; /* Яркий, хорошо читаемый текст в темной теме */
+        }
+
         /* --- СПИСОК СТАТЕЙ --- */
         .article-list { display: flex; flex-direction: column; gap: 15px; margin-top: 20px;}
         .article-item {
