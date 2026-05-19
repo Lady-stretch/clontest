@@ -86,7 +86,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Manrope:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Manrope:wght@200;300;400;500;600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
     
     <script src="https://reservi.ru/widget-fit1c.v2/js/config.js" data-fit-salon-id="02977247-3381-4559-b9ef-1cf88d2731a2"></script>
     <script src="https://unpkg.com/imask"></script>
@@ -252,34 +252,49 @@
         .nav-trigger.active span:nth-child(3) { opacity: 0; transform: translateX(15px); }
         .nav-trigger.active span:nth-child(4) { top: 23px; transform: rotate(-45deg); width: 28px; }
 
-        /* --- ШТОРКА МЕНЮ --- */
-        .glass-sidebar {
-    position: fixed; top: 0; left: -100%; width: 100%; height: 100vh;
-    background: var(--nav-bg); 
-    backdrop-filter: blur(25px) saturate(180%); 
-    -webkit-backdrop-filter: blur(25px) saturate(180%); 
-    z-index: 2000; 
-    
-    /* УМНОЕ ВЫРАВНИВАНИЕ И СКРОЛЛ */
-    display: flex; 
-    align-items: flex-start;      /* Прижимаем к верху, чтобы удобно листать */
-    justify-content: center;
-    overflow-y: auto;              /* ВКЛЮЧАЕТ ВЕРТИКАЛЬНЫЙ СКРОЛЛ */
-    padding: 80px 20px 60px;      /* Отступы, чтобы контент не лип к краям */
-    
-    transition: left 0.7s cubic-bezier(0.85, 0, 0.15, 1); 
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
-}
+        /* --- ШТОРКА МЕНЮ (ИСПРАВЛЕНО) --- */
+        #navOverlay.glass-sidebar {
+            position: fixed; top: 0; left: -100%; width: 100%; height: 100vh;
+            z-index: 2000; 
+            display: flex; 
+            align-items: flex-start;
+            justify-content: center;
+            overflow-y: auto;
+            
+            transition: left 0.7s cubic-bezier(0.85, 0, 0.15, 1); 
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+            
+            /* Новые исправленные стили */
+            font-family: 'Montserrat', sans-serif !important;
+            background-color: var(--nav-bg, #080814) !important; 
+            backdrop-filter: blur(25px) saturate(180%); 
+            -webkit-backdrop-filter: blur(25px) saturate(180%); 
+            padding: 60px 30px !important;
+        }
         .glass-sidebar.active { left: 0; }
 
-        .nav-links { text-align: center; }
-        .nav-links a { 
-            display: block; font-family: var(--font-serif); font-size: 36px; 
-            margin: 25px 0; opacity: 0; transform: translateX(-40px); transition: all 0.6s ease;
+        /* Контейнер со ссылками */
+        #navOverlay .nav-links {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0 !important;
+        }
+
+        /* ОБЩИЙ СТИЛЬ ДЛЯ ВСЕХ ССЫЛОК */
+        #navOverlay .nav-links a { 
+            font-family: 'Montserrat', sans-serif !important;
+            transition: 0.3s ease;
+            text-decoration: none !important;
+            display: block;
+            width: 100%;
+            opacity: 0; transform: translateX(-40px); /* Для анимации */
         }
         .glass-sidebar.active .nav-links a { opacity: 0.9; transform: translateX(0); }
-        .nav-links a:hover { opacity: 1; color: var(--accent-gold); letter-spacing: 2px; }
+        #navOverlay .nav-links a:hover { opacity: 1 !important; transform: scale(1.05); color: var(--accent-gold); letter-spacing: 2px; }
 
+        /* Анимация появления */
         .glass-sidebar.active .nav-links a:nth-child(1) { transition-delay: 0.3s; }
         .glass-sidebar.active .nav-links a:nth-child(2) { transition-delay: 0.4s; }
         .glass-sidebar.active .nav-links a:nth-child(3) { transition-delay: 0.5s; }
@@ -288,10 +303,62 @@
         .glass-sidebar.active .nav-links a:nth-child(6) { transition-delay: 0.8s; }
         .glass-sidebar.active .nav-links a:nth-child(7) { transition-delay: 0.9s; }
         .glass-sidebar.active .nav-links a:nth-child(8) { transition-delay: 1.0s; }
+        .glass-sidebar.active .nav-links a:nth-child(9) { transition-delay: 1.1s; }
+
+        /* ОСНОВНЫЕ КРУПНЫЕ ССЫЛКИ */
+        #navOverlay .nav-main-link {
+            font-size: 24px !important;
+            font-weight: 500 !important;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 14px 0 !important;
+            color: #fff !important;
+        }
+        #navOverlay .nav-main-link.gold-link {
+            color: var(--accent-gold, #C5A059) !important;
+        }
+        #navOverlay .nav-main-link.special-link {
+            font-size: 20px !important;
+            font-weight: 400 !important;
+            text-transform: none;
+            letter-spacing: 0;
+            margin: 10px 0 !important;
+        }
+
+        /* НИЖНИЙ СПИСОК */
+        #navOverlay .sub-nav-group {
+            margin-top: 40px !important;
+            padding-top: 30px !important;
+            border-top: 1px solid var(--elem-border, rgba(255,255,255,0.1));
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px !important;
+        }
+        #navOverlay .sub-nav-header {
+            font-size: 12px !important;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            color: var(--accent-gold, #C5A059) !important;
+            margin-bottom: 5px !important;
+            margin-top: 15px;
+        }
+        #navOverlay .sub-nav-header:first-child { margin-top: 0; }
+        #navOverlay .sub-nav-link {
+            font-size: 16px !important;
+            font-weight: 400 !important;
+            color: #fff !important;
+            opacity: 0.8;
+            margin: 0 !important;
+        }
 
         .close-arrow {
-            position: absolute; top: 40px; left: 40px;
+            position: absolute;
             font-size: 30px; cursor: pointer; opacity: 0.5; transition: 0.3s;
+            color: #fff !important; top: 30px !important; left: 30px !important;
         }
         .close-arrow:hover { opacity: 1; transform: translateX(-5px); }
 
@@ -403,7 +470,7 @@
         .footer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-bottom: 80px; text-align: left; }
         .footer-col h4 { font-size: 11px; text-transform: uppercase; letter-spacing: 3px; color: var(--accent-gold); margin-bottom: 25px; }
 
-        /* --- ЖУРНАЛ КНОПКИ (Добавлено) --- */
+        /* --- ЖУРНАЛ КНОПКИ --- */
         #journal-float-btn {
             position: fixed; bottom: 25px; left: 25px; width: 60px; height: 60px;
             background: var(--nav-bg); border: 1px solid var(--accent-gold); border-radius: 50%;
@@ -514,37 +581,54 @@
         .msg-assistant { background: var(--elem-bg); border: 1px solid var(--elem-border); color: var(--text-main); align-self: flex-start; }
         .msg-user { background: var(--accent-gold); color: #000; align-self: flex-end; }
         @media (max-width: 600px) { #ls-ai-chat { bottom: 0; right: 0; width: 100%; height: 100dvh; border-radius: 0; } }
+
+        /* --- COOKIE NOTICE (ИСПРАВЛЕНО - ПО ЦЕНТРУ) --- */
+        #cookie-notice {
+            position: fixed; bottom: 20px; 
+            left: 50%; transform: translateX(-50%); /* Смещение к центру */
+            z-index: 5000; padding: 15px 25px; border-radius: 15px; 
+            display: none; align-items: center; justify-content: space-between; gap: 15px; 
+            border: 1px solid var(--accent-gold); 
+            max-width: 480px; width: 90%; /* Оптимизация размера */
+            flex-wrap: wrap;
+        }
     </style>
 </head>
 <body>
 
 <div id="navOverlay" class="glass-sidebar">
-    <div class="close-arrow" onclick="toggleNav()">←</div>
-    <div class="nav-links">
-        <a href="#about" onclick="toggleNav()">О студии</a>
-        <a href="journal.html" style="color: var(--accent-gold);">ЖУРНАЛ СТУДИИ</a>
-        <a href="#schedule" onclick="toggleNav()">РАСПИСАНИЕ</a>
-        <a href="future-packages.html" style="color: var(--accent-gold);">АБОНЕМЕНТЫ</a>
-        <a href="club.html">100% похудение</a>
-        <a href="horoscope.html" style="color: var(--accent-gold); font-style: italic;">Астро-прогноз от Веры Венеры</a>
-        <a href="community.html" style="font-size: 24px; margin: 15px 0;">Пульс студии (Аналитика)</a>
-        <a href="survey.html" style="font-size: 24px; margin: 15px 0;">Опрос & Бонус</a>
-        <a href="#footer" onclick="toggleNav()">Контакты</a>
-        
-        <div style="margin-top: 30px; border-top: 1px solid var(--elem-border); padding-top: 20px; display: flex; flex-direction: column; gap: 10px;">
-            <span style="font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-gold); opacity: 0.8;">Решения и практики</span>
-            <a href="anti-office.html" style="font-size: 14px; margin: 0; opacity: 0.8;">Снятие боли в спине</a>
-            <a href="stress-relief.html" style="font-size: 14px; margin: 0; opacity: 0.8;">Антистресс и сон</a>
-            <a href="body-tone.html" style="font-size: 14px; margin: 0; opacity: 0.8;">Похудение и рельеф</a>
-            <a href="split-goals.html" style="font-size: 14px; margin: 0; opacity: 0.8;">Шпагат безопасно</a>
-            <a href="beginners-start.html" style="font-size: 14px; margin: 0; opacity: 0.8;">С чего начать новичку?</a>
-            
-            <span style="font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-gold); opacity: 0.8; margin-top: 10px;">Фокусные направления</span>
-            <a href="pilates.html" style="font-size: 14px; margin: 0; opacity: 0.8;">Умный Пилатес</a>
-            <a href="body-sculpt.html" style="font-size: 14px; margin: 0; opacity: 0.8;">Стройное тело</a>
-        </div>
-        </div> </div>
-        
+    <div class="close-arrow" onclick="toggleNav()">←</div>
+    <div class="nav-links">
+        <a href="#about" onclick="toggleNav()" class="nav-main-link">О студии</a>
+        <a href="journal.html" class="nav-main-link gold-link">ЖУРНАЛ СТУДИИ</a>
+        <a href="#schedule" onclick="toggleNav()" class="nav-main-link">РАСПИСАНИЕ</a>
+        <a href="future-packages.html" class="nav-main-link gold-link">АБОНЕМЕНТЫ</a>
+        <a href="club.html" class="nav-main-link">100% похудение</a>
+        
+        <a href="#" onclick="openCrmModal(); toggleNav()" class="nav-main-link">Записаться онлайн</a>
+
+        <a href="horoscope.html" class="nav-main-link gold-link" style="font-style: italic !important;">Астро-прогноз от Веры Венеры</a>
+        
+        <a href="community.html" class="nav-main-link special-link">Пульс студии (Аналитика)</a>
+        <a href="survey.html" class="nav-main-link special-link">Опрос & Бонус</a>
+        
+        <a href="#footer" onclick="toggleNav()" class="nav-main-link">Контакты</a>
+        
+        <div class="sub-nav-group">
+            <span class="sub-nav-header">Решения и практики</span>
+            <a href="anti-office.html" class="sub-nav-link">Снятие боли в спине</a>
+            <a href="stress-relief.html" class="sub-nav-link">Антистресс и сон</a>
+            <a href="body-tone.html" class="sub-nav-link">Похудение и рельеф</a>
+            <a href="split-goals.html" class="sub-nav-link">Шпагат безопасно</a>
+            <a href="beginners-start.html" class="sub-nav-link">С чего начать новичку?</a>
+            
+            <span class="sub-nav-header">Фокусные направления</span>
+            <a href="pilates.html" class="sub-nav-link">Умный Пилатес</a>
+            <a href="body-sculpt.html" class="sub-nav-link">Стройное тело</a>
+        </div>
+    </div>
+</div>
+    
 <header id="header">
     <div class="header-left">
         <div class="nav-trigger btn-lens" id="navTrigger" onclick="toggleNav()">
@@ -939,6 +1023,15 @@
     </div>
 </footer>
 
+<div class="modal" id="crmModal">
+    <div class="modal-content glass">
+        <div class="modal-close" onclick="closeCrmModal()">&times;</div>
+        <h2 class="serif" style="margin-bottom: 20px;">Онлайн-запись</h2>
+        <div id="formwrapd1cd6c8b82da468b80f0402cb41d39f2" style="color:black"></div>
+        <script src="https://intgraf0398ccf6013d13d2c50992542aa25b.listokcrm.ru/integration/cform/d1cd6c8b82da468b80f0402cb41d39f2"></script>
+    </div>
+</div>
+
 <div class="modal" id="orderModal">
     <div class="modal-content glass">
         <div class="modal-close" onclick="closeModal()">&times;</div>
@@ -1037,7 +1130,17 @@
         document.body.style.overflow = overlay.classList.contains('active') ? 'hidden' : 'auto';
     }
 
-    // --- ИЗМЕНЕНО: Логика Модалки, Маски и Оплаты (YooKassa + ВК Лиды) ---
+    // --- Логика Модалки CRM (Запись) ---
+    function openCrmModal() {
+        document.getElementById('crmModal').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+    function closeCrmModal() {
+        document.getElementById('crmModal').style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    // --- Логика Модалки YooKassa, Маски и Оплаты ---
     const CLOUD_URL = "https://functions.yandexcloud.net/d4el388cufj9g6egpam3";
     const phoneElement = document.getElementById('userPhone');
     const maskOptions = { mask: '+{7} (000) 000-00-00', lazy: false };
@@ -1064,9 +1167,10 @@
         document.body.style.overflow = 'auto'; 
     }
 
-    // Закрытие по клику вне окна
+    // Закрытие модалок по клику вне окна
     window.onclick = function(event) {
         if (event.target == document.getElementById('orderModal')) closeModal();
+        if (event.target == document.getElementById('crmModal')) closeCrmModal();
     }
 
     document.getElementById('tgForm').addEventListener('submit', async function(e) {
@@ -1109,7 +1213,7 @@
                 
                 const checkout = new window.YooMoneyCheckoutWidget({
                     confirmation_token: data.confirmation_token,
-                    return_url: 'https://lady-stretch.github.io/thanks.html', 
+                    return_url: 'https:// lady-stretch.github.io/thanks.html', 
                     customization: {
                         modal: false, 
                         width: '100%' 
@@ -1273,7 +1377,7 @@
     });
 </script>
 
-    <div id="cookie-notice" class="glass" style="position: fixed; bottom: 20px; left: 20px; z-index: 5000; padding: 15px 25px; border-radius: 15px; display: none; align-items: center; justify-content: space-between; gap: 15px; border: 1px solid var(--accent-gold); max-width: 400px; width: calc(100% - 100px); flex-wrap: wrap;">
+<div id="cookie-notice" class="glass">
     <span style="font-size: 12px; opacity: 0.9; flex: 1; min-width: 200px;">Мы используем файлы cookie, чтобы сайт «Ресурса» работал лучше. <a href="privacy.html" style="text-decoration: underline;">Подробнее</a></span>
     <button onclick="acceptCookies()" class="btn-lens" style="padding: 8px 20px; font-size: 10px; text-transform: uppercase; border-color: var(--accent-gold); color: var(--accent-gold);">ОК</button>
 </div>
