@@ -194,7 +194,90 @@
         <div id="load-more-container" style="text-align: center; display: none; margin-bottom: 60px;">
             <button id="load-more-btn" class="btn-lens" style="padding: 12px 30px;" onclick="loadMoreArticles()">Показать еще материалы ↓</button>
         </div>
-    </div>
+
+        <div id="static-articles-wrapper">
+            <h2 style="font-family: var(--font-serif); font-size: 28px; text-align: center; color: var(--accent-gold); margin-bottom: 30px; opacity: 0.8;">Ранние публикации</h2>
+
+            <div class="journal-grid">
+                <a href="mfr-spine.html" class="article-card">
+                    <img src="https://storage.yandexcloud.net/resurs-content/journal/mfr-main.jpg" alt="МФР для спины" class="card-img" onerror="this.src='https://via.placeholder.com/600x400?text=МФР'">
+                    <div class="card-body">
+                        <span class="card-tag">Здоровая спина</span>
+                        <h2 class="card-title">Почему болит спина при сидячей работе?</h2>
+                        <p class="card-excerpt">Глубокий разбор биомеханики: как слипшаяся фасция отравляет жизнь, и почему 15 минут МФР эффективнее часа классического массажа.</p>
+                        <div class="card-footer">
+                            <span>Читать статью →</span>
+                            <span>5 мин</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="splits-30.html" class="article-card">
+                    <img src="https://storage.yandexcloud.net/resurs-content/journal/splits-main.jpg" alt="Растяжка на шпагат" class="card-img" onerror="this.src='https://via.placeholder.com/600x400?text=Шпагат'">
+                    <div class="card-body">
+                        <span class="card-tag">Гибкость</span>
+                        <h2 class="card-title">Шпагат после 30 лет: мифы и реальность</h2>
+                        <p class="card-excerpt">Разоблачаем мифы фитнес-индустрии. Как перехитрить рефлекс растяжения и научить нервную систему расслабляться без боли.</p>
+                        <div class="card-footer">
+                            <span>Читать статью →</span>
+                            <span>4 мин</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="detox-drainage.html" class="article-card">
+                    <img src="https://storage.yandexcloud.net/resurs-content/journal/detox-main.jpg" alt="Лимфодренаж и детокс" class="card-img" onerror="this.src='https://via.placeholder.com/600x400?text=Детокс'">
+                    <div class="card-body">
+                        <span class="card-tag">Питание и Детокс</span>
+                        <h2 class="card-title">Лимфодренаж: как убрать отеки без диет</h2>
+                        <p class="card-excerpt">Анатомия лимфатической системы. Почему вода задерживается в теле, и как правильные движения запускают процесс естественного похудения.</p>
+                        <div class="card-footer">
+                            <span>Читать статью →</span>
+                            <span>6 мин</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="stretching-mistake.html" class="article-card">
+                    <img src="https://storage.yandexcloud.net/resurs-content/journal/stretching-mistake-main.jpg" alt="Ошибки на растяжке" class="card-img" onerror="this.src='https://via.placeholder.com/600x400?text=Растяжка'">
+                    <div class="card-body">
+                        <span class="card-tag">Биомеханика</span>
+                        <h2 class="card-title">Главная ошибка на растяжке: почему шпагат через боль ведет к травмам</h2>
+                        <p class="card-excerpt">Разбираем с точки зрения нейрофизиологии, почему попытки тянуться через боль блокируют гибкость и цементируют зажимы в теле.</p>
+                        <div class="card-footer">
+                            <span>Читать статью →</span>
+                            <span>4 мин</span>
+                        </div>
+                    </div>
+                </a>
+
+                <div style="display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 24px;">
+                    <div id="yandex_rtb_R-A-19181219-23" style="width: 100%; display: flex; justify-content: center;"></div>
+                    <script>
+                    window.yaContextCb.push(() => {
+                        Ya.Context.AdvManager.render({
+                            "blockId": "R-A-19181219-23",
+                            "renderTo": "yandex_rtb_R-A-19181219-23"
+                        })
+                    })
+                    </script>
+                </div>
+
+                <a href="pelvic-floor-health.html" class="article-card">
+                    <img src="https://storage.yandexcloud.net/resurs-content/journal/pelvic-floor-main.jpg" alt="Тазовое дно" class="card-img" onerror="this.src='https://via.placeholder.com/600x400?text=Здоровье'">
+                    <div class="card-body">
+                        <span class="card-tag">Женское здоровье</span>
+                        <h2 class="card-title">Плоский живот: почему скручивания подходят не всем</h2>
+                        <p class="card-excerpt">Почему погоня за быстрыми результатами и ошибки в технике вредят тазовому дну. Как сделать живот плоским правильно.</p>
+                        <div class="card-footer">
+                            <span>Читать статью →</span>
+                            <span>6 мин</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        </div>
 
     <div id="article-view">
         <button class="btn-back-article" onclick="goHome()">← Назад в журнал</button>
@@ -331,10 +414,13 @@
     function filterArticles() {
         const query = document.getElementById('article-search').value.toLowerCase();
         const loadMoreBtn = document.getElementById('load-more-container');
+        const staticArticles = document.getElementById('static-articles-wrapper'); // Блок старых статей
         
         if (query !== '') {
             if (loadMoreBtn) loadMoreBtn.style.display = 'none';
+            if (staticArticles) staticArticles.style.display = 'none'; // Скрываем старые при поиске
         } else {
+            if (staticArticles) staticArticles.style.display = 'block'; // Возвращаем, если поиск пуст
             if (loadMoreBtn && articlesData.length > 0 && (articlesData.length % ARTICLES_LIMIT === 0)) {
                 loadMoreBtn.style.display = 'block';
             }
