@@ -23,14 +23,14 @@
         var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
         if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
     })(document, window, "tmr-code");
-    </script>
+</script>
 
-    <noscript>
-        <div>
-            <img src="https://mc.yandex.ru/watch/108177329" style="position:absolute; left:-9999px;" alt="" />
-            <img src="https://top-fwz1.mail.ru/counter?id=3755240;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" />
-        </div>
-    </noscript>
+<noscript>
+    <div>
+        <img src="https://mc.yandex.ru/watch/108177329" style="position:absolute; left:-9999px;" alt="" />
+        <img src="https://top-fwz1.mail.ru/counter?id=3755240;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" />
+    </div>
+</noscript>
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -59,7 +59,6 @@
             --danger: #f87171;
             --water: #3b82f6;
             --water-glow: rgba(59, 130, 246, 0.4);
-            --nav-bg: rgba(14, 12, 21, 0.95);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
@@ -85,17 +84,12 @@
         a { text-decoration: none; color: inherit; transition: var(--transition); }
 
         .glass { background: var(--glass-bg); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border: var(--glass-border); border-radius: 24px; padding: 30px; box-shadow: 0 15px 35px rgba(0,0,0,0.2); width: 100%; min-width: 0; overflow: hidden; }
-        
-        /* КНОПКИ */
         .btn { display: inline-flex; align-items: center; justify-content: center; padding: 18px 20px; border: 1px solid var(--accent-gold); color: var(--accent-gold); text-transform: uppercase; font-size: 11px; letter-spacing: 4px; background: rgba(197, 160, 89, 0.05); cursor: pointer; transition: var(--transition); border-radius: 12px; font-weight: 600; width: 100%; text-align: center; white-space: normal; }
         .btn:hover { background: var(--accent-gold); color: #000; box-shadow: 0 10px 30px rgba(197, 160, 89, 0.3); transform: translateY(-2px); }
-        .btn-secondary { border-color: rgba(244, 244, 249, 0.2); color: var(--text-main); background: transparent; margin-top: 10px; }
-        .btn-secondary:hover { background: rgba(244, 244, 249, 0.1); color: #fff; border-color: rgba(244, 244, 249, 0.4); }
         .section-label { text-align: center; font-size: 10px; letter-spacing: 7px; text-transform: uppercase; color: var(--accent-gold); margin-bottom: 20px; display: block; }
 
-        /* ИСПРАВЛЕННАЯ ТАКТИЛЬНАЯ ШАПКА */
-        header { position: fixed; top: 0; left: 0; width: 100%; padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; z-index: 2000; transition: all 0.5s ease; background: rgba(14, 12, 21, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
-        header.scrolled { background: rgba(8, 8, 20, 0.98) !important; padding: 12px 5% !important; border-bottom: 1px solid var(--accent-gold); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        header { position: fixed; top: 0; left: 0; width: 100%; padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; z-index: 2000; transition: all 0.5s ease; background: transparent; }
+        header.scrolled { background: rgba(10, 10, 25, 0.95) !important; backdrop-filter: blur(25px) !important; -webkit-backdrop-filter: blur(25px) !important; padding: 12px 5% !important; border-bottom: var(--glass-border); }
         .brand-name { font-family: var(--font-serif); font-size: 20px; letter-spacing: 10px; text-transform: uppercase; color: var(--accent-gold); font-weight: 600; position: absolute; left: 50%; transform: translateX(-50%); white-space: nowrap; }
 
         .page-container { width: 100%; max-width: 1200px; margin: 100px auto 60px; padding: 0 5%; display: flex; flex-direction: column; align-items: center; min-width: 0; }
@@ -114,7 +108,6 @@
         .motivation-box h4 { color: var(--accent-gold); font-size: 18px; margin-bottom: 8px; }
         .motivation-box p { font-size: 13px; opacity: 0.85; line-height: 1.5; font-style: italic; }
 
-        /* ИСПРАВЛЕННАЯ СЕТКА ХАРАКТЕРИСТИК */
         .stats-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px; margin-top: 25px; width: 100%; }
         .stat-item { background: rgba(0,0,0,0.4); padding: 18px 12px; border-radius: 16px; border: var(--glass-border); text-align: center; min-width: 0; word-wrap: break-word; }
         .stat-item b { font-size: 1.4rem; display: block; color: #fff; margin-bottom: 4px; font-family: var(--font-serif); white-space: normal; }
@@ -153,14 +146,8 @@
 
         .water-hint { font-size: 10px; color: var(--accent-gold); text-align: center; text-transform: uppercase; letter-spacing: 1px; margin: 25px 0 8px; font-weight: 600; }
         .water-widget { display: flex; align-items: center; gap: 20px; background: rgba(0,0,0,0.5); border-radius: 16px; padding: 20px; border-left: 3px solid var(--water); box-shadow: inset 0 0 20px rgba(59, 130, 246, 0.05); width: 100%; min-width: 0; flex-wrap: wrap; }
-        .water-glass-container { width: 45px; height: 75px; border: 2px solid rgba(255,255,255,0.25); border-radius: 6px 6px 15px 15px; position: relative; overflow: hidden; cursor: pointer; flex-shrink: 0; background: rgba(255,255,255,0.02); transition: transform 0.1s ease; }
-        .water-glass-container:active { transform: scale(0.95); }
-        
-        /* ВИЗУАЛ ВОДЫ С ВОЛНОЙ */
+        .water-glass-container { width: 45px; height: 75px; border: 2px solid rgba(255,255,255,0.15); border-radius: 6px 6px 15px 15px; position: relative; overflow: hidden; cursor: pointer; flex-shrink: 0; background: rgba(255,255,255,0.02); }
         .water-fill { position: absolute; bottom: 0; left: 0; width: 100%; height: 0%; background: linear-gradient(to top, #1d4ed8, var(--water)); transition: height 0.8s cubic-bezier(0.34, 1.56, 0.64, 1); box-shadow: 0 -5px 15px var(--water-glow); }
-        .water-fill::after { content: ''; position: absolute; top: -4px; left: 0; width: 200%; height: 8px; background: rgba(255,255,255,0.25); border-radius: 40%; animation: waveMove 2s infinite linear; }
-        @keyframes waveMove { 0% { transform: translateX(0) rotate(0deg); } 100% { transform: translateX(-50%) rotate(360deg); } }
-
         .water-info { flex: 1; min-width: 120px; }
         .water-btn { background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); color: var(--water); padding: 10px 15px; border-radius: 8px; font-size: 10px; text-transform: uppercase; cursor: pointer; transition: 0.3s; font-weight: 800; margin-top: 8px; letter-spacing: 1px; width: 100%; }
 
@@ -176,7 +163,6 @@
         .club-card-content { padding: 25px 20px; text-align: center; }
 
         .training-item { background: rgba(255,255,255,0.02); border: var(--glass-border); border-radius: 16px; padding: 20px; transition: 0.3s; cursor: pointer; display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; width: 100%; min-width: 0; }
-        .training-item:hover { border-color: var(--accent-gold); background: rgba(197, 160, 89, 0.02); }
         .train-info h4 { font-family: var(--font-serif); font-size: 22px; color: #fff; margin-bottom: 5px; }
         .train-info p { font-size: 9px; opacity: 0.5; text-transform: uppercase; letter-spacing: 1px; }
 
@@ -222,14 +208,14 @@
     <div style="width: 40px;"></div>
     <a href="index.html" class="brand-name">РЕСУРС</a>
     <div style="display: flex; justify-content: flex-end;">
-        <img src="logo_header_final.png" style="height: 40px; width: 40px; border-radius: 8px; opacity: 0.9;" alt="Логотип студии РЕСУРС">
+        <img src="logo_header_final.png" style="height: 40px; width: 40px; border-radius: 8px; opacity: 0.9;" alt="Лого">
     </div>
 </header>
 
 <div class="page-container">
     
     <div class="glass onboarding-block">
-        <h2 class="serif">Система evolutionary тела</h2>
+        <h2 class="serif">Система эволюции тела</h2>
         <p>
             Добро пожаловать в ваш цифровой дневник состояния. <br>
             <span class="step-num">1.</span> Укажите свои параметры и фазу цикла, чтобы узнать норму калорий, воды и режим работы тела.<br>
@@ -263,7 +249,7 @@
                         <b id="libido-level">База</b>
                         <span>Уровень либидо</span>
                     </div>
-                    <div class="stat-item" style="grid-column: span 2;">
+                    <div class="stat-item" style="grid-column: span 1 / -1;">
                         <b id="doc-save">0 часов</b>
                         <span>Сэкономлено времени на врачах</span>
                     </div>
@@ -314,7 +300,7 @@
                     </div>
                     <div>
                         <span class="bio-val" id="kcal-res">0</span>
-                        <span class="bio-label">Ккал / Тонус</span>
+                        <span class="bio-label">Ккал / база</span>
                     </div>
                     <div>
                         <span class="bio-val" id="dynamic-status" style="color:var(--safe)">БАЛАНС</span>
@@ -322,7 +308,7 @@
                     </div>
                 </div>
                 
-                <p class="disclaimer-text">* Расчет Ккал и H2O адаптивно подстраивается под уровень вашей дневной энергии и фазу цикла для предотвращения метаболического выгорания.</p>
+                <p class="disclaimer-text">* Расчет Ккал и H2O указан для базового обмена веществ. При тренировках расход увеличивается на 15-40%.</p>
 
                 <div class="water-hint">💧 Отмечай свой питьевой баланс здесь</div>
                 <div class="water-widget">
@@ -362,11 +348,9 @@
 
                 <div id="train-container"></div>
 
-                <a href="schedule.html" class="btn btn-secondary" style="margin-bottom: 20px;">Записаться на живую практику в Сыктывкаре →</a>
-
                 <div class="club-card">
                     <div class="club-card-img">
-                        <img src="active-drive.png" alt="Онлайн библиотека тренировок студии Ресурс">
+                        <img src="active-drive.png" alt="Библиотека тренировок">
                         <div class="club-card-img-overlay">
                             <h3 class="serif" style="font-size: 26px; color: #fff; margin-bottom: 0;">Онлайн-Клуб «РЕСУРС»</h3>
                         </div>
@@ -394,6 +378,7 @@
 </div>
 
 <script>
+    // --- ДАННЫЕ И БИОХАКИНГ ---
     let state = {
         weight: 62, height: 168, age: 30, cycle: 1, resource: 'norm', level: 0,
         history: [], 
@@ -437,21 +422,22 @@
     ];
 
     window.onload = () => {
+        // ИНИЦИАЛИЗАЦИЯ VK BRIDGE
         vkBridge.send('VKWebAppInit');
-        
-        // КРИТИЧЕСКОЕ ИСПРАВЛЕНИЕ: Сначала загружаем данные, потом считаем математику!
-        load(); 
 
+        load();
+        checkDailyWaterReset();
+        if (state.history.length === 0) recordWeight(state.weight);
+        
+        calculate(false); 
+        setResource(state.resource);
+        updateEvolution();
+        
         window.addEventListener('scroll', () => {
             const header = document.getElementById('header');
             header.classList.toggle('scrolled', window.scrollY > 50);
         });
     };
-
-    function triggerVibration() {
-        vkBridge.send('VKWebAppTapticNotificationOccurred', { type: 'success' })
-            .catch(err => console.log("Haptic не поддерживается", err));
-    }
 
     function checkDailyWaterReset() {
         const today = new Date().toDateString();
@@ -462,22 +448,14 @@
     
     function addWater() {
         checkDailyWaterReset();
-        state.waterDrunk += 0.25; 
-        triggerVibration(); 
-        updateWaterUI(); 
-        save();
+        state.waterDrunk += 0.25; updateWaterUI(); save();
     }
     
     function updateWaterUI() {
         const waterNeed = state.weight * 0.035;
         document.getElementById('water-target-text').innerText = waterNeed.toFixed(1);
         document.getElementById('water-drunk-text').innerText = state.waterDrunk.toFixed(2);
-        
-        // ИСПРАВЛЕНИЕ РАСЧЕТА ПРОЦЕНТОВ ВОДЫ
-        let percent = 0;
-        if (waterNeed > 0) {
-            percent = (state.waterDrunk / waterNeed) * 100;
-        }
+        let percent = (state.waterDrunk / waterNeed) * 100;
         if(percent > 100) percent = 100;
         document.getElementById('water-fill-visual').style.height = percent + '%';
     }
@@ -496,21 +474,16 @@
     }
 
     function calculate(isWeightChanged) {
-        state.weight = parseFloat(document.getElementById('w-val').value) || 62;
-        state.height = parseFloat(document.getElementById('h-val').value) || 168;
-        state.age = parseFloat(document.getElementById('a-val').value) || 30;
+        state.weight = parseFloat(document.getElementById('w-val').value) || 0;
+        state.height = parseFloat(document.getElementById('h-val').value) || 0;
+        state.age = parseFloat(document.getElementById('a-val').value) || 0;
 
         if (state.weight > 0 && state.height > 100) {
             const bmi = (state.weight / ((state.height / 100) ** 2)).toFixed(1);
             document.getElementById('bmi-res').innerText = bmi;
             
             let bmr = (10 * state.weight) + (6.25 * state.height) - (5 * state.age) - 161;
-            
-            let pal = 1.375; 
-            if (state.resource === 'low') pal = 1.2;
-            if (state.resource === 'peak') pal = 1.55;
-
-            document.getElementById('kcal-res').innerText = Math.round(bmr * pal);
+            document.getElementById('kcal-res').innerText = Math.round(bmr);
 
             updateVerdict(bmi);
             updateWaterUI();
@@ -566,6 +539,7 @@
         let hoursSaved = Math.round(totalSessions * 0.35);
         document.getElementById('doc-save').innerText = hoursSaved + ' часов';
         
+        // Разные формулы для стресса и либидо, чтобы динамика выглядела живой
         const stressRelief = Math.min(totalSessions * 6, 95);
         document.getElementById('stress-save').innerText = stressRelief + '%';
         
@@ -611,39 +585,25 @@
         const minT = Math.min(...times); const maxT = Math.max(...times);
         const minW = Math.min(...weights) - 2; const maxW = Math.max(...weights) + 2;
 
-        let calculatedPoints = state.history.map((point) => {
-            return {
-                x: (maxT === minT) ? (svgW / 2) : ((point.ts - minT) / (maxT - minT)) * svgW,
-                y: svgH - (((point.w - minW) / (maxW - minW)) * svgH),
-                w: point.w,
-                ts: point.ts
-            }
-        });
+        let d = "";
+        state.history.forEach((point, i) => {
+            const x = (maxT === minT) ? (svgW / 2) : ((point.ts - minT) / (maxT - minT)) * svgW;
+            const y = svgH - (((point.w - minW) / (maxW - minW)) * svgH);
 
-        let dStr = `M ${calculatedPoints[0].x} ${calculatedPoints[0].y}`;
-        for (let i = 0; i < calculatedPoints.length - 1; i++) {
-            const p0 = calculatedPoints[i];
-            const p1 = calculatedPoints[i + 1];
-            const cpX1 = p0.x + (p1.x - p0.x) / 2;
-            const cpY1 = p0.y;
-            const cpX2 = p0.x + (p1.x - p0.x) / 2;
-            const cpY2 = p1.y;
-            dStr += ` C ${cpX1} ${cpY1}, ${cpX2} ${cpY2}, ${p1.x} ${p1.y}`;
-        }
-        pathEl.setAttribute('d', dStr);
+            if (i === 0) d += `M ${x} ${y}`; else d += ` L ${x} ${y}`; 
 
-        calculatedPoints.forEach((pt, i) => {
-            pointsGroup.innerHTML += `<circle cx="${pt.x}" cy="${pt.y}" class="chart-point" />`;
-            pointsGroup.innerHTML += `<text x="${pt.x}" y="${pt.y - 10}" class="chart-value-text">${pt.w}</text>`;
+            pointsGroup.innerHTML += `<circle cx="${x}" cy="${y}" class="chart-point" />`;
+            pointsGroup.innerHTML += `<text x="${x}" y="${y - 10}" class="chart-value-text">${point.w}</text>`;
 
-            if (i === 0 || i === calculatedPoints.length - 1 || calculatedPoints.length <= 4) {
+            if (i === 0 || i === state.history.length - 1 || state.history.length <= 4) {
                 const dateSpan = document.createElement('span');
-                dateSpan.innerText = formatDate(pt.ts);
+                dateSpan.innerText = formatDate(point.ts);
                 dateSpan.style.position = 'absolute';
-                dateSpan.style.left = `calc(${(pt.x/svgW)*100}% - 15px)`; 
+                dateSpan.style.left = `calc(${(x/svgW)*100}% - 15px)`; 
                 datesEl.appendChild(dateSpan);
             }
         });
+        pathEl.setAttribute('d', d);
     }
 
     function formatDate(ts) {
@@ -677,9 +637,7 @@
             statusEl.style.color = "var(--fire)";
         }
 
-        renderTrainings(); 
-        calculate(false); 
-        save();
+        renderTrainings(); save();
     }
 
     function renderTrainings() {
@@ -702,13 +660,15 @@
     function confirmWorkout() {
         state.workouts.push(Date.now());
         recordWeight(state.weight); 
-        triggerVibration(); 
         closeModal(); 
         updateEvolution(); 
         updateChart();
         save();
         
+        // Плавный скролл вверх для демонстрации прогресса
         window.scrollTo({ top: 0, behavior: 'smooth' });
+        
+        // Вызов алерта с небольшой задержкой, чтобы скролл успел начаться
         setTimeout(() => {
             alert("Практика засчитана! Ваша шкала эволюции обновилась. ✨");
         }, 300);
@@ -716,68 +676,33 @@
 
     function closeModal() { document.querySelectorAll('.modal').forEach(m => m.style.display = 'none'); }
     
-    function save() { 
-        const stringifiedState = JSON.stringify(state);
-        localStorage.setItem('resurs_body_evolution_v6', stringifiedState);
-        
-        vkBridge.send('VKWebAppStorageSet', {
-            key: 'resurs_body_evolution_cloud',
-            value: stringifiedState
-        }).catch(e => console.error("VK Облако сохранения недоступно", e));
-    }
-
+    function save() { localStorage.setItem('resurs_body_evolution_v6', JSON.stringify(state)); }
     function load() {
-        vkBridge.send('VKWebAppStorageGet', { keys: ['resurs_body_evolution_cloud'] })
-            .then(data => {
-                if (data.keys && data.keys[0] && data.keys[0].value) {
-                    processLoadedData(data.keys[0].value);
-                } else {
-                    const localSaved = localStorage.getItem('resurs_body_evolution_v6');
-                    if (localSaved) processLoadedData(localSaved);
-                    else processLoadedData(JSON.stringify(state)); // Запуск с дефолтом, если везде пусто
-                }
-            })
-            .catch(err => {
-                console.error("Ошибка VK Storage, берем локальный кэш", err);
-                const localSaved = localStorage.getItem('resurs_body_evolution_v6');
-                if (localSaved) processLoadedData(localSaved);
-                else processLoadedData(JSON.stringify(state));
+        const saved = localStorage.getItem('resurs_body_evolution_v6');
+        if(saved) {
+            const parsed = JSON.parse(saved);
+            state = Object.assign(state, parsed);
+            
+            if(!state.workouts && state.sessions > 0) {
+                state.workouts = Array(state.sessions).fill(Date.now());
+            }
+
+            document.getElementById('w-val').value = state.weight;
+            document.getElementById('h-val').value = state.height;
+            document.getElementById('a-val').value = state.age;
+            
+            document.querySelectorAll('.cycle-tab').forEach((btn, idx) => {
+                if(idx === state.cycle - 1) btn.classList.add('active');
+                else btn.classList.remove('active');
             });
-    }
-
-    function processLoadedData(savedString) {
-        const parsed = JSON.parse(savedString);
-        state = Object.assign(state, parsed);
-        
-        if(!state.workouts && state.sessions > 0) {
-            state.workouts = Array(state.sessions).fill(Date.now());
+            updateChart();
         }
-
-        document.getElementById('w-val').value = state.weight;
-        document.getElementById('h-val').value = state.height;
-        document.getElementById('a-val').value = state.age;
-        
-        document.querySelectorAll('.cycle-tab').forEach((btn, idx) => {
-            if(idx === state.cycle - 1) btn.classList.add('active');
-            else btn.classList.remove('active');
-        });
-
-        checkDailyWaterReset();
-        if (state.history.length === 0) recordWeight(state.weight);
-        
-        // Пересчет запускается строго после того, как все инпуты получили значения веса
-        calculate(false); 
-        setResource(state.resource);
-        updateEvolution();
-        updateChart();
     }
 
     function resetData() {
-        if(confirm("Полностью обнулить эволюцию, воду и график в локальной памяти и облаке?")) { 
+        if(confirm("Полностью обнулить эволюцию, воду и график?")) { 
             localStorage.removeItem('resurs_body_evolution_v6'); 
-            vkBridge.send('VKWebAppStorageSet', { key: 'resurs_body_evolution_cloud', value: '' })
-                .then(() => location.reload())
-                .catch(() => location.reload());
+            location.reload(); 
         }
     }
 </script>
