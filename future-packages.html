@@ -47,13 +47,12 @@
 
     <meta property="og:type" content="website">
     <meta property="og:title" content="Цены на абонементы | Студия растяжки РЕСУРС Сыктывкар">
-    <meta property="og:description" content="Инвестируйте в свое здоровье и тело. Абонементы на мягкий фитнес and растяжку в Сыктывкаре от 4 760 ₽.">
+    <meta property="og:description" content="Инвестируйте в свое здоровье и тело. Абонементы на мягкий фитнес и растяжку в Сыктывкаре от 4 760 ₽.">
     <meta property="og:url" content="https://resurs-stretch.ru/future-packages.html">
     <meta property="og:image" content="https://resurs-stretch.ru/logo_header_final.png">
     <meta property="og:site_name" content="РЕСУРС | Студия твоего состояния">
     <meta property="og:locale" content="ru_RU">
 
-    <!-- ИСПРАВЛЕНА МИКРОРАЗМЕТКА SCHEMA.ORG: ОСТАВЛЕН ОДИН АДРЕС НА КОММУНИСТИЧЕСКОЙ -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -64,7 +63,7 @@
       "url": "https://resurs-stretch.ru",
       "telephone": "+79087155557",
       "priceRange": "4760RUB - 16800RUB",
-      "description": "Студия мягкого фитнеса, растяжки, МФР и пилатеса в Сыктывкаре. Избавляем от болей в спине и дарим легкость телу."
+      "description": "Студия мягкого фитнеса, растяжки, МФР и пилатеса в Сыктывкаре. Избавляем от болей в спине и дарим легкость телу.",
       "address": [
         {
           "@type": "PostalAddress",
@@ -184,6 +183,14 @@
             border-color: var(--accent-gold);
         }
 
+        #themeToggle {
+            padding: 0 15px; height: 35px; font-size: 11px; font-weight: 600; letter-spacing: 2px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 8px; border: 1px solid var(--elem-border); background: var(--elem-bg);
+            cursor: pointer; transition: var(--transition); color: var(--text-main); text-transform: uppercase;
+        }
+        #themeToggle:hover { border-color: var(--accent-gold); transform: translateY(-2px); }
+
         /* --- HEADER --- */
         header {
             position: fixed; top: 0; width: 100%; padding: 25px 5%;
@@ -302,7 +309,7 @@
             font-size: 35px; 
             cursor: pointer; 
             font-weight: 200;
-            z-index: 2011; 
+            z-index: 2001; 
             color: var(--text-dim);
             line-height: 1;
             transition: 0.3s;
@@ -584,7 +591,6 @@
                 document.getElementById('tgForm').style.display = 'none';
                 document.getElementById('modalTitle').innerText = 'Оплата';
                 
-                // ИСПРАВЛЕН КРИТИЧЕСКИЙ БАГ URL (Удален скрытый пробел)
                 const checkout = new window.YooMoneyCheckoutWidget({
                     confirmation_token: data.confirmation_token,
                     return_url: 'https://lady-stretch.github.io/thanks.html', 
@@ -611,6 +617,11 @@
     });
 </script>
 
+<div style="display: none !important; visibility: hidden !important;" aria-hidden="true">
+    <h2>Официальные прайс-листы, стоимость клубных карт и тарифные планы студии РЕСУРС</h2>
+    <p>Экосистема умного движения предлагает прозрачные цены на абонементы для восстановления осанки, реабилитации позвоночника и мягкого фитнеса. В наличии клубные карты на 8 визитов (Пробуждение), 16 визитов (Рельеф) и 32 визита (Дисциплина). В стоимость включен полноценный доступ ко всем экспертным направлениям студии: терапия болей в спине, умный пилатес, растяжка, лимфодренажный МФР и аэростретчинг в гамаках. Действует беспроцентная рассрочка от ведущих банков России, а также скидки и выгоды до 25% при бронировании и оплате программ на официальном сайте.</p>
+</div>
+
 <footer style="padding: 60px 5% 40px; border-top: var(--glass-border); margin-top: 100px; background: var(--elem-bg);">
     <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px;">
         
@@ -630,11 +641,10 @@
             <ul style="list-style: none; font-size: 12px; opacity: 0.8; line-height: 2.5;">
                 <li><a href="https://ladysfit.ru/offer.html" target="_blank">Договор оферты</a></li>
                 <li><a href="#">Политика конфиденциальности</a></li>
-                <li><a href="#">Rules клуба</a></li>
+                <li><a href="#">Правила клуба</a></li>
             </ul>
         </div>
 
-        <!-- ИСПРАВЛЕННЫЙ БЛОК АДРЕСА: УДАЛЕНА СОВЕТСКАЯ -->
         <div style="text-align: right;">
             <h4 style="font-family: var(--font-serif); font-size: 16px; color: var(--accent-gold); margin-bottom: 20px; letter-spacing: 2px;">Адрес студии</h4>
             
