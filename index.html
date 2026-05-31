@@ -39,12 +39,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
+    <!-- СЕО ОПТИМИЗАЦИЯ НА 10 БАЛЛОВ (МЕЖДУНАРОДНЫЕ ЗАПРОСЫ ВЕРХНЕЙ ВОРОНКИ) -->
     <title>РЕСУРС | Студия умного фитнеса, здоровой спины и коррекции осанки</title>
     <meta name="description" content="Международная система эволюции тела РЕСУРС. Избавляем от болей в спине и пояснице, исправляем осанку, убираем спазмы триггерных точек за 50 минут. Мягкий фитнес, умный пилатес, аэройога и лимфодренажный МФР. Запишитесь на тест-драйв за 990₽!">
     <meta name="keywords" content="здоровая спина, исправление осанки, умный пилатес, миофасциальный релиз триггерных точек, лимфодренажные тренировки от отеков, аэростретчинг в гамаках, мягкий фитнес, растяжка сыктывкар, студия ресурс">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://resurs-stretch.ru/">
 
+    <!-- OPEN GRAPH ДЛЯ ПРЕМИАЛЬНОГО ШЕРИНГА В СОЦСЕТЯХ И МЕССЕНДЖЕРАХ (TELEGRAM/VK) -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="РЕСУРС | Система эволюции движения и здорового тела">
     <meta property="og:description" content="Устраняем боли в позвоночнике и возвращаем легкость за 50 минут. Приходите на тест-драйв за 990₽.">
@@ -53,6 +55,7 @@
     <meta property="og:site_name" content="РЕСУРС">
     <meta property="og:locale" content="ru_RU">
 
+    <!-- ГЛОБАЛЬНАЯ СЕМАНТИЧЕСКАЯ РАЗМЕТКА SCHEMA.ORG (ИСПРАВЛЕНО: УБРАНА СОВЕТСКАЯ) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -68,13 +71,6 @@
         {
           "@type": "PostalAddress",
           "streetAddress": "ул. Коммунистическая, 77/2",
-          "addressLocality": "Сыктывкар",
-          "addressRegion": "Республика Коми",
-          "addressCountry": "RU"
-        },
-        {
-          "@type": "PostalAddress",
-          "streetAddress": "ул. Советская, 3",
           "addressLocality": "Сыктывкар",
           "addressRegion": "Республика Коми",
           "addressCountry": "RU"
@@ -195,6 +191,15 @@
             transform: scale(1.05);
             border-color: var(--accent-gold);
         }
+
+        /* СТИЛЬ КНОПКИ ПЕРЕКЛЮЧЕНИЯ ТЕМЫ ИЗ АБОНЕМЕНТОВ */
+        #themeToggle {
+            padding: 0 15px; height: 35px; font-size: 11px; font-weight: 600; letter-spacing: 2px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 8px; border: 1px solid var(--elem-border); background: var(--elem-bg);
+            cursor: pointer; transition: var(--transition); color: var(--text-main); text-transform: uppercase;
+        }
+        #themeToggle:hover { border-color: var(--accent-gold); transform: translateY(-2px); }
 
         /* --- HEADER --- */
         header {
@@ -646,7 +651,7 @@
         
         <div style="margin-top: 50px; display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
             <button class="btn btn-lens" onclick="openModal()">ЗАБРАТЬ ТЕСТ-ДРАЙВ</button>
-            <a href="wheel.html" class="btn" style="border-color: rgba(197, 160, 89, 0.5);">ИСПЫТАТЬ УДАЧУ</a>
+            <a href="wheel.html" class="btn" style="border-color: rgba(197, 160, 89, 0.5);">Испытать удачу</a>
         </div>
         
         <p style="margin-top: 30px; font-size: 15px; text-transform: uppercase; letter-spacing: 4px; opacity: 0.6;">
@@ -938,12 +943,10 @@
         
     </div>
 
+    <!-- ИСПРАВЛЕНО: УДАЛЕНА ССЫЛКА НА СОВЕТСКУЮ -->
     <div style="margin-top: 50px; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
         <a href="https://go.2gis.com/H0XBA" target="_blank" class="btn btn-lens">
             Отзывы (Коммунистическая)
-        </a>
-        <a href="https://go.2gis.com/YJ2vF" target="_blank" class="btn btn-lens">
-            Отзывы (Советская)
         </a>
     </div>
 </section>
@@ -978,10 +981,11 @@
             </div>
         </div>
 
+        <!-- ИСПРАВЛЕНО: ТЕПЕРЬ ОДИН АДРЕС СТУДИИ -->
         <div class="footer-grid">
             <div>
-                <h4>Локации</h4>
-                <p style="font-size: 13px; opacity: 0.8; line-height: 1.8;">Сыктывкар, ул. Советская 3<br>Сыктывкар, ул. Коммунистическая 77/2</p>
+                <h4>Адрес студии</h4>
+                <p style="font-size: 13px; opacity: 0.8; line-height: 1.8;">Сыктывкар, ул. Коммунистическая 77/2</p>
             </div>
             <div>
                 <h4>Документы</h4>
@@ -1049,6 +1053,7 @@
     <a href="#" class="promo-btn" id="p-btn">Кнопка</a>
 </div>
 
+<!-- СКРЫТЫЙ СЕМАНТИЧЕСКИЙ СЕО-БЛОК ДЛЯ РОБОТОВ ЯНДЕКСА И GOOGLE ПО ВСЕЙ РОССИИ И МИРУ -->
 <div style="display: none !important; visibility: hidden !important;" aria-hidden="true">
     <h2>Программа восстановления осанки, реабилитации позвоночника и здорового движения РЕСУРС</h2>
     <p>Экосистема умного движения и превентивной заботы о здоровье. Профессиональные программы: терапия болей в спине, шее и пояснице, миофасциальный релиз триггерных точек, укрепление глубоких мышц кора, мягкий пилатес для женского здоровья и тазового дна, безопасный шпагат без боли. Доказательные методики реабилитации суставов и вытяжения позвоночника с нулевой осевой нагрузкой.</p>
@@ -1188,7 +1193,6 @@
                 document.querySelector('#orderModal p').style.display = 'none';
                 document.querySelector('#orderModal h2').innerText = 'Оплата';
                 
-                // ИСПРАВЛЕН КРИТИЧЕСКИЙ БАГ: Удален скрытый пробел из строки return_url, ломавший виджет ЮКассы
                 const checkout = new window.YooMoneyCheckoutWidget({
                     confirmation_token: data.confirmation_token,
                     return_url: 'https://lady-stretch.github.io/thanks.html', 
@@ -1347,6 +1351,25 @@
             });
             parent.classList.toggle('active');
         });
+    });
+</script>
+
+<div id="cookie-notice" class="glass" style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 5000; padding: 15px 25px; border-radius: 15px; display: none; align-items: center; justify-content: space-between; gap: 15px; border: 1px solid var(--accent-gold); max-width: 480px; width: 90%; flex-wrap: wrap;">
+    <span style="font-size: 12px; opacity: 0.9; flex: 1; min-width: 200px;">Мы используем файлы cookie, чтобы сайт «Ресурса» работал лучше. <a href="privacy.html" style="text-decoration: underline;">Подробнее</a></span>
+    <button onclick="acceptCookies()" class="btn-lens" style="padding: 8px 20px; font-size: 10px; text-transform: uppercase; border-color: var(--accent-gold); color: var(--accent-gold);">ОК</button>
+</div>
+
+<script>
+    // Проверка Куки
+    function acceptCookies() {
+        localStorage.setItem('cookiesAccepted', 'true');
+        document.getElementById('cookie-notice').style.display = 'none';
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        if (!localStorage.getItem('cookiesAccepted')) {
+            document.getElementById('cookie-notice').style.display = 'flex';
+        }
     });
 </script>
 </body>
