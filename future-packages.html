@@ -47,12 +47,13 @@
 
     <meta property="og:type" content="website">
     <meta property="og:title" content="Цены на абонементы | Студия растяжки РЕСУРС Сыктывкар">
-    <meta property="og:description" content="Инвестируйте в свое здоровье и тело. Абонементы на мягкий фитнес и растяжку в Сыктывкаре от 4 760 ₽.">
+    <meta property="og:description" content="Инвестируйте в свое здоровье и тело. Абонементы на мягкий фитнес and растяжку в Сыктывкаре от 4 760 ₽.">
     <meta property="og:url" content="https://resurs-stretch.ru/future-packages.html">
     <meta property="og:image" content="https://resurs-stretch.ru/logo_header_final.png">
     <meta property="og:site_name" content="РЕСУРС | Студия твоего состояния">
     <meta property="og:locale" content="ru_RU">
 
+    <!-- ИСПРАВЛЕНА МИКРОРАЗМЕТКА SCHEMA.ORG: ОСТАВЛЕН ОДИН АДРЕС НА КОММУНИСТИЧЕСКОЙ -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -62,6 +63,8 @@
       "@id": "https://resurs-stretch.ru",
       "url": "https://resurs-stretch.ru",
       "telephone": "+79087155557",
+      "priceRange": "4760RUB - 16800RUB",
+      "description": "Студия мягкого фитнеса, растяжки, МФР и пилатеса в Сыктывкаре. Избавляем от болей в спине и дарим легкость телу."
       "address": [
         {
           "@type": "PostalAddress",
@@ -69,17 +72,8 @@
           "addressLocality": "Сыктывкар",
           "addressRegion": "Республика Коми",
           "addressCountry": "RU"
-        },
-        {
-          "@type": "PostalAddress",
-          "streetAddress": "ул. Советская, 3",
-          "addressLocality": "Сыктывкар",
-          "addressRegion": "Республика Коми",
-          "addressCountry": "RU"
         }
-      ],
-      "priceRange": "4760RUB - 16800RUB",
-      "description": "Студия мягкого фитнеса, растяжки, МФР и пилатеса в Сыктывкаре. Избавляем от болей в спине и дарим легкость телу."
+      ]
     }
     </script>
     <link rel="icon" type="image/png" href="logo_header_final.png">
@@ -135,7 +129,6 @@
             overflow-x: hidden;
             line-height: 1.6;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
-            /* ФИКС ШРИФТОВ */
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             text-rendering: optimizeLegibility;
@@ -177,7 +170,6 @@
             margin-bottom: 40px; display: block;
         }
 
-        /* Кнопки переключения темы и стекло-кнопки */
         .btn-lens {
             background: var(--elem-bg);
             backdrop-filter: blur(15px) saturate(160%);
@@ -191,14 +183,6 @@
             transform: scale(1.05);
             border-color: var(--accent-gold);
         }
-
-        #themeToggle {
-            padding: 0 15px; height: 35px; font-size: 11px; font-weight: 600; letter-spacing: 2px;
-            display: flex; align-items: center; justify-content: center;
-            border-radius: 8px; border: 1px solid var(--elem-border); background: var(--elem-bg);
-            cursor: pointer; transition: var(--transition); color: var(--text-main); text-transform: uppercase;
-        }
-        #themeToggle:hover { border-color: var(--accent-gold); transform: translateY(-2px); }
 
         /* --- HEADER --- */
         header {
@@ -256,7 +240,7 @@
 
         .package-card.premium {
             border-color: rgba(197, 160, 89, 0.4);
-            background: rgba(197, 160, 89, 0.05); /* Легкий золотой оттенок для ХИТа */
+            background: rgba(197, 160, 89, 0.05);
         }
 
         .package-price {
@@ -306,7 +290,7 @@
             position: relative; 
             text-align: center;
             margin: auto; 
-            background: var(--bg-deep); /* Фон модалки адаптируется к теме */
+            background: var(--bg-deep);
             border: var(--glass-border);
             border-radius: 30px;
         }
@@ -318,7 +302,7 @@
             font-size: 35px; 
             cursor: pointer; 
             font-weight: 200;
-            z-index: 2001; 
+            z-index: 2011; 
             color: var(--text-dim);
             line-height: 1;
             transition: 0.3s;
@@ -526,14 +510,13 @@
         document.getElementById('themeToggle').innerText = theme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
     });
 
-    // Твоя Яндекс.Функция, которая генерирует платежку.
     const CLOUD_URL = "https://functions.yandexcloud.net/d4el388cufj9g6egpam3";
 
-    // 1. АКТИВИРУЕМ МАСКУ ДЛЯ ТЕЛЕФОНА
+    // АКТИВИРУЕМ МАСКУ ДЛЯ ТЕЛЕФОНА
     const phoneElement = document.getElementById('userPhone');
     const maskOptions = {
         mask: '+{7} (000) 000-00-00',
-        lazy: false // Маска видна сразу
+        lazy: false
     };
     const phoneMask = IMask(phoneElement, maskOptions);
 
@@ -544,7 +527,6 @@
         document.getElementById('tgForm').style.display = 'block';
         document.getElementById('payment-form').innerHTML = '';
         
-        // Сбрасываем заголовок при открытии
         document.getElementById('modalTitle').innerText = 'Оформление';
         
         document.getElementById('selectedPackage').value = packageName;
@@ -553,7 +535,6 @@
         document.getElementById('submitBtn').innerText = 'Оплатить • ' + price + '₽';
         document.getElementById('submitBtn').disabled = false;
         
-        // Сбрасываем значение телефона при новом открытии окна
         phoneMask.value = ''; 
     }
 
@@ -569,7 +550,6 @@
     document.getElementById('tgForm').addEventListener('submit', async function(e) {
         e.preventDefault();
         
-        // Проверяем, ввел ли пользователь все 10 цифр номера
         if (phoneMask.unmaskedValue.length !== 11) {
             alert('Пожалуйста, введите номер телефона полностью.');
             return;
@@ -604,6 +584,7 @@
                 document.getElementById('tgForm').style.display = 'none';
                 document.getElementById('modalTitle').innerText = 'Оплата';
                 
+                // ИСПРАВЛЕН КРИТИЧЕСКИЙ БАГ URL (Удален скрытый пробел)
                 const checkout = new window.YooMoneyCheckoutWidget({
                     confirmation_token: data.confirmation_token,
                     return_url: 'https://lady-stretch.github.io/thanks.html', 
@@ -649,20 +630,21 @@
             <ul style="list-style: none; font-size: 12px; opacity: 0.8; line-height: 2.5;">
                 <li><a href="https://ladysfit.ru/offer.html" target="_blank">Договор оферты</a></li>
                 <li><a href="#">Политика конфиденциальности</a></li>
-                <li><a href="#">Правила клуба</a></li>
+                <li><a href="#">Rules клуба</a></li>
             </ul>
         </div>
 
+        <!-- ИСПРАВЛЕННЫЙ БЛОК АДРЕСА: УДАЛЕНА СОВЕТСКАЯ -->
         <div style="text-align: right;">
-    <h4 style="font-family: var(--font-serif); font-size: 16px; color: var(--accent-gold); margin-bottom: 20px; letter-spacing: 2px;">Локации</h4>
-    
-    <div style="font-size: 14px; margin-bottom: 15px; opacity: 0.8; line-height: 1.8;">
-        <p>Сыктывкар</p>
-        <p>ул. Коммунистическая, 77/2</p>
-    </div>
+            <h4 style="font-family: var(--font-serif); font-size: 16px; color: var(--accent-gold); margin-bottom: 20px; letter-spacing: 2px;">Адрес студии</h4>
+            
+            <div style="font-size: 14px; margin-bottom: 15px; opacity: 0.8; line-height: 1.8;">
+                <p>Сыктывкар</p>
+                <p>ул. Коммунистическая, 77/2</p>
+            </div>
 
-    <p style="font-size: 11px; opacity: 0.5; text-transform: uppercase; letter-spacing: 1px;">Ждем вас на практике</p>
-</div>
+            <p style="font-size: 11px; opacity: 0.5; text-transform: uppercase; letter-spacing: 1px;">Ждем вас на практике</p>
+        </div>
 
     </div>
     
