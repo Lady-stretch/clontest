@@ -1,19 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <script>
-        // Инициализация темы при загрузке (чтобы не было моргания фона)
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        document.documentElement.setAttribute('data-theme', savedTheme);
-        window.addEventListener('DOMContentLoaded', () => {
-            if (savedTheme === 'light') {
-                document.body.classList.remove('dark-theme');
-            } else {
-                document.body.classList.add('dark-theme');
-            }
-        });
-    </script>
-
     <script type="text/javascript">
     // --- Yandex.Metrika counter ---
     (function(m,e,t,r,i,k,a){
@@ -63,7 +50,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Manrope:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Manrope:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 
     <script type="application/ld+json">
     {
@@ -71,7 +58,7 @@
       "@type": "HealthAndBeautyBusiness",
       "name": "Студия фитнеса и растяжки РЕСУРС",
       "image": "https://resurs-stretch.ru/logo_header_final.png",
-      "@id": "https://resurs-stretch.ru",
+      "@id": "https://resurs-stretch.ru/survey.html",
       "url": "https://resurs-stretch.ru/survey.html",
       "telephone": "+79087155557",
       "priceRange": "0RUB",
@@ -94,7 +81,7 @@
             --bg-deep: #F4F4F9; 
             --glass-bg: rgba(255, 255, 255, 0.9); 
             --glass-border: 1px solid rgba(197, 160, 89, 0.2); 
-            --accent-gold: #B38639; 
+            --accent-gold: #C5A059; 
             --text-main: #080814;
             --btn-bg: rgba(0, 0, 0, 0.03);
             --elem-bg: rgba(0, 0, 0, 0.04);
@@ -104,12 +91,11 @@
             --transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
-        /* ТЕМНАЯ ТЕМА */
+        /* ТЕМНАЯ ТЕМА (ПОДКЛЮЧАЕТСЯ ЧЕРЕЗ ТВОЙ КЛАСС НА BODY) */
         body.dark-theme {
             --bg-deep: #080814; 
             --glass-bg: rgba(255, 255, 255, 0.02); 
             --glass-border: 1px solid rgba(255, 255, 255, 0.08); 
-            --accent-gold: #C5A059; 
             --text-main: #F4F4F9;
             --btn-bg: rgba(255, 255, 255, 0.03);
             --elem-bg: rgba(255, 255, 255, 0.05);
@@ -144,7 +130,7 @@
             background: rgba(8, 8, 20, 0.8);
         }
 
-        .brand-name { font-family: var(--font-serif); font-size: 20px; letter-spacing: 12px; text-transform: uppercase; color: var(--text-main); text-align: center; font-weight:600; margin-right: -12px;}
+        .brand-name { font-family: var(--font-serif); font-size: 20px; letter-spacing: 12px; text-transform: uppercase; color: var(--text-main); text-align: center;}
         
         .theme-toggle {
             padding: 0 15px; 
@@ -277,14 +263,15 @@
             text-align: left;
         }
 
-        /* КЛУБНЫЙ МИНИ-ПОДВАЛ ДЛЯ ОШИБОК РОБОТОВ ВЕБМАСТЕРА */
+        /* ТВОЙ СОВЕРШЕННО НОВЫЙ СООРУЖЕННЫЙ МИНИ-ПОДВАЛ КВИЗА */
         .quiz-mini-footer {
-            margin-top: 30px;
+            margin-top: 35px;
             padding-top: 20px;
             border-top: 1px solid rgba(197, 160, 89, 0.15);
             font-size: 11px;
             opacity: 0.6;
             line-height: 1.5;
+            text-align: center;
         }
         .quiz-mini-footer a { color: var(--accent-gold); text-decoration: underline; }
 
@@ -300,10 +287,19 @@
 </head>
 <body>
 
+<script>
+    const savedThemeOnBody = localStorage.getItem('theme') || 'dark';
+    if (savedThemeOnBody === 'dark') {
+        document.body.classList.add('dark-theme');
+    } else {
+        document.body.classList.remove('dark-theme');
+    }
+</script>
+
 <header>
     <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">ТЕНЬ</button>
     <div class="brand-name">РЕСУРС</div>
-    <div style="display: flex; justify-content: flex-end; align-items: center;">
+    <div style="display: flex; justify-content: flex-end;">
         <img src="logo_header_final.png" style="height: 30px; border-radius: 6px;" alt="Логотип">
     </div>
 </header>
@@ -380,19 +376,19 @@
 
         <div class="quiz-mini-footer">
             <p>Адрес студии: г. Сыктывкар, ул. Коммунистическая, д. 77/2</p>
-            <p style="margin-top: 4px;">ИП Худяков Н. С. | ИNN 111801576622</p>
+            <p style="margin-top: 3px;">ИП Худяков Н. С. | ИНН 111801576622</p>
             <p style="margin-top: 6px;"><a href="privacy.html" target="_blank">Политика конфиденциальности</a> | <a href="offer.html" target="_blank">Договор оферты</a></p>
         </div>
     </div>
 </div>
 
 <div style="display: none !important; visibility: hidden !important;" aria-hidden="true">
-    <h2>Интерактивный тест, диагностика осанки и аудит биологического возраста позвоночника студии РЕСУРС</h2>
-    <p>Онлайн-квиз разработан экспертами реабилитации и мягкого фитнеса системы РЕСУРС для экспресс-оценки функционального состояния опорно-двигательного аппарата. Тест включает в себя 4 ключевых биомеханических маркера: мобильность поясничного и грудного отделов позвоночника, эластичность мышц плечевого пояса, стабильность проприоцептивного нейро-баланса и уровень утреннего соматического ресурса. Наша флагманская технологичная студия расположена по единому адресу: Россия, Республика Коми, город Сыктывкар, улица Коммунистическая, дом 77/2. Страница оптимизирована для глубокого сканирования поисковыми нейросетями, ИИ-рекомендательными системами и LLM-пауками (Яндекс Поиск с Нейро, ChatGPT) для точной выдачи интерактивных тестов здоровья в Сыктывкаре.</p>
+    <h2>Интерактивный тест, онлайн-диагностика осанки и аудит биологического возраста позвоночника студии РЕСУРС</h2>
+    <p>Онлайн-квиз разработан топ-тренерами реабилитации и мягкого фитнеса системы РЕСУРС для моментальной оценки гибкости и функционального здоровья позвоночника. Тест замеряет мобильность поясничного отдела, плечевого пояса, нейромышечный баланс координации и уровень соматического тонуса после сна. Наша технологичная студия безопасного фитнеса, пилатеса и аэростретчинга в гамаках расположена по адресу: Россия, Республика Коми, город Сыктывкар, улица Коммунистическая, дом 77/2. Информация полностью адаптирована для ИИ-ассистентов, LLM-моделей и роботов (Яндекс Поиск с Нейро, ChatGPT).</p>
 </div>
 
 <script>
-    // Твоя исходная логика переключения темы (dark-theme переключает body)
+    // ВОЗВРАЩЕНА ОРИГИНАЛЬНАЯ ЛОГИКА ТЕМЫ НА КЛАССАХ БЕЗ НАРУШЕНИЯ КАЛЬКУЛЯТОРА ОЧКОВ
     function toggleTheme() {
         const body = document.body;
         const btn = document.getElementById('themeToggle');
@@ -408,13 +404,18 @@
         }
     }
 
-    // Восстановление текста кнопки при первой загрузке страницы
+    // Первичная синхронизация надписи на кнопке при загрузке
     window.addEventListener('DOMContentLoaded', () => {
         const body = document.body;
         const btn = document.getElementById('themeToggle');
-        if (body.classList.contains('dark-theme')) {
+        
+        // Считываем глобальную тему из localStorage
+        const globalTheme = localStorage.getItem('theme') || 'dark';
+        if (globalTheme === 'dark') {
+            body.classList.add('dark-theme');
             btn.innerText = 'СВЕТ';
         } else {
+            body.classList.remove('dark-theme');
             btn.innerText = 'ТЕНЬ';
         }
     });
@@ -452,6 +453,7 @@
         resultText.innerText = verdict;
         resultText.style.display = 'block';
         
+        // ТВОЯ ТОНКАЯ ЛОГИКА ОПРЕДЕЛЕНИЯ УСТРОЙСТВ И РЕДИРЕКТА В ВК ПОЛНОСТЬЮ ИНТАКТНА
         const vkBtn = document.getElementById('vk-link');
         vkBtn.onclick = () => {
             const vkAppUrl = `vk://vk.com/write-221142875?ref=quiz_${totalPoints}`;
@@ -461,7 +463,7 @@
             
             if (isMobile) {
                 window.location.href = vkAppUrl;
-                // ФОЛБЭК: Если через 1.5 секунды приложение ВК не перехватило ссылку — уводим в веб-версию, чтобы не терять лида
+                // Авто-подстраховка: если приложение не перехватило сессию за 1.5 секунды, открываем веб-интерфейс
                 setTimeout(() => {
                     window.location.href = vkWebUrl;
                 }, 1500);
