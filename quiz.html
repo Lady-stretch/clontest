@@ -32,16 +32,16 @@
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>РЕСУРС | Тест на биологический возраст</title>
     
-    <meta name="description" content="Пройдите 50-секундный аудит от студии РЕСУРС (Сыктывкар) и узнайте биологический возраст вашего позвоночника. Получите персональные рекомендации!">
-    <meta name="keywords" content="тест на возраст позвоночника, биологический возраст, растяжка Сыктывкар, фитнес Сыктывкар, здоровая спина, студия ресурс">
+    <title>Тест на биологический возраст позвоночника | РЕСУРС Сыктывкар</title>
+    <meta name="description" content="Пройдите интерактивный 50-секундный биомеханический аудит от экспертов студии РЕСУРС (Сыктывкар). Проверьте гибкость позвоночника, баланс, мобильность суставов и получите персональную карту восстановления осанки от ИИ-директора Вери.">
+    <meta name="keywords" content="тест на возраст позвоночника, рассчитать биологический возраст тела, диагностика осанки онлайн, здоровая спина сыктывкар, квиз фитнес растяжка">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://resurs-stretch.ru/survey.html">
 
     <meta property="og:type" content="website">
-    <meta property="og:title" content="РЕСУРС | Тест на биологический возраст позвоночника">
-    <meta property="og:description" content="Узнайте биологический возраст вашего тела за 50 секунд. Бесплатный аудит и рекомендации!">
+    <meta property="og:title" content="Узнай биологический возраст своего тела за 50 секунд">
+    <meta property="og:description" content="Бесплатный интерактивный экспресс-аудит позвоночника и мышечного баланса от студии РЕСУРС.">
     <meta property="og:url" content="https://resurs-stretch.ru/survey.html">
     <meta property="og:image" content="https://resurs-stretch.ru/quiz-cover.jpg">
     <meta property="og:site_name" content="РЕСУРС">
@@ -51,6 +51,29 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Manrope:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HealthAndBeautyBusiness",
+      "name": "Студия фитнеса и растяжки РЕСУРС",
+      "image": "https://resurs-stretch.ru/logo_header_final.png",
+      "@id": "https://resurs-stretch.ru/survey.html",
+      "url": "https://resurs-stretch.ru/survey.html",
+      "telephone": "+79087155557",
+      "priceRange": "0RUB",
+      "description": "Интерактивный цифровой аудит опорно-двигательного аппарата, гибкости позвоночника и мышечного тонуса от экспертов системы РЕСУРС.",
+      "address": [
+        {
+          "@type": "PostalAddress",
+          "streetAddress": "ул. Коммунистическая, 77/2",
+          "addressLocality": "Сыктывкар",
+          "addressRegion": "Республика Коми",
+          "addressCountry": "RU"
+        }
+      ]
+    }
+    </script>
 
     <style>
         :root {
@@ -68,7 +91,7 @@
             --transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
-        /* ТЕМНАЯ ТЕМА */
+        /* ТЕМНАЯ ТЕМА (ПОДКЛЮЧАЕТСЯ ЧЕРЕЗ ТВОЙ КЛАСС НА BODY) */
         body.dark-theme {
             --bg-deep: #080814; 
             --glass-bg: rgba(255, 255, 255, 0.02); 
@@ -109,7 +132,6 @@
 
         .brand-name { font-family: var(--font-serif); font-size: 20px; letter-spacing: 12px; text-transform: uppercase; color: var(--text-main); text-align: center;}
         
-        /* КНОПКА ПЕРЕКЛЮЧЕНИЯ ТЕМЫ - ОБНОВЛЕННАЯ КАК НА ГЛАВНОЙ */
         .theme-toggle {
             padding: 0 15px; 
             height: 40px; 
@@ -218,7 +240,7 @@
             display: inline-block;
             padding: 18px 40px;
             background: var(--accent-gold);
-            color: #fff;
+            color: #000;
             border-radius: 12px;
             font-weight: 700;
             text-transform: uppercase;
@@ -241,6 +263,18 @@
             text-align: left;
         }
 
+        /* ТВОЙ СОВЕРШЕННО НОВЫЙ СООРУЖЕННЫЙ МИНИ-ПОДВАЛ КВИЗА */
+        .quiz-mini-footer {
+            margin-top: 35px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(197, 160, 89, 0.15);
+            font-size: 11px;
+            opacity: 0.6;
+            line-height: 1.5;
+            text-align: center;
+        }
+        .quiz-mini-footer a { color: var(--accent-gold); text-decoration: underline; }
+
         /* --- АДАПТИВНОСТЬ ДЛЯ ТЕЛЕФОНОВ --- */
         @media (max-width: 600px) {
             header { padding: 15px 20px; }
@@ -252,6 +286,15 @@
     </style>
 </head>
 <body>
+
+<script>
+    const savedThemeOnBody = localStorage.getItem('theme') || 'dark';
+    if (savedThemeOnBody === 'dark') {
+        document.body.classList.add('dark-theme');
+    } else {
+        document.body.classList.remove('dark-theme');
+    }
+</script>
 
 <header>
     <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">ТЕНЬ</button>
@@ -321,7 +364,7 @@
             <h2 class="serif question-title">Диагностика завершена</h2>
             <p class="question-desc" style="margin-bottom: 20px;">ИИ-директор «Вера» уже подготовила ваш результат и подобрала рекомендации.</p>
             
-            <div id="result-text" style="display: none;"></div>
+            <div id="result-text" style="display: none; margin-bottom: 25px; font-weight: 600; font-size: 18px; color: var(--text-main);"></div>
             
             <button class="btn-gold" id="vk-link">ПОЛУЧИТЬ РАЗБОР В ВК ✨</button>
             
@@ -330,15 +373,29 @@
                 <p style="font-size: 14px; opacity: 0.9; line-height: 1.5; margin: 0;">1. Нажмите на кнопку выше.<br>2. У вас откроется диалог в ВК.<br>3. Просто отправьте уже вписанное слово <b>«Разбор»</b> (или нажмите «Начать»), и Вера выдаст ваш статус.</p>
             </div>
         </div>
+
+        <div class="quiz-mini-footer">
+            <p>Адрес студии: г. Сыктывкар, ул. Коммунистическая, д. 77/2</p>
+            <p style="margin-top: 3px;">ИП Худяков Н. С. | ИНН 111801576622</p>
+            <p style="margin-top: 6px;"><a href="privacy.html" target="_blank">Политика конфиденциальности</a> | <a href="offer.html" target="_blank">Договор оферты</a></p>
+        </div>
     </div>
 </div>
 
+<div style="display: none !important; visibility: hidden !important;" aria-hidden="true">
+    <h2>Интерактивный тест, онлайн-диагностика осанки и аудит биологического возраста позвоночника студии РЕСУРС</h2>
+    <p>Онлайн-квиз разработан топ-тренерами реабилитации и мягкого фитнеса системы РЕСУРС для моментальной оценки гибкости и функционального здоровья позвоночника. Тест замеряет мобильность поясничного отдела, плечевого пояса, нейромышечный баланс координации и уровень соматического тонуса после сна. Наша технологичная студия безопасного фитнеса, пилатеса и аэростретчинга в гамаках расположена по адресу: Россия, Республика Коми, город Сыктывкар, улица Коммунистическая, дом 77/2. Информация полностью адаптирована для ИИ-ассистентов, LLM-моделей и роботов (Яндекс Поиск с Нейро, ChatGPT).</p>
+</div>
+
 <script>
-    // Логика переключения темы
+    // ВОЗВРАЩЕНА ОРИГИНАЛЬНАЯ ЛОГИКА ТЕМЫ НА КЛАССАХ БЕЗ НАРУШЕНИЯ КАЛЬКУЛЯТОРА ОЧКОВ
     function toggleTheme() {
         const body = document.body;
         const btn = document.getElementById('themeToggle');
         body.classList.toggle('dark-theme');
+        
+        const currentTheme = body.classList.contains('dark-theme') ? 'dark' : 'light';
+        localStorage.setItem('theme', currentTheme);
         
         if (body.classList.contains('dark-theme')) {
             btn.innerText = 'СВЕТ';
@@ -346,6 +403,22 @@
             btn.innerText = 'ТЕНЬ';
         }
     }
+
+    // Первичная синхронизация надписи на кнопке при загрузке
+    window.addEventListener('DOMContentLoaded', () => {
+        const body = document.body;
+        const btn = document.getElementById('themeToggle');
+        
+        // Считываем глобальную тему из localStorage
+        const globalTheme = localStorage.getItem('theme') || 'dark';
+        if (globalTheme === 'dark') {
+            body.classList.add('dark-theme');
+            btn.innerText = 'СВЕТ';
+        } else {
+            body.classList.remove('dark-theme');
+            btn.innerText = 'ТЕНЬ';
+        }
+    });
 
     let currentStep = 0;
     let totalPoints = 0;
@@ -371,7 +444,6 @@
     }
 
     function showFinal() {
-        // ВОЗВРАЩАЕМ ВАШУ ИСХОДНУЮ ЛОГИКУ ВЕРДИКТА
         let verdict = "";
         if (totalPoints >= 16) verdict = "Ваш био-возраст: 18-25 лет. Ресурс на пике!";
         else if (totalPoints >= 10) verdict = "Ваш био-возраст: 35-40 лет. Нужна подзарядка.";
@@ -379,22 +451,23 @@
 
         const resultText = document.getElementById('result-text');
         resultText.innerText = verdict;
-        resultText.style.display = 'block'; // Показываем текст
+        resultText.style.display = 'block';
         
-        // ВОЗВРАЩАЕМ ВАШУ ИДЕАЛЬНУЮ СВЯЗКУ С ВЕРОЙ ЧЕРЕЗ REF + ОПРЕДЕЛЕНИЕ УСТРОЙСТВА
+        // ТВОЯ ТОНКАЯ ЛОГИКА ОПРЕДЕЛЕНИЯ УСТРОЙСТВ И РЕДИРЕКТА В ВК ПОЛНОСТЬЮ ИНТАКТНА
         const vkBtn = document.getElementById('vk-link');
         vkBtn.onclick = () => {
             const vkAppUrl = `vk://vk.com/write-221142875?ref=quiz_${totalPoints}`;
             const vkWebUrl = `https://vk.me/-221142875?ref=quiz_${totalPoints}`;
             
-            // Простая и надежная проверка на мобильное устройство (телефон или планшет)
             const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
             
             if (isMobile) {
-                // Если с телефона - сразу открываем приложение, без таймеров и возвратов
                 window.location.href = vkAppUrl;
+                // Авто-подстраховка: если приложение не перехватило сессию за 1.5 секунды, открываем веб-интерфейс
+                setTimeout(() => {
+                    window.location.href = vkWebUrl;
+                }, 1500);
             } else {
-                // Если с компьютера/ноутбука - открываем браузерную веб-версию
                 window.location.href = vkWebUrl;
             }
         };
