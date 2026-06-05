@@ -51,7 +51,7 @@
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Montserrat', sans-serif; background-color: #0B0F19; color: #E5E7EB; }
         ::-webkit-scrollbar { width: 8px; }
@@ -229,11 +229,9 @@
     </script>
 
     <script>
-        // Состояние анкеты актера
         let selectedAge = "adult"; 
         let selectedGender = "male"; 
 
-        // Базы ЛИНЕЙНЫХ вопросов бесплатной части тестов (Разделены по возрасту и ПОЛУ для максимального интереса)
         const quizQuestions = {
             adult: {
                 male: [
@@ -289,7 +287,7 @@
                         answers: [
                             { text: "Срываю тяжелое колье, бросаю его к ногам гонца и приказываю седлать коней для побега.", tag: "action" },
                             { text: "Медленно опускаюсь на кресло, бледнею, роняю веер. В глазах — вся трагедия уходящей эпохи.", tag: "drama" },
-                        	{ text: "Выпиваю бокал вина, громко хохочу над глупостью указа и иронично подмигиваю гвардейцам.", tag: "comedy" },
+                            { text: "Выпиваю бокал вина, громко хохочу над глупостью указа и иронично подмигиваю гвардейцам.", tag: "comedy" },
                             { text: "Гордо выпрямляю спину, поднимаю подбородок и ледяным тоном заявляю: 'Императоры меняются. Род наш вечен'.", tag: "epic" }
                         ]
                     },
@@ -429,7 +427,6 @@
             }
         };
 
-        // Текстовые амплуа по всем 16 категориям ролей
         const rolesTitles = {
             adult: {
                 male: { action: "Агент под прикрытием", drama: "Герой независимого артхауса", comedy: "Эксцентричный новатор", epic: "Правитель Империи" },
@@ -445,13 +442,12 @@
             action: "Вы обладаете невероятной скоростью реакции, физической собранностью и решительностью. Режиссеры динамичных экшенов увидели бы в вас идеального протагониста, способного вытащить любую сложнейшую сцену за счет личной харизмы, точности движений и хладнокровия в моменты кризиса.",
             drama: "Ваш конек — глубокая психологическая проработка, эмоциональная честность и умение держать драматическую паузу. Ваше присутствие в кадре заставляет зрителя сопереживать каждой секунде. Это амплуа для фестивального кино высокого уровня, где ценится глубина взгляда и микромимика.",
             comedy: "Вы — генератор энергии, способный мгновенно разрядить любую обстановку с помощью безупречной самоиронии, пластичности и нестандартного мышления. Вы легко ломаете шаблоны поведения, удерживая внимание зрителя за счет искренности, динамики и великолепного чувства ритма.",
-            epic: "Монументальное спокойствие, стратегическое мышление и врожденные лидерские качества. Вы органично смотритесь в масштабных кадрах исторических саг, космических опер или фэнтези. Ваша роль — человек, за которым идут, восстанавливающий порядок, структуру и гармонию."
+            epic: "Монументальное спокойствие, стратегическое мышление и врожденные лидерские качества. Вы органично смотритесь в масштабных каднах исторических саг, космических опер или фэнтези. Ваша роль — человек, за которым идут, восстанавливающий порядок, структуру и гармонию."
         };
 
         const rolesColors = { action: "#06B6D4", drama: "#A855F7", comedy: "#F59E0B", epic: "#10B981" };
         const rolesGradients = { action: "#083344", drama: "#3B0764", comedy: "#451A03", epic: "#064E3B" };
 
-        // Случайные названия фильмов для бесплатного Canvas-оверлея
         const fakeMovieTitles = [
             "ГОНЕНИЯ ПЕРВЫХ", "КОД ИЗОБИЛИЯ", "СИНГУЛЯРНОСТЬ СЫКТЫВКАРА", 
             "ВРЕМЯ РЕСУРСА", "ФАСЦИЯ СУДЬБЫ", "ОБРАТНЫЙ ОТСЧЕТ ОСОЗНАННОСТИ"
@@ -493,7 +489,6 @@
         }
 
         function renderQuestion() {
-            // Выбираем базу вопросов в зависимости от пола и возраста
             const activeQuestions = quizQuestions[selectedAge][selectedGender];
             const currentQuestion = activeQuestions[currentQuestionIndex];
             
@@ -505,10 +500,10 @@
             const container = document.getElementById("answers-container");
             container.innerHTML = "";
             
-            // Восстановление автономного вывода кнопок бесплатного лид-магнита
             currentQuestion.answers.forEach(answer => {
                 const button = document.createElement("button");
-                button.className = "w-full text-left p-4 bg-[#111827] hover:bg-[#1F2937] border border-gray-800 hover:border-gray-700 text-xs md:text-sm text-gray-300 hover:text-white rounded-xl transition-all duration-200 active:scale-[0.99] cursor-pointer focus:outline-none";
+                // Улучшены отступы, увеличен размер текста и добавлена интерактивная подсветка фокуса/выбора
+                button.className = "w-full text-left p-4 bg-[#111827] border border-gray-800 hover:border-amber-500 focus:bg-amber-500/10 focus:border-amber-500 text-sm md:text-base font-semibold text-gray-300 hover:text-white rounded-xl transition-all duration-200 active:scale-[0.99] cursor-pointer focus:outline-none";
                 button.innerText = answer.text;
                 button.onclick = () => handleAnswerClick(answer.tag);
                 container.appendChild(button);
@@ -540,10 +535,7 @@
                     }
                 }
                 finalRoleKey = selectedRole;
-                
-                // Рандомный выбор названия фильма для бесплатного постера
                 chosenMovieTitle = fakeMovieTitles[Math.floor(Math.random() * fakeMovieTitles.length)];
-                
                 renderResultScreen();
             }, 1500);
         }
@@ -559,7 +551,7 @@
             generateCanvasPoster(displayTitle);
         }
 
-        // Рендеринг Canvas с заделом до 10 файлов на категорию (индекс _1.png ... _10.png)
+        // Интеллектуальный механизм подгрузки файлов с каскадным переключением индекса
         function generateCanvasPoster(displayTitle) {
             const canvas = document.getElementById("posterCanvas");
             const ctx = canvas.getContext("2d");
@@ -569,12 +561,13 @@
             ctx.fillStyle = "#0B0F19";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             
-            // Задел под 10 картинок на роль: генерируем случайный индекс от 1 до 10
+            // Генерируем случайную цифру от 1 до 10 для проверки обновлений
             const randomIndex = Math.floor(Math.random() * 10) + 1;
-            const imageFilename = `${finalRoleKey}_${selectedAge}_${selectedGender}_${randomIndex}.png`;
+            const primaryFilename = `${finalRoleKey}_${selectedAge}_${selectedGender}_${randomIndex}.png`;
+            const backupFilename = `${finalRoleKey}_${selectedAge}_${selectedGender}_1.png`;
             
             const img = new Image();
-            img.src = `/images/posters/${imageFilename}`;
+            img.src = `/images/posters/${primaryFilename}`;
             
             function drawPosterTypography() {
                 ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
@@ -583,10 +576,11 @@
                 ctx.letterSpacing = "6px";
                 ctx.fillText("РЕСУРС МЕДИА • КАСТИНГ", canvas.width / 2, 65);
 
+                // Координаты надписей плавно опущены вниз, чтобы не портить центральную графику афиши
                 ctx.fillStyle = accentColor;
                 ctx.font = "bold 14px 'Montserrat', sans-serif";
                 ctx.letterSpacing = "5px";
-                ctx.fillText("ГЛАВНОЕ АМПЛУА", canvas.width / 2, canvas.height - 210);
+                ctx.fillText("ГЛАВНОЕ АМПЛУА", canvas.width / 2, canvas.height - 185);
 
                 let fontSize = 38;
                 if (displayTitle.length > 25) fontSize = 28;
@@ -595,47 +589,59 @@
                 ctx.fillStyle = "#FFFFFF";
                 ctx.font = `900 ${fontSize}px 'Montserrat', sans-serif`;
                 ctx.letterSpacing = "1px";
-                ctx.fillText(displayTitle.toUpperCase(), canvas.width / 2, canvas.height - 155);
+                ctx.fillText(displayTitle.toUpperCase(), canvas.width / 2, canvas.height - 135);
 
-                // Вывод названия фильма крупным шрифтом внизу постера
                 ctx.fillStyle = accentColor;
                 ctx.font = "900 42px 'Montserrat', sans-serif";
                 ctx.letterSpacing = "2px";
-                ctx.fillText(chosenMovieTitle.toUpperCase(), canvas.width / 2, canvas.height - 85);
+                ctx.fillText(chosenMovieTitle.toUpperCase(), canvas.width / 2, canvas.height - 75);
 
                 ctx.fillStyle = "rgba(255, 255, 255, 0.3)";
                 ctx.font = "bold 11px 'Montserrat', sans-serif";
                 ctx.letterSpacing = "2px";
-                ctx.fillText("СКОРО ВО ВСЕХ КИНОТЕАТРАХ • resurs-stretch.ru", canvas.width / 2, canvas.height - 40);
+                ctx.fillText("СКОРО ВО ВСЕХ КИНОТЕАТРАХ • resurs-stretch.ru", canvas.width / 2, canvas.height - 35);
             }
 
+            // Успешный запуск основного случайного файла
             img.onload = () => {
                 ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
                 drawPosterTypography();
             };
             
+            // Если ИИ-постер с выбранным индексом еще не сгенерирован, плавно переключаемся на базовый файл с индексом 1
             img.onerror = () => {
-                const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-                gradient.addColorStop(0, "#0D1220");
-                gradient.addColorStop(1, bottomHex + "44");
-                ctx.fillStyle = gradient;
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                const backupImg = new Image();
+                backupImg.src = `/images/posters/${backupFilename}`;
                 
-                ctx.strokeStyle = accentColor; ctx.lineWidth = 4; ctx.strokeRect(20, 20, canvas.width - 40, canvas.height - 40);
-                ctx.strokeStyle = "rgba(255, 255, 255, 0.05)"; ctx.lineWidth = 1; ctx.strokeRect(32, 32, canvas.width - 64, canvas.height - 64);
-
-                const cx = canvas.width / 2; const cy = canvas.height / 2 - 40; const r = 60;
-                ctx.strokeStyle = accentColor; ctx.lineWidth = 3;
-                ctx.beginPath(); ctx.moveTo(cx - r, cy - r + 15); ctx.lineTo(cx - r, cy - r); ctx.lineTo(cx - r + 15, cy - r); ctx.stroke();
-                ctx.beginPath(); ctx.moveTo(cx + r, cy - r + 15); ctx.lineTo(cx + r, cy - r); ctx.lineTo(cx + r - 15, cy - r); ctx.stroke();
-                ctx.beginPath(); ctx.moveTo(cx - r, cy + r - 15); ctx.lineTo(cx - r, cy + r); ctx.lineTo(cx - r + 15, cy + r); ctx.stroke();
-                ctx.beginPath(); ctx.moveTo(cx + r, cy + r - 15); ctx.lineTo(cx + r, cy + r); ctx.lineTo(cx + r - 15, cy + r); ctx.stroke();
-
-                drawPosterTypography();
+                backupImg.onload = () => {
+                    ctx.drawImage(backupImg, 0, 0, canvas.width, canvas.height);
+                    drawPosterTypography();
+                };
                 
-                ctx.fillStyle = "rgba(255, 255, 255, 0.1)"; ctx.fillRect(canvas.width / 2 - 100, canvas.height - 275, 200, 25);
-                ctx.fillStyle = "rgba(255, 255, 255, 0.3)"; ctx.font = "10px monospace"; ctx.letterSpacing = "3px";
-                ctx.fillText("ID-" + Math.floor(100000 + Math.random() * 900000), canvas.width / 2, canvas.height - 287);
+                // Если в репозитории совсем нет картинок — включается геометрический рендеринг
+                backupImg.onerror = () => {
+                    const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+                    gradient.addColorStop(0, "#0D1220");
+                    gradient.addColorStop(1, bottomHex + "44");
+                    ctx.fillStyle = gradient;
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    
+                    ctx.strokeStyle = accentColor; ctx.lineWidth = 4; ctx.strokeRect(20, 20, canvas.width - 40, canvas.height - 40);
+                    ctx.strokeStyle = "rgba(255, 255, 255, 0.05)"; ctx.lineWidth = 1; ctx.strokeRect(32, 32, canvas.width - 64, canvas.height - 64);
+
+                    const cx = canvas.width / 2; const cy = canvas.height / 2 - 40; const r = 60;
+                    ctx.strokeStyle = accentColor; ctx.lineWidth = 3;
+                    ctx.beginPath(); ctx.moveTo(cx - r, cy - r + 15); ctx.lineTo(cx - r, cy - r); ctx.lineTo(cx - r + 15, cy - r); ctx.stroke();
+                    ctx.beginPath(); ctx.moveTo(cx + r, cy - r + 15); ctx.lineTo(cx + r, cy - r); ctx.lineTo(cx + r - 15, cy - r); ctx.stroke();
+                    ctx.beginPath(); ctx.moveTo(cx - r, cy + r - 15); ctx.lineTo(cx - r, cy + r); ctx.lineTo(cx - r + 15, cy + r); ctx.stroke();
+                    ctx.beginPath(); ctx.moveTo(cx + r, cy + r - 15); ctx.lineTo(cx + r, cy + r); ctx.lineTo(cx + r - 15, cy + r); ctx.stroke();
+
+                    drawPosterTypography();
+                    
+                    ctx.fillStyle = "rgba(255, 255, 255, 0.1)"; ctx.fillRect(canvas.width / 2 - 100, canvas.height - 250, 200, 25);
+                    ctx.fillStyle = "rgba(255, 255, 255, 0.3)"; ctx.font = "10px monospace"; ctx.letterSpacing = "3px";
+                    ctx.fillText("ID-" + Math.floor(100000 + Math.random() * 900000), canvas.width / 2, canvas.height - 262);
+                };
             };
         }
 
@@ -651,7 +657,6 @@
             showScreen("screen-start");
         }
 
-        // Высоковирусный шеринг файла картинки с Canvas
         async function shareResult() {
             const canvas = document.getElementById("posterCanvas");
             const displayTitle = rolesTitles[selectedAge][selectedGender][finalRoleKey];
