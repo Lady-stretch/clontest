@@ -269,7 +269,7 @@
                         answers: [
                             { text: "Резко швыряю оружие в воду, разворачиваюсь и ухожу широким шагом, не оборачиваясь.", tag: "action" },
                             { text: "Падаю на колени, закрывая лицо руками, под пронзительную скрипичную музыку.", tag: "drama" },
-                            { text: "Достаю измокшую пачку, пытаюсь поджечь спичку, улыбаюсь абсурдности этой жизни.", tag: "comedy" },
+                            { text: "Достаю измокшую пачку, пытаюсь поджечь спичку, улыгаюсь абсурдности этой жизни.", tag: "comedy" },
                             { text: "Встаю лицом к шторму, расправляю плечи и смотрю на горизонт, готовый к новой эре.", tag: "epic" }
                         ]
                     },
@@ -577,7 +577,7 @@
                 ctx.letterSpacing = "6px";
                 ctx.fillText("РЕСУРС МЕДИА • КАСТИНГ", canvas.width / 2, 65);
 
-                // Координаты смещены строго вниз, освобождая центральное поле изображения под графику
+                // Координаты надписей плавно опущены вниз, чтобы не портить центральную графику афиши
                 ctx.fillStyle = accentColor;
                 ctx.font = "bold 14px 'Montserrat', sans-serif";
                 ctx.letterSpacing = "5px";
@@ -603,6 +603,7 @@
                 ctx.fillText("СКОРО ВО ВСЕХ КИНОТЕАТРАХ • resurs-stretch.ru", canvas.width / 2, canvas.height - 45);
             }
 
+            // Успешный запуск основного случайного файла
             img.onload = () => {
                 ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
                 drawPosterTypography();
@@ -618,6 +619,7 @@
                     drawPosterTypography();
                 };
                 
+                // Если в репозитории совсем нет картинок — включается геометрический рендеринг
                 backupImg.onerror = () => {
                     const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
                     gradient.addColorStop(0, "#0D1220");
@@ -637,9 +639,9 @@
 
                     drawPosterTypography();
                     
-                    ctx.fillStyle = "rgba(255, 255, 255, 0.1)"; ctx.fillRect(canvas.width / 2 - 100, canvas.height - 295, 200, 25);
+                    ctx.fillStyle = "rgba(255, 255, 255, 0.1)"; ctx.fillRect(canvas.width / 2 - 100, canvas.height - 250, 200, 25);
                     ctx.fillStyle = "rgba(255, 255, 255, 0.3)"; ctx.font = "10px monospace"; ctx.letterSpacing = "3px";
-                    ctx.fillText("ID-" + Math.floor(100000 + Math.random() * 900000), canvas.width / 2, canvas.height - 307);
+                    ctx.fillText("ID-" + Math.floor(100000 + Math.random() * 900000), canvas.width / 2, canvas.height - 262);
                 };
             };
         }
