@@ -19,7 +19,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
     <title>Кинокастинг: На какую роль тебя взял бы режиссер? | РЕСУРС МЕДИА</title>
-    <meta name="description" content="Пройди интерактивные кинопробы и актерский кастинг от РЕСУРС МЕДИА. Узнай свое идеальное амплуа в кино, получи персональный постер блокбастера или активируй ИИ Face Swap от Веры Мегеры.">
+    <meta name="description" content="Пройди интерактивные кинопробы и актерский кастинг от РЕСУРС МЕДИА. Узнай свое идеальное амплуа в кино, получи персональный постер блокбастера или активируй ИИ Face Swap от Веры Мегеры. Экосистема осознанности и фитнеса в Сыктывкаре.">
     <meta name="keywords" content="кинокастинг, кастинг сыктывкар, игра в кино, кинопробы, тест на роль в кино, киногерои, экосистема фитнеса, ресурс медиа, интерактивный тест, подбор роли">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://resurs-stretch.ru/casting.html">
@@ -27,7 +27,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://resurs-stretch.ru/casting.html">
     <meta property="og:title" content="Внимание, мотор! Я прошел ИИ-кастинг от РЕСУРС МЕДИА. Смотри мою афишу.">
-    <meta property="og:description" content="Узнай, в каком шедевре кинематографа и в какой главной роли тебя видит режиссер. Пройди кинопробы! https://resurs-stretch.ru/casting.html">
+    <meta property="og:description" content="Узнай, в каком шедевре кинематографа и в какой главной роли тебя видит режиссер. Пройди кинопробы здесь: https://resurs-stretch.ru/casting.html">
     <meta property="og:image" content="https://resurs-stretch.ru/logo_header_final.png">
 
     <link rel="icon" type="image/png" href="logo_header_final.png">
@@ -213,7 +213,7 @@
     </main>
 
     <footer class="w-full py-6 px-6 border-t border-gray-800 text-center text-xs text-gray-500 bg-[#070A12]">
-        &copy; 2026 Независимый медиа-проект в экосистеме РЕСУРС. Все права защищены.
+        &copy; 2026 Независимый media-проект в экосистеме РЕСУРС. Все права защищены.
     </footer>
 
     <script>
@@ -229,9 +229,11 @@
     </script>
 
     <script>
+        // Состояние анкеты актера
         let selectedAge = "adult"; 
         let selectedGender = "male"; 
 
+        // Базы ЛИНЕЙНЫХ вопросов бесплатной части тестов (Разделены по возрасту и ПОЛУ)
         const quizQuestions = {
             adult: {
                 male: [
@@ -440,7 +442,7 @@
 
         const rolesDescriptions = {
             action: "Вы обладаете невероятной скоростью реакции, физической собранностью и решительностью. Режиссеры динамичных экшенов увидели бы в вас идеального протагониста, способного вытащить любую сложнейшую сцену за счет личной харизмы, точности движений и хладнокровия в моменты кризиса.",
-            drama: "Ваш конек — глубокая психологическая проработка, эмоциональная честность и умение держать драматическую паузу. Ваше присутствие в кадре заставляет зрителя сопереживать каждой секунде. Это амплуа для фестивального кино высокого уровня, где ценится глубина взгляда и микромимика.",
+            drama: "Ваш конек — глубокая психологическая проработка, эмоциональная честность и умение держать драматическую паузу. Ваше присутствие в кадре заставляет зрителя сопереживать каждой секунду. Это амплуа для фестивального кино высокого уровня, где ценится глубина взгляда и микромимика.",
             comedy: "Вы — генератор энергии, способный мгновенно разрядить любую обстановку с помощью безупречной самоиронии, пластичности и нестандартного мышления. Вы легко ломаете шаблоны поведения, удерживая внимание зрителя за счет искренности, динамики и великолепного чувства ритма.",
             epic: "Монументальное спокойствие, стратегическое мышление и врожденные лидерские качества. Вы органично смотритесь в масштабных каднах исторических саг, космических опер или фэнтези. Ваша роль — человек, за которым идут, восстанавливающий порядок, структуру и гармонию."
         };
@@ -502,8 +504,8 @@
             
             currentQuestion.answers.forEach(answer => {
                 const button = document.createElement("button");
-                // Улучшены отступы, увеличен размер текста и добавлена интерактивная подсветка фокуса/выбора
-                button.className = "w-full text-left p-4 bg-[#111827] border border-gray-800 hover:border-amber-500 focus:bg-amber-500/10 focus:border-amber-500 text-sm md:text-base font-semibold text-gray-300 hover:text-white rounded-xl transition-all duration-200 active:scale-[0.99] cursor-pointer focus:outline-none";
+                // Улучшена разметка: текст стал крупнее, жирнее и добавлен контрастный неоновый фокус
+                button.className = "w-full text-left p-4 bg-[#111827] border border-gray-800 hover:border-amber-500 focus:bg-amber-500/10 focus:border-amber-500 text-sm md:text-base font-bold text-gray-200 hover:text-white rounded-xl transition-all duration-200 active:scale-[0.99] cursor-pointer focus:outline-none";
                 button.innerText = answer.text;
                 button.onclick = () => handleAnswerClick(answer.tag);
                 container.appendChild(button);
@@ -551,7 +553,7 @@
             generateCanvasPoster(displayTitle);
         }
 
-        // Интеллектуальный механизм подгрузки файлов с каскадным переключением индекса
+        // Высокоточный каскадный метод загрузки графики с автоматической коррекцией координат шрифтов
         function generateCanvasPoster(displayTitle) {
             const canvas = document.getElementById("posterCanvas");
             const ctx = canvas.getContext("2d");
@@ -561,7 +563,6 @@
             ctx.fillStyle = "#0B0F19";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             
-            // Генерируем случайную цифру от 1 до 10 для проверки обновлений
             const randomIndex = Math.floor(Math.random() * 10) + 1;
             const primaryFilename = `${finalRoleKey}_${selectedAge}_${selectedGender}_${randomIndex}.png`;
             const backupFilename = `${finalRoleKey}_${selectedAge}_${selectedGender}_1.png`;
@@ -576,39 +577,38 @@
                 ctx.letterSpacing = "6px";
                 ctx.fillText("РЕСУРС МЕДИА • КАСТИНГ", canvas.width / 2, 65);
 
-                // Координаты надписей плавно опущены вниз, чтобы не портить центральную графику афиши
+                // Координаты смещены строго вниз, освобождая центральное поле изображения под графику
                 ctx.fillStyle = accentColor;
                 ctx.font = "bold 14px 'Montserrat', sans-serif";
                 ctx.letterSpacing = "5px";
-                ctx.fillText("ГЛАВНОЕ АМПЛУА", canvas.width / 2, canvas.height - 185);
+                ctx.fillText("ГЛАВНОЕ АМПЛУА", canvas.width / 2, canvas.height - 215);
 
                 let fontSize = 38;
-                if (displayTitle.length > 25) fontSize = 28;
-                else if (displayTitle.length > 20) fontSize = 32;
+                if (displayTitle.length > 25) fontSize = 26;
+                else if (displayTitle.length > 20) fontSize = 30;
 
                 ctx.fillStyle = "#FFFFFF";
                 ctx.font = `900 ${fontSize}px 'Montserrat', sans-serif`;
                 ctx.letterSpacing = "1px";
-                ctx.fillText(displayTitle.toUpperCase(), canvas.width / 2, canvas.height - 135);
+                ctx.fillText(displayTitle.toUpperCase(), canvas.width / 2, canvas.height - 165);
 
                 ctx.fillStyle = accentColor;
                 ctx.font = "900 42px 'Montserrat', sans-serif";
                 ctx.letterSpacing = "2px";
-                ctx.fillText(chosenMovieTitle.toUpperCase(), canvas.width / 2, canvas.height - 75);
+                ctx.fillText(chosenMovieTitle.toUpperCase(), canvas.width / 2, canvas.height - 95);
 
                 ctx.fillStyle = "rgba(255, 255, 255, 0.3)";
                 ctx.font = "bold 11px 'Montserrat', sans-serif";
                 ctx.letterSpacing = "2px";
-                ctx.fillText("СКОРО ВО ВСЕХ КИНОТЕАТРАХ • resurs-stretch.ru", canvas.width / 2, canvas.height - 35);
+                ctx.fillText("СКОРО ВО ВСЕХ КИНОТЕАТРАХ • resurs-stretch.ru", canvas.width / 2, canvas.height - 45);
             }
 
-            // Успешный запуск основного случайного файла
             img.onload = () => {
                 ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
                 drawPosterTypography();
             };
             
-            // Если ИИ-постер с выбранным индексом еще не сгенерирован, плавно переключаемся на базовый файл с индексом 1
+            // Запуск резервной каскадной проверки базового файла _1.png при отсутствии дополнительных индексов в репозитории
             img.onerror = () => {
                 const backupImg = new Image();
                 backupImg.src = `/images/posters/${backupFilename}`;
@@ -618,7 +618,6 @@
                     drawPosterTypography();
                 };
                 
-                // Если в репозитории совсем нет картинок — включается геометрический рендеринг
                 backupImg.onerror = () => {
                     const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
                     gradient.addColorStop(0, "#0D1220");
@@ -638,9 +637,9 @@
 
                     drawPosterTypography();
                     
-                    ctx.fillStyle = "rgba(255, 255, 255, 0.1)"; ctx.fillRect(canvas.width / 2 - 100, canvas.height - 250, 200, 25);
+                    ctx.fillStyle = "rgba(255, 255, 255, 0.1)"; ctx.fillRect(canvas.width / 2 - 100, canvas.height - 295, 200, 25);
                     ctx.fillStyle = "rgba(255, 255, 255, 0.3)"; ctx.font = "10px monospace"; ctx.letterSpacing = "3px";
-                    ctx.fillText("ID-" + Math.floor(100000 + Math.random() * 900000), canvas.width / 2, canvas.height - 262);
+                    ctx.fillText("ID-" + Math.floor(100000 + Math.random() * 900000), canvas.width / 2, canvas.height - 307);
                 };
             };
         }
