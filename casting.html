@@ -19,10 +19,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
     <title>Кинокастинг: На какую роль тебя взял бы режиссер? | РЕСУРС МЕДИА</title>
-    <meta name="description" content="Пройди интерактивные кинопробы и актерский тест от РЕСУРС МЕДИА. Узнай свое идеальное амплуа в кино, получи персональный постер или активируй ИИ Face Swap. Экосистема осознанности и фитнеса в Сыктывкаре.">
+    <meta name="description" content="Пройди интерактивные кинопробы и ИИ-кастинг от РЕСУРС МЕДИА. Ассистент режиссера Вера Мегера подберет твое амплуа в кино, сформировав уникальную афишу блокбастера с твоим именем.">
     <meta name="keywords" content="кинокастинг, кастинг сыктывкар, игра в кино, кинопробы, тест на роль в кино, киногерои, экосистема фитнеса, ресурс медиа, интерактивный тест, подбор роли">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://resurs-stretch.ru/casting.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://resurs-stretch.ru/casting.html">
+    <meta property="og:title" content="Я прошел ИИ-кастинг от РЕСУРС МЕДИА! Смотри мою афишу кино.">
+    <meta property="og:description" content="Узнай, в каком шедевре кинематографа и в какой главной роли тебя видит искусственный интеллект.">
+    <meta property="og:image" content="https://resurs-stretch.ru/logo_header_final.png">
 
     <link rel="icon" type="image/png" href="logo_header_final.png">
 
@@ -31,7 +37,7 @@
       "@context": "https://schema.org",
       "@type": "WebPage",
       "name": "Кинокастинг: На какую роль тебя взял бы режиссер?",
-      "description": "Интерактивный психологический и актерский тест для определения амплуа в кино. Проект экосистемы РЕСУРС.",
+      "description": "Интерактивный ИИ-диалог с ассистентом режиссера для формирования персональной киноафиши. Проект экосистемы РЕСУРС.",
       "url": "https://resurs-stretch.ru/casting.html",
       "publisher": {
         "@type": "Organization",
@@ -48,7 +54,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Montserrat', sans-serif; background-color: #0B0F19; color: #E5E7EB; }
-        /* Кинематографичный скроллбар */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #0B0F19; }
         ::-webkit-scrollbar-thumb { background: #F59E0B; border-radius: 4px; }
@@ -60,7 +65,7 @@
     <header class="w-full py-4 px-6 border-b border-gray-800 bg-[#0D1220]/80 backdrop-blur-md sticky top-0 z-50">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
             <div class="text-xl font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-cyan-400 flex items-center gap-3">
-                <img src="logo_header_final.png" alt="РЕСУРС" class="h-8 w-auto" onerror="this.style.display='none'">
+                <img src="logo_header_final.png" alt="РЕСУРС" class="h-8 w-auto" //>
                 РЕСУРС <span class="text-xs font-normal text-gray-500 tracking-normal border-l border-gray-700 pl-2 ml-1">МЕДИА</span>
             </div>
             <a href="index.html" class="text-xs text-gray-400 hover:text-cyan-400 transition-colors duration-300 flex items-center gap-1">
@@ -77,21 +82,21 @@
 
             <div id="screen-start" class="py-12 px-6 md:px-12 text-center relative z-10">
                 <div class="inline-block px-3 py-1 mb-6 border border-amber-500/30 bg-amber-500/10 text-amber-400 text-xs font-bold uppercase tracking-widest rounded-full">
-                    Интерактивный ИИ-Тест
+                    Интерактивный ИИ-Кастинг
                 </div>
                 <h1 class="text-3xl md:text-5xl font-black text-white tracking-tight mb-6 leading-tight">
                     УЗНАЙ, НА КАКУЮ РОЛЬ ТЕБЯ ВЗЯЛ БЫ <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-500">РЕЖИССЕР?</span>
                 </h1>
                 <p class="text-gray-400 text-base md:text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
-                    Пройди профессиональные актерские пробы, адаптированные под твой возраст. Ответь на сценарные ситуации, и алгоритм определит твое идеальное амплуа в кино, сформировав официальный постер.
+                    Пройди живое собеседование с Верой Мегерой — ассистентом режиссера по актерам. Ответь на её каверзные вопросы в свободной форме, и ИИ создаст уникальную киноафишу с твоим именем для репоста в сторис.
                 </p>
                 <button onclick="startCastingSetup()" class="px-8 py-4 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-black text-lg tracking-wider rounded-xl shadow-lg shadow-amber-500/20 active:scale-95 transition-all duration-300 cursor-pointer">
-                    НАЧАТЬ КАСТИНГ
+                    НАЧАТЬ СОБЕСЕДОВАНИЕ
                 </button>
             </div>
 
             <div id="screen-setup" class="hidden py-10 px-6 md:px-12 relative z-10">
-                <h2 class="text-2xl font-black text-white mb-8 text-center uppercase tracking-tight">Заполнение анкеты актера</h2>
+                <h2 class="text-2xl font-black text-white mb-8 text-center uppercase tracking-tight">Заполнение карточки актера</h2>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                     <div class="bg-[#111827] p-6 border border-gray-800 rounded-xl">
@@ -113,43 +118,59 @@
 
                 <div class="text-center">
                     <button onclick="startQuiz()" class="px-8 py-3.5 bg-gradient-to-r from-cyan-500 to-cyan-600 hover:from-cyan-600 hover:to-cyan-700 text-slate-950 font-black text-sm tracking-widest rounded-xl transition-all cursor-pointer uppercase">
-                        Перейти к кинопробам →
+                        Войти в съемочный павильон →
                     </button>
                 </div>
             </div>
 
-            <div id="screen-quiz" class="hidden py-10 px-6 md:px-12 relative z-10">
-                <div class="w-full bg-gray-800 h-1.5 rounded-full mb-8 overflow-hidden">
+            <div id="screen-quiz" class="hidden py-8 px-4 md:px-12 relative z-10">
+                <div class="w-full bg-gray-800 h-1 rounded-full mb-6 overflow-hidden">
                     <div id="progress-bar" class="bg-gradient-to-r from-cyan-400 to-amber-400 h-full w-0 transition-all duration-300"></div>
                 </div>
-                <div class="flex justify-between items-center mb-6">
-                    <span id="question-number" class="text-xs font-bold uppercase tracking-widest text-cyan-400">Сцена 1 из 5</span>
+
+                <div class="flex items-start gap-4 mb-8 bg-[#090F1E] p-6 border border-gray-800 rounded-2xl">
+                    <div class="w-14 h-14 rounded-full bg-gradient-to-br from-amber-500 to-red-600 flex items-center justify-center text-slate-950 font-black text-xl shadow-lg shadow-red-500/10 flex-shrink-0">
+                        ВМ
+                    </div>
+                    <div class="flex-grow">
+                        <div class="text-[10px] font-black tracking-widest text-red-400 uppercase mb-1">Ассистент режиссера Вера Мегера</div>
+                        <div id="question-text" class="text-white text-sm md:text-base leading-relaxed font-medium">
+                            Так, живей заходим, съемочный день горит! Мне нужны ваши Имя и Фамилия для официального протокола кастинга. Представьтесь!
+                        </div>
+                    </div>
                 </div>
-                <h2 id="question-text" class="text-xl md:text-2xl font-bold text-white mb-8 min-h-[80px] leading-snug">
-                    Загрузка актерской ситуации...
-                </h2>
-                <div id="answers-container" class="grid grid-cols-1 gap-4"></div>
+
+                <div class="w-full max-w-2xl mx-auto flex flex-col sm:flex-row gap-3 items-stretch relative">
+                    <input type="text" id="user-text-input" autocomplete="off" class="flex-grow p-4 bg-[#111827] border border-gray-800 focus:border-amber-500 text-white rounded-xl text-sm md:text-base transition-colors placeholder-gray-600 focus:outline-none" placeholder="Введите ваш ответ здесь..." onkeydown="if(event.key === 'Enter') submitUserAnswer()" />
+                    <button onclick="submitUserAnswer()" class="px-6 py-4 bg-amber-500 hover:bg-amber-600 text-slate-950 font-black text-xs uppercase tracking-widest rounded-xl transition-colors cursor-pointer">
+                        Ответить
+                    </button>
+                </div>
+                <p id="chat-error-text" class="text-center text-xs text-red-400 mt-2 hidden">Поле ввода не может быть пустым.</p>
             </div>
 
             <div id="screen-loading" class="hidden py-20 px-6 text-center relative z-10">
                 <div class="inline-block animate-spin w-12 h-12 border-4 border-cyan-500 border-t-transparent rounded-full mb-6"></div>
-                <h3 class="text-xl font-bold text-white mb-2">Режиссер изучает ваши пробы...</h3>
-                <p class="text-gray-400 text-sm max-w-xs mx-auto">Анализируем психотип, подбираем освещение и ищем идеальный съемочный павильон.</p>
+                <h3 class="text-xl font-bold text-white mb-2">Вера Мегера передает данные режиссеру...</h3>
+                <p class="text-gray-400 text-sm max-w-xs mx-auto">ИИ анализирует психотип, подбирает название фильма и верстает киноафишу.</p>
             </div>
 
             <div id="screen-result" class="hidden py-10 px-6 md:px-12 relative z-10">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                     <div>
-                        <div class="text-xs font-bold uppercase tracking-widest text-cyan-400 mb-2">Ваше амплуа определено</div>
-                        <h2 id="result-title" class="text-3xl font-black text-white mb-6 tracking-tight">Название роли</h2>
+                        <div class="text-xs font-bold uppercase tracking-widest text-cyan-400 mb-2">Кастинг успешно пройден</div>
+                        <h2 id="result-title" class="text-3xl font-black text-white mb-4 tracking-tight">Название роли</h2>
+                        <div class="inline-block px-3 py-1 mb-4 text-[11px] font-black uppercase border border-amber-500/30 bg-amber-500/10 text-amber-400 rounded">
+                            Фильм: <span id="afisha-movie-title">ГОНЕНИЯ ПЕРВЫХ</span>
+                        </div>
                         <p id="result-description" class="text-gray-400 text-sm md:text-base leading-relaxed mb-6">Описание роли...</p>
                         
                         <div class="flex flex-wrap gap-3 mb-8">
                             <button onclick="downloadPoster()" class="px-4 py-2.5 bg-gray-800 hover:bg-gray-700 text-white text-xs font-bold rounded-lg border border-gray-700 transition-colors cursor-pointer flex items-center gap-2">
-                                ⬇️ СКАЧАТЬ
+                                ⬇️ СКАЧАТЬ АФИШУ
                             </button>
-                            <button onclick="shareResult()" class="px-4 py-2.5 bg-cyan-600 hover:bg-cyan-700 text-white text-xs font-bold rounded-lg transition-colors cursor-pointer flex items-center gap-2">
-                                🔗 ПОДЕЛИТЬСЯ РЕЗУЛЬТАТОМ
+                            <button onclick="shareResult()" class="px-4 py-2.5 bg-gradient-to-r from-cyan-600 to-cyan-700 hover:from-cyan-700 hover:to-cyan-800 text-white text-xs font-bold rounded-lg transition-all shadow-md active:scale-95 cursor-pointer flex items-center gap-2">
+                                🚀 В СТОРИС / ДРУЗЬЯМ
                             </button>
                             <button onclick="restartQuiz()" class="px-4 py-2.5 bg-transparent hover:bg-gray-900 text-gray-400 hover:text-white text-xs font-bold rounded-lg transition-colors cursor-pointer flex items-center gap-2">
                                 🔄 ЗАНОВО
@@ -161,7 +182,7 @@
                         <div class="border border-gray-800 bg-[#090D16] p-2 rounded-xl shadow-xl max-w-[320px] w-full transition-transform duration-300 group-hover:scale-[1.02]">
                             <canvas id="posterCanvas" width="600" height="900" class="w-full h-auto rounded-lg bg-slate-900"></canvas>
                         </div>
-                        <p class="text-[10px] text-gray-600 mt-2">Базовый постер. Создан алгоритмом РЕСУРСА.</p>
+                        <p class="text-[10px] text-gray-600 mt-2">Киноафиша РЕСУРС МЕДИА. Доступна для репоста.</p>
                     </div>
                 </div>
 
@@ -222,106 +243,58 @@
         // Состояние анкеты актера
         let selectedAge = "adult"; 
         let selectedGender = "male"; 
+        let currentStep = 0; // 0 - имя, 1-3 - кастинг-вопросы
 
-        // Базы вопросов под каждую возрастную категорию
-        const quizQuestions = {
+        // Переменные для сборки ИИ-постера со слов пользователя
+        let userNameSurname = "АКТЕР СТУДИИ";
+        let userGeneratedMovieTitle = "ГОНЕНИЯ ПЕРВЫХ";
+
+        // Массив ИИ-ответов и триггеров Мегеры под взрослую и детскую категории
+        const chatFlowData = {
             adult: [
                 {
-                    question: "Сцена: Вы играете секретного агента. Вы должны передать зашифрованный чип, но понимаете, что за вами хвост. Ваши действия?",
-                    answers: [
-                        { text: "Резко ухожу в толпу, использую архитектуру города, чтобы скрыться и передать чип позже.", tag: "action" },
-                        { text: "Остаюсь на месте, сохраняю полное спокойствие, пытаюсь переиграть преследователя психологически.", tag: "drama" },
-                        { text: "Подхожу к преследователю с улыбкой, разыгрываю нелепую ситуацию и незаметно подкидываю чип ему.", tag: "comedy" },
-                        { text: "Занимаю доминирующую позицию, показываю полную уверенность и заставляю преследователей отступить.", tag: "epic" }
-                    ]
+                    initText: "Так, имя и фамилия для протокола. Живее, у меня съемочный день горит! Как вас в титрах писать?",
+                    isMetadata: true
                 },
                 {
-                    question: "Режиссер просит сыграть момент, когда ваш персонаж внезапно узнает о предательстве близкого человека. Что в кадре?",
-                    answers: [
-                        { text: "Секундная пауза, мгновенная вспышка контролируемой ярости и резкое действие.", tag: "action" },
-                        { text: "Долгий план без склеек. Лицо застывает, в глазах читается глубокая внутренняя драма.", tag: "drama" },
-                        { text: "Нервный смех, переходящий в искреннее недоумение. Трагикомичная реакция на абсурд.", tag: "comedy" },
-                        { text: "Ледяной, пронизывающий взгляд. Я не показываю боли, но в голове уже выстроен план глобального ответа.", tag: "epic" }
-                    ]
+                    initText: "Отлично, записала. Теперь первая сценарная проверка. Вы играете шпиона. Вы должны скрытно передать чип, но за вами хвост. Что делаете? Пишите своими словами!",
+                    tags: ["action", "drama", "comedy", "epic"]
                 },
                 {
-                    question: "Финальная сцена прощания перед титрами. Ваш персонаж уезжает навсегда. Как сыграете?",
-                    answers: [
-                        { text: "Короткое уверенное рукопожатие, быстрый разворот, ухожу вперед и никогда не оглядываюсь.", tag: "action" },
-                        { text: "Долгий взгляд глаза в глаза через стекло, передающий всё, что осталось несказанным.", tag: "drama" },
-                        { text: "Ироничная шутка на прощание, чтобы заставить остальных улыбнуться сквозь грусть.", tag: "comedy" },
-                        { text: "Стою на возвышении, окидывая взглядом панораму покидаемого города, как исторический лидер.", tag: "epic" }
-                    ]
+                    initText: "Хм, нетривиально. А теперь представьте: ваш герой узнает, что его предал лучший друг. Какую главную эмоцию вы выдадите в крупном плане?",
+                    tags: ["action", "drama", "comedy", "epic"]
                 },
                 {
-                    question: "Кастинг на роль, требующую мощного внутреннего конфликта. Через что передадите это?",
-                    answers: [
-                        { text: "Через физическое напряжение тела: жесткая осанка, сжатые кулаки, готовность к прорыву.", tag: "action" },
-                        { text: "Через микромимику лица, тяжелый прерывистый вдох и взгляд, устремленный в пустоту.", tag: "drama" },
-                        { text: "Через эксцентричное поведение, чрезмерную жестикуляцию и маскировку боли за маской веселья.", tag: "comedy" },
-                        { text: "Через абсолютную неподвижность, монументальную позу и трансляцию сокрушительного хладнокровия.", tag: "epic" }
-                    ]
-                },
-                {
-                    question: "Сцена: Вы — лидер, который должен повести людей на сложнейшее и опасное дело. Ваша стратегия?",
-                    answers: [
-                        { text: "Энергичный, четкий призыв, демонстрация плана и немедленное действие на личном примере.", tag: "action" },
-                        { text: "Искренняя, глубокая история, взывающая к ценностям, чести и внутреннему духу каждого.", tag: "drama" },
-                        { text: "Снижение градуса паники через качественную иронию. Показываю, что страх — это иллюзия.", tag: "comedy" },
-                        { text: "Мощное, эпическое выступление о наследии, истории, великой цели и победе.", tag: "epic" }
-                    ]
+                    initText: "Запомнила. Ну и финал пробы: вы ведете за собой команду на рискованное, но великое дело. Какое ключевое слово будет в вашей речи?",
+                    tags: ["action", "drama", "comedy", "epic"]
                 }
             ],
             child: [
                 {
-                    question: "Сцена: Ты играешь супергероя в школе. Ты случайно нашел секретную карту, но вредный дежурный пытается её отнять. Твой ход?",
-                    answers: [
-                        { text: "Быстро прячу карту, перепрыгиваю через парту и убегаю в тайный коридор.", tag: "action" },
-                        { text: "Спокойно смотрю ему в глаза, прячу карту в рюкзак и заставляю его запутаться в своих словах.", tag: "drama" },
-                        { text: "Притворяюсь, что это просто фантик от конфеты, смешно падаю и незаметно прячу карту.", tag: "comedy" },
-                        { text: "Встаю в полный рост, складываю руки на груди и командую ему немедленно вернуться на свой пост.", tag: "epic" }
-                    ]
+                    initText: "Привет! Нам нужно узнать твое Имя и Фамилию для настоящей киноафиши. Напиши их скорее!",
+                    isMetadata: true
                 },
                 {
-                    question: "Режиссер просит тебя сыграть, что твой верный робот или питомец сломался прямо перед главным соревнованием. Что ты сделаешь?",
-                    answers: [
-                        { text: "Быстро беру инструменты, изо всех сил пытаюсь починить его самостоятельно в последнюю секунду.", tag: "action" },
-                        { text: "Крепко обнимаю его, обещаю, что мы всё равно будем вместе, даже если проиграем.", tag: "drama" },
-                        { text: "Начинаю смешно ворчать на него, подмигиваю и пытаюсь рассмешить судей поломкой.", tag: "comedy" },
-                        { text: "Сохраняю спокойствие, перенастраиваю систему и нахожу способ выиграть конкурс даже без робота.", tag: "epic" }
-                    ]
+                    initText: "Здорово! Представь, что ты играешь супергероя и нашел секретную карту, но вредный дежурный хочет её забрать. Как ты перехитришь его?",
+                    tags: ["action", "drama", "comedy", "epic"]
                 },
                 {
-                    question: "Финальный кадр фильма: Ты победил космического монстра и возвращаешься домой. Как ты войдешь в класс/комнату?",
-                    answers: [
-                        { text: "Захожу тихо, ставлю рюкзак, скромно сажусь за парту, как будто ничего не произошло.", tag: "action" },
-                        { text: "Смотрю на друзей с теплой улыбкой, понимая, что мы прошли через огромное приключение.", tag: "drama" },
-                        { text: "Влетаю с победным криком, путаюсь в плаще и смешно падаю на глазах у всех.", tag: "comedy" },
-                        { text: "Вхожу гордо и уверенно, как настоящий капитан корабля после успешной экспедиции.", tag: "epic" }
-                    ]
+                    initText: "Интересно! А если твой верный космический робот сломался прямо перед полетом, что ты сделаешь в кадре?",
+                    tags: ["action", "drama", "comedy", "epic"]
                 },
                 {
-                    question: "Кастинг на роль в таинственном кино. Тебе нужно показать, что ты разгадал главный секрет старого замка. Как сыграешь?",
-                    answers: [
-                        { text: "Уверенно нажимаю на секретный камень в стене, открывая потайную дверь.", tag: "action" },
-                        { text: "Внимательно рассматриваю старинный шифр, затаив дыхание от удивления.", tag: "drama" },
-                        { text: "Случайно опираюсь на рычаг, пугаюсь громкого звука, но радуюсь находке.", tag: "comedy" },
-                        { text: "Достаю древний амулет, поднимаю его высоко вверх и освещаю всю комнату.", tag: "epic" }
-                    ]
-                },
-                {
-                    question: "Сцена: Твоя команда проигрывает в спортивной игре, и все загрустили. Как ты вернешь им веру в победу?",
-                    answers: [
-                        { text: "Громко хлопаю в ладоши, призываю собраться и первым бегу в атаку.", tag: "action" },
-                        { text: "Подхожу к каждому, говорю добрые слова поддержки и напоминаю, какая мы дружная команда.", tag: "drama" },
-                        { text: "Строю смешную гримасу, заставляю всю команду рассмеяться и забыть о плохом настроении.", tag: "comedy" },
-                        { text: "Выстраиваю всех в круг, даю четкий победный план и настраиваю на грандиозный финал.", tag: "epic" }
-                    ]
+                    initText: "И последний вопрос: ты победил монстра и спас планету! Как ты гордо войдешь в класс к друзьям?",
+                    tags: ["action", "drama", "comedy", "epic"]
                 }
             ]
         };
 
-        // Текстовые амплуа по всем 16 категориям ролей
+        // База случайных названий фильмов, генерируемая ИИ (Резерв до подключения Яндекс Функции)
+        const fakeAiMovieTitles = [
+            "ГОНЕНИЯ ПЕРВЫХ", "КОД ИЗОБИЛИЯ", "СИНГУЛЯРНОСТЬ СЫКТЫВКАРА", 
+            "ВРЕМЯ РЕСУРСА", "ФАСЦИЯ СУДЬБЫ", "ОБРАТНЫЙ ОТСЧЕТ ОСОЗНАННОСТИ"
+        ];
+
         const rolesTitles = {
             adult: {
                 male: { action: "Агент под прикрытием", drama: "Герой независимого артхауса", comedy: "Эксцентричный новатор", epic: "Правитель Империи" },
@@ -334,29 +307,17 @@
         };
 
         const rolesDescriptions = {
-            action: "Вы обладаете невероятной скоростью реакции, физической собранностью и решительностью. Режиссеры динамичных экшенов и шпионских триллеров увидели бы в вас идеального протагониста, способного вытащить любую сложнейшую сцену за счет личной харизмы, точности движений и хладнокровия в моменты кризиса.",
-            drama: "Ваш конек — глубокая психологическая проработка, эмоциональная честность и умение держать драматическую паузу. Ваше присутствие в кадре заставляет зрителя сопереживать каждой секунде. Это амплуа для фестивального кино высокого уровня, где ценится глубина взгляда и микромимика.",
-            comedy: "Вы — генератор энергии, способный мгновенно разрядить любую обстановку с помощью безупречной самоиронии, пластичности и нестандартного мышления. Вы легко ломаете шаблоны поведения, удерживая внимание зрителя за счет искренности, динамики и великолепного чувства ритма.",
-            epic: "Монументальное спокойствие, стратегическое мышление и врожденные лидерские качества. Вы органично смотритесь в масштабных кадрах исторических саг, космических опер или фэнтези. Ваша роль — человек, за которым идут, восстанавливающий порядок, структуру и гармонию."
+            action: "Вы обладаете невероятной скоростью реакции, физической собранностью и решительностью. Режиссеры динамичных экшенов увидели бы в вас идеального протагониста, способного вытащить любую сложнейшую сцену за счет личной харизмы и хладнокровия.",
+            drama: "Ваш конек — глубокая психологическая проработка, эмоциональная честность и умение держать драматическую паузу. Ваше присутствие в кадре заставляет зрителя сопереживать каждой секунде.",
+            comedy: "Вы — генератор энергии, способный мгновенно разрядить любую обстановку с помощью безупречной самоиронии, пластичности и нестандартного мышления. Вы легко ломаете шаблоны поведения.",
+            epic: "Монументальное спокойствие, стратегическое мышление и врожденные лидерские качества. Вы органично смотритесь в масштабных кадрах исторических саг, космических опер или фэнтези."
         };
 
         const rolesColors = { action: "#06B6D4", drama: "#A855F7", comedy: "#F59E0B", epic: "#10B981" };
         const rolesGradients = { action: "#083344", drama: "#3B0764", comedy: "#451A03", epic: "#064E3B" };
 
-        let currentQuestionIndex = 0;
         let scoreCounter = { action: 0, drama: 0, comedy: 0, epic: 0 };
         let finalRoleKey = "action";
-
-        function showScreen(screenId) {
-            ["screen-start", "screen-setup", "screen-quiz", "screen-loading", "screen-result"].forEach(id => {
-                document.getElementById(id).classList.add("hidden");
-            });
-            document.getElementById(screenId).classList.remove("hidden");
-        }
-
-        function startCastingSetup() {
-            showScreen("screen-setup");
-        }
 
         function setAgeCategory(cat) {
             selectedAge = cat;
@@ -371,40 +332,61 @@
         }
 
         function startQuiz() {
-            currentQuestionIndex = 0;
+            currentStep = 0;
             scoreCounter = { action: 0, drama: 0, comedy: 0, epic: 0 };
+            document.getElementById("user-text-input").value = "";
             showScreen("screen-quiz");
-            renderQuestion();
+            renderChatStep();
         }
 
-        function renderQuestion() {
-            const activeQuestions = quizQuestions[selectedAge];
-            const currentQuestion = activeQuestions[currentQuestionIndex];
+        // Отрисовка шага ИИ-диалога с Верой Мегерой
+        function renderChatStep() {
+            const steps = chatFlowData[selectedAge];
+            const currentStepData = steps[currentStep];
             
-            const progressPercent = (currentQuestionIndex / activeQuestions.length) * 100;
+            // Прогресс-бар
+            const progressPercent = (currentStep / steps.length) * 100;
             document.getElementById("progress-bar").style.width = `${progressPercent}%`;
-            document.getElementById("question-number").innerText = `Сцена ${currentQuestionIndex + 1} из ${activeQuestions.length}`;
-            document.getElementById("question-text").innerText = currentQuestion.question;
             
-            const container = document.getElementById("answers-container");
-            container.innerHTML = "";
-            
-            currentQuestion.answers.forEach(answer => {
-                const button = document.createElement("button");
-                button.className = "w-full text-left p-4 bg-[#111827] hover:bg-[#1F2937] border border-gray-800 hover:border-gray-700 text-xs md:text-sm text-gray-300 hover:text-white rounded-xl transition-all duration-200 active:scale-[0.99] cursor-pointer focus:outline-none";
-                button.innerText = answer.text;
-                button.onclick = () => handleAnswerClick(answer.tag);
-                container.appendChild(button);
-            });
+            // Замена реплики Веры Мегеры
+            document.getElementById("question-text").innerText = currentStepData.initText;
+            document.getElementById("user-text-input").placeholder = currentStepData.isMetadata ? "Введите Ваши Имя и Фамилию..." : "Опишите Ваши действия в этой сцене...";
         }
 
-        function handleAnswerClick(tag) {
-            scoreCounter[tag]++;
-            currentQuestionIndex++;
-            const activeQuestions = quizQuestions[selectedAge];
+        // Обработка текстового ответа пользователя (Логика площадки для будущего API)
+        function submitUserAnswer() {
+            const inputElement = document.getElementById("user-text-input");
+            const errorElement = document.getElementById("chat-error-text");
+            const userText = inputElement.value.trim();
+
+            if (userText === "") {
+                errorElement.classList.remove("hidden");
+                return;
+            }
+            errorElement.classList.add("hidden");
+
+            const steps = chatFlowData[selectedAge];
             
-            if (currentQuestionIndex < activeQuestions.length) {
-                renderQuestion();
+            if (steps[currentStep].isMetadata) {
+                // Фиксируем Имя и Фамилию для титров афиши
+                userNameSurname = userText;
+            } else {
+                /*
+                  ЛОГИКА ТЕСТОВОЙ ПЛОЩАДКИ:
+                  Когда мы подключим бэкенд-функцию на Python 3.12, этот блок текста будет улетать по API 
+                  в нейросеть YandexGPT. Настоящий ИИ будет на лету парсить семантику ответа.
+                  Сейчас площадка распределяет веса по случайным категориям для имитации ИИ.
+                */
+                const tags = steps[currentStep].tags;
+                const randomTag = tags[Math.floor(Math.random() * tags.length)];
+                scoreCounter[randomTag]++;
+            }
+
+            currentStep++;
+
+            if (currentStep < steps.length) {
+                inputElement.value = "";
+                renderChatStep();
             } else {
                 calculateResult();
             }
@@ -413,6 +395,7 @@
         function calculateResult() {
             document.getElementById("progress-bar").style.width = "100%";
             showScreen("screen-loading");
+            
             setTimeout(() => {
                 let maxScore = -1;
                 let selectedRole = "action";
@@ -423,8 +406,13 @@
                     }
                 }
                 finalRoleKey = selectedRole;
+                
+                // Имитация генерации ИИ названия фильма со слов пользователя
+                userGeneratedMovieTitle = fakeAiMovieTitles[Math.floor(Math.random() * fakeAiMovieTitles.length)];
+                document.getElementById("afisha-movie-title").innerText = userGeneratedMovieTitle;
+
                 renderResultScreen();
-            }, 1500);
+            }, 2000);
         }
 
         function renderResultScreen() {
@@ -438,7 +426,7 @@
             generateCanvasPoster(displayTitle);
         }
 
-        // Продвинутый интеллектуальный рендеринг Canvas с автоматическим масштабированием текста
+        // Фирменная отрисовка Canvas с интеграцией Имени и Фамилии на киноафишу
         function generateCanvasPoster(displayTitle) {
             const canvas = document.getElementById("posterCanvas");
             const ctx = canvas.getContext("2d");
@@ -452,54 +440,71 @@
             const img = new Image();
             img.src = `/images/posters/${imageFilename}`;
             
-            // Внутренняя функция для безопасного вывода длинного текста в рамки
             function drawPosterTypography() {
-                ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
-                ctx.font = "bold 22px 'Montserrat', sans-serif";
+                // 1. Верхний колонтитул
+                ctx.fillStyle = "rgba(255, 255, 255, 0.6)";
+                ctx.font = "bold 18px 'Montserrat', sans-serif";
                 ctx.textAlign = "center";
-                ctx.letterSpacing = "6px";
-                ctx.fillText("РЕСУРС МЕДИА • КАСТИНГ", canvas.width / 2, 65);
+                ctx.letterSpacing = "8px";
+                ctx.fillText("РЕСУРС МЕДИА ПРЕДСТАВЛЯЕТ", canvas.width / 2, 70);
 
+                // 2. ИМЯ И ФАМИЛИЯ ИЗ ИИ-ЧАТА (Главная роль)
+                ctx.fillStyle = "#FFFFFF";
+                ctx.font = "bold 26px 'Montserrat', sans-serif";
+                ctx.letterSpacing = "4px";
+                ctx.fillText(userNameSurname.toUpperCase(), canvas.width / 2, 130);
+
+                ctx.fillStyle = "rgba(255, 255, 255, 0.4)";
+                ctx.font = "12px 'Montserrat', sans-serif";
+                ctx.letterSpacing = "3px";
+                ctx.fillText("В СУПЕРХИТЕ ЭТОГО ЛЕТА", canvas.width / 2, 160);
+
+                // 3. БЛОК ОПИСАНИЯ РОЛИ (Нижняя треть)
                 ctx.fillStyle = accentColor;
                 ctx.font = "bold 14px 'Montserrat', sans-serif";
                 ctx.letterSpacing = "5px";
-                ctx.fillText("ГЛАВНОЕ АМПЛУА", canvas.width / 2, canvas.height - 150);
+                ctx.fillText("ГЛАВНОЕ АМПЛУА:", canvas.width / 2, canvas.height - 240);
 
-                // Динамический расчет размера шрифта под длину текста роли
-                let fontSize = 38;
-                if (displayTitle.length > 25) fontSize = 28;
-                else if (displayTitle.length > 20) fontSize = 32;
+                let roleFontSize = 34;
+                if (displayTitle.length > 25) roleFontSize = 24;
+                else if (displayTitle.length > 20) roleFontSize = 28;
 
                 ctx.fillStyle = "#FFFFFF";
-                ctx.font = `900 ${fontSize}px 'Montserrat', sans-serif`;
+                ctx.font = `900 ${roleFontSize}px 'Montserrat', sans-serif`;
                 ctx.letterSpacing = "1px";
-                ctx.fillText(displayTitle.toUpperCase(), canvas.width / 2, canvas.height - 95);
+                ctx.fillText(displayTitle.toUpperCase(), canvas.width / 2, canvas.height - 195);
+
+                // 4. СГЕНЕРИРОВАННОЕ НАЗВАНИЕ ФИЛЬМА (Крупно в самом низу)
+                ctx.fillStyle = accentColor;
+                ctx.font = "900 44px 'Montserrat', sans-serif";
+                ctx.letterSpacing = "2px";
+                ctx.shadowColor = "rgba(0, 0, 0, 0.8)";
+                ctx.shadowBlur = 10;
+                ctx.fillText(userGeneratedMovieTitle.toUpperCase(), canvas.width / 2, canvas.height - 90);
+                ctx.shadowBlur = 0; // Сброс тени
+
+                ctx.fillStyle = "rgba(255, 255, 255, 0.3)";
+                ctx.font = "bold 11px 'Montserrat', sans-serif";
+                ctx.letterSpacing = "2px";
+                ctx.fillText("СКОРО ВО ВСЕХ КИНОТЕАТРАХ • resurs-stretch.ru", canvas.width / 2, canvas.height - 45);
             }
 
-            // Сценарий А: Успешная отрисовка вашего готового ИИ-постера
             img.onload = () => {
                 ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
                 drawPosterTypography();
             };
             
-            // Сценарий Б: Резервная прорисовка геометрии (если файла еще нет)
             img.onerror = () => {
                 const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
                 gradient.addColorStop(0, "#0D1220");
-                gradient.addColorStop(1, bottomHex + "44");
+                gradient.addColorStop(1, bottomHex + "55");
                 ctx.fillStyle = gradient;
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
                 
-                // Рамки кадрирования
                 ctx.strokeStyle = accentColor; ctx.lineWidth = 4; ctx.strokeRect(20, 20, canvas.width - 40, canvas.height - 40);
                 ctx.strokeStyle = "rgba(255, 255, 255, 0.05)"; ctx.lineWidth = 1; ctx.strokeRect(32, 32, canvas.width - 64, canvas.height - 64);
-
-                // Верхний служебный текст титров
-                ctx.fillStyle = "rgba(255, 255, 255, 0.3)"; ctx.font = "bold 13px 'Montserrat', sans-serif"; ctx.textAlign = "center"; ctx.letterSpacing = "6px";
-                ctx.fillText("OFFICIAL CASTING REPORT", canvas.width / 2, 115);
                 
-                // Стилизованный объектив камеры
-                ctx.fillStyle = "rgba(255, 255, 255, 0.01)"; ctx.beginPath(); ctx.arc(canvas.width / 2, canvas.height / 2 - 40, 140, 0, Math.PI * 2); ctx.fill();
+                // Видоискатель
                 const cx = canvas.width / 2; const cy = canvas.height / 2 - 40; const r = 60;
                 ctx.strokeStyle = accentColor; ctx.lineWidth = 3;
                 ctx.beginPath(); ctx.moveTo(cx - r, cy - r + 15); ctx.lineTo(cx - r, cy - r); ctx.lineTo(cx - r + 15, cy - r); ctx.stroke();
@@ -507,20 +512,14 @@
                 ctx.beginPath(); ctx.moveTo(cx - r, cy + r - 15); ctx.lineTo(cx - r, cy + r); ctx.lineTo(cx - r + 15, cy + r); ctx.stroke();
                 ctx.beginPath(); ctx.moveTo(cx + r, cy + r - 15); ctx.lineTo(cx + r, cy + r); ctx.lineTo(cx + r - 15, cy + r); ctx.stroke();
 
-                // Вывод типографики
                 drawPosterTypography();
-                
-                // Имитация штрих-кода системы авторизации
-                ctx.fillStyle = "rgba(255, 255, 255, 0.1)"; ctx.fillRect(canvas.width / 2 - 100, canvas.height - 230, 200, 25);
-                ctx.fillStyle = "rgba(255, 255, 255, 0.3)"; ctx.font = "10px monospace"; ctx.letterSpacing = "3px";
-                ctx.fillText("ID-" + Math.floor(100000 + Math.random() * 900000), canvas.width / 2, canvas.height - 242);
             };
         }
 
         function downloadPoster() {
             const canvas = document.getElementById("posterCanvas");
             const link = document.createElement("a");
-            link.download = `Casting_${finalRoleKey}_${selectedAge}_${selectedGender}.png`;
+            link.download = `Casting_Afisha_${userNameSurname}.png`;
             link.href = canvas.toDataURL("image/png");
             link.click();
         }
@@ -529,22 +528,34 @@
             showScreen("screen-start");
         }
 
-        function shareResult() {
+        // ================= УЛЬТРА ВИРУСНЫЙ ШЕРИНГ С КАРТИНКОЙ BLOB =================
+        async function shareResult() {
+            const canvas = document.getElementById("posterCanvas");
             const displayTitle = rolesTitles[selectedAge][selectedGender][finalRoleKey];
-            const shareData = {
-                title: 'Моё амплуа в кино',
-                text: `Пройди актерские пробы и узнай, на какую роль тебя взял бы режиссер! Результат: ${displayTitle}.`,
-                url: window.location.href
-            };
+            
+            const shareText = `Я прошел ИИ-кастинг от РЕСУРС МЕДИА! Моя главная роль в фильме "${userGeneratedMovieTitle}" — ${displayTitle}. Проверь себя!`;
 
-            if (navigator.share) {
-                navigator.share(shareData)
-                    .then(() => console.log('Успешный шеринг'))
-                    .catch((error) => console.log('Ошибка шеринга:', error));
-            } else {
-                navigator.clipboard.writeText(shareData.url + "?utm_source=share")
-                    .then(() => alert("Ссылка на тест скопирована в буфер обмена! Поделись результатом с друзьями."))
-                    .catch(err => alert("Не удалось скопировать ссылку автоматически."));
+            try {
+                // Конвертируем Canvas в файл Blob прямо в браузере смартфона
+                canvas.toBlob(async (blob) => {
+                    const file = new File([blob], `Casting_Afisha.png`, { type: 'image/png' });
+                    
+                    // Проверяем, поддерживает ли браузер шеринг реальных файлов картинок
+                    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                        await navigator.share({
+                            files: [file],
+                            title: 'Моя киноафиша',
+                            text: shareText
+                        });
+                        console.log('Успешный репост файла афиши');
+                    } else {
+                        // Резервная копия для ПК-браузеров (копируем ссылку)
+                        await navigator.clipboard.writeText(window.location.href + "?utm_source=share_afisha");
+                        alert(`Ссылка на кастинг скопирована в буфер обмена!\n\nВаш результат: ${displayTitle} в фильме "${userGeneratedMovieTitle}". Перешлите ссылку друзьям!`);
+                    }
+                }, 'image/png');
+            } catch (err) {
+                console.log("Ошибка работы шлюза Web Share API:", err);
             }
         }
 
@@ -558,7 +569,7 @@
             errorElement.classList.add("hidden");
             const file = photoInput.files[0];
             const imageFilename = `${finalRoleKey}_${selectedAge}_${selectedGender}.png`;
-            alert(`Инициализация платежного шлюза на 190 руб. Шаблон роли: ${imageFilename}, файл селфи: ${file.name}. Перенаправление на оплату СБП после настройки Яндекс Функции.`);
+            alert(`Инициализация платежного шлюза Робокассы/ЮKassa на 190 руб. Сценарий: ${imageFilename}, Сгенерированный фильм: "${userGeneratedMovieTitle}", Актер: ${userNameSurname}.`);
         }
     </script>
 </body>
