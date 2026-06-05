@@ -42,11 +42,39 @@
                     УЗНАЙ, НА КАКУЮ РОЛЬ ТЕБЯ ВЗЯЛ БЫ <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-500">РЕЖИССЕР?</span>
                 </h1>
                 <p class="text-gray-400 text-base md:text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
-                    Пройди актерские пробы, ответь на 5 сценарных ситуаций, и наш алгоритм определит твое идеальное амплуа в мировом кинематографе. В конце ты получишь официальный постер со своим результатом, которым сможешь поделиться с друзьями.
+                    Пройди профессиональные актерские пробы, адаптированные под твой возраст. Ответь на сценарные ситуации, и алгоритм определит твое идеальное амплуа в кино, сформировав официальный постер.
                 </p>
-                <button onclick="startQuiz()" class="px-8 py-4 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-black text-lg tracking-wider rounded-xl shadow-lg shadow-amber-500/20 active:scale-95 transition-all duration-300 cursor-pointer">
+                <button onclick="startCastingSetup()" class="px-8 py-4 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-black text-lg tracking-wider rounded-xl shadow-lg shadow-amber-500/20 active:scale-95 transition-all duration-300 cursor-pointer">
                     НАЧАТЬ КАСТИНГ
                 </button>
+            </div>
+
+            <div id="screen-setup" class="hidden py-10 px-6 md:px-12 relative z-10">
+                <h2 class="text-2xl font-black text-white mb-8 text-center uppercase tracking-tight">Заполнение анкеты актера</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                    <div class="bg-[#111827] p-6 border border-gray-800 rounded-xl">
+                        <label class="block text-xs font-bold uppercase tracking-widest text-cyan-400 mb-4">1. Возрастная категория</label>
+                        <div class="grid grid-cols-2 gap-3">
+                            <button id="btn-age-adult" onclick="setAgeCategory('adult')" class="py-3 px-4 bg-gray-800 border border-amber-500 text-white font-bold text-sm rounded-lg active:scale-95 transition-all cursor-pointer">Взрослая роль</button>
+                            <button id="btn-age-child" onclick="setAgeCategory('child')" class="py-3 px-4 bg-gray-900 border border-gray-700 text-gray-400 font-bold text-sm rounded-lg active:scale-95 transition-all cursor-pointer">Детская роль</button>
+                        </div>
+                    </div>
+
+                    <div class="bg-[#111827] p-6 border border-gray-800 rounded-xl">
+                        <label class="block text-xs font-bold uppercase tracking-widest text-cyan-400 mb-4">2. Пол персонажа</label>
+                        <div class="grid grid-cols-2 gap-3">
+                            <button id="btn-gender-male" onclick="setGender('male')" class="py-3 px-4 bg-gray-800 border border-amber-500 text-white font-bold text-sm rounded-lg active:scale-95 transition-all cursor-pointer">Мужская</button>
+                            <button id="btn-gender-female" onclick="setGender('female')" class="py-3 px-4 bg-gray-900 border border-gray-700 text-gray-400 font-bold text-sm rounded-lg active:scale-95 transition-all cursor-pointer">Женская</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <button onclick="startQuiz()" class="px-8 py-3.5 bg-gradient-to-r from-cyan-500 to-cyan-600 hover:from-cyan-600 hover:to-cyan-700 text-slate-950 font-black text-sm tracking-widest rounded-xl transition-all cursor-pointer uppercase">
+                        Перейти к кинопробам →
+                    </button>
+                </div>
             </div>
 
             <div id="screen-quiz" class="hidden py-10 px-6 md:px-12 relative z-10">
@@ -81,7 +109,7 @@
                                 ⬇️ СКАЧАТЬ
                             </button>
                             <button onclick="shareResult()" class="px-4 py-2.5 bg-cyan-600 hover:bg-cyan-700 text-white text-xs font-bold rounded-lg transition-colors cursor-pointer flex items-center gap-2">
-                                🔗 ПОДЕЛИТЬСЯ С ПОДРУГОЙ
+                                🔗 ПОДЕЛИТЬСЯ РЕЗУЛЬТАТОМ
                             </button>
                             <button onclick="restartQuiz()" class="px-4 py-2.5 bg-transparent hover:bg-gray-900 text-gray-400 hover:text-white text-xs font-bold rounded-lg transition-colors cursor-pointer flex items-center gap-2">
                                 🔄 ЗАНОВО
@@ -101,11 +129,11 @@
                     <div class="absolute top-0 right-0 px-3 py-1 bg-amber-500 text-slate-950 text-[10px] font-black uppercase tracking-widest rounded-bl-lg">✨ Premium ИИ</div>
                     <div class="max-w-2xl">
                         <h3 class="text-xl md:text-2xl font-black text-white mb-3 flex items-center gap-2">ХОЧЕШЬ СВОЙ ПЕРСОНАЛЬНЫЙ КИНОПОСТЕР С ЛИЦОМ?</h3>
-                        <p class="text-gray-400 text-xs md:text-sm leading-relaxed mb-6">Алгоритм выполнит <span class="text-amber-400 font-bold">Face Swap</span> — сгенерирует высококачественный голливудский постер к фильм, идеально интегрировав твое лицо с селфи в тело персонажа этой роли. Оплата через ЮKassa/Робокассу (СБП).</p>
+                        <p class="text-gray-400 text-xs md:text-sm leading-relaxed mb-6">Алгоритм выполнит <span class="text-amber-400 font-bold">Face Swap</span> — сгенерирует высококачественный голливудский постер к фильму, идеально интегрировав твое лицо (или лицо ребенка) в тело персонажа этой роли. Оплата через ЮKassa/Робокассу (СБП).</p>
                         
                         <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
                             <div class="w-full sm:w-auto">
-                                <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1.5">1. Загрузи свое фото (селфи)</label>
+                                <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1.5">1. Загрузи фото (селфи)</label>
                                 <input type="file" id="user-photo" accept="image/*" class="w-full text-xs text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-cyan-500/10 file:text-cyan-400 hover:file:bg-cyan-500/20 cursor-pointer" />
                             </div>
                             <div class="w-full sm:w-auto sm:self-end">
@@ -128,75 +156,181 @@
     </footer>
 
     <script>
-        // База данных актерских ситуаций (Сценарные вопросы)
-        const quizData = [
-            {
-                question: "Сцена: Вы играете шпиона. Вы должны передать секретный чип, но понимаете, что за вами следят. Ваши действия?",
-                answers: [
-                    { text: "Резко ухожу в толпу, использую окружение, чтобы скрыться и передать чип позже.", tag: "action" },
-                    { text: "Остаюсь на месте, сохраняю полное спокойствие, пытаюсь вычислить преследователя взглядом.", tag: "drama" },
-                    { text: "Подхожу к преследователю с улыбкой, разыгрываю дурачка и «случайно» роняю чип ему в карман.", tag: "comedy" },
-                    { text: "Занимаю доминирующую позицию, показываю, что я контролирую ситуацию, и жду их хода.", tag: "epic" }
-                ]
-            },
-            {
-                question: "Режиссер просит вас сыграть момент, когда персонаж узнает о предательстве близкого друга. Что будет в кадре?",
-                answers: [
-                    { text: "Секундная пауза, затем мгновенный взрыв эмоций, ярость и удар кулаком в стену.", tag: "action" },
-                    { text: "Долгий план. Лицо каменеет, в глазах пустота, я просто молча ухожу в тень.", tag: "drama" },
-                    { text: "Истерический смех, переходящий в слезы. Нелепая, но искренняя реакция.", tag: "comedy" },
-                    { text: "Ярость, скрытая под маской ледяного спокойствия. Я уже разрабатываю план мести.", tag: "epic" }
-                ]
-            },
-            {
-                question: "Сцена прощания. Ваш персонаж уезжает навсегда. Как вы сыграете этот момент?",
-                answers: [
-                    { text: "Быстрое крепкое рукопожатие, короткий кивок, не оглядываюсь.", tag: "action" },
-                    { text: "Долгий взгляд глаза в глаза, слеза, катящаяся по щеке в самый последний момент.", tag: "drama" },
-                    { text: "Нелепая шутка, чтобы разрядить обстановку, но в глазах грусть.", tag: "comedy" },
-                    { text: "Стою на палубе/платформе, смотрю на уходящий город, как правитель, покидающий свои земли.", tag: "epic" }
-                ]
-            },
-            {
-                question: "Кастинг на роль, требующую сильного внутреннего конфликта. Как вы передадите это состояние?",
-                answers: [
-                    { text: "Через физическое напряжение: сжатые челюсти, резкие движения, готовность к действию.", tag: "action" },
-                    { text: "Через микромимику, дрожь в руках, взгляд, направленный внутрь себя.", tag: "drama" },
-                    { text: "Через эксцентричное поведение, быструю речь, попытку скрыть боль за юмором.", tag: "comedy" },
-                    { text: "Через монументальную позу, глубокое дыхание и ощущение внутренней силы, сдерживающей бурю.", tag: "epic" }
-                ]
-            },
-            {
-                question: "Сцена: Вы играете лидера, который должен вдохновить людей на безнадежное дело. Ваш стиль?",
-                answers: [
-                    { text: "Короткая, энергичная речь, призыв к немедленному действию и личный пример.", tag: "action" },
-                    { text: "Тихая, эмоциональная история, апеллирующая к чувствам и совести каждого.", tag: "drama" },
-                    { text: "Использование иронии и юмора, чтобы показать, что страх — это нелепость.", tag: "comedy" },
-                    { text: "Мощная, эпичная речь о чести, долге, наследии и вечности.", tag: "epic" }
-                ]
-            }
-        ];
+        // Состояние анкеты актера
+        let selectedAge = "adult"; // adult или child
+        let selectedGender = "male"; // male или female
 
-        // База данных ролей
-        const rolesData = {
-            action: { title: "Агент под прикрытием", description: "Харизматичный бунтарь, шпион, герой динамичного экшена.", color: "#06B6D4", poster: "result_action.png", bgGradient: ["#0D1220", "#083344"] },
-            drama: { title: "Герой независимого артхауса", description: "Сложный, глубокий и притягательный персонаж психологической драмы.", color: "#A855F7", poster: "result_drama.png", bgGradient: ["#0D1220", "#3B0764"] },
-            comedy: { title: "Эксцентричный новатор", description: "Яркая звезда интеллектуальной трагикомедии, авантюрист с самоиронией.", color: "#F59E0B", poster: "result_comedy.png", bgGradient: ["#0D1220", "#451A03"] },
-            epic: { title: "Правитель Империи", description: "Центральная фигура исторического эпоса, фантастической саги или космооперы.", color: "#10B981", poster: "result_epic.png", bgGradient: ["#0D1220", "#064E3B"] }
+        // Базы вопросов под каждую возрастную категорию
+        const quizQuestions = {
+            adult: [
+                {
+                    question: "Сцена: Вы играете секретного агента. Вы должны передать зашифрованный чип, но понимаете, что за вами хвост. Ваши действия?",
+                    answers: [
+                        { text: "Резко ухожу в толпу, использую архитектуру города, чтобы скрыться и передать чип позже.", tag: "action" },
+                        { text: "Остаюсь на месте, сохраняю полное спокойствие, пытаюсь переиграть преследователя психологически.", tag: "drama" },
+                        { text: "Подхожу к преследователю с улыбкой, разыгрываю нелепую ситуацию и незаметно подкидываю чип ему.", tag: "comedy" },
+                        { text: "Занимаю доминирующую позицию, показываю полную уверенность и заставляю преследователей отступить.", tag: "epic" }
+                    ]
+                },
+                {
+                    question: "Режиссер просит сыграть момент, когда ваш персонаж внезапно узнает о предательстве близкого человека. Что в кадре?",
+                    answers: [
+                        { text: "Секундная пауза, мгновенная вспышка контролируемой ярости и резкое действие.", tag: "action" },
+                        { text: "Долгий план без склеек. Лицо застывает, в глазах читается глубокая внутренняя драма.", tag: "drama" },
+                        { text: "Нервный смех, переходящий в искреннее недоумение. Трагикомичная реакция на абсурд.", tag: "comedy" },
+                        { text: "Ледяной, пронизывающий взгляд. Я не показываю боли, но в голове уже выстроен план глобального ответа.", tag: "epic" }
+                    ]
+                },
+                {
+                    question: "Финальная сцена прощания перед титрами. Ваш персонаж уезжает навсегда. Как сыграете?",
+                    answers: [
+                        { text: "Короткое уверенное рукопожатие, быстрый разворот, ухожу вперед и никогда не оглядываюсь.", tag: "action" },
+                        { text: "Долгий взгляд глаза в глаза через стекло, передающий всё, что осталось несказанным.", tag: "drama" },
+                        { text: "Ироничная шутка на прощание, чтобы заставить остальных улыбнуться сквозь грусть.", tag: "comedy" },
+                        { text: "Стою на возвышении, окидывая взглядом панораму покидаемого города, как исторический лидер.", tag: "epic" }
+                    ]
+                },
+                {
+                    question: "Кастинг на роль, требующую мощного внутреннего конфликта. Через что передадите это?",
+                    answers: [
+                        { text: "Через физическое напряжение тела: жесткая осанка, сжатые кулаки, готовность к прорыву.", tag: "action" },
+                        { text: "Через микромимику лица, тяжелый прерывистый вдох и взгляд, устремленный в пустоту.", tag: "drama" },
+                        { text: "Через эксцентричное поведение, чрезмерную жестикуляцию и маскировку боли за маской веселья.", tag: "comedy" },
+                        { text: "Через абсолютную неподвижность, монументальную позу и трансляцию сокрушительного хладнокровия.", tag: "epic" }
+                    ]
+                },
+                {
+                    question: "Сцена: Вы — лидер, который должен повести людей на сложнейшее и опасное дело. Ваша стратегия?",
+                    answers: [
+                        { text: "Энергичный, четкий призыв, демонстрация плана и немедленное действие на личном примере.", tag: "action" },
+                        { text: "Искренняя, глубокая история, взывающая к ценностям, чести и внутреннему духу каждого.", tag: "drama" },
+                        { text: "Снижение градуса паники через качественную иронию. Показываю, что страх — это иллюзия.", tag: "comedy" },
+                        { text: "Мощное, эпическое выступление о наследии, истории, великой цели и победе.", tag: "epic" }
+                    ]
+                }
+            ],
+            child: [
+                {
+                    question: "Сцена: Ты играешь супергероя в школе. Ты случайно нашел секретную карту, но вредный дежурный пытается её отнять. Твой ход?",
+                    answers: [
+                        { text: "Быстро прячу карту, перепрыгиваю через парту и убегаю в тайный коридор.", tag: "action" },
+                        { text: "Спокойно смотрю ему в глаза, прячу карту в рюкзак и заставляю его запутаться в своих словах.", tag: "drama" },
+                        { text: "Притворяюсь, что это просто фантик от конфеты, смешно падаю и незаметно прячу карту.", tag: "comedy" },
+                        { text: "Встаю в полный рост, складываю руки на груди и командую ему немедленно вернуться на свой пост.", tag: "epic" }
+                    ]
+                },
+                {
+                    question: "Режиссер просит тебя сыграть, что твой верный робот или питомец сломался прямо перед главным соревнованием. Что ты сделаешь?",
+                    answers: [
+                        { text: "Быстро беру инструменты, изо всех сил пытаюсь починить его самостоятельно в последнюю секунду.", tag: "action" },
+                        { text: "Крепко обнимаю его, обещаю, что мы всё равно будем вместе, даже если проиграем.", tag: "drama" },
+                        { text: "Начинаю смешно ворчать на него, подмигиваю и пытаюсь рассмешить судей поломкой.", tag: "comedy" },
+                        { text: "Сохраняю спокойствие, перенастраиваю систему и нахожу способ выиграть конкурс даже без робота.", tag: "epic" }
+                    ]
+                },
+                {
+                    question: "Финальный кадр фильма: Ты победил космического монстра и возвращаешься домой. Как ты войдешь в класс/комнату?",
+                    answers: [
+                        { text: "Захожу тихо, ставлю рюкзак, скромно сажусь за парту, как будто ничего не произошло.", tag: "action" },
+                        { text: "Смотрю на друзей с теплой улыбкой, понимая, что мы прошли через огромное приключение.", tag: "drama" },
+                        { text: "Влетаю с победным криком, путаюсь в плаще и смешно падаю на глазах у всех.", tag: "comedy" },
+                        { text: "Вхожу гордо и уверенно, как настоящий капитан корабля после успешной экспедиции.", tag: "epic" }
+                    ]
+                },
+                {
+                    question: "Кастинг на роль в таинственном кино. Тебе нужно показать, что ты разгадал главный секрет старого замка. Как сыграешь?",
+                    answers: [
+                        { text: "Уверенно нажимаю на секретный камень в стене, открывая потайную дверь.", tag: "action" },
+                        { text: "Внимательно рассматриваю старинный шифр, затаив дыхание от удивления.", tag: "drama" },
+                        { text: "Случайно опираюсь на рычаг, пугаюсь громкого звука, но радуюсь находке.", tag: "comedy" },
+                        { text: "Достаю древний амулет, поднимаю его высоко вверх и освещаю всю комнату.", tag: "epic" }
+                    ]
+                },
+                {
+                    question: "Сцена: Твоя команда проигрывает в спортивной игре, и все загрустили. Как ты вернешь им веру в победу?",
+                    answers: [
+                        { text: "Громко хлопаю в ладоши, призываю собраться и первым бегу в атаку.", tag: "action" },
+                        { text: "Подхожу к каждому, говорю добрые слова поддержки и напоминаю, какая мы дружная команда.", tag: "drama" },
+                        { text: "Строю смешную гримасу, заставляю всю команду рассмеяться и забыть о плохом настроении.", tag: "comedy" },
+                        { text: "Выстраиваю всех в круг, даю четкий победный план и настраиваю на грандиозный финал.", tag: "epic" }
+                    ]
+                }
+            ]
         };
 
-        // Состояние приложения
+        // Текстовые амплуа по ролям (подстраиваются под пол и возраст)
+        const rolesTitles = {
+            adult: {
+                male: {
+                    action: "Агент под прикрытием",
+                    drama: "Герой независимого артхауса",
+                    comedy: "Эксцентричный новатор",
+                    epic: "Правитель Империи"
+                },
+                female: {
+                    action: "Спецагент экстра-класса",
+                    drama: "Муза драматического кино",
+                    comedy: "Прима авантюрной комедии",
+                    epic: "Королева Галактики"
+                }
+            },
+            child: {
+                male: {
+                    action: "Лидер секретного отряда",
+                    drama: "Юный исследователь тайн",
+                    comedy: "Главный озорник блокбастера",
+                    epic: "Будущий Хранитель Баланса"
+                },
+                female: {
+                    action: "Супергероиня из будущего",
+                    drama: "Хранительница древних тайн",
+                    comedy: "Душа комедийного приключения",
+                    epic: "Юная Повелительница миров"
+                }
+            }
+        };
+
+        const rolesDescriptions = {
+            action: "Вы обладаете невероятной скоростью реакции, физической собранностью и решительностью. Режиссеры динамичных экшенов и шпионских триллеров увидели бы в вас идеального протагониста, способного вытащить любую сложнейшую сцену за счет личной харизмы, точности движений и хладнокровия в моменты кризиса.",
+            drama: "Ваш конек — глубокая психологическая проработка, эмоциональная честность и умение держать драматическую паузу. Ваше присутствие в кадре заставляет зрителя сопереживать каждой секунде. Это амплуа для фестивального кино высокого уровня, где ценится глубина взгляда и микромимика.",
+            comedy: "Вы — генератор энергии, способный мгновенно разрядить любую обстановку с помощью безупречной самоиронии, пластичности и нестандартного мышления. Вы легко ломаете шаблоны поведения, удерживая внимание зрителя за счет искренности, динамики и великолепного чувства ритма.",
+            epic: "Монументальное спокойствие, стратегическое мышление и врожденные лидерские качества. Вы органично смотритесь в масштабных кадрах исторических саг, космических опер или фэнтези. Ваша роль — человек, за которым идут, восстанавливающий порядок, структуру и гармонию."
+        };
+
+        const rolesColors = { action: "#06B6D4", drama: "#A855F7", comedy: "#F59E0B", epic: "#10B981" };
+
+        // Состояние квиза
         let currentQuestionIndex = 0;
         let scoreCounter = { action: 0, drama: 0, comedy: 0, epic: 0 };
         let finalRoleKey = "action";
 
         function showScreen(screenId) {
-            ["screen-start", "screen-quiz", "screen-loading", "screen-result"].forEach(id => {
+            ["screen-start", "screen-setup", "screen-quiz", "screen-loading", "screen-result"].forEach(id => {
                 document.getElementById(id).classList.add("hidden");
             });
             document.getElementById(screenId).classList.remove("hidden");
         }
 
+        // Переход к экрану настройки анкеты
+        function startCastingSetup() {
+            showScreen("screen-setup");
+        }
+
+        // Выбор возрастной категории (Adult/Child)
+        function setAgeCategory(cat) {
+            selectedAge = cat;
+            document.getElementById("btn-age-adult").className = cat === "adult" ? "py-3 px-4 bg-gray-800 border border-amber-500 text-white font-bold text-sm rounded-lg active:scale-95 transition-all cursor-pointer" : "py-3 px-4 bg-gray-900 border border-gray-700 text-gray-400 font-bold text-sm rounded-lg active:scale-95 transition-all cursor-pointer";
+            document.getElementById("btn-age-child").className = cat === "child" ? "py-3 px-4 bg-gray-800 border border-amber-500 text-white font-bold text-sm rounded-lg active:scale-95 transition-all cursor-pointer" : "py-3 px-4 bg-gray-900 border border-gray-700 text-gray-400 font-bold text-sm rounded-lg active:scale-95 transition-all cursor-pointer";
+        }
+
+        // Выбор пола (Male/Female)
+        function setGender(gender) {
+            selectedGender = gender;
+            document.getElementById("btn-gender-male").className = gender === "male" ? "py-3 px-4 bg-gray-800 border border-amber-500 text-white font-bold text-sm rounded-lg active:scale-95 transition-all cursor-pointer" : "py-3 px-4 bg-gray-900 border border-gray-700 text-gray-400 font-bold text-sm rounded-lg active:scale-95 transition-all cursor-pointer";
+            document.getElementById("btn-gender-female").className = gender === "female" ? "py-3 px-4 bg-gray-800 border border-amber-500 text-white font-bold text-sm rounded-lg active:scale-95 transition-all cursor-pointer" : "py-3 px-4 bg-gray-900 border border-gray-700 text-gray-400 font-bold text-sm rounded-lg active:scale-95 transition-all cursor-pointer";
+        }
+
+        // Запуск прохождения квиза
         function startQuiz() {
             currentQuestionIndex = 0;
             scoreCounter = { action: 0, drama: 0, comedy: 0, epic: 0 };
@@ -205,13 +339,17 @@
         }
 
         function renderQuestion() {
-            const currentQuestion = quizData[currentQuestionIndex];
-            const progressPercent = ((currentQuestionIndex) / quizData.length) * 100;
+            const activeQuestions = quizQuestions[selectedAge];
+            const currentQuestion = activeQuestions[currentQuestionIndex];
+            
+            const progressPercent = (currentQuestionIndex / activeQuestions.length) * 100;
             document.getElementById("progress-bar").style.width = `${progressPercent}%`;
-            document.getElementById("question-number").innerText = `Сцена ${currentQuestionIndex + 1} из ${quizData.length}`;
+            document.getElementById("question-number").innerText = `Сцена ${currentQuestionIndex + 1} из ${activeQuestions.length}`;
             document.getElementById("question-text").innerText = currentQuestion.question;
+            
             const container = document.getElementById("answers-container");
             container.innerHTML = "";
+            
             currentQuestion.answers.forEach(answer => {
                 const button = document.createElement("button");
                 button.className = "w-full text-left p-4 bg-[#111827] hover:bg-[#1F2937] border border-gray-800 hover:border-gray-700 text-xs md:text-sm text-gray-300 hover:text-white rounded-xl transition-all duration-200 active:scale-[0.99] cursor-pointer focus:outline-none";
@@ -224,7 +362,9 @@
         function handleAnswerClick(tag) {
             scoreCounter[tag]++;
             currentQuestionIndex++;
-            if (currentQuestionIndex < quizData.length) {
+            const activeQuestions = quizQuestions[selectedAge];
+            
+            if (currentQuestionIndex < activeQuestions.length) {
                 renderQuestion();
             } else {
                 calculateResult();
@@ -249,29 +389,36 @@
         }
 
         function renderResultScreen() {
-            const role = rolesData[finalRoleKey];
-            document.getElementById("result-title").innerText = role.title;
-            document.getElementById("result-description").innerText = role.description;
+            const displayTitle = rolesTitles[selectedAge][selectedGender][finalRoleKey];
+            const displayDesc = rolesDescriptions[finalRoleKey];
+            
+            document.getElementById("result-title").innerText = displayTitle;
+            document.getElementById("result-description").innerText = displayDesc;
+            
             showScreen("screen-result");
-            generateCanvasPoster(role);
+            generateCanvasPoster(displayTitle);
         }
 
-        // Абсолютно развернутая логика отрисовки Canvas графики
-        function generateCanvasPoster(role) {
+        // Развернутая логика Canvas с учетом сегментированных имен файлов
+        function generateCanvasPoster(displayTitle) {
             const canvas = document.getElementById("posterCanvas");
             const ctx = canvas.getContext("2d");
+            const accentColor = rolesColors[finalRoleKey];
             
             ctx.fillStyle = "#0B0F19";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             
-            const img = new Image();
-            img.src = `/images/posters/${role.poster}`; // Динамический путь к файлу
+            // Формируем имя файла строго по архитектуре: роль_возраст_пол.png
+            const imageFilename = `${finalRoleKey}_${selectedAge}_${selectedGender}.png`;
             
-            // Сценарий А: Если картинка присутствует в репозитории
+            const img = new Image();
+            img.src = `/images/posters/${imageFilename}`;
+            
+            // Сценарий А: Отрисовка вашего готового ИИ-постера
             img.onload = () => {
                 ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
                 
-                // Премиальный кинооверлей
+                // Наложение стильных титров поверх картинки
                 ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
                 ctx.font = "bold 24px 'Montserrat', sans-serif";
                 ctx.textAlign = "center";
@@ -279,80 +426,55 @@
                 ctx.fillText("РЕСУРС МЕДИА • КАСТИНГ", canvas.width / 2, 60);
 
                 ctx.fillStyle = "#FFFFFF";
-                ctx.font = "900 42px 'Montserrat', sans-serif";
-                ctx.letterSpacing = "2px";
-                ctx.fillText(role.title.toUpperCase(), canvas.width / 2, canvas.height - 140);
+                ctx.font = "900 38px 'Montserrat', sans-serif";
+                ctx.letterSpacing = "1px";
+                ctx.fillText(displayTitle.toUpperCase(), canvas.width / 2, canvas.height - 140);
 
-                ctx.fillStyle = role.color;
+                ctx.fillStyle = accentColor;
                 ctx.font = "bold 14px 'Montserrat', sans-serif";
                 ctx.letterSpacing = "5px";
                 ctx.fillText("ГЛАВНОЕ АМПЛУА", canvas.width / 2, canvas.height - 195);
             };
             
-            // Сценарий Б: Резервный технический постер (прорисовывается, пока папка пуста)
+            // Сценарий Б: Резервная прорисовка геометрии, пока папка пуста
             img.onerror = () => {
                 const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
                 gradient.addColorStop(0, "#0D1220");
-                gradient.addColorStop(1, role.bgGradient[1]);
+                gradient.addColorStop(1, accentColor + "22");
                 ctx.fillStyle = gradient;
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
                 
-                // Неоновые линии рамки
-                ctx.strokeStyle = role.color;
-                ctx.lineWidth = 4;
-                ctx.strokeRect(20, 20, canvas.width - 40, canvas.height - 40);
-                
-                ctx.strokeStyle = "rgba(255, 255, 255, 0.05)";
-                ctx.lineWidth = 1;
-                ctx.strokeRect(32, 32, canvas.width - 64, canvas.height - 64);
+                // Рамки
+                ctx.strokeStyle = accentColor; ctx.lineWidth = 4; ctx.strokeRect(20, 20, canvas.width - 40, canvas.height - 40);
+                ctx.strokeStyle = "rgba(255, 255, 255, 0.05)"; ctx.lineWidth = 1; ctx.strokeRect(32, 32, canvas.width - 64, canvas.height - 64);
 
-                // Верхний заголовок титров
-                ctx.fillStyle = "rgba(255, 255, 255, 0.4)";
-                ctx.font = "bold 14px 'Montserrat', sans-serif";
-                ctx.textAlign = "center";
-                ctx.letterSpacing = "6px";
+                // Верхний текст
+                ctx.fillStyle = "rgba(255, 255, 255, 0.4)"; ctx.font = "bold 14px 'Montserrat', sans-serif"; ctx.textAlign = "center"; ctx.letterSpacing = "6px";
                 ctx.fillText("OFFICIAL CASTING REPORT", canvas.width / 2, 70);
                 
-                // Геометрия объектива
-                ctx.fillStyle = "rgba(255, 255, 255, 0.02)";
-                ctx.beginPath();
-                ctx.arc(canvas.width / 2, canvas.height / 2 - 40, 140, 0, Math.PI * 2);
-                ctx.fill();
+                // Видоискатель камеры по центру
+                ctx.fillStyle = "rgba(255, 255, 255, 0.02)"; ctx.beginPath(); ctx.arc(canvas.width / 2, canvas.height / 2 - 40, 140, 0, Math.PI * 2); ctx.fill();
                 
-                // Студийные метки кадрирования
-                ctx.strokeStyle = role.color;
-                ctx.lineWidth = 3;
-                const cx = canvas.width / 2;
-                const cy = canvas.height / 2 - 40;
-                const r = 60;
+                const cx = canvas.width / 2; const cy = canvas.height / 2 - 40; const r = 60;
+                ctx.strokeStyle = accentColor; ctx.lineWidth = 3;
                 ctx.beginPath(); ctx.moveTo(cx - r, cy - r + 15); ctx.lineTo(cx - r, cy - r); ctx.lineTo(cx - r + 15, cy - r); ctx.stroke();
                 ctx.beginPath(); ctx.moveTo(cx + r, cy - r + 15); ctx.lineTo(cx + r, cy - r); ctx.lineTo(cx + r - 15, cy - r); ctx.stroke();
                 ctx.beginPath(); ctx.moveTo(cx - r, cy + r - 15); ctx.lineTo(cx - r, cy + r); ctx.lineTo(cx - r + 15, cy + r); ctx.stroke();
                 ctx.beginPath(); ctx.moveTo(cx + r, cy + r - 15); ctx.lineTo(cx + r, cy + r); ctx.lineTo(cx + r - 15, cy + r); ctx.stroke();
 
                 // Нижний блок текстов
-                ctx.fillStyle = role.color;
-                ctx.font = "bold 14px 'Montserrat', sans-serif";
-                ctx.letterSpacing = "4px";
+                ctx.fillStyle = accentColor; ctx.font = "bold 14px 'Montserrat', sans-serif"; ctx.letterSpacing = "4px";
                 ctx.fillText("ГЛАВНОЕ АМПЛУА", canvas.width / 2, canvas.height - 270);
 
-                ctx.fillStyle = "#FFFFFF";
-                ctx.font = "900 36px 'Montserrat', sans-serif";
-                ctx.letterSpacing = "1px";
-                ctx.fillText(role.title.toUpperCase(), canvas.width / 2, canvas.height - 210);
+                ctx.fillStyle = "#FFFFFF"; ctx.font = "900 34px 'Montserrat', sans-serif"; ctx.letterSpacing = "1px";
+                ctx.fillText(displayTitle.toUpperCase(), canvas.width / 2, canvas.height - 210);
                 
-                // Системный штрих-код
-                ctx.fillStyle = "rgba(255, 255, 255, 0.15)";
-                ctx.fillRect(canvas.width / 2 - 100, canvas.height - 130, 200, 30);
-                
-                ctx.fillStyle = "rgba(255, 255, 255, 0.4)";
-                ctx.font = "10px monospace";
-                ctx.letterSpacing = "3px";
+                // Штрих-код
+                ctx.fillStyle = "rgba(255, 255, 255, 0.15)"; ctx.fillRect(canvas.width / 2 - 100, canvas.height - 130, 200, 30);
+                ctx.fillStyle = "rgba(255, 255, 255, 0.4)"; ctx.font = "10px monospace"; ctx.letterSpacing = "3px";
                 ctx.fillText("ID-" + Math.floor(100000 + Math.random() * 900000), canvas.width / 2, canvas.height - 145);
 
-                ctx.fillStyle = "rgba(255, 255, 255, 0.3)";
-                ctx.font = "11px 'Montserrat', sans-serif";
-                ctx.letterSpacing = "1px";
+                ctx.fillStyle = "rgba(255, 255, 255, 0.3)"; ctx.font = "11px 'Montserrat', sans-serif"; ctx.letterSpacing = "1px";
                 ctx.fillText("ЭКОСИСТЕМА РЕСУРСА • ЦИФРОВОЙ ТЕСТ", canvas.width / 2, canvas.height - 75);
             };
         }
@@ -360,7 +482,7 @@
         function downloadPoster() {
             const canvas = document.getElementById("posterCanvas");
             const link = document.createElement("a");
-            link.download = `Casting_Poster_${finalRoleKey}.png`;
+            link.download = `Casting_${finalRoleKey}_${selectedAge}_${selectedGender}.png`;
             link.href = canvas.toDataURL("image/png");
             link.click();
         }
@@ -369,10 +491,12 @@
             showScreen("screen-start");
         }
 
+        // Универсальный шеринг без упоминания подруг
         function shareResult() {
+            const displayTitle = rolesTitles[selectedAge][selectedGender][finalRoleKey];
             const shareData = {
                 title: 'Моё амплуа в кино',
-                text: `Пройди актерские пробы и узнай, на какую роль тебя взял бы режиссер! Моё амплуа: ${rolesData[finalRoleKey].title}.`,
+                text: `Пройди актерские пробы и узнай, на какую роль тебя взял бы режиссер! Результат: ${displayTitle}.`,
                 url: window.location.href
             };
 
@@ -382,7 +506,7 @@
                     .catch((error) => console.log('Ошибка шеринга:', error));
             } else {
                 navigator.clipboard.writeText(shareData.url + "?utm_source=share")
-                    .then(() => alert("Ссылка на тест успешно скопирована в буфер обмена! Перешлите её подруге."))
+                    .then(() => alert("Ссылка на тест скопирована в буфер обмена! Поделись результатом с друзьями."))
                     .catch(err => alert("Не удалось скопировать ссылку автоматически."));
             }
         }
@@ -396,7 +520,8 @@
             }
             errorElement.classList.add("hidden");
             const file = photoInput.files[0];
-            alert(`Инициализация платежного шлюза (ЮKassa/Робокасса) на 190 руб. Роль: ${finalRoleKey}, файл селфи: ${file.name}. Перенаправление на оплату СБП после настройки функции.`);
+            const imageFilename = `${finalRoleKey}_${selectedAge}_${selectedGender}.png`;
+            alert(`Инициализация платежного шлюза на 190 руб. Шаблон роли: ${imageFilename}, файл селфи: ${file.name}. Перенаправление на оплату СБП после настройки Яндекс Функции.`);
         }
     </script>
 </body>
