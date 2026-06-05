@@ -1,9 +1,49 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+    <script>window.yaContextCb=window.yaContextCb||[]</script>
+    <script src="https://yandex.ru/ads/system/context.js" async></script>
+
+    <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108177329', 'ym');
+    ym(108177329, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/108177329" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Кинокастинг: На какую роль тебя взял бы режиссер?</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <title>Кинокастинг: На какую роль тебя взял бы режиссер? | РЕСУРС МЕДИА</title>
+    <meta name="description" content="Пройди интерактивные кинопробы и актерский тест от РЕСУРС МЕДИА. Узнай свое идеальное амплуа в кино, получи персональный постер или активируй ИИ Face Swap. Экосистема осознанности и фитнеса в Сыктывкаре.">
+    <meta name="keywords" content="кинокастинг, кастинг сыктывкар, игра в кино, кинопробы, тест на роль в кино, киногерои, экосистема фитнеса, ресурс медиа, интерактивный тест, подбор роли">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://resurs-stretch.ru/casting.html">
+
+    <link rel="icon" type="image/png" href="logo_header_final.png">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Кинокастинг: На какую роль тебя взял бы режиссер?",
+      "description": "Интерактивный психологический и актерский тест для определения амплуа в кино. Проект экосистемы РЕСУРС.",
+      "url": "https://resurs-stretch.ru/casting.html",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Студия фитнеса и растяжки РЕСУРС",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://resurs-stretch.ru/logo_header_final.png"
+        }
+      }
+    }
+    </script>
+
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
@@ -19,7 +59,8 @@
 
     <header class="w-full py-4 px-6 border-b border-gray-800 bg-[#0D1220]/80 backdrop-blur-md sticky top-0 z-50">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
-            <div class="text-xl font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-cyan-400">
+            <div class="text-xl font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-cyan-400 flex items-center gap-3">
+                <img src="logo_header_final.png" alt="РЕСУРС" class="h-8 w-auto" onerror="this.style.display='none'">
                 РЕСУРС <span class="text-xs font-normal text-gray-500 tracking-normal border-l border-gray-700 pl-2 ml-1">МЕДИА</span>
             </div>
             <a href="index.html" class="text-xs text-gray-400 hover:text-cyan-400 transition-colors duration-300 flex items-center gap-1">
@@ -28,8 +69,8 @@
         </div>
     </header>
 
-    <main class="flex-grow flex items-center justify-center p-4 md:p-8">
-        <div class="w-full max-w-4xl bg-[#0D1220] border border-gray-800 rounded-2xl shadow-2xl overflow-hidden relative">
+    <main class="flex-grow flex flex-col items-center justify-center p-4 md:p-8">
+        <div class="w-full max-w-4xl bg-[#0D1220] border border-gray-800 rounded-2xl shadow-2xl overflow-hidden relative mb-8">
             
             <div class="absolute -top-40 -left-40 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
             <div class="absolute -bottom-40 -right-40 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
@@ -87,8 +128,7 @@
                 <h2 id="question-text" class="text-xl md:text-2xl font-bold text-white mb-8 min-h-[80px] leading-snug">
                     Загрузка актерской ситуации...
                 </h2>
-                <div id="answers-container" class="grid grid-cols-1 gap-4">
-                    </div>
+                <div id="answers-container" class="grid grid-cols-1 gap-4"></div>
             </div>
 
             <div id="screen-loading" class="hidden py-20 px-6 text-center relative z-10">
@@ -125,7 +165,19 @@
                     </div>
                 </div>
 
-                <div class="mt-12 p-6 md:p-8 bg-gradient-to-br from-[#111827] to-[#0A1120] border border-amber-500/20 rounded-xl relative overflow-hidden">
+                <div class="mt-8 flex justify-center overflow-hidden rounded-xl">
+                    <div id="yandex_rtb_R-A-19181219-23" style="width: 100%; display: flex; justify-content: center;"></div>
+                    <script>
+                    window.yaContextCb.push(() => {
+                        Ya.Context.AdvManager.render({
+                            "blockId": "R-A-19181219-23",
+                            "renderTo": "yandex_rtb_R-A-19181219-23"
+                        })
+                    })
+                    </script>
+                </div>
+
+                <div class="mt-8 p-6 md:p-8 bg-gradient-to-br from-[#111827] to-[#0A1120] border border-amber-500/20 rounded-xl relative overflow-hidden">
                     <div class="absolute top-0 right-0 px-3 py-1 bg-amber-500 text-slate-950 text-[10px] font-black uppercase tracking-widest rounded-bl-lg">✨ Premium ИИ</div>
                     <div class="max-w-2xl">
                         <h3 class="text-xl md:text-2xl font-black text-white mb-3 flex items-center gap-2">ХОЧЕШЬ СВОЙ ПЕРСОНАЛЬНЫЙ КИНОПОСТЕР С ЛИЦОМ?</h3>
@@ -147,7 +199,6 @@
                 </div>
 
             </div>
-
         </div>
     </main>
 
@@ -156,9 +207,21 @@
     </footer>
 
     <script>
+    window.yaContextCb.push(() => {
+        Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-5", "type": "floorAd", "platform": "touch" })
+    });
+    window.yaContextCb.push(() => {
+        Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-6", "type": "floorAd", "platform": "touch" })
+    });
+    window.yaContextCb.push(() => {
+        Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-7", "type": "floorAd", "platform": "desktop" })
+    });
+    </script>
+
+    <script>
         // Состояние анкеты актера
-        let selectedAge = "adult"; // adult или child
-        let selectedGender = "male"; // male или female
+        let selectedAge = "adult"; 
+        let selectedGender = "male"; 
 
         // Базы вопросов под каждую возрастную категорию
         const quizQuestions = {
@@ -258,35 +321,15 @@
             ]
         };
 
-        // Текстовые амплуа по ролям (подстраиваются под пол и возраст)
+        // Текстовые амплуа по всем 16 категориям ролей
         const rolesTitles = {
             adult: {
-                male: {
-                    action: "Агент под прикрытием",
-                    drama: "Герой независимого артхауса",
-                    comedy: "Эксцентричный новатор",
-                    epic: "Правитель Империи"
-                },
-                female: {
-                    action: "Спецагент экстра-класса",
-                    drama: "Муза драматического кино",
-                    comedy: "Прима авантюрной комедии",
-                    epic: "Королева Галактики"
-                }
+                male: { action: "Агент под прикрытием", drama: "Герой независимого артхауса", comedy: "Эксцентричный новатор", epic: "Правитель Империи" },
+                female: { action: "Спецагент экстра-класса", drama: "Муза драматического кино", comedy: "Прима авантюрной комедии", epic: "Королева Галактики" }
             },
             child: {
-                male: {
-                    action: "Лидер секретного отряда",
-                    drama: "Юный исследователь тайн",
-                    comedy: "Главный озорник блокбастера",
-                    epic: "Будущий Хранитель Баланса"
-                },
-                female: {
-                    action: "Супергероиня из будущего",
-                    drama: "Хранительница древних тайн",
-                    comedy: "Душа комедийного приключения",
-                    epic: "Юная Повелительница миров"
-                }
+                male: { action: "Лидер секретного отряда", drama: "Юный исследователь тайн", comedy: "Главный озорник блокбастера", epic: "Будущий Хранитель Баланса" },
+                female: { action: "Супергероиня из будущего", drama: "Хранительница древних тайн", comedy: "Душа комедийного приключения", epic: "Юная Повелительница миров" }
             }
         };
 
@@ -298,8 +341,8 @@
         };
 
         const rolesColors = { action: "#06B6D4", drama: "#A855F7", comedy: "#F59E0B", epic: "#10B981" };
+        const rolesGradients = { action: "#083344", drama: "#3B0764", comedy: "#451A03", epic: "#064E3B" };
 
-        // Состояние квиза
         let currentQuestionIndex = 0;
         let scoreCounter = { action: 0, drama: 0, comedy: 0, epic: 0 };
         let finalRoleKey = "action";
@@ -311,26 +354,22 @@
             document.getElementById(screenId).classList.remove("hidden");
         }
 
-        // Переход к экрану настройки анкеты
         function startCastingSetup() {
             showScreen("screen-setup");
         }
 
-        // Выбор возрастной категории (Adult/Child)
         function setAgeCategory(cat) {
             selectedAge = cat;
             document.getElementById("btn-age-adult").className = cat === "adult" ? "py-3 px-4 bg-gray-800 border border-amber-500 text-white font-bold text-sm rounded-lg active:scale-95 transition-all cursor-pointer" : "py-3 px-4 bg-gray-900 border border-gray-700 text-gray-400 font-bold text-sm rounded-lg active:scale-95 transition-all cursor-pointer";
             document.getElementById("btn-age-child").className = cat === "child" ? "py-3 px-4 bg-gray-800 border border-amber-500 text-white font-bold text-sm rounded-lg active:scale-95 transition-all cursor-pointer" : "py-3 px-4 bg-gray-900 border border-gray-700 text-gray-400 font-bold text-sm rounded-lg active:scale-95 transition-all cursor-pointer";
         }
 
-        // Выбор пола (Male/Female)
         function setGender(gender) {
             selectedGender = gender;
             document.getElementById("btn-gender-male").className = gender === "male" ? "py-3 px-4 bg-gray-800 border border-amber-500 text-white font-bold text-sm rounded-lg active:scale-95 transition-all cursor-pointer" : "py-3 px-4 bg-gray-900 border border-gray-700 text-gray-400 font-bold text-sm rounded-lg active:scale-95 transition-all cursor-pointer";
             document.getElementById("btn-gender-female").className = gender === "female" ? "py-3 px-4 bg-gray-800 border border-amber-500 text-white font-bold text-sm rounded-lg active:scale-95 transition-all cursor-pointer" : "py-3 px-4 bg-gray-900 border border-gray-700 text-gray-400 font-bold text-sm rounded-lg active:scale-95 transition-all cursor-pointer";
         }
 
-        // Запуск прохождения квиза
         function startQuiz() {
             currentQuestionIndex = 0;
             scoreCounter = { action: 0, drama: 0, comedy: 0, epic: 0 };
@@ -399,62 +438,68 @@
             generateCanvasPoster(displayTitle);
         }
 
-        // Развернутая логика Canvas с учетом сегментированных имен файлов
+        // Продвинутый интеллектуальный рендеринг Canvas с автоматическим масштабированием текста
         function generateCanvasPoster(displayTitle) {
             const canvas = document.getElementById("posterCanvas");
             const ctx = canvas.getContext("2d");
             const accentColor = rolesColors[finalRoleKey];
+            const bottomHex = rolesGradients[finalRoleKey];
             
             ctx.fillStyle = "#0B0F19";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             
-            // Формируем имя файла строго по архитектуре: роль_возраст_пол.png
             const imageFilename = `${finalRoleKey}_${selectedAge}_${selectedGender}.png`;
-            
             const img = new Image();
             img.src = `/images/posters/${imageFilename}`;
             
-            // Сценарий А: Отрисовка вашего готового ИИ-постера
-            img.onload = () => {
-                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-                
-                // Наложение стильных титров поверх картинки
+            // Внутренняя функция для безопасного вывода длинного текста в рамки
+            function drawPosterTypography() {
                 ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
-                ctx.font = "bold 24px 'Montserrat', sans-serif";
+                ctx.font = "bold 22px 'Montserrat', sans-serif";
                 ctx.textAlign = "center";
-                ctx.letterSpacing = "4px";
-                ctx.fillText("РЕСУРС МЕДИА • КАСТИНГ", canvas.width / 2, 60);
-
-                ctx.fillStyle = "#FFFFFF";
-                ctx.font = "900 38px 'Montserrat', sans-serif";
-                ctx.letterSpacing = "1px";
-                ctx.fillText(displayTitle.toUpperCase(), canvas.width / 2, canvas.height - 140);
+                ctx.letterSpacing = "6px";
+                ctx.fillText("РЕСУРС МЕДИА • КАСТИНГ", canvas.width / 2, 65);
 
                 ctx.fillStyle = accentColor;
                 ctx.font = "bold 14px 'Montserrat', sans-serif";
                 ctx.letterSpacing = "5px";
-                ctx.fillText("ГЛАВНОЕ АМПЛУА", canvas.width / 2, canvas.height - 195);
+                ctx.fillText("ГЛАВНОЕ АМПЛУА", canvas.width / 2, canvas.height - 150);
+
+                // Динамический расчет размера шрифта под длину текста роли
+                let fontSize = 38;
+                if (displayTitle.length > 25) fontSize = 28;
+                else if (displayTitle.length > 20) fontSize = 32;
+
+                ctx.fillStyle = "#FFFFFF";
+                ctx.font = `900 ${fontSize}px 'Montserrat', sans-serif`;
+                ctx.letterSpacing = "1px";
+                ctx.fillText(displayTitle.toUpperCase(), canvas.width / 2, canvas.height - 95);
+            }
+
+            // Сценарий А: Успешная отрисовка вашего готового ИИ-постера
+            img.onload = () => {
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                drawPosterTypography();
             };
             
-            // Сценарий Б: Резервная прорисовка геометрии, пока папка пуста
+            // Сценарий Б: Резервная прорисовка геометрии (если файла еще нет)
             img.onerror = () => {
                 const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
                 gradient.addColorStop(0, "#0D1220");
-                gradient.addColorStop(1, accentColor + "22");
+                gradient.addColorStop(1, bottomHex + "44");
                 ctx.fillStyle = gradient;
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
                 
-                // Рамки
+                // Рамки кадрирования
                 ctx.strokeStyle = accentColor; ctx.lineWidth = 4; ctx.strokeRect(20, 20, canvas.width - 40, canvas.height - 40);
                 ctx.strokeStyle = "rgba(255, 255, 255, 0.05)"; ctx.lineWidth = 1; ctx.strokeRect(32, 32, canvas.width - 64, canvas.height - 64);
 
-                // Верхний текст
-                ctx.fillStyle = "rgba(255, 255, 255, 0.4)"; ctx.font = "bold 14px 'Montserrat', sans-serif"; ctx.textAlign = "center"; ctx.letterSpacing = "6px";
-                ctx.fillText("OFFICIAL CASTING REPORT", canvas.width / 2, 70);
+                // Верхний служебный текст титров
+                ctx.fillStyle = "rgba(255, 255, 255, 0.3)"; ctx.font = "bold 13px 'Montserrat', sans-serif"; ctx.textAlign = "center"; ctx.letterSpacing = "6px";
+                ctx.fillText("OFFICIAL CASTING REPORT", canvas.width / 2, 115);
                 
-                // Видоискатель камеры по центру
-                ctx.fillStyle = "rgba(255, 255, 255, 0.02)"; ctx.beginPath(); ctx.arc(canvas.width / 2, canvas.height / 2 - 40, 140, 0, Math.PI * 2); ctx.fill();
-                
+                // Стилизованный объектив камеры
+                ctx.fillStyle = "rgba(255, 255, 255, 0.01)"; ctx.beginPath(); ctx.arc(canvas.width / 2, canvas.height / 2 - 40, 140, 0, Math.PI * 2); ctx.fill();
                 const cx = canvas.width / 2; const cy = canvas.height / 2 - 40; const r = 60;
                 ctx.strokeStyle = accentColor; ctx.lineWidth = 3;
                 ctx.beginPath(); ctx.moveTo(cx - r, cy - r + 15); ctx.lineTo(cx - r, cy - r); ctx.lineTo(cx - r + 15, cy - r); ctx.stroke();
@@ -462,20 +507,13 @@
                 ctx.beginPath(); ctx.moveTo(cx - r, cy + r - 15); ctx.lineTo(cx - r, cy + r); ctx.lineTo(cx - r + 15, cy + r); ctx.stroke();
                 ctx.beginPath(); ctx.moveTo(cx + r, cy + r - 15); ctx.lineTo(cx + r, cy + r); ctx.lineTo(cx + r - 15, cy + r); ctx.stroke();
 
-                // Нижний блок текстов
-                ctx.fillStyle = accentColor; ctx.font = "bold 14px 'Montserrat', sans-serif"; ctx.letterSpacing = "4px";
-                ctx.fillText("ГЛАВНОЕ АМПЛУА", canvas.width / 2, canvas.height - 270);
-
-                ctx.fillStyle = "#FFFFFF"; ctx.font = "900 34px 'Montserrat', sans-serif"; ctx.letterSpacing = "1px";
-                ctx.fillText(displayTitle.toUpperCase(), canvas.width / 2, canvas.height - 210);
+                // Вывод типографики
+                drawPosterTypography();
                 
-                // Штрих-код
-                ctx.fillStyle = "rgba(255, 255, 255, 0.15)"; ctx.fillRect(canvas.width / 2 - 100, canvas.height - 130, 200, 30);
-                ctx.fillStyle = "rgba(255, 255, 255, 0.4)"; ctx.font = "10px monospace"; ctx.letterSpacing = "3px";
-                ctx.fillText("ID-" + Math.floor(100000 + Math.random() * 900000), canvas.width / 2, canvas.height - 145);
-
-                ctx.fillStyle = "rgba(255, 255, 255, 0.3)"; ctx.font = "11px 'Montserrat', sans-serif"; ctx.letterSpacing = "1px";
-                ctx.fillText("ЭКОСИСТЕМА РЕСУРСА • ЦИФРОВОЙ ТЕСТ", canvas.width / 2, canvas.height - 75);
+                // Имитация штрих-кода системы авторизации
+                ctx.fillStyle = "rgba(255, 255, 255, 0.1)"; ctx.fillRect(canvas.width / 2 - 100, canvas.height - 230, 200, 25);
+                ctx.fillStyle = "rgba(255, 255, 255, 0.3)"; ctx.font = "10px monospace"; ctx.letterSpacing = "3px";
+                ctx.fillText("ID-" + Math.floor(100000 + Math.random() * 900000), canvas.width / 2, canvas.height - 242);
             };
         }
 
@@ -491,7 +529,6 @@
             showScreen("screen-start");
         }
 
-        // Универсальный шеринг без упоминания подруг
         function shareResult() {
             const displayTitle = rolesTitles[selectedAge][selectedGender][finalRoleKey];
             const shareData = {
