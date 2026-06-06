@@ -733,9 +733,10 @@
             errorElement.classList.add("hidden");
 
             const displayTitle = rolesTitles[selectedAge][selectedGender][finalRoleKey];
+            
+            // ИСПРАВЛЕНО: Запрос идёт на базовый URL, без суффиксов, ломающих роутинг Яндекса
             const yandexFunctionUrl = "https://functions.yandexcloud.net/d4eju04c56s0169gqfvp";
             
-            // Объявляем переменные ТУТ, чтобы они были доступны во всех блоках (и в try, и в catch)
             const btn = document.querySelector("button[onclick='processPremiumPayment()']");
             const originalText = btn.innerText;
 
@@ -743,12 +744,13 @@
                 btn.innerText = "СВЯЗЬ С БАНКОМ...";
                 btn.disabled = true;
 
-                const response = await fetch(`${yandexFunctionUrl}/initiate_payment`, {
+                const response = await fetch(yandexFunctionUrl, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({
+                        action: "initiate_payment", // Добавляем явный маркер действия в тело запроса
                         userName: "АКТЕР СТУДИИ",
                         roleTitle: displayTitle,
                         chatAnswers: savedChatAnswers
@@ -772,7 +774,6 @@
                 errorElement.innerText = "Ошибка шлюза. Пожалуйста, попробуйте позже или свяжитесь с поддержкой.";
                 errorElement.classList.remove("hidden");
                 
-                // Теперь эта строка отработает идеально без ошибок в консоли
                 btn.innerText = originalText;
                 btn.disabled = false;
             }
