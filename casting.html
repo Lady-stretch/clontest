@@ -285,7 +285,6 @@
         let currentAIConversation = []; 
         let generatedPremiumPosterUrl = null; 
 
-        // Адрес вашей запущенной функции
         const YANDEX_FUNCTION_URL = "https://functions.yandexcloud.net/d4eju04c56s0169gqfvp";
 
         const urlParams = new URLSearchParams(window.location.search);
@@ -434,7 +433,7 @@
                             { text: "Уверенно нажимаю на секретный камень в стене, открывая потайную дверь.", tag: "action" },
                             { text: "Внимательно рассматриваю старинный шифр, затаив дыхание от удивления.", tag: "drama" },
                             { text: "Случайно опираюсь на рычаг, пугаюсь громкого звука, но радуюсь находке.", tag: "comedy" },
-                            { text: "Достаю древний амулет, поднимаю его высоко вверх и освещаю всю комнату.", tag: "epic" }
+                            { text: "Достаю древний амулет, поднимаю его высоко вверх и освещаю всю команду.", tag: "epic" }
                         ]
                     },
                     {
@@ -808,30 +807,58 @@
                 .catch(err => console.log("Ошибка копирования в буфер:", err));
         }
 
+        // ВЫСОКОТЕХНОЛОГИЧНОЕ СЖАТИЕ ФОТОГРАФИИ НА СТОРONE БРАУЗЕРА ПЕРЕД ОТПРАВКОЙ (УБИРАЕТ ОШИБКУ 413)
         async function uploadUserPhotoToServer(file) {
             return new Promise((resolve, reject) => {
-                const reader = new FileReader();
-                reader.readAsDataURL(file);
-                reader.onload = async () => {
-                    try {
-                        const base64Data = reader.result;
-                        const response = await fetch(YANDEX_FUNCTION_URL, {
-                            method: "POST",
-                            headers: { "Content-Type": "application/json" },
-                            body: JSON.stringify({
-                                action: "upload_user_photo",
-                                photoData: base64Data,
-                                userId: `actor_${Math.floor(100000 + Math.random() * 900000)}`
-                            })
-                        });
-                        if (!response.ok) throw new Error();
-                        const resJson = await response.json();
-                        resolve(resJson.success);
-                    } catch (e) {
-                        reject(false);
+                const img = new Image();
+                img.src = URL.createObjectURL(file);
+                
+                img.onload = () => {
+                    const canvas = document.createElement("canvas");
+                    const ctx = canvas.getContext("2d");
+                    
+                    // Устанавливаем оптимальный размер для Face Swap (максимум 1024 пикселя)
+                    const MAX_WIDTH = 1024;
+                    const MAX_HEIGHT = 1024;
+                    let width = img.width;
+                    let height = img.height;
+                    
+                    if (width > height) {
+                        if (width > MAX_WIDTH) {
+                            height *= MAX_WIDTH / width;
+                            width = MAX_WIDTH;
+                        }
+                    } else {
+                        if (height > MAX_HEIGHT) {
+                            width *= MAX_HEIGHT / height;
+                            height = MAX_HEIGHT;
+                        }
                     }
+                    
+                    canvas.width = width;
+                    canvas.height = height;
+                    ctx.drawImage(img, 0, 0, width, height);
+                    
+                    // Пережимаем изображение в JPEG с качеством 75% (~200-400 КБ вместо 5-10 МБ!)
+                    const compressedBase64 = canvas.toDataURL("image/jpeg", 0.75);
+                    
+                    fetch(YANDEX_FUNCTION_URL, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            action: "upload_user_photo",
+                            photoData: compressedBase64,
+                            userId: `actor_${Math.floor(100000 + Math.random() * 900000)}`
+                        })
+                    })
+                    .then(response => {
+                        if (!response.ok) throw new Error();
+                        return response.json();
+                    })
+                    .then(resJson => resolve(resJson.success))
+                    .catch(() => resolve(false));
                 };
-                reader.onerror = () => reject(false);
+                img.onerror = () => resolve(false);
             });
         }
 
@@ -855,7 +882,7 @@
                 btn.disabled = true;
 
                 const isUploaded = await uploadUserPhotoToServer(photoInput.files[0]);
-                if (!isUploaded) throw new Error("Не удалось сохранить фото на сервере.");
+                if (!isUploaded) throw new Error("Не удалось сохранить фото на сервере. Возможно файл поврежден.");
 
                 btn.innerText = isAdminMode ? "ОТКРЫТИЕ ПАВИЛЬОНА..." : "СВЯЗЬ С БАНКОМ...";
 
@@ -974,7 +1001,6 @@
             }
         }
 
-        // ИСПРАВЛЕНО: Безопасное чтение полей JSON без риска вызвать ошибку split() или undefined
         async function terminateCastingAndRender() {
             const displayTitle = rolesTitles[selectedAge][selectedGender][finalRoleKey];
             showScreen("screen-loading");
@@ -994,7 +1020,6 @@
 
                 const data = await response.json();
                 
-                // Проверяем наличие полей в ответе
                 chosenMovieTitle = data.movieTitle || "ВРЕМЯ РЕСУРСА"; 
                 generatedPremiumPosterUrl = data.posterUrl || `${YANDEX_FUNCTION_URL}?title=${encodeURIComponent(displayTitle)}&movie=${encodeURIComponent(chosenMovieTitle)}`;
                 
@@ -1010,7 +1035,6 @@
 
             } catch (err) {
                 console.error("Критический сбой финального рендера:", err);
-                // Защитный сценарий: если сеть пропала, генерируем стандартный путь
                 chosenMovieTitle = "ВРЕМЯ РЕСУРСА";
                 generatedPremiumPosterUrl = `${YANDEX_FUNCTION_URL}?title=${encodeURIComponent(displayTitle)}&movie=${encodeURIComponent(chosenMovieTitle)}`;
             }
