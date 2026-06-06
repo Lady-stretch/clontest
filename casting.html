@@ -247,7 +247,7 @@
     <script>
         let selectedAge = "adult"; 
         let selectedGender = "male"; 
-        let savedChatAnswers = []; // Локальный массив для сохранения ответов квиза
+        let savedChatAnswers = []; 
 
         const quizQuestions = {
             adult: {
@@ -530,7 +530,7 @@
 
         function handleAnswerClick(tag, text) {
             scoreCounter[tag]++;
-            savedChatAnswers.push(text); // Логируем текст ответа
+            savedChatAnswers.push(text); 
             currentQuestionIndex++;
             const activeQuestions = quizQuestions[selectedAge][selectedGender];
             
@@ -734,22 +734,21 @@
 
             const displayTitle = rolesTitles[selectedAge][selectedGender][finalRoleKey];
             
-            // Вставьте СЮДА ссылку-вызова вашей Яндекс Функции из вкладки Обзор (параметр "Ссылка для вызова")
             const yandexFunctionUrl = "https://functions.yandexcloud.net/d4eju04c56s0169gqfvp";
 
             try {
-                // Изменяем текст кнопки на статус загрузки
                 const btn = document.querySelector("button[onclick='processPremiumPayment()']");
                 const originalText = btn.innerText;
                 btn.innerText = "СВЯЗЬ С БАНКОМ...";
                 btn.disabled = true;
 
+                // ИСПРАВЛЕНО: JSON пишется большими буквами
                 const response = await fetch(`${yandexFunctionUrl}/initiate_payment`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
                     },
-                    body: json.stringify({
+                    body: JSON.stringify({
                         userName: "АКТЕР СТУДИИ",
                         roleTitle: displayTitle,
                         chatAnswers: savedChatAnswers
@@ -763,7 +762,6 @@
                 const resultData = await response.json();
                 
                 if (resultData.paymentUrl) {
-                    // Перенаправляем пользователя на официальный шлюз оплаты ЮKassa
                     window.location.href = resultData.paymentUrl;
                 } else {
                     throw new Error("Шлюз не вернул платежную ссылку.");
@@ -774,7 +772,6 @@
                 errorElement.innerText = "Ошибка шлюза. Пожалуйста, попробуйте позже или свяжитесь с поддержкой.";
                 errorElement.classList.remove("hidden");
                 
-                // Возвращаем кнопку в исходное состояние
                 const btn = document.querySelector("button[onclick='processPremiumPayment()']");
                 btn.innerText = originalText;
                 btn.disabled = false;
