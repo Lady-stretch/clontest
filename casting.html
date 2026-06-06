@@ -88,7 +88,7 @@
                     Узнай, на какую роль тебя взял бы <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-500">Режиссер?</span>
                 </h1>
                 <p class="text-gray-400 text-base md:text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
-                    Тишина на площадке! Камера, начали! Пройдите профессиональные актерские пробы, адаптированные под ваш пол и возраст. Ответьте на каверзные сценарные ситуации, и наш алгоритм определит ваше истинное амплуа в кино, зафиксировав результат на стильном официальном постер абсолютно бесплатно.
+                    Тишина на площадке! Камера, начали! Пройдите профессиональные актерские пробы, адаптированные под ваш пол и возраст. Ответьте на каверзные сценарные ситуации, и наш алгоритм определит ваше истинное амплуа в кино, зафиксировав результат на стильном официальном постере абсолютно бесплатно.
                 </p>
                 <button onclick="startCastingSetup()" class="px-8 py-4 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-black text-lg tracking-wider rounded-xl shadow-lg shadow-amber-500/20 active:scale-95 transition-all duration-300 cursor-pointer">
                     ЗАЙТИ В ПАВИЛЬОН КИНОПРОБ
@@ -206,7 +206,7 @@
                             🎭 ПРОЙТИ ИИ-КАСТИНГ У ВЕРЫ МЕГЕРЫ И СГЕНЕРИРОВАТЬ АФИШУ С ЛИЦОМ
                         </h3>
                         <p class="text-gray-400 text-xs md:text-sm leading-relaxed mb-6">
-                            Вам понравился базовый результат пробы? Пора заявить о себе по-настоящему! Переходите на продвинутый уровень кастинга. **Вера Мегера** — наш харизматичный, строгий и чертовски профессиональный ассистент режиссера по актерам — проведет с вами индивидуальное интерактивное ИИ-собеседование. Ответьте на её вопросы в свободной форме, впишите свое имя для титров, и нейросеть выполнит **Face Swap** — создаст полноценную эксклюзивную голливудскую киноафишу, интегрировав ваше лицо в сцену фильма с уникальным названием! Оплата через ЮKassa/Робокассу.
+                            Вам понравился базовый результат пробы? Пора заявить о себе по-настоящему! Переходите на продвинутый уровень кастинга. **Вера Мегера** — наш харизматичный, строгий и чертовски профессиональный ассистент режиссера по актерам — проведет с вами индивидуальное интерактивное ИИ-собеседование. Ответьте на её вопросы в свободной форме, впишите свое имя для титров, и нейросеть выполнит **Face Swap** — создаст полноценную эксклюзивную голливудскую киноафишу, интегрировав ваше лицо в сцену фильма с уникальным названием! Оплата через ЮKassa.
                         </p>
                         
                         <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
@@ -247,6 +247,7 @@
     <script>
         let selectedAge = "adult"; 
         let selectedGender = "male"; 
+        let savedChatAnswers = []; // Локальный массив для сохранения ответов квиза
 
         const quizQuestions = {
             adult: {
@@ -456,9 +457,9 @@
 
         const rolesDescriptions = {
             action: "Вы обладаете невероятной скоростью реакции, физической собранностью и решительностью. Режиссеры динамичных экшенов увидели бы в вас идеального протагониста, способного вытащить любую сложнейшую сцену за счет личной харизмы, точности движений и хладнокровия в моменты кризиса.",
-            drama: "Ваш конек — глубокая психологическая проработка, эмоциональная честность и умение держать драматическую паузу. Ваше присутствие в кадре заставляет зрителя сопереживать каждой секунду. Это амплуа для фестивального кино высокого уровня, где ценится глубина взгляда и микромимика.",
+            drama: "Ваш конек — глубокая психологическая проработка, эмоциональная честность и умение держать драматическую паузу. Ваше присутствие в кадре заставляет зрителя сопереживать каждой секунде. Это амплуа для фестивального кино высокого уровня, где ценится глубина взгляда и микромимика.",
             comedy: "Вы — генератор энергии, способный мгновенно разрядить любую обстановку с помощью безупречной самоиронии, пластичности и нестандартного мышления. Вы легко ломаете шаблоны поведения, удерживая внимание зрителя за счет искренности, динамики и великолепного чувства ритма.",
-            epic: "Монументальное спокойствие, стратегическое мышление и врожденные лидерские качества. Вы органично смотритесь в масштабных каднах исторических саг, космических опер или фэнтези. Ваша роль — человек, за которым идут, восстанавливающий порядок, структуру и гармонию."
+            epic: "Монументальное спокойствие, стратегическое мышление и врожденные лидерские качества. Вы органично смотритесь в масштабных кадрах исторических саг, космических опер или фэнтези. Ваша роль — человек, за которым идут, восстанавливающий порядок, структуру и гармонию."
         };
 
         const rolesColors = { action: "#06B6D4", drama: "#A855F7", comedy: "#F59E0B", epic: "#10B981" };
@@ -479,8 +480,6 @@
                 document.getElementById(id).classList.add("hidden");
             });
             document.getElementById(screenId).classList.remove("hidden");
-            
-            // Закрываем дропдаун шеринга при смене экранов
             document.getElementById("desktop-share-dropdown").classList.add("hidden");
         }
 
@@ -503,6 +502,7 @@
         function startQuiz() {
             currentQuestionIndex = 0;
             scoreCounter = { action: 0, drama: 0, comedy: 0, epic: 0 };
+            savedChatAnswers = [];
             showScreen("screen-quiz");
             renderQuestion();
         }
@@ -523,13 +523,14 @@
                 const button = document.createElement("button");
                 button.className = "w-full text-left p-4 bg-[#111827] border border-gray-800 hover:border-amber-500 focus:bg-amber-500/10 focus:border-amber-500 text-sm md:text-base font-bold text-gray-200 hover:text-white rounded-xl transition-all duration-200 active:scale-[0.99] cursor-pointer focus:outline-none";
                 button.innerText = answer.text;
-                button.onclick = () => handleAnswerClick(answer.tag);
+                button.onclick = () => handleAnswerClick(answer.tag, answer.text);
                 container.appendChild(button);
             });
         }
 
-        function handleAnswerClick(tag) {
+        function handleAnswerClick(tag, text) {
             scoreCounter[tag]++;
+            savedChatAnswers.push(text); // Логируем текст ответа
             currentQuestionIndex++;
             const activeQuestions = quizQuestions[selectedAge][selectedGender];
             
@@ -569,7 +570,6 @@
             generateCanvasPoster(displayTitle);
         }
 
-        // Высокоточный метод загрузки графики с относительными путями и умным автоподгоном шрифтов
         function generateCanvasPoster(displayTitle) {
             const canvas = document.getElementById("posterCanvas");
             const ctx = canvas.getContext("2d");
@@ -579,18 +579,15 @@
             ctx.fillStyle = "#0B0F19";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             
-            // Фиксируем относительные пути (без ведущего слэша) для безотказной работы на смартфонах внутри clontest
             const filename = "images/posters/" + finalRoleKey + "_" + selectedAge + "_" + selectedGender + "_1.png";
             const img = new Image();
             img.src = filename;
             
-            // Функция интеллектуального замера и динамического уменьшения шрифта
             function fillAutoScaledText(context, text, x, y, maxWidth, startSize, fontSuffix) {
                 let currentSize = startSize;
                 context.font = `900 ${currentSize}px ${fontSuffix}`;
                 let metrics = context.measureText(text);
                 
-                // Сжимаем размер шрифта в цикле, если текст шире рамок безопасной зоны
                 while (metrics.width > maxWidth && currentSize > 18) {
                     currentSize -= 2;
                     context.font = `900 ${currentSize}px ${fontSuffix}`;
@@ -600,43 +597,36 @@
             }
 
             function drawPosterTypography() {
-                // Текст шапки в самом верху
                 ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
                 ctx.font = "bold 22px 'Montserrat', sans-serif";
                 ctx.textAlign = "center";
                 ctx.letterSpacing = "6px";
                 ctx.fillText("РЕСУРС МЕДИА • КАСТИНГ", canvas.width / 2, 65);
 
-                // Вывод титров напрямую поверх чистого фона (Градиент удален)
                 ctx.fillStyle = accentColor;
                 ctx.font = "bold 14px 'Montserrat', sans-serif";
                 ctx.letterSpacing = "5px";
                 ctx.fillText("ГЛАВНОЕ АМПЛУА", canvas.width / 2, canvas.height - 215);
 
-                // Выводим авто-масштабируемое название роли
                 ctx.fillStyle = "#FFFFFF";
                 ctx.letterSpacing = "1px";
                 fillAutoScaledText(ctx, displayTitle.toUpperCase(), canvas.width / 2, canvas.height - 165, 520, 38, "'Montserrat', sans-serif");
 
-                // Выводим авто-масштабируемое название фильма
                 ctx.fillStyle = accentColor;
                 ctx.letterSpacing = "2px";
                 fillAutoScaledText(ctx, chosenMovieTitle.toUpperCase(), canvas.width / 2, canvas.height - 95, 520, 42, "'Montserrat', sans-serif");
 
-                // Нижний футер ссылки
                 ctx.fillStyle = "rgba(255, 255, 255, 0.3)";
                 ctx.font = "bold 11px 'Montserrat', sans-serif";
                 ctx.letterSpacing = "2px";
                 ctx.fillText("СКОРО ВО ВСЕХ КИНОТЕАТРАХ • resurs-stretch.ru", canvas.width / 2, canvas.height - 45);
             }
 
-            // Успешный запуск основного относительного файла
             img.onload = () => {
                 ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
                 drawPosterTypography();
             };
             
-            // Каскадный бэкап путей на случай скрытых пробелов в файловой системе GitHub (" _1.png")
             img.onerror = () => {
                 const spaceBackupImg = new Image();
                 spaceBackupImg.src = "images/posters/" + finalRoleKey + "_" + selectedAge + "_" + selectedGender + " _1.png";
@@ -646,7 +636,6 @@
                     drawPosterTypography();
                 };
                 
-                // Полный геометрический рендеринг при отсутствии файлов
                 spaceBackupImg.onerror = () => {
                     const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
                     gradient.addColorStop(0, "#0D1220");
@@ -685,20 +674,15 @@
             showScreen("screen-start");
         }
 
-        // Скролл к блоку Премиум ИИ мимо рекламы
         function scrollToPremium() {
             document.getElementById("premium-block").scrollIntoView({ behavior: 'smooth' });
         }
 
-        // Универсальный шеринг: на телефонах отправляет файл, на ПК плавно открывает кастомный дропдаун копирования
         async function shareResult() {
             const canvas = document.getElementById("posterCanvas");
             const displayTitle = rolesTitles[selectedAge][selectedGender][finalRoleKey];
-            
-            // Полный выверенный текст ссылки для ТГ и Ватсап
             const shareText = `Я прошел актерский тест от РЕСУРС МЕДИА! Мое амплуа в кино: ${displayTitle} в фильме "${chosenMovieTitle}". Проверь, на какую роль взяли бы тебя! https://resurs-stretch.ru/casting.html`;
 
-            // Проверяем, мобильное ли это устройство с поддержкой Web Share API
             if (navigator.share && /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
                 try {
                     canvas.toBlob(async (blob) => {
@@ -715,27 +699,20 @@
                     console.log("Ошибка работы Web Share API:", err);
                 }
             } else {
-                // Если это компьютер (ПК/Ноутбук) — переключаем выпадающее окно прямо под кнопкой
                 const dropdown = document.getElementById("desktop-share-dropdown");
                 const inputElement = document.getElementById("share-link-input");
-                
-                // Вбиваем текущий URL со СЕО меткой в поле ввода дропдауна
                 inputElement.value = "https://resurs-stretch.ru/casting.html?utm_source=share_pc";
-                
-                // Тогглим видимость окна
                 dropdown.classList.toggle("hidden");
                 document.getElementById("copy-success-message").classList.add("hidden");
             }
         }
 
-        // Прямое копирование ссылки из десктопного выпадающего окна
         function copyShareLinkDirectly() {
             const inputElement = document.getElementById("share-link-input");
             navigator.clipboard.writeText(inputElement.value)
                 .then(() => {
                     const successMessage = document.getElementById("copy-success-message");
                     successMessage.classList.remove("hidden");
-                    // Автоматически скрываем окно через 2 секунды после успешного копирования
                     setTimeout(() => {
                         document.getElementById("desktop-share-dropdown").classList.add("hidden");
                     }, 2000);
@@ -743,17 +720,65 @@
                 .catch(err => console.log("Ошибка копирования в буфер:", err));
         }
 
-        function processPremiumPayment() {
+        // ВЫСОКОТЕХНОЛОГИЧНЫЙ КАНАЛ СВЯЗИ С ЮKASSA ЧЕРЕЗ ЯНДЕКС ФУНКЦИЮ
+        async function processPremiumPayment() {
             const photoInput = document.getElementById("user-photo");
             const errorElement = document.getElementById("payment-error");
+            
             if (!photoInput.files || photoInput.files.length === 0) {
+                errorElement.innerText = "Пожалуйста, выберите фотографию перед активацией ИИ-собеседования.";
                 errorElement.classList.remove("hidden");
                 return;
             }
             errorElement.classList.add("hidden");
-            const file = photoInput.files[0];
-            const imageFilename = `${finalRoleKey}_${selectedAge}_${selectedGender}_1.png`;
-            alert(`Инициализация платежного шлюза на 190 руб. Данные для бэкенда Яндекс Функции: Шаблон роли: ${imageFilename}, Сгенерированный фильм: "${chosenMovieTitle}". После оплаты запустится ИИ Вера Мегера и Face Swap!`);
+
+            const displayTitle = rolesTitles[selectedAge][selectedGender][finalRoleKey];
+            
+            // Вставьте СЮДА ссылку-вызова вашей Яндекс Функции из вкладки Обзор (параметр "Ссылка для вызова")
+            const yandexFunctionUrl = "https://functions.yandexcloud.net/d4eju04c56s0169gqfvp";
+
+            try {
+                // Изменяем текст кнопки на статус загрузки
+                const btn = document.querySelector("button[onclick='processPremiumPayment()']");
+                const originalText = btn.innerText;
+                btn.innerText = "СВЯЗЬ С БАНКОМ...";
+                btn.disabled = true;
+
+                const response = await fetch(`${yandexFunctionUrl}/initiate_payment`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: json.stringify({
+                        userName: "АКТЕР СТУДИИ",
+                        roleTitle: displayTitle,
+                        chatAnswers: savedChatAnswers
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error("Не удалось связаться с сервером платежей.");
+                }
+
+                const resultData = await response.json();
+                
+                if (resultData.paymentUrl) {
+                    // Перенаправляем пользователя на официальный шлюз оплаты ЮKassa
+                    window.location.href = resultData.paymentUrl;
+                } else {
+                    throw new Error("Шлюз не вернул платежную ссылку.");
+                }
+
+            } catch (error) {
+                console.error("Ошибка интеграции шлюза:", error);
+                errorElement.innerText = "Ошибка шлюза. Пожалуйста, попробуйте позже или свяжитесь с поддержкой.";
+                errorElement.classList.remove("hidden");
+                
+                // Возвращаем кнопку в исходное состояние
+                const btn = document.querySelector("button[onclick='processPremiumPayment()']");
+                btn.innerText = originalText;
+                btn.disabled = false;
+            }
         }
     </script>
 </body>
