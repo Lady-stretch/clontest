@@ -74,6 +74,8 @@
         </div>
     </header>
 
+    <theme-provider></theme-provider>
+
     <main class="flex-grow flex flex-col items-center justify-center p-4 md:p-8">
         <div class="w-full max-w-4xl bg-[#0D1220] border border-gray-800 rounded-2xl shadow-2xl overflow-hidden relative mb-8">
             
@@ -88,7 +90,7 @@
                     Узнай, на какую роль тебя взял бы <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-500">Режиссер?</span>
                 </h1>
                 <p class="text-gray-400 text-base md:text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
-                    Тишина на площадке! Камера, начали! Пройдите профессиональные актерские пробы, адаптированные под ваш пол и возраст. Ответьте на каверзные сценарные ситуации, и наш алгоритм определит ваше истинное амплуа в кино, зафиксировав результат на стильном официальном постере абсолютно бесплатно.
+                    Тишина на площадке! Камера, начали! Пройдите professional актерские пробы, адаптированные под ваш пол и возраст. Ответьте на каверзные сценарные ситуации, и наш алгоритм определит ваше истинное амплуа в кино, зафиксировав результат на стильном официальном постере абсолютно бесплатно.
                 </p>
                 <button onclick="startCastingSetup()" class="px-8 py-4 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-black text-lg tracking-wider rounded-xl shadow-lg shadow-amber-500/20 active:scale-95 transition-all duration-300 cursor-pointer">
                     ЗАЙТИ В ПАВИЛЬОН КИНОПРОБ
@@ -150,7 +152,7 @@
                         <p id="result-description" class="text-gray-400 text-sm md:text-base leading-relaxed mb-6">Описание роли...</p>
                         
                         <div class="flex flex-wrap gap-3 mb-8 relative">
-                            <button onclick="downloadPoster()" class="px-4 py-2.5 bg-gray-800 hover:bg-gray-700 text-white text-xs font-bold rounded-lg border border-gray-700 transition-colors cursor-pointer flex items-center gap-2">
+                            <button id="btn-download-action" onclick="downloadPoster()" class="px-4 py-2.5 bg-gray-800 hover:bg-gray-700 text-white text-xs font-bold rounded-lg border border-gray-700 transition-colors cursor-pointer flex items-center gap-2">
                                 ⬇️ СКАЧАТЬ ПОСТЕР
                             </button>
                             
@@ -168,7 +170,7 @@
                                 </div>
                             </div>
                             
-                            <button onclick="scrollToPremium()" class="px-4 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 text-xs font-black rounded-lg active:scale-95 transition-all cursor-pointer flex items-center gap-2 uppercase">
+                            <button id="btn-scroll-premium" onclick="scrollToPremium()" class="px-4 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 text-xs font-black rounded-lg active:scale-95 transition-all cursor-pointer flex items-center gap-2 uppercase">
                                 ✨ Премиум кастинг
                             </button>
                             
@@ -178,11 +180,11 @@
                         </div>
                     </div>
 
-                    <div class="flex flex-col items-center justify-center relative group">
+                    <div id="poster-render-container" class="flex flex-col items-center justify-center relative group">
                         <div class="border border-gray-800 bg-[#090D16] p-2 rounded-xl shadow-xl max-w-[320px] w-full transition-transform duration-300 group-hover:scale-[1.02]">
                             <canvas id="posterCanvas" width="600" height="900" class="w-full h-auto rounded-lg bg-slate-900"></canvas>
                         </div>
-                        <p class="text-[10px] text-gray-600 mt-2">Базовый постер. Создан алгоритмом РЕСУРСА.</p>
+                        <p id="poster-footer-caption" class="text-[10px] text-gray-600 mt-2">Базовый постер. Создан алгоритмом РЕСУРСА.</p>
                     </div>
                 </div>
 
@@ -206,7 +208,7 @@
                             🎭 ПРОЙТИ ИИ-КАСТИНГ У ВЕРЫ МЕГЕРЫ И СГЕНЕРИРОВАТЬ АФИШУ С ЛИЦОМ
                         </h3>
                         <p class="text-gray-400 text-xs md:text-sm leading-relaxed mb-6">
-                            Вам понравился базовый результат пробы? Пора заявить о себе по-настоящему! Переходите на продвинутый уровень кастинга. **Вера Мегера** — наш харизматичный, строгий и чертовски профессиональный ассистент режиссера по актерам — проведет с вами индивидуальное интерактивное ИИ-собеседование. Ответьте на её вопросы в свободной форме, впишите свое имя для титров, и нейросеть выполнит **Face Swap** — создаст полноценную эксклюзивную голливудскую киноафишу, интегрировав ваше лицо в сцену фильма с уникальным названием! Оплата через ЮKassa.
+                            Вам понравился базовый результат пробы? Пора заявить о себе по-настоящему! Переходите на продвинутый уровень кастинга. **Вера Мегера** — наш харизматичный, строгий и профессиональный ассистент режиссера по актерам — проведет с вами индивидуальное интерактивное ИИ-собеседование. Ответьте на её вопросы в свободной форме, впишите свое имя для титров, и нейросеть выполнит **Face Swap** — создаст полноценную эксклюзивную голливудскую киноафишу, интегрировав ваше лицо в сцену фильма с уникальным названием! Оплата через ЮKassa.
                         </p>
                         
                         <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
@@ -242,8 +244,7 @@
                     </button>
                 </div>
 
-                <div id="chat-messages-container" class="flex-grow overflow-y-auto space-y-4 pr-2 mb-4 scrollbar-thin">
-                    </div>
+                <div id="chat-messages-container" class="flex-grow overflow-y-auto space-y-4 pr-2 mb-4 scrollbar-thin"></div>
 
                 <div id="chat-typing-indicator" class="hidden flex items-center gap-2 text-xs text-gray-500 px-4 mb-2 italic">
                     <span class="inline-block animate-bounce">●</span>
@@ -283,9 +284,12 @@
         let selectedAge = "adult"; 
         let selectedGender = "male"; 
         let savedChatAnswers = []; 
-        let currentAIConversation = []; // Хранилище полной истории чата с Верой Мегерой
+        let currentAIConversation = []; 
+        let generatedPremiumPosterUrl = null; // Глобальный указатель на ИИ-картинку
 
-        // Определение режима админа (тестовый бесплатный режим)
+        // ИСПРАВЛЕНО: Единый высокоточный адрес вашей запущенной Яндекс Функции
+        const YANDEX_FUNCTION_URL = "https://functions.yandexcloud.net/d4eju04c56s0169gqfvp";
+
         const urlParams = new URLSearchParams(window.location.search);
         const isAdminMode = urlParams.get('mode') === 'admin';
 
@@ -335,7 +339,7 @@
                         answers: [
                             { text: "Резко швыряю оружие в воду, разворачиваюсь и ухожу широким шагом, не оборачиваясь.", tag: "action" },
                             { text: "Падаю на колени, закрывая лицо руками, под пронзительную скрипичную музыку.", tag: "drama" },
-                            { text: "Достаю измокшую пачку, пытаюсь поджечь спичку, улыбаюсь абсурдности этой жизни.", tag: "comedy" },
+                            { text: "Достаю измокшую пачку, пытаюсь поджечь спичку, улыгаюсь абсурдности этой жизни.", tag: "comedy" },
                             { text: "Встаю лицом к шторму, расправляю плечи и смотрю на горизонт, готовый к новой эре.", tag: "epic" }
                         ]
                     },
@@ -608,6 +612,17 @@
                 }
                 finalRoleKey = selectedRole;
                 chosenMovieTitle = fakeMovieTitles[Math.floor(Math.random() * fakeMovieTitles.length)];
+                
+                // Возврат интерфейса к дефолтному состоянию (если до этого был ИИ-постер)
+                const container = document.getElementById("poster-render-container");
+                container.innerHTML = `
+                    <div class="border border-gray-800 bg-[#090D16] p-2 rounded-xl shadow-xl max-w-[320px] w-full transition-transform duration-300 group-hover:scale-[1.02]">
+                        <canvas id="posterCanvas" width="600" height="900" class="w-full h-auto rounded-lg bg-slate-900"></canvas>
+                    </div>
+                    <p id="poster-footer-caption" class="text-[10px] text-gray-600 mt-2">Базовый постер. Создан алгоритмом РЕСУРСА.</p>
+                `;
+                generatedPremiumPosterUrl = null;
+
                 renderResultScreen();
             }, 1500);
         }
@@ -620,11 +635,16 @@
             document.getElementById("result-description").innerText = displayDesc;
             
             showScreen("screen-result");
-            generateCanvasPoster(displayTitle);
+            
+            // Если ИИ-постер ещё не сгенерирован — рисуем обычный холст
+            if (!generatedPremiumPosterUrl) {
+                generateCanvasPoster(displayTitle);
+            }
         }
 
         function generateCanvasPoster(displayTitle) {
             const canvas = document.getElementById("posterCanvas");
+            if (!canvas) return;
             const ctx = canvas.getContext("2d");
             const accentColor = rolesColors[finalRoleKey];
             const bottomHex = rolesGradients[finalRoleKey];
@@ -716,11 +736,19 @@
         }
 
         function downloadPoster() {
-            const canvas = document.getElementById("posterCanvas");
-            const link = document.createElement("a");
-            link.download = `Casting_${finalRoleKey}_${selectedAge}_${selectedGender}.png`;
-            link.href = canvas.toDataURL("image/png");
-            link.click();
+            if (generatedPremiumPosterUrl) {
+                const link = document.createElement("a");
+                link.download = `Premium_Casting_${chosenMovieTitle}.png`;
+                link.href = generatedPremiumPosterUrl;
+                link.click();
+            } else {
+                const canvas = document.getElementById("posterCanvas");
+                if (!canvas) return;
+                const link = document.createElement("a");
+                link.download = `Casting_${finalRoleKey}_${selectedAge}_${selectedGender}.png`;
+                link.href = canvas.toDataURL("image/png");
+                link.click();
+            }
         }
 
         function restartQuiz() {
@@ -732,9 +760,20 @@
         }
 
         async function shareResult() {
-            const canvas = document.getElementById("posterCanvas");
             const displayTitle = rolesTitles[selectedAge][selectedGender][finalRoleKey];
             const shareText = `Я прошел актерский тест от РЕСУРС МЕДИА! Мое амплуа в кино: ${displayTitle} в фильме "${chosenMovieTitle}". Проверь, на какую роль взяли бы тебя! https://resurs-stretch.ru/casting.html`;
+
+            if (generatedPremiumPosterUrl) {
+                const dropdown = document.getElementById("desktop-share-dropdown");
+                const inputElement = document.getElementById("share-link-input");
+                inputElement.value = `https://resurs-stretch.ru/casting.html?utm_source=premium_share`;
+                dropdown.classList.toggle("hidden");
+                document.getElementById("copy-success-message").classList.add("hidden");
+                return;
+            }
+
+            const canvas = document.getElementById("posterCanvas");
+            if (!canvas) return;
 
             if (navigator.share && /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
                 try {
@@ -773,6 +812,34 @@
                 .catch(err => console.log("Ошибка копирования в буфер:", err));
         }
 
+        // ВСПУГАТЕЛЬНЫЙ МЕТОД ДЛЯ ПРЕДВАРИТЕЛЬНОЙ ЗАГРУЗКИ СЕЛФИ В ОБЪЕКТ СТОРЕДЖ
+        async function uploadUserPhotoToServer(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = async () => {
+                    try {
+                        const base64Data = reader.result;
+                        const response = await fetch(YANDEX_FUNCTION_URL, {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({
+                                action: "upload_user_photo",
+                                photoData: base64Data,
+                                userId: `actor_${Math.floor(100000 + Math.random() * 900000)}`
+                            })
+                        });
+                        if (!response.ok) throw new Error();
+                        const resJson = await response.json();
+                        resolve(resJson.success);
+                    } catch (e) {
+                        reject(false);
+                    }
+                };
+                reader.onerror = () => reject(false);
+            });
+        }
+
         // ВЫСОКОТЕХНОЛОГИЧНЫЙ КАНАЛ СВЯЗИ С ЮKASSA ИЛИ ИИ ТЕСТ-КОНТУРОМ
         async function processPremiumPayment() {
             const photoInput = document.getElementById("user-photo");
@@ -786,20 +853,23 @@
             errorElement.classList.add("hidden");
 
             const displayTitle = rolesTitles[selectedAge][selectedGender][finalRoleKey];
-            const yandexFunctionUrl = "https://functions.yandexcloud.net/d4eju04c56s0169gqfvp";
-            
             const btn = document.querySelector("button[onclick='processPremiumPayment()']");
             const originalText = btn.innerText;
 
             try {
-                btn.innerText = isAdminMode ? "ОТКРЫТИЕ ПАВИЛЬОНА..." : "СВЯЗЬ С БАНКОМ...";
+                btn.innerText = "ЗАГРУЗКА СЕЛФИ...";
                 btn.disabled = true;
 
-                const response = await fetch(yandexFunctionUrl, {
+                // 1. Сначала железно отправляем фотографию в S3 через новый контур бэкенда
+                const isUploaded = await uploadUserPhotoToServer(photoInput.files[0]);
+                if (!isUploaded) throw new Error("Не удалось сохранить фото на сервере.");
+
+                btn.innerText = isAdminMode ? "ОТКРЫТИЕ ПАВИЛЬОНА..." : "СВЯЗЬ С БАНКОМ...";
+
+                // 2. Делаем запрос на открытие платежного шлюза или бесплатного админ-доступа
+                const response = await fetch(YANDEX_FUNCTION_URL, {
                     method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
+                    headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
                         action: "initiate_payment",
                         isAdmin: isAdminMode, 
@@ -815,20 +885,21 @@
 
                 const resultData = await response.json();
                 
-                // РЕЖИМ АДМИНА ИЛИ УСПЕШНАЯ ОПЛАТА: Инициализируем вход в кинопавильон (чат)
                 if (resultData.isAdminTestSuccess || resultData.paymentSuccess) {
                     btn.innerText = originalText;
                     btn.disabled = false;
                     
-                    // Переключаем экран на интерактивный чат
                     showScreen("screen-chat");
                     
-                    // Выводим стартовую приветственную реплику от Веры Мегеры
+                    // Обнуляем историю прошлого диалога
+                    currentAIConversation = [];
+                    const msgContainer = document.getElementById("chat-messages-container");
+                    if (msgContainer) msgContainer.innerHTML = "";
+
                     appendMessageToChat("ai", `Так, присаживайся. Я ассистент режиссера Вера Мегера. Изучила твою карточку. На базовых пробах тебе выдали амплуа «${displayTitle}». Хм... Посмотрим, соответствуешь ли ты заявленному уровню. Расскажи мне, почему ты считаешь, что эта роль в кино должна достаться именно тебе? Напиши своими словами, я слушаю.`);
                     return;
                 }
 
-                // Штатный платный режим для клиентов (Редирект на ЮKassa)
                 if (resultData.paymentUrl) {
                     window.location.href = resultData.paymentUrl;
                 } else {
@@ -837,7 +908,7 @@
 
             } catch (error) {
                 console.error("Ошибка интеграции шлюза:", error);
-                errorElement.innerText = "Ошибка контура. Пожалуйста, попробуйте позже или свяжитесь с поддержкой.";
+                errorElement.innerText = error.message || "Ошибка контура. Пожалуйста, попробуйте позже или свяжитесь с поддержкой.";
                 errorElement.classList.remove("hidden");
                 
                 btn.innerText = originalText;
@@ -845,7 +916,6 @@
             }
         }
 
-        // ЛОГИКА ДИНАМИЧЕСКОГО ИИ ЧАТА С ВЕРОЙ МЕГЕРОЙ
         function appendMessageToChat(sender, text) {
             const container = document.getElementById("chat-messages-container");
             const msgRow = document.createElement("div");
@@ -857,9 +927,8 @@
             
             msgRow.innerHTML = `<div class="${sender === 'ai' ? aiBubbleStyle : userBubbleStyle}">${text}</div>`;
             container.appendChild(msgRow);
-            container.scrollTop = container.scrollHeight; // Автоматический скролл вниз
+            container.scrollTop = container.scrollHeight; 
             
-            // Сохраняем реплику в локальную историю
             currentAIConversation.push({
                 role: sender === "ai" ? "assistant" : "user",
                 text: text
@@ -877,27 +946,24 @@
             const text = input.value.trim();
             if (!text) return;
 
-            // Выводим текст пользователя на экран
             appendMessageToChat("user", text);
-            input.value = ""; // Очищаем поле ввода
+            input.value = ""; 
 
-            // Показываем индикатор набора текста Веры
             const indicator = document.getElementById("chat-typing-indicator");
             const statusText = document.getElementById("chat-status");
             indicator.classList.remove("hidden");
             statusText.innerText = "Вера Мегера печатает...";
 
-            const yandexFunctionUrl = "https://functions.yandexcloud.net/d4eju04c56s0169gqfvp";
             const displayTitle = rolesTitles[selectedAge][selectedGender][finalRoleKey];
 
             try {
-                const response = await fetch(yandexFunctionUrl, {
+                const response = await fetch(YANDEX_FUNCTION_URL, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
-                        action: "chat_dialog", // Новый маркер действия для ведения диалога
+                        action: "chat_dialog", 
                         roleTitle: displayTitle,
-                        history: currentAIConversation // Передаем всю накопленную историю переписки
+                        history: currentAIConversation 
                     })
                 });
 
@@ -905,11 +971,8 @@
 
                 const data = await response.json();
                 
-                // Прячем лоадер печати
                 indicator.classList.add("hidden");
                 statusText.innerText = "Ассистент режиссера по актерам (в сети)";
-                
-                // Выводим ответ Веры Мегеры на экран
                 appendMessageToChat("ai", data.aiResponse);
 
             } catch (err) {
@@ -920,32 +983,43 @@
             }
         }
 
-        // КОМАНДА ПРИНУДИТЕЛЬНОГО ЗАВЕРШЕНИЯ КАСТИНГА (КЛИК НА КНОПКУ)
+        // КОМАНДА ЗАВЕРШЕНИЯ КАСТИНГА С ЗАМЕНОЙ БАЗОВОГО ШАБЛОНА НА ИИ-КАРТИНКУ
         async function terminateCastingAndRender() {
-            const yandexFunctionUrl = "https://functions.yandexcloud.net/d4eju04c56s0169gqfvp";
             const displayTitle = rolesTitles[selectedAge][selectedGender][finalRoleKey];
-            
             showScreen("screen-loading");
 
             try {
-                const response = await fetch(yandexFunctionUrl, {
+                const response = await fetch(YANDEX_FUNCTION_URL, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
-                        action: "terminate_casting", // Маркер финала
+                        action: "terminate_casting", 
                         roleTitle: displayTitle,
                         history: currentAIConversation
                     })
                 });
 
                 const data = await response.json();
-                chosenMovieTitle = data.movieTitle; // Подставляем финальное ИИ название фильма
+                chosenMovieTitle = data.movieTitle; 
                 
+                // Фиксируем ссылку на сгенерированный ИИ постер
+                generatedPremiumPosterUrl = data.posterUrl;
+                
+                // ИСПРАВЛЕНО: Полностью переписываем контейнер рендера. 
+                // Стираем canvas и ставим тег <img>, чтобы картинку можно было репостнуть и зажать пальцем!
+                const renderContainer = document.getElementById("poster-render-container");
+                renderContainer.innerHTML = `
+                    <div class="border border-amber-500 bg-[#090D16] p-2 rounded-xl shadow-2xl max-w-[320px] w-full transition-transform duration-300 hover:scale-[1.02]">
+                        <img src="${generatedPremiumPosterUrl}" alt="Эксклюзивный постер" class="w-full h-auto rounded-lg bg-slate-900 shadow-inner" />
+                    </div>
+                    <p id="poster-footer-caption" class="text-[10px] text-amber-400 font-bold mt-2">✨ ЭКСКЛЮЗИВНЫЙ ИИ-ПОСТЕР С ВАШИМ ЛИЦОМ СФОРМИРОВАН</p>
+                `;
+
             } catch (err) {
-                console.error(err);
+                console.error("Ошибка при финальном рендере ИИ-афиши:", err);
             }
 
-            // Рендерим постер и возвращаем пользователя на экран результатов
+            // Перенаправляем на экран результатов, где уже красуется готовая афиша
             renderResultScreen();
         }
     </script>
