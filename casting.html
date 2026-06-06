@@ -20,13 +20,13 @@
     
     <title>Кинокастинг: На какую роль тебя взял бы режиссер? | РЕСУРС МЕДИА</title>
     <meta name="description" content="Пройди интерактивные кинопробы и актерский кастинг от РЕСУРС МЕДИА. Узнай свое идеальное амплуа в кино, получи персональный постер блокбастера или активируй ИИ Face Swap от Веры Мегеры. Экосистема осознанности и фитнеса в Сыктывкаре.">
-    <meta name="keywords" content="кинокастинг, кастинг сыктывкар, игра в кино, кинопробы, тест на роль в кино, киногерои, экосистема фитнеса, ресурс медиа, интерактивный тест, подбор роли">
+    <meta name="keywords" content="кинокастинг, кастинг сыктывкар, игра в кино, кинопробы, тест на роль в кино, киногерои, экосистема фитнеса, ресурс media, интерактивный тест, подбор роли">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://resurs-stretch.ru/casting.html">
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://resurs-stretch.ru/casting.html">
-    <meta property="og:title" content="Внимание, motor! Я прошел ИИ-кастинг от РЕСУРС МЕДИА. Смотри мою афишу.">
+    <meta property="og:title" content="Внимание, мотор! Я прошел ИИ-кастинг от РЕСУРС МЕДИА. Смотри мою афишу.">
     <meta property="og:description" content="Узнай, в каком шедевре кинематографа и в какой главной роли тебя видит режиссер. Пройди кинопробы здесь: https://resurs-stretch.ru/casting.html">
     <meta property="og:image" content="https://resurs-stretch.ru/images/posters/epic_adult_female_1.png">
 
@@ -220,11 +220,46 @@
                                 </button>
                             </div>
                         </div>
-                        <p id="payment-error" class="text-red-400 text-xs mt-3 hidden">Пожалуйста, выберите фотографию перед активацией ИИ-собеседования.</p>
+                        <p id="payment-error" class="text-red-400 text-xs mt-3 hidden"></p>
                     </div>
                 </div>
-
             </div>
+
+            <div id="screen-chat" class="hidden py-8 px-4 md:px-12 relative z-10 flex flex-col h-[650px]">
+                <div class="flex items-center justify-between pb-4 border-b border-gray-800 mb-4">
+                    <div class="flex items-center gap-3">
+                        <div class="relative w-12 h-12 bg-gradient-to-tr from-amber-500 to-red-500 rounded-full flex items-center justify-center font-black text-slate-950 shadow-md">
+                            ВМ
+                            <span class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-[#0D1220] rounded-full"></span>
+                        </div>
+                        <div>
+                            <h4 class="text-sm md:text-base font-black text-white uppercase tracking-tight">Вера Мегера</h4>
+                            <p id="chat-status" class="text-[11px] text-gray-500">Ассистент режиссера по актерам (в сети)</p>
+                        </div>
+                    </div>
+                    <button onclick="terminateCastingAndRender()" class="px-4 py-2 bg-red-600/10 hover:bg-red-600 border border-red-500/30 hover:border-red-600 text-red-400 hover:text-white text-xs font-bold tracking-wider rounded-lg transition-all duration-200 cursor-pointer uppercase">
+                        🎬 Завершить кастинг
+                    </button>
+                </div>
+
+                <div id="chat-messages-container" class="flex-grow overflow-y-auto space-y-4 pr-2 mb-4 scrollbar-thin">
+                    </div>
+
+                <div id="chat-typing-indicator" class="hidden flex items-center gap-2 text-xs text-gray-500 px-4 mb-2 italic">
+                    <span class="inline-block animate-bounce">●</span>
+                    <span class="inline-block animate-bounce delay-100">●</span>
+                    <span class="inline-block animate-bounce delay-200">●</span>
+                    Вера Мегера изучает ваши данные...
+                </div>
+
+                <div class="flex gap-2 p-2 bg-[#111827] border border-gray-800 rounded-xl items-center">
+                    <input type="text" id="chat-user-input" onkeypress="handleChatKeyPress(event)" placeholder="Напишите ваш ответ Верочке в свободной форме..." class="flex-grow p-3 bg-transparent text-sm text-gray-200 placeholder-gray-600 focus:outline-none" />
+                    <button onclick="sendUserMessageToAI()" class="p-3 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg transition-colors cursor-pointer font-bold text-xs uppercase tracking-widest">
+                        Ответить
+                    </button>
+                </div>
+            </div>
+
         </div>
     </main>
 
@@ -248,12 +283,12 @@
         let selectedAge = "adult"; 
         let selectedGender = "male"; 
         let savedChatAnswers = []; 
+        let currentAIConversation = []; // Хранилище полной истории чата с Верой Мегерой
 
         // Определение режима админа (тестовый бесплатный режим)
         const urlParams = new URLSearchParams(window.location.search);
         const isAdminMode = urlParams.get('mode') === 'admin';
 
-        // Динамическое изменение интерфейса под админа
         document.addEventListener("DOMContentLoaded", () => {
             if (isAdminMode) {
                 const btn = document.getElementById("btn-premium-action");
@@ -492,10 +527,12 @@
         let chosenMovieTitle = "ГОНЕНИЯ ПЕРВЫХ";
 
         function showScreen(screenId) {
-            ["screen-start", "screen-setup", "screen-quiz", "screen-loading", "screen-result"].forEach(id => {
-                document.getElementById(id).classList.add("hidden");
+            ["screen-start", "screen-setup", "screen-quiz", "screen-loading", "screen-result", "screen-chat"].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.classList.add("hidden");
             });
-            document.getElementById(screenId).classList.remove("hidden");
+            const target = document.getElementById(screenId);
+            if (target) target.classList.remove("hidden");
             document.getElementById("desktop-share-dropdown").classList.add("hidden");
         }
 
@@ -736,7 +773,7 @@
                 .catch(err => console.log("Ошибка копирования в буфер:", err));
         }
 
-        // ВЫСОКОТЕХНОЛОГИЧНЫЙ КАНАЛ СВЯЗИ С ЮKASSA / ИИ-КОНТУРОМ
+        // ВЫСОКОТЕХНОЛОГИЧНЫЙ КАНАЛ СВЯЗИ С ЮKASSA ИЛИ ИИ ТЕСТ-КОНТУРОМ
         async function processPremiumPayment() {
             const photoInput = document.getElementById("user-photo");
             const errorElement = document.getElementById("payment-error");
@@ -755,10 +792,9 @@
             const originalText = btn.innerText;
 
             try {
-                btn.innerText = isAdminMode ? "ЗАПУСК ИИ ВЕРЫ..." : "СВЯЗЬ С БАНКОМ...";
+                btn.innerText = isAdminMode ? "ОТКРЫТИЕ ПАВИЛЬОНА..." : "СВЯЗЬ С БАНКОМ...";
                 btn.disabled = true;
 
-                // Передаем флаг isAdminMode, считанный из адресной строки сайта
                 const response = await fetch(yandexFunctionUrl, {
                     method: "POST",
                     headers: {
@@ -766,7 +802,7 @@
                     },
                     body: JSON.stringify({
                         action: "initiate_payment",
-                        isAdmin: isAdminMode, // Инструкция бэкенду пропустить эквайринг
+                        isAdmin: isAdminMode, 
                         userName: isAdminMode ? "НИКОЛАЙ (АДМИН)" : "АКТЕР СТУДИИ",
                         roleTitle: displayTitle,
                         chatAnswers: savedChatAnswers
@@ -779,20 +815,20 @@
 
                 const resultData = await response.json();
                 
-                // Если мы в режиме админа — шлюза не будет, бэкенд сразу вернет ИИ-результат
-                if (resultData.isAdminTestSuccess) {
-                    alert(`🎉 Секретный режим активирован!\nИИ Вера Мегера успешно запустила Face Swap.\nНазвание сгенерированного фильма: "${resultData.movieTitle}"\n\nПроверьте логи Яндекс Функции и вашу личку ВКонтакте!`);
-                    
-                    // Перерисовываем постер на холсте под новое ИИ название фильма
-                    chosenMovieTitle = resultData.movieTitle;
-                    renderResultScreen();
-                    
+                // РЕЖИМ АДМИНА ИЛИ УСПЕШНАЯ ОПЛАТА: Инициализируем вход в кинопавильон (чат)
+                if (resultData.isAdminTestSuccess || resultData.paymentSuccess) {
                     btn.innerText = originalText;
                     btn.disabled = false;
+                    
+                    // Переключаем экран на интерактивный чат
+                    showScreen("screen-chat");
+                    
+                    // Выводим стартовую приветственную реплику от Веры Мегеры
+                    appendMessageToChat("ai", `Так, присаживайся. Я ассистент режиссера Вера Мегера. Изучила твою карточку. На базовых пробах тебе выдали амплуа «${displayTitle}». Хм... Посмотрим, соответствуешь ли ты заявленному уровню. Расскажи мне, почему ты считаешь, что эта роль в кино должна достаться именно тебе? Напиши своими словами, я слушаю.`);
                     return;
                 }
 
-                // Штатный платный режим для клиентов
+                // Штатный платный режим для клиентов (Редирект на ЮKassa)
                 if (resultData.paymentUrl) {
                     window.location.href = resultData.paymentUrl;
                 } else {
@@ -807,6 +843,110 @@
                 btn.innerText = originalText;
                 btn.disabled = false;
             }
+        }
+
+        // ЛОГИКА ДИНАМИЧЕСКОГО ИИ ЧАТА С ВЕРОЙ МЕГЕРОЙ
+        function appendMessageToChat(sender, text) {
+            const container = document.getElementById("chat-messages-container");
+            const msgRow = document.createElement("div");
+            msgRow.className = sender === "ai" ? "flex justify-start animate-fadeIn" : "flex justify-end animate-fadeIn";
+            
+            const baseBubbleStyle = "max-w-[80%] rounded-2xl p-4 text-sm font-medium leading-relaxed shadow-md ";
+            const aiBubbleStyle = baseBubbleStyle + "bg-[#111827] border border-gray-800 text-gray-100 rounded-bl-none rounded-tr-xl";
+            const userBubbleStyle = baseBubbleStyle + "bg-gradient-to-br from-cyan-600 to-cyan-700 text-white rounded-br-none rounded-tl-xl";
+            
+            msgRow.innerHTML = `<div class="${sender === 'ai' ? aiBubbleStyle : userBubbleStyle}">${text}</div>`;
+            container.appendChild(msgRow);
+            container.scrollTop = container.scrollHeight; // Автоматический скролл вниз
+            
+            // Сохраняем реплику в локальную историю
+            currentAIConversation.push({
+                role: sender === "ai" ? "assistant" : "user",
+                text: text
+            });
+        }
+
+        function handleChatKeyPress(e) {
+            if (e.key === 'Enter') {
+                sendUserMessageToAI();
+            }
+        }
+
+        async function sendUserMessageToAI() {
+            const input = document.getElementById("chat-user-input");
+            const text = input.value.trim();
+            if (!text) return;
+
+            // Выводим текст пользователя на экран
+            appendMessageToChat("user", text);
+            input.value = ""; // Очищаем поле ввода
+
+            // Показываем индикатор набора текста Веры
+            const indicator = document.getElementById("chat-typing-indicator");
+            const statusText = document.getElementById("chat-status");
+            indicator.classList.remove("hidden");
+            statusText.innerText = "Вера Мегера печатает...";
+
+            const yandexFunctionUrl = "https://functions.yandexcloud.net/d4eju04c56s0169gqfvp";
+            const displayTitle = rolesTitles[selectedAge][selectedGender][finalRoleKey];
+
+            try {
+                const response = await fetch(yandexFunctionUrl, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        action: "chat_dialog", // Новый маркер действия для ведения диалога
+                        roleTitle: displayTitle,
+                        history: currentAIConversation // Передаем всю накопленную историю переписки
+                    })
+                });
+
+                if (!response.ok) throw new Error();
+
+                const data = await response.json();
+                
+                // Прячем лоадер печати
+                indicator.classList.add("hidden");
+                statusText.innerText = "Ассистент режиссера по актерам (в сети)";
+                
+                // Выводим ответ Веры Мегеры на экран
+                appendMessageToChat("ai", data.aiResponse);
+
+            } catch (err) {
+                console.error(err);
+                indicator.classList.add("hidden");
+                statusText.innerText = "Ассистент режиссера по актерам (в сети)";
+                appendMessageToChat("ai", "Слушай, на площадке помехи со связью. Повтори свой последний ответ, я не расслышала.");
+            }
+        }
+
+        // КОМАНДА ПРИНУДИТЕЛЬНОГО ЗАВЕРШЕНИЯ КАСТИНГА (КЛИК НА КНОПКУ)
+        async function terminateCastingAndRender() {
+            const yandexFunctionUrl = "https://functions.yandexcloud.net/d4eju04c56s0169gqfvp";
+            const displayTitle = rolesTitles[selectedAge][selectedGender][finalRoleKey];
+            
+            showScreen("screen-loading");
+
+            try {
+                const response = await fetch(yandexFunctionUrl, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        action: "terminate_casting", // Маркер финала
+                        roleTitle: displayTitle,
+                        history: currentAIConversation
+                    })
+                });
+
+                const data = await response.json();
+                chosenMovieTitle = data.movieTitle; // Подставляем финальное ИИ название фильма
+                
+            } catch (err) {
+                console.error(err);
+            }
+
+            // Рендерим постер и возвращаем пользователя на экран результатов
+            renderResultScreen();
         }
     </script>
 </body>
