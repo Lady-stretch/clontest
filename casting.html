@@ -733,16 +733,16 @@
             errorElement.classList.add("hidden");
 
             const displayTitle = rolesTitles[selectedAge][selectedGender][finalRoleKey];
-            
             const yandexFunctionUrl = "https://functions.yandexcloud.net/d4eju04c56s0169gqfvp";
+            
+            // Объявляем переменные ТУТ, чтобы они были доступны во всех блоках (и в try, и в catch)
+            const btn = document.querySelector("button[onclick='processPremiumPayment()']");
+            const originalText = btn.innerText;
 
             try {
-                const btn = document.querySelector("button[onclick='processPremiumPayment()']");
-                const originalText = btn.innerText;
                 btn.innerText = "СВЯЗЬ С БАНКОМ...";
                 btn.disabled = true;
 
-                // ИСПРАВЛЕНО: JSON пишется большими буквами
                 const response = await fetch(`${yandexFunctionUrl}/initiate_payment`, {
                     method: "POST",
                     headers: {
@@ -772,7 +772,7 @@
                 errorElement.innerText = "Ошибка шлюза. Пожалуйста, попробуйте позже или свяжитесь с поддержкой.";
                 errorElement.classList.remove("hidden");
                 
-                const btn = document.querySelector("button[onclick='processPremiumPayment()']");
+                // Теперь эта строка отработает идеально без ошибок в консоли
                 btn.innerText = originalText;
                 btn.disabled = false;
             }
