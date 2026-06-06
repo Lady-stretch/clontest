@@ -285,6 +285,7 @@
         let currentAIConversation = []; 
         let generatedPremiumPosterUrl = null; 
 
+        // Единый глобальный адрес функции для всех запросов
         const YANDEX_FUNCTION_URL = "https://functions.yandexcloud.net/d4eju04c56s0169gqfvp";
 
         const urlParams = new URLSearchParams(window.location.search);
@@ -817,7 +818,6 @@
                     const canvas = document.createElement("canvas");
                     const ctx = canvas.getContext("2d");
                     
-                    // Устанавливаем оптимальный размер для Face Swap (максимум 1024 пикселя)
                     const MAX_WIDTH = 1024;
                     const MAX_HEIGHT = 1024;
                     let width = img.width;
@@ -839,9 +839,9 @@
                     canvas.height = height;
                     ctx.drawImage(img, 0, 0, width, height);
                     
-                    // Пережимаем изображение в JPEG с качеством 75% (~200-400 КБ вместо 5-10 МБ!)
                     const compressedBase64 = canvas.toDataURL("image/jpeg", 0.75);
                     
+                    // ИСПРАВЛЕНО: Теперь отправка фото идёт СТРОГО на YANDEX_FUNCTION_URL
                     fetch(YANDEX_FUNCTION_URL, {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
@@ -886,6 +886,7 @@
 
                 btn.innerText = isAdminMode ? "ОТКРЫТИЕ ПАВИЛЬОНА..." : "СВЯЗЬ С БАНКОМ...";
 
+                // ИСПРАВЛЕНО: Инициализация платежа идёт СТРОГО на YANDEX_FUNCTION_URL
                 const response = await fetch(YANDEX_FUNCTION_URL, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -975,6 +976,7 @@
             const displayTitle = rolesTitles[selectedAge][selectedGender][finalRoleKey];
 
             try {
+                // ИСПРАВЛЕНО: Отправка реплик диалога идёт СТРОГО на YANDEX_FUNCTION_URL
                 const response = await fetch(YANDEX_FUNCTION_URL, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -1006,6 +1008,7 @@
             showScreen("screen-loading");
 
             try {
+                // ИСПРАВЛЕНО: Финализация кастинга идёт СТРОГО на YANDEX_FUNCTION_URL
                 const response = await fetch(YANDEX_FUNCTION_URL, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
