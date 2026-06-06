@@ -74,8 +74,6 @@
         </div>
     </header>
 
-    <theme-provider></theme-provider>
-
     <main class="flex-grow flex flex-col items-center justify-center p-4 md:p-8">
         <div class="w-full max-w-4xl bg-[#0D1220] border border-gray-800 rounded-2xl shadow-2xl overflow-hidden relative mb-8">
             
@@ -285,9 +283,9 @@
         let selectedGender = "male"; 
         let savedChatAnswers = []; 
         let currentAIConversation = []; 
-        let generatedPremiumPosterUrl = null; // Глобальный указатель на ИИ-картинку
+        let generatedPremiumPosterUrl = null; 
 
-        // ИСПРАВЛЕНО: Единый высокоточный адрес вашей запущенной Яндекс Функции
+        // Адрес вашей запущенной функции
         const YANDEX_FUNCTION_URL = "https://functions.yandexcloud.net/d4eju04c56s0169gqfvp";
 
         const urlParams = new URLSearchParams(window.location.search);
@@ -339,7 +337,7 @@
                         answers: [
                             { text: "Резко швыряю оружие в воду, разворачиваюсь и ухожу широким шагом, не оборачиваясь.", tag: "action" },
                             { text: "Падаю на колени, закрывая лицо руками, под пронзительную скрипичную музыку.", tag: "drama" },
-                            { text: "Достаю измокшую пачку, пытаюсь поджечь спичку, улыгаюсь абсурдности этой жизни.", tag: "comedy" },
+                            { text: "Достаю измокшую пачку, пытаюсь поджечь спичку, улыбаюсь абсурдности этой жизни.", tag: "comedy" },
                             { text: "Встаю лицом к шторму, расправляю плечи и смотрю на горизонт, готовый к новой эре.", tag: "epic" }
                         ]
                     },
@@ -478,7 +476,7 @@
                         ]
                     },
                     {
-                        question: "Кастинг на роль в таинственном кино. Тебе нужно показать, что ты разгадала главный секрет старого замка. Как сыграешь?",
+                        question: "Кастинг на роль в таинственном кино. Тебе нужно показать, что ты разгладала главный секрет старого замка. Как сыграешь?",
                         answers: [
                             { text: "Уверенно нажимаю на секретный камень в стене, открывая потайную дверь.", tag: "action" },
                             { text: "Внимательно рассматриваю старинный шифр, затаив дыхание от удивления.", tag: "drama" },
@@ -613,7 +611,6 @@
                 finalRoleKey = selectedRole;
                 chosenMovieTitle = fakeMovieTitles[Math.floor(Math.random() * fakeMovieTitles.length)];
                 
-                // Возврат интерфейса к дефолтному состоянию (если до этого был ИИ-постер)
                 const container = document.getElementById("poster-render-container");
                 container.innerHTML = `
                     <div class="border border-gray-800 bg-[#090D16] p-2 rounded-xl shadow-xl max-w-[320px] w-full transition-transform duration-300 group-hover:scale-[1.02]">
@@ -636,7 +633,6 @@
             
             showScreen("screen-result");
             
-            // Если ИИ-постер ещё не сгенерирован — рисуем обычный холст
             if (!generatedPremiumPosterUrl) {
                 generateCanvasPoster(displayTitle);
             }
@@ -812,7 +808,6 @@
                 .catch(err => console.log("Ошибка копирования в буфер:", err));
         }
 
-        // ВСПУГАТЕЛЬНЫЙ МЕТОД ДЛЯ ПРЕДВАРИТЕЛЬНОЙ ЗАГРУЗКИ СЕЛФИ В ОБЪЕКТ СТОРЕДЖ
         async function uploadUserPhotoToServer(file) {
             return new Promise((resolve, reject) => {
                 const reader = new FileReader();
@@ -840,7 +835,6 @@
             });
         }
 
-        // ВЫСОКОТЕХНОЛОГИЧНЫЙ КАНАЛ СВЯЗИ С ЮKASSA ИЛИ ИИ ТЕСТ-КОНТУРОМ
         async function processPremiumPayment() {
             const photoInput = document.getElementById("user-photo");
             const errorElement = document.getElementById("payment-error");
@@ -860,13 +854,11 @@
                 btn.innerText = "ЗАГРУЗКА СЕЛФИ...";
                 btn.disabled = true;
 
-                // 1. Сначала железно отправляем фотографию в S3 через новый контур бэкенда
                 const isUploaded = await uploadUserPhotoToServer(photoInput.files[0]);
                 if (!isUploaded) throw new Error("Не удалось сохранить фото на сервере.");
 
                 btn.innerText = isAdminMode ? "ОТКРЫТИЕ ПАВИЛЬОНА..." : "СВЯЗЬ С БАНКОМ...";
 
-                // 2. Делаем запрос на открытие платежного шлюза или бесплатного админ-доступа
                 const response = await fetch(YANDEX_FUNCTION_URL, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -891,7 +883,6 @@
                     
                     showScreen("screen-chat");
                     
-                    // Обнуляем историю прошлого диалога
                     currentAIConversation = [];
                     const msgContainer = document.getElementById("chat-messages-container");
                     if (msgContainer) msgContainer.innerHTML = "";
@@ -983,7 +974,7 @@
             }
         }
 
-        // КОМАНДА ЗАВЕРШЕНИЯ КАСТИНГА С ЗАМЕНОЙ БАЗОВОГО ШАБЛОНА НА ИИ-КАРТИНКУ
+        // ИСПРАВЛЕНО: Безопасное чтение полей JSON без риска вызвать ошибку split() или undefined
         async function terminateCastingAndRender() {
             const displayTitle = rolesTitles[selectedAge][selectedGender][finalRoleKey];
             showScreen("screen-loading");
@@ -999,27 +990,31 @@
                     })
                 });
 
+                if (!response.ok) throw new Error("Ошибка бэкенда при финализации");
+
                 const data = await response.json();
-                chosenMovieTitle = data.movieTitle; 
                 
-                // Фиксируем ссылку на сгенерированный ИИ постер
-                generatedPremiumPosterUrl = data.posterUrl;
+                // Проверяем наличие полей в ответе
+                chosenMovieTitle = data.movieTitle || "ВРЕМЯ РЕСУРСА"; 
+                generatedPremiumPosterUrl = data.posterUrl || `${YANDEX_FUNCTION_URL}?title=${encodeURIComponent(displayTitle)}&movie=${encodeURIComponent(chosenMovieTitle)}`;
                 
-                // ИСПРАВЛЕНО: Полностью переписываем контейнер рендера. 
-                // Стираем canvas и ставим тег <img>, чтобы картинку можно было репостнуть и зажать пальцем!
                 const renderContainer = document.getElementById("poster-render-container");
-                renderContainer.innerHTML = `
-                    <div class="border border-amber-500 bg-[#090D16] p-2 rounded-xl shadow-2xl max-w-[320px] w-full transition-transform duration-300 hover:scale-[1.02]">
-                        <img src="${generatedPremiumPosterUrl}" alt="Эксклюзивный постер" class="w-full h-auto rounded-lg bg-slate-900 shadow-inner" />
-                    </div>
-                    <p id="poster-footer-caption" class="text-[10px] text-amber-400 font-bold mt-2">✨ ЭКСКЛЮЗИВНЫЙ ИИ-ПОСТЕР С ВАШИМ ЛИЦОМ СФОРМИРОВАН</p>
-                `;
+                if (renderContainer) {
+                    renderContainer.innerHTML = `
+                        <div class="border border-amber-500 bg-[#090D16] p-2 rounded-xl shadow-2xl max-w-[320px] w-full transition-transform duration-300 hover:scale-[1.02]">
+                            <img src="${generatedPremiumPosterUrl}" alt="Эксклюзивный постер" class="w-full h-auto rounded-lg bg-slate-900 shadow-inner" />
+                        </div>
+                        <p id="poster-footer-caption" class="text-[10px] text-amber-400 font-bold mt-2">✨ ЭКСКЛЮЗИВНЫЙ ИИ-ПОСТЕР С ВАШИМ ЛИЦОМ СФОРМИРОВАН</p>
+                    `;
+                }
 
             } catch (err) {
-                console.error("Ошибка при финальном рендере ИИ-афиши:", err);
+                console.error("Критический сбой финального рендера:", err);
+                // Защитный сценарий: если сеть пропала, генерируем стандартный путь
+                chosenMovieTitle = "ВРЕМЯ РЕСУРСА";
+                generatedPremiumPosterUrl = `${YANDEX_FUNCTION_URL}?title=${encodeURIComponent(displayTitle)}&movie=${encodeURIComponent(chosenMovieTitle)}`;
             }
 
-            // Перенаправляем на экран результатов, где уже красуется готовая афиша
             renderResultScreen();
         }
     </script>
