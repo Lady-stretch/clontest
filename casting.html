@@ -58,9 +58,22 @@
         ::-webkit-scrollbar-track { background: #0B0F19; }
         ::-webkit-scrollbar-thumb { background: #F59E0B; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #D97706; }
+        
+        /* ИСПРАВЛЕНО: Полная изоляция блоков Floor Ad, чтобы они рендерились поверх слоя верстки и не сдвигали контейнеры вверх */
+        .ya-floor-ad-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 9999;
+            pointer-events: none;
+        }
+        .ya-floor-ad-container > * {
+            pointer-events: auto;
+        }
     </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between overflow-x-hidden antialiased">
+<body class="min-h-screen flex flex-col justify-between overflow-x-hidden antialiased pb-[100px] md:pb-0">
 
     <header class="w-full py-4 px-6 border-b border-gray-800 bg-[#0D1220]/80 backdrop-blur-md sticky top-0 z-50">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
@@ -225,7 +238,7 @@
                 </div>
             </div>
 
-            <div id="screen-chat" class="hidden py-8 px-4 md:px-12 relative z-10 flex flex-col h-[650px]">
+            <div id="screen-chat" class="hidden py-8 px-4 md:px-12 relative z-10 flex flex-col h-[650px] max-h-[650px] box-border">
                 <div class="flex items-center justify-between pb-4 border-b border-gray-800 mb-4 shrink-0">
                     <div class="flex items-center gap-3">
                         <div class="relative w-12 h-12 bg-gradient-to-tr from-amber-500 to-red-500 rounded-full flex items-center justify-center font-black text-slate-950 shadow-md shrink-0">
@@ -266,17 +279,19 @@
         &copy; 2026 Media-проект независимого типа в экосистеме РЕСУРС. Все права защищены.
     </footer>
 
-    <script>
-    window.yaContextCb.push(() => {
-        Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-5", "type": "floorAd", "platform": "touch" })
-    });
-    window.yaContextCb.push(() => {
-        Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-6", "type": "floorAd", "platform": "touch" })
-    });
-    window.yaContextCb.push(() => {
-        Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-7", "type": "floorAd", "platform": "desktop" })
-    });
-    </script>
+    <div class="ya-floor-ad-container">
+        <script>
+        window.yaContextCb.push(() => {
+            Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-5", "type": "floorAd", "platform": "touch" })
+        });
+        window.yaContextCb.push(() => {
+            Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-6", "type": "floorAd", "platform": "touch" })
+        });
+        window.yaContextCb.push(() => {
+            Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-7", "type": "floorAd", "platform": "desktop" })
+        });
+        </script>
+    </div>
 
     <script>
         let selectedAge = "adult"; 
@@ -633,7 +648,6 @@
             showScreen("screen-result");
             
             if (!generatedPremiumPosterUrl) {
-                // Добавлена микропауза, чтобы элемент canvas гарантированно встроился в DOM
                 setTimeout(() => {
                     generateCanvasPoster(displayTitle);
                 }, 50);
@@ -699,8 +713,6 @@
             };
             
             img.onerror = () => {
-                // ИСПРАВЛЕНО: Убрана бессмысленная дублирующая загрузка того же пути. 
-                // Вместо этого сразу переходим к надежной отрисовке красивого резервного градиента.
                 const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
                 gradient.addColorStop(0, "#0D1220");
                 gradient.addColorStop(1, bottomHex + "44");
