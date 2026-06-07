@@ -26,7 +26,7 @@
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://resurs-stretch.ru/casting.html">
-    <meta property="og:title" content="Внимание, мотор! Я прошел ИИ-кастинг от РЕСУРС МЕДИА. Смотри мою афишу.">
+    <meta property="og:title" content="Внимание, motor! Я прошел ИИ-кастинг от РЕСУРС МЕДИА. Смотри мою афишу.">
     <meta property="og:description" content="Узнай, в каком шедевре кинематографа и в какой главной роли тебя видит режиссер. Пройди кинопробы здесь: https://resurs-stretch.ru/casting.html">
     <meta property="og:image" content="https://resurs-stretch.ru/images/posters/epic_adult_female_1.png">
 
@@ -41,7 +41,7 @@
       "url": "https://resurs-stretch.ru/casting.html",
       "publisher": {
         "@type": "Organization",
-        "name": "Студия фитнеса и растяжки РЕСУРС",
+        "name": "Студия фитнеса and растяжки РЕСУРС",
         "logo": {
           "@type": "ImageObject",
           "url": "https://resurs-stretch.ru/logo_header_final.png"
@@ -53,26 +53,14 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Montserrat', sans-serif; background-color: #0B0F19; color: #E5E7EB; margin: 0; padding: 0; }
+        body { font-family: 'Montserrat', sans-serif; background-color: #0B0F19; color: #E5E7EB; }
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #0B0F19; }
         ::-webkit-scrollbar-thumb { background: #F59E0B; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #D97706; }
-        
-        .ya-floor-ad-container {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            z-index: 9999;
-            pointer-events: none;
-        }
-        .ya-floor-ad-container > * {
-            pointer-events: auto;
-        }
     </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between overflow-x-hidden antialiased pb-[100px] md:pb-0">
+<body class="min-h-screen flex flex-col justify-between overflow-x-hidden antialiased">
 
     <header class="w-full py-4 px-6 border-b border-gray-800 bg-[#0D1220]/80 backdrop-blur-md sticky top-0 z-50">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
@@ -81,12 +69,12 @@
                 РЕСУРС <span class="text-xs font-normal text-gray-500 tracking-normal border-l border-gray-700 pl-2 ml-1">МЕДИА</span>
             </div>
             <a href="index.html" class="text-xs text-gray-400 hover:text-cyan-400 transition-colors duration-300 flex items-center gap-1">
-                &larr; На главную
+                ← На главную
             </a>
         </div>
     </header>
 
-    <main class="flex-grow flex flex-col items-center justify-start md:justify-center p-4 md:p-8">
+    <main class="flex-grow flex flex-col items-center justify-center p-4 md:p-8">
         <div class="w-full max-w-4xl bg-[#0D1220] border border-gray-800 rounded-2xl shadow-2xl overflow-hidden relative mb-8">
             
             <div class="absolute -top-40 -left-40 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
@@ -94,13 +82,13 @@
 
             <div id="screen-start" class="py-12 px-6 md:px-12 text-center relative z-10">
                 <div class="inline-block px-3 py-1 mb-6 border border-amber-500/30 bg-amber-500/10 text-amber-400 text-xs font-bold uppercase tracking-widest rounded-full animate-pulse">
-                    🎬 Внимание, мотор! Твой кастинг начинается
+                    🎬 Внимание, motor! Твой кастинг начинается
                 </div>
                 <h1 class="text-3xl md:text-5xl font-black text-white tracking-tight mb-6 leading-tight uppercase">
                     Узнай, на какую роль тебя взял бы <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-500">Режиссер?</span>
                 </h1>
                 <p class="text-gray-400 text-base md:text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
-                    Тишина на площадке! Камера, начали! Пройдите профессиональные актерские пробы, адаптированные под ваш пол и возраст. Ответьте на каверзные сценарные ситуации, и наш алгоритм определит ваше истинное амплуа в кино, зафиксировав результат на стильном официальном постере абсолютно бесплатно.
+                    Тишина на площадке! Камера, начали! Пройдите professional актерские пробы, адаптированные под ваш пол и возраст. Ответьте на каверзные сценарные ситуации, и наш алгоритм определит ваше истинное амплуа в кино, зафиксировав результат на стильном официальном постере абсолютно бесплатно.
                 </p>
                 <button onclick="startCastingSetup()" class="px-8 py-4 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-black text-lg tracking-wider rounded-xl shadow-lg shadow-amber-500/20 active:scale-95 transition-all duration-300 cursor-pointer">
                     ЗАЙТИ В ПАВИЛЬОН КИНОПРОБ
@@ -130,7 +118,7 @@
 
                 <div class="text-center">
                     <button onclick="startQuiz()" class="px-8 py-3.5 bg-gradient-to-r from-cyan-500 to-cyan-600 hover:from-cyan-600 hover:to-cyan-700 text-slate-950 font-black text-sm tracking-widest rounded-xl transition-all cursor-pointer uppercase">
-                        Включить освещение и начать пробы &rarr;
+                        Включить освещение и начать пробы →
                     </button>
                 </div>
             </div>
@@ -162,29 +150,29 @@
                         <p id="result-description" class="text-gray-400 text-sm md:text-base leading-relaxed mb-6">Описание роли...</p>
                         
                         <div class="flex flex-wrap gap-3 mb-8 relative">
-                            <button id="btn-download-action" onclick="downloadPoster()" class="px-4 py-2.5 bg-gray-800 hover:bg-gray-700 text-white text-xs font-bold rounded-lg border border-gray-700 transition-colors duration-300 cursor-pointer flex items-center gap-2">
+                            <button id="btn-download-action" onclick="downloadPoster()" class="px-4 py-2.5 bg-gray-800 hover:bg-gray-700 text-white text-xs font-bold rounded-lg border border-gray-700 transition-colors cursor-pointer flex items-center gap-2">
                                 ⬇️ СКАЧАТЬ ПОСТЕР
                             </button>
                             
                             <div class="relative inline-block">
-                                <button onclick="shareResult()" class="px-4 py-2.5 bg-cyan-600 hover:bg-cyan-700 text-white text-xs font-bold rounded-lg transition-colors duration-300 cursor-pointer flex items-center gap-2">
+                                <button onclick="shareResult()" class="px-4 py-2.5 bg-cyan-600 hover:bg-cyan-700 text-white text-xs font-bold rounded-lg transition-colors cursor-pointer flex items-center gap-2">
                                     🔗 ПОДЕЛИТЬСЯ ССЫЛКОЙ
                                 </button>
                                 <div id="desktop-share-dropdown" class="hidden absolute left-0 mt-2 w-72 bg-[#111827] border border-gray-800 p-4 rounded-xl shadow-2xl z-50 animate-fadeIn">
                                     <p class="text-white text-xs font-bold mb-2">Ссылка для друзей:</p>
                                     <div class="flex gap-2 mb-2">
                                         <input type="text" id="share-link-input" readonly class="w-full p-2 text-[11px] bg-slate-950 border border-gray-800 rounded text-gray-400 focus:outline-none" />
-                                        <button onclick="copyShareLinkDirectly()" class="px-3 py-2 bg-amber-500 hover:bg-amber-600 text-slate-950 text-xs font-bold rounded transition-colors duration-300 cursor-pointer">Копировать</button>
+                                        <button onclick="copyShareLinkDirectly()" class="px-3 py-2 bg-amber-500 hover:bg-amber-600 text-slate-950 text-xs font-bold rounded transition-colors cursor-pointer">Копировать</button>
                                     </div>
                                     <p id="copy-success-message" class="text-[10px] text-emerald-400 font-bold hidden">✓ Ссылка скопирована в буфер!</p>
                                 </div>
                             </div>
                             
-                            <button id="btn-scroll-premium" onclick="scrollToPremium()" class="px-4 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 text-xs font-black rounded-lg active:scale-95 transition-all duration-300 cursor-pointer flex items-center gap-2 uppercase">
+                            <button id="btn-scroll-premium" onclick="scrollToPremium()" class="px-4 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 text-xs font-black rounded-lg active:scale-95 transition-all cursor-pointer flex items-center gap-2 uppercase">
                                 ✨ Премиум кастинг
                             </button>
                             
-                            <button onclick="restartQuiz()" class="px-4 py-2.5 bg-transparent hover:bg-gray-900 text-gray-400 hover:text-white text-xs font-bold rounded-lg transition-colors duration-300 cursor-pointer flex items-center gap-2">
+                            <button onclick="restartQuiz()" class="px-4 py-2.5 bg-transparent hover:bg-gray-900 text-gray-400 hover:text-white text-xs font-bold rounded-lg transition-colors cursor-pointer flex items-center gap-2">
                                 🔄 ЗАНОВО
                             </button>
                         </div>
@@ -237,11 +225,10 @@
                 </div>
             </div>
 
-            <div id="screen-chat" class="hidden relative z-10 flex flex-col h-[650px] max-h-[85vh] min-h-0 bg-[#0D1220] p-4 md:p-8 w-full box-border">
-                
-                <div class="flex items-center justify-between pb-4 border-b border-gray-800 mb-4 shrink-0">
+            <div id="screen-chat" class="hidden py-8 px-4 md:px-12 relative z-10 flex flex-col h-[650px]">
+                <div class="flex items-center justify-between pb-4 border-b border-gray-800 mb-4">
                     <div class="flex items-center gap-3">
-                        <div class="relative w-12 h-12 bg-gradient-to-tr from-amber-500 to-red-500 rounded-full flex items-center justify-center font-black text-slate-950 shadow-md shrink-0">
+                        <div class="relative w-12 h-12 bg-gradient-to-tr from-amber-500 to-red-500 rounded-full flex items-center justify-center font-black text-slate-950 shadow-md">
                             ВМ
                             <span class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-[#0D1220] rounded-full"></span>
                         </div>
@@ -250,23 +237,23 @@
                             <p id="chat-status" class="text-[11px] text-gray-500">Ассистент режиссера по актерам (в сети)</p>
                         </div>
                     </div>
-                    <button onclick="terminateCastingAndRender()" class="px-4 py-2.5 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white text-xs font-black tracking-wider rounded-lg shadow-lg transition-all duration-200 cursor-pointer uppercase shrink-0">
-                        🎬 СОЗДАТЬ ПОСТЕР
+                    <button onclick="terminateCastingAndRender()" class="px-4 py-2 bg-red-600/10 hover:bg-red-600 border border-red-500/30 hover:border-red-600 text-red-400 hover:text-white text-xs font-bold tracking-wider rounded-lg transition-all duration-200 cursor-pointer uppercase">
+                        🎬 Завершить кастинг
                     </button>
                 </div>
 
-                <div id="chat-messages-container" class="flex-grow overflow-y-auto space-y-4 pr-2 mb-4 min-h-0 scrollbar-thin" style="scroll-behavior: smooth;"></div>
+                <div id="chat-messages-container" class="flex-grow overflow-y-auto space-y-4 pr-2 mb-4 scrollbar-thin"></div>
 
-                <div id="chat-typing-indicator" class="hidden flex items-center gap-2 text-xs text-gray-500 px-4 mb-2 italic shrink-0">
+                <div id="chat-typing-indicator" class="hidden flex items-center gap-2 text-xs text-gray-500 px-4 mb-2 italic">
                     <span class="inline-block animate-bounce">●</span>
                     <span class="inline-block animate-bounce delay-100">●</span>
                     <span class="inline-block animate-bounce delay-200">●</span>
                     Вера Мегера изучает ваши данные...
                 </div>
 
-                <div class="flex gap-2 p-2 bg-[#111827] border border-gray-800 rounded-xl items-center shrink-0">
+                <div class="flex gap-2 p-2 bg-[#111827] border border-gray-800 rounded-xl items-center">
                     <input type="text" id="chat-user-input" onkeypress="handleChatKeyPress(event)" placeholder="Напишите ваш ответ Верочке в свободной форме..." class="flex-grow p-3 bg-transparent text-sm text-gray-200 placeholder-gray-600 focus:outline-none" />
-                    <button onclick="sendUserMessageToAI()" class="p-3 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg transition-colors cursor-pointer font-bold text-xs uppercase tracking-widest shrink-0">
+                    <button onclick="sendUserMessageToAI()" class="p-3 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg transition-colors cursor-pointer font-bold text-xs uppercase tracking-widest">
                         Ответить
                     </button>
                 </div>
@@ -279,23 +266,19 @@
         &copy; 2026 Media-проект независимого типа в экосистеме РЕСУРС. Все права защищены.
     </footer>
 
-    <div class="ya-floor-ad-container">
-        <script>
-        window.yaContextCb.push(() => {
-            Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-5", "type": "floorAd", "platform": "touch" })
-        });
-        window.yaContextCb.push(() => {
-            Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-6", "type": "floorAd", "platform": "touch" })
-        });
-        window.yaContextCb.push(() => {
-            Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-7", "type": "floorAd", "platform": "desktop" })
-        });
-        </script>
-    </div>
+    <script>
+    window.yaContextCb.push(() => {
+        Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-5", "type": "floorAd", "platform": "touch" })
+    });
+    window.yaContextCb.push(() => {
+        Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-6", "type": "floorAd", "platform": "touch" })
+    });
+    window.yaContextCb.push(() => {
+        Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-7", "type": "floorAd", "platform": "desktop" })
+    });
+    </script>
 
     <script>
-        // ИСПРАВЛЕНО: Объявлена глобальная переменная счетчика вопросов
-        let currentQuestionIndex = 0; 
         let selectedAge = "adult"; 
         let selectedGender = "male"; 
         let savedChatAnswers = []; 
@@ -321,22 +304,197 @@
         const quizQuestions = {
             adult: {
                 male: [
-                    { question: "Сцена в стиле классического детектива: Глеб Жеглов пристально смотрит на вас в упор и говорит: 'Ну что, гражданин, колоться будем или поиграем в молчанку?'. Ваша актерская подача?", answers: [ { text: "Резко бью по столу, перехватываю инициативу и выдаю жесткий ответ лидера.", tag: "action" }, { text: "Опускаю голову, выдерживаю тяжелую мхатовскую паузу, передавая драму сломленного человека.", tag: "drama" }, { text: "Прикуриваю папиросу, выдаю едкую одесскую шутку и ухмыляюсь прямо в лицо.", tag: "comedy" }, { text: "Спокойно и монолитно откидываюсь на спинку стула, демонстрируя абсолютное алиби и мощь.", tag: "epic" } ] },
-                    { question: "Вы на пробах голливудского шпионского боевика. Вы висите на карнизе небоскреба, чип в кармане, а вертолет врагов заходит на разворот. Какое действие выберете?", answers: [ { text: "Разбиваю окно ногами, влетаю внутрь павильона, уходя от пулеметной очереди.", tag: "action" }, { text: "Смотрю вниз на огни ночного города с ощущением трагической неизбежности момента.", tag: "drama" }, { text: "Замечаю, что у меня порвались брюки, корчу смешную гримасу в камеру вертолета.", tag: "comedy" }, { text: "Отпускаю руку с полным хладнокровием, зная, что внизу меня уже ждет просчитанная страховочная сетка.", tag: "epic" } ] },
-                    { question: "Режиссер исторического блокбастера ставит задачу: 'Ты — полководец перед решающей битвой. Твои люди истощены, но сзади Москва'. Твой жест в кадре?", answers: [ { text: "Выхватываю тяжелый клинок, направляю его в небо и с криком бегу вперед первым.", tag: "action" }, { text: "Прохожу вдоль строя молча, заглядывая в глаза каждому солдату со слезами гордости.", tag: "drama" }, { text: "Громко смеюсь над угрозами врага, показывая парням, что их армия — просто толпа.", tag: "comedy" }, { text: "Поднимаю руку вверх, останавливая панику, и произношу вековую речь, меняющую ход истории.", tag: "epic" } ] },
-                    { question: "Финал культового романа. Главный герой победил, но потерял всё. Вы стоите на пирсе под проливным дождем. Как закрываем сцену?", answers: [ { text: "Резко швыряю оружие в воду, разворачиваюсь и ухожу широким шагом, не оборачиваясь.", tag: "action" }, { text: "Падаю на колени, закрывая лицо руками, под пронзительную скрипичную музыку.", tag: "drama" }, { text: "Достаю измокшую пачку, пытаюсь поджечь спичку, улыбаюсь абсурдности этой жизни.", tag: "comedy" }, { text: "Встаю лицом к шторму, расправляю плечи и смотрю на горизонт, готовый к новой эре.", tag: "epic" } ] },
-                    { question: "Кастинг на роль в фантастическом киберпанке. Вы нашли уязвимость в системе ИИ. Как вы донесете это до зрителя?", answers: [ { text: "Удар по кнопке 'Enter' в последнюю секунду до взрыва процессора.", tag: "action" }, { text: "Шокированный взгляд на экран, когда понимаешь, что ИИ обрел человеческую душу.", tag: "drama" }, { text: "Глупо путаю провода, бью системный блок кулаком, и он чудесным образом включается.", tag: "comedy" }, { text: "Закрываю ноутбук, спокойно выпиваю чашку кофе. Всё идет строго по моему глобальному плану.", tag: "epic" } ] }
+                    {
+                        question: "Сцена в стиле классического детектива: Глеб Жеглов пристально смотрит на вас в упор и говорит: 'Ну что, гражданин, колоться будем или поиграем в молчанку?'. Ваша актерская подача?",
+                        answers: [
+                            { text: "Резко бью по столу, перехватываю инициативу и выдаю жесткий ответ лидера.", tag: "action" },
+                            { text: "Опускаю голову, выдерживаю тяжелую мхатовскую паузу, передавая драму сломленного человека.", tag: "drama" },
+                            { text: "Прикуриваю папиросу, выдаю едкую одесскую шутку и ухмыляюсь прямо в лицо.", tag: "comedy" },
+                            { text: "Спокойно и монолитно откидываюсь на спинку стула, демонстрируя абсолютное алиби и мощь.", tag: "epic" }
+                        ]
+                    },
+                    {
+                        question: "Вы на пробах голливудского шпионского боевика. Вы висите на карнизе небоскреба, чип в кармане, а вертолет врагов заходит на разворот. Какое действие выберете?",
+                        answers: [
+                            { text: "Разбиваю окно ногами, влетаю внутрь павильона, уходя от пулеметной очереди.", tag: "action" },
+                            { text: "Смотрю вниз на огни ночного города с ощущением трагической неизбежности момента.", tag: "drama" },
+                            { text: "Замечаю, что у меня порвались брюки, корчу смешную гримасу в камеру вертолета.", tag: "comedy" },
+                            { text: "Отпускаю руку с полным хладнокровием, зная, что внизу меня уже ждет просчитанная страховочная сетка.", tag: "epic" }
+                        ]
+                    },
+                    {
+                        question: "Режиссер исторического блокбастера ставит задачу: 'Ты — полководец перед решающей битвой. Твои люди истощены, но сзади Москва'. Твой жест в кадре?",
+                        answers: [
+                            { text: "Выхватываю тяжелый клинок, направляю его в небо и с криком бегу вперед первым.", tag: "action" },
+                            { text: "Прохожу вдоль строя молча, заглядывая в глаза каждому солдату со слезами гордости.", tag: "drama" },
+                            { text: "Громко смеюсь над угрозами врага, показывая парням, что их армия — просто толпа.", tag: "comedy" },
+                            { text: "Поднимаю руку вверх, останавливая панику, и произношу вековую речь, меняющую ход истории.", tag: "epic" }
+                        ]
+                    },
+                    {
+                        question: "Финал культового романа. Главный герой победил, но потерял всё. Вы стоите на пирсе под проливным дождем. Как закрываем сцену?",
+                        answers: [
+                            { text: "Резко швыряю оружие в воду, разворачиваюсь и ухожу широким шагом, не оборачиваясь.", tag: "action" },
+                            { text: "Падаю на колени, закрывая лицо руками, под пронзительную скрипичную музыку.", tag: "drama" },
+                            { text: "Достаю измокшую пачку, пытаюсь поджечь спичку, улыбаюсь абсурдности этой жизни.", tag: "comedy" },
+                            { text: "Встаю лицом к шторму, расправляю плечи и смотрю на горизонт, готовый к новой эре.", tag: "epic" }
+                        ]
+                    },
+                    {
+                        question: "Кастинг на роль в фантастическом киберпанке. Вы нашли уязвимость в системе ИИ. Как вы донесете это до зрителя?",
+                        answers: [
+                            { text: "Удар по кнопке 'Enter' в последнюю секунду до взрыва процессора.", tag: "action" },
+                            { text: "Шокированный взгляд на экран, когда понимаешь, что ИИ обрел человеческую душу.", tag: "drama" },
+                            { text: "Глупо путаю провода, бью системный блок кулаком, и он чудесным образом включается.", tag: "comedy" },
+                            { text: "Закрываю ноутбук, спокойно выпиваю чашку кофе. Всё идет строго по моему глобальному плану.", tag: "epic" }
+                        ]
+                    }
                 ],
                 female: [
-                    { question: "Пробы в масштабную костюмированную историческую драму. Вы — графиня, узнавшая, что император подписал указ об аресте вашей семьи. Ваша первая реакция?", answers: [ { text: "Срываю тяжелое колье, бросаю его к ногам гонца и приказываю седлать коней для побега.", tag: "action" }, { text: "Медленно опускаюсь на кресло, бледнею, роняю веер. В глазах — вся трагедия уходящей эпохи.", tag: "drama" }, { text: "Выпиваю бокал вина, громко хохочу над глупостью указа и иронично подмигиваю гвардейцам.", tag: "comedy" }, { text: "Гордо выпрямляю спину, поднимаю подбородок и ледяным тоном заявляю: 'Императоры меняются. Род наш вечен'.", tag: "epic" } ] },
-                    { question: "Кастинг на главную роль в остросюжетном голливудском триллере. Вы заперты в комнате, к дверям подходит преследователь. Что делает героиня?", answers: [ { text: "Выбиваю стекло стулом, готовя точку для молниеносной атаки или прыжка.", tag: "action" }, { text: "Прижимаюсь к стене, затаив дыхание, крупный план на дрожащие губы и слезу.", tag: "drama" }, { text: "Быстро крашу губы красной помадой, беру швабру и готовлюсь встретить гостя с улыбкой.", tag: "comedy" }, { text: "Блокирую замок одним точным движением, сохраняя абсолютный пульс и холодный расчет.", tag: "epic" } ] },
-                    { question: "Сцена психологического романа. Вы прощаетесь с человеком, которого любили всю жизнь, но остаться невозможно. Какое действие в кадре?", answers: [ { text: "Резко разворачиваюсь, нажимаю на газ автомобиля и скрываюсь в тумане трассы.", tag: "action" }, { text: "Прикасаюсь ладонью к его щеке, замирая в финальном кадре. Пауза длится вечность.", tag: "drama" }, { text: "Выдаю нелепую шутку про погоду, весело машу рукой, а отвернувшись — горько выдыхаю.", tag: "comedy" }, { text: "Делаю спокойный царственный шаг назад, закрывая двери купе. Решение окончательное.", tag: "epic" } ] },
-                    { question: "Вы играете лидера женского сопротивления в антиутопии. Люди напуганы и готовы сдаться. С чего начнете монолог?", answers: [ { text: "С резкого, громкого призыва к оружию, зажигая толпу чистой энергией действия.", tag: "action" }, { text: "С тихой, пронзительной личной истории, заставляющей плакать даже суровых бойцов.", tag: "drama" }, { text: "С жесткой сатиры над страхами врага. Высмеиваю их, возвращая людям улыбки.", tag: "comedy" }, { text: "С величественного разбора нашей глобальной цели, чести и неминуемой победы в истории.", tag: "epic" } ] },
-                    { question: "Финал детективного фильма. Вы вычисляете главного преступника на светском приеме. Ваша подача?", answers: [ { text: "Перехватываю его руку с бокалом, выбиваю пистолет и прижимаю мерзавца к колонне.", tag: "action" }, { text: "Выдаю правду через цепочку тяжелых обвинений, заставляя его сознаться под давлением совести.", tag: "drama" }, { text: "Разыгрываю глупую путаницу с бокалами, роняю торт, в процессе вытаскивая у него улику.", tag: "comedy" }, { text: "Спокойно поднимаю тост, называю его имя при всех. Зал окружен полицией по моему приказу.", tag: "epic" } ] }
+                    {
+                        question: "Пробы в масштабную костюмированную историческую драму. Вы — графиня, узнавшая, что император подписал указ об аресте вашей семьи. Ваша первая реакция?",
+                        answers: [
+                            { text: "Срываю тяжелое колье, бросаю его к ногам гонца и приказываю седлать коней для побега.", tag: "action" },
+                            { text: "Медленно опускаюсь на кресло, бледнею, роняю веер. В глазах — вся трагедия уходящей эпохи.", tag: "drama" },
+                            { text: "Выпиваю бокал вина, громко хохочу над глупостью указа и иронично подмигиваю гвардейцам.", tag: "comedy" },
+                            { text: "Гордо выпрямляю спину, поднимаю подбородок и ледяным тоном заявляю: 'Императоры меняются. Род наш вечен'.", tag: "epic" }
+                        ]
+                    },
+                    {
+                        question: "Кастинг на главную роль в остросюжетном голливудском триллере. Вы заперты в комнате, к дверям подходит преследователь. Что делает героиня?",
+                        answers: [
+                            { text: "Выбиваю стекло стулом, готовя точку для молниеносной атаки или прыжка.", tag: "action" },
+                            { text: "Прижимаюсь к стене, затаив дыхание, крупный план на дрожащие губы и слезу.", tag: "drama" },
+                            { text: "Быстро крашу губы красной помадой, беру швабру и готовлюсь встретить гостя с улыбкой.", tag: "comedy" },
+                            { text: "Блокирую замок одним точным движением, сохраняя абсолютный пульс и холодный расчет.", tag: "epic" }
+                        ]
+                    },
+                    {
+                        question: "Сцена психологического романа. Вы прощаетесь с человеком, которого любили всю жизнь, но остаться невозможно. Какое действие в кадре?",
+                        answers: [
+                            { text: "Резко разворачиваюсь, нажимаю на газ автомобиля и скрываюсь в тумане трассы.", tag: "action" },
+                            { text: "Прикасаюсь ладонью к его щеке, замирая в финальном кадре. Пауза длится вечность.", tag: "drama" },
+                            { text: "Выдаю нелепую шутку про погоду, весело машу рукой, а отвернувшись — горько выдыхаю.", tag: "comedy" },
+                            { text: "Делаю спокойный царственный шаг назад, закрывая двери купе. Решение окончательное.", tag: "epic" }
+                        ]
+                    },
+                    {
+                        question: "Вы играете лидера женского сопротивления в антиутопии. Люди напуганы и готовы сдаться. С чего начнете монолог?",
+                        answers: [
+                            { text: "С резкого, громкого призыва к оружию, зажигая толпу чистой энергией действия.", tag: "action" },
+                            { text: "С тихой, пронзительной личной истории, заставляющей плакать даже суровых бойцов.", tag: "drama" },
+                            { text: "С жесткой сатиры над страхами врага. Высмеиваю их, возвращая людям улыбки.", tag: "comedy" },
+                            { text: "С величественного разбора нашей глобальной цели, чести и неминуемой победы в истории.", tag: "epic" }
+                        ]
+                    },
+                    {
+                        question: "Финал детективного фильма. Вы вычисляете главного преступника на светском приеме. Ваша подача?",
+                        answers: [
+                            { text: "Перехватываю его руку с бокалом, выбиваю пистолет и прижимаю мерзавца к колонне.", tag: "action" },
+                            { text: "Выдаю правду через цепочку тяжелых обвинений, заставляя его сознаться под давлением совести.", tag: "drama" },
+                            { text: "Разыгрываю глупую путаницу с бокалами, роняю торт, в процессе вытаскивая у него улику.", tag: "comedy" },
+                            { text: "Спокойно поднимаю тост, называю его имя при всех. Зал окружен полицией по моему приказу.", tag: "epic" }
+                        ]
+                    }
+                ]
+            },
+            child: {
+                male: [
+                    {
+                        question: "Сцена: Ты играешь супергероя в школе. Ты случайно нашел секретную карту, но вредный дежурный пытается её отнять. Твой ход?",
+                        answers: [
+                            { text: "Быстро прячу карту, перепрыгиваю через парту и убегаю в тайный коридор.", tag: "action" },
+                            { text: "Спокойно смотрю ему в глаза, прячу карту в рюкзак и заставляю его запутаться в своих словах.", tag: "drama" },
+                            { text: "Притворяюсь, что это просто фантик от конфеты, смешно падаю и незаметно прячу карту.", tag: "comedy" },
+                            { text: "Встаю в полный рост, складываю руки на груди и командую ему немедленно вернуться на свой пост.", tag: "epic" }
+                        ]
+                    },
+                    {
+                        question: "Режиссер просит тебя сыграть, что твой верный робот или питомец сломался прямо перед главным соревнованием. Что ты сделаешь?",
+                        answers: [
+                            { text: "Быстро беру инструменты, изо всех сил пытаюсь починить его самостоятельно в последнюю секунду.", tag: "action" },
+                            { text: "Крепко обнимаю его, обещаю, что мы всё равно будем вместе, даже если проиграем.", tag: "drama" },
+                            { text: "Начинаю смешно ворчать на него, подмигиваю и пытаюсь рассмешить судей поломкой.", tag: "comedy" },
+                            { text: "Сохраняю спокойствие, перенастраиваю систему и нахожу способ выиграть конкурс даже без робота.", tag: "epic" }
+                        ]
+                    },
+                    {
+                        question: "Финальный кадр фильма: Ты победил космического монстра и возвращаешься домой. Как ты войдешь в класс/комнату?",
+                        answers: [
+                            { text: "Захожу тихо, ставлю рюкзак, скромно сажусь за парту, как будто ничего не произошло.", tag: "action" },
+                            { text: "Смотрю на друзей с теплой улыбкой, понимая, что мы прошли через огромное приключение.", tag: "drama" },
+                            { text: "Влетаю с победным криком, путаюсь в плаще и смешно падаю на глазах у всех.", tag: "comedy" },
+                            { text: "Вхожу гордо и уверенно, как настоящий капитан корабля после успешной экспедиции.", tag: "epic" }
+                        ]
+                    },
+                    {
+                        question: "Кастинг на роль в таинственном кино. Тебе нужно показать, что ты разгадал главный секрет старого замка. Как сыграешь?",
+                        answers: [
+                            { text: "Уверенно нажимаю на секретный камень в стене, открывая потайную дверь.", tag: "action" },
+                            { text: "Внимательно рассматриваю старинный шифр, затаив дыхание от удивления.", tag: "drama" },
+                            { text: "Случайно опираюсь на рычаг, пугаюсь громкого звука, но радуюсь находке.", tag: "comedy" },
+                            { text: "Достаю древний амулет, поднимаю его высоко вверх и освещаю всю команду.", tag: "epic" }
+                        ]
+                    },
+                    {
+                        question: "Сцена: Твоя команда проигрывает в спортивной игре, и все загрустили. Как ты вернешь им веру в победу?",
+                        answers: [
+                            { text: "Громко хлопаю в ладоши, призываю собраться и первым бегу в атаку.", tag: "action" },
+                            { text: "Подхожу к каждому, говорю добрые слова поддержки и напоминаю, какая мы дружная команда.", tag: "drama" },
+                            { text: "Строю смешную гримасу, заставляю всю команду рассмеяться и забыть о плохом настроении.", tag: "comedy" },
+                            { text: "Выстраиваю всех в круг, даю четкий победный план и настраиваю на грандиозный финал.", tag: "epic" }
+                        ]
+                    }
+                ],
+                female: [
+                    {
+                        question: "Сцена: Ты играешь супергероиню в школе. Ты случайно нашла секретную карту, но вредная дежурная пытается её отнять. Твой ход?",
+                        answers: [
+                            { text: "Быстро прячу карту, перепрыгиваю через парту и убегаю в тайный коридор.", tag: "action" },
+                            { text: "Спокойно смотрю ей в глаза, прячу карту в рюкзак и заставляю её запутаться в своих словах.", tag: "drama" },
+                            { text: "Притворяюсь, что это просто фантик от конфеты, смешно падаю и незаметно прячу карту.", tag: "comedy" },
+                            { text: "Встаю в полный рост, складываю руки на груди и командую ей немедленно вернуться на свой пост.", tag: "epic" }
+                        ]
+                    },
+                    {
+                        question: "Режиссер просит тебя сыграть, что твой верный робот или питомец сломался прямо перед главным соревнованием. Что ты сделаешь?",
+                        answers: [
+                            { text: "Быстро беру инструменты, изо всех сил пытаюсь починить его самостоятельно в последнюю секунду.", tag: "action" },
+                            { text: "Крепко обнимаю его, обещаю, что мы всё равно будем вместе, даже если проиграем.", tag: "drama" },
+                            { text: "Начинаю смешно ворчать на него, подмигиваю и пытаюсь рассмешить судей поломкой.", tag: "comedy" },
+                            { text: "Сохраняю спокойствие, перенастраиваю систему и нахожу способ выиграть конкурс даже без робота.", tag: "epic" }
+                        ]
+                    },
+                    {
+                        question: "Финальный кадр фильма: Ты победила космического монстра и возвращаешься домой. Как ты войдешь в класс/комнату?",
+                        answers: [
+                            { text: "Захожу тихо, ставлю рюкзак, скромно сажусь за парту, как будто ничего не произошло.", tag: "action" },
+                            { text: "Смотрю на друзей с теплой улыбкой, понимая, что мы прошли через огромное приключение.", tag: "drama" },
+                            { text: "Влетаю с победным криком, путаюсь в плаще и смешно падаю на глазах у всех.", tag: "comedy" },
+                            { text: "Вхожу гордо и уверенно, как настоящая капитан корабля после успешной экспедиции.", tag: "epic" }
+                        ]
+                    },
+                    {
+                        question: "Кастинг на роль в таинственном кино. Тебе нужно показать, что ты разгладала главный секрет старого замка. Как сыграешь?",
+                        answers: [
+                            { text: "Уверенно нажимаю на секретный камень в стене, открывая потайную дверь.", tag: "action" },
+                            { text: "Внимательно рассматриваю старинный шифр, затаив дыхание от удивления.", tag: "drama" },
+                            { text: "Случайно опираюсь на рычаг, пугаюсь громкого звука, но радуюсь находке.", tag: "comedy" },
+                            { text: "Достаю древний амулет, поднимаю его высоко вверх и освещаю всю комнату.", tag: "epic" }
+                        ]
+                    },
+                    {
+                        question: "Сцена: Твоя команда проигрывает в спортивной игре, и все загрустили. Как ты вернешь им веру в победу?",
+                        answers: [
+                            { text: "Громко хлопаю в ладоши, призываю собраться и первой бегу в атаку.", tag: "action" },
+                            { text: "Подхожу к каждому, говорю добрые слова поддержки и напоминаю, какая мы дружная команда.", tag: "drama" },
+                            { text: "Строю смешную гримасу, заставляю всю команду рассмеяться и забыть о плохом настроении.", tag: "comedy" },
+                            { text: "Выстраиваю всех в круг, даю четкий победный план и настраиваю на грандиозный финал.", tag: "epic" }
+                        ]
+                    }
                 ]
             }
         };
-        quizQuestions.child = quizQuestions.adult; 
 
         const rolesTitles = {
             adult: {
@@ -364,6 +522,7 @@
             "ВРЕМЯ РЕСУРСА", "ФАСЦИЯ СУДЬБЫ", "ОБРАТНЫЙ ОТСЧЕТ ОСОЗНАННОСТИ"
         ];
 
+        let currentQuestionIndex = 0;
         let scoreCounter = { action: 0, drama: 0, comedy: 0, epic: 0 };
         let finalRoleKey = "action";
         let chosenMovieTitle = "ГОНЕНИЯ ПЕРВЫХ";
@@ -384,14 +543,14 @@
 
         function setAgeCategory(cat) {
             selectedAge = cat;
-            document.getElementById("btn-age-adult").className = cat === "adult" ? "py-3 px-4 bg-gray-800 border border-amber-500 text-white font-bold text-sm rounded-lg cursor-pointer" : "py-3 px-4 bg-gray-900 border border-gray-700 text-gray-400 font-bold text-sm rounded-lg cursor-pointer";
-            document.getElementById("btn-age-child").className = cat === "child" ? "py-3 px-4 bg-gray-800 border border-amber-500 text-white font-bold text-sm rounded-lg cursor-pointer" : "py-3 px-4 bg-gray-900 border border-gray-700 text-gray-400 font-bold text-sm rounded-lg cursor-pointer";
+            document.getElementById("btn-age-adult").className = cat === "adult" ? "py-3 px-4 bg-gray-800 border border-amber-500 text-white font-bold text-sm rounded-lg active:scale-95 transition-all cursor-pointer" : "py-3 px-4 bg-gray-900 border border-gray-700 text-gray-400 font-bold text-sm rounded-lg active:scale-95 transition-all cursor-pointer";
+            document.getElementById("btn-age-child").className = cat === "child" ? "py-3 px-4 bg-gray-800 border border-amber-500 text-white font-bold text-sm rounded-lg active:scale-95 transition-all cursor-pointer" : "py-3 px-4 bg-gray-900 border border-gray-700 text-gray-400 font-bold text-sm rounded-lg active:scale-95 transition-all cursor-pointer";
         }
 
         function setGender(gender) {
             selectedGender = gender;
-            document.getElementById("btn-gender-male").className = gender === "male" ? "py-3 px-4 bg-gray-800 border border-amber-500 text-white font-bold text-sm rounded-lg cursor-pointer" : "py-3 px-4 bg-gray-900 border border-gray-700 text-gray-400 font-bold text-sm rounded-lg cursor-pointer";
-            document.getElementById("btn-gender-female").className = gender === "female" ? "py-3 px-4 bg-gray-800 border border-amber-500 text-white font-bold text-sm rounded-lg cursor-pointer" : "py-3 px-4 bg-gray-900 border border-gray-700 text-gray-400 font-bold text-sm rounded-lg cursor-pointer";
+            document.getElementById("btn-gender-male").className = gender === "male" ? "py-3 px-4 bg-gray-800 border border-amber-500 text-white font-bold text-sm rounded-lg active:scale-95 transition-all cursor-pointer" : "py-3 px-4 bg-gray-900 border border-gray-700 text-gray-400 font-bold text-sm rounded-lg active:scale-95 transition-all cursor-pointer";
+            document.getElementById("btn-gender-female").className = gender === "female" ? "py-3 px-4 bg-gray-800 border border-amber-500 text-white font-bold text-sm rounded-lg active:scale-95 transition-all cursor-pointer" : "py-3 px-4 bg-gray-900 border border-gray-700 text-gray-400 font-bold text-sm rounded-lg active:scale-95 transition-all cursor-pointer";
         }
 
         function startQuiz() {
@@ -416,16 +575,24 @@
             
             currentQuestion.answers.forEach(answer => {
                 const button = document.createElement("button");
-                button.className = "w-full text-left p-4 bg-[#111827] border border-gray-800 hover:border-amber-500 focus:bg-amber-500/10 focus:border-amber-500 text-sm md:text-base font-bold text-gray-200 hover:text-white rounded-xl transition-all duration-200 cursor-pointer focus:outline-none";
+                button.className = "w-full text-left p-4 bg-[#111827] border border-gray-800 hover:border-amber-500 focus:bg-amber-500/10 focus:border-amber-500 text-sm md:text-base font-bold text-gray-200 hover:text-white rounded-xl transition-all duration-200 active:scale-[0.99] cursor-pointer focus:outline-none";
                 button.innerText = answer.text;
-                button.onclick = () => { 
-                    scoreCounter[answer.tag]++; 
-                    savedChatAnswers.push(answer.text); 
-                    currentQuestionIndex++; 
-                    if(currentQuestionIndex < activeQuestions.length) renderQuestion(); else calculateResult(); 
-                };
+                button.onclick = () => handleAnswerClick(answer.tag, answer.text);
                 container.appendChild(button);
             });
+        }
+
+        function handleAnswerClick(tag, text) {
+            scoreCounter[tag]++;
+            savedChatAnswers.push(text); 
+            currentQuestionIndex++;
+            const activeQuestions = quizQuestions[selectedAge][selectedGender];
+            
+            if (currentQuestionIndex < activeQuestions.length) {
+                renderQuestion();
+            } else {
+                calculateResult();
+            }
         }
 
         function calculateResult() {
@@ -443,13 +610,7 @@
                 finalRoleKey = selectedRole;
                 chosenMovieTitle = fakeMovieTitles[Math.floor(Math.random() * fakeMovieTitles.length)];
                 
-                const container = document.getElementById("poster-render-container");
-                container.innerHTML = `
-                    <div id="poster-inner-box" class="border border-gray-800 bg-[#090D16] p-2 rounded-xl shadow-xl max-w-[320px] w-full transition-transform duration-300 group-hover:scale-[1.02]">
-                        <canvas id="posterCanvas" width="600" height="900" class="w-full h-auto rounded-lg bg-slate-900"></canvas>
-                    </div>
-                    <p id="poster-footer-caption" class="text-[10px] text-gray-600 mt-2">Базовый постер. Создан алгоритмом РЕСУРСА.</p>
-                `;
+                // ИСПРАВЛЕНО: Больше не пересоздаем тег canvas с нуля, а просто сбрасываем состояние
                 generatedPremiumPosterUrl = null;
 
                 renderResultScreen();
@@ -466,7 +627,7 @@
             showScreen("screen-result");
             
             if (!generatedPremiumPosterUrl) {
-                setTimeout(() => { generateCanvasPoster(displayTitle); }, 50);
+                generateCanvasPoster(displayTitle);
             }
         }
 
@@ -488,6 +649,7 @@
                 let currentSize = startSize;
                 context.font = `900 ${currentSize}px ${fontSuffix}`;
                 let metrics = context.measureText(text);
+                
                 while (metrics.width > maxWidth && currentSize > 18) {
                     currentSize -= 2;
                     context.font = `900 ${currentSize}px ${fontSuffix}`;
@@ -528,39 +690,63 @@
             };
             
             img.onerror = () => {
-                const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-                gradient.addColorStop(0, "#0D1220");
-                gradient.addColorStop(1, bottomHex + "44");
-                ctx.fillStyle = gradient;
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                const spaceBackupImg = new Image();
+                spaceBackupImg.src = "images/posters/" + finalRoleKey + "_" + selectedAge + "_" + selectedGender + " _1.png";
                 
-                ctx.strokeStyle = accentColor; ctx.lineWidth = 4; ctx.strokeRect(20, 20, canvas.width - 40, canvas.height - 40);
-                ctx.strokeStyle = "rgba(255, 255, 255, 0.05)"; ctx.lineWidth = 1; ctx.strokeRect(32, 32, canvas.width - 64, canvas.height - 64);
-
-                const cx = canvas.width / 2; const cy = canvas.height / 2 - 40; const r = 60;
-                ctx.strokeStyle = accentColor; ctx.lineWidth = 3;
-                ctx.beginPath(); ctx.moveTo(cx - r, cy - r + 15); ctx.lineTo(cx - r, cy - r); ctx.lineTo(cx - r + 15, cy - r); ctx.stroke();
-                ctx.beginPath(); ctx.moveTo(cx + r, cy - r + 15); ctx.lineTo(cx + r, cy - r); ctx.lineTo(cx + r - 15, cy - r); ctx.stroke();
-                ctx.beginPath(); ctx.moveTo(cx - r, cy + r - 15); ctx.lineTo(cx - r, cy + r); ctx.lineTo(cx - r + 15, cy + r); ctx.stroke();
-                ctx.beginPath(); ctx.moveTo(cx + r, cy + r - 15); ctx.lineTo(cx + r, cy + r); ctx.lineTo(cx + r - 15, cy + r); ctx.stroke();
-
-                drawPosterTypography();
+                spaceBackupImg.onload = () => {
+                    ctx.drawImage(spaceBackupImg, 0, 0, canvas.width, canvas.height);
+                    drawPosterTypography();
+                };
                 
-                ctx.fillStyle = "rgba(255, 255, 255, 0.1)"; ctx.fillRect(canvas.width / 2 - 100, canvas.height - 250, 200, 25);
-                ctx.fillStyle = "rgba(255, 255, 255, 0.3)"; ctx.font = "10px monospace"; ctx.letterSpacing = "3px";
-                ctx.fillText("ID-" + Math.floor(100000 + Math.random() * 900000), canvas.width / 2, canvas.height - 262);
+                spaceBackupImg.onerror = () => {
+                    const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+                    gradient.addColorStop(0, "#0D1220");
+                    gradient.addColorStop(1, bottomHex + "44");
+                    ctx.fillStyle = gradient;
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    
+                    ctx.strokeStyle = accentColor; ctx.lineWidth = 4; ctx.strokeRect(20, 20, canvas.width - 40, canvas.height - 40);
+                    ctx.strokeStyle = "rgba(255, 255, 255, 0.05)"; ctx.lineWidth = 1; ctx.strokeRect(32, 32, canvas.width - 64, canvas.height - 64);
+
+                    const cx = canvas.width / 2; const cy = canvas.height / 2 - 40; const r = 60;
+                    ctx.strokeStyle = accentColor; ctx.lineWidth = 3;
+                    ctx.beginPath(); ctx.moveTo(cx - r, cy - r + 15); ctx.lineTo(cx - r, cy - r); ctx.lineTo(cx - r + 15, cy - r); ctx.stroke();
+                    ctx.beginPath(); ctx.moveTo(cx + r, cy - r + 15); ctx.lineTo(cx + r, cy - r); ctx.lineTo(cx + r - 15, cy - r); ctx.stroke();
+                    ctx.beginPath(); ctx.moveTo(cx - r, cy + r - 15); ctx.lineTo(cx - r, cy + r); ctx.lineTo(cx - r + 15, cy + r); ctx.stroke();
+                    ctx.beginPath(); ctx.moveTo(cx + r, cy + r - 15); ctx.lineTo(cx + r, cy + r); ctx.lineTo(cx + r - 15, cy + r); ctx.stroke();
+
+                    drawPosterTypography();
+                    
+                    ctx.fillStyle = "rgba(255, 255, 255, 0.1)"; ctx.fillRect(canvas.width / 2 - 100, canvas.height - 250, 200, 25);
+                    ctx.fillStyle = "rgba(255, 255, 255, 0.3)"; ctx.font = "10px monospace"; ctx.letterSpacing = "3px";
+                    ctx.fillText("ID-" + Math.floor(100000 + Math.random() * 900000), canvas.width / 2, canvas.height - 262);
+                };
             };
         }
 
         function downloadPoster() {
-            const link = document.createElement("a");
-            link.download = `Casting_${chosenMovieTitle}.png`;
-            link.href = generatedPremiumPosterUrl || document.getElementById("posterCanvas").toDataURL("image/png");
-            link.click();
+            if (generatedPremiumPosterUrl) {
+                const link = document.createElement("a");
+                link.download = `Premium_Casting_${chosenMovieTitle}.png`;
+                link.href = generatedPremiumPosterUrl;
+                link.click();
+            } else {
+                const canvas = document.getElementById("posterCanvas");
+                if (!canvas) return;
+                const link = document.createElement("a");
+                link.download = `Casting_${finalRoleKey}_${selectedAge}_${selectedGender}.png`;
+                link.href = canvas.toDataURL("image/png");
+                link.click();
+            }
         }
 
-        function restartQuiz() { showScreen("screen-start"); }
-        function scrollToPremium() { document.getElementById("premium-block").scrollIntoView({ behavior: 'smooth' }); }
+        function restartQuiz() {
+            showScreen("screen-start");
+        }
+
+        function scrollToPremium() {
+            document.getElementById("premium-block").scrollIntoView({ behavior: 'smooth' });
+        }
 
         async function shareResult() {
             const displayTitle = rolesTitles[selectedAge][selectedGender][finalRoleKey];
@@ -583,7 +769,11 @@
                     canvas.toBlob(async (blob) => {
                         const file = new File([blob], `Casting_Afisha.png`, { type: 'image/png' });
                         if (navigator.canShare && navigator.canShare({ files: [file] })) {
-                            await navigator.share({ files: [file], title: 'Моя киноафиша', text: shareText });
+                            await navigator.share({
+                                files: [file],
+                                title: 'Моя киноафиша',
+                                text: shareText
+                            });
                         }
                     }, 'image/png');
                 } catch (err) {
@@ -604,56 +794,65 @@
                 .then(() => {
                     const successMessage = document.getElementById("copy-success-message");
                     successMessage.classList.remove("hidden");
-                    setTimeout(() => { document.getElementById("desktop-share-dropdown").classList.add("hidden"); }, 2000);
+                    setTimeout(() => {
+                        document.getElementById("desktop-share-dropdown").classList.add("hidden");
+                    }, 2000);
                 })
                 .catch(err => console.log("Ошибка копирования в буфер:", err));
         }
 
-        // ИСПРАВЛЕНО: Полная логика сжатия изображения перед отправкой
-        function compressImage(file) {
-            return new Promise(resolve => {
-                const img = new Image(); 
+        async function uploadUserPhotoToServer(file) {
+            return new Promise((resolve, reject) => {
+                const img = new Image();
                 img.src = URL.createObjectURL(file);
+                
                 img.onload = () => {
                     const canvas = document.createElement("canvas");
                     const ctx = canvas.getContext("2d");
-                    const size = 1024; 
-                    let w = img.width, h = img.height;
                     
-                    if(w > h) { 
-                        if(w > size) { h *= size/w; w = size; } 
-                    } else { 
-                        if(h > size) { w *= size/h; h = size; } 
+                    const MAX_WIDTH = 1024;
+                    const MAX_HEIGHT = 1024;
+                    let width = img.width;
+                    let height = img.height;
+                    
+                    if (width > height) {
+                        if (width > MAX_WIDTH) {
+                            height *= MAX_WIDTH / width;
+                            width = MAX_WIDTH;
+                        }
+                    } else {
+                        if (height > MAX_HEIGHT) {
+                            width *= MAX_HEIGHT / height;
+                            height = MAX_HEIGHT;
+                        }
                     }
                     
-                    canvas.width = w; canvas.height = h;
-                    ctx.drawImage(img, 0, 0, w, h);
-                    resolve(canvas.toDataURL("image/jpeg", 0.75));
+                    canvas.width = width;
+                    canvas.height = height;
+                    ctx.drawImage(img, 0, 0, width, height);
+                    
+                    const compressedBase64 = canvas.toDataURL("image/jpeg", 0.75);
+                    
+                    fetch(YANDEX_FUNCTION_URL, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            action: "upload_user_photo",
+                            photoData: compressedBase64,
+                            userId: `actor_${Math.floor(100000 + Math.random() * 900000)}`
+                        })
+                    })
+                    .then(response => {
+                        if (!response.ok) throw new Error();
+                        return response.json();
+                    })
+                    .then(resJson => resolve(resJson.success))
+                    .catch(() => resolve(false));
                 };
-                img.onerror = () => resolve(null);
+                img.onerror = () => resolve(false);
             });
         }
 
-        // ИСПРАВЛЕНО: Интегрирован вызов S3 загрузки на бэкенд
-        async function uploadUserPhotoToServer(compressedBase64) {
-            if (!compressedBase64) return false;
-            try {
-                const response = await fetch(YANDEX_FUNCTION_URL, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        action: "upload_user_photo",
-                        photoData: compressedBase64,
-                        userId: `actor_${Math.floor(100000 + Math.random() * 900000)}`
-                    })
-                });
-                if (!response.ok) return false;
-                const resJson = await response.json();
-                return resJson.success;
-            } catch { return false; }
-        }
-
-        // ИСПРАВЛЕНО: Восстановлен полный цикл (Сжатие -> Отправка -> ЮKassa -> Чат)
         async function processPremiumPayment() {
             const photoInput = document.getElementById("user-photo");
             const errorElement = document.getElementById("payment-error");
@@ -666,17 +865,15 @@
             errorElement.classList.add("hidden");
 
             const displayTitle = rolesTitles[selectedAge][selectedGender][finalRoleKey];
-            const btn = document.getElementById("btn-premium-action");
+            const btn = document.querySelector("button[onclick='processPremiumPayment()']");
             const originalText = btn.innerText;
 
             try {
                 btn.innerText = "ЗАГРУЗКА СЕЛФИ...";
                 btn.disabled = true;
 
-                const compressed = await compressImage(photoInput.files[0]);
-                const isUploaded = await uploadUserPhotoToServer(compressed);
-                
-                if (!isUploaded) throw new Error("Не удалось сохранить фото на сервере. Попробуйте еще раз.");
+                const isUploaded = await uploadUserPhotoToServer(photoInput.files[0]);
+                if (!isUploaded) throw new Error("Не удалось сохранить фото на сервере. Возможно файл поврежден.");
 
                 btn.innerText = isAdminMode ? "ОТКРЫТИЕ ПАВИЛЬОНА..." : "СВЯЗЬ С БАНКОМ...";
 
@@ -692,21 +889,23 @@
                     })
                 });
 
-                if (!response.ok) throw new Error("Не удалось связаться с сервером платежей.");
+                if (!response.ok) {
+                    throw new Error("Не удалось связаться с сервером платежей.");
+                }
+
                 const resultData = await response.json();
                 
                 if (resultData.isAdminTestSuccess || resultData.paymentSuccess) {
                     btn.innerText = originalText;
                     btn.disabled = false;
+                    
                     showScreen("screen-chat");
                     
                     currentAIConversation = [];
                     const msgContainer = document.getElementById("chat-messages-container");
                     if (msgContainer) msgContainer.innerHTML = "";
 
-                    setTimeout(() => {
-                        appendMessageToChat("ai", `Так, присаживайся. Я ассистент режиссера Вера Мегера. Изучила твою карточку. На базовых пробах тебе выдали амплуа «${displayTitle}». Хм... Посмотрим, соответствуешь ли ты заявленному уровню. Расскажи мне, почему ты считаешь, что эта роль в кино должна достаться именно тебе? Напиши своими словами, я слушаю.`);
-                    }, 50);
+                    appendMessageToChat("ai", `Так, присаживайся. Я ассистент режиссера Вера Мегера. Изучила твою карточку. На базовых пробах тебе выдали амплуа «${displayTitle}». Хм... Посмотрим, соответствуешь ли ты заявленному уровню. Расскажи мне, почему ты считаешь, что эта роль в кино должна достаться именно тебе? Напиши своими словами, я слушаю.`);
                     return;
                 }
 
@@ -717,9 +916,10 @@
                 }
 
             } catch (error) {
-                console.error(error);
-                errorElement.innerText = error.message || "Ошибка платежного контура. Попробуйте позже.";
+                console.error("Ошибка интеграции шлюза:", error);
+                errorElement.innerText = error.message || "Ошибка контура. Пожалуйста, попробуйте позже или свяжитесь с поддержкой.";
                 errorElement.classList.remove("hidden");
+                
                 btn.innerText = originalText;
                 btn.disabled = false;
             }
@@ -727,8 +927,6 @@
 
         function appendMessageToChat(sender, text) {
             const container = document.getElementById("chat-messages-container");
-            if (!container) return;
-            
             const msgRow = document.createElement("div");
             msgRow.className = sender === "ai" ? "flex justify-start animate-fadeIn" : "flex justify-end animate-fadeIn";
             
@@ -740,10 +938,17 @@
             container.appendChild(msgRow);
             container.scrollTop = container.scrollHeight; 
             
-            currentAIConversation.push({ role: sender === 'ai' ? "assistant" : "user", text: text });
+            currentAIConversation.push({
+                role: sender === "ai" ? "assistant" : "user",
+                text: text
+            });
         }
 
-        function handleChatKeyPress(e) { if (e.key === 'Enter') sendUserMessageToAI(); }
+        function handleChatKeyPress(e) {
+            if (e.key === 'Enter') {
+                sendUserMessageToAI();
+            }
+        }
 
         async function sendUserMessageToAI() {
             const input = document.getElementById("chat-user-input");
@@ -755,8 +960,8 @@
 
             const indicator = document.getElementById("chat-typing-indicator");
             const statusText = document.getElementById("chat-status");
-            if (indicator) indicator.classList.remove("hidden");
-            if (statusText) statusText.innerText = "Вера Мегера печатает...";
+            indicator.classList.remove("hidden");
+            statusText.innerText = "Вера Мегера печатает...";
 
             const displayTitle = rolesTitles[selectedAge][selectedGender][finalRoleKey];
 
@@ -764,25 +969,30 @@
                 const response = await fetch(YANDEX_FUNCTION_URL, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ action: "chat_dialog", roleTitle: displayTitle, history: currentAIConversation })
+                    body: JSON.stringify({
+                        action: "chat_dialog", 
+                        roleTitle: displayTitle,
+                        history: currentAIConversation 
+                    })
                 });
 
                 if (!response.ok) throw new Error();
+
                 const data = await response.json();
                 
-                if (indicator) indicator.classList.add("hidden");
-                if (statusText) statusText.innerText = "Ассистент режиссера по актерам (в сети)";
+                indicator.classList.add("hidden");
+                statusText.innerText = "Ассистент режиссера по актерам (в сети)";
                 appendMessageToChat("ai", data.aiResponse);
 
             } catch (err) {
                 console.error(err);
-                if (indicator) indicator.classList.add("hidden");
-                if (statusText) statusText.innerText = "Ассистент режиссера по актерам (в сети)";
+                indicator.classList.add("hidden");
+                statusText.innerText = "Ассистент режиссера по актерам (в сети)";
                 appendMessageToChat("ai", "Слушай, на площадке помехи со связью. Повтори свой последний ответ, я не расслышала.");
             }
         }
 
-        // ИСПРАВЛЕНО: Безопасный рендеринг изображения. В случае сбоя сети выводится резервный постер.
+        // ИСПРАВЛЕНО: Безопасный рендеринг постера без риска затереть canvas
         async function terminateCastingAndRender() {
             const displayTitle = rolesTitles[selectedAge][selectedGender][finalRoleKey];
             showScreen("screen-loading");
@@ -791,15 +1001,21 @@
                 const response = await fetch(YANDEX_FUNCTION_URL, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ action: "terminate_casting", roleTitle: displayTitle, history: currentAIConversation })
+                    body: JSON.stringify({
+                        action: "terminate_casting", 
+                        roleTitle: displayTitle,
+                        history: currentAIConversation
+                    })
                 });
 
                 if (!response.ok) throw new Error("Ошибка бэкенда при финализации");
 
                 const data = await response.json();
+                
                 chosenMovieTitle = data.movieTitle || "ВРЕМЯ РЕСУРСА"; 
                 generatedPremiumPosterUrl = data.posterUrl || `${YANDEX_FUNCTION_URL}?title=${encodeURIComponent(displayTitle)}&movie=${encodeURIComponent(chosenMovieTitle)}`;
                 
+                // Перерисовываем бокс, меняя холст на готовую картинку только в самом конце
                 const renderContainer = document.getElementById("poster-render-container");
                 if (renderContainer) {
                     renderContainer.innerHTML = `
@@ -814,16 +1030,6 @@
                 console.error("Критический сбой финального рендера:", err);
                 chosenMovieTitle = "ВРЕМЯ РЕСУРСА";
                 generatedPremiumPosterUrl = `${YANDEX_FUNCTION_URL}?title=${encodeURIComponent(displayTitle)}&movie=${encodeURIComponent(chosenMovieTitle)}`;
-                
-                const renderContainer = document.getElementById("poster-render-container");
-                if (renderContainer) {
-                    renderContainer.innerHTML = `
-                        <div class="border border-amber-500 bg-[#090D16] p-2 rounded-xl shadow-2xl max-w-[320px] w-full transition-transform duration-300 hover:scale-[1.02]">
-                            <img src="${generatedPremiumPosterUrl}" alt="Резервный постер" class="w-full h-auto rounded-lg bg-slate-900 shadow-inner" />
-                        </div>
-                        <p id="poster-footer-caption" class="text-[10px] text-amber-400 font-bold mt-2">✨ БАЗОВЫЙ ИИ-ПОСТЕР СФОРМИРОВАН (РЕЗЕРВНЫЙ КОНТУР)</p>
-                    `;
-                }
             }
 
             renderResultScreen();
