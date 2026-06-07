@@ -69,7 +69,7 @@
                 РЕСУРС <span class="text-xs font-normal text-gray-500 tracking-normal border-l border-gray-700 pl-2 ml-1">МЕДИА</span>
             </div>
             <a href="index.html" class="text-xs text-gray-400 hover:text-cyan-400 transition-colors duration-300 flex items-center gap-1">
-                ← На главную
+                &larr; На главную
             </a>
         </div>
     </header>
@@ -118,7 +118,7 @@
 
                 <div class="text-center">
                     <button onclick="startQuiz()" class="px-8 py-3.5 bg-gradient-to-r from-cyan-500 to-cyan-600 hover:from-cyan-600 hover:to-cyan-700 text-slate-950 font-black text-sm tracking-widest rounded-xl transition-all cursor-pointer uppercase">
-                        Включить освещение и начать пробы →
+                        Включить освещение и начать пробы &rarr;
                     </button>
                 </div>
             </div>
@@ -215,7 +215,7 @@
                                 <input type="file" id="user-photo" accept="image/*" class="w-full text-xs text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-cyan-500/10 file:text-cyan-400 hover:file:bg-cyan-500/20 cursor-pointer" />
                             </div>
                             <div class="w-full sm:w-auto sm:self-end">
-                                <button id="btn-premium-action" onclick="processPremiumPayment()" class="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-black text-xs tracking-wider rounded-lg shadow-lg shadow-amber-500/20 active:scale-95 transition-all duration-300 cursor-pointer uppercase">
+                                <button id="btn-premium-action" onclick="processPremiumPayment()" class="w-full sm:w-auto px-6 py-3 bg-gradient-to-br from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-black text-xs tracking-wider rounded-lg shadow-lg shadow-amber-500/20 active:scale-95 transition-all duration-300 cursor-pointer uppercase">
                                     АКТИВИРОВАТЬ ИИ ВЕРУ И ОПЛАТИТЬ 190 ₽
                                 </button>
                             </div>
@@ -228,7 +228,8 @@
             <div id="screen-chat" class="hidden py-8 px-4 md:px-12 relative z-10 flex flex-col h-[650px]">
                 <div class="flex items-center justify-between pb-4 border-b border-gray-800 mb-4 shrink-0">
                     <div class="flex items-center gap-3">
-                        <div class="relative w-12 h-12 bg-gradient-to-tr from-amber-500 to-red-500 rounded-full flex items-center justify-center font-black text-slate-950 shadow-md">
+                        <!-- ИСПРАВЛЕНО: Добавлен класс shrink-0, аватарка больше никогда не сожмется в овал -->
+                        <div class="relative w-12 h-12 bg-gradient-to-tr from-amber-500 to-red-500 rounded-full flex items-center justify-center font-black text-slate-950 shadow-md shrink-0">
                             ВМ
                             <span class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-[#0D1220] rounded-full"></span>
                         </div>
@@ -406,7 +407,7 @@
                             { text: "Быстро прячу карту, перепрыгиваю через парту и убегаю в тайный коридор.", tag: "action" },
                             { text: "Спокойно смотрю ему в глаза, прячу карту в рюкзак и заставляю его запутаться в своих словах.", tag: "drama" },
                             { text: "Притворяюсь, что это просто фантик от конфеты, смешно падаю и незаметно прячу карту.", tag: "comedy" },
-                            { text: "Встаю в полный рост, складываю руки на груди и командую ему немедленно вернуться на свой пост.", tag: "epic" }
+                            { text: "Встаю в полный рост, складываю руки на груди и командую ему немедленно вернуться на свой post.", tag: "epic" }
                         ]
                     },
                     {
@@ -518,7 +519,7 @@
         const rolesGradients = { action: "#083344", drama: "#3B0764", comedy: "#451A03", epic: "#064E3B" };
 
         const fakeMovieTitles = [
-            "ГОНЕНИЯ ПЕРВЫХ", "КОД ИЗОБИЛИЯ", "СИНГУЛЯРНОСТЬ СЫКТЫВКАРА", 
+            "ГОНЕНИЯ ПЕРВЫХ", "КОД ИЗОБИЛИЯ", "СИНКУЛЯРНОСТЬ СЫКТЫВКАРА", 
             "ВРЕМЯ РЕСУРСА", "ФАСЦИЯ СУДЬБЫ", "ОБРАТНЫЙ ОТСЧЕТ ОСОЗНАННОСТИ"
         ];
 
@@ -1017,7 +1018,9 @@
 
                 const data = await response.json();
                 chosenMovieTitle = data.movieTitle || "ВРЕМЯ РЕСУРСА"; 
-                generatedPremiumPosterUrl = data.posterUrl;
+                
+                // ИСПРАВЛЕНО: Восстановлен резервный путь генерации ИИ-ссылки, если posterUrl пустой
+                generatedPremiumPosterUrl = data.posterUrl || `${YANDEX_FUNCTION_URL}?title=${encodeURIComponent(displayTitle)}&movie=${encodeURIComponent(chosenMovieTitle)}`;
                 
                 const renderContainer = document.getElementById("poster-render-container");
                 if (renderContainer) {
