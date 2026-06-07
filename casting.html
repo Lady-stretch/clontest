@@ -225,10 +225,9 @@
                 </div>
             </div>
 
-            <!-- ИСПРАВЛЕНО: h-auto убирает все зажатия, чат теперь бесконечно скроллится вниз -->
-            <div id="screen-chat" class="hidden py-8 px-4 md:px-12 relative z-10 flex flex-col h-auto w-full">
-                <!-- ШАПКА С КНОПКОЙ «СОЗДАТЬ ПОСТЕР» -->
-                <div class="flex items-center justify-between pb-4 border-b border-gray-800 mb-6">
+            <!-- ИСПРАВЛЕНО: min-h-0 железно блокирует раздувание контейнера, сохраняя шапку на месте -->
+            <div id="screen-chat" class="hidden py-8 px-4 md:px-12 relative z-10 flex flex-col h-[650px]">
+                <div class="flex items-center justify-between pb-4 border-b border-gray-800 mb-4">
                     <div class="flex items-center gap-3">
                         <div class="relative w-12 h-12 bg-gradient-to-tr from-amber-500 to-red-500 rounded-full flex items-center justify-center font-black text-slate-950 shadow-md">
                             ВМ
@@ -239,24 +238,22 @@
                             <p id="chat-status" class="text-[11px] text-gray-500">Ассистент режиссера по актерам (в сети)</p>
                         </div>
                     </div>
-                    <!-- ИСПРАВЛЕНО: Кнопка переименована согласно вашей задаче -->
-                    <button onclick="terminateCastingAndRender()" class="px-4 py-2.5 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white text-xs font-black tracking-wider rounded-lg shadow-lg transition-all duration-200 cursor-pointer uppercase">
+                    <!-- ИСПРАВЛЕНО: Название кнопки заменено на финальное -->
+                    <button onclick="terminateCastingAndRender()" class="px-4 py-2 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 border border-transparent text-white text-xs font-black tracking-wider rounded-lg shadow-lg transition-all duration-200 cursor-pointer uppercase">
                         🎬 СОЗДАТЬ ПОСТЕР
                     </button>
                 </div>
 
-                <!-- БЛОК ХРОНИКИ ДИАЛОГОВ (Авто-рост без обрезания) -->
-                <div id="chat-messages-container" class="space-y-4 pr-2 mb-6 min-h-[150px]"></div>
+                <!-- ИСПРАВЛЕНО: Добавлен min-h-0 для корректного Flex-скроллинга в Tailwind -->
+                <div id="chat-messages-container" class="flex-grow overflow-y-auto min-h-0 space-y-4 pr-2 mb-4 scrollbar-thin"></div>
 
-                <!-- ИНДИКАТОР ПЕЧАТИ -->
-                <div id="chat-typing-indicator" class="hidden flex items-center gap-2 text-xs text-gray-500 px-4 mb-4 italic">
+                <div id="chat-typing-indicator" class="hidden flex items-center gap-2 text-xs text-gray-500 px-4 mb-2 italic">
                     <span class="inline-block animate-bounce">●</span>
                     <span class="inline-block animate-bounce delay-100">●</span>
                     <span class="inline-block animate-bounce delay-200">●</span>
                     Вера Мегера изучает ваши данные...
                 </div>
 
-                <!-- ПОЛЕ ПОДАЧИ ОТВЕТОВ -->
                 <div class="flex gap-2 p-2 bg-[#111827] border border-gray-800 rounded-xl items-center">
                     <input type="text" id="chat-user-input" onkeypress="handleChatKeyPress(event)" placeholder="Напишите ваш ответ Верочке в свободной форме..." class="flex-grow p-3 bg-transparent text-sm text-gray-200 placeholder-gray-600 focus:outline-none" />
                     <button onclick="sendUserMessageToAI()" class="p-3 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg transition-colors cursor-pointer font-bold text-xs uppercase tracking-widest">
@@ -412,7 +409,7 @@
                             { text: "Быстро прячу карту, перепрыгиваю через парту и убегаю в тайный коридор.", tag: "action" },
                             { text: "Спокойно смотрю ему в глаза, прячу карту в рюкзак и заставляю его запутаться в своих словах.", tag: "drama" },
                             { text: "Притворяюсь, что это просто фантик от конфеты, смешно падаю и незаметно прячу карту.", tag: "comedy" },
-                            { text: "Встаю в полный рост, складываю руки на груди и командую ему немедленно вернуться на свой пост.", tag: "epic" }
+                            { text: "Встаю в полный рост, складываю руки на груди и командую ему немедленно вернуться на свой post.", tag: "epic" }
                         ]
                     },
                     {
@@ -454,7 +451,7 @@
                 ],
                 female: [
                     {
-                        question: "Сцена: Ты играешь супергероиню в школе. Ты случайно нашла секретную карту, но вредная дежурная пытается её отнять. Твой ход?",
+                        question: "Сцена: Ты играешь супергероини в школе. Ты случайно нашла секретную карту, но вредная дежурная пытается её отнять. Твой ход?",
                         answers: [
                             { text: "Быстро прячу карту, перепрыгиваю через парту и убегаю в тайный коридор.", tag: "action" },
                             { text: "Спокойно смотрю ей в глаза, прячу карту в рюкзак и заставляю её запутаться в своих словах.", tag: "drama" },
@@ -481,7 +478,7 @@
                         ]
                     },
                     {
-                        question: "Кастинг на роль в таинственном кино. Тебе нужно показать, что ты разгладала главный секрет старого замка. Как сыграешь?",
+                        question: "Кастинг на роль в таинственном кино. Тебе нужно показать, что ты разгадала главный секрет старого замка. Как сыграешь?",
                         answers: [
                             { text: "Уверенно нажимаю на секретный камень в стене, открывая потайную дверь.", tag: "action" },
                             { text: "Внимательно рассматриваю старинный шифр, затаив дыхание от удивления.", tag: "drama" },
@@ -616,6 +613,13 @@
                 finalRoleKey = selectedRole;
                 chosenMovieTitle = fakeMovieTitles[Math.floor(Math.random() * fakeMovieTitles.length)];
                 
+                const container = document.getElementById("poster-render-container");
+                container.innerHTML = `
+                    <div class="border border-gray-800 bg-[#090D16] p-2 rounded-xl shadow-xl max-w-[320px] w-full transition-transform duration-300 group-hover:scale-[1.02]">
+                        <canvas id="posterCanvas" width="600" height="900" class="w-full h-auto rounded-lg bg-slate-900"></canvas>
+                    </div>
+                    <p id="poster-footer-caption" class="text-[10px] text-gray-600 mt-2">Базовый постер. Создан алгоритмом РЕСУРСА.</p>
+                `;
                 generatedPremiumPosterUrl = null;
 
                 renderResultScreen();
@@ -696,7 +700,7 @@
             
             img.onerror = () => {
                 const spaceBackupImg = new Image();
-                spaceBackupImg.src = "images/posters/" + finalRoleKey + "_" + selectedAge + "_" + selectedGender + "_1.png";
+                spaceBackupImg.src = "images/posters/" + finalRoleKey + "_" + selectedAge + "_" + selectedGender + " _1.png";
                 
                 spaceBackupImg.onload = () => {
                     ctx.drawImage(spaceBackupImg, 0, 0, canvas.width, canvas.height);
@@ -934,8 +938,6 @@
 
         function appendMessageToChat(sender, text) {
             const container = document.getElementById("chat-messages-container");
-            if (!container) return;
-            
             const msgRow = document.createElement("div");
             msgRow.className = sender === "ai" ? "flex justify-start animate-fadeIn" : "flex justify-end animate-fadeIn";
             
@@ -945,6 +947,7 @@
             
             msgRow.innerHTML = `<div class="${sender === 'ai' ? aiBubbleStyle : userBubbleStyle}">${text}</div>`;
             container.appendChild(msgRow);
+            container.scrollTop = container.scrollHeight; 
             
             currentAIConversation.push({
                 role: sender === "ai" ? "assistant" : "user",
@@ -968,9 +971,8 @@
 
             const indicator = document.getElementById("chat-typing-indicator");
             const statusText = document.getElementById("chat-status");
-            
-            if (indicator) indicator.classList.remove("hidden");
-            if (statusText) statusText.innerText = "Вера Мегера печатает...";
+            indicator.classList.remove("hidden");
+            statusText.innerText = "Вера Мегера печатает...";
 
             const displayTitle = rolesTitles[selectedAge][selectedGender][finalRoleKey];
 
@@ -989,14 +991,14 @@
 
                 const data = await response.json();
                 
-                if (indicator) indicator.classList.add("hidden");
-                if (statusText) statusText.innerText = "Ассистент режиссера по актерам (в сети)";
+                indicator.classList.add("hidden");
+                statusText.innerText = "Ассистент режиссера по актерам (в сети)";
                 appendMessageToChat("ai", data.aiResponse);
 
             } catch (err) {
                 console.error(err);
-                if (indicator) indicator.classList.add("hidden");
-                if (statusText) statusText.innerText = "Ассистент режиссера по актерам (в сети)";
+                indicator.classList.add("hidden");
+                statusText.innerText = "Ассистент режиссера по актерам (в сети)";
                 appendMessageToChat("ai", "Слушай, на площадке помехи со связью. Повтори свой последний ответ, я не расслышала.");
             }
         }
@@ -1019,6 +1021,7 @@
                 if (!response.ok) throw new Error("Ошибка бэкенда при финализации");
 
                 const data = await response.json();
+                
                 chosenMovieTitle = data.movieTitle || "ВРЕМЯ РЕСУРСА"; 
                 generatedPremiumPosterUrl = data.posterUrl || `${YANDEX_FUNCTION_URL}?title=${encodeURIComponent(displayTitle)}&movie=${encodeURIComponent(chosenMovieTitle)}`;
                 
