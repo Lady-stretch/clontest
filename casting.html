@@ -19,7 +19,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
     <title>Кинокастинг: На какую роль тебя взял бы режиссер? | РЕСУРС МЕДИА</title>
-    <meta name="description" content="Пройди интерактивные кинопробы и актерский кастинг от РЕСУРС МЕДИА. Узнай свое идеальное амплуа в кино, получи персональный постер блокбастера или активируй ИИ Face Swap от Веры Мегеры. Экосистема осознанности и фитнеса в Сыктывкаре.">
+    <meta name="description" content="Пройди интерактивные кинопробы и актерский кастинг от РЕСУРС МЕДИА. Узнай свое идеальное амплуа в кино, получи персональный постер блокбастера или активируй ИИ Face Swap от Веры Мегеры. Экосистема осознанности и фитнеса in Сыктывкаре.">
     <meta name="keywords" content="кинокастинг, кастинг сыктывкар, игра в кино, кинопробы, тест на роль в кино, киногерои, экосистема фитнеса, ресурс media, интерактивный тест, подбор роли">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://resurs-stretch.ru/casting.html">
@@ -59,7 +59,6 @@
         ::-webkit-scrollbar-thumb { background: #F59E0B; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #D97706; }
         
-        /* ИСПРАВЛЕНО: Полная изоляция блоков Floor Ad, чтобы они рендерились поверх слоя верстки и не сдвигали контейнеры вверх */
         .ya-floor-ad-container {
             position: fixed;
             bottom: 0;
@@ -238,7 +237,7 @@
                 </div>
             </div>
 
-            <div id="screen-chat" class="hidden py-8 px-4 md:px-12 relative z-10 flex flex-col h-[650px] max-h-[650px] box-border">
+            <div id="screen-chat" class="hidden py-6 px-4 md:px-12 relative z-10 flex flex-col h-auto min-h-[460px] max-h-[650px] box-border">
                 <div class="flex items-center justify-between pb-4 border-b border-gray-800 mb-4 shrink-0">
                     <div class="flex items-center gap-3">
                         <div class="relative w-12 h-12 bg-gradient-to-tr from-amber-500 to-red-500 rounded-full flex items-center justify-center font-black text-slate-950 shadow-md shrink-0">
@@ -565,7 +564,7 @@
         function setGender(gender) {
             selectedGender = gender;
             document.getElementById("btn-gender-male").className = gender === "male" ? "py-3 px-4 bg-gray-800 border border-amber-500 text-white font-bold text-sm rounded-lg active:scale-95 transition-all cursor-pointer" : "py-3 px-4 bg-gray-900 border border-gray-700 text-gray-400 font-bold text-sm rounded-lg active:scale-95 transition-all cursor-pointer";
-            document.getElementById("btn-gender-female").className = gender === "female" ? "py-3 px-4 bg-gray-800 border border-amber-500 text-white font-bold text-sm rounded-lg active:scale-95 transition-all cursor-pointer" : "py-3 px-4 bg-gray-900 border border-gray-700 text-gray-400 font-bold text-sm rounded-lg active:scale-95 transition-all cursor-pointer";
+            document.getElementById("btn-gender-female").className = gender === "female" ? "py-3 px-4 bg-gray-900 border border-gray-700 text-gray-400 font-bold text-sm rounded-lg active:scale-95 transition-all cursor-pointer" : "py-3 px-4 bg-gray-900 border border-gray-700 text-gray-400 font-bold text-sm rounded-lg active:scale-95 transition-all cursor-pointer";
         }
 
         function startQuiz() {
@@ -821,7 +820,7 @@
                 
                 img.onload = () => {
                     const canvas = document.createElement("canvas");
-                    const ctx = canvas.getContext("2d");
+                    const ctx = canvas.createElement("2d");
                     
                     const MAX_WIDTH = 1024;
                     const MAX_HEIGHT = 1024;
