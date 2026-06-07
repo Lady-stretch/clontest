@@ -26,7 +26,7 @@
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://resurs-stretch.ru/casting.html">
-    <meta property="og:title" content="Внимание, мотор! Я прошел ИИ-кастинг от РЕСУРС МЕДИА. Смотри мою афишу.">
+    <meta property="og:title" content="Внимание, motor! Я прошел ИИ-кастинг от РЕСУРС МЕДИА. Смотри мою афишу.">
     <meta property="og:description" content="Узнай, в каком шедевре кинематографа и в какой главной роли тебя видит режиссер. Пройди кинопробы здесь: https://resurs-stretch.ru/casting.html">
     <meta property="og:image" content="https://resurs-stretch.ru/images/posters/epic_adult_female_1.png">
 
@@ -179,7 +179,7 @@
                     </div>
 
                     <div id="poster-render-container" class="flex flex-col items-center justify-center relative group">
-                        <div class="border border-gray-800 bg-[#090D16] p-2 rounded-xl shadow-xl max-w-[320px] w-full transition-transform duration-300 group-hover:scale-[1.02]">
+                        <div id="poster-inner-box" class="border border-gray-800 bg-[#090D16] p-2 rounded-xl shadow-xl max-w-[320px] w-full transition-transform duration-300 group-hover:scale-[1.02]">
                             <canvas id="posterCanvas" width="600" height="900" class="w-full h-auto rounded-lg bg-slate-900"></canvas>
                         </div>
                         <p id="poster-footer-caption" class="text-[10px] text-gray-600 mt-2">Базовый постер. Создан алгоритмом РЕСУРСА.</p>
@@ -285,7 +285,6 @@
         let currentAIConversation = []; 
         let generatedPremiumPosterUrl = null; 
 
-        // Единый глобальный адрес функции для всех запросов
         const YANDEX_FUNCTION_URL = "https://functions.yandexcloud.net/d4eju04c56s0169gqfvp";
 
         const urlParams = new URLSearchParams(window.location.search);
@@ -611,13 +610,7 @@
                 finalRoleKey = selectedRole;
                 chosenMovieTitle = fakeMovieTitles[Math.floor(Math.random() * fakeMovieTitles.length)];
                 
-                const container = document.getElementById("poster-render-container");
-                container.innerHTML = `
-                    <div class="border border-gray-800 bg-[#090D16] p-2 rounded-xl shadow-xl max-w-[320px] w-full transition-transform duration-300 group-hover:scale-[1.02]">
-                        <canvas id="posterCanvas" width="600" height="900" class="w-full h-auto rounded-lg bg-slate-900"></canvas>
-                    </div>
-                    <p id="poster-footer-caption" class="text-[10px] text-gray-600 mt-2">Базовый постер. Создан алгоритмом РЕСУРСА.</p>
-                `;
+                // ИСПРАВЛЕНО: Больше не пересоздаем тег canvas с нуля, а просто сбрасываем состояние
                 generatedPremiumPosterUrl = null;
 
                 renderResultScreen();
@@ -808,7 +801,6 @@
                 .catch(err => console.log("Ошибка копирования в буфер:", err));
         }
 
-        // ВЫСОКОТЕХНОЛОГИЧНОЕ СЖАТИЕ ФОТОГРАФИИ НА СТОРONE БРАУЗЕРА ПЕРЕД ОТПРАВКОЙ (УБИРАЕТ ОШИБКУ 413)
         async function uploadUserPhotoToServer(file) {
             return new Promise((resolve, reject) => {
                 const img = new Image();
@@ -841,7 +833,6 @@
                     
                     const compressedBase64 = canvas.toDataURL("image/jpeg", 0.75);
                     
-                    // ИСПРАВЛЕНО: Теперь отправка фото идёт СТРОГО на YANDEX_FUNCTION_URL
                     fetch(YANDEX_FUNCTION_URL, {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
@@ -886,7 +877,6 @@
 
                 btn.innerText = isAdminMode ? "ОТКРЫТИЕ ПАВИЛЬОНА..." : "СВЯЗЬ С БАНКОМ...";
 
-                // ИСПРАВЛЕНО: Инициализация платежа идёт СТРОГО на YANDEX_FUNCTION_URL
                 const response = await fetch(YANDEX_FUNCTION_URL, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -976,7 +966,6 @@
             const displayTitle = rolesTitles[selectedAge][selectedGender][finalRoleKey];
 
             try {
-                // ИСПРАВЛЕНО: Отправка реплик диалога идёт СТРОГО на YANDEX_FUNCTION_URL
                 const response = await fetch(YANDEX_FUNCTION_URL, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -1003,12 +992,12 @@
             }
         }
 
+        // ИСПРАВЛЕНО: Безопасный рендеринг постера без риска затереть canvas
         async function terminateCastingAndRender() {
             const displayTitle = rolesTitles[selectedAge][selectedGender][finalRoleKey];
             showScreen("screen-loading");
 
             try {
-                // ИСПРАВЛЕНО: Финализация кастинга идёт СТРОГО на YANDEX_FUNCTION_URL
                 const response = await fetch(YANDEX_FUNCTION_URL, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -1026,6 +1015,7 @@
                 chosenMovieTitle = data.movieTitle || "ВРЕМЯ РЕСУРСА"; 
                 generatedPremiumPosterUrl = data.posterUrl || `${YANDEX_FUNCTION_URL}?title=${encodeURIComponent(displayTitle)}&movie=${encodeURIComponent(chosenMovieTitle)}`;
                 
+                // Перерисовываем бокс, меняя холст на готовую картинку только в самом конце
                 const renderContainer = document.getElementById("poster-render-container");
                 if (renderContainer) {
                     renderContainer.innerHTML = `
