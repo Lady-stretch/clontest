@@ -19,7 +19,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
     <title>Кинокастинг: На какую роль тебя взял бы режиссер? | РЕСУРС МЕДИА</title>
-    <meta name="description" content="Пройди интерактивные кинопробы и актерский кастинг от РЕСУРС МЕДИА. Узнай свое идеальное амплуа в кино, получи персональный постер блокбастера или активируй ИИ Face Swap от Веры Мегеры. Экосистема осознанности и фитнеса in Сыктывкаре.">
+    <meta name="description" content="Пройди интерактивные кинопробы и актерский кастинг от РЕСУРС МЕДИА. Узнай свое идеальное амплуа в кино, получи персональный постер блокбастера или активируй ИИ Face Swap от Веры Мегеры. Экосистема осознанности и фитнеса в Сыктывкаре.">
     <meta name="keywords" content="кинокастинг, кастинг сыктывкар, игра в кино, кинопробы, тест на роль в кино, киногерои, экосистема фитнеса, ресурс media, интерактивный тест, подбор роли">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://resurs-stretch.ru/casting.html">
@@ -564,7 +564,7 @@
         function setGender(gender) {
             selectedGender = gender;
             document.getElementById("btn-gender-male").className = gender === "male" ? "py-3 px-4 bg-gray-800 border border-amber-500 text-white font-bold text-sm rounded-lg active:scale-95 transition-all cursor-pointer" : "py-3 px-4 bg-gray-900 border border-gray-700 text-gray-400 font-bold text-sm rounded-lg active:scale-95 transition-all cursor-pointer";
-            document.getElementById("btn-gender-female").className = gender === "female" ? "py-3 px-4 bg-gray-900 border border-gray-700 text-gray-400 font-bold text-sm rounded-lg active:scale-95 transition-all cursor-pointer" : "py-3 px-4 bg-gray-900 border border-gray-700 text-gray-400 font-bold text-sm rounded-lg active:scale-95 transition-all cursor-pointer";
+            document.getElementById("btn-gender-female").className = gender === "female" ? "py-3 px-4 bg-gray-800 border border-amber-500 text-white font-bold text-sm rounded-lg active:scale-95 transition-all cursor-pointer" : "py-3 px-4 bg-gray-900 border border-gray-700 text-gray-400 font-bold text-sm rounded-lg active:scale-95 transition-all cursor-pointer";
         }
 
         function startQuiz() {
@@ -820,7 +820,8 @@
                 
                 img.onload = () => {
                     const canvas = document.createElement("canvas");
-                    const ctx = canvas.createElement("2d");
+                    // ИСПРАВЛЕНО: Заменен некорректный вызов canvas.createElement на canvas.getContext
+                    const ctx = canvas.getContext("2d");
                     
                     const MAX_WIDTH = 1024;
                     const MAX_HEIGHT = 1024;
