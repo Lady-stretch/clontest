@@ -26,7 +26,7 @@
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://resurs-stretch.ru/casting.html">
-    <meta property="og:title" content="Внимание, motor! Я прошел ИИ-кастинг от РЕСУРС МЕДИА. Смотри мою афишу.">
+    <meta property="og:title" content="Внимание, мотор! Я прошел ИИ-кастинг от РЕСУРС МЕДИА. Смотри мою афишу.">
     <meta property="og:description" content="Узнай, в каком шедевре кинематографа и в какой главной роли тебя видит режиссер. Пройди кинопробы здесь: https://resurs-stretch.ru/casting.html">
     <meta property="og:image" content="https://resurs-stretch.ru/images/posters/epic_adult_female_1.png">
 
@@ -150,29 +150,29 @@
                         <p id="result-description" class="text-gray-400 text-sm md:text-base leading-relaxed mb-6">Описание роли...</p>
                         
                         <div class="flex flex-wrap gap-3 mb-8 relative">
-                            <button id="btn-download-action" onclick="downloadPoster()" class="px-4 py-2.5 bg-gray-800 hover:bg-gray-700 text-white text-xs font-bold rounded-lg border border-gray-700 transition-colors cursor-pointer flex items-center gap-2">
+                            <button id="btn-download-action" onclick="downloadPoster()" class="px-4 py-2.5 bg-gray-800 hover:bg-gray-700 text-white text-xs font-bold rounded-lg border border-gray-700 transition-colors duration-300 cursor-pointer flex items-center gap-2">
                                 ⬇️ СКАЧАТЬ ПОСТЕР
                             </button>
                             
                             <div class="relative inline-block">
-                                <button onclick="shareResult()" class="px-4 py-2.5 bg-cyan-600 hover:bg-cyan-700 text-white text-xs font-bold rounded-lg transition-colors cursor-pointer flex items-center gap-2">
+                                <button onclick="shareResult()" class="px-4 py-2.5 bg-cyan-600 hover:bg-cyan-700 text-white text-xs font-bold rounded-lg transition-colors duration-300 cursor-pointer flex items-center gap-2">
                                     🔗 ПОДЕЛИТЬСЯ ССЫЛКОЙ
                                 </button>
                                 <div id="desktop-share-dropdown" class="hidden absolute left-0 mt-2 w-72 bg-[#111827] border border-gray-800 p-4 rounded-xl shadow-2xl z-50 animate-fadeIn">
                                     <p class="text-white text-xs font-bold mb-2">Ссылка для друзей:</p>
                                     <div class="flex gap-2 mb-2">
                                         <input type="text" id="share-link-input" readonly class="w-full p-2 text-[11px] bg-slate-950 border border-gray-800 rounded text-gray-400 focus:outline-none" />
-                                        <button onclick="copyShareLinkDirectly()" class="px-3 py-2 bg-amber-500 hover:bg-amber-600 text-slate-950 text-xs font-bold rounded transition-colors cursor-pointer">Копировать</button>
+                                        <button onclick="copyShareLinkDirectly()" class="px-3 py-2 bg-amber-500 hover:bg-amber-600 text-slate-950 text-xs font-bold rounded transition-colors duration-300 cursor-pointer">Копировать</button>
                                     </div>
                                     <p id="copy-success-message" class="text-[10px] text-emerald-400 font-bold hidden">✓ Ссылка скопирована в буфер!</p>
                                 </div>
                             </div>
                             
-                            <button id="btn-scroll-premium" onclick="scrollToPremium()" class="px-4 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 text-xs font-black rounded-lg active:scale-95 transition-all cursor-pointer flex items-center gap-2 uppercase">
+                            <button id="btn-scroll-premium" onclick="scrollToPremium()" class="px-4 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 text-xs font-black rounded-lg active:scale-95 transition-all duration-300 cursor-pointer flex items-center gap-2 uppercase">
                                 ✨ Премиум кастинг
                             </button>
                             
-                            <button onclick="restartQuiz()" class="px-4 py-2.5 bg-transparent hover:bg-gray-900 text-gray-400 hover:text-white text-xs font-bold rounded-lg transition-colors cursor-pointer flex items-center gap-2">
+                            <button onclick="restartQuiz()" class="px-4 py-2.5 bg-transparent hover:bg-gray-900 text-gray-400 hover:text-white text-xs font-bold rounded-lg transition-colors duration-300 cursor-pointer flex items-center gap-2">
                                 🔄 ЗАНОВО
                             </button>
                         </div>
@@ -610,7 +610,6 @@
                 finalRoleKey = selectedRole;
                 chosenMovieTitle = fakeMovieTitles[Math.floor(Math.random() * fakeMovieTitles.length)];
                 
-                // ИСПРАВЛЕНО: Больше не пересоздаем тег canvas с нуля, а просто сбрасываем состояние
                 generatedPremiumPosterUrl = null;
 
                 renderResultScreen();
@@ -905,7 +904,10 @@
                     const msgContainer = document.getElementById("chat-messages-container");
                     if (msgContainer) msgContainer.innerHTML = "";
 
-                    appendMessageToChat("ai", `Так, присаживайся. Я ассистент режиссера Вера Мегера. Изучила твою карточку. На базовых пробах тебе выдали амплуа «${displayTitle}». Хм... Посмотрим, соответствуешь ли ты заявленному уровню. Расскажи мне, почему ты считаешь, что эта роль в кино должна достаться именно тебе? Напиши своими словами, я слушаю.`);
+                    // ИСПРАВЛЕНО: Безопасный вызов стартовой реплики Веры с проверкой DOM-узла
+                    setTimeout(() => {
+                        appendMessageToChat("ai", `Так, присаживайся. Я ассистент режиссера Вера Мегера. Изучила твою карточку. На базовых пробах тебе выдали амплуа «${displayTitle}». Хм... Посмотрим, соответствуешь ли ты заявленному уровню. Расскажи мне, почему ты считаешь, что эта роль в кино должна достаться именно тебе? Напиши своими словами, я слушаю.`);
+                    }, 50);
                     return;
                 }
 
@@ -927,6 +929,8 @@
 
         function appendMessageToChat(sender, text) {
             const container = document.getElementById("chat-messages-container");
+            if (!container) return;
+            
             const msgRow = document.createElement("div");
             msgRow.className = sender === "ai" ? "flex justify-start animate-fadeIn" : "flex justify-end animate-fadeIn";
             
@@ -960,8 +964,10 @@
 
             const indicator = document.getElementById("chat-typing-indicator");
             const statusText = document.getElementById("chat-status");
-            indicator.classList.remove("hidden");
-            statusText.innerText = "Вера Мегера печатает...";
+            
+            // ИСПРАВЛЕНО: Безопасное изменение надписи статуса с защитой от null
+            if (indicator) indicator.classList.remove("hidden");
+            if (statusText) statusText.innerText = "Вера Мегера печатает...";
 
             const displayTitle = rolesTitles[selectedAge][selectedGender][finalRoleKey];
 
@@ -980,19 +986,18 @@
 
                 const data = await response.json();
                 
-                indicator.classList.add("hidden");
-                statusText.innerText = "Ассистент режиссера по актерам (в сети)";
+                if (indicator) indicator.classList.add("hidden");
+                if (statusText) statusText.innerText = "Ассистент режиссера по актерам (в сети)";
                 appendMessageToChat("ai", data.aiResponse);
 
             } catch (err) {
                 console.error(err);
-                indicator.classList.add("hidden");
-                statusText.innerText = "Ассистент режиссера по актерам (в сети)";
+                if (indicator) indicator.classList.add("hidden");
+                if (statusText) statusText.innerText = "Ассистент режиссера по актерам (в сети)";
                 appendMessageToChat("ai", "Слушай, на площадке помехи со связью. Повтори свой последний ответ, я не расслышала.");
             }
         }
 
-        // ИСПРАВЛЕНО: Безопасный рендеринг постера без риска затереть canvas
         async function terminateCastingAndRender() {
             const displayTitle = rolesTitles[selectedAge][selectedGender][finalRoleKey];
             showScreen("screen-loading");
@@ -1011,11 +1016,9 @@
                 if (!response.ok) throw new Error("Ошибка бэкенда при финализации");
 
                 const data = await response.json();
-                
                 chosenMovieTitle = data.movieTitle || "ВРЕМЯ РЕСУРСА"; 
                 generatedPremiumPosterUrl = data.posterUrl || `${YANDEX_FUNCTION_URL}?title=${encodeURIComponent(displayTitle)}&movie=${encodeURIComponent(chosenMovieTitle)}`;
                 
-                // Перерисовываем бокс, меняя холст на готовую картинку только в самом конце
                 const renderContainer = document.getElementById("poster-render-container");
                 if (renderContainer) {
                     renderContainer.innerHTML = `
