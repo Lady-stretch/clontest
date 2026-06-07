@@ -225,8 +225,10 @@
                 </div>
             </div>
 
-            <div id="screen-chat" class="hidden py-6 px-4 md:px-12 relative z-10 flex flex-col w-full">
-                <div class="flex items-center justify-between pb-4 border-b border-gray-800 mb-4 shrink-0">
+            <!-- ИСПРАВЛЕНО: h-auto убирает все зажатия, чат теперь бесконечно скроллится вниз -->
+            <div id="screen-chat" class="hidden py-8 px-4 md:px-12 relative z-10 flex flex-col h-auto w-full">
+                <!-- ШАПКА С КНОПКОЙ «СОЗДАТЬ ПОСТЕР» -->
+                <div class="flex items-center justify-between pb-4 border-b border-gray-800 mb-6">
                     <div class="flex items-center gap-3">
                         <div class="relative w-12 h-12 bg-gradient-to-tr from-amber-500 to-red-500 rounded-full flex items-center justify-center font-black text-slate-950 shadow-md">
                             ВМ
@@ -237,23 +239,27 @@
                             <p id="chat-status" class="text-[11px] text-gray-500">Ассистент режиссера по актерам (в сети)</p>
                         </div>
                     </div>
-                    <button onclick="terminateCastingAndRender()" class="px-4 py-2 bg-red-600/10 hover:bg-red-600 border border-red-500/30 hover:border-red-600 text-red-400 hover:text-white text-xs font-bold tracking-wider rounded-lg transition-all duration-200 cursor-pointer uppercase shrink-0">
-                        🎬 Завершить кастинг
+                    <!-- ИСПРАВЛЕНО: Кнопка переименована согласно вашей задаче -->
+                    <button onclick="terminateCastingAndRender()" class="px-4 py-2.5 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white text-xs font-black tracking-wider rounded-lg shadow-lg transition-all duration-200 cursor-pointer uppercase">
+                        🎬 СОЗДАТЬ ПОСТЕР
                     </button>
                 </div>
 
-                <div id="chat-messages-container" class="overflow-y-auto space-y-4 pr-2 mb-4 h-[400px] md:h-[450px] border border-transparent" style="scroll-behavior: smooth;"></div>
+                <!-- БЛОК ХРОНИКИ ДИАЛОГОВ (Авто-рост без обрезания) -->
+                <div id="chat-messages-container" class="space-y-4 pr-2 mb-6 min-h-[150px]"></div>
 
-                <div id="chat-typing-indicator" class="hidden flex items-center gap-2 text-xs text-gray-500 px-4 mb-2 italic shrink-0">
+                <!-- ИНДИКАТОР ПЕЧАТИ -->
+                <div id="chat-typing-indicator" class="hidden flex items-center gap-2 text-xs text-gray-500 px-4 mb-4 italic">
                     <span class="inline-block animate-bounce">●</span>
                     <span class="inline-block animate-bounce delay-100">●</span>
                     <span class="inline-block animate-bounce delay-200">●</span>
                     Вера Мегера изучает ваши данные...
                 </div>
 
-                <div class="flex gap-2 p-2 bg-[#111827] border border-gray-800 rounded-xl items-center shrink-0">
+                <!-- ПОЛЕ ПОДАЧИ ОТВЕТОВ -->
+                <div class="flex gap-2 p-2 bg-[#111827] border border-gray-800 rounded-xl items-center">
                     <input type="text" id="chat-user-input" onkeypress="handleChatKeyPress(event)" placeholder="Напишите ваш ответ Верочке в свободной форме..." class="flex-grow p-3 bg-transparent text-sm text-gray-200 placeholder-gray-600 focus:outline-none" />
-                    <button onclick="sendUserMessageToAI()" class="p-3 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg transition-colors cursor-pointer font-bold text-xs uppercase tracking-widest shrink-0">
+                    <button onclick="sendUserMessageToAI()" class="p-3 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg transition-colors cursor-pointer font-bold text-xs uppercase tracking-widest">
                         Ответить
                     </button>
                 </div>
@@ -263,7 +269,7 @@
     </main>
 
     <footer class="w-full py-6 px-6 border-t border-gray-800 text-center text-xs text-gray-500 bg-[#070A12]">
-        &copy; 2026 Media-проект independent типа в экосистеме РЕСУРС. Все права защищены.
+        &copy; 2026 Media-проект независимого типа в экосистеме РЕСУРС. Все права защищены.
     </footer>
 
     <script>
@@ -690,7 +696,7 @@
             
             img.onerror = () => {
                 const spaceBackupImg = new Image();
-                spaceBackupImg.src = "images/posters/" + finalRoleKey + "_" + selectedAge + "_" + selectedGender + " _1.png";
+                spaceBackupImg.src = "images/posters/" + finalRoleKey + "_" + selectedAge + "_" + selectedGender + "_1.png";
                 
                 spaceBackupImg.onload = () => {
                     ctx.drawImage(spaceBackupImg, 0, 0, canvas.width, canvas.height);
@@ -939,8 +945,6 @@
             
             msgRow.innerHTML = `<div class="${sender === 'ai' ? aiBubbleStyle : userBubbleStyle}">${text}</div>`;
             container.appendChild(msgRow);
-            
-            container.scrollTop = container.scrollHeight;
             
             currentAIConversation.push({
                 role: sender === "ai" ? "assistant" : "user",
