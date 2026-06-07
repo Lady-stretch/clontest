@@ -225,9 +225,8 @@
                 </div>
             </div>
 
-            <!-- ИСПРАВЛЕНО: Добавлен плавный внутренний скролл и убраны дубли текста -->
-            <div id="screen-chat" class="hidden py-8 px-4 md:px-12 relative z-10 flex flex-col h-[650px]">
-                <div class="flex items-center justify-between pb-4 border-b border-gray-800 mb-4">
+            <div id="screen-chat" class="hidden py-6 px-4 md:px-12 relative z-10 flex flex-col w-full">
+                <div class="flex items-center justify-between pb-4 border-b border-gray-800 mb-4 shrink-0">
                     <div class="flex items-center gap-3">
                         <div class="relative w-12 h-12 bg-gradient-to-tr from-amber-500 to-red-500 rounded-full flex items-center justify-center font-black text-slate-950 shadow-md">
                             ВМ
@@ -238,23 +237,23 @@
                             <p id="chat-status" class="text-[11px] text-gray-500">Ассистент режиссера по актерам (в сети)</p>
                         </div>
                     </div>
-                    <button onclick="terminateCastingAndRender()" class="px-4 py-2 bg-red-600/10 hover:bg-red-600 border border-red-500/30 hover:border-red-600 text-red-400 hover:text-white text-xs font-bold tracking-wider rounded-lg transition-all duration-200 cursor-pointer uppercase">
+                    <button onclick="terminateCastingAndRender()" class="px-4 py-2 bg-red-600/10 hover:bg-red-600 border border-red-500/30 hover:border-red-600 text-red-400 hover:text-white text-xs font-bold tracking-wider rounded-lg transition-all duration-200 cursor-pointer uppercase shrink-0">
                         🎬 Завершить кастинг
                     </button>
                 </div>
 
-                <div id="chat-messages-container" class="flex-grow overflow-y-auto space-y-4 pr-2 mb-4 scrollbar-none" style="scroll-behavior: smooth;"></div>
+                <div id="chat-messages-container" class="overflow-y-auto space-y-4 pr-2 mb-4 h-[400px] md:h-[450px] border border-transparent" style="scroll-behavior: smooth;"></div>
 
-                <div id="chat-typing-indicator" class="hidden flex items-center gap-2 text-xs text-gray-500 px-4 mb-2 italic">
+                <div id="chat-typing-indicator" class="hidden flex items-center gap-2 text-xs text-gray-500 px-4 mb-2 italic shrink-0">
                     <span class="inline-block animate-bounce">●</span>
                     <span class="inline-block animate-bounce delay-100">●</span>
                     <span class="inline-block animate-bounce delay-200">●</span>
                     Вера Мегера изучает ваши данные...
                 </div>
 
-                <div class="flex gap-2 p-2 bg-[#111827] border border-gray-800 rounded-xl items-center">
+                <div class="flex gap-2 p-2 bg-[#111827] border border-gray-800 rounded-xl items-center shrink-0">
                     <input type="text" id="chat-user-input" onkeypress="handleChatKeyPress(event)" placeholder="Напишите ваш ответ Верочке в свободной форме..." class="flex-grow p-3 bg-transparent text-sm text-gray-200 placeholder-gray-600 focus:outline-none" />
-                    <button onclick="sendUserMessageToAI()" class="p-3 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg transition-colors cursor-pointer font-bold text-xs uppercase tracking-widest">
+                    <button onclick="sendUserMessageToAI()" class="p-3 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg transition-colors cursor-pointer font-bold text-xs uppercase tracking-widest shrink-0">
                         Ответить
                     </button>
                 </div>
@@ -264,7 +263,7 @@
     </main>
 
     <footer class="w-full py-6 px-6 border-t border-gray-800 text-center text-xs text-gray-500 bg-[#070A12]">
-        &copy; 2026 Media-проект независимого типа в экосистеме РЕСУРС. Все права защищены.
+        &copy; 2026 Media-проект independent типа в экосистеме РЕСУРС. Все права защищены.
     </footer>
 
     <script>
@@ -512,7 +511,7 @@
             action: "Вы обладаете невероятной скоростью реакции, физической собранностью и решительностью. Режиссеры динамичных экшенов увидели бы в вас идеального протагониста, способного вытащить любую сложнейшую сцену за счет личной харизмы, точности движений и хладнокровия в моменты кризиса.",
             drama: "Ваш конек — глубокая психологическая проработка, эмоциональная честность и умение держать драматическую паузу. Ваше присутствие в кадре заставляет зрителя сопереживать каждой секунде. Это амплуа для фестивального кино высокого уровня, где ценится глубина взгляда и микромимика.",
             comedy: "Вы — генератор энергии, способный мгновенно разрядить любую обстановку с помощью безупречной самоиронии, пластичности и нестандартного мышления. Вы легко ломаете шаблоны поведения, удерживая внимание зрителя за счет искренности, динамики и великолепного чувства ритма.",
-            epic: "Монументальное спокойствие, strategic мышление и врожденные лидерские качества. Вы органично смотритесь в масштабных кадрах исторических саг, космических опер или фэнтези. Ваша роль — человек, за которым идут, восстанавливающий порядок, структуру и гармонию."
+            epic: "Монументальное спокойствие, стратегическое мышление и врожденные лидерские качества. Вы органично смотритесь в масштабных кадрах исторических саг, космических опер или фэнтези. Ваша роль — человек, за которым идут, восстанавливающий порядок, структуру и гармонию."
         };
 
         const rolesColors = { action: "#06B6D4", drama: "#A855F7", comedy: "#F59E0B", epic: "#10B981" };
@@ -728,7 +727,7 @@
             if (generatedPremiumPosterUrl) {
                 const link = document.createElement("a");
                 link.download = `Premium_Casting_${chosenMovieTitle}.png`;
-                link.href = generatedPremiumPremiumUrl;
+                link.href = generatedPremiumPosterUrl;
                 link.click();
             } else {
                 const canvas = document.getElementById("posterCanvas");
@@ -927,7 +926,6 @@
             }
         }
 
-        // ИСПРАВЛЕНО: Добавлен принудительный авто-скролл вниз при выводе каждой новой реплики
         function appendMessageToChat(sender, text) {
             const container = document.getElementById("chat-messages-container");
             if (!container) return;
@@ -942,7 +940,6 @@
             msgRow.innerHTML = `<div class="${sender === 'ai' ? aiBubbleStyle : userBubbleStyle}">${text}</div>`;
             container.appendChild(msgRow);
             
-            // Жесткая прокрутка к нижнему краю
             container.scrollTop = container.scrollHeight;
             
             currentAIConversation.push({
