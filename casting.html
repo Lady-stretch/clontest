@@ -225,6 +225,7 @@
                 </div>
             </div>
 
+            <!-- ИСПРАВЛЕНО: Добавлен плавный внутренний скролл и убраны дубли текста -->
             <div id="screen-chat" class="hidden py-8 px-4 md:px-12 relative z-10 flex flex-col h-[650px]">
                 <div class="flex items-center justify-between pb-4 border-b border-gray-800 mb-4">
                     <div class="flex items-center gap-3">
@@ -242,7 +243,7 @@
                     </button>
                 </div>
 
-                <div id="chat-messages-container" class="flex-grow overflow-y-auto space-y-4 pr-2 mb-4 scrollbar-thin"></div>
+                <div id="chat-messages-container" class="flex-grow overflow-y-auto space-y-4 pr-2 mb-4 scrollbar-none" style="scroll-behavior: smooth;"></div>
 
                 <div id="chat-typing-indicator" class="hidden flex items-center gap-2 text-xs text-gray-500 px-4 mb-2 italic">
                     <span class="inline-block animate-bounce">●</span>
@@ -511,7 +512,7 @@
             action: "Вы обладаете невероятной скоростью реакции, физической собранностью и решительностью. Режиссеры динамичных экшенов увидели бы в вас идеального протагониста, способного вытащить любую сложнейшую сцену за счет личной харизмы, точности движений и хладнокровия в моменты кризиса.",
             drama: "Ваш конек — глубокая психологическая проработка, эмоциональная честность и умение держать драматическую паузу. Ваше присутствие в кадре заставляет зрителя сопереживать каждой секунде. Это амплуа для фестивального кино высокого уровня, где ценится глубина взгляда и микромимика.",
             comedy: "Вы — генератор энергии, способный мгновенно разрядить любую обстановку с помощью безупречной самоиронии, пластичности и нестандартного мышления. Вы легко ломаете шаблоны поведения, удерживая внимание зрителя за счет искренности, динамики и великолепного чувства ритма.",
-            epic: "Монументальное спокойствие, стратегическое мышление и врожденные лидерские качества. Вы органично смотритесь в масштабных кадрах исторических саг, космических опер или фэнтези. Ваша роль — человек, за которым идут, восстанавливающий порядок, структуру и гармонию."
+            epic: "Монументальное спокойствие, strategic мышление и врожденные лидерские качества. Вы органично смотритесь в масштабных кадрах исторических саг, космических опер или фэнтези. Ваша роль — человек, за которым идут, восстанавливающий порядок, структуру и гармонию."
         };
 
         const rolesColors = { action: "#06B6D4", drama: "#A855F7", comedy: "#F59E0B", epic: "#10B981" };
@@ -727,7 +728,7 @@
             if (generatedPremiumPosterUrl) {
                 const link = document.createElement("a");
                 link.download = `Premium_Casting_${chosenMovieTitle}.png`;
-                link.href = generatedPremiumPosterUrl;
+                link.href = generatedPremiumPremiumUrl;
                 link.click();
             } else {
                 const canvas = document.getElementById("posterCanvas");
@@ -904,7 +905,6 @@
                     const msgContainer = document.getElementById("chat-messages-container");
                     if (msgContainer) msgContainer.innerHTML = "";
 
-                    // ИСПРАВЛЕНО: Безопасный вызов стартовой реплики Веры с проверкой DOM-узла
                     setTimeout(() => {
                         appendMessageToChat("ai", `Так, присаживайся. Я ассистент режиссера Вера Мегера. Изучила твою карточку. На базовых пробах тебе выдали амплуа «${displayTitle}». Хм... Посмотрим, соответствуешь ли ты заявленному уровню. Расскажи мне, почему ты считаешь, что эта роль в кино должна достаться именно тебе? Напиши своими словами, я слушаю.`);
                     }, 50);
@@ -927,6 +927,7 @@
             }
         }
 
+        // ИСПРАВЛЕНО: Добавлен принудительный авто-скролл вниз при выводе каждой новой реплики
         function appendMessageToChat(sender, text) {
             const container = document.getElementById("chat-messages-container");
             if (!container) return;
@@ -940,7 +941,9 @@
             
             msgRow.innerHTML = `<div class="${sender === 'ai' ? aiBubbleStyle : userBubbleStyle}">${text}</div>`;
             container.appendChild(msgRow);
-            container.scrollTop = container.scrollHeight; 
+            
+            // Жесткая прокрутка к нижнему краю
+            container.scrollTop = container.scrollHeight;
             
             currentAIConversation.push({
                 role: sender === "ai" ? "assistant" : "user",
@@ -965,7 +968,6 @@
             const indicator = document.getElementById("chat-typing-indicator");
             const statusText = document.getElementById("chat-status");
             
-            // ИСПРАВЛЕНО: Безопасное изменение надписи статуса с защитой от null
             if (indicator) indicator.classList.remove("hidden");
             if (statusText) statusText.innerText = "Вера Мегера печатает...";
 
