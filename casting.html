@@ -41,7 +41,7 @@
       "url": "https://resurs-stretch.ru/casting.html",
       "publisher": {
         "@type": "Organization",
-        "name": "Студия растяжки и движения РЕСУРС",
+        "name": "Студия фитнеса and растяжки РЕСУРС",
         "logo": {
           "@type": "ImageObject",
           "url": "https://resurs-stretch.ru/logo_header_final.png"
@@ -58,21 +58,9 @@
         ::-webkit-scrollbar-track { background: #0B0F19; }
         ::-webkit-scrollbar-thumb { background: #F59E0B; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #D97706; }
-        
-        .ya-floor-ad-container {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            z-index: 9999;
-            pointer-events: none;
-        }
-        .ya-floor-ad-container > * {
-            pointer-events: auto;
-        }
     </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between overflow-x-hidden antialiased pb-[100px] md:pb-0">
+<body class="min-h-screen flex flex-col justify-between overflow-x-hidden antialiased">
 
     <header class="w-full py-4 px-6 border-b border-gray-800 bg-[#0D1220]/80 backdrop-blur-md sticky top-0 z-50">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
@@ -81,7 +69,7 @@
                 РЕСУРС <span class="text-xs font-normal text-gray-500 tracking-normal border-l border-gray-700 pl-2 ml-1">МЕДИА</span>
             </div>
             <a href="index.html" class="text-xs text-gray-400 hover:text-cyan-400 transition-colors duration-300 flex items-center gap-1">
-                &larr; На главную
+                ← На главную
             </a>
         </div>
     </header>
@@ -130,7 +118,7 @@
 
                 <div class="text-center">
                     <button onclick="startQuiz()" class="px-8 py-3.5 bg-gradient-to-r from-cyan-500 to-cyan-600 hover:from-cyan-600 hover:to-cyan-700 text-slate-950 font-black text-sm tracking-widest rounded-xl transition-all cursor-pointer uppercase">
-                        Включить освещение и начать пробы &rarr;
+                        Включить освещение и начать пробы →
                     </button>
                 </div>
             </div>
@@ -218,7 +206,7 @@
                             🎭 ПРОЙТИ ИИ-КАСТИНГ У ВЕРЫ МЕГЕРЫ И СГЕНЕРИРОВАТЬ АФИШУ С ЛИЦОМ
                         </h3>
                         <p class="text-gray-400 text-xs md:text-sm leading-relaxed mb-6">
-                            Вам понравился базовый результат пробы? Пора заявить о себе по-настоящему! Переходите на продвинутый уровень кастинга. **Вера Мегера** — наш харизматичный, строгий и professional ассистент режиссера по актерам — проведет с вами индивидуальное интерактивное ИИ-собеседование. Ответьте на её вопросы в свободной форме, впишите свое имя для титров, и нейросеть выполнит **Face Swap** — создаст полноценную эксклюзивную голливудскую киноафишу, интегрировав ваше лицо в сцену фильма с уникальным названием! Оплата через ЮKassa.
+                            Вам понравился базовый результат пробы? Пора заявить о себе по-настоящему! Переходите на продвинутый уровень кастинга. **Вера Мегера** — наш харизматичный, строгий и профессиональный ассистент режиссера по актерам — проведет с вами индивидуальное интерактивное ИИ-собеседование. Ответьте на её вопросы в свободной форме, впишите свое имя для титров, и нейросеть выполнит **Face Swap** — создаст полноценную эксклюзивную голливудскую киноафишу, интегрировав ваше лицо в сцену фильма с уникальным названием! Оплата через ЮKassa.
                         </p>
                         
                         <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
@@ -227,7 +215,7 @@
                                 <input type="file" id="user-photo" accept="image/*" class="w-full text-xs text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-cyan-500/10 file:text-cyan-400 hover:file:bg-cyan-500/20 cursor-pointer" />
                             </div>
                             <div class="w-full sm:w-auto sm:self-end">
-                                <button id="btn-premium-action" onclick="processPremiumPayment()" class="w-full sm:w-auto px-6 py-3 bg-gradient-to-br from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-black text-xs tracking-wider rounded-lg shadow-lg shadow-amber-500/20 active:scale-95 transition-all duration-300 cursor-pointer uppercase">
+                                <button id="btn-premium-action" onclick="processPremiumPayment()" class="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-black text-xs tracking-wider rounded-lg shadow-lg shadow-amber-500/20 active:scale-95 transition-all duration-300 cursor-pointer uppercase">
                                     АКТИВИРОВАТЬ ИИ ВЕРУ И ОПЛАТИТЬ 190 ₽
                                 </button>
                             </div>
@@ -237,10 +225,10 @@
                 </div>
             </div>
 
-            <div id="screen-chat" class="hidden py-6 px-4 md:px-12 relative z-10 flex flex-col h-auto min-h-[460px] max-h-[650px] box-border">
+            <div id="screen-chat" class="hidden py-8 px-4 md:px-12 relative z-10 flex flex-col h-[650px]">
                 <div class="flex items-center justify-between pb-4 border-b border-gray-800 mb-4 shrink-0">
                     <div class="flex items-center gap-3">
-                        <div class="relative w-12 h-12 bg-gradient-to-tr from-amber-500 to-red-500 rounded-full flex items-center justify-center font-black text-slate-950 shadow-md shrink-0">
+                        <div class="relative w-12 h-12 bg-gradient-to-tr from-amber-500 to-red-500 rounded-full flex items-center justify-center font-black text-slate-950 shadow-md">
                             ВМ
                             <span class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-[#0D1220] rounded-full"></span>
                         </div>
@@ -264,7 +252,7 @@
                 </div>
 
                 <div class="flex gap-2 p-2 bg-[#111827] border border-gray-800 rounded-xl items-center shrink-0">
-                    <input type="text" id="chat-user-input" onkeypress="handleChatKeyPress(event)" placeholder="Напишите ваш answer Верочке в свободной форме..." class="flex-grow p-3 bg-transparent text-sm text-gray-200 placeholder-gray-600 focus:outline-none" />
+                    <input type="text" id="chat-user-input" onkeypress="handleChatKeyPress(event)" placeholder="Напишите ваш ответ Верочке в свободной форме..." class="flex-grow p-3 bg-transparent text-sm text-gray-200 placeholder-gray-600 focus:outline-none" />
                     <button onclick="sendUserMessageToAI()" class="p-3 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg transition-colors cursor-pointer font-bold text-xs uppercase tracking-widest shrink-0">
                         Ответить
                     </button>
@@ -278,19 +266,17 @@
         &copy; 2026 Media-проект независимого типа в экосистеме РЕСУРС. Все права защищены.
     </footer>
 
-    <div class="ya-floor-ad-container">
-        <script>
-        window.yaContextCb.push(() => {
-            Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-5", "type": "floorAd", "platform": "touch" })
-        });
-        window.yaContextCb.push(() => {
-            Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-6", "type": "floorAd", "platform": "touch" })
-        });
-        window.yaContextCb.push(() => {
-            Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-7", "type": "floorAd", "platform": "desktop" })
-        });
-        </script>
-    </div>
+    <script>
+    window.yaContextCb.push(() => {
+        Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-5", "type": "floorAd", "platform": "touch" })
+    });
+    window.yaContextCb.push(() => {
+        Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-6", "type": "floorAd", "platform": "touch" })
+    });
+    window.yaContextCb.push(() => {
+        Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-7", "type": "floorAd", "platform": "desktop" })
+    });
+    </script>
 
     <script>
         let selectedAge = "adult"; 
@@ -420,7 +406,7 @@
                             { text: "Быстро прячу карту, перепрыгиваю через парту и убегаю в тайный коридор.", tag: "action" },
                             { text: "Спокойно смотрю ему в глаза, прячу карту в рюкзак и заставляю его запутаться в своих словах.", tag: "drama" },
                             { text: "Притворяюсь, что это просто фантик от конфеты, смешно падаю и незаметно прячу карту.", tag: "comedy" },
-                            { text: "Встаю в полный рост, складываю руки на груди и командую ему немедленно вернуться на свой post.", tag: "epic" }
+                            { text: "Встаю в полный рост, складываю руки на груди и командую ему немедленно вернуться на свой пост.", tag: "epic" }
                         ]
                     },
                     {
@@ -489,7 +475,7 @@
                         ]
                     },
                     {
-                        question: "Кастинг на роль в таинственном кино. Тебе нужно показать, что ты разгадала главный секрет старого замка. Как сыграешь?",
+                        question: "Кастинг на роль в таинственном кино. Тебе нужно показать, что ты разгладала главный секрет старого замка. Как сыграешь?",
                         answers: [
                             { text: "Уверенно нажимаю на секретный камень в стене, открывая потайную дверь.", tag: "action" },
                             { text: "Внимательно рассматриваю старинный шифр, затаив дыхание от удивления.", tag: "drama" },
@@ -532,7 +518,7 @@
         const rolesGradients = { action: "#083344", drama: "#3B0764", comedy: "#451A03", epic: "#064E3B" };
 
         const fakeMovieTitles = [
-            "ГОНЕНИЯ ПЕРВЫХ", "КОД ИЗОБИЛИЯ", "СИНКУЛЯРНОСТЬ СЫКТЫВКАРА", 
+            "ГОНЕНИЯ ПЕРВЫХ", "КОД ИЗОБИЛИЯ", "СИНГУЛЯРНОСТЬ СЫКТЫВКАРА", 
             "ВРЕМЯ РЕСУРСА", "ФАСЦИЯ СУДЬБЫ", "ОБРАТНЫЙ ОТСЧЕТ ОСОЗНАННОСТИ"
         ];
 
@@ -647,9 +633,7 @@
             showScreen("screen-result");
             
             if (!generatedPremiumPosterUrl) {
-                setTimeout(() => {
-                    generateCanvasPoster(displayTitle);
-                }, 50);
+                generateCanvasPoster(displayTitle);
             }
         }
 
@@ -712,27 +696,37 @@
             };
             
             img.onerror = () => {
-                const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-                gradient.addColorStop(0, "#0D1220");
-                gradient.addColorStop(1, bottomHex + "44");
-                ctx.fillStyle = gradient;
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                const spaceBackupImg = new Image();
+                spaceBackupImg.src = "images/posters/" + finalRoleKey + "_" + selectedAge + "_" + selectedGender + "_1.png";
                 
-                ctx.strokeStyle = accentColor; ctx.lineWidth = 4; ctx.strokeRect(20, 20, canvas.width - 40, canvas.height - 40);
-                ctx.strokeStyle = "rgba(255, 255, 255, 0.05)"; ctx.lineWidth = 1; ctx.strokeRect(32, 32, canvas.width - 64, canvas.height - 64);
-
-                const cx = canvas.width / 2; const cy = canvas.height / 2 - 40; const r = 60;
-                ctx.strokeStyle = accentColor; ctx.lineWidth = 3;
-                ctx.beginPath(); ctx.moveTo(cx - r, cy - r + 15); ctx.lineTo(cx - r, cy - r); ctx.lineTo(cx - r + 15, cy - r); ctx.stroke();
-                ctx.beginPath(); ctx.moveTo(cx + r, cy - r + 15); ctx.lineTo(cx + r, cy - r); ctx.lineTo(cx + r - 15, cy - r); ctx.stroke();
-                ctx.beginPath(); ctx.moveTo(cx - r, cy + r - 15); ctx.lineTo(cx - r, cy + r); ctx.lineTo(cx - r + 15, cy + r); ctx.stroke();
-                ctx.beginPath(); ctx.moveTo(cx + r, cy + r - 15); ctx.lineTo(cx + r, cy + r); ctx.lineTo(cx + r - 15, cy + r); ctx.stroke();
-
-                drawPosterTypography();
+                spaceBackupImg.onload = () => {
+                    ctx.drawImage(spaceBackupImg, 0, 0, canvas.width, canvas.height);
+                    drawPosterTypography();
+                };
                 
-                ctx.fillStyle = "rgba(255, 255, 255, 0.1)"; ctx.fillRect(canvas.width / 2 - 100, canvas.height - 250, 200, 25);
-                ctx.fillStyle = "rgba(255, 255, 255, 0.3)"; ctx.font = "10px monospace"; ctx.letterSpacing = "3px";
-                ctx.fillText("ID-" + Math.floor(100000 + Math.random() * 900000), canvas.width / 2, canvas.height - 262);
+                spaceBackupImg.onerror = () => {
+                    const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+                    gradient.addColorStop(0, "#0D1220");
+                    gradient.addColorStop(1, bottomHex + "44");
+                    ctx.fillStyle = gradient;
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    
+                    ctx.strokeStyle = accentColor; ctx.lineWidth = 4; ctx.strokeRect(20, 20, canvas.width - 40, canvas.height - 40);
+                    ctx.strokeStyle = "rgba(255, 255, 255, 0.05)"; ctx.lineWidth = 1; ctx.strokeRect(32, 32, canvas.width - 64, canvas.height - 64);
+
+                    const cx = canvas.width / 2; const cy = canvas.height / 2 - 40; const r = 60;
+                    ctx.strokeStyle = accentColor; ctx.lineWidth = 3;
+                    ctx.beginPath(); ctx.moveTo(cx - r, cy - r + 15); ctx.lineTo(cx - r, cy - r); ctx.lineTo(cx - r + 15, cy - r); ctx.stroke();
+                    ctx.beginPath(); ctx.moveTo(cx + r, cy - r + 15); ctx.lineTo(cx + r, cy - r); ctx.lineTo(cx + r - 15, cy - r); ctx.stroke();
+                    ctx.beginPath(); ctx.moveTo(cx - r, cy + r - 15); ctx.lineTo(cx - r, cy + r); ctx.lineTo(cx - r + 15, cy + r); ctx.stroke();
+                    ctx.beginPath(); ctx.moveTo(cx + r, cy + r - 15); ctx.lineTo(cx + r, cy + r); ctx.lineTo(cx + r - 15, cy + r); ctx.stroke();
+
+                    drawPosterTypography();
+                    
+                    ctx.fillStyle = "rgba(255, 255, 255, 0.1)"; ctx.fillRect(canvas.width / 2 - 100, canvas.height - 250, 200, 25);
+                    ctx.fillStyle = "rgba(255, 255, 255, 0.3)"; ctx.font = "10px monospace"; ctx.letterSpacing = "3px";
+                    ctx.fillText("ID-" + Math.floor(100000 + Math.random() * 900000), canvas.width / 2, canvas.height - 262);
+                };
             };
         }
 
@@ -820,7 +814,6 @@
                 
                 img.onload = () => {
                     const canvas = document.createElement("canvas");
-                    // ИСПРАВЛЕНО: Заменен некорректный вызов canvas.createElement на canvas.getContext
                     const ctx = canvas.getContext("2d");
                     
                     const MAX_WIDTH = 1024;
@@ -1024,8 +1017,7 @@
 
                 const data = await response.json();
                 chosenMovieTitle = data.movieTitle || "ВРЕМЯ РЕСУРСА"; 
-                
-                generatedPremiumPosterUrl = data.posterUrl || `${YANDEX_FUNCTION_URL}?title=${encodeURIComponent(displayTitle)}&movie=${encodeURIComponent(chosenMovieTitle)}`;
+                generatedPremiumPosterUrl = data.posterUrl;
                 
                 const renderContainer = document.getElementById("poster-render-container");
                 if (renderContainer) {
