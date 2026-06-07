@@ -22,11 +22,11 @@
     <meta name="description" content="Пройди интерактивные кинопробы и актерский кастинг от РЕСУРС МЕДИА. Узнай свое идеальное амплуа в кино, получи персональный постер блокбастера или активируй ИИ Face Swap от Веры Мегеры. Экосистема осознанности и фитнеса в Сыктывкаре.">
     <meta name="keywords" content="кинокастинг, кастинг сыктывкар, игра в кино, кинопробы, тест на роль в кино, киногерои, экосистема фитнеса, ресурс media, интерактивный тест, подбор роли">
     <meta name="robots" content="index, follow">
-    <link class="canonical" href="https://resurs-stretch.ru/casting.html">
+    <link rel="canonical" href="https://resurs-stretch.ru/casting.html">
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://resurs-stretch.ru/casting.html">
-    <meta property="og:title" content="Внимание, motor! Я прошел ИИ-кастинг от РЕСУРС МЕДИА. Смотри мою афишу.">
+    <meta property="og:title" content="Внимание, мотор! Я прошел ИИ-кастинг от РЕСУРС МЕДИА. Смотри мою афишу.">
     <meta property="og:description" content="Узнай, в каком шедевре кинематографа и в какой главной роли тебя видит режиссер. Пройди кинопробы здесь: https://resurs-stretch.ru/casting.html">
     <meta property="og:image" content="https://resurs-stretch.ru/images/posters/epic_adult_female_1.png">
 
@@ -41,7 +41,7 @@
       "url": "https://resurs-stretch.ru/casting.html",
       "publisher": {
         "@type": "Organization",
-        "name": "Студия растяжки и движения РЕСУРС",
+        "name": "Студия фитнеса и растяжки РЕСУРС",
         "logo": {
           "@type": "ImageObject",
           "url": "https://resurs-stretch.ru/logo_header_final.png"
@@ -53,7 +53,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Montserrat', sans-serif; background-color: #0B0F19; color: #E5E7EB; }
+        body { font-family: 'Montserrat', sans-serif; background-color: #0B0F19; color: #E5E7EB; margin: 0; padding: 0; }
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #0B0F19; }
         ::-webkit-scrollbar-thumb { background: #F59E0B; border-radius: 4px; }
@@ -94,7 +94,7 @@
 
             <div id="screen-start" class="py-12 px-6 md:px-12 text-center relative z-10">
                 <div class="inline-block px-3 py-1 mb-6 border border-amber-500/30 bg-amber-500/10 text-amber-400 text-xs font-bold uppercase tracking-widest rounded-full animate-pulse">
-                    🎬 Внимание, motor! Твой кастинг начинается
+                    🎬 Внимание, мотор! Твой кастинг начинается
                 </div>
                 <h1 class="text-3xl md:text-5xl font-black text-white tracking-tight mb-6 leading-tight uppercase">
                     Узнай, на какую роль тебя взял бы <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-500">Режиссер?</span>
@@ -237,7 +237,8 @@
                 </div>
             </div>
 
-            <div id="screen-chat" class="hidden py-6 px-4 md:px-12 relative z-10 flex flex-col h-[650px] md:h-[600px] w-full box-border justify-between">
+            <div id="screen-chat" class="hidden relative z-10 flex flex-col h-[650px] max-h-[85vh] min-h-0 bg-[#0D1220] p-4 md:p-8 w-full box-border">
+                
                 <div class="flex items-center justify-between pb-4 border-b border-gray-800 mb-4 shrink-0">
                     <div class="flex items-center gap-3">
                         <div class="relative w-12 h-12 bg-gradient-to-tr from-amber-500 to-red-500 rounded-full flex items-center justify-center font-black text-slate-950 shadow-md shrink-0">
@@ -293,12 +294,13 @@
     </div>
 
     <script>
+        // ИСПРАВЛЕНО: Объявлена глобальная переменная счетчика вопросов
+        let currentQuestionIndex = 0; 
         let selectedAge = "adult"; 
         let selectedGender = "male"; 
         let savedChatAnswers = []; 
         let currentAIConversation = []; 
         let generatedPremiumPosterUrl = null; 
-        let currentQuestionIndex = 0; // ИСПРАВЛЕНО: Объявлен глобальный индекс вопросов
 
         const YANDEX_FUNCTION_URL = "https://functions.yandexcloud.net/d4eju04c56s0169gqfvp";
 
@@ -340,9 +342,12 @@
             adult: {
                 male: { action: "Агент под прикрытием", drama: "Герой независимого артхауса", comedy: "Эксцентричный новатор", epic: "Правитель Империи" },
                 female: { action: "Спецагент экстра-класса", drama: "Муза драматического кино", comedy: "Прима авантюрной комедии", epic: "Королева Галактики" }
+            },
+            child: {
+                male: { action: "Лидер секретного отряда", drama: "Юный исследователь тайн", comedy: "Главный озорник блокбастера", epic: "Будущий Хранитель Balance" },
+                female: { action: "Супергероиня из будущего", drama: "Хранительница древних тайн", comedy: "Душа комедийного приключения", epic: "Юная Повелительница миров" }
             }
         };
-        rolesTitles.child = rolesTitles.adult;
 
         const rolesDescriptions = {
             action: "Вы обладаете невероятной скоростью реакции, физической собранностью и решительностью. Режиссеры динамичных экшенов увидели бы в вас идеального протагониста, способного вытащить любую сложнейшую сцену за счет личной харизмы, точности движений и хладнокровия в моменты кризиса.",
@@ -355,7 +360,7 @@
         const rolesGradients = { action: "#083344", drama: "#3B0764", comedy: "#451A03", epic: "#064E3B" };
 
         const fakeMovieTitles = [
-            "ГОНЕНИЯ ПЕРВЫХ", "КОД ИЗОБИЛИЯ", "СИНКУЛЯРНОСТЬ СЫКТЫВКАРА", 
+            "ГОНЕНИЯ ПЕРВЫХ", "КОД ИЗОБИЛИЯ", "СИНГУЛЯРНОСТЬ СЫКТЫВКАРА", 
             "ВРЕМЯ РЕСУРСА", "ФАСЦИЯ СУДЬБЫ", "ОБРАТНЫЙ ОТСЧЕТ ОСОЗНАННОСТИ"
         ];
 
@@ -427,7 +432,15 @@
             document.getElementById("progress-bar").style.width = "100%";
             showScreen("screen-loading");
             setTimeout(() => {
-                finalRoleKey = Object.keys(scoreCounter).reduce((a, b) => scoreCounter[a] > scoreCounter[b] ? a : b);
+                let maxScore = -1;
+                let selectedRole = "action";
+                for (const key in scoreCounter) {
+                    if (scoreCounter[key] > maxScore) {
+                        maxScore = scoreCounter[key];
+                        selectedRole = key;
+                    }
+                }
+                finalRoleKey = selectedRole;
                 chosenMovieTitle = fakeMovieTitles[Math.floor(Math.random() * fakeMovieTitles.length)];
                 
                 const container = document.getElementById("poster-render-container");
@@ -520,7 +533,22 @@
                 gradient.addColorStop(1, bottomHex + "44");
                 ctx.fillStyle = gradient;
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                ctx.strokeStyle = accentColor; ctx.lineWidth = 4; ctx.strokeRect(20, 20, canvas.width - 40, canvas.height - 40);
+                ctx.strokeStyle = "rgba(255, 255, 255, 0.05)"; ctx.lineWidth = 1; ctx.strokeRect(32, 32, canvas.width - 64, canvas.height - 64);
+
+                const cx = canvas.width / 2; const cy = canvas.height / 2 - 40; const r = 60;
+                ctx.strokeStyle = accentColor; ctx.lineWidth = 3;
+                ctx.beginPath(); ctx.moveTo(cx - r, cy - r + 15); ctx.lineTo(cx - r, cy - r); ctx.lineTo(cx - r + 15, cy - r); ctx.stroke();
+                ctx.beginPath(); ctx.moveTo(cx + r, cy - r + 15); ctx.lineTo(cx + r, cy - r); ctx.lineTo(cx + r - 15, cy - r); ctx.stroke();
+                ctx.beginPath(); ctx.moveTo(cx - r, cy + r - 15); ctx.lineTo(cx - r, cy + r); ctx.lineTo(cx - r + 15, cy + r); ctx.stroke();
+                ctx.beginPath(); ctx.moveTo(cx + r, cy + r - 15); ctx.lineTo(cx + r, cy + r); ctx.lineTo(cx + r - 15, cy + r); ctx.stroke();
+
                 drawPosterTypography();
+                
+                ctx.fillStyle = "rgba(255, 255, 255, 0.1)"; ctx.fillRect(canvas.width / 2 - 100, canvas.height - 250, 200, 25);
+                ctx.fillStyle = "rgba(255, 255, 255, 0.3)"; ctx.font = "10px monospace"; ctx.letterSpacing = "3px";
+                ctx.fillText("ID-" + Math.floor(100000 + Math.random() * 900000), canvas.width / 2, canvas.height - 262);
             };
         }
 
@@ -534,22 +562,81 @@
         function restartQuiz() { showScreen("screen-start"); }
         function scrollToPremium() { document.getElementById("premium-block").scrollIntoView({ behavior: 'smooth' }); }
 
+        async function shareResult() {
+            const displayTitle = rolesTitles[selectedAge][selectedGender][finalRoleKey];
+            const shareText = `Я прошел актерский тест от РЕСУРС МЕДИА! Мое амплуа в кино: ${displayTitle} в фильме "${chosenMovieTitle}". Проверь, на какую роль взяли бы тебя! https://resurs-stretch.ru/casting.html`;
+
+            if (generatedPremiumPosterUrl) {
+                const dropdown = document.getElementById("desktop-share-dropdown");
+                const inputElement = document.getElementById("share-link-input");
+                inputElement.value = `https://resurs-stretch.ru/casting.html?utm_source=premium_share`;
+                dropdown.classList.toggle("hidden");
+                document.getElementById("copy-success-message").classList.add("hidden");
+                return;
+            }
+
+            const canvas = document.getElementById("posterCanvas");
+            if (!canvas) return;
+
+            if (navigator.share && /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+                try {
+                    canvas.toBlob(async (blob) => {
+                        const file = new File([blob], `Casting_Afisha.png`, { type: 'image/png' });
+                        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                            await navigator.share({ files: [file], title: 'Моя киноафиша', text: shareText });
+                        }
+                    }, 'image/png');
+                } catch (err) {
+                    console.log("Ошибка работы Web Share API:", err);
+                }
+            } else {
+                const dropdown = document.getElementById("desktop-share-dropdown");
+                const inputElement = document.getElementById("share-link-input");
+                inputElement.value = "https://resurs-stretch.ru/casting.html?utm_source=share_pc";
+                dropdown.classList.toggle("hidden");
+                document.getElementById("copy-success-message").classList.add("hidden");
+            }
+        }
+
+        function copyShareLinkDirectly() {
+            const inputElement = document.getElementById("share-link-input");
+            navigator.clipboard.writeText(inputElement.value)
+                .then(() => {
+                    const successMessage = document.getElementById("copy-success-message");
+                    successMessage.classList.remove("hidden");
+                    setTimeout(() => { document.getElementById("desktop-share-dropdown").classList.add("hidden"); }, 2000);
+                })
+                .catch(err => console.log("Ошибка копирования в буфер:", err));
+        }
+
+        // ИСПРАВЛЕНО: Полная логика сжатия изображения перед отправкой
         function compressImage(file) {
             return new Promise(resolve => {
-                const img = new Image(); img.src = URL.createObjectURL(file);
+                const img = new Image(); 
+                img.src = URL.createObjectURL(file);
                 img.onload = () => {
                     const canvas = document.createElement("canvas");
                     const ctx = canvas.getContext("2d");
-                    const size = 1024; let w = img.width, h = img.height;
-                    if(w > h) { if(w > size) { h *= size/w; w = size; } } else { if(h > size) { w *= size/h; h = size; } }
+                    const size = 1024; 
+                    let w = img.width, h = img.height;
+                    
+                    if(w > h) { 
+                        if(w > size) { h *= size/w; w = size; } 
+                    } else { 
+                        if(h > size) { w *= size/h; h = size; } 
+                    }
+                    
                     canvas.width = w; canvas.height = h;
                     ctx.drawImage(img, 0, 0, w, h);
                     resolve(canvas.toDataURL("image/jpeg", 0.75));
                 };
+                img.onerror = () => resolve(null);
             });
         }
 
+        // ИСПРАВЛЕНО: Интегрирован вызов S3 загрузки на бэкенд
         async function uploadUserPhotoToServer(compressedBase64) {
+            if (!compressedBase64) return false;
             try {
                 const response = await fetch(YANDEX_FUNCTION_URL, {
                     method: "POST",
@@ -566,6 +653,7 @@
             } catch { return false; }
         }
 
+        // ИСПРАВЛЕНО: Восстановлен полный цикл (Сжатие -> Отправка -> ЮKassa -> Чат)
         async function processPremiumPayment() {
             const photoInput = document.getElementById("user-photo");
             const errorElement = document.getElementById("payment-error");
@@ -587,6 +675,7 @@
 
                 const compressed = await compressImage(photoInput.files[0]);
                 const isUploaded = await uploadUserPhotoToServer(compressed);
+                
                 if (!isUploaded) throw new Error("Не удалось сохранить фото на сервере. Попробуйте еще раз.");
 
                 btn.innerText = isAdminMode ? "ОТКРЫТИЕ ПАВИЛЬОНА..." : "СВЯЗЬ С БАНКОМ...";
@@ -693,6 +782,7 @@
             }
         }
 
+        // ИСПРАВЛЕНО: Безопасный рендеринг изображения. В случае сбоя сети выводится резервный постер.
         async function terminateCastingAndRender() {
             const displayTitle = rolesTitles[selectedAge][selectedGender][finalRoleKey];
             showScreen("screen-loading");
@@ -704,7 +794,7 @@
                     body: JSON.stringify({ action: "terminate_casting", roleTitle: displayTitle, history: currentAIConversation })
                 });
 
-                if (!response.ok) throw new Error();
+                if (!response.ok) throw new Error("Ошибка бэкенда при финализации");
 
                 const data = await response.json();
                 chosenMovieTitle = data.movieTitle || "ВРЕМЯ РЕСУРСА"; 
@@ -721,11 +811,10 @@
                 }
 
             } catch (err) {
-                console.error(err);
+                console.error("Критический сбой финального рендера:", err);
                 chosenMovieTitle = "ВРЕМЯ РЕСУРСА";
                 generatedPremiumPosterUrl = `${YANDEX_FUNCTION_URL}?title=${encodeURIComponent(displayTitle)}&movie=${encodeURIComponent(chosenMovieTitle)}`;
                 
-                // ИСПРАВЛЕНО: Добавлен вывод резервной ссылки в DOM при падении сети, чтобы исключить бесконечный лоадер
                 const renderContainer = document.getElementById("poster-render-container");
                 if (renderContainer) {
                     renderContainer.innerHTML = `
