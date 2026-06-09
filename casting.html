@@ -237,9 +237,9 @@
                 </div>
             </div>
 
-            <div id="screen-chat" class="hidden relative z-10 h-[650px] md:h-[600px] w-full box-border">
+            <div id="screen-chat" class="hidden relative z-10 w-full box-border" style="height: 650px; max-height: 85vh; padding: 1.5rem 1.5rem 0 1.5rem;">
                 
-                <div class="flex items-center justify-between pb-4 border-b border-gray-800 mb-4 tracking-normal" style="flex-shrink: 0;">
+                <div class="flex items-center justify-between pb-4 border-b border-gray-800 mb-4 tracking-normal" style="flex-shrink: 0; width: 100%;">
                     <div class="flex items-center gap-3">
                         <div class="relative w-12 h-12 bg-gradient-to-tr from-amber-500 to-red-500 rounded-full flex items-center justify-center font-black text-slate-950 shadow-md" style="flex-shrink: 0;">
                             ВМ
@@ -264,7 +264,7 @@
                     Вера Мегера изучает ваши данные...
                 </div>
 
-                <div class="flex gap-2 p-2 bg-[#111827] border border-gray-800 rounded-xl items-center" style="flex-shrink: 0;">
+                <div class="flex gap-2 p-2 bg-[#111827] border border-gray-800 rounded-xl items-center" style="flex-shrink: 0; margin-bottom: 1.5rem;">
                     <input type="text" id="chat-user-input" onkeypress="handleChatKeyPress(event)" placeholder="Напишите ваш ответ Верочке в свободной форме..." class="flex-grow p-3 bg-transparent text-sm text-gray-200 placeholder-gray-600 focus:outline-none" />
                     <button onclick="sendUserMessageToAI()" class="p-3 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg transition-colors cursor-pointer font-bold text-xs uppercase tracking-widest" style="flex-shrink: 0;">
                         Ответить
@@ -278,20 +278,6 @@
     <footer class="w-full py-6 px-6 border-t border-gray-800 text-center text-xs text-gray-500 bg-[#070A12]">
         &copy; 2026 Media-проект независимого типа в экосистеме РЕСУРС. Все права защищены.
     </footer>
-
-    <div class="ya-floor-ad-container">
-        <script>
-        window.yaContextCb.push(() => {
-            Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-5", "type": "floorAd", "platform": "touch" })
-        });
-        window.yaContextCb.push(() => {
-            Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-6", "type": "floorAd", "platform": "touch" })
-        });
-        window.yaContextCb.push(() => {
-            Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-7", "type": "floorAd", "platform": "desktop" })
-        });
-        </script>
-    </div>
 
     <script>
         let currentQuestionIndex = 0; 
@@ -360,23 +346,20 @@
             "ВРЕМЯ РЕСУРСА", "ФАСЦИЯ СУДЬБЫ", "ОБРАТНЫЙ ОТСЧЕТ ОСОЗНАННОСТИ"
         ];
 
-        let scoreCounter = { action: 0, drama: 0, comedy: 0, epic: 0 };
-        let finalRoleKey = "action";
-        let chosenMovieTitle = "ГОНЕНИЯ ПЕРВЫХ";
-
         function showScreen(screenId) {
             ["screen-start", "screen-setup", "screen-quiz", "screen-loading", "screen-result", "screen-chat"].forEach(id => {
                 const el = document.getElementById(id);
                 if (el) {
                     el.classList.add("hidden");
-                    el.style.display = "none"; 
+                    // ИСПРАВЛЕНО: Полная очистка инлайн-стилей во избежание наложения слоев
+                    el.style.display = ""; 
                 }
             });
             const target = document.getElementById(screenId);
             if (target) {
                 target.classList.remove("hidden");
                 if (screenId === "screen-chat") {
-                    target.style.display = "flex";
+                    target.style.setProperty("display", "flex", "important");
                     target.style.flexDirection = "column";
                 } else {
                     target.style.display = "block";
@@ -529,7 +512,7 @@
                     const cx = canvas.width / 2; const cy = canvas.height / 2 - 40; const r = 60;
                     ctx.strokeStyle = accentColor; ctx.lineWidth = 3;
                     ctx.beginPath(); ctx.moveTo(cx - r, cy - r + 15); ctx.lineTo(cx - r, cy - r); ctx.lineTo(cx - r + 15, cy - r); ctx.stroke();
-                    ctx.beginPath(); ctx.moveTo(cx + r, cy - r + 15); ctx.lineTo(cx + r, cy - r); ctx.lineTo(cx + r - 15, cy - r); ctx.stroke();
+                    ctx.beginPath(); ctx.moveTo(cx + r, cy - r + 15); ctx.lineTo(cx + r, cy - r); ctx.lineTo(ctx + r - 15, cy - r); ctx.stroke();
                     ctx.beginPath(); ctx.moveTo(cx - r, cy + r - 15); ctx.lineTo(cx - r, cy + r); ctx.lineTo(cx - r + 15, cy + r); ctx.stroke();
                     ctx.beginPath(); ctx.moveTo(cx + r, cy + r - 15); ctx.lineTo(cx + r, cy + r); ctx.lineTo(cx + r - 15, cy + r); ctx.stroke();
 
@@ -542,13 +525,12 @@
             });
         }
 
-        // ИСПРАВЛЕНО: Кнопка скачивания динамически находит текущий холст Canvas
         function downloadPoster() {
             const canvas = document.getElementById("posterCanvas");
             if (generatedPremiumPosterUrl) {
                 const link = document.createElement("a");
                 link.download = `Premium_Casting_${chosenMovieTitle}.png`;
-                link.href = generatedPremiumPremiumPosterUrl;
+                link.href = generatedPremiumPosterUrl;
                 link.click();
             } else if (canvas) {
                 const link = document.createElement("a");
@@ -558,7 +540,6 @@
             }
         }
 
-        // ИСПРАВЛЕНО: Кнопка ЗАНОВО теперь полностью обнуляет массивы диалога и возвращает на старт
         function restartQuiz() { 
             generatedPremiumPosterUrl = null;
             currentAIConversation = [];
@@ -566,13 +547,11 @@
             showScreen("screen-start"); 
         }
         
-        // ИСПРАВЛЕНО: Кнопка Премиум кастинг плавно скроллит к нужному блоку
         function scrollToPremium() { 
             const el = document.getElementById("premium-block");
             if (el) el.scrollIntoView({ behavior: 'smooth' }); 
         }
 
-        // ИСПРАВЛЕНО: Кнопка ПОДЕЛИТЬСЯ ССЫЛКОЙ динамически работает с Canvas
         async function shareResult() {
             const displayTitle = rolesTitles[selectedAge][selectedGender][finalRoleKey];
             const shareText = `Я прошел актерский тест от РЕСУРС МЕДИА! Мое амплуа в кино: ${displayTitle} в фильме "${chosenMovieTitle}". Проверь, на какую роль взяли бы тебя! https://resurs-stretch.ru/casting.html`;
@@ -765,7 +744,6 @@
                 appendMessageToChat("ai", data.aiResponse);
             } catch (err) {
                 console.error(err);
-                // ИСПРАВЛЕНО: Устранена критическая опечатка closeList, теперь класс-инструктор classList отрабатывает без падения JS
                 if (indicator) indicator.classList.add("hidden");
                 if (statusText) statusText.innerText = "Ассистент режиссера по актерам (в сети)";
                 appendMessageToChat("ai", "Слушай, на площадке помехи со связью. Повтори свой последний ответ, я не расслышала.");
