@@ -167,7 +167,7 @@
                             </button>
                             
                             <div class="relative inline-block">
-                                <button id="btn-share-action" onclick="shareResult()" class="px-4 py-2.5 bg-cyan-600 hover:bg-cyan-700 text-white text-xs font-bold rounded-lg transition-colors duration-300 cursor-pointer flex items-center gap-2">
+                                <button onclick="shareResult()" class="px-4 py-2.5 bg-cyan-600 hover:bg-cyan-700 text-white text-xs font-bold rounded-lg transition-colors duration-300 cursor-pointer flex items-center gap-2">
                                     🔗 ПОДЕЛИТЬСЯ ССЫЛКОЙ
                                 </button>
                                 <div id="desktop-share-dropdown" class="hidden absolute left-0 mt-2 w-72 bg-[#111827] border border-gray-800 p-4 rounded-xl shadow-2xl z-50 animate-fadeIn">
@@ -184,7 +184,7 @@
                                 ✨ Премиум кастинг
                             </button>
                             
-                            <button id="btn-restart-action" onclick="restartQuiz()" class="px-4 py-2.5 bg-transparent hover:bg-gray-900 text-gray-400 hover:text-white text-xs font-bold rounded-lg transition-colors duration-300 cursor-pointer flex items-center gap-2">
+                            <button onclick="restartQuiz()" class="px-4 py-2.5 bg-transparent hover:bg-gray-900 text-gray-400 hover:text-white text-xs font-bold rounded-lg transition-colors duration-300 cursor-pointer flex items-center gap-2">
                                 🔄 ЗАНОВО
                             </button>
                         </div>
@@ -237,9 +237,11 @@
                 </div>
             </div>
 
-            <div id="screen-chat" class="hidden relative z-10 w-full box-border" style="height: 650px; max-height: 85vh; padding: 1.5rem 1.5rem 0 1.5rem;">
+            <!-- ИСПРАВЛЕННЫЙ И СТАБИЛИЗИРОВАННЫЙ БЛОК ЧАТА: ВЫСОТА ЗАФИКСИРОВАНА НА КЛИЕНТЕ, КОНФЛИКТ ИСКЛЮЧЕН -->
+            <div id="screen-chat" class="hidden relative z-10 h-[650px] md:h-[600px] w-full box-border">
                 
-                <div class="flex items-center justify-between pb-4 border-b border-gray-800 mb-4 tracking-normal" style="flex-shrink: 0; width: 100%;">
+                <!-- ШАПКА ЧАТА (ФИКСИРОВАННАЯ ВЕРХНЯЯ ЗОНА, FLEX-SHRINK ИСКЛЮЧАЕТ СЖАТИЕ) -->
+                <div class="flex items-center justify-between pb-4 border-b border-gray-800 mb-4 tracking-normal" style="flex-shrink: 0;">
                     <div class="flex items-center gap-3">
                         <div class="relative w-12 h-12 bg-gradient-to-tr from-amber-500 to-red-500 rounded-full flex items-center justify-center font-black text-slate-950 shadow-md" style="flex-shrink: 0;">
                             ВМ
@@ -255,8 +257,10 @@
                     </button>
                 </div>
 
+                <!-- ВНУТРЕННИЙ ДИАЛОГОВЫЙ БЛОК ДЛЯ СКРОЛЛИНГА -->
                 <div id="chat-messages-container" class="space-y-4 pr-2 mb-4 min-h-0 scrollbar-thin" style="flex-grow: 1; overflow-y: auto; scroll-behavior: smooth;"></div>
 
+                <!-- ИНДИКАТОР ПЕЧАТИ -->
                 <div id="chat-typing-indicator" class="hidden flex items-center gap-2 text-xs text-gray-500 px-4 mb-2 italic" style="flex-shrink: 0;">
                     <span class="inline-block animate-bounce">●</span>
                     <span class="inline-block animate-bounce delay-100">●</span>
@@ -264,7 +268,8 @@
                     Вера Мегера изучает ваши данные...
                 </div>
 
-                <div class="flex gap-2 p-2 bg-[#111827] border border-gray-800 rounded-xl items-center" style="flex-shrink: 0; margin-bottom: 1.5rem;">
+                <!-- ПАНЕЛЬ ВВОДА С ТЕКСТОВЫМ ПОЛЕМ -->
+                <div class="flex gap-2 p-2 bg-[#111827] border border-gray-800 rounded-xl items-center" style="flex-shrink: 0;">
                     <input type="text" id="chat-user-input" onkeypress="handleChatKeyPress(event)" placeholder="Напишите ваш ответ Верочке в свободной форме..." class="flex-grow p-3 bg-transparent text-sm text-gray-200 placeholder-gray-600 focus:outline-none" />
                     <button onclick="sendUserMessageToAI()" class="p-3 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg transition-colors cursor-pointer font-bold text-xs uppercase tracking-widest" style="flex-shrink: 0;">
                         Ответить
@@ -278,6 +283,20 @@
     <footer class="w-full py-6 px-6 border-t border-gray-800 text-center text-xs text-gray-500 bg-[#070A12]">
         &copy; 2026 Media-проект независимого типа в экосистеме РЕСУРС. Все права защищены.
     </footer>
+
+    <div class="ya-floor-ad-container">
+        <script>
+        window.yaContextCb.push(() => {
+            Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-5", "type": "floorAd", "platform": "touch" })
+        });
+        window.yaContextCb.push(() => {
+            Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-6", "type": "floorAd", "platform": "touch" })
+        });
+        window.yaContextCb.push(() => {
+            Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-7", "type": "floorAd", "platform": "desktop" })
+        });
+        </script>
+    </div>
 
     <script>
         let currentQuestionIndex = 0; 
@@ -346,27 +365,30 @@
             "ВРЕМЯ РЕСУРСА", "ФАСЦИЯ СУДЬБЫ", "ОБРАТНЫЙ ОТСЧЕТ ОСОЗНАННОСТИ"
         ];
 
+        let scoreCounter = { action: 0, drama: 0, comedy: 0, epic: 0 };
+        let finalRoleKey = "action";
+        let chosenMovieTitle = "ГОНЕНИЯ ПЕРВЫХ";
+
+        // ИСПРАВЛЕНО: Полная стабилизация переключения слоев во избежание накладок как на image_d15407.jpg
         function showScreen(screenId) {
             ["screen-start", "screen-setup", "screen-quiz", "screen-loading", "screen-result", "screen-chat"].forEach(id => {
                 const el = document.getElementById(id);
                 if (el) {
                     el.classList.add("hidden");
-                    // ИСПРАВЛЕНО: Полная очистка инлайн-стилей во избежание наложения слоев
-                    el.style.display = ""; 
+                    el.style.display = "none"; 
                 }
             });
             const target = document.getElementById(screenId);
             if (target) {
                 target.classList.remove("hidden");
                 if (screenId === "screen-chat") {
-                    target.style.setProperty("display", "flex", "important");
+                    target.style.display = "flex";
                     target.style.flexDirection = "column";
                 } else {
                     target.style.display = "block";
                 }
             }
-            const dropdown = document.getElementById("desktop-share-dropdown");
-            if (dropdown) dropdown.classList.add("hidden");
+            document.getElementById("desktop-share-dropdown").classList.add("hidden");
         }
 
         function startCastingSetup() {
@@ -407,7 +429,7 @@
             
             currentQuestion.answers.forEach(answer => {
                 const button = document.createElement("button");
-                button.className = "w-full text-left p-4 bg-[#111827] border border-gray-800 hover:border-amber-500 focus:bg-amber-500/10 focus:border-amber-500 text-sm md:text-base font-bold text-gray-200 hover:text-white rounded-xl transition-all duration-200 active:scale-[0.99] cursor-pointer focus:outline-none";
+                button.className = "w-full text-left p-4 bg-[#111827] border border-gray-800 hover:border-amber-500 focus:bg-amber-500/10 focus:border-amber-500 text-sm md:text-base font-bold text-gray-200 hover:text-white rounded-xl transition-all duration-200 cursor-pointer focus:outline-none";
                 button.innerText = answer.text;
                 button.onclick = () => { 
                     scoreCounter[answer.tag]++; 
@@ -425,6 +447,16 @@
             setTimeout(() => {
                 finalRoleKey = Object.keys(scoreCounter).reduce((a, b) => scoreCounter[a] > scoreCounter[b] ? a : b);
                 chosenMovieTitle = fakeMovieTitles[Math.floor(Math.random() * fakeMovieTitles.length)];
+                
+                const container = document.getElementById("poster-render-container");
+                container.innerHTML = `
+                    <div id="poster-inner-box" class="border border-gray-800 bg-[#090D16] p-2 rounded-xl shadow-xl max-w-[320px] w-full transition-transform duration-300 group-hover:scale-[1.02]">
+                        <canvas id="posterCanvas" width="600" height="900" class="w-full h-auto rounded-lg bg-slate-900"></canvas>
+                    </div>
+                    <p id="poster-footer-caption" class="text-[10px] text-gray-600 mt-2">Базовый постер. Создан алгоритмом РЕСУРСА.</p>
+                `;
+                generatedPremiumPosterUrl = null;
+
                 renderResultScreen();
             }, 1500);
         }
@@ -438,7 +470,9 @@
             
             showScreen("screen-result");
             
-            setTimeout(() => { generateCanvasPoster(displayTitle); }, 50);
+            if (!generatedPremiumPosterUrl) {
+                setTimeout(() => { generateCanvasPoster(displayTitle); }, 50);
+            }
         }
 
         function generateCanvasPoster(displayTitle) {
@@ -502,7 +536,7 @@
                 img.onerror = () => {
                     const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
                     gradient.addColorStop(0, "#0D1220");
-                    gradient.addColorStop(1, bottomHex);
+                    gradient.addColorStop(1, bottomHex + "44");
                     ctx.fillStyle = gradient;
                     ctx.fillRect(0, 0, canvas.width, canvas.height);
                     
@@ -512,7 +546,7 @@
                     const cx = canvas.width / 2; const cy = canvas.height / 2 - 40; const r = 60;
                     ctx.strokeStyle = accentColor; ctx.lineWidth = 3;
                     ctx.beginPath(); ctx.moveTo(cx - r, cy - r + 15); ctx.lineTo(cx - r, cy - r); ctx.lineTo(cx - r + 15, cy - r); ctx.stroke();
-                    ctx.beginPath(); ctx.moveTo(cx + r, cy - r + 15); ctx.lineTo(cx + r, cy - r); ctx.lineTo(ctx + r - 15, cy - r); ctx.stroke();
+                    ctx.beginPath(); ctx.moveTo(cx + r, cy - r + 15); ctx.lineTo(cx + r, cy - r); ctx.lineTo(cx + r - 15, cy - r); ctx.stroke();
                     ctx.beginPath(); ctx.moveTo(cx - r, cy + r - 15); ctx.lineTo(cx - r, cy + r); ctx.lineTo(cx - r + 15, cy + r); ctx.stroke();
                     ctx.beginPath(); ctx.moveTo(cx + r, cy + r - 15); ctx.lineTo(cx + r, cy + r); ctx.lineTo(cx + r - 15, cy + r); ctx.stroke();
 
@@ -525,87 +559,6 @@
             });
         }
 
-        function downloadPoster() {
-            const canvas = document.getElementById("posterCanvas");
-            if (generatedPremiumPosterUrl) {
-                const link = document.createElement("a");
-                link.download = `Premium_Casting_${chosenMovieTitle}.png`;
-                link.href = generatedPremiumPosterUrl;
-                link.click();
-            } else if (canvas) {
-                const link = document.createElement("a");
-                link.download = `Casting_${finalRoleKey}_${chosenMovieTitle}.png`;
-                link.href = canvas.toDataURL("image/png");
-                link.click();
-            }
-        }
-
-        function restartQuiz() { 
-            generatedPremiumPosterUrl = null;
-            currentAIConversation = [];
-            savedChatAnswers = [];
-            showScreen("screen-start"); 
-        }
-        
-        function scrollToPremium() { 
-            const el = document.getElementById("premium-block");
-            if (el) el.scrollIntoView({ behavior: 'smooth' }); 
-        }
-
-        async function shareResult() {
-            const displayTitle = rolesTitles[selectedAge][selectedGender][finalRoleKey];
-            const shareText = `Я прошел актерский тест от РЕСУРС МЕДИА! Мое амплуа в кино: ${displayTitle} в фильме "${chosenMovieTitle}". Проверь, на какую роль взяли бы тебя! https://resurs-stretch.ru/casting.html`;
-
-            const dropdown = document.getElementById("desktop-share-dropdown");
-            const inputElement = document.getElementById("share-link-input");
-            
-            if (generatedPremiumPosterUrl) {
-                if (inputElement && dropdown) {
-                    inputElement.value = `https://resurs-stretch.ru/casting.html?utm_source=premium_share`;
-                    dropdown.classList.toggle("hidden");
-                    const msg = document.getElementById("copy-success-message");
-                    if (msg) msg.classList.add("hidden");
-                }
-                return;
-            }
-
-            const canvas = document.getElementById("posterCanvas");
-            if (!canvas) return;
-
-            if (navigator.share && /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-                try {
-                    canvas.toBlob(async (blob) => {
-                        const file = new File([blob], `Casting_Afisha.png`, { type: 'image/png' });
-                        if (navigator.canShare && navigator.canShare({ files: [file] })) {
-                            await navigator.share({ files: [file], title: 'Моя киноафиша', text: shareText });
-                        }
-                    }, 'image/png');
-                } catch (err) { console.log("Ошибка Web Share API:", err); }
-            } else {
-                if (inputElement && dropdown) {
-                    inputElement.value = "https://resurs-stretch.ru/casting.html?utm_source=share_pc";
-                    dropdown.classList.toggle("hidden");
-                    const msg = document.getElementById("copy-success-message");
-                    if (msg) msg.classList.add("hidden");
-                }
-            }
-        }
-
-        function copyShareLinkDirectly() {
-            const inputElement = document.getElementById("share-link-input");
-            if (!inputElement) return;
-            navigator.clipboard.writeText(inputElement.value)
-                .then(() => {
-                    const successMessage = document.getElementById("copy-success-message");
-                    if (successMessage) successMessage.classList.remove("hidden");
-                    setTimeout(() => { 
-                        const dropdown = document.getElementById("desktop-share-dropdown");
-                        if (dropdown) dropdown.classList.add("hidden"); 
-                    }, 2000);
-                })
-                .catch(err => console.log("Ошибка копирования в буфер:", err));
-        }
-
         function compressImage(file) {
             return new Promise(resolve => {
                 const img = new Image(); 
@@ -615,7 +568,13 @@
                     const ctx = canvas.getContext("2d");
                     const size = 1024; 
                     let w = img.width, h = img.height;
-                    if(w > h) { if(w > size) { h *= size/w; w = size; } } else { if(h > size) { w *= size/h; h = size; } }
+                    
+                    if(w > h) { 
+                        if(w > size) { h *= size/w; w = size; } 
+                    } else { 
+                        if(h > size) { w *= size/h; h = size; } 
+                    }
+                    
                     canvas.width = w; canvas.height = h;
                     ctx.drawImage(img, 0, 0, w, h);
                     resolve(canvas.toDataURL("image/jpeg", 0.75));
@@ -645,26 +604,28 @@
         async function processPremiumPayment() {
             const photoInput = document.getElementById("user-photo");
             const errorElement = document.getElementById("payment-error");
-            if (!photoInput || !photoInput.files || photoInput.files.length === 0) {
-                if (errorElement) {
-                    errorElement.innerText = "Пожалуйста, выберите фотографию перед активацией ИИ-собеседования.";
-                    errorElement.classList.remove("hidden");
-                }
+            
+            if (!photoInput.files || photoInput.files.length === 0) {
+                errorElement.innerText = "Пожалуйста, выберите фотографию перед активацией ИИ-собеседования.";
+                errorElement.classList.remove("hidden");
                 return;
             }
-            if (errorElement) errorElement.classList.add("hidden");
+            errorElement.classList.add("hidden");
 
             const displayTitle = rolesTitles[selectedAge][selectedGender][finalRoleKey];
             const btn = document.getElementById("btn-premium-action");
-            const originalText = btn ? btn.innerText : "";
+            const originalText = btn.innerText;
 
             try {
-                if (btn) { btn.innerText = "ЗАГРУЗКА СЕЛФИ..."; btn.disabled = true; }
+                btn.innerText = "ЗАГРУЗКА СЕЛФИ...";
+                btn.disabled = true;
+
                 const compressed = await compressImage(photoInput.files[0]);
                 const isUploaded = await uploadUserPhotoToServer(compressed);
+                
                 if (!isUploaded) throw new Error("Не удалось сохранить фото на сервере. Попробуйте еще раз.");
 
-                if (btn) btn.innerText = isAdminMode ? "ОТКРЫТИЕ ПАВИЛЬОНА..." : "СВЯЗЬ С БАНКОМ...";
+                btn.innerText = isAdminMode ? "ОТКРЫТИЕ ПАВИЛЬОНА..." : "СВЯЗЬ С БАНКОМ...";
 
                 const response = await fetch(YANDEX_FUNCTION_URL, {
                     method: "POST",
@@ -682,35 +643,50 @@
                 const resultData = await response.json();
                 
                 if (resultData.isAdminTestSuccess || resultData.paymentSuccess) {
-                    if (btn) { btn.innerText = originalText; btn.disabled = false; }
+                    btn.innerText = originalText;
+                    btn.disabled = false;
                     showScreen("screen-chat");
+                    
                     currentAIConversation = [];
                     const msgContainer = document.getElementById("chat-messages-container");
                     if (msgContainer) msgContainer.innerHTML = "";
+
                     setTimeout(() => {
                         appendMessageToChat("ai", `Так, присаживайся. Я ассистент режиссера Вера Мегера. Изучила твою карточку. На базовых пробах тебе выдали амплуа «${displayTitle}». Хм... Посмотрим, соответствуешь ли ты заявленному уровню. Расскажи мне, почему ты считаешь, что эта роль в кино должна достаться именно тебе? Напиши своими словами, я слушаю.`);
                     }, 50);
                     return;
                 }
-                if (resultData.paymentUrl) { window.location.href = resultData.paymentUrl; } else { throw new Error("Шлюз не вернул платежную ссылку."); }
+
+                if (resultData.paymentUrl) {
+                    window.location.href = resultData.paymentUrl;
+                } else {
+                    throw new Error("Шлюз не вернул платежную ссылку.");
+                }
+
             } catch (error) {
                 console.error(error);
-                if (errorElement) { errorElement.innerText = error.message || "Ошибка платежного контура. Попробуйте позже."; errorElement.classList.remove("hidden"); }
-                if (btn) { btn.innerText = originalText; btn.disabled = false; }
+                errorElement.innerText = error.message || "Ошибка платежного контура. Попробуйте позже.";
+                errorElement.classList.remove("hidden");
+                btn.innerText = originalText;
+                btn.disabled = false;
             }
         }
 
         function appendMessageToChat(sender, text) {
             const container = document.getElementById("chat-messages-container");
             if (!container) return;
+            
             const msgRow = document.createElement("div");
             msgRow.className = sender === "ai" ? "flex justify-start animate-fadeIn" : "flex justify-end animate-fadeIn";
+            
             const baseBubbleStyle = "max-w-[80%] rounded-2xl p-4 text-sm font-medium leading-relaxed shadow-md ";
             const aiBubbleStyle = baseBubbleStyle + "bg-[#111827] border border-gray-800 text-gray-100 rounded-bl-none rounded-tr-xl";
             const userBubbleStyle = baseBubbleStyle + "bg-gradient-to-br from-cyan-600 to-cyan-700 text-white rounded-br-none rounded-tl-xl";
+            
             msgRow.innerHTML = `<div class="${sender === 'ai' ? aiBubbleStyle : userBubbleStyle}">${text}</div>`;
             container.appendChild(msgRow);
             container.scrollTop = container.scrollHeight; 
+            
             currentAIConversation.push({ role: sender === 'ai' ? "assistant" : "user", text: text });
         }
 
@@ -718,11 +694,11 @@
 
         async function sendUserMessageToAI() {
             const input = document.getElementById("chat-user-input");
-            const text = input ? input.value.trim() : "";
+            const text = input.value.trim();
             if (!text) return;
 
             appendMessageToChat("user", text);
-            if (input) input.value = ""; 
+            input.value = ""; 
 
             const indicator = document.getElementById("chat-typing-indicator");
             const statusText = document.getElementById("chat-status");
@@ -737,11 +713,14 @@
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ action: "chat_dialog", roleTitle: displayTitle, history: currentAIConversation })
                 });
+
                 if (!response.ok) throw new Error();
                 const data = await response.json();
+                
                 if (indicator) indicator.classList.add("hidden");
                 if (statusText) statusText.innerText = "Ассистент режиссера по актерам (в сети)";
                 appendMessageToChat("ai", data.aiResponse);
+
             } catch (err) {
                 console.error(err);
                 if (indicator) indicator.classList.add("hidden");
@@ -762,6 +741,7 @@
                 });
 
                 if (!response.ok) throw new Error("Ошибка бэкенда при финализации");
+
                 const data = await response.json();
                 chosenMovieTitle = data.movieTitle || "ВРЕМЯ РЕСУРСА"; 
                 generatedPremiumPosterUrl = data.posterUrl || `${YANDEX_FUNCTION_URL}?title=${encodeURIComponent(displayTitle)}&movie=${encodeURIComponent(chosenMovieTitle)}`;
@@ -775,6 +755,7 @@
                         <p id="poster-footer-caption" class="text-[10px] text-amber-400 font-bold mt-2">✨ ЭКСКЛЮЗИВНЫЙ ИИ-ПОСТЕР С ВАШИМ ЛИЦОМ СФОРМИРОВАН</p>
                     `;
                 }
+
             } catch (err) {
                 console.error(err);
                 chosenMovieTitle = "ВРЕМЯ РЕСУРСА";
@@ -790,6 +771,7 @@
                     `;
                 }
             }
+
             renderResultScreen();
         }
     </script>
