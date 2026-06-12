@@ -101,21 +101,18 @@
         .ya-floor-ad-container { position: fixed; bottom: 0; left: 0; width: 100%; z-index: 9999; pointer-events: none; }
         .ya-floor-ad-container > * { pointer-events: auto; }
 
-        /* ИСПРАВЛЕНЫ СТИЛИ ЧАТ-КОНТЕЙНЕРА ИЗ АНАЛИЗА ВЕРСТКИ (СТАБИЛЬНЫЙ ФЛЕКС) */
+        /* ФИКС СТРУКТУРЫ ЧАТА: АДАПТИВНЫЙ ФЛЕКС БЕЗ ЖЕСТКИХ ПИКСЕЛЕЙ */
         .chat-container-fixed {
-            display: none;
-            flex-direction: column;
             width: 100%;
             box-sizing: border-box;
             position: relative;
             z-index: 10;
-            height: 75vh;
-            min-height: 500px;
-            max-height: 750px;
+            height: 72vh;
+            min-height: 520px;
+            max-height: 780px;
             overflow: hidden !important;
         }
         
-        /* ПРЕМИУМ-СТИЛИЗАЦИЯ ДЛЯ ВЫВЕДЕННОГО НА ИНДЕКСАЦИЮ БЛОКА */
         .seo-visible-section {
             padding: 60px 5% 40px;
             max-width: 1100px;
@@ -156,7 +153,7 @@
             <div class="absolute -top-40 -left-40 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
             <div class="absolute -bottom-40 -right-40 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
-            <div id="screen-start" class="py-12 px-6 md:px-12 text-center relative z-10">
+            <div id="screen-start" class="py-12 px-6 md:px-12 text-center relative z-10" style="display: block;">
                 <div class="inline-block px-3 py-1 mb-6 border border-amber-500/30 bg-amber-500/10 text-amber-400 text-xs font-bold uppercase tracking-widest rounded-full animate-pulse">
                     🎬 Внимание, motor! Твой кастинг начинается
                 </div>
@@ -171,7 +168,7 @@
                 </button>
             </div>
 
-            <div id="screen-setup" class="hidden py-10 px-6 md:px-12 relative z-10">
+            <div id="screen-setup" class="py-10 px-6 md:px-12 relative z-10" style="display: none;">
                 <h2 class="text-2xl font-black mb-8 text-center uppercase tracking-tight" style="color: var(--text-base);">Заполнение карточки актера</h2>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
@@ -199,7 +196,7 @@
                 </div>
             </div>
 
-            <div id="screen-quiz" class="hidden py-10 px-6 md:px-12 relative z-10">
+            <div id="screen-quiz" class="py-10 px-6 md:px-12 relative z-10" style="display: none;">
                 <div class="w-full bg-gray-800 h-1.5 rounded-full mb-8 overflow-hidden">
                     <div id="progress-bar" class="bg-gradient-to-r from-cyan-400 to-amber-400 h-full w-0 transition-all duration-300"></div>
                 </div>
@@ -212,13 +209,13 @@
                 <div id="answers-container" class="grid grid-cols-1 gap-4"></div>
             </div>
 
-            <div id="screen-loading" class="hidden py-20 px-6 text-center relative z-10">
+            <div id="screen-loading" class="py-20 px-6 text-center relative z-10" style="display: none;">
                 <div class="inline-block animate-spin w-12 h-12 border-4 border-cyan-500 border-t-transparent rounded-full mb-6"></div>
                 <h3 class="text-xl font-bold mb-2" style="color: var(--text-base);">Режиссер перематывает пленку...</h3>
                 <p class="text-gray-400 text-sm max-w-xs mx-auto">Проявляем кадры, анализируем психотип и подбираем лучшее амплуа из базы.</p>
             </div>
 
-            <div id="screen-result" class="hidden py-10 px-6 md:px-12 relative z-10">
+            <div id="screen-result" class="py-10 px-6 md:px-12 relative z-10" style="display: none;">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                     <div>
                         <div class="text-xs font-bold uppercase tracking-widest text-cyan-400 mb-2">Ваш кастинг-репорт сформирован</div>
@@ -290,7 +287,7 @@
                 </div>
             </div>
 
-            <div id="screen-chat" class="chat-container-fixed">
+            <div id="screen-chat" class="chat-container-fixed" style="display: none;">
                 <div class="flex items-center justify-between pb-4 border-b border-gray-800 tracking-normal" style="flex-shrink: 0; padding: 1.5rem 1.5rem 1rem 1.5rem; border-color: var(--border-base);">
                     <div class="flex items-center gap-3">
                         <div class="relative w-12 h-12 bg-gradient-to-tr from-amber-500 to-red-500 rounded-full flex items-center justify-center font-black text-slate-950 shadow-md" style="flex-shrink: 0;">
@@ -414,7 +411,7 @@
                 ],
                 female: [
                     { question: "Пробы в масштабную костюмированную историческую драму. Вы — графиня, узнавшая, что император подписал указ об аресте вашей семьи. Ваша первая реакция?", answers: [ { text: "Срываю тяжелое колье, бросаю его к ногам гонца и приказываю седлать коней для побега.", tag: "action" }, { text: "Медленно опускаюсь на кресло, бледнею, роняю веер. В глазах — вся трагедия уходящей эпохи.", tag: "drama" }, { text: "Выпиваю бокал вина, громко хохочу над глупостью указа и иронично подмигиваю гвардейцам.", tag: "comedy" }, { text: "Гордо выпрямляю спину, поднимаю подбородок и ледяным тоном заявляю: 'Императоры меняются. Род наш вечен'.", tag: "epic" } ] },
-                    { question: "Кастинг на главную роль в остросюжетном голливудском триллере. Вы заперты в комнате, к дверям подходит преследователь. Что делает героиня?", answers: [ { text: "Выбиваю стекло стулом, готовя точку для молниеносной атаки или прыжка.", tag: "action" }, { text: "Прижимаюсь к стене, затаив дыхание, крупный план на дрожащие губы и слезу.", tag: "drama" }, { text: "Быстро крашу губы красной помадой, беру швабру и готовлюсь встретить гостя с улыбкой.", tag: "comedy" }, { text: "Блокирую замок одним точным движением, сохраняя абсолютный пульс и холодный расчет.", tag: "epic" } ] },
+                    { question: "Кастинг на главную роль в остросюжетном голливудском триллере. Вы заперты в комнате, к дверям подходит преследователь. Что делает героиня?", answers: [ { text: "Выбиваю стекло стулом, готовя точку для молниеносной атаки или прыжка.", tag: "action" }, { text: "Прижимаюсь к стене, затаив дыхание, крупный план на дрожащие губы и слезу.", tag: "drama" }, { text: "Быстро крашу губы красной помадой, беру швабру и готовлюсь встретить гостя с улыбкой.", tag: "comedy" }, { text: "Блокирую замок одним точным движением, сохраняя абсолютный пулс и холодный расчет.", tag: "epic" } ] },
                     { question: "Сцена психологического романа. Вы прощаетесь с человеком, которого любили всю жизнь, но остаться невозможно. Какое действие в кадре?", answers: [ { text: "Резко разворачиваюсь, нажимаю на газ автомобиля и скрываюсь в тумане трассы.", tag: "action" }, { text: "Прикасаюсь ладонью к его щеке, замирая в финальном кадре. Пауза длится вечность.", tag: "drama" }, { text: "Выдаю нелепую шутку про погоду, весело машу рукой, а отвернувшись — горько выдыхаю.", tag: "comedy" }, { text: "Делаю спокойный царственный шаг назад, закрывая двери купе. Решение окончательное.", tag: "epic" } ] },
                     { question: "Вы играете лидера женского сопротивления в антиутопии. Люди напуганы и готовы сдаться. С чего начнете монолог?", answers: [ { text: "С резкого, громкого призыва к оружию, зажигая толпу чистой энергией действия.", tag: "action" }, { text: "С тихой, пронзительной личной истории, заставляющей плакать даже суровых бойцов.", tag: "drama" }, { text: "С жесткой сатиры над страхами врага. Высмеиваю их, возвращая людям улыбки.", tag: "comedy" }, { text: "С величественного разбора нашей глобальной цели, чести и неминуемой победы в истории.", tag: "epic" } ] },
                     { question: "Финал детективного фильма. Вы вычисляете главного преступника на светском приеме. Ваша подача?", answers: [ { text: "Перехватываю его руку с бокалом, выбиваю пистолет и прижимаю мерзавца к колонне.", tag: "action" }, { text: "Выдаю правду через цепочку тяжелых обвинений, заставляя его сознаться под давлением совести.", tag: "drama" }, { text: "Разыгрываю глупую путаницу с бокалами, роняю торт, в процессе вытаскивая у него улику.", tag: "comedy" }, { text: "Спокойно поднимаю тост, называю его имя при всех. Зал окружен полицией по моему приказу.", tag: "epic" } ] }
@@ -425,7 +422,7 @@
 
         const rolesTitles = {
             adult: {
-                male: { action: "Агент под прикрытием", drama: "Герой независимого артхауса", comedy: "Эксцентричный новатор", epic: "Правитель... Империи" },
+                male: { action: "Агент под прикрытием", drama: "Герой независимого артхауса", comedy: "Эксцентричный новатор", epic: "Правитель Империи" },
                 female: { action: "Спецагент экстра-класса", drama: "Муза драматического кино", comedy: "Прима авантюрной комедии", epic: "Королева Галактики" }
             }
         };
@@ -435,7 +432,7 @@
             action: "Вы обладаете невероятной скоростью реакции, физической собранностью и решительностью. Режиссеры динамичных экшенов увидели бы в вас идеального протагониста, способного вытащить любую сложнейшую сцену за счет личной харизмы, точности движений и хладнокровия в моменты кризиса.",
             drama: "Ваш конек — глубокая психологическая проработка, эмоциональная честность и умение держать драматическую паузу. Ваше присутствие в кадре заставляет зрителя сопереживать каждой секунду. Это амплуа для фестивального кино высокого уровня, где ценится глубина взгляда и микромимика.",
             comedy: "Вы — генератор энергии, способный мгновенно разрядить любую обстановку с помощью безупречной самоиронии, пластичности и нестандартного мышления. Вы легко ломаете шаблоны поведения, удерживая внимание зрителя за счет искренности, динамики и великолепного чувства ритма.",
-            epic: "Монументальное спокойствие, стратегическое мышление и врожденные лидерские качества. Вы органично смотритесь в масштабных кадрах исторических саг, космических опер или фэнтези. Ваша роль — человек, за которым идут, восстанавливающий порядок, структуру и гармонию."
+            epic: "Монументальное спокойствие, strategic мышление и врожденные лидерские качества. Вы органично смотритесь в масштабных кадрах исторических саг, космических опер или фэнтези. Ваша роль — человек, за которым идут, восстанавливающий порядок, структуру и гармонию."
         };
 
         const rolesColors = { action: "#06B6D4", drama: "#A855F7", comedy: "#F59E0B", epic: "#10B981" };
@@ -446,26 +443,23 @@
             "ВРЕМЯ РЕСУРСА", "ФАСЦИЯ СУДЬБЫ", "ОБРАТНЫЙ ОТСЧЕТ ОСОЗНАННОСТИ"
         ];
 
+        // ИСПРАВЛЕННАЯ НАДЕНАЯ ФУНКЦИЯ ПЕРЕКЛЮЧЕНИЯ ЭКРАНОВ: НАТИВНЫЙ DISPLAY ПРЕПЯТСТВУЕТ НАЛОЖЕНИЮ
         function showScreen(screenId) {
             ["screen-start", "screen-setup", "screen-quiz", "screen-loading", "screen-result", "screen-chat"].forEach(id => {
                 const el = document.getElementById(id);
                 if (el) {
-                    el.classList.add("hidden");
                     el.style.display = "none"; 
                 }
             });
             const target = document.getElementById(screenId);
             if (target) {
-                target.classList.remove("hidden");
                 if (screenId === "screen-chat") {
                     target.style.display = "flex";
-                    target.style.flexDirection = "column";
                 } else {
                     target.style.display = "block";
                 }
             }
             
-            // ИСПРАВЛЕН БАГ ПАДЕНИЯ СКРИПТА (БЕЗОПАСНАЯ ПРОВЕРКА НА НАЛИЧИЕ DROPDOWN В DOM ЧЕРЕЗ IF)
             const dropdown = document.getElementById("desktop-share-dropdown");
             if (dropdown) {
                 dropdown.classList.add("hidden");
@@ -529,17 +523,18 @@
                 finalRoleKey = Object.keys(scoreCounter).reduce((a, b) => scoreCounter[a] > scoreCounter[b] ? a : b);
                 chosenMovieTitle = fakeMovieTitles[Math.floor(Math.random() * fakeMovieTitles.length)];
                 
-                const container = document.getElementById("poster-render-container");
-                // ИСПРАВЛЕН БАГ ИСЧЕЗНОВЕНИЯ ХОЛСТА: ОРИГИНАЛЬНЫЙ CANVAS ВСЕГДА В DOM ДЛЯ ОЧИСТКИ И КОРРЕКТНОГО ПЕРЕЗАПУСКА
-                container.innerHTML = `
-                    <div id="poster-inner-box" class="border border-gray-800 bg-[#090D16] p-2 rounded-xl shadow-xl max-w-[320px] w-full transition-transform duration-300 group-hover:scale-[1.02]">
-                        <canvas id="posterCanvas" width="600" height="900" class="w-full h-auto rounded-lg bg-slate-900"></canvas>
-                        <div id="premium-poster-image-placeholder"></div>
-                    </div>
-                    <p id="poster-footer-caption" class="text-[10px] text-gray-600 mt-2">Базовый постер. Создан алгоритмом РЕСУРСА.</p>
-                `;
-                generatedPremiumPosterUrl = null;
+                const canvas = document.getElementById("posterCanvas");
+                const placeholder = document.getElementById("premium-poster-image-placeholder");
+                if (canvas) canvas.classList.remove("hidden");
+                if (placeholder) placeholder.innerHTML = "";
+                
+                const caption = document.getElementById("poster-footer-caption");
+                if (caption) {
+                    caption.innerText = "Базовый постер. Создан алгоритмом РЕСУРСА.";
+                    caption.className = "text-[10px] text-gray-600 mt-2";
+                }
 
+                generatedPremiumPosterUrl = null;
                 renderResultScreen();
             }, 1500);
         }
@@ -553,12 +548,9 @@
             
             showScreen("screen-result");
             
-            const canvas = document.getElementById("posterCanvas");
-            const placeholder = document.getElementById("premium-poster-image-placeholder");
-            if (canvas) canvas.classList.remove("hidden");
-            if (placeholder) placeholder.innerHTML = "";
-
-            setTimeout(() => { generateCanvasPoster(displayTitle); }, 50);
+            if (!generatedPremiumPosterUrl) {
+                setTimeout(() => { generateCanvasPoster(displayTitle); }, 50);
+            }
         }
 
         function generateCanvasPoster(displayTitle) {
@@ -600,7 +592,6 @@
                 ctx.fillStyle = "#FFFFFF";
                 ctx.fillText(displayTitle.toUpperCase(), canvas.width / 2, canvas.height - 165);
 
-                ctx.fillStyle = accentColor;
                 fillAutoScaledText(ctx, chosenMovieTitle.toUpperCase(), canvas.width / 2, canvas.height - 95, 520, 42, "'Montserrat', sans-serif");
 
                 ctx.fillStyle = "rgba(255, 255, 255, 0.3)";
@@ -867,7 +858,7 @@
             }
         }
 
-        // ИСПРАВЛЕН БАГ ИСЧЕЗНОВЕНИЯ CANVAS ЧЕРЕЗ КЛАССЫ СКРЫТИЯ
+        // ИСПРАВЛЕН БАГ ИСЧЕЗНОВЕНИЯ CANVAS И СЛИПАНИЯ СЛОЕВ: РАСПРЕДЕЛЕНИЕ КЛАССОВ И ТЕГОВ ПРЕВЬЮ
         async function terminateCastingAndRender() {
             const displayTitle = rolesTitles[selectedAge][selectedGender][finalRoleKey];
             showScreen("screen-loading");
@@ -915,3 +906,5 @@
             renderResultScreen();
         }
     </script>
+</body>
+</html>
