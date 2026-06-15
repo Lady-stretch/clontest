@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <script>
+        // По умолчанию для инфо-страниц ставим чистую светлую эко-тему, сохраняем выбор пользователя
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+
+    <script type="text/javascript">
+    // --- Yandex.Metrika counter ---
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=109130409', 'ym');
+    ym(109130409, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript>
+        <div>
+            <img src="https://mc.yandex.ru/watch/109130409" style="position:absolute; left:-9999px;" alt="" />
+        </div>
+    </noscript>
+
+    <script>
+        // Глобальная логика перехвата ботов для SEO-превью через Яндекс Функцию
+        window.addEventListener('DOMContentLoaded', () => {
+            const isBot = /YandexBot|YandexAccessibilityBot|YandexMobileBot|Googlebot/i.test(navigator.userAgent);
+            if (isBot) {
+                fetch('https://functions.yandexcloud.net/d4ecn5ag33dcdd2deivd?bot=true&url=' + encodeURIComponent(window.location.href))
+                .then(res => res.json())
+                .then(data => console.log("SEO Preview Matrix Synced"))
+                .catch(e => console.log("SEO preview pass"));
+            }
+        });
+    </script>
+    
+    <script>window.yaContextCb=window.yaContextCb||[]</script>
+    <script src="https://yandex.ru/ads/system/context.js" async></script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Фитнес и растяжка для начинающих в Сыктывкаре | Гид по мягким тренировкам</title>
+    <meta name="description" content="Не знаете с чего начать тренировки? Интерактивный онлайн-гид для новичков в фитнесе и растяжке. Подбор направления без подготовки, боли и стеснения. 10 советов и пошаговый старт от Ольги Мартыновой, студия РЕСУРС Сыктывкар.">
+    <meta name="keywords" content="фитнес для начинающих сыктывкар, растяжка без подготовки коми, с чего начать тренировки женщине, мягкий фитнес для новичков, пилатес сыктывкар с нуля, студия ресурс сыктывкар, стретчинг для деревянных, фитнес клуб коммунистическая">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://resurs-stretch.ru/beginner-guide.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Тест: Какое фитнес-направление идеально подходит именно вам?">
+    <meta property="og:description" content="Боитесь, что на тренировках будет тяжело или стесняетесь отсутствия подготовки? Пройдите мгновенный подбор программы с нуля на сайте студии РЕСУРС.">
+    <meta property="og:url" content="https://resurs-stretch.ru/beginner-guide.html">
+    <meta property="og:image" content="https://resurs-stretch.ru/logo_header_final.png">
+    <meta property="og:site_name" content="РЕСУРС">
+    <meta property="og:locale" content="ru_RU">
+
+    <link rel="icon" type="image/png" href="logo_header_final.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <script src="https://reservi.ru/widget-fit1c.v2/js/config.js" data-fit-salon-id="02977247-3381-4559-b9ef-1cf88d2731a2"></script>
+    <script src="https://unpkg.com/imask"></script>
+
+    <style>
+        /* CSS ПЕРЕМЕННЫЕ ДЛЯ СВЕТЛОЙ ЭКО-ТЕМЫ */
+        :root {
+            --bg-deep: #F8F9F6; 
+            --glass-bg: rgba(255, 255, 255, 0.9); 
+            --glass-border: 1px solid rgba(43, 46, 42, 0.08); 
+            --accent-gold: #B38639; 
+            --accent-green: #4CAF50; 
+            --accent-berry: #C2185B; 
+            --text-main: #2B2E2A; 
+            --text-dim: rgba(43, 46, 42, 0.7);
+            --elem-bg: rgba(76, 175, 80, 0.06);
+            --elem-border: rgba(43, 46, 42, 0.1);
+            --nav-bg: rgba(248, 249, 246, 0.95);
+            --font-main: 'Manrope', sans-serif;
+            --font-serif: 'Cormorant Garamond', serif;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ТЕМНАЯ ТЕМА */
+        [data-theme="dark"] {
+            --bg-deep: #080814; 
+            --glass-bg: rgba(255, 255, 255, 0.03); 
+            --glass-border: 1px solid rgba(255, 255, 255, 0.08); 
+            --accent-gold: #C5A059; 
+            --accent-green: #66BB6A;
+            --accent-berry: #E91E63;
+            --text-main: #F4F4F9;
+            --text-dim: rgba(244, 244, 249, 0.6);
+            --elem-bg: rgba(255, 255, 255, 0.04);
+            --elem-border: rgba(255, 255, 255, 0.15);
+            --nav-bg: rgba(8, 8, 20, 0.95);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
+        html { scroll-behavior: smooth; }
+        body { 
+            background: var(--bg-deep); 
+            color: var(--text-main);
+            font-family: var(--font-main); 
+            line-height: 1.6;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            transition: background-color 0.4s ease, color 0.4s ease;
+            -webkit-font-smoothing: antialiased;
+            padding-bottom: 60px;
+        }
+
+        h1, h2, h3, .serif { font-family: var(--font-serif); font-weight: 600; letter-spacing: 0.5px; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+
+        /* HEADER */
+        header {
+            position: fixed; top: 0; width: 100%; padding: 20px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 2000; background: transparent; transition: var(--transition);
+        }
+        header.scrolled { 
+            background: var(--glass-bg) !important; 
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            padding: 12px 5% !important; border-bottom: var(--glass-border);
+        }
+        .brand-name { font-family: var(--font-serif); font-size: 22px; letter-spacing: 8px; text-transform: uppercase; font-weight: 600; }
+        
+        #themeToggle {
+            padding: 0 15px; height: 35px; font-size: 10px; font-weight: 600; letter-spacing: 2px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 8px; border: 1px solid var(--elem-border); background: var(--elem-bg);
+            cursor: pointer; transition: var(--transition); color: var(--text-main); text-transform: uppercase;
+        }
+        #themeToggle:hover { border-color: var(--accent-gold); transform: translateY(-2px); }
+
+        /* MAIN CONTAINER */
+        .main-layout { max-width: 1200px; margin: 100px auto 60px; padding: 0 20px; }
+
+        /* ТАБЫ */
+        .tabs-nav { display: flex; gap: 10px; margin-bottom: 30px; border-bottom: var(--glass-border); padding-bottom: 15px; overflow-x: auto; scrollbar-width: none; }
+        .tabs-nav::-webkit-scrollbar { display: none; }
+        .tab-btn {
+            padding: 12px 24px; border: 1px solid var(--elem-border); background: var(--glass-bg);
+            color: var(--text-dim); border-radius: 12px; cursor: pointer; font-size: 14px; font-weight: 500;
+            white-space: nowrap; transition: var(--transition); font-family: var(--font-main);
+        }
+        .tab-btn:hover { border-color: var(--accent-gold); color: var(--text-main); }
+        .tab-btn.active { background: var(--accent-green); color: #FFF; border-color: var(--accent-green); box-shadow: 0 8px 20px rgba(76,175,80,0.2); }
+
+        .tab-content { display: none; animation: fadeIn 0.5s ease; }
+        .tab-content.active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* BENTO GRID */
+        .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .bento-card { background: var(--glass-bg); border: var(--glass-border); border-radius: 24px; padding: 30px; position: relative; overflow: hidden; transition: var(--transition); }
+        .bento-card:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(0,0,0,0.03); }
+        
+        .span-2 { grid-column: span 2; }
+        .span-3 { grid-column: span 3; }
+
+        /* ИНПУТЫ И КАЛЬКУЛЯТОР */
+        .calc-group { margin-bottom: 25px; }
+        .calc-label { font-size: 15px; font-weight: 600; margin-bottom: 12px; display: block; color: var(--text-main); line-height: 1.4; }
+        
+        .radio-box-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+        .radio-tile {
+            border: 1px solid var(--elem-border); background: var(--elem-bg); padding: 16px;
+            border-radius: 12px; cursor: pointer; display: flex; flex-direction: column; gap: 4px;
+            position: relative; transition: var(--transition);
+        }
+        .radio-tile input { position: absolute; top: 16px; right: 16px; accent-color: var(--accent-green); }
+        .radio-tile-title { font-size: 14px; font-weight: 700; color: var(--text-main); }
+        .radio-tile-desc { font-size: 12px; color: var(--text-dim); line-height: 1.4; }
+        .radio-tile.selected { border-color: var(--accent-green); background: rgba(76,175,80,0.08); }
+
+        .range-slider { width: 100%; accent-color: var(--accent-green); margin: 10px 0; height: 6px; border-radius: 3px; }
+        .range-val { font-size: 18px; font-weight: 700; color: var(--accent-gold); }
+        
+        /* РЕЗУЛЬТАТЫ */
+        .result-score-box { text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(135deg, var(--elem-bg), transparent); padding: 40px 20px; }
+        .score-number { font-size: 34px; font-weight: 800; line-height: 1.3; color: var(--accent-green); font-family: var(--font-serif); text-transform: uppercase; letter-spacing: 0.5px; }
+        .score-status { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-top: 12px; color: var(--accent-gold); }
+
+        /* МАРКЕТИНГОВЫЕ КНОПКИ */
+        .btn-marketing {
+            display: inline-flex; align-items: center; justify-content: center; width: 100%;
+            padding: 22px 30px; background: var(--accent-berry); color: #FFF; border: none;
+            border-radius: 16px; font-family: var(--font-main); font-size: 15px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: var(--transition);
+            box-shadow: 0 10px 25px rgba(194,24,91,0.25);
+        }
+        .btn-marketing:hover { transform: translateY(-2px); box-shadow: 0 15px 35px rgba(194,24,91,0.4); opacity: 0.95; }
+
+        .btn-reset {
+            background: transparent; border: 1px dashed var(--text-dim); color: var(--text-dim);
+            padding: 10px 20px; border-radius: 10px; font-size: 12px; font-weight: 600;
+            cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: var(--transition);
+        }
+        .btn-reset:hover { border-color: var(--accent-berry); color: var(--accent-berry); }
+
+        /* НАУЧНЫЕ СПИСКИ И РЕЦЕПТЫ */
+        .fact-num { font-size: 32px; font-family: var(--font-serif); color: var(--accent-gold); font-weight: 700; margin-bottom: 5px; }
+        .fact-title { font-size: 18px; font-weight: 600; margin-bottom: 10px; line-height: 1.3; font-family: var(--font-serif); color: var(--text-main); }
+        .fact-desc { font-size: 14px; color: var(--text-dim); line-height: 1.6; }
+
+        .recipe-badge { background: var(--accent-green); color: #FFF; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; text-transform: uppercase; display: inline-block; margin-bottom: 15px; }
+
+        /* УЛЬТРА-ЯРКАЯ КНОПКА ШЕРИНГА */
+        .share-section { margin-top: 50px; background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), rgba(179, 134, 57, 0.08)); border: 2px solid var(--accent-green); border-radius: 28px; padding: 40px 30px; text-align: center; box-shadow: 0 15px 40px rgba(76,175,80,0.1); }
+        .btn-share {
+            display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 18px 40px;
+            background: linear-gradient(135deg, var(--accent-green), #2E7D32); border: none; border-radius: 16px;
+            font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: var(--transition); color: #FFF;
+            box-shadow: 0 10px 25px rgba(76, 175, 80, 0.4); width: 100%; max-width: 400px;
+        }
+        .btn-share:hover { transform: scale(1.03) translateY(-2px); box-shadow: 0 15px 35px rgba(76, 175, 80, 0.6); }
+
+        /* ЦЕНТРИРОВАННЫЙ ИСПРАВЛЕННЫЙ ПОДВАЛ */
+        footer { 
+            margin-top: 80px; 
+            padding: 60px 0 40px; 
+            border-top: var(--glass-border); 
+            background: transparent;
+            width: 100%;
+        }
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+        .footer-text-main {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+        .footer-text-sub {
+            font-size: 11px;
+            line-height: 1.6;
+            color: var(--text-dim);
+            opacity: 0.85;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 968px) {
+            .bento-grid { grid-template-columns: 1fr; }
+            .span-2, .span-3 { grid-column: span 1; }
+            .main-layout { margin-top: 90px; }
+        }
+    </style>
+</head>
+<body>
+
+<header id="header">
+    <div class="brand-name">РЕСУРС</div>
+    <div>
+        <button id="themeToggle" onclick="toggleTheme()">ТЕНЬ</button>
+    </div>
+</header>
+
+<main class="main-layout">
+    
+    <section style="text-align: center; max-width: 800px; margin: 0 auto 40px;">
+        <h1 style="font-size: clamp(28px, 4vw, 46px); line-height: 1.2; margin-bottom: 15px;">
+            Интерактивный гид: <span style="color: var(--accent-gold); font-style: italic;">С чего начать новичку?</span>
+        </h1>
+        <p style="font-size: 15px; color: var(--text-dim); line-height: 1.7;">
+            Боитесь, что фитнес — это слишком тяжело, или стесняетесь отсутствия подготовки? В нашей камерной студии в Сыктывкаре нет оценивающих взглядов и изнуряющих рекордов. Укажите ваши цели и самочувствие, и умный алгоритм мгновенно подберет идеальное, безопасное направление для вашего мягкого старта.
+        </p>
+    </section>
+
+    <nav class="tabs-nav" aria-label="Разделы страницы">
+        <button class="tab-btn active" onclick="switchTab(event, 'tab-calc')">📊 Умный подбор направления</button>
+        <button class="tab-btn" onclick="switchTab(event, 'tab-facts')">🔬 10 мифов о начале тренировок</button>
+        <button class="tab-btn" onclick="switchTab(event, 'tab-recipes')">🌿 5 советов для легкого старта</button>
+    </nav>
+
+    <div id="tab-calc" class="tab-content active">
+        <div class="bento-grid">
+            
+            <div class="bento-card span-2">
+                <h2 class="serif" style="font-size: 24px; margin-bottom: 25px; color: var(--text-main);">Анкета комфортного старта</h2>
+                
+                <div class="calc-group">
+                    <label class="calc-label">1. Какова ваша главная, самая заветная цель от занятий на сегодня?</label>
+                    <div class="radio-box-group">
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="main_goal" value="back" checked>
+                            <span class="radio-tile-title">Избавиться от болей</span>
+                            <span class="radio-tile-desc">Убрать зажатость в шее, пояснице, разгрузить спину от офиса.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="main_goal" value="sculpt">
+                            <span class="radio-tile-title">Стройность и рельеф</span>
+                            <span class="radio-tile-desc">Подтянуть тело, убрать лишние объемы, укрепить ягодицы.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="main_goal" value="relax">
+                            <span class="radio-tile-title">Гибкость и антистресс</span>
+                            <span class="radio-tile-desc">Сесть на шпагат, снять тревожность, отдохнуть головой.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="calc-group">
+                    <label class="calc-label">2. Каков ваш реальный опыт в фитнесе или растяжке?</label>
+                    <div class="radio-box-group">
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="fitness_exp" value="zero" checked>
+                            <span class="radio-tile-title">Полный ноль</span>
+                            <span class="radio-tile-desc">Никогда нигде не занималась, тело полностью нетренированное.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="fitness_exp" value="past">
+                            <span class="radio-tile-title">Занималась очень давно</span>
+                            <span class="radio-tile-desc">Был опыт в прошлом, но сейчас всё забыто, мышцы зажаты.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="fitness_exp" value="active">
+                            <span class="radio-tile-title">Периодическая активность</span>
+                            <span class="radio-tile-desc">Иногда тренируюсь дома по видео или много гуляю.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="calc-group">
+                    <label class="calc-label">3. Беспокоят ли вас какие-либо ограничения по здоровью суставов или вен?</label>
+                    <div class="radio-box-group">
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="health_limit" value="yes" checked>
+                            <span class="radio-tile-title">Да, есть нюансы</span>
+                            <span class="radio-tile-desc">Хрустят колени, побаливают суставы или есть склонность к варикозу.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="health_limit" value="no">
+                            <span class="radio-tile-title">Особых проблем нет</span>
+                            <span class="radio-tile-desc">Бывает только обычная усталость мышц спины от сидения.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="calc-group">
+                    <label class="calc-label">4. Оцените ваш психологический уровень готовности к тренировкам:</label>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                        <span style="font-size: 13px; color: var(--text-dim);">Уровень комфорта:</span>
+                        <span id="range-comfort-val" class="range-val" style="color: var(--accent-green);">Немного стесняюсь</span>
+                    </div>
+                    <input type="range" id="comfort_slider" class="range-slider" min="0" max="2" value="1" step="1" oninput="calculateDirection()">
+                </div>
+
+                <div style="margin-top: 30px; display: flex; justify-content: flex-end;">
+                    <button class="btn-reset" onclick="resetCalculator()">Сбросить параметры гида</button>
+                </div>
+            </div>
+
+            <div class="bento-card result-score-box">
+                <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; color: var(--text-dim); margin-bottom: 10px;">Идеальный старт для вас:</div>
+                <div id="calc-result-dir" class="score-number" style="font-size: 28px; color: var(--accent-green); margin: 15px 0;">Здоровая спина + МФР</div>
+                <div id="calc-status" class="score-status">Мягкое вхождение 100%</div>
+                <p id="calc-text" style="font-size: 13px; opacity: 0.8; margin-top: 15px; line-height: 1.5; text-align: center;">
+                    Направление полностью исключает осевые нагрузки на позвоночник и бережно разгрузит зажатые мышцы шеи. Подходит для любого уровня подготовки.
+                </p>
+            </div>
+
+            <div class="bento-card span-3" style="border-left: 4px solid var(--accent-gold);">
+                <div style="display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: start;">
+                    <div>
+                        <h3 class="serif" style="font-size: 22px; margin-bottom: 10px;">Почему камерный формат студии идеален для новичка</h3>
+                        <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                            Главная причина, по которой новички бросают большие фитнес-клубы — это отсутствие контроля со стороны тренера и страх сделать упражнение неправильно. В огромных залах инструктор физически не может уследить за каждым. В студии «РЕСУРС» мы принципиально отказались от потокового формата. Наши группы — маленькие и камерные (уютные). Тренер видит биомеханику движения каждой девушки, бережно корректирует постановку стопы, положение таза и контролирует дыхание. Вы находитесь в абсолютной безопасности от травм и тренируетесь в кругу единомышленниц, где все поддерживают друг друга.
+                        </p>
+                    </div>
+                    <div style="background: var(--elem-bg); padding: 15px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent-gold)" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bento-card span-3" style="background: var(--elem-bg); text-align: center; padding: 40px 30px;">
+                <span class="recipe-badge" style="background: var(--accent-gold);">Старт без страха</span>
+                <h3 class="serif" style="font-size: 26px; margin-bottom: 15px;">Сделайте первый шаг к телу вашей мечты в безопасных условиях</h3>
+                <p style="font-size: 14px; max-width: 600px; margin: 0 auto 25px; color: var(--text-dim);">
+                    Запишитесь на ваш первый тест-драйв тренировок. Мы подберем для вас комфортный темп, а наши тренеры позаботятся о том, чтобы вы влюбились в движение с первых минут.
+                </p>
+                <div style="max-width: 450px; margin: 0 auto;">
+                    <a href="index.html?page=booking" class="btn-marketing">Записаться на тест-драйв тренировок</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="tab-facts" class="tab-content">
+        <div class="bento-grid">
+            
+            <div class="bento-card">
+                <div class="fact-num">01</div>
+                <h3 class="fact-title">Миф: «Я слишком деревянная для растяжки»</h3>
+                <p class="fact-desc">Правда: К нам приходят именно для того, чтобы развить гибкость, а не похвастаться ею. Стретчинг разработан специально для жестких, зажатых мышц.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">02</div>
+                <h3 class="fact-title">Миф: «Сначала похудею, потом пойду в зал»</h3>
+                <p class="fact-desc">Правда: Без физической активации мышц и лимфотока диеты только затормозят метаболизм. Мягкие тренировки МФР и Пилатеса — это главный старт для похудения.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">03</div>
+                <h3 class="fact-title">Миф: «Фитнес — это всегда адская боль»</h3>
+                <p class="fact-desc">Правда: Настоящий умный фитнес работает без насилия над телом. Боль — это сигнал о травме, мы тренируемся в зоне приятного анатомического тепла.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">04</div>
+                <h3 class="fact-title">Миф: «В залах все будут на меня смотреть»</h3>
+                <p class="fact-desc">Правда: В нашей камерной студии царит атмосфера деликатного комьюнити. Каждая девушка сфокусирована исключительно на своих ощущениях и командах тренера.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">05</div>
+                <h3 class="fact-title">Миф: «После 40 лет начинать уже поздно»</h3>
+                <p class="fact-desc">Правда: Мышцы и суставы сохраняют способность к адаптации и омоложению в любом возрасте. У нас есть специализированные мягкие группы для долголетия.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">06</div>
+                <h3 class="fact-title">Миф: «Нужно сразу покупать дорогую экипировку»</h3>
+                <p class="fact-desc">Правда: Для первых тренировок вам нужны только обычные удобные лосины, футболка и чистые носочки. Всё профессиональное оборудование студия предоставляет бесплатно.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">07</div>
+                <h3 class="fact-title">Миф: «У меня грыжи, мне нельзя двигаться»</h3>
+                <p class="fact-desc">Правда: При протрузиях и грыжах запрещены только осевые нагрузки (тяжелые штанги). Декомпрессионные гамаки и Пилатес, напротив, лечат спину, убирая сдавливание дисков.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">08</div>
+                <h3 class="fact-title">Миф: «Чтобы был результат, нужно тренироваться каждый день»</h3>
+                <p class="fact-desc">Правда: Для новичка идеальный шаг — 2-3 занятия в неделю. Мышцам и нервной системе требуется время на качественное восстановление и адаптацию.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">09</div>
+                <h3 class="fact-title">Миф: «Растяжка — это пустая трата времени»</h3>
+                <p class="fact-desc">Правда: Стретчинг и МФР улучшают эластичность сосудов, разгоняют застой лимфы (убирают отеки) и делают контуры тела изящными быстрее силовых упражнений.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">10</div>
+                <h3 class="fact-title">Миф: «Я не замечу эффекта за первый месяц»</h3>
+                <p class="fact-desc">Правда: Легкость в пояснице и шее, а также глубокий крепкий сон возвращаются уже после первой 50-минутной тренировки в нашей студии.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="tab-recipes" class="tab-content">
+        <div class="bento-grid">
+            
+            <div class="bento-card span-2">
+                <span class="recipe-badge">Совет 01</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px;">Выбирайте направление умом, а не по моде</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    Не нужно с первой тренировки идти на взрывную Табату или Круговой тренинг только потому, что это модно. Если ваше тело годами сидело в офисе, сосуды и суставы не готовы к такому стрессу. Ольга рекомендует начать знакомство со студией с фундаментальных мягких направлений — «Здоровая спина», «Умный Пилатес» или «МФР». Позвольте телу вспомнить радость движения плавно.
+                </p>
+            </div>
+
+            <div class="bento-card">
+                <span class="recipe-badge">Совет 02</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px;">Приходите за 15 минут до начала</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    Спешка создает лишний стресс. Придите пораньше, спокойно переоденьтесь, выпейте стакан теплой воды и адаптируйтесь к уютной атмосфере студии.
+                </p>
+            </div>
+
+            <div class="bento-card">
+                <span class="recipe-badge">Совет 03</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px;">Обязательно предупредите тренера</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    Перед началом класса подойдите к инструктору и скажите: «Я новичок, занимаюсь впервые». Расскажите, если где-то ноет поясница. Тренер будет уделять вам особое внимание.
+                </p>
+            </div>
+
+            <div class="bento-card span-2">
+                <span class="recipe-badge">Совет 04</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px;">Не сравнивайте себя с теми, кто занимается год</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    В зале могут быть девушки, которые легко гнутся в гамаках или садятся на шпагат. Помните: они тоже когда-то пришли в первый раз абсолютно деревянными. Ваша единственная точка сравнения — это вы сами вчера. Фокусируйтесь на своих закрытых глазах, своем дыхании и слушайте голос тренера. Ваше тело ответит вам взаимностью очень быстро.
+                </p>
+            </div>
+
+            <div class="bento-card span-3" style="background: linear-gradient(135deg, rgba(76,175,80,0.08), transparent); border-color: var(--accent-green);">
+                <span class="recipe-badge" style="background: var(--accent-green);">Напутствие от Ольги Мартыновой</span>
+                <h3 class="serif" style="font-size: 26px; margin-bottom: 15px;">«Самый сложный шаг в фитнесе — это шаг через порог студии...»</h3>
+                <p style="font-size: 15px; line-height: 1.7; color: var(--text-main); margin-bottom: 25px;">
+                    «Дорогие мои девочки, я прекрасно понимаю ваши сомнения и страхи. Каждой из нас бывает неловко начинать что-то новое. Но я обещаю: как только вы переступите порог студии "РЕСУРС", все страхи растают. Мы создали это пространство специально для того, чтобы вы могли сбросить груз забот, расслабить уставшую спину и почувствовать себя защищенной. У нас нет спортивного пафоса и жестких требований. Каждое движение длится ровно 50 минут — бережно, вдумчиво, с заботой о ваших суставах. Вы заслуживаете того, чтобы жить без боли в пояснице, просыпаться легкой и гордиться своей осанкой. Сделайте этот первый шаг ради себя, запишитесь на тест-драйв, и мы пройдем этот красивый путь вместе!»
+                </p>
+                <div style="max-width: 450px;">
+                    <a href="index.html?page=booking" class="btn-marketing" style="background: var(--accent-green); box-shadow: 0 10px 25px rgba(76,175,80,0.3);">Записаться на тест-драйв тренировок</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <section class="share-section">
+        <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">🔥 Поделиться полезным гидом с сомневающейся подругой!</h3>
+        <p style="font-size: 14px; color: var(--text-dim); margin-bottom: 25px;">Отправьте эту страницу подругам или коллегам, которые давно хотят пойти на фитнес или растяжку, но никак не могут решиться из-за страхов и стеснения.</p>
+        <button class="btn-share" onclick="sharePage()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            <span id="share-btn-text">Отправить подруге</span>
+        </button>
+    </section>
+
+</main>
+
+<footer>
+    <div class="footer-container">
+        <p class="footer-text-main">© 2026 РЕСУРС | Студия мягкого фитнеса, растяжки и движения. Сыктывкар, ул. Коммунистическая 77/2.</p>
+        <p class="footer-text-sub">Интерактивный подбор направлений носит рекомендательный характер. Перед началом занятий при наличии тяжелых травм опорно-двигательного аппарата проконсультируйтесь со специалистом.</p>
+    </div>
+</footer>
+
+<script>
+    function toggleTheme() {
+        const html = document.documentElement;
+        const currentTheme = html.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        document.getElementById('themeToggle').innerText = newTheme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        const theme = document.documentElement.getAttribute('data-theme');
+        document.getElementById('themeToggle').innerText = theme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
+        
+        restoreCalculatorData();
+        calculateDirection();
+    });
+
+    function switchTab(event, tabId) {
+        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        
+        document.getElementById(tabId).classList.add('active');
+        event.currentTarget.classList.add('active');
+        
+        window.scrollTo({ top: document.querySelector('.tabs-nav').offsetTop - 80, behavior: 'smooth' });
+    }
+
+    function selectTile(element) {
+        const name = element.querySelector('input').name;
+        document.querySelectorAll(`input[name="${name}"]`).forEach(input => {
+            input.parentElement.classList.remove('selected');
+        });
+        element.classList.add('selected');
+        
+        calculateDirection();
+    }
+
+    // ЛОГИКА ИНТЕРАКТИВНОГО ПОДБОРА НАПРАВЛЕНИЙ
+    function calculateDirection() {
+        const goal = document.querySelector('input[name="main_goal"]:checked').value;
+        const exp = document.querySelector('input[name="fitness_exp"]:checked').value;
+        const health = document.querySelector('input[name="health_limit"]:checked').value;
+        const comfort = parseInt(document.getElementById('comfort_slider').value);
+
+        const comfortLabels = ['Абсолютно уверена', 'Немного стесняюсь', 'Очень переживаю'];
+        document.getElementById('range-comfort-val').innerText = comfortLabels[comfort];
+
+        const resultDir = document.getElementById('calc-result-dir');
+        const textEl = document.getElementById('calc-text');
+
+        // Дерево решений (алгоритм подбора на лету)
+        if (goal === 'back') {
+            if (health === 'yes' || exp === 'zero') {
+                resultDir.innerText = "МФР + Здоровая спина";
+                textEl.innerText = "Идеальный стартовый комплекс для новичков. МФР бережно раскатает триггеры, а Здоровая спина укрепит мышечный корсет без опасных нагрузок.";
+            } else {
+                resultDir.innerText = "Умный Пилатес";
+                textEl.innerText = "Глубокая проработка глубоких стабилизаторов кора. Вернет суставам подвижность, вытянет шею и выстроит идеальную симметрию осанки.";
+            }
+        } else if (goal === 'sculpt') {
+            if (exp === 'zero' || health === 'yes') {
+                resultDir.innerText = "Body Sculpt (Базовый уровень)";
+                textEl.innerText = "Мягкий функциональный класс для создания подтянутого рельефа. Тренер подберет для вас минимальный вес, чтобы укрепить ягодицы и пресс без вреда для коленей.";
+            } else {
+                resultDir.innerText = "Круговая тренировка / Табата";
+                textEl.innerText = "Жиросжигающий интенсив для быстрого моделирования контуров тела. Подходит вам, так как у вас уже есть базовая мышечная подготовка.";
+            }
+        } else {
+            // Цель: Гибкость и Антистресс
+            if (comfort === 2 || exp === 'zero') {
+                resultDir.innerText = "Аэростретчинг (в гамаках)";
+                textEl.innerText = "Уникальный класс в невесомости. Мягкое шелковое полотно полностью снимет страх упасть, расслабит нервную систему и позволит растянуть мышцы паха на шпагат без боли.";
+            } else {
+                resultDir.innerText = "Классический Стретчинг + Йога";
+                textEl.innerText = "Глубокое статическое вытяжение связок и сухожилий. Идеально расслабляет голову, возвращает телу кошачью гибкость, грацию и текучесть движений.";
+            }
+        }
+
+        const calcData = { goal, exp, health, comfort };
+        localStorage.setItem('beginner_calc_data', JSON.stringify(calcData));
+    }
+
+    function resetCalculator() {
+        document.querySelectorAll('input[name="main_goal"]')[0].checked = true;
+        document.querySelectorAll('input[name="fitness_exp"]')[0].checked = true;
+        document.querySelectorAll('input[name="health_limit"]')[0].checked = true;
+        document.getElementById('comfort_slider').value = 1;
+
+        document.querySelectorAll('.radio-tile').forEach(tile => tile.classList.remove('selected'));
+        document.querySelectorAll('input[name="main_goal"]')[0].parentElement.classList.add('selected');
+        document.querySelectorAll('input[name="fitness_exp"]')[0].parentElement.classList.add('selected');
+        document.querySelectorAll('input[name="health_limit"]')[0].parentElement.classList.add('selected');
+
+        localStorage.removeItem('beginner_calc_data');
+        calculateDirection();
+    }
+
+    function restoreCalculatorData() {
+        const saved = localStorage.getItem('beginner_calc_data');
+        if (saved) {
+            try {
+                const data = JSON.parse(saved);
+                document.querySelectorAll(`input[name="main_goal"]`).forEach(i => { if(i.value === data.goal) i.checked = true; });
+                document.querySelectorAll(`input[name="fitness_exp"]`).forEach(i => { if(i.value === data.exp) i.checked = true; });
+                document.querySelectorAll(`input[name="health_limit"]`).forEach(i => { if(i.value === data.health) i.checked = true; });
+                document.getElementById('comfort_slider').value = data.comfort;
+            } catch (e) {
+                console.log("Storage backup fail sync pass");
+            }
+        }
+
+        document.querySelectorAll('.radio-tile').forEach(tile => {
+            if (tile.querySelector('input').checked) tile.classList.add('selected');
+        });
+    }
+
+    async function sharePage() {
+        const shareData = {
+            title: 'Интерактивный гид новичка: С чего начать тренировки?',
+            text: 'Я прошла умный подбор фитнес-направления на сайте студии РЕСУРС. Проверь, какой формат старта идеален для тебя!',
+            url: window.location.href
+        };
+        const btnText = document.getElementById('share-btn-text');
+        if (navigator.share) {
+            try { await navigator.share(shareData); } catch (err) { console.log('Share pass'); }
+        } else {
+            try {
+                await navigator.clipboard.writeText(window.location.href);
+                btnText.innerText = 'Ссылка скопирована!';
+                setTimeout(() => { btnText.innerText = 'Отправить подруге'; }, 3000);
+            } catch (err) {
+                alert('Скопируйте ссылку из адресной строки вашего браузера.');
+            }
+        }
+    }
+
+    window.addEventListener('scroll', () => {
+        const header = document.getElementById('header');
+        if (window.scrollY > 30) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
+    });
+</script>
+
+<script>
+window.yaContextCb.push(() => {
+    Ya.Context.AdvManager.render({
+        "blockId": "R-A-19181219-6",
+        "type": "floorAd",
+        "platform": "touch"
+    })
+})
+</script>
+<script>
+window.yaContextCb.push(() => {
+    Ya.Context.AdvManager.render({
+        "blockId": "R-A-19181219-7",
+        "type": "floorAd",
+        "platform": "desktop"
+    })
+})
+</script>
+
+</body>
+</html>
