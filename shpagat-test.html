@@ -36,21 +36,18 @@
         });
     </script>
     
-    <!-- Подключение рекламной системы Яндекса (РСЯ) -->
     <script>window.yaContextCb=window.yaContextCb||[]</script>
     <script src="https://yandex.ru/ads/system/context.js" async></script>
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- УЛЬТРА-ПРОФИ SEO ОПТИМИЗАЦИЯ ПОД СЫКТЫВКАР И РЕСПУБЛИКУ КОМИ -->
     <title>Тест на гибкость суставов | Шпагат безопасно и растяжка в Сыктывкаре</title>
     <meta name="description" content="Пройдите интерактивный анатомический тест на гибкость суставов. Как сесть на шпагат безопасно без боли и травм связок. 10 научных фактов и 5 правил растяжки от Ольги Мартыновой, студия РЕСУРС Сыктывкар.">
     <meta name="keywords" content="растяжка на шпагат сыктывкар, сесть на шпагат без боли, тест на гибкость суставов, безопасный стретчинг коми, аэростретчинг в гамаках сыктывкар, студия ресурс растяжка, болят связки после растяжки, гибкость позвоночника раскрытие таза">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://resurs-stretch.ru/shpagat-test.html">
 
-    <!-- OPEN GRAPH ДЛЯ СОЦСЕТЕЙ -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Анатомический тест: Можно ли вам садиться на шпагат и каков потенциал суставов?">
     <meta property="og:description" content="Боитесь порвать связки или думаете, что нет гибкости от природы? Пройдите мгновенный онлайн-аудит суставной подвижности на сайте студии РЕСУРС.">
@@ -223,6 +220,35 @@
         }
         .btn-share:hover { transform: scale(1.03) translateY(-2px); box-shadow: 0 15px 35px rgba(76, 175, 80, 0.6); }
 
+        /* ИСПРАВЛЕНО: СТИЛИ ДЛЯ ИДЕАЛЬНОГО ФУТЕРА С ЦЕНТРИРОВАНИЕМ И ОГРАНИЧЕНИЕМ ШИРИНЫ */
+        footer { 
+            margin-top: 80px; 
+            padding: 60px 0 40px; 
+            border-top: var(--glass-border); 
+            background: transparent;
+            width: 100%;
+        }
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+        .footer-text-main {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+        .footer-text-sub {
+            font-size: 11px;
+            line-height: 1.6;
+            color: var(--text-dim);
+            opacity: 0.85;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
         @media (max-width: 968px) {
             .bento-grid { grid-template-columns: 1fr; }
             .span-2, .span-3 { grid-column: span 1; }
@@ -256,7 +282,6 @@
         <button class="tab-btn" onclick="switchTab(event, 'tab-recipes')">🌿 5 золотых правил от Ольги</button>
     </nav>
 
-    <!-- ТАБ 1: КАЛЬКУЛЯТОР-АНАЛИЗАТОР ГИБКОСТИ -->
     <div id="tab-calc" class="tab-content active">
         <div class="bento-grid">
             
@@ -340,7 +365,6 @@
                 </div>
             </div>
 
-            <!-- Результат расчета Bento -->
             <div class="result-score-box bento-card">
                 <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; color: var(--text-dim); margin-bottom: 10px;">Ваш потенциал эластичности:</div>
                 <div id="calc-result-percent" class="score-number">45%</div>
@@ -350,13 +374,12 @@
                 </p>
             </div>
 
-            <!-- Разбор биомеханики стретчинга и рефлексов -->
             <div class="bento-card span-3" style="border-left: 4px solid var(--accent-gold);">
                 <div style="display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: start;">
                     <div>
                         <h3 class="serif" style="font-size: 22px; margin-bottom: 10px;">Почему растяжка через сильную боль физиологически блокирует шпагат</h3>
                         <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
-                            Внутри каждого мышечного волокна находятся особые датчики безопасности — *мышечные веретена*. Как только вы начинаете тянуться слишком агрессивно, проваливаясь в шпагат через резкую боль, эти датчики мгновенно отправляют сигнал тревоги в спинной мозг. Срабатывает защитный *миотатический рефлекс* (рефлекс на растяжение) — и мышца принудительно сокращается, сжимаясь как жесткая пружина, чтобы спасти себя от разрыва. Пытаясь растянуть такую зажатую мышцу силой, вы рвете микроволокна. На их месте образуются жесткие рубцы из соединительной ткани, которые делают вас еще более «деревянной». Безопасный стретчинг строится на обмане этого рефлекса через глубокое дыхание, расслабление фасций (оболочек мышц) и мягкую поддержку тела в невесомости — например, на занятиях «Аэростретчинг» в шелковых гамаках студии «РЕСУРС».
+                            Внутри каждого мышечного волокна находятся особые датчики безопасности — *мышечные веретена*. Как только вы начинаете тянуться слишком агрессивно, проваливаясь в шпагат через резкую боль, эти датчики мгновенно отправляют сигнал тревоги в спинной мозг. Срабатывает защитный *миотатический рефлекс* (рефлекс на растяжение) — и мышца принудительно сокращается, сжимаясь как жесткая пружина, чтобы спасть себя от разрыва. Пытаясь растянуть такую зажатую мышцу силой, вы рвете микроволокна. На их месте образуются жесткие рубцы из соединительной ткани, которые делают вас еще более «деревянной». Безопасный стретчинг строится на обмане этого рефлекса через глубокое дыхание, расслабление фасций (оболочек мышц) и мягкую поддержку тела в невесомости — например, на занятиях «Аэростретчинг» в шелковых гамаках студии «РЕСУРС».
                         </p>
                     </div>
                     <div style="background: var(--elem-bg); padding: 15px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
@@ -365,7 +388,6 @@
                 </div>
             </div>
 
-            <!-- ВШИТЫЙ МАРКЕТИНГОВЫЙ КОНВЕРТЕР С УТВЕРЖДЕННОЙ КНОПКОЙ -->
             <div class="bento-card span-3" style="background: var(--elem-bg); text-align: center; padding: 40px 30px;">
                 <span class="recipe-badge" style="background: var(--accent-gold);">Мягкий стретчинг в Сыктывкаре</span>
                 <h3 class="serif" style="font-size: 26px; margin-bottom: 15px;">Раскройте гибкость вашего тела без слез и травм связок</h3>
@@ -380,7 +402,6 @@
         </div>
     </div>
 
-    <!-- ТАБ 2: 10 НАУЧНЫХ ФАКТОВ О ШПАГАТЕ -->
     <div id="tab-facts" class="tab-content">
         <div class="bento-grid">
             
@@ -447,7 +468,6 @@
         </div>
     </div>
 
-    <!-- ТАБ 3: 5 ЗОЛОТЫХ ПРАВИЛ ОТ ЭКСПЕРТА ОЛЬГИ МАРТЫНОВОЙ -->
     <div id="tab-recipes" class="tab-content">
         <div class="bento-grid">
             
@@ -497,7 +517,6 @@
         </div>
     </div>
 
-    <!-- УЛЬТРА-ЯРКАЯ КНОПКА ШЕРИНГА -->
     <section class="share-section">
         <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">🔥 Поделиться анатомическим тестом на гибкость с подругами!</h3>
         <p style="font-size: 14px; color: var(--text-dim); margin-bottom: 25px;">Отправьте этот тест подругам, которые мечтают сесть на шпагат, сесть красиво, безопасно и сохранить здоровье суставов на долгие годы.</p>
@@ -510,8 +529,10 @@
 </main>
 
 <footer>
-    <p>© 2026 РЕСУРС | Студия растяжки, пилатеса и движения. Сыктывкар, ул. Коммунистическая 77/2.</p>
-    <p style="margin-top: 5px; opacity: 0.6; font-size: 10px;">Интерактивный анализ подвижности суставов носит ознакомительный характер. При наличии серьезных суставных дегенеративных изменений перед практикой проконсультируйтесь со специалистом.</p>
+    <div class="footer-container">
+        <p class="footer-text-main">© 2026 РЕСУРС | Студия растяжки, пилатеса и движения. Сыктывкар, ул. Коммунистическая 77/2.</p>
+        <p class="footer-text-sub">Интерактивный анализ подвижности суставов носит ознакомительный характер. При наличии серьезных суставных дегенеративных изменений перед практикой проконсультируйтесь со специалистом.</p>
+    </div>
 </footer>
 
 <script>
@@ -553,7 +574,6 @@
         calculateSplitPotential();
     }
 
-    // ЛОГИКА АНАТОМИЧЕСКОГО РАСЧЕТА СУСТАВНОГО ПОТЕНЦИАЛА
     function calculateSplitPotential() {
         const flexLevel = parseInt(document.querySelector('input[name="flex_level"]:checked').value);
         const hipOpening = parseInt(document.querySelector('input[name="hip_opening"]:checked').value);
@@ -562,10 +582,8 @@
 
         document.getElementById('range-age-val').innerText = age + ' лет';
 
-        // Базовый расчет очков потенциала (max = 100)
         let potentialPoints = (flexLevel * 20) + (hipOpening * 20) + (injuryHistory * 15);
         
-        // Возрастной поправочный коэффициент (плавная адаптация)
         if (age > 45) potentialPoints -= 12;
         else if (age > 35 && age <= 45) potentialPoints -= 6;
         else potentialPoints += 5;
@@ -582,7 +600,7 @@
         if (potentialPoints < 45) {
             statusEl.innerText = "Декомпрессионный режим";
             statusEl.style.color = "var(--accent-berry)";
-            textEl.innerText = "Нервные веретена (датчики безопасности) заблокированы из-за отсутствия практики или прошлых травм. Вам противопоказана жесткая растяжка на полу. Начните с МФР и Аэростретчинга в гамаках для бережного снятия блоков.";
+            textEl.innerText = "Нервные веретена (датчики безопасности) заблокированы из-за отсутствия практики или прошлых травм. Вам противопоказана жесткая растяжка на полу. Начните с МФР и Аэростретчинг в гамаках для бережного снятия блоков.";
         } else if (potentialPoints >= 45 && potentialPoints < 75) {
             statusEl.innerText = "Умеренная эластичность";
             statusEl.style.color = "var(--accent-gold)";
@@ -622,7 +640,7 @@
                 document.querySelectorAll(`input[name="injury_history"]`).forEach(i => { if(parseInt(i.value) === data.injuryHistory) i.checked = true; });
                 document.getElementById('age_slider').value = data.age;
             } catch (e) {
-                console.log("Matrix sync backup restore error pass");
+                console.log("Matrix sync error pass");
             }
         }
 
@@ -658,7 +676,6 @@
     });
 </script>
 
-<!-- РЕНДЕР КАНАЛОВ РСЯ FLOOR AD -->
 <script>
 window.yaContextCb.push(() => {
     Ya.Context.AdvManager.render({
