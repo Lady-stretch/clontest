@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <script>
+        // По умолчанию для инфо-страниц ставим чистую светлую эко-тему, сохраняем выбор пользователя
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+
+    <script type="text/javascript">
+    // --- Yandex.Metrika counter ---
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=109130409', 'ym');
+    ym(109130409, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript>
+        <div>
+            <img src="https://mc.yandex.ru/watch/109130409" style="position:absolute; left:-9999px;" alt="" />
+        </div>
+    </noscript>
+
+    <script>
+        // Глобальная логика перехвата ботов для SEO-превью через Яндекс Функцию
+        window.addEventListener('DOMContentLoaded', () => {
+            const isBot = /YandexBot|YandexAccessibilityBot|YandexMobileBot|Googlebot/i.test(navigator.userAgent);
+            if (isBot) {
+                fetch('https://functions.yandexcloud.net/d4ecn5ag33dcdd2deivd?bot=true&url=' + encodeURIComponent(window.location.href))
+                .then(res => res.json())
+                .then(data => console.log("SEO Preview Matrix Synced"))
+                .catch(e => console.log("SEO preview pass"));
+            }
+        });
+    </script>
+    
+    <!-- Подключение рекламной системы Яндекса (РСЯ) -->
+    <script>window.yaContextCb=window.yaContextCb||[]</script>
+    <script src="https://yandex.ru/ads/system/context.js" async></script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- УЛЬТРА-ПРОФИ SEO ОПТИМИЗАЦИЯ ПОД СЫКТЫВКАР И РЕСПУБЛИКУ КОМИ -->
+    <title>Тест: Почему не уходит вес — Отек или Жир? | Лимфодренаж и МФР в Сыктывкаре</title>
+    <meta name="description" content="Узнайте истинную причину лишнего веса и объемов. Интерактивный онлайн-тест на застой лимфы, скрытые отеки и целлюлит. Научные факты и пошаговый метод похудения от Ольги Мартыновой, студия РЕСУРС Сыктывкар.">
+    <meta name="keywords" content="почему не уходит вес, как убрать отеки сыктывкар, застой лимфы симптомы, калькулятор лишнего веса, миофасциальный релиз коми, лимфодренажные тренировки сыктывкар, причины целлюлита, студия ресурс растяжка, похудеть в сыктывкаре, дряблость кожи тела">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://resurs-stretch.ru/otek-ili-zhir.html">
+
+    <!-- OPEN GRAPH ДЛЯ СОЦСЕТЕЙ И МЕССЕНДЖЕРОВ -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Отек или Жир? Пройди мгновенный тест на причину лишних объемов">
+    <meta property="og:description" content="Диеты и бег не помогают убрать живот и целлюлит? Возможно, это скрытый застой жидкости (околоклеточный отек). Измерь свой лимфатический индекс онлайн.">
+    <meta property="og:url" content="https://resurs-stretch.ru/otek-ili-zhir.html">
+    <meta property="og:image" content="https://resurs-stretch.ru/logo_header_final.png">
+    <meta property="og:site_name" content="РЕСУРС">
+    <meta property="og:locale" content="ru_RU">
+
+    <link rel="icon" type="image/png" href="logo_header_final.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <script src="https://reservi.ru/widget-fit1c.v2/js/config.js" data-fit-salon-id="02977247-3381-4559-b9ef-1cf88d2731a2"></script>
+    <script src="https://unpkg.com/imask"></script>
+
+    <style>
+        /* CSS ПЕРЕМЕННЫЕ ДЛЯ СВЕТЛОЙ ЭКО-ТЕМЫ */
+        :root {
+            --bg-deep: #F8F9F6; 
+            --glass-bg: rgba(255, 255, 255, 0.9); 
+            --glass-border: 1px solid rgba(43, 46, 42, 0.08); 
+            --accent-gold: #B38639; 
+            --accent-green: #4CAF50; 
+            --accent-berry: #C2185B; 
+            --text-main: #2B2E2A; 
+            --text-dim: rgba(43, 46, 42, 0.7);
+            --elem-bg: rgba(76, 175, 80, 0.06);
+            --elem-border: rgba(43, 46, 42, 0.1);
+            --nav-bg: rgba(248, 249, 246, 0.95);
+            --font-main: 'Manrope', sans-serif;
+            --font-serif: 'Cormorant Garamond', serif;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ТЕМНАЯ ТЕМА */
+        [data-theme="dark"] {
+            --bg-deep: #080814; 
+            --glass-bg: rgba(255, 255, 255, 0.03); 
+            --glass-border: 1px solid rgba(255, 255, 255, 0.08); 
+            --accent-gold: #C5A059; 
+            --accent-green: #66BB6A;
+            --accent-berry: #E91E63;
+            --text-main: #F4F4F9;
+            --text-dim: rgba(244, 244, 249, 0.6);
+            --elem-bg: rgba(255, 255, 255, 0.04);
+            --elem-border: rgba(255, 255, 255, 0.15);
+            --nav-bg: rgba(8, 8, 20, 0.95);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
+        html { scroll-behavior: smooth; }
+        body { 
+            background: var(--bg-deep); 
+            color: var(--text-main);
+            font-family: var(--font-main); 
+            line-height: 1.6;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            transition: background-color 0.4s ease, color 0.4s ease;
+            -webkit-font-smoothing: antialiased;
+            padding-bottom: 60px;
+        }
+
+        h1, h2, h3, .serif { font-family: var(--font-serif); font-weight: 600; letter-spacing: 0.5px; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+
+        /* HEADER */
+        header {
+            position: fixed; top: 0; width: 100%; padding: 20px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 2000; background: transparent; transition: var(--transition);
+        }
+        header.scrolled { 
+            background: var(--glass-bg) !important; 
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            padding: 12px 5% !important; border-bottom: var(--glass-border);
+        }
+        .brand-name { font-family: var(--font-serif); font-size: 22px; letter-spacing: 8px; text-transform: uppercase; font-weight: 600; }
+        
+        #themeToggle {
+            padding: 0 15px; height: 35px; font-size: 10px; font-weight: 600; letter-spacing: 2px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 8px; border: 1px solid var(--elem-border); background: var(--elem-bg);
+            cursor: pointer; transition: var(--transition); color: var(--text-main); text-transform: uppercase;
+        }
+        #themeToggle:hover { border-color: var(--accent-gold); transform: translateY(-2px); }
+
+        /* MAIN CONTAINER */
+        .main-layout { max-width: 1200px; margin: 100px auto 60px; padding: 0 20px; }
+
+        /* ТАБЫ */
+        .tabs-nav { display: flex; gap: 10px; margin-bottom: 30px; border-bottom: var(--glass-border); padding-bottom: 15px; overflow-x: auto; scrollbar-width: none; }
+        .tabs-nav::-webkit-scrollbar { display: none; }
+        .tab-btn {
+            padding: 12px 24px; border: 1px solid var(--elem-border); background: var(--glass-bg);
+            color: var(--text-dim); border-radius: 12px; cursor: pointer; font-size: 14px; font-weight: 500;
+            white-space: nowrap; transition: var(--transition); font-family: var(--font-main);
+        }
+        .tab-btn:hover { border-color: var(--accent-gold); color: var(--text-main); }
+        .tab-btn.active { background: var(--accent-green); color: #FFF; border-color: var(--accent-green); box-shadow: 0 8px 20px rgba(76,175,80,0.2); }
+
+        .tab-content { display: none; animation: fadeIn 0.5s ease; }
+        .tab-content.active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* BENTO GRID */
+        .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .bento-card { background: var(--glass-bg); border: var(--glass-border); border-radius: 24px; padding: 30px; position: relative; overflow: hidden; transition: var(--transition); }
+        .bento-card:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(0,0,0,0.03); }
+        
+        .span-2 { grid-column: span 2; }
+        .span-3 { grid-column: span 3; }
+
+        /* ИНПУТЫ И КАЛЬКУЛЯТОР */
+        .calc-group { margin-bottom: 25px; }
+        .calc-label { font-size: 15px; font-weight: 600; margin-bottom: 12px; display: block; color: var(--text-main); line-height: 1.4; }
+        
+        .radio-box-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+        .radio-tile {
+            border: 1px solid var(--elem-border); background: var(--elem-bg); padding: 16px;
+            border-radius: 12px; cursor: pointer; display: flex; flex-direction: column; gap: 4px;
+            position: relative; transition: var(--transition);
+        }
+        .radio-tile input { position: absolute; top: 16px; right: 16px; accent-color: var(--accent-green); }
+        .radio-tile-title { font-size: 14px; font-weight: 700; color: var(--text-main); }
+        .radio-tile-desc { font-size: 12px; color: var(--text-dim); line-height: 1.4; }
+        .radio-tile.selected { border-color: var(--accent-green); background: rgba(76,175,80,0.1); }
+
+        .range-slider { width: 100%; accent-color: var(--accent-green); margin: 10px 0; height: 6px; border-radius: 3px; }
+        
+        /* РЕЗУЛЬТАТЫ */
+        .result-score-box { text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(135deg, var(--elem-bg), transparent); padding: 40px 20px; }
+        .score-number { font-size: 54px; font-weight: 800; line-height: 1; color: var(--accent-berry); font-family: var(--font-serif); }
+        .score-status { font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-top: 12px; }
+
+        /* МАРКЕТИНГОВЫЕ КНОПКИ */
+        .btn-marketing {
+            display: inline-flex; align-items: center; justify-content: center; width: 100%;
+            padding: 22px 30px; background: var(--accent-berry); color: #FFF; border: none;
+            border-radius: 16px; font-family: var(--font-main); font-size: 15px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: var(--transition);
+            box-shadow: 0 10px 25px rgba(194,24,91,0.25);
+        }
+        .btn-marketing:hover { transform: translateY(-2px); box-shadow: 0 15px 35px rgba(194,24,91,0.4); opacity: 0.95; }
+
+        .btn-reset {
+            background: transparent; border: 1px dashed var(--text-dim); color: var(--text-dim);
+            padding: 10px 20px; border-radius: 10px; font-size: 12px; font-weight: 600;
+            cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: var(--transition);
+        }
+        .btn-reset:hover { border-color: var(--accent-berry); color: var(--accent-berry); }
+
+        /* НАУЧНЫЕ СПИСКИ И РЕЦЕПТЫ */
+        .fact-num { font-size: 32px; font-family: var(--font-serif); color: var(--accent-gold); font-weight: 700; margin-bottom: 5px; }
+        .fact-title { font-size: 18px; font-weight: 600; margin-bottom: 10px; line-height: 1.3; font-family: var(--font-serif); color: var(--text-main); }
+        .fact-desc { font-size: 14px; color: var(--text-dim); line-height: 1.6; }
+
+        .recipe-badge { background: var(--accent-green); color: #FFF; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; text-transform: uppercase; display: inline-block; margin-bottom: 15px; }
+
+        /* УЛЬТРА-ЯРКАЯ КНОПКА ШЕРИНГА */
+        .share-section { margin-top: 50px; background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), rgba(179, 134, 57, 0.08)); border: 2px solid var(--accent-green); border-radius: 28px; padding: 40px 30px; text-align: center; box-shadow: 0 15px 40px rgba(76,175,80,0.1); }
+        .btn-share {
+            display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 18px 40px;
+            background: linear-gradient(135deg, var(--accent-green), #2E7D32); border: none; border-radius: 16px;
+            font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: var(--transition); color: #FFF;
+            box-shadow: 0 10px 25px rgba(76, 175, 80, 0.4); width: 100%; max-width: 400px;
+        }
+        .btn-share:hover { transform: scale(1.03) translateY(-2px); box-shadow: 0 15px 35px rgba(76, 175, 80, 0.6); }
+
+        @media (max-width: 968px) {
+            .bento-grid { grid-template-columns: 1fr; }
+            .span-2, .span-3 { grid-column: span 1; }
+            .main-layout { margin-top: 90px; }
+        }
+    </style>
+</head>
+<body>
+
+<header id="header">
+    <div class="brand-name">РЕСУРС</div>
+    <div>
+        <button id="themeToggle" onclick="toggleTheme()">ТЕНЬ</button>
+    </div>
+</header>
+
+<main class="main-layout">
+    
+    <section style="text-align: center; max-width: 800px; margin: 0 auto 40px;">
+        <h1 style="font-size: clamp(28px, 4vw, 46px); line-height: 1.2; margin-bottom: 15px;">
+            Почему не уходят объёмы: <span style="color: var(--accent-gold); font-style: italic;">Отек или Жир?</span>
+        </h1>
+        <p style="font-size: 15px; color: var(--text-dim); line-height: 1.7;">
+            Многие женщины путают истинные жировые отложения со скрытым *интерстициальным отеком* (застоем лишней жидкости в подкожной жировой клетчатке). Обычные диеты и тяжелый бег здесь бессильны — они лишь усиливают стресс и зажимают сосуды. Пройдите наш интерактивный тест, чтобы узнать свой лимфатический индекс.
+        </p>
+    </section>
+
+    <nav class="tabs-nav" aria-label="Разделы страницы">
+        <button class="tab-btn active" onclick="switchTab(event, 'tab-calc')">📊 Тест-анализатор объемов</button>
+        <button class="tab-btn" onclick="switchTab(event, 'tab-facts')">🔬 10 научных фактов о лимфе</button>
+        <button class="tab-btn" onclick="switchTab(event, 'tab-recipes')">🌿 5 секретов тонкой талии от Ольги</button>
+    </nav>
+
+    <!-- ТАБ 1: КАЛЬКУЛЯТОР-АНАЛИЗАТОР -->
+    <div id="tab-calc" class="tab-content active">
+        <div class="bento-grid">
+            
+            <div class="bento-card span-2">
+                <h2 class="serif" style="font-size: 24px; margin-bottom: 25px; color: var(--text-main);">Скрининг маркеров застоя жидкости</h2>
+                
+                <div class="calc-group">
+                    <label class="calc-label">1. Как меняется ваш внешний вид или объемы тела в течение одних суток?</label>
+                    <div class="radio-box-group">
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="weight_fluid" value="3" checked>
+                            <span class="radio-tile-title">Разница ощутима</span>
+                            <span class="radio-tile-desc">Утром лицо припухшее, к вечеру обувь становится тесной.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="weight_fluid" value="2">
+                            <span class="radio-tile-title">Колеблется вес</span>
+                            <span class="radio-tile-desc">На весах то плюс, то минус 1-2 кг за пару дней без причины.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="weight_fluid" value="1">
+                            <span class="radio-tile-title">Всё стабильно</span>
+                            <span class="radio-tile-desc">Объемы и отражение в зеркале одинаковы в любое время.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="calc-group">
+                    <label class="calc-label">2. Остаются ли на вашем теле заметные следы от резинок носков, колготок или нижнего белья?</label>
+                    <div class="radio-box-group">
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="marks" value="3" checked>
+                            <span class="radio-tile-title">Да, глубокие вмятины</span>
+                            <span class="radio-tile-desc">Следы долго не проходят, кожа в этих местах краснеет.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="marks" value="2">
+                            <span class="radio-tile-title">Иногда замечаю</span>
+                            <span class="radio-tile-desc">Зависит от количества выпитой на ночь воды или чая.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="marks" value="1">
+                            <span class="radio-tile-title">Почти никогда</span>
+                            <span class="radio-tile-desc">Кожа мгновенно восстанавливается, следов нет.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="calc-group">
+                    <label class="calc-label">3. Оцените плотность и рельеф кожи в проблемных зонах (бедра, ягодицы, живот):</label>
+                    <div class="radio-box-group">
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="skin_texture" value="3" checked>
+                            <span class="radio-tile-title">Рыхлая ткань, целлюлит</span>
+                            <span class="radio-tile-desc">При сжатии или при ярком свете видна неровность (апельсиновая корка).</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="skin_texture" value="2">
+                            <span class="radio-tile-title">Мягкая, плотная</span>
+                            <span class="radio-tile-desc">Рельеф ровный, но объемы в этих зонах уходить не спешат.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="skin_texture" value="1">
+                            <span class="radio-tile-title">Упругая, подтянутая</span>
+                            <span class="radio-tile-desc">Ткани эластичные, мышечный рельеф хорошо прощупывается.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="calc-group">
+                    <label class="calc-label">4. Сколько чашек кофе, чая или газировки (стимуляторов застоя) вы выпиваете за день?</label>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                        <span style="font-size: 13px; color: var(--text-dim);">Количество порций:</span>
+                        <span id="range-drink-val" class="range-val" style="color: var(--accent-green);">1-2 чашки</span>
+                    </div>
+                    <input type="range" id="coffee_count" class="range-slider" min="0" max="3" value="1" step="1" oninput="calculateEdemaIndex()">
+                </div>
+
+                <div style="margin-top: 30px; display: flex; justify-content: flex-end;">
+                    <button class="btn-reset" onclick="resetCalculator()">Сбросить параметры теста</button>
+                </div>
+            </div>
+
+            <!-- Результат расчета -->
+            <div class="bento-card result-score-box">
+                <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; color: var(--text-dim); margin-bottom: 10px;">Причина ваших лишних объёмов:</div>
+                <div id="calc-result-title" class="score-number" style="font-size: 38px; margin: 15px 0;">70% Отек</div>
+                <div id="calc-status" class="score-status" style="color: var(--accent-berry);">Лимфатический застой</div>
+                <p id="calc-text" style="font-size: 13px; opacity: 0.8; margin-top: 15px; line-height: 1.5; text-align: center;">
+                    Ваш лишний вес состоит преимущественно из застоявшейся жидкости. Жесткие диеты заблокируют метаболизм еще сильнее, здесь нужен принудительный разгон лимфотока.
+                </p>
+            </div>
+
+            <!-- Связь лимфы и фасций -->
+            <div class="bento-card span-3" style="border-left: 4px solid var(--accent-gold);">
+                <div style="display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: start;">
+                    <div>
+                        <h3 class="serif" style="font-size: 22px; margin-bottom: 10px;">Анатомическая правда: почему жир не сгорает в болоте</h3>
+                        <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                            Лимфатическая система не имеет своего «сердца»-насоса. Единственный способ заставить её двигаться и очищать ткани — это сокращение и растяжение наших скелетных мышц. Когда вы долго сидите в офисе или перегружаете тело однообразным бегом, мышцы спазмируются и зажимают лимфатические сосуды. Вокруг жировых клеток образуется неподвижное «болото» из межклеточной жидкости. В таких условиях биохимический процесс *липолиза* (расщепления жировых клеток) физически не может запуститься, так как к клеткам заблокирован приток кислорода. Лимфодренажный МФР (миофасциальный релиз) и мягкий Пилатес буквально отжимают мышцы как губку, убирая болото и открывая жировым клеткам путь к безопасному сжиганию.
+                        </p>
+                    </div>
+                    <div style="background: var(--elem-bg); padding: 15px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent-gold)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ИЗМЕНЕНО: КНОПКА ЗАПИСИ С НОВЫМ ПРИЗЫВОМ К ДЕЙСТВИЮ -->
+            <div class="bento-card span-3" style="background: var(--elem-bg); text-align: center; padding: 40px 30px;">
+                <span class="recipe-badge" style="background: var(--accent-gold);">Тест-драйв в Сыктывкаре</span>
+                <h3 class="serif" style="font-size: 26px; margin-bottom: 15px;">Уберите до -3 см в объемах за счет разгона лимфотока</h3>
+                <p style="font-size: 14px; max-width: 600px; margin: 0 auto 25px; color: var(--text-dim);">
+                    Попробуйте бережные лимфодренажные тренировки и МФР в уютных студиях «РЕСУРС» на Коммунистической или Советской. Верните телу легкость и изящные контуры.
+                </p>
+                <div style="max-width: 450px; margin: 0 auto;">
+                    <a href="index.html?page=booking" class="btn-marketing">Записаться на тест-драйв тренировок</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ТАБ 2: 10 НАУЧНЫХ ФАКТОВ -->
+    <div id="tab-facts" class="tab-content">
+        <div class="bento-grid">
+            
+            <div class="bento-card">
+                <div class="fact-num">01</div>
+                <h3 class="fact-title">Природа «апельсиновой корки»</h3>
+                <p class="fact-desc">Целлюлит — это не избыток жира, а фиброзное изменение (уплотнение соединительной ткани) жировых долек, вызванное многолетним застоем лимфы и нехваткой кислорода в тканях.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">02</div>
+                <h3 class="fact-title">Отсутствие внутреннего насоса</h3>
+                <p class="fact-desc">У лимфы нет сердца, двигающего её по сосудам. Единственные насосы лимфотока — это глубокое дыхание диафрагмой и правильная работа мышц и фасций.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">03</div>
+                <h3 class="fact-title">Кортизоловый отек</h3>
+                <p class="fact-desc">Жесткие диеты и голодание вызывают сильный стресс. Организм выбрасывает кортизол, который принудительно задерживает натрий и воду, маскируя похудение под сильный отек.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">04</div>
+                <h3 class="fact-title">Метаболическая блокада</h3>
+                <p class="fact-desc">Застоявшаяся межклеточная жидкость сдавливает кровеносные капилляры. Клетки переходят в режим гипоксии (кислородного голодания), замедляя расщепление жира до нуля.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">05</div>
+                <h3 class="fact-title">Утренний овал лица</h3>
+                <p class="fact-desc">Сутулость и наклон головы вперед зажимают глубокие лимфоузлы под челюстью, превращая всю скопившуюся за ночь жидкость в тяжелые брыли и второй подбородок.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">06</div>
+                <h3 class="fact-title">Ложная прибавка на весах</h3>
+                <p class="fact-desc">Человек физически не может набрать 1.5 кг чистого жира за сутки. Любые резкие скачки веса после соленой пищи или стресса — это чистая вода в межклеточных карманах.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">07</div>
+                <h3 class="fact-title">Мышечный тонус сосудов</h3>
+                <p class="fact-desc">Малоподвижный образ жизни делает стенки лимфатических сосудов вялыми. Без мягкого стретчинга жидкость под силой гравитации уходит в бедра и ягодицы.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">08</div>
+                <h3 class="fact-title">Кофеиновая ловушка</h3>
+                <p class="fact-desc">Кофе и крепкий чай обладают кратковременным мочегонным эффектом. Но в ответ на обезвоживание организм компенсаторно запасает воду в подкожной клетчатке.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">09</div>
+                <h3 class="fact-title">Токсический застой</h3>
+                <p class="fact-desc">Лимфа удаляет продукты клеточного распада. Её застой приводит к интоксикации (внутреннему отравлению тканей), что внешне проявляется тусклым цветом кожи и прыщами.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">10</div>
+                <h3 class="fact-title">Разгрузка через стопы</h3>
+                <p class="fact-desc">Лимфоток начинается от кончиков пальцев ног. Зажатые стопы и жесткая обувь выключают главный стартовый насос лимфы, провоцируя тяжесть в лодыжках.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ТАБ 3: ПРАВИЛА ОТ ЭКСПЕРТА ОЛЬГИ -->
+    <div id="tab-recipes" class="tab-content">
+        <div class="bento-grid">
+            
+            <div class="bento-card span-2">
+                <span class="recipe-badge">Правило 01</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px;">Запустите лимфатический насос через дыхание</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    Главный коллектор (сборщик) лимфы находится глубоко в брюшной полости. Каждое утро, не вставая с постели, делайте 10 глубоких вдохов животом так, чтобы надувался пресс, а грудная клетка оставалась неподвижной. Это включает диафрагму, которая буквально всасывает застоявшуюся за ночь жидкость снизу вверх.
+                </p>
+            </div>
+
+            <div class="bento-card">
+                <span class="recipe-badge">Правило 02</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px;">Контроль вечернего меню</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    Исключите простые углеводы и молочные продукты за 3 часа до сна. Они связывают молекулы воды в межклеточном пространстве, гарантируя прибавку на весах и отеки с утра.
+                </p>
+            </div>
+
+            <div class="bento-card">
+                <span class="recipe-badge">Правило 03</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px;">Лимфодренажный шаг стопы</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    При ходьбе осознанно перекатывайте стопу с пятки на носок. Это движение принудительно сжимает икроножные мышцы, заставляя клапаны лимфатических сосудов активно гнать воду вверх.
+                </p>
+            </div>
+
+            <div class="bento-card span-2">
+                <span class="recipe-badge">Правило 04</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px;">Замените жесткие диеты миофасциальным релизом спины и бедер</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    Голодание переводит тело в режим выживания, заставляя его копить каждую каплю воды. Чтобы объемы талии действительно растаяли, нужно освободить пути для оттока жидкости. Используйте роллы МФР для раскатки задней поверхности бедра, ягодиц и всей спины. Мягкое давление ролла разглаживает жесткие фасции (оболочки мышц), убирает спайки и триггерные точки. Ткани становятся мягкими, лимфа уходит, а целлюлит разглаживается на глазах. Добавьте к этому регулярные тренировки Ягодицы+Пресс в нашей студии для закрепления результата.
+                </p>
+            </div>
+
+            <div class="bento-card span-3" style="background: linear-gradient(135deg, rgba(76,175,80,0.08), transparent); border-color: var(--accent-green);">
+                <span class="recipe-badge" style="background: var(--accent-green);">Послание от Ольги Мартыновой</span>
+                <h3 class="serif" style="font-size: 26px; margin-bottom: 15px;">«Перестаньте бороться со своим телом через насилие...»</h3>
+                <p style="font-size: 15px; line-height: 1.7; color: var(--text-main); margin-bottom: 25px;">
+                    «Девочки, я вижу это каждый день: ко мне приходят уставшие женщины, которые почти ничего не едят, убиваются на кардио, но объемы стоят на месте. А причина проста — их тело просто заблокировано отеком. Жир не горит в зажатых, обезвоженных тканях! Наша премиальная система лимфодренажного фитнеса и умного МФР в студии "РЕСУРС" создана, чтобы бережно помочь вашему организму. Мы мягко убираем застой воды, расслабляем спазмированные зоны и запускаем здоровый метаболизм. Вы увидите, как за пару занятий тают сантиметры на талии, кожа становится гладкой, а в ногах появляется невероятная легкость. Жду вас на практиках в Сыктывкаре или в нашем Онлайн-клубе — давайте вернем вашему силуэту точеную грацию без стресса!»
+                </p>
+                <div style="max-width: 450px;">
+                    <a href="index.html?page=booking" class="btn-marketing" style="background: var(--accent-green); box-shadow: 0 10px 25px rgba(76,175,80,0.3);">Записаться на тест-драйв тренировок</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- УЛЬТРА-ЯРКАЯ КНОПКА ШЕРИНГА -->
+    <section class="share-section">
+        <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">🔥 Отправь этот тест-анализатор любимым подругам!</h3>
+        <p style="font-size: 14px; color: var(--text-dim); margin-bottom: 25px;">Помогите близким узнать реальную причину лишних сантиметров на талии, избавиться от утренних отеков и победить целлюлит без изнуряющих голодовок.</p>
+        <button class="btn-share" onclick="sharePage()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            <span id="share-btn-text">Поделиться с подругами</span>
+        </button>
+    </section>
+
+</main>
+
+<footer>
+    <p>© 2026 РЕСУРС | Студия фитнеса, растяжки и движения. Сыктывкар, ул. Коммунистическая 77/2.</p>
+    <p style="margin-top: 5px; opacity: 0.6; font-size: 10px;">Интерактивный анализ жидкостных сред является скрининговым тестом. При стойких лимфатических патологиях и нарушениях работы почек проконсультируйтесь с лечащим врачом.</p>
+</footer>
+
+<script>
+    function toggleTheme() {
+        const html = document.documentElement;
+        const currentTheme = html.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        document.getElementById('themeToggle').innerText = newTheme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        const theme = document.documentElement.getAttribute('data-theme');
+        document.getElementById('themeToggle').innerText = theme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
+        
+        restoreCalculatorData();
+        calculateEdemaIndex();
+    });
+
+    function switchTab(event, tabId) {
+        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        
+        document.getElementById(tabId).classList.add('active');
+        event.currentTarget.classList.add('active');
+        
+        window.scrollTo({ top: document.querySelector('.tabs-nav').offsetTop - 80, behavior: 'smooth' });
+    }
+
+    function selectTile(element) {
+        const name = element.querySelector('input').name;
+        document.querySelectorAll(`input[name="${name}"]`).forEach(input => {
+            input.parentElement.classList.remove('selected');
+        });
+        element.classList.add('selected');
+        
+        calculateEdemaIndex();
+    }
+
+    // ИНТЕРАКТИВНЫЙ РАСЧЕТ ИНДЕКСА ОТЕЧНОСТИ
+    function calculateEdemaIndex() {
+        const weightFluid = parseInt(document.querySelector('input[name="weight_fluid"]:checked').value);
+        const marks = parseInt(document.querySelector('input[name="marks"]:checked').value);
+        const skinTexture = parseInt(document.querySelector('input[name="skin_texture"]:checked').value);
+        const coffeeCount = parseInt(document.getElementById('coffee_count').value);
+
+        const drinkLabels = ['0 чашек (Идеал)', '1-2 чашки', '3-4 чашки', 'Более 5 порций'];
+        document.getElementById('range-drink-val').innerText = drinkLabels[coffeeCount];
+
+        // Расчет процентного соотношения Отека к Жиру
+        let edemaPoints = (weightFluid * 25) + (marks * 25) + (skinTexture * 20) + (coffeeCount * 10);
+        if (edemaPoints > 95) edemaPoints = 95;
+        if (edemaPoints < 15) edemaPoints = 15;
+
+        const fatPoints = 100 - edemaPoints;
+
+        const resultTitle = document.getElementById('calc-result-title');
+        const statusEl = document.getElementById('calc-status');
+        const textEl = document.getElementById('calc-text');
+
+        resultTitle.innerText = edemaPoints + "% Отек / " + fatPoints + "% Жир";
+
+        if (edemaPoints >= 70) {
+            statusEl.innerText = "Лимфатический застой";
+            statusEl.style.color = "var(--accent-berry)";
+            textEl.innerText = "Ваши лишние объёмы вызваны преимущественно застоявшейся водой. Диеты заблокируют обмен веществ еще сильнее. Вам жизненно необходим миофасциальный релиз (МФР) и пилатес.";
+        } else if (edemaPoints >= 40 && edemaPoints < 70) {
+            statusEl.innerText = "Смешанный тип объемов";
+            statusEl.style.color = "var(--accent-gold)";
+            textEl.innerText = "В теле присутствует как жировая ткань, так и скрытая задержка жидкости из-за гиподинамии (малоподвижности). Комбинация МФР и жиросжигающих классов (Body Sculpt, Табата) даст идеальный результат.";
+        } else {
+            statusEl.innerText = "Плотная жировая ткань";
+            statusEl.style.color = "var(--accent-green)";
+            textEl.innerText = "Лимфоток в норме, избыточные объёмы связаны с жировым компонентом. Ольга рекомендует подключить функциональный тренинг и силовую подкачку с растяжкой в нашей студии.";
+        }
+
+        const calcData = { weightFluid, marks, skinTexture, coffeeCount };
+        localStorage.setItem('edema_calc_data', JSON.stringify(calcData));
+    }
+
+    function resetCalculator() {
+        document.querySelectorAll('input[name="weight_fluid"]')[0].checked = true;
+        document.querySelectorAll('input[name="marks"]')[0].checked = true;
+        document.querySelectorAll('input[name="skin_texture"]')[0].checked = true;
+        document.getElementById('coffee_count').value = 1;
+
+        document.querySelectorAll('.radio-tile').forEach(tile => tile.classList.remove('selected'));
+        document.querySelectorAll('input[name="weight_fluid"]')[0].parentElement.classList.add('selected');
+        document.querySelectorAll('input[name="marks"]')[0].parentElement.classList.add('selected');
+        document.querySelectorAll('input[name="skin_texture"]')[0].parentElement.classList.add('selected');
+
+        localStorage.removeItem('edema_calc_data');
+        calculateEdemaIndex();
+    }
+
+    function restoreCalculatorData() {
+        const saved = localStorage.getItem('edema_calc_data');
+        if (saved) {
+            try {
+                const data = JSON.parse(saved);
+                document.querySelectorAll(`input[name="weight_fluid"]`).forEach(i => { if(parseInt(i.value) === data.weightFluid) i.checked = true; });
+                document.querySelectorAll(`input[name="marks"]`).forEach(i => { if(parseInt(i.value) === data.marks) i.checked = true; });
+                document.querySelectorAll(`input[name="skin_texture"]`).forEach(i => { if(parseInt(i.value) === data.skinTexture) i.checked = true; });
+                document.getElementById('coffee_count').value = data.coffeeCount;
+            } catch (e) {
+                console.log("Storage reset matrix pass");
+            }
+        }
+
+        document.querySelectorAll('.radio-tile').forEach(tile => {
+            if (tile.querySelector('input').checked) tile.classList.add('selected');
+        });
+    }
+
+    async function sharePage() {
+        const shareData = {
+            title: 'Тест: Почему не уходят объемы — Отек или Жир?',
+            text: 'Я измерила свой индекс застоя жидкости на сайте студии РЕСУРС. Проверь и ты свое тело!',
+            url: window.location.href
+        };
+        const btnText = document.getElementById('share-btn-text');
+        if (navigator.share) {
+            try { await navigator.share(shareData); } catch (err) { console.log('Share pass'); }
+        } else {
+            try {
+                await navigator.clipboard.writeText(window.location.href);
+                btnText.innerText = 'Ссылка скопирована!';
+                setTimeout(() => { btnText.innerText = 'Поделиться с подругами'; }, 3000);
+            } catch (err) {
+                alert('Скопируйте ссылку из адресной строки браузера.');
+            }
+        }
+    }
+
+    window.addEventListener('scroll', () => {
+        const header = document.getElementById('header');
+        if (window.scrollY > 30) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
+    });
+</script>
+
+<!-- РЕНДЕР КАНАЛОВ РСЯ FLOOR AD -->
+<script>
+window.yaContextCb.push(() => {
+    Ya.Context.AdvManager.render({
+        "blockId": "R-A-19181219-6",
+        "type": "floorAd",
+        "platform": "touch"
+    })
+})
+</script>
+<script>
+window.yaContextCb.push(() => {
+    Ya.Context.AdvManager.render({
+        "blockId": "R-A-19181219-7",
+        "type": "floorAd",
+        "platform": "desktop"
+    })
+})
+</script>
+
+</body>
+</html>
