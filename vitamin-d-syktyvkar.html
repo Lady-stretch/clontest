@@ -36,6 +36,9 @@
         });
     </script>
     
+    <script>window.yaContextCb=window.yaContextCb||[]</script>
+    <script src="https://yandex.ru/ads/system/context.js" async></script>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -107,6 +110,7 @@
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
             transition: background-color 0.4s ease, color 0.4s ease;
             -webkit-font-smoothing: antialiased;
+            padding-bottom: 60px; /* Запас снизу, чтобы мобильная полоса РСЯ не перекрывала контент футера */
         }
 
         h1, h2, h3, .serif { font-family: var(--font-serif); font-weight: 600; letter-spacing: 0.5px; }
@@ -470,7 +474,7 @@
                 <span class="recipe-badge">Правило 04</span>
                 <h3 class="serif" style="font-size: 22px; margin-bottom: 12px;">Исключите осевые нагрузки при усталости</h3>
                 <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
-                    Если вы чувствуете жесткий упадок сил, тяжелый силовой фитнес с гантелями и штангами добьет вашу гормональную систему, вызвав резкий скачок кортизола (гормона стресса). Наша цель — мягкое восстановление. Используйте декомпрессионные тренировки (занятия без сдавливания позвоночника), такие как Аэростретчинг в гамаках или Пилатес на ковриках. Мы бережно вытягиваем межпозвоночные диски, снимаем блоки и возвращаем легкость за 50 минут без насилия над уставшим телом.
+                    Если вы чувствуете жесткий упадок сил, heavy силовой фитнес с гантелями и штангами добьет вашу гормональную систему, вызвав резкий скачок кортизола (гормона стресса). Наша цель — мягкое восстановление. Используйте декомпрессионные тренировки (занятия без сдавливания позвоночника), такие как Аэростретчинг в гамаках или Пилатес на ковриках. Мы бережно вытягиваем межпозвоночные диски, снимаем блоки и возвращаем легкость за 50 минут без насилия над уставшим телом.
                 </p>
             </div>
 
@@ -672,5 +676,26 @@
         else header.classList.remove('scrolled');
     });
 </script>
+
+<script>
+window.yaContextCb.push(() => {
+    Ya.Context.AdvManager.render({
+        "blockId": "R-A-19181219-6",
+        "type": "floorAd",
+        "platform": "touch"
+    })
+})
+</script>
+
+<script>
+window.yaContextCb.push(() => {
+    Ya.Context.AdvManager.render({
+        "blockId": "R-A-19181219-7",
+        "type": "floorAd",
+        "platform": "desktop"
+    })
+})
+</script>
+
 </body>
 </html>
