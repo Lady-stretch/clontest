@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <script>
+        // По умолчанию для инфо-страниц ставим чистую светлую эко-тему, сохраняем выбор пользователя
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+
+    <script type="text/javascript">
+    // --- Yandex.Metrika counter ---
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=109130409', 'ym');
+    ym(109130409, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript>
+        <div>
+            <img src="https://mc.yandex.ru/watch/109130409" style="position:absolute; left:-9999px;" alt="" />
+        </div>
+    </noscript>
+
+    <script>
+        // Глобальная логика перехвата ботов для SEO-превью через Яндекс Функцию
+        window.addEventListener('DOMContentLoaded', () => {
+            const isBot = /YandexBot|YandexAccessibilityBot|YandexMobileBot|Googlebot/i.test(navigator.userAgent);
+            if (isBot) {
+                fetch('https://functions.yandexcloud.net/d4ecn5ag33dcdd2deivd?bot=true&url=' + encodeURIComponent(window.location.href))
+                .then(res => res.json())
+                .then(data => console.log("SEO Preview Matrix Synced"))
+                .catch(e => console.log("SEO preview pass"));
+            }
+        });
+    </script>
+    
+    <!-- Подключение рекламной системы Яндекса (РСЯ) -->
+    <script>window.yaContextCb=window.yaContextCb||[]</script>
+    <script src="https://yandex.ru/ads/system/context.js" async></script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- ГЕО-ЗАВИСИМАЯ СЕО ОПТИМИЗАЦИЯ ПОД СЫКТЫВКАР И РЕСПУБЛИКУ КОМИ -->
+    <title>Табата и функциональный тренинг Сыктывкар | Высокоинтенсивный фитнес РЕСУРС</title>
+    <meta name="description" content="Интервальные тренировки Табата и функциональный тренинг в Сыктывкаре. Взрывное жиросжигание, выносливость и плотный мышечный тонус за 50 минут под контролем тренера. Студия РЕСУРС на Коммунистической.">
+    <meta name="keywords" content="табата сыктывкар, функциональный тренинг коми, интервальные тренировки похудение сыктывкар, сжечь жир за 50 минут, табата для женщин с нуля, студия ресурс фитнес, эффективное похудение коммунистическая, кардио выносливость сыктывкар">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://resurs-stretch.ru/tabata-syktyvkar.html">
+
+    <!-- OPEN GRAPH ДЛЯ СОЦСЕТЕЙ И МЕССЕНДЖЕРОВ -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Взрывная Табата и функциональный фитнес в Сыктывкаре — Студия РЕСУРС">
+    <meta property="og:description" content="Запустите максимальный разгон метаболизма, избавьтесь от лишних объёмов и укрепите тело. Умный протокол интервальной нагрузки для женщин.">
+    <meta property="og:url" content="https://resurs-stretch.ru/tabata-syktyvkar.html">
+    <meta property="og:image" content="https://resurs-stretch.ru/logo_header_final.png">
+    <meta property="og:site_name" content="РЕСУРС">
+    <meta property="og:locale" content="ru_RU">
+
+    <link rel="icon" type="image/png" href="logo_header_final.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <script src="https://reservi.ru/widget-fit1c.v2/js/config.js" data-fit-salon-id="02977247-3381-4559-b9ef-1cf88d2731a2"></script>
+    <script src="https://unpkg.com/imask"></script>
+
+    <style>
+        /* CSS ПЕРЕМЕННЫЕ ДЛЯ СВЕТЛОЙ ЭКО-ТЕМЫ */
+        :root {
+            --bg-deep: #F8F9F6; 
+            --glass-bg: rgba(255, 255, 255, 0.9); 
+            --glass-border: 1px solid rgba(43, 46, 42, 0.08); 
+            --accent-gold: #B38639; 
+            --accent-green: #4CAF50; 
+            --accent-berry: #C2185B; 
+            --text-main: #2B2E2A; 
+            --text-dim: rgba(43, 46, 42, 0.7);
+            --elem-bg: rgba(76, 175, 80, 0.06);
+            --elem-border: rgba(43, 46, 42, 0.1);
+            --nav-bg: rgba(248, 249, 246, 0.95);
+            --font-main: 'Manrope', sans-serif;
+            --font-serif: 'Cormorant Garamond', serif;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ТЕМНАЯ ТЕМА */
+        [data-theme="dark"] {
+            --bg-deep: #080814; 
+            --glass-bg: rgba(255, 255, 255, 0.03); 
+            --glass-border: 1px solid rgba(255, 255, 255, 0.08); 
+            --accent-gold: #C5A059; 
+            --accent-green: #66BB6A;
+            --accent-berry: #E91E63;
+            --text-main: #F4F4F9;
+            --text-dim: rgba(244, 244, 249, 0.6);
+            --elem-bg: rgba(255, 255, 255, 0.04);
+            --elem-border: rgba(255, 255, 255, 0.15);
+            --nav-bg: rgba(8, 8, 20, 0.95);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
+        html { scroll-behavior: smooth; }
+        body { 
+            background: var(--bg-deep); 
+            color: var(--text-main);
+            font-family: var(--font-main); 
+            line-height: 1.6;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            transition: background-color 0.4s ease, color 0.4s ease;
+            -webkit-font-smoothing: antialiased;
+            padding-bottom: 60px;
+        }
+
+        h1, h2, h3, .serif { font-family: var(--font-serif); font-weight: 600; letter-spacing: 0.5px; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+
+        /* HEADER */
+        header {
+            position: fixed; top: 0; width: 100%; padding: 20px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 2000; background: transparent; transition: var(--transition);
+        }
+        header.scrolled { 
+            background: var(--glass-bg) !important; 
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            padding: 12px 5% !important; border-bottom: var(--glass-border);
+        }
+        .brand-name { font-family: var(--font-serif); font-size: 22px; letter-spacing: 8px; text-transform: uppercase; font-weight: 600; }
+        
+        #themeToggle {
+            padding: 0 15px; height: 35px; font-size: 10px; font-weight: 600; letter-spacing: 2px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 8px; border: 1px solid var(--elem-border); background: var(--elem-bg);
+            cursor: pointer; transition: var(--transition); color: var(--text-main); text-transform: uppercase;
+        }
+        #themeToggle:hover { border-color: var(--accent-gold); transform: translateY(-2px); }
+
+        /* MAIN CONTAINER */
+        .main-layout { max-width: 1200px; margin: 100px auto 60px; padding: 0 20px; }
+
+        /* ТАБЫ */
+        .tabs-nav { display: flex; gap: 10px; margin-bottom: 30px; border-bottom: var(--glass-border); padding-bottom: 15px; overflow-x: auto; scrollbar-width: none; }
+        .tabs-nav::-webkit-scrollbar { display: none; }
+        .tab-btn {
+            padding: 12px 24px; border: 1px solid var(--elem-border); background: var(--glass-bg);
+            color: var(--text-dim); border-radius: 12px; cursor: pointer; font-size: 14px; font-weight: 500;
+            white-space: nowrap; transition: var(--transition); font-family: var(--font-main);
+        }
+        .tab-btn:hover { border-color: var(--accent-gold); color: var(--text-main); }
+        .tab-btn.active { background: var(--accent-green); color: #FFF; border-color: var(--accent-green); box-shadow: 0 8px 20px rgba(76,175,80,0.2); }
+
+        .tab-content { display: none; animation: fadeIn 0.5s ease; }
+        .tab-content.active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* BENTO GRID */
+        .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .bento-card { background: var(--glass-bg); border: var(--glass-border); border-radius: 24px; padding: 30px; position: relative; overflow: hidden; transition: var(--transition); }
+        .bento-card:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(0,0,0,0.03); }
+        
+        .span-2 { grid-column: span 2; }
+        .span-3 { grid-column: span 3; }
+
+        /* ИНПУТЫ И КАЛЬКУЛЯТОР */
+        .calc-group { margin-bottom: 25px; }
+        .calc-label { font-size: 15px; font-weight: 600; margin-bottom: 12px; display: block; color: var(--text-main); line-height: 1.4; }
+        
+        .radio-box-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+        .radio-tile {
+            border: 1px solid var(--elem-border); background: var(--elem-bg); padding: 16px;
+            border-radius: 12px; cursor: pointer; display: flex; flex-direction: column; gap: 4px;
+            position: relative; transition: var(--transition);
+        }
+        .radio-tile input { position: absolute; top: 16px; right: 16px; accent-color: var(--accent-green); }
+        .radio-tile-title { font-size: 14px; font-weight: 700; color: var(--text-main); }
+        .radio-tile-desc { font-size: 12px; color: var(--text-dim); line-height: 1.4; }
+        .radio-tile.selected { border-color: var(--accent-green); background: rgba(76,175,80,0.08); }
+
+        .range-slider { width: 100%; accent-color: var(--accent-green); margin: 10px 0; height: 6px; border-radius: 3px; }
+        .range-val { font-size: 18px; font-weight: 700; color: var(--accent-gold); }
+        
+        /* РЕЗУЛЬТАТЫ БЕНТО */
+        .result-score-box { text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(135deg, var(--elem-bg), transparent); padding: 40px 20px; }
+        .score-number { font-size: 44px; font-weight: 800; line-height: 1.2; color: var(--accent-berry); font-family: var(--font-serif); }
+        .score-status { font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-top: 12px; }
+
+        /* МАРКЕТИНГОВЫЕ КНОПКИ */
+        .btn-marketing {
+            display: inline-flex; align-items: center; justify-content: center; width: 100%;
+            padding: 22px 30px; background: var(--accent-berry); color: #FFF; border: none;
+            border-radius: 16px; font-family: var(--font-main); font-size: 15px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: var(--transition);
+            box-shadow: 0 10px 25px rgba(194,24,91,0.25);
+        }
+        .btn-marketing:hover { transform: translateY(-2px); box-shadow: 0 15px 35px rgba(194,24,91,0.4); opacity: 0.95; }
+
+        /* ЭТАЛОННАЯ ЗЕЛЕНАЯ КНОПКА ДЛЯ ТАБА ПРАВИЛ */
+        .btn-marketing.btn-green-rule {
+            background: var(--accent-green) !important;
+            box-shadow: 0 10px 25px rgba(76,175,80,0.3) !important;
+        }
+        .btn-marketing.btn-green-rule:hover {
+            box-shadow: 0 15px 35px rgba(76,175,80,0.5) !important;
+        }
+
+        .btn-reset {
+            background: transparent; border: 1px dashed var(--text-dim); color: var(--text-dim);
+            padding: 10px 20px; border-radius: 10px; font-size: 12px; font-weight: 600;
+            cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: var(--transition);
+        }
+        .btn-reset:hover { border-color: var(--accent-berry); color: var(--accent-berry); }
+
+        /* ЭТАЛОННАЯ ЗОЛОТИСТАЯ НУМЕРАЦИЯ 10 СОВЕТОВ/ФАКТОВ */
+        .fact-num { font-size: 32px; font-family: var(--font-serif); color: var(--accent-gold) !important; font-weight: 700; margin-bottom: 5px; }
+        .fact-title { font-size: 18px; font-weight: 600; margin-bottom: 10px; line-height: 1.3; font-family: var(--font-serif); color: var(--text-main); }
+        .fact-desc { font-size: 14px; color: var(--text-dim); line-height: 1.6; }
+
+        /* ЭТАЛОННЫЕ ЗЕЛЕНЫЕ СКРУГЛЕННЫЕ ПЛАШКИ ПРАВИЛ */
+        .recipe-badge { 
+            background: var(--accent-green) !important; 
+            color: #FFF !important; 
+            padding: 6px 16px; 
+            border-radius: 30px; 
+            font-size: 11px; 
+            font-weight: 700; 
+            text-transform: uppercase; 
+            display: inline-block; 
+            margin-bottom: 15px; 
+            letter-spacing: 1px;
+        }
+
+        /* УЛЬТРА-ЯРКАЯ КНОПКА ШЕРИНГА */
+        .share-section { margin-top: 50px; background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), rgba(179, 134, 57, 0.08)); border: 2px solid var(--accent-green); border-radius: 28px; padding: 40px 30px; text-align: center; box-shadow: 0 15px 40px rgba(76,175,80,0.1); }
+        .btn-share {
+            display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 18px 40px;
+            background: linear-gradient(135deg, var(--accent-green), #2E7D32); border: none; border-radius: 16px;
+            font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: var(--transition); color: #FFF;
+            box-shadow: 0 10px 25px rgba(76, 175, 80, 0.4); width: 100%; max-width: 400px;
+        }
+        .btn-share:hover { transform: scale(1.03) translateY(-2px); box-shadow: 0 15px 35px rgba(76, 175, 80, 0.6); }
+
+        /* ЦЕНТРИРОВАННЫЙ ПОДВАЛ ДЛЯ БОЛЬШИХ МОНИТОРОВ */
+        footer { 
+            margin-top: 80px; 
+            padding: 60px 0 40px; 
+            border-top: var(--glass-border); 
+            background: transparent;
+            width: 100%;
+        }
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+        .footer-text-main {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+        .footer-text-sub {
+            font-size: 11px;
+            line-height: 1.6;
+            color: var(--text-dim);
+            opacity: 0.85;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 968px) {
+            .bento-grid { grid-template-columns: 1fr; }
+            .span-2, .span-3 { grid-column: span 1; }
+            .main-layout { margin-top: 90px; }
+        }
+    </style>
+</head>
+<body>
+
+<header id="header">
+    <div class="brand-name">РЕСУРС</div>
+    <div>
+        <button id="themeToggle" onclick="toggleTheme()">ТЕНЬ</button>
+    </div>
+</header>
+
+<main class="main-layout">
+    
+    <section style="text-align: center; max-width: 800px; margin: 0 auto 40px;">
+        <h1 style="font-size: clamp(28px, 4vw, 46px); line-height: 1.2; margin-bottom: 15px;">
+            Интерактивный замер: <span style="color: var(--accent-gold); font-style: italic;">Интенсивность Табата</span>
+        </h1>
+        <p style="font-size: 15px; color: var(--text-dim); line-height: 1.7;">
+            Протокол Табата — это научно обоснованная интервальная тренировка сверхвысокой эффективности (20 секунд работы, 10 секунд отдыха). Она за считанные минуты разгоняет клеточный метаболизм и сжигает калории. Пройдите профессиональный аудит вашей аэробной формы, чтобы узнать готовность сердца и суставов к жиросжигающим нагрузкам.
+        </p>
+    </section>
+
+    <nav class="tabs-nav" aria-label="Разделы страницы">
+        <button class="tab-btn active" onclick="switchTab(event, 'tab-calc')">📊 Тест аэробной и силовой готовности</button>
+        <button class="tab-btn" onclick="switchTab(event, 'tab-facts')">🔬 10 фактов об интервальном сжигании жира</button>
+        <button class="tab-btn" onclick="switchTab(event, 'tab-recipes')">🌿 4 золотых правила от Ольги Мартыновой</button>
+    </nav>
+
+    <!-- ТАБ 1: ИНТЕРАКТИВНЫЙ БЕНТО-КАЛЬКУЛЯТОР ТАБАТЫ -->
+    <div id="tab-calc" class="tab-content active">
+        <div class="bento-grid">
+            
+            <div class="bento-card span-2">
+                <h2 class="serif" style="font-size: 24px; margin-bottom: 25px; color: var(--text-main);">Скрининг маркеров мышечной выносливости</h2>
+                
+                <div class="calc-group">
+                    <label class="calc-label">1. Какое максимальное время вы можете удерживать статичную планку на локтях с ровной спиной?</label>
+                    <div class="radio-box-group">
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="plank_time" value="low" checked>
+                            <span class="radio-tile-title">Менее 30 секунд</span>
+                            <span class="radio-tile-desc">Пресс начинает дрожать, поясница сразу прогибается вниз.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="plank_time" value="medium">
+                            <span class="radio-tile-title">От 30 до 60 секунд</span>
+                            <span class="radio-tile-desc">Удерживаю позицию за счет воли, но мышцы кора сильно горят.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="plank_time" value="high">
+                            <span class="radio-tile-title">Более 1 минуты</span>
+                            <span class="radio-tile-desc">Свободно и легко держу форму, мышечный корсет сильный.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="calc-group">
+                    <label class="calc-label">2. Сталкиваетесь ли вы с ощущением острой нехватки воздуха или неровного пульса при быстрой пробежке за автобусом?</label>
+                    <div class="radio-box-group">
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="pulse_status" value="weak" checked>
+                            <span class="radio-tile-title">Да, пульс зашкаливает</span>
+                            <span class="radio-tile-desc">Сердце выпрыгивает из груди, долго не могу отдышаться.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="pulse_status" value="control">
+                            <span class="radio-tile-title">Умеренная одышка</span>
+                            <span class="radio-tile-desc">Пульс поднимается высоко, но восстанавливается за пару минут.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="pulse_status" value="strong">
+                            <span class="radio-tile-title">Переношу легко</span>
+                            <span class="radio-tile-desc">Сердечный ритм стабилен, дыхание выравнивается моментально.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="calc-group">
+                    <label class="calc-label">3. Беспокоят ли вас дискомфорт или хруст в голеностопных суставах или коленях при приседаниях?</label>
+                    <div class="radio-box-group">
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="joints_stiff" value="block" checked>
+                            <span class="radio-tile-title">Да, суставы слабые</span>
+                            <span class="radio-tile-desc">Есть дискомфорт, боюсь прыжков и резких выпадов из-за боли.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="joints_stiff" value="partial">
+                            <span class="radio-tile-title">Только легкий хруст</span>
+                            <span class="radio-tile-desc">Острой боли нет, но суставы издают щелчки при нагрузке.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="joints_stiff" value="fluid">
+                            <span class="radio-tile-title">Полностью здоровы</span>
+                            <span class="radio-tile-desc">Суставы эластичные, легко переношу любые функциональные углы.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="calc-group">
+                    <label class="calc-label">4. Укажите ваш средний стаж полного отсутствия активных фитнес-нагрузок в жизни:</label>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                        <span style="font-size: 13px; color: var(--text-dim);">Время без тренировок:</span>
+                        <span id="range-break-val" class="range-val" style="color: var(--accent-green);">Более 1 года</span>
+                    </div>
+                    <input type="range" id="break_slider" class="range-slider" min="0" max="3" value="3" step="1" oninput="calculateTabataIndex()">
+                </div>
+
+                <div style="margin-top: 30px; display: flex; justify-content: flex-end;">
+                    <button class="btn-reset" onclick="resetCalculator()">Сбросить параметры теста</button>
+                </div>
+            </div>
+
+            <!-- Результат расчета -->
+            <div class="bento-card result-score-box">
+                <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; color: var(--text-dim); margin-bottom: 10px;">Ваш индивидуальный уровень готовности:</div>
+                <div id="calc-result-title" class="score-number">Адаптивный темп</div>
+                <div id="calc-status" class="score-status" style="color: var(--accent-gold);">Рекомендован: Мягкий интервал</div>
+                <p id="calc-text" style="font-size: 13px; opacity: 0.8; margin-top: 15px; line-height: 1.5; text-align: center;">
+                    Сердце и мышцы кора не готовы к жестким нагрузкам. Принудительный спринт сейчас вызовет сильный кортизоловый стресс. Начнем с мягких функциональных сессий.
+                </p>
+            </div>
+
+            <!-- Научный разбор митохондриального сжигания жира -->
+            <div class="bento-card span-3" style="border-left: 4px solid var(--accent-gold);">
+                <div style="display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: start;">
+                    <div>
+                        <h3 class="serif" style="font-size: 22px; margin-bottom: 10px;">Анатомическая магия митохондрий — как протокол Табата заставляет клетки топить жир</h3>
+                        <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                            Суть жиросжигания по протоколу Табата кроется внутри наших клеток — в микроскопических энергетических станциях, которые называются *митохондриями*. Именно в них под воздействием кислорода расщепляются жировые кислоты. Когда вы даете телу короткий, мощный интервальный импульс (20 секунд работы на пределе), мозг мгновенно запускает процесс создания новых митохондрий, чтобы выдержать нагрузку в будущем. Чем больше у вас этих «станций», тем быстрее ваше тело топит жир, даже когда вы просто сидите в кресле или спите. Программа функционального тренинга в студии «РЕСУРС» разработана так, чтобы разбудить ваши митохондрии бережно: мы исключаем прыжки, ломающие суставы, и заменяем их на безопасные, анатомически выверенные упражнения с весом собственного тела.
+                        </p>
+                    </div>
+                    <div style="background: var(--elem-bg); padding: 15px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent-gold)" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- МАРКЕТИНГОВАЯ КНОПКА (СТРОГО КРАСНАЯ) -->
+            <div class="bento-card span-3" style="background: var(--elem-bg); text-align: center; padding: 40px 30px;">
+                <span class="recipe-badge" style="background: var(--accent-gold) !important;">Тест-драйв тонуса в Сыктывкаре</span>
+                <h3 class="serif" style="font-size: 26px; margin-bottom: 15px;">Растопите лишние сантиметры под контролем профессионалов</h3>
+                <p style="font-size: 14px; max-width: 600px; margin: 0 auto 25px; color: var(--text-dim);">
+                    Наши интервальные тренировки проходят в уютных мини-группах. Никакого пафоса и гонки за изнурением — только чистая анатомия, сочный рельеф и мощный заряд бодрости.
+                </p>
+                <div style="max-width: 450px; margin: 0 auto;">
+                    <a href="index.html?page=booking" class="btn-marketing">Записаться на тест-драйв тренировок</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ТАБ 2: 10 НАУЧНЫХ ФАКТОВ С ЗОЛОТИСТОЙ НУМЕРАЦИЕЙ -->
+    <div id="tab-facts" class="tab-content">
+        <div class="bento-grid">
+            
+            <div class="bento-card">
+                <div class="fact-num">01</div>
+                <h3 class="fact-title">Сверхбыстрый запуск липолиза</h3>
+                <p class="fact-desc">Кратковременные субмаксимальные интервалы вызывают мощный выброс адреналина, который мгновенно открывает жировые депо для расщепления кислородом.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">02</div>
+                <h3 class="fact-title">Тренировка анаэробного порога</h3>
+                <p class="fact-desc">Регулярные занятия сдвигают порог закисления мышц. Тело учится выдерживать физические нагрузки без боли, судорог и жесткой усталости.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">03</div>
+                <h3 class="fact-title">Увеличение плотности митохондрий</h3>
+                <p class="fact-desc">Интервальный тренинг увеличивает количество клеточных энергостанций в мышцах ног и пресса, превращая тело в круглосуточную печь для калорий.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">04</div>
+                <h3 class="fact-title">Защита от возрастной саркопении</h3>
+                <p class="fact-desc">Функциональные упражнения задействуют быстрые мышечные волокна, что предотвращает возрастную потерю мышечной массы и сохраняет упругость кожи.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">05</div>
+                <h3 class="fact-title">Повышение ударного объема сердца</h3>
+                <p class="fact-desc">Табата заставляет сердечную мышцу перекачивать больше крови за один удар, нормализуя артериальное давление в повседневной жизни.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">06</div>
+                <h3 class="fact-title">Ликвидация инсулинорезистентности</h3>
+                <p class="fact-desc">Спринты мгновенно открывают глюкозные каналы в клетках без участия инсулина, нормализуя уровень сахара в крови и снижая тягу к углеводам.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">07</div>
+                <h3 class="fact-title">Усиление выработки эндорфинов</h3>
+                <p class="fact-desc">Преодоление интервальной нагрузки стимулирует мощный выброс гормонов радости, который полностью ликвидирует накопленный стресс за день.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">08</div>
+                <h3 class="fact-title">Улучшение венозного тонуса</h3>
+                <p class="fact-desc">Глубокая мышечная работа ног при функциональном тренинге тонизирует вены, являясь отличной профилактикой варикозного расширения ног.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">09</div>
+                <h3 class="fact-title">Сохранение гибкости суставов</h3>
+                <p class="fact-desc">В отличие от тяжелых тренажеров, зажимающих тело, функциональный фитнес работает во всех анатомических плоскостях, сохраняя подвижность связок.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">10</div>
+                <h3 class="fact-title">Увеличение показателя VO2 Max</h3>
+                <p class="fact-desc">Тренировки повышают максимальный объем кислорода, который ваш организм способен усвоить за минуту. Это возвращает телу бодрость и убирает вечную вялость.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ТАБ 3: ЧЕТКО 4 ЗОЛОТЫХ ПРАВИЛА И 5-Я ЯРКАЯ ЗЕЛЕНАЯ КНОПКА СТУДИИ -->
+    <div id="tab-recipes" class="tab-content">
+        <div class="bento-grid">
+            
+            <div class="bento-card span-2">
+                <span class="recipe-badge">Правило 01</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">Никогда не тренируйтесь на пределе при утренней разбитости</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    Если вы проснулись с ощущением сильной разбитости, недосыпа или подступающей простуды — отложите взрывную Табату. Высокая интенсивность на фоне истощения надпочечников вызовет резкий скачок кортизола, который заблокирует похудение и загонит нервную систему в глубокий кризис. Ольга Мартынова рекомендует в такие дни заменить интенсив на мягкий Пилатес или Стретчинг.
+                </p>
+            </div>
+
+            <div class="bento-card">
+                <span class="recipe-badge">Rule 02</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">Идеальный контроль пульсовых зон</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    Во время 20-секундного рабочего спринта ваш пульс может подниматься высоко. Но он должен возвращаться в норму за время отдыха. Если сердце бьется слишком часто и дыхание не восстанавливается — снизьте темп.
+                </p>
+            </div>
+
+            <div class="bento-card">
+                <span class="recipe-badge">Правило 03</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">Исключите ударную нагрузку на суставы</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    Новичкам противопоказаны прыжки из глубокого приседа (берпи) на жестком полу. Это ломает коленные мениски и бьет по пояснице. Заменяйте прыжковые станции на плавные, но быстрые силовые фиксации мышц.
+                </p>
+            </div>
+
+            <div class="bento-card span-2">
+                <span class="recipe-badge">Правило 04</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">Сочетайте Табату с лимфодренажным МФР в конце круга</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    Интенсивная мышечная работа приводит к накоплению продуктов распада. Если не разгрузить ткани, на следующий день вас накроет сильная мышечная боль (крепатура). Ольга настаивает: завершающие 10 минут занятия должны проходить на массажных роллах МФР. Мы раскатаем мышцы бедер, ягодиц и спины, выжмем лишнюю воду и вернем фасциям мягкость.
+                </p>
+            </div>
+
+            <!-- ИСПРАВЛЕНО: ЯРКАЯ ЗЕЛЕНАЯ ПЛАТФОРМА И ЗЕЛЕНАЯ КНОПКА ЗАПИСИ -->
+            <div class="bento-card span-3" style="background: linear-gradient(135deg, rgba(76,175,80,0.12), transparent); border: 2px solid var(--accent-green);">
+                <span class="recipe-badge">Вдохновение от Ольги Мартыновой</span>
+                <h3 class="serif" style="font-size: 26px; margin-bottom: 15px; color: var(--text-main);">«Табата — это революция вашего метаболизма, доступная каждому...»</h3>
+                <p style="font-size: 15px; line-height: 1.7; color: var(--text-main); margin-bottom: 25px;">
+                    «Мои дорогие, интервальный функциональный тренинг — это самый быстрый и честный способ вернуть телу плотность, упругость и избавиться от дряблости. За 50 минут мы провоцируем такой мощный отклик клеток, что ваш организм продолжает сжигать калории еще полтора дня после выхода из зала! Да, это активная работа, но в нашей камерной студии "РЕСУРС" мы полностью адаптировали этот протокол под женское здоровье. Мы убрали опасные прыжки, заменив их на умную биомеханику. Тренер каждую секунду следит за вашим дыханием и осанкой. Вы выйдете с тренировки мокрой, уставшей, но с невероятным ощущением победы и колоссальным приливом сил. Хватит сомневаться в себе, ваше тело способно на потрясающие изменения. Жду вас на тест-драйв на Коммунистической!»
+                </p>
+                <div style="max-width: 450px;">
+                    <a href="index.html?page=booking" class="btn-marketing btn-green-rule">Записаться на тест-драйв тренировок</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- УЛЬТРА-ЯРКАЯ КНОПКА ШЕРИНГА -->
+    <section class="share-section">
+        <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">🔥 Отправить тест-анализ Табаты любимым подругам!</h3>
+        <p style="font-size: 14px; color: var(--text-dim); margin-bottom: 25px;">Поделитесь этой страницей с подругами, которые мечтают быстро сбросить лишний вес, подтянуть тело, повысить выносливость и вернуть энергию без изнурительных диет.</p>
+        <button class="btn-share" onclick="sharePage()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            <span id="share-btn-text">Отправить подругам</span>
+        </button>
+    </section>
+
+</main>
+
+<footer>
+    <div class="footer-container">
+        <p class="footer-text-main">© 2026 РЕСУРС | Студия фитнеса, растяжки и движения. Сыктывкар, ул. Коммунистическая 77/2.</p>
+        <p class="footer-text-sub">Интерактивный расчет является скрининговым тестом и носит ознакомительный характер. При наличии выраженных патологий сердечно-сосудистой системы (гипертония 2-3 стадии), грыж в фазе острого воспаления или тяжелых поражений коленных суставов перед тренировкой обязательна консультация врача.</p>
+    </div>
+</footer>
+
+<script>
+    function toggleTheme() {
+        const html = document.documentElement;
+        const currentTheme = html.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        document.getElementById('themeToggle').innerText = newTheme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        const theme = document.documentElement.getAttribute('data-theme');
+        document.getElementById('themeToggle').innerText = theme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
+        
+        restoreCalculatorData();
+        calculateTabataIndex();
+    });
+
+    function switchTab(event, tabId) {
+        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        
+        document.getElementById(tabId).classList.add('active');
+        event.currentTarget.classList.add('active');
+        
+        window.scrollTo({ top: document.querySelector('.tabs-nav').offsetTop - 80, behavior: 'smooth' });
+    }
+
+    function selectTile(element) {
+        const name = element.querySelector('input').name;
+        document.querySelectorAll(`input[name="${name}"]`).forEach(input => {
+            input.parentElement.classList.remove('selected');
+        });
+        element.classList.add('selected');
+        
+        calculateTabataIndex();
+    }
+
+    // ИСПРАВЛЕННАЯ МАТЕМАТИЧЕСКАЯ МОДЕЛЬ ДЛЯ ТАБАТЫ И ФУНКЦИОНАЛА
+    function calculateTabataIndex() {
+        const plank = document.querySelector('input[name="plank_time"]:checked').value;
+        const pulse = document.querySelector('input[name="pulse_status"]:checked').value;
+        const joints = document.querySelector('input[name="joints_stiff"]:checked').value;
+        const breakTime = parseInt(document.getElementById('break_slider').value);
+
+        const breakLabels = ['Меньше 3 месяцев', 'От 3 до 6 месяцев', 'Около полугода', 'Более 1 года'];
+        document.getElementById('range-break-val').innerText = breakLabels[breakTime];
+
+        const titleEl = document.getElementById('calc-result-title');
+        const statusEl = document.getElementById('calc-status');
+        const textEl = document.getElementById('calc-text');
+
+        let bodyText = "";
+
+        // Если стаж отсутствия нагрузок велик (более года) — выставляем жесткий контроль
+        if (breakTime >= 2) {
+            statusEl.innerText = "Режим: Плавная адаптация";
+            statusEl.style.color = "var(--accent-gold)";
+            
+            if (joints === 'block' || plank === 'low') {
+                titleEl.innerText = "Аэростретчинг + МФР ног";
+                bodyText = "Из-за длительного отсутствия тренировок (" + breakLabels[breakTime] + ") ваши суставы скованы, а мышечный корсет ослаблен. Взрывной протокол Табата сейчас запрещен — он вызовет травму. Начнем с гамаков и раскатки роллами МФР.";
+            } else {
+                titleEl.innerText = "Мягкий функциональный круг";
+                bodyText = "У вас неплохие базовые данные, но долгий перерыв в " + breakLabels[breakTime] + " требует осторожности. Тренер подберет для вас минимальный темп круговой работы без отягощений для безопасного входа в тонус.";
+            }
+        } else {
+            // Если перерыв небольшой, работает классическое дерево решений
+            if (joints === 'block') {
+                titleEl.innerText = "Пилатес + МФР триггеров";
+                statusEl.innerText = "Суставная защита";
+                statusEl.style.color = "var(--accent-berry)";
+                bodyText = "Слабость и дискомфорт в коленях исключают прыжковые кардио-станции. Фокус на укрепление глубоких мышечных стабилизаторов таза на пилатесе и снятие зажимов с бедер через МФР.";
+            } else if (plank === 'low' || pulse === 'weak') {
+                titleEl.innerText = "Функционал Low-Impact";
+                statusEl.innerText = "Развитие выносливости";
+                statusEl.style.color = "var(--accent-gold)";
+                bodyText = "Мышцы кора и миокард сердца пока не готовы к максимальному спринту. Мы предложим вам щадящий интервальный протокол (работа 30 сек, отдых 30 секунд) для плавного разгона метаболизма.";
+            } else {
+                titleEl.innerText = "Табата Жиросжигание PRO";
+                statusEl.innerText = "Максимальный EPOC-эффект";
+                statusEl.style.color = "var(--accent-green)";
+                bodyText = "Великолепный уровень подготовки! Сердце и суставы полностью готовы к классическому жесткому протоколу Табата (20/10) для взрывного уничтожения лишних объёмов и моделирования рельефа.";
+            }
+        }
+
+        textEl.innerText = bodyText;
+
+        const calcData = { plank, pulse, joints, breakTime };
+        localStorage.setItem('tabata_calc_data', JSON.stringify(calcData));
+    }
+
+    function resetCalculator() {
+        document.querySelectorAll('input[name="plank_time"]')[0].checked = true;
+        document.querySelectorAll('input[name="pulse_status"]')[0].checked = true;
+        document.querySelectorAll('input[name="joints_stiff"]')[0].checked = true;
+        document.getElementById('break_slider').value = 3;
+
+        document.querySelectorAll('.radio-tile').forEach(tile => tile.classList.remove('selected'));
+        document.querySelectorAll('input[name="plank_time"]')[0].parentElement.classList.add('selected');
+        document.querySelectorAll('input[name="pulse_status"]')[0].parentElement.classList.add('selected');
+        document.querySelectorAll('input[name="joints_stiff"]')[0].parentElement.classList.add('selected');
+
+        localStorage.removeItem('tabata_calc_data');
+        calculateTabataIndex();
+    }
+
+    function restoreCalculatorData() {
+        const saved = localStorage.getItem('tabata_calc_data');
+        if (saved) {
+            try {
+                const data = JSON.parse(saved);
+                document.querySelectorAll(`input[name="plank_time"]`).forEach(i => { if(i.value === data.plank) i.checked = true; });
+                document.querySelectorAll(`input[name="pulse_status"]`).forEach(i => { if(i.value === data.pulse) i.checked = true; });
+                document.querySelectorAll(`input[name="joints_stiff"]`).forEach(i => { if(i.value === data.joints) i.checked = true; });
+                document.getElementById('break_slider').value = data.breakTime;
+            } catch (e) {
+                console.log("Storage backup sync error tabata pass");
+            }
+        }
+
+        document.querySelectorAll('.radio-tile').forEach(tile => {
+            if (tile.querySelector('input').checked) tile.classList.add('selected');
+        });
+    }
+
+    async function sharePage() {
+        const shareData = {
+            title: 'Рассчитай свою готовность к интервальным тренировкам Табата!',
+            text: 'Я прошла тест аэробной формы на сайте студии РЕСУРС. Узнай свой личный индекс жиросжигания!',
+            url: window.location.href
+        };
+        const btnText = document.getElementById('share-btn-text');
+        if (navigator.share) {
+            try { await navigator.share(shareData); } catch (err) { console.log('Share canceled'); }
+        } else {
+            try {
+                await navigator.clipboard.writeText(window.location.href);
+                btnText.innerText = 'Ссылка скопирована!';
+                setTimeout(() => { btnText.innerText = 'Отправить подругам'; }, 3000);
+            } catch (err) {
+                alert('Скопируйте ссылку из адресной строки вашего браузера.');
+            }
+        }
+    }
+
+    window.addEventListener('scroll', () => {
+        const header = document.getElementById('header');
+        if (window.scrollY > 30) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
+    });
+</script>
+
+<!-- РЕНДЕР КАНАЛОВ РСЯ FLOOR AD -->
+<script>
+window.yaContextCb.push(() => {
+    Ya.Context.AdvManager.render({
+        "blockId": "R-A-19181219-6",
+        "type": "floorAd",
+        "platform": "touch"
+    })
+})
+</script>
+<script>
+window.yaContextCb.push(() => {
+    Ya.Context.AdvManager.render({
+        "blockId": "R-A-19181219-7",
+        "type": "floorAd",
+        "platform": "desktop"
+    })
+})
+</script>
+
+</body>
+</html>
