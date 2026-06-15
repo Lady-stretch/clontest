@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <script>
+        // ИЗМЕНЕНО: По умолчанию для инфо-страниц ставим эко-светлую тему, сохраняем выбор пользователя
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+
+    <script type="text/javascript">
+    // --- Yandex.Metrika counter ---
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=109130409', 'ym');
+    ym(109130409, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript>
+        <div>
+            <img src="https://mc.yandex.ru/watch/109130409" style="position:absolute; left:-9999px;" alt="" />
+        </div>
+    </noscript>
+
+    <script>
+        // Глобальная логика перехвата ботов для SEO-превью через Яндекс Функцию
+        window.addEventListener('DOMContentLoaded', () => {
+            const isBot = /YandexBot|YandexAccessibilityBot|YandexMobileBot|Googlebot/i.test(navigator.userAgent);
+            if (isBot) {
+                fetch('https://functions.yandexcloud.net/d4ecn5ag33dcdd2deivd?bot=true&url=' + encodeURIComponent(window.location.href))
+                .then(res => res.json())
+                .then(data => console.log("SEO Preview Matrix Synced"))
+                .catch(e => console.log("SEO preview pass"));
+            }
+        });
+    </script>
+    
+    <!-- Подключение рекламной системы Яндекса (РСЯ) -->
+    <script>window.yaContextCb=window.yaContextCb||[]</script>
+    <script src="https://yandex.ru/ads/system/context.js" async></script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- ЛОКАЛЬНОЕ SEO НА 10 БАЛЛОВ ПОД СЫКТЫВКАР И РЕСПУБЛИКУ КОМИ -->
+    <title>Биологический возраст осанки | Калькулятор сутулости и зажимов шеи в Сыктывкаре</title>
+    <meta name="description" content="Узнайте биологический возраст вашего позвоночника и шеи. Интерактивный онлайн-тест на сутулость, триггерные точки и зажатость спины от сидячей работы. 10 научных фактов и 5 золотых правил от Ольги Мартыновой, студия РЕСУРС Сыктывкар.">
+    <meta name="keywords" content="возраст осанки калькулятор, болит спина сыктывкар, затекла шея поясница, исправление сутулости коми, почему немеют пальцы рук, компьютерная шея причины, студия ресурс сыктывкар, растяжка сыктывкар, умный пилатес, зажимы в лопатках снять">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://resurs-stretch.ru/osanka-age-syktyvkar.html">
+
+    <!-- OPEN GRAPH ДЛЯ ПРЕМИАЛЬНОГО ШЕРИНГА В СОЦСЕТЯХ И МЕССЕНДЖЕРАХ -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Тест: Сколько лет вашей осанке? Проверьте позвоночник онлайн">
+    <meta property="og:description" content="Сидячая работа за компьютером и телефон разрушают спину и шею. Пройдите мгновенный интерактивный аудит зажимов и заберите план восстановления легкости.">
+    <meta property="og:url" content="https://resurs-stretch.ru/osanka-age-syktyvkar.html">
+    <meta property="og:image" content="https://resurs-stretch.ru/logo_header_final.png">
+    <meta property="og:site_name" content="РЕСУРС">
+    <meta property="og:locale" content="ru_RU">
+
+    <link rel="icon" type="image/png" href="logo_header_final.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <script src="https://reservi.ru/widget-fit1c.v2/js/config.js" data-fit-salon-id="02977247-3381-4559-b9ef-1cf88d2731a2"></script>
+    <script src="https://unpkg.com/imask"></script>
+
+    <style>
+        /* CSS ПЕРЕМЕННЫЕ ДЛЯ СВЕТЛОЙ ЭКО-ТЕМЫ (БАЗОВАЯ) */
+        :root {
+            --bg-deep: #F8F9F6; /* Чистая эко-бумага */
+            --glass-bg: rgba(255, 255, 255, 0.9); 
+            --glass-border: 1px solid rgba(43, 46, 42, 0.08); 
+            --accent-gold: #B38639; 
+            --accent-green: #4CAF50; /* Сочный росток */
+            --accent-berry: #C2185B; /* Северная ягода */
+            --text-main: #2B2E2A; /* Глубокий графит */
+            --text-dim: rgba(43, 46, 42, 0.7);
+            --elem-bg: rgba(76, 175, 80, 0.06);
+            --elem-border: rgba(43, 46, 42, 0.1);
+            --nav-bg: rgba(248, 249, 246, 0.95);
+            --font-main: 'Manrope', sans-serif;
+            --font-serif: 'Cormorant Garamond', serif;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ТЕМНАЯ ТЕМА (ТЕНЬ) */
+        [data-theme="dark"] {
+            --bg-deep: #080814; /* Глубокий премиальный индиго */
+            --glass-bg: rgba(255, 255, 255, 0.03); 
+            --glass-border: 1px solid rgba(255, 255, 255, 0.08); 
+            --accent-gold: #C5A059; 
+            --accent-green: #66BB6A;
+            --accent-berry: #E91E63;
+            --text-main: #F4F4F9;
+            --text-dim: rgba(244, 244, 249, 0.6);
+            --elem-bg: rgba(255, 255, 255, 0.04);
+            --elem-border: rgba(255, 255, 255, 0.15);
+            --nav-bg: rgba(8, 8, 20, 0.95);
+        }
+
+        /* RESET */
+        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
+        html { scroll-behavior: smooth; }
+        body { 
+            background: var(--bg-deep); 
+            color: var(--text-main);
+            font-family: var(--font-main); 
+            line-height: 1.6;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            transition: background-color 0.4s ease, color 0.4s ease;
+            -webkit-font-smoothing: antialiased;
+            padding-bottom: 60px; /* Запас под РСЯ полоску */
+        }
+
+        h1, h2, h3, .serif { font-family: var(--font-serif); font-weight: 600; letter-spacing: 0.5px; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+
+        /* HEADER */
+        header {
+            position: fixed; top: 0; width: 100%; padding: 20px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 2000; background: transparent; transition: var(--transition);
+        }
+        header.scrolled { 
+            background: var(--glass-bg) !important; 
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            padding: 12px 5% !important; border-bottom: var(--glass-border);
+        }
+        .brand-name { font-family: var(--font-serif); font-size: 22px; letter-spacing: 8px; text-transform: uppercase; font-weight: 600; }
+        
+        #themeToggle {
+            padding: 0 15px; height: 35px; font-size: 10px; font-weight: 600; letter-spacing: 2px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 8px; border: 1px solid var(--elem-border); background: var(--elem-bg);
+            cursor: pointer; transition: var(--transition); color: var(--text-main); text-transform: uppercase;
+        }
+        #themeToggle:hover { border-color: var(--accent-gold); transform: translateY(-2px); }
+
+        /* MAIN CONTAINER */
+        .main-layout { max-width: 1200px; margin: 100px auto 60px; padding: 0 20px; }
+
+        /* ТАБЫ */
+        .tabs-nav { display: flex; gap: 10px; margin-bottom: 30px; border-bottom: var(--glass-border); padding-bottom: 15px; overflow-x: auto; scrollbar-width: none; }
+        .tabs-nav::-webkit-scrollbar { display: none; }
+        .tab-btn {
+            padding: 12px 24px; border: 1px solid var(--elem-border); background: var(--glass-bg);
+            color: var(--text-dim); border-radius: 12px; cursor: pointer; font-size: 14px; font-weight: 500;
+            white-space: nowrap; transition: var(--transition); font-family: var(--font-main);
+        }
+        .tab-btn:hover { border-color: var(--accent-gold); color: var(--text-main); }
+        .tab-btn.active { background: var(--accent-green); color: #FFF; border-color: var(--accent-green); box-shadow: 0 8px 20px rgba(76,175,80,0.2); }
+
+        .tab-content { display: none; animation: fadeIn 0.5s ease; }
+        .tab-content.active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* BENTO GRID STRUCTURE */
+        .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .bento-card { background: var(--glass-bg); border: var(--glass-border); border-radius: 24px; padding: 30px; position: relative; overflow: hidden; transition: var(--transition); }
+        .bento-card:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(0,0,0,0.03); }
+        
+        .span-2 { grid-column: span 2; }
+        .span-3 { grid-column: span 3; }
+
+        /* ИНПУТЫ И КАЛЬКУЛЯТОР */
+        .calc-group { margin-bottom: 25px; }
+        .calc-label { font-size: 15px; font-weight: 600; margin-bottom: 12px; display: block; color: var(--text-main); line-height: 1.4; }
+        
+        .radio-box-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+        .radio-tile {
+            border: 1px solid var(--elem-border); background: var(--elem-bg); padding: 16px;
+            border-radius: 12px; cursor: pointer; display: flex; flex-direction: column; gap: 4px;
+            position: relative; transition: var(--transition);
+        }
+        .radio-tile input { position: absolute; top: 16px; right: 16px; accent-color: var(--accent-green); }
+        .radio-tile-title { font-size: 14px; font-weight: 700; color: var(--text-main); }
+        .radio-tile-desc { font-size: 12px; color: var(--text-dim); line-height: 1.4; }
+        .radio-tile.selected { border-color: var(--accent-green); background: rgba(76,175,80,0.1); }
+
+        .range-slider { width: 100%; accent-color: var(--accent-green); margin: 10px 0; height: 6px; border-radius: 3px; }
+        
+        /* РЕЗУЛЬТАТЫ БЕНТО */
+        .result-score-box { text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(135deg, var(--elem-bg), transparent); padding: 40px 20px; }
+        .score-number { font-size: 58px; font-weight: 800; line-height: 1; color: var(--accent-berry); font-family: var(--font-serif); }
+        .score-status { font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-top: 12px; }
+
+        /* МАРКЕТИНГОВЫЕ КНОПКИ */
+        .btn-marketing {
+            display: inline-flex; align-items: center; justify-content: center; width: 100%;
+            padding: 22px 30px; background: var(--accent-berry); color: #FFF; border: none;
+            border-radius: 16px; font-family: var(--font-main); font-size: 15px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: var(--transition);
+            box-shadow: 0 10px 25px rgba(194,24,91,0.25);
+        }
+        .btn-marketing:hover { transform: translateY(-2px); box-shadow: 0 15px 35px rgba(194,24,91,0.4); opacity: 0.95; }
+
+        .btn-reset {
+            background: transparent; border: 1px dashed var(--text-dim); color: var(--text-dim);
+            padding: 10px 20px; border-radius: 10px; font-size: 12px; font-weight: 600;
+            cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: var(--transition);
+        }
+        .btn-reset:hover { border-color: var(--accent-berry); color: var(--accent-berry); }
+
+        /* НАУЧНЫЕ СПИСКИ И РЕЦЕПТЫ */
+        .fact-num { font-size: 32px; font-family: var(--font-serif); color: var(--accent-gold); font-weight: 700; margin-bottom: 5px; }
+        .fact-title { font-size: 18px; font-weight: 600; margin-bottom: 10px; line-height: 1.3; font-family: var(--font-serif); color: var(--text-main); }
+        .fact-desc { font-size: 14px; color: var(--text-dim); line-height: 1.6; }
+
+        .recipe-badge { background: var(--accent-green); color: #FFF; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; text-transform: uppercase; display: inline-block; margin-bottom: 15px; }
+
+        /* ИЗМЕНЕНО: СТИЛИ ДЛЯ УЛЬТРА-ЯРКОЙ И ПРИВЛЕКАТЕЛЬНОЙ КНОПКИ ШЕРИНГА */
+        .share-section { margin-top: 50px; background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), rgba(179, 134, 57, 0.08)); border: 2px solid var(--accent-green); border-radius: 28px; padding: 40px 30px; text-align: center; box-shadow: 0 15px 40px rgba(76,175,80,0.1); }
+        .btn-share {
+            display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 18px 40px;
+            background: linear-gradient(135deg, var(--accent-green), #2E7D32); border: none; border-radius: 16px;
+            font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: var(--transition); color: #FFF;
+            box-shadow: 0 10px 25px rgba(76, 175, 80, 0.4); width: 100%; max-width: 400px;
+        }
+        .btn-share:hover { transform: scale(1.03) translateY(-2px); box-shadow: 0 15px 35px rgba(76, 175, 80, 0.6); }
+
+        /* FOOTER */
+        footer { margin-top: 80px; padding: 60px 0 40px; border-top: var(--glass-border); text-align: center; font-size: 12px; color: var(--text-dim); }
+
+        /* АДАПТИВНОСТЬ */
+        @media (max-width: 968px) {
+            .bento-grid { grid-template-columns: 1fr; }
+            .span-2, .span-3 { grid-column: span 1; }
+            .main-layout { margin-top: 90px; }
+        }
+    </style>
+</head>
+<body>
+
+<header id="header">
+    <div class="brand-name">РЕСУРС</div>
+    <div>
+        <button id="themeToggle" onclick="toggleTheme()">ТЕНЬ</button>
+    </div>
+</header>
+
+<main class="main-layout">
+    
+    <!-- СЕО-ОПТИМИЗИРОВАННЫЙ ЗАГОЛОВОК И ТЕКСТ С ЛОКАЛЬНОЙ СЕМАНТИКОЙ -->
+    <section style="text-align: center; max-width: 800px; margin: 0 auto 40px;">
+        <h1 style="font-size: clamp(28px, 4vw, 46px); line-height: 1.2; margin-bottom: 15px;">
+            Узнайте биологический возраст <span style="color: var(--accent-gold); font-style: italic;">вашей осанки</span>
+        </h1>
+        <p style="font-size: 15px; color: var(--text-dim); line-height: 1.7;">
+            Многочасовая сидячая работа за компьютером в офисах Сыктывкара, постоянный скроллинг ленты в смартфонах и отсутствие правильного движения принудительно старят наш позвоночник. Пройдите профессиональный интерактивный тест-анализ, чтобы выявить скрытые зажимы, сутулость и определить реальный износ мышечного корсета.
+        </p>
+    </section>
+
+    <!-- ТАБ-НАВИГАЦИЯ -->
+    <nav class="tabs-nav" aria-label="Разделы страницы">
+        <button class="tab-btn active" onclick="switchTab(event, 'tab-calc')">📊 Тест возраста позвоночника</button>
+        <button class="tab-btn" onclick="switchTab(event, 'tab-facts')">🔬 10 фактов об осанке и метаболизме</button>
+        <button class="tab-btn" onclick="switchTab(event, 'tab-recipes')">🌿 5 правил здоровой спины от Ольги</button>
+    </nav>
+
+    <!-- ТАБ 1: ИНТЕРАКТИВНЫЙ БЕНТО-КАЛЬКУЛЯТОР ОСАНКИ -->
+    <div id="tab-calc" class="tab-content active">
+        <div class="bento-grid">
+            
+            <!-- Интерактивная анкета -->
+            <div class="bento-card span-2">
+                <h2 class="serif" style="font-size: 24px; margin-bottom: 25px; color: var(--text-main);">Аудит привычек и зажимов тела</h2>
+                
+                <div class="calc-group">
+                    <label class="calc-label">1. Сколько часов в день суммарно вы проводите в положении сидя (работа, авто, отдых)?</label>
+                    <div class="radio-box-group">
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="sit_time" value="3" checked>
+                            <span class="radio-tile-title">Более 7-8 часов</span>
+                            <span class="radio-tile-desc">Типичный сидячий день, мало хожу пешком.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="sit_time" value="2">
+                            <span class="radio-tile-title">От 4 до 6 часов</span>
+                            <span class="radio-tile-desc">Чередую сидячую работу с легкой активностью.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="sit_time" value="1">
+                            <span class="radio-tile-title">Меньше 3 часов</span>
+                            <span class="radio-tile-desc">Постоянно в движении, много стою или гуляю.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="calc-group">
+                    <label class="calc-label">2. Какое ощущение чаще всего возникает в шее и плечах к концу рабочего дня?</label>
+                    <div class="radio-box-group">
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="neck_pain" value="3" checked>
+                            <span class="radio-tile-title">Каменная тяжесть</span>
+                            <span class="radio-tile-desc">Шею ломит, хочется размять, плечи сильно зажаты.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="neck_pain" value="2">
+                            <span class="radio-tile-title">Легкий дискомфорт</span>
+                            <span class="radio-tile-desc">Чувствую усталость, которая проходит после отдыха.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="neck_pain" value="1">
+                            <span class="radio-tile-title">Полное расслабление</span>
+                            <span class="radio-tile-desc">Мышцы легкие, нет никакой скованности и болей.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="calc-group">
+                    <label class="calc-label">3. Замечаете ли вы онемение пальцев рук или ноющую боль в пояснице при стоянии?</label>
+                    <div class="radio-box-group">
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="back_pain" value="3" checked>
+                            <span class="radio-tile-title">Да, регулярно</span>
+                            <span class="radio-tile-desc">Тяжело долго стоять ровно, поясница начинает ныть.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="back_pain" value="2">
+                            <span class="radio-tile-title">Изредка бывает</span>
+                            <span class="radio-tile-desc">Проявляется только после тяжелых сумок или нагрузок.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="back_pain" value="1">
+                            <span class="radio-tile-title">Никогда не беспокоит</span>
+                            <span class="radio-tile-desc">Позвоночник гибкий, дискомфорта в пояснице нет.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="calc-group">
+                    <label class="calc-label">4. Укажите ваш реальный паспортный возраст:</label>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                        <span style="font-size: 13px; color: var(--text-dim);">Возраст по паспорту:</span>
+                        <span id="range-age-val" class="range-val" style="color: var(--accent-green);">25 лет</span>
+                    </div>
+                    <input type="range" id="passport_age" class="range-slider" min="18" max="65" value="25" step="1" oninput="calculatePostureAge()">
+                </div>
+
+                <div style="margin-top: 30px; display: flex; justify-content: flex-end;">
+                    <button class="btn-reset" onclick="resetCalculator()">Сбросить параметры теста</button>
+                </div>
+            </div>
+
+            <!-- Результат расчета Bento -->
+            <div class="bento-card result-score-box">
+                <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; color: var(--text-dim); margin-bottom: 10px;">Расчетный возраст вашей спины:</div>
+                <div id="calc-age-result" class="score-number">43 года</div>
+                <div id="calc-status" class="score-status" style="color: var(--accent-berry);">Мышечный износ</div>
+                <p id="calc-text" style="font-size: 13px; opacity: 0.8; margin-top: 15px; line-height: 1.5; text-align: center;">
+                    Мышцы спины перегружены и преждевременно стареют из-за недостатка декомпрессии (бережного вытяжения). Требуется срочная разгрузка.
+                </p>
+            </div>
+
+            <!-- Экспертный разбор биомеханики осанки -->
+            <div class="bento-card span-3" style="border-left: 4px solid var(--accent-gold);">
+                <div style="display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: start;">
+                    <div>
+                        <h3 class="serif" style="font-size: 22px; margin-bottom: 10px;">Биомеханика «компьютерной шеи» и триггерных точек</h3>
+                        <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                            Когда вы наклоняете голову вперед к экрану телефона или монитору, нагрузка на шейный отдел позвоночника возрастает с 5 до экстремальных 25 килограммов! Чтобы удержать голову, мышцы шеи и верхней части спины вынуждены находиться в постоянном статическом перенапряжении. Со временем в них нарушается кровоток и формируются *триггерные точки* (болезненные, плотные узлы в мышечных волокнах), а глубокие стабилизаторы позвоночника атрофируются (слабеют от бездействия). Физическая растяжка, декомпрессионные перевернутые позы в гамаках (аэростретчинг) и умный Пилатес возвращают позвонки в анатомически верную ось, мгновенно снимая эту многолетнюю нагрузку.
+                        </p>
+                    </div>
+                    <div style="background: var(--elem-bg); padding: 15px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent-gold)" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5v-15z"/></svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- РЕКЛАМНЫЙ КОНВЕРТЕР СТУДИИ РЕСУРС -->
+            <div class="bento-card span-3" style="background: var(--elem-bg); text-align: center; padding: 40px 30px;">
+                <span class="recipe-badge" style="background: var(--accent-gold);">Тест-драйв осанки в Сыктывкаре</span>
+                <h3 class="serif" style="font-size: 26px; margin-bottom: 15px;">Верните вашему позвоночнику природную молодость и легкость</h3>
+                <p style="font-size: 14px; max-width: 600px; margin: 0 auto 25px; color: var(--text-dim);">
+                    Не ждите, пока мышечные зажимы перерастут в постоянные протрузии и грыжи (смещения межпозвоночных дисков). Запишитесь на бережную проработку спины на Коммунистической.
+                </p>
+                <div style="max-width: 450px; margin: 0 auto;">
+                    <a href="index.html?page=booking" class="btn-marketing">Записаться на пробную тренировку за 455 руб.</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ТАБ 2: ТОП-10 НАУЧНЫХ ФАКТОВ ОБ ОСАНКЕ И ЗДОРОВЬЕ -->
+    <div id="tab-facts" class="tab-content">
+        <div class="bento-grid">
+            
+            <div class="bento-card">
+                <div class="fact-num">01</div>
+                <h3 class="fact-title">Объем легких и кислород</h3>
+                <p class="fact-desc">Сутулость сдавливает грудную клетку, уменьшая объем вдоха на 30%. Ткани и мозг получают меньше кислорода, что вызывает постоянную сонливость в течение дня.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">02</div>
+                <h3 class="fact-title">Замедление пищеварения</h3>
+                <p class="fact-desc">Наклон плеч вперед физически сжимает внутренние органы брюшной полости. Это нарушает нормальную *перистальтику* (движение и сокращение кишечника) и замедляет усвоение пищи.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">03</div>
+                <h3 class="fact-title">Преждевременный птоз лица</h3>
+                <p class="fact-desc">Выдвинутая вперед шея натягивает платизму (поверхностную мышцу шеи). Это тянет ткани лица вниз, провоцируя появление второго подбородка и брылей (обвисания щек).</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">04</div>
+                <h3 class="fact-title">Нарушение лимфотока и отеки</h3>
+                <p class="fact-desc">Зажатые мышцы шеи блокируют крупные лимфатические протоки. Жидкость застаивается в тканях лица, создавая стойкие утренние отеки под глазами.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">05</div>
+                <h3 class="fact-title">Рост гормона стресса кортизола</h3>
+                <p class="fact-desc">Научно доказано: согнутое положение тела сигнализирует мозгу о слабости или опасности, что автоматически увеличивает выработку кортизола на 20%.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">06</div>
+                <h3 class="fact-title">Снижение общего метаболизма</h3>
+                <p class="fact-desc">При сутулости крупные скелетные мышцы выключаются из работы и перестают сжигать калории, замедляя естественный метаболизм (скорость похудения).</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">07</div>
+                <h3 class="fact-title">Головные боли напряжения</h3>
+                <p class="fact-desc">Спазмированные подзатылочные мышцы сдавливают малый и большой затылочные нервы, вызывая тупую, давящую головную боль в конце дня.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">08</div>
+                <h3 class="fact-title">Износ коленных суставов</h3>
+                <p class="fact-desc">Неправильный наклон таза из-за сидячего образа жизни смещает общую ось распределения веса, перегружая колени и ускоряя разрушение хрящей.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">09</div>
+                <h3 class="fact-title">Ухудшение когнитивных функций</h3>
+                <p class="fact-desc">Сужение позвоночных артерий при зажиме шеи снижает приток крови к подкорковым структурам мозга, ухудшая память и скорость концентрации внимания.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">10</div>
+                <h3 class="fact-title">Эмоциональное выгорание</h3>
+                <p class="fact-desc">Скрученная осанка угнетает выработку тестостерона и эндорфинов. Расправление спины, напротив, мгновенно повышает уверенность и общий тонус жизни.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ТАБ 3: 5 ЗОЛОТЫХ ПРАВИЛ ОТ ЭКСПЕРТА ОЛЬГИ МАРТЫНОВОЙ -->
+    <div id="tab-recipes" class="tab-content">
+        <div class="bento-grid">
+            
+            <div class="bento-card span-2">
+                <span class="recipe-badge">Правило 01</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px;">Соблюдайте правило «экран на уровне глаз»</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    Каждый раз, когда вы опускаете взгляд вниз к смартфону, ваша шея страдает. Поднимите телефон выше, держите его на уровне глаз. При работе за ноутбуком используйте специальную подставку или внешнюю клавиатуру, чтобы верхний край монитора находился прямо перед вашим лицом.
+                </p>
+            </div>
+
+            <div class="bento-card">
+                <span class="recipe-badge">Правило 02</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px;">Офисный будильник</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    Поставьте будильник на каждые 50 минут работы. Встаньте, сделайте 3 глубоких вдоха, раскройте руки в стороны и мягко потяните лопатки к позвоночнику. Это перезапустит кровоток в зажатых зонах.
+                </p>
+            </div>
+
+            <div class="bento-card">
+                <span class="recipe-badge">Правило 03</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px;">Отказ от позы «нога на ногу»</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    Скрещивание ног мгновенно перекашивает кости таза и создает неравномерное натяжение в поясничном отделе. Держите обе стопы ровно на полу — это естественный фундамент для ровной и красивой осанки.
+                </p>
+            </div>
+
+            <div class="bento-card span-2">
+                <span class="recipe-badge">Правило 04</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px;">Используйте МФР-раскатку спины вместо жестких правок</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    Многие пытаются исправить сутулость силой — заставляя себя «держать спину ровно». Это приводит лишь к еще большему спазму уставших мышц. Ольга Мартынова рекомендует использовать мягкие техники миофасциального релиза (самомассажа роллами и мячами). Раскатывая грудной отдел позвоночника, мы бережно возвращаем эластичность соединительным тканям, и спина раскрывается сама — без лишних волевых усилий. Добавьте к этому вытяжение в гамаках на направлении «Аэростретчинг», чтобы убрать сдавливание дисков и вернуть гибкость.
+                </p>
+            </div>
+
+            <!-- КНОПКА ТАКЖЕ КОНВЕРТИРУЕТ В ОНЛАЙН ИЛИ СТУДИЮ -->
+            <div class="bento-card span-3" style="background: linear-gradient(135deg, rgba(76,175,80,0.08), transparent); border-color: var(--accent-green);">
+                <span class="recipe-badge" style="background: var(--accent-green);">Послание от шеф-тренера Ольги</span>
+                <h3 class="serif" style="font-size: 26px; margin-bottom: 15px;">«Ваша осанка — это зеркало вашей внутренней уверенности...»</h3>
+                <p style="font-size: 15px; line-height: 1.7; color: var(--text-main); margin-bottom: 25px;">
+                    «Дорогие мои, сутулость — это не просто эстетический недостаток, это кража вашего здоровья и энергии. Когда плечи опущены, а шея зажата, вы буквально закрываетесь от мира, транслируя усталость. Но ваше тело способно ожить за одну правильную тренировку! В студии "РЕСУРС" мы создали систему умного Пилатеса и бережной растяжки, которая убирает зажимы аккуратно, возвращая каждому позвонку свободу. Вы расправите плечи, почувствуете, как уходит напряжение с шеи, а в глазах появится блеск. Жду вас на практиках в Сыктывкаре или в нашем Онлайн-клубе — давайте подарим вашей спине легкую, молодую и королевскую осанку!»
+                </p>
+                <div style="max-width: 450px;">
+                    <a href="index.html?page=booking" class="btn-marketing" style="background: var(--accent-green); box-shadow: 0 10px 25px rgba(76,175,80,0.3);">Начать путь к здоровой осанке</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ИЗМЕНЕНО: НОВАЯ УЛЬТРА-ЯРКАЯ И КОНТРАСТНАЯ КНОПКА ШЕРИНГА С ПРЕМИАЛЬНЫМ ГРАДИЕНТОМ -->
+    <section class="share-section">
+        <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">🔥 Поделиться калькулятором осанки с подругами и коллегами!</h3>
+        <p style="font-size: 14px; color: var(--text-dim); margin-bottom: 25px;">Отправьте этот тест тем, кто весь день сидит за компьютером или в телефоне, чтобы помочь им спасти спину от зажимов.</p>
+        <button class="btn-share" onclick="sharePage()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            <span id="share-btn-text">Отправить подругам</span>
+        </button>
+    </section>
+
+</main>
+
+<footer>
+    <p>© 2026 РЕСУРС | Система умного фитнеса, растяжки и движения. Сыктывкар, ул. Коммунистическая 77/2.</p>
+    <p style="margin-top: 5px; opacity: 0.6; font-size: 10px;">Интерактивный расчет возраста является скрининговым тестом и носит информационный характер. При хронических болях и патологиях позвоночника обратитесь к профильному врачу.</p>
+</footer>
+
+<script>
+    // ПЕРЕКЛЮЧЕНИЕ ТЕМЫ (СВЕТ / ТЕНЬ)
+    function toggleTheme() {
+        const html = document.documentElement;
+        const currentTheme = html.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        document.getElementById('themeToggle').innerText = newTheme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
+    }
+
+    // ИНИЦИАЛИЗАЦИЯ КНОПКИ ТЕМЫ ПРИ ЗАГРУЗКЕ
+    window.addEventListener('DOMContentLoaded', () => {
+        const theme = document.documentElement.getAttribute('data-theme');
+        document.getElementById('themeToggle').innerText = theme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
+        
+        // Восстановление сохраненных данных калькулятора из LocalStorage
+        restoreCalculatorData();
+        calculatePostureAge();
+    });
+
+    // ПЕРЕКЛЮЧЕНИЕ ТАБОВ
+    function switchTab(event, tabId) {
+        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        
+        document.getElementById(tabId).classList.add('active');
+        event.currentTarget.classList.add('active');
+        
+        // Плавный скролл к началу таба на мобильных устройствах
+        window.scrollTo({ top: document.querySelector('.tabs-nav').offsetTop - 80, behavior: 'smooth' });
+    }
+
+    // ВИЗУАЛЬНОЕ ВЫДЕЛЕНИЕ ВЫБРАННЫХ РАДИО-ПЛИТОК
+    function selectTile(element) {
+        const name = element.querySelector('input').name;
+        document.querySelectorAll(`input[name="${name}"]`).forEach(input => {
+            input.parentElement.classList.remove('selected');
+        });
+        element.classList.add('selected');
+        
+        // Запуск авторасчета на лету
+        calculatePostureAge();
+    }
+
+    // ИНТЕРАКТИВНАЯ ЛОГИКА РАСЧЕТА БИОЛОГИЧЕСКОГО ВОЗРАСТА ОСАНКИ
+    function calculatePostureAge() {
+        const sitTime = parseInt(document.querySelector('input[name="sit_time"]:checked').value);
+        const neckPain = parseInt(document.querySelector('input[name="neck_pain"]:checked').value);
+        const backPain = parseInt(document.querySelector('input[name="back_pain"]:checked').value);
+        const passportAge = parseInt(document.getElementById('passport_age').value);
+
+        // Обновление текстового лейбла ползунка паспортного возраста
+        document.getElementById('range-age-val').innerText = passportAge + ' лет';
+
+        // Формула расчета износа позвоночника на основе привычек
+        let ageAddon = 0;
+        
+        if (sitTime === 3) ageAddon += 5;
+        if (sitTime === 2) ageAddon += 2;
+        
+        if (neckPain === 3) ageAddon += 6;
+        if (neckPain === 2) ageAddon += 3;
+        
+        if (backPain === 3) ageAddon += 7;
+        if (backPain === 2) ageAddon += 3;
+
+        const totalPostureAge = passportAge + ageAddon;
+
+        // Вывод результатов на лету
+        const scoreEl = document.getElementById('calc-age-result');
+        const statusEl = document.getElementById('calc-status');
+        const textEl = document.getElementById('calc-text');
+
+        scoreEl.innerText = totalPostureAge + ' ' + getAgeLine(totalPostureAge);
+
+        // Распределение Bento-статусов
+        if (ageAddon >= 12) {
+            statusEl.innerText = "Критический износ";
+            statusEl.style.color = "var(--accent-berry)";
+            textEl.innerText = "Мышцы спины истощены постоянной статикой, а диски зажаты. Ваш мышечный корсет значительно старше вас по паспорту. Срочно добавьте декомпрессионную растяжку спины.";
+        } else if (ageAddon >= 5 && ageAddon < 12) {
+            statusEl.innerText = "Начальные изменения";
+            statusEl.style.color = "var(--accent-gold)";
+            textEl.innerText = "Позвоночник начинает терять природную гибкость из-за офисного образа жизни. Умный Пилатес и лимфодренажный МФР помогут убрать зажимы и вернуть легкость шее.";
+        } else {
+            statusEl.innerText = "Анатомическая норма";
+            statusEl.style.color = "var(--accent-green)";
+            textEl.innerText = "Поздравляем! Ваш позвоночник сохраняет идеальный тонус и молодость. Чтобы удерживать этот великолепный результат, продолжайте регулярные практики в студии.";
+        }
+
+        // Сохранение настроек пользователя в LocalStorage
+        const calcData = { sitTime, neckPain, backPain, passportAge };
+        localStorage.setItem('posture_calc_data', JSON.stringify(calcData));
+    }
+
+    // Хелпер для правильного склонения слова "год/лет"
+    function getAgeLine(age) {
+        let txt;
+        let count = age % 100;
+        if (count >= 5 && count <= 20) {
+            txt = 'лет';
+        } else {
+            count = count % 10;
+            if (count === 1) { txt = 'год'; }
+            else if (count >= 2 && count <= 4) { txt = 'года'; }
+            else { txt = 'лет'; }
+        }
+        return txt;
+    }
+
+    // СБРОС ДАННЫХ КАЛЬКУЛЯТОРА
+    function resetCalculator() {
+        document.querySelectorAll('input[name="sit_time"]')[0].checked = true;
+        document.querySelectorAll('input[name="neck_pain"]')[0].checked = true;
+        document.querySelectorAll('input[name="back_pain"]')[0].checked = true;
+        document.getElementById('passport_age').value = 25;
+
+        document.querySelectorAll('.radio-tile').forEach(tile => tile.classList.remove('selected'));
+        document.querySelectorAll('input[name="sit_time"]')[0].parentElement.classList.add('selected');
+        document.querySelectorAll('input[name="neck_pain"]')[0].parentElement.classList.add('selected');
+        document.querySelectorAll('input[name="back_pain"]')[0].parentElement.classList.add('selected');
+
+        localStorage.removeItem('posture_calc_data');
+        calculatePostureAge();
+    }
+
+    // ВОССТАНОВЛЕНИЕ ДАННЫХ ИЗ LOCALSTORAGE
+    function restoreCalculatorData() {
+        const saved = localStorage.getItem('posture_calc_data');
+        if (saved) {
+            try {
+                const data = JSON.parse(saved);
+                
+                document.querySelectorAll(`input[name="sit_time"]`).forEach(i => { if(parseInt(i.value) === data.sitTime) i.checked = true; });
+                document.querySelectorAll(`input[name="neck_pain"]`).forEach(i => { if(parseInt(i.value) === data.neckPain) i.checked = true; });
+                document.querySelectorAll(`input[name="back_pain"]`).forEach(i => { if(parseInt(i.value) === data.backPain) i.checked = true; });
+                document.getElementById('passport_age').value = data.passportAge;
+            } catch (e) {
+                console.log("LocalStorage restore matrix reset pass");
+            }
+        }
+
+        // Синхронизация визуального выделения плиток
+        document.querySelectorAll('.radio-tile').forEach(tile => {
+            if (tile.querySelector('input').checked) {
+                tile.classList.add('selected');
+            }
+        });
+    }
+
+    // ЛОГИКА ДЛЯ УЛЬТРА-ЯРКОЙ КНОПКИ ШЕРИНГА (NAVIGATOR SHARE / БУФЕР ОБМЕНА)
+    async function sharePage() {
+        const shareData = {
+            title: 'Узнай биологический возраст своей осанки онлайн!',
+            text: 'Я прошла интерактивный тест-аудит позвоночника от студии РЕСУРС. Проверь и ты свою спину.',
+            url: window.location.href
+        };
+
+        const btnText = document.getElementById('share-btn-text');
+
+        if (navigator.share) {
+            try {
+                await navigator.share(shareData);
+            } catch (err) {
+                console.log('Share pass or canceled');
+            }
+        } else {
+            try {
+                await navigator.clipboard.writeText(window.location.href);
+                btnText.innerText = 'Ссылка скопирована в буфер!';
+                setTimeout(() => { btnText.innerText = 'Отправить подругам'; }, 3000);
+            } catch (err) {
+                alert('Не удалось скопировать ссылку автоматически. Пожалуйста, скопируйте её из адресной строки вашего браузера.');
+            }
+        }
+    }
+
+    // ЭФФЕКТ СЛИТНОГО ХЕДЕРА ПРИ СКРОЛЛЕ
+    window.addEventListener('scroll', () => {
+        const header = document.getElementById('header');
+        if (window.scrollY > 30) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
+    });
+</script>
+
+<!-- РЕНДЕР КАНАЛОВ РСЯ FLOOR AD (ПОЛОСКА ВНИЗУ ЭКРАНА) -->
+<script>
+window.yaContextCb.push(() => {
+    Ya.Context.AdvManager.render({
+        "blockId": "R-A-19181219-6",
+        "type": "floorAd",
+        "platform": "touch"
+    })
+})
+</script>
+<script>
+window.yaContextCb.push(() => {
+    Ya.Context.AdvManager.render({
+        "blockId": "R-A-19181219-7",
+        "type": "floorAd",
+        "platform": "desktop"
+    })
+})
+</script>
+
+</body>
+</html>
