@@ -36,21 +36,18 @@
         });
     </script>
     
-    <!-- Подключение рекламной системы Яндекса (РСЯ) -->
     <script>window.yaContextCb=window.yaContextCb||[]</script>
     <script src="https://yandex.ru/ads/system/context.js" async></script>
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- УЛЬТРА-ПРОФИ SEO ОПТИМИЗАЦИЯ ПОД СЫКТЫВКАР И РЕСПУБЛИКУ КОМИ -->
     <title>Тест: Почему не уходит вес — Отек или Жир? | Лимфодренаж и МФР в Сыктывкаре</title>
     <meta name="description" content="Узнайте истинную причину лишнего веса и объемов. Интерактивный онлайн-тест на застой лимфы, скрытые отеки и целлюлит. Научные факты и пошаговый метод похудения от Ольги Мартыновой, студия РЕСУРС Сыктывкар.">
     <meta name="keywords" content="почему не уходит вес, как убрать отеки сыктывкар, застой лимфы симптомы, калькулятор лишнего веса, миофасциальный релиз коми, лимфодренажные тренировки сыктывкар, причины целлюлита, студия ресурс растяжка, похудеть в сыктывкаре, дряблость кожи тела">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://resurs-stretch.ru/otek-ili-zhir.html">
 
-    <!-- OPEN GRAPH ДЛЯ СОЦСЕТЕЙ И МЕССЕНДЖЕРОВ -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Отек или Жир? Пройди мгновенный тест на причину лишних объемов">
     <meta property="og:description" content="Диеты и бег не помогают убрать живот и целлюлит? Возможно, это скрытый застой жидкости (околоклеточный отек). Измерь свой лимфатический индекс онлайн.">
@@ -176,7 +173,6 @@
             border-radius: 12px; cursor: pointer; display: flex; flex-direction: column; gap: 4px;
             position: relative; transition: var(--transition);
         }
-        .radio-tile scale { position: absolute; top: 16px; right: 16px; accent-color: var(--accent-green); }
         .radio-tile input { position: absolute; top: 16px; right: 16px; accent-color: var(--accent-green); }
         .radio-tile-title { font-size: 14px; font-weight: 700; color: var(--text-main); }
         .radio-tile-desc { font-size: 12px; color: var(--text-dim); line-height: 1.4; }
@@ -224,6 +220,35 @@
         }
         .btn-share:hover { transform: scale(1.03) translateY(-2px); box-shadow: 0 15px 35px rgba(76, 175, 80, 0.6); }
 
+        /* ИСПРАВЛЕНО: ГЛОБАЛЬНЫЙ СИММЕТРИЧНЫЙ ПОДВАЛ ДЛЯ БОЛЬШИХ МОНИТОРОВ */
+        footer { 
+            margin-top: 80px; 
+            padding: 60px 0 40px; 
+            border-top: var(--glass-border); 
+            background: transparent;
+            width: 100%;
+        }
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+        .footer-text-main {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+        .footer-text-sub {
+            font-size: 11px;
+            line-height: 1.6;
+            color: var(--text-dim);
+            opacity: 0.85;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
         @media (max-width: 968px) {
             .bento-grid { grid-template-columns: 1fr; }
             .span-2, .span-3 { grid-column: span 1; }
@@ -257,7 +282,6 @@
         <button class="tab-btn" onclick="switchTab(event, 'tab-recipes')">🌿 5 секретов тонкой талии от Ольги</button>
     </nav>
 
-    <!-- ТАБ 1: КАЛЬКУЛЯТОР-АНАЛИЗАТОР -->
     <div id="tab-calc" class="tab-content active">
         <div class="bento-grid">
             
@@ -341,7 +365,6 @@
                 </div>
             </div>
 
-            <!-- Результат расчета -->
             <div class="bento-card result-score-box">
                 <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; color: var(--text-dim); margin-bottom: 10px;">Причина ваших лишних объёмов:</div>
                 <div id="calc-result-title" class="score-number">--</div>
@@ -351,13 +374,12 @@
                 </p>
             </div>
 
-            <!-- Связь лимфы и фасций -->
             <div class="bento-card span-3" style="border-left: 4px solid var(--accent-gold);">
                 <div style="display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: start;">
                     <div>
                         <h3 class="serif" style="font-size: 22px; margin-bottom: 10px;">Анатомическая правда: почему жир не сгорает в болоте</h3>
                         <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
-                            Лимческая система не имеет своего «сердца»-насоса. Единственный способ заставить её двигаться и очищать ткани — это сокращение и растяжение наших скелетных мышц. Когда вы долго сидите в офисе или перегружаете тело однообразным бегом, мышцы спазмируются и зажимают лимфатические сосуды. Вокруг жировых клеток образуется неподвижное «болото» из межклеточной жидкости. В таких условиях биохимический процесс *липолиза* (расщепления жировых клеток) физически не может запуститься, так как к клеткам заблокирован приток кислорода. Лимфодренажный МФР (миофасциальный релиз) и мягкий Пилатес буквально отжимают мышцы как губку, убирая болото и открывая жировым клеткам путь к безопасному сжиганию.
+                            Лиммическая система не имеет своего «сердца»-насоса. Единственный способ заставить её двигаться и очищать ткани — это сокращение и растяжение наших скелетных мышц. Когда вы долго сидите в офисе или перегружаете тело однообразным бегом, мышцы спазмируются и зажимают лимфатические сосуды. Вокруг жировых клеток образуется неподвижное «болото» из межклеточной жидкости. В таких условиях биохимический процесс *липолиза* (расщепления жировых клеток) физически не может запуститься, так как к клеткам заблокирован приток кислорода. Лимфодренажный МФР (миофасциальный релиз) и мягкий Пилатес буквально отжимают мышцы как губку, убирая болото и открывая жировым клеткам путь к безопасному сжиганию.
                         </p>
                     </div>
                     <div style="background: var(--elem-bg); padding: 15px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
@@ -366,7 +388,6 @@
                 </div>
             </div>
 
-            <!-- ИЗМЕНЕНО: КНОПКА ЗАПИСИ С ПРИЗЫВОМ "ЗАПИСАТЬСЯ НА ТЕСТ-ДРАЙВ ТРЕНИРОВОК" -->
             <div class="bento-card span-3" style="background: var(--elem-bg); text-align: center; padding: 40px 30px;">
                 <span class="recipe-badge" style="background: var(--accent-gold);">Тест-драйв в Сыктывкаре</span>
                 <h3 class="serif" style="font-size: 26px; margin-bottom: 15px;">Уберите до -3 см в объемах за счет разгона лимфотока</h3>
@@ -381,7 +402,6 @@
         </div>
     </div>
 
-    <!-- ТАБ 2: 10 НАУЧНЫХ ФАКТОВ -->
     <div id="tab-facts" class="tab-content">
         <div class="bento-grid">
             
@@ -448,7 +468,6 @@
         </div>
     </div>
 
-    <!-- ТАБ 3: ПРАВИЛА ОТ ЭКСПЕРТА ОЛЬГИ -->
     <div id="tab-recipes" class="tab-content">
         <div class="bento-grid">
             
@@ -498,7 +517,6 @@
         </div>
     </div>
 
-    <!-- УЛЬТРА-ЯРКАЯ КНОПКА ШЕРИНГА -->
     <section class="share-section">
         <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">🔥 Отправь этот тест-анализатор любимым подругам!</h3>
         <p style="font-size: 14px; color: var(--text-dim); margin-bottom: 25px;">Помогите близким узнать реальную причину лишних сантиметров на талии, избавиться от утренних отеков и победить целлюлит без изнуряющих голодовок.</p>
@@ -511,8 +529,10 @@
 </main>
 
 <footer>
-    <p>© 2026 РЕСУРС | Студия фитнеса, растяжки и движения. Сыктывкар, ул. Коммунистическая 77/2.</p>
-    <p style="margin-top: 5px; opacity: 0.6; font-size: 10px;">Интерактивный анализ жидкостных сред является скрининговым тестом. При стойких лимфатических патологиях и нарушениях работы почек проконсультируйтесь с лечащим врачом.</p>
+    <div class="footer-container">
+        <p class="footer-text-main">© 2026 РЕСУРС | Студия фитнеса, растяжки и движения. Сыктывкар, ул. Коммунистическая 77/2.</p>
+        <p class="footer-text-sub">Интерактивный анализ жидкостных сред является скрининговым тестом. При стойких лимфатических патологиях и нарушениях работы почек проконсультируйтесь с лечащим врачом.</p>
+    </div>
 </footer>
 
 <script>
@@ -680,7 +700,6 @@
     });
 </script>
 
-<!-- РЕНДЕР КАНАЛОВ РСЯ FLOOR AD -->
 <script>
 window.yaContextCb.push(() => {
     Ya.Context.AdvManager.render({
