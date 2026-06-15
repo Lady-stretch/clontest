@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <script>
+        // По умолчанию для инфо-страниц ставим чистую светлую эко-тему, сохраняем выбор пользователя
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+
+    <script type="text/javascript">
+    // --- Yandex.Metrika counter ---
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=109130409', 'ym');
+    ym(109130409, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript>
+        <div>
+            <img src="https://mc.yandex.ru/watch/109130409" style="position:absolute; left:-9999px;" alt="" />
+        </div>
+    </noscript>
+
+    <script>
+        // Глобальная логика перехвата ботов для SEO-превью через Яндекс Функцию
+        window.addEventListener('DOMContentLoaded', () => {
+            const isBot = /YandexBot|YandexAccessibilityBot|YandexMobileBot|Googlebot/i.test(navigator.userAgent);
+            if (isBot) {
+                fetch('https://functions.yandexcloud.net/d4ecn5ag33dcdd2deivd?bot=true&url=' + encodeURIComponent(window.location.href))
+                .then(res => res.json())
+                .then(data => console.log("SEO Preview Matrix Synced"))
+                .catch(e => console.log("SEO preview pass"));
+            }
+        });
+    </script>
+    
+    <!-- Подключение рекламной системы Яндекса (РСЯ) -->
+    <script>window.yaContextCb=window.yaContextCb||[]</script>
+    <script src="https://yandex.ru/ads/system/context.js" async></script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- УЛЬТРА-ПРОФИ SEO ОПТИМИЗАЦИЯ ПОД СЫКТЫВКАР И РЕСПУБЛИКУ КОМИ -->
+    <title>Тест на уровень стресса и выгорания | Йога релакс и Антистресс в Сыктывкаре</title>
+    <meta name="description" content="Пройдите интерактивный тест на гормональный баланс и уровень стресса. Причины постоянной усталости и плохого сна. Научные факты и антистресс-практики от Ольги Мартыновой, студия РЕСУРС Сыктывкар.">
+    <meta name="keywords" content="постоянная усталость причины, плохой сон что делать, тест на уровень стресса онлайн, антистресс практики сыктывкар, йога релакс сыктывкар, как успокоить нервную систему, упадок сил симптомы, студия ресурс сыктывкар, снять тревожность фитнес, здоровый сон гормоны">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://resurs-stretch.ru/stress-index.html">
+
+    <!-- OPEN GRAPH ДЛЯ СОЦСЕТЕЙ -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Стресс-аудит: Почему нет сил и как восстановить нервную систему?">
+    <meta property="og:description" content="Хроническая усталость и разбитость по утрам? Пройдите мгновенный интерактивный замер стресс-индекса на сайте студии мягкого фитнеса РЕСУРС.">
+    <meta property="og:url" content="https://resurs-stretch.ru/stress-index.html">
+    <meta property="og:image" content="https://resurs-stretch.ru/logo_header_final.png">
+    <meta property="og:site_name" content="РЕСУРС">
+    <meta property="og:locale" content="ru_RU">
+
+    <link rel="icon" type="image/png" href="logo_header_final.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <script src="https://reservi.ru/widget-fit1c.v2/js/config.js" data-fit-salon-id="02977247-3381-4559-b9ef-1cf88d2731a2"></script>
+    <script src="https://unpkg.com/imask"></script>
+
+    <style>
+        /* CSS ПЕРЕМЕННЫЕ ДЛЯ СВЕТЛОЙ ЭКО-ТЕМЫ */
+        :root {
+            --bg-deep: #F8F9F6; 
+            --glass-bg: rgba(255, 255, 255, 0.9); 
+            --glass-border: 1px solid rgba(43, 46, 42, 0.08); 
+            --accent-gold: #B38639; 
+            --accent-green: #4CAF50; 
+            --accent-berry: #C2185B; 
+            --text-main: #2B2E2A; 
+            --text-dim: rgba(43, 46, 42, 0.7);
+            --elem-bg: rgba(76, 175, 80, 0.06);
+            --elem-border: rgba(43, 46, 42, 0.1);
+            --nav-bg: rgba(248, 249, 246, 0.95);
+            --font-main: 'Manrope', sans-serif;
+            --font-serif: 'Cormorant Garamond', serif;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ТЕМНАЯ ТЕМА */
+        [data-theme="dark"] {
+            --bg-deep: #080814; 
+            --glass-bg: rgba(255, 255, 255, 0.03); 
+            --glass-border: 1px solid rgba(255, 255, 255, 0.08); 
+            --accent-gold: #C5A059; 
+            --accent-green: #66BB6A;
+            --accent-berry: #E91E63;
+            --text-main: #F4F4F9;
+            --text-dim: rgba(244, 244, 249, 0.6);
+            --elem-bg: rgba(255, 255, 255, 0.04);
+            --elem-border: rgba(255, 255, 255, 0.15);
+            --nav-bg: rgba(8, 8, 20, 0.95);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
+        html { scroll-behavior: smooth; }
+        body { 
+            background: var(--bg-deep); 
+            color: var(--text-main);
+            font-family: var(--font-main); 
+            line-height: 1.6;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            transition: background-color 0.4s ease, color 0.4s ease;
+            -webkit-font-smoothing: antialiased;
+            padding-bottom: 60px;
+        }
+
+        h1, h2, h3, .serif { font-family: var(--font-serif); font-weight: 600; letter-spacing: 0.5px; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+
+        /* HEADER */
+        header {
+            position: fixed; top: 0; width: 100%; padding: 20px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 2000; background: transparent; transition: var(--transition);
+        }
+        header.scrolled { 
+            background: var(--glass-bg) !important; 
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            padding: 12px 5% !important; border-bottom: var(--glass-border);
+        }
+        .brand-name { font-family: var(--font-serif); font-size: 22px; letter-spacing: 8px; text-transform: uppercase; font-weight: 600; }
+        
+        #themeToggle {
+            padding: 0 15px; height: 35px; font-size: 10px; font-weight: 600; letter-spacing: 2px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 8px; border: 1px solid var(--elem-border); background: var(--elem-bg);
+            cursor: pointer; transition: var(--transition); color: var(--text-main); text-transform: uppercase;
+        }
+        #themeToggle:hover { border-color: var(--accent-gold); transform: translateY(-2px); }
+
+        /* MAIN CONTAINER */
+        .main-layout { max-width: 1200px; margin: 100px auto 60px; padding: 0 20px; }
+
+        /* ТАБЫ */
+        .tabs-nav { display: flex; gap: 10px; margin-bottom: 30px; border-bottom: var(--glass-border); padding-bottom: 15px; overflow-x: auto; scrollbar-width: none; }
+        .tabs-nav::-webkit-scrollbar { display: none; }
+        .tab-btn {
+            padding: 12px 24px; border: 1px solid var(--elem-border); background: var(--glass-bg);
+            color: var(--text-dim); border-radius: 12px; cursor: pointer; font-size: 14px; font-weight: 500;
+            white-space: nowrap; transition: var(--transition); font-family: var(--font-main);
+        }
+        .tab-btn:hover { border-color: var(--accent-gold); color: var(--text-main); }
+        .tab-btn.active { background: var(--accent-green); color: #FFF; border-color: var(--accent-green); box-shadow: 0 8px 20px rgba(76,175,80,0.2); }
+
+        .tab-content { display: none; animation: fadeIn 0.5s ease; }
+        .tab-content.active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* BENTO GRID */
+        .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .bento-card { background: var(--glass-bg); border: var(--glass-border); border-radius: 24px; padding: 30px; position: relative; overflow: hidden; transition: var(--transition); }
+        .bento-card:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(0,0,0,0.03); }
+        
+        .span-2 { grid-column: span 2; }
+        .span-3 { grid-column: span 3; }
+
+        /* ИНПУТЫ И КАЛЬКУЛЯТОР */
+        .calc-group { margin-bottom: 25px; }
+        .calc-label { font-size: 15px; font-weight: 600; margin-bottom: 12px; display: block; color: var(--text-main); line-height: 1.4; }
+        
+        .radio-box-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+        .radio-tile {
+            border: 1px solid var(--elem-border); background: var(--elem-bg); padding: 16px;
+            border-radius: 12px; cursor: pointer; display: flex; flex-direction: column; gap: 4px;
+            position: relative; transition: var(--transition);
+        }
+        .radio-tile input { position: absolute; top: 16px; right: 16px; accent-color: var(--accent-green); }
+        .radio-tile-title { font-size: 14px; font-weight: 700; color: var(--text-main); }
+        .radio-tile-desc { font-size: 12px; color: var(--text-dim); line-height: 1.4; }
+        .radio-tile.selected { border-color: var(--accent-green); background: rgba(76,175,80,0.08); }
+
+        .range-slider { width: 100%; accent-color: var(--accent-green); margin: 10px 0; height: 6px; border-radius: 3px; }
+        .range-val { font-size: 18px; font-weight: 700; color: var(--accent-gold); }
+        
+        /* РЕЗУЛЬТАТЫ */
+        .result-score-box { text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(135deg, var(--elem-bg), transparent); padding: 40px 20px; }
+        .score-number { font-size: 54px; font-weight: 800; line-height: 1.2; color: var(--accent-berry); font-family: var(--font-serif); }
+        .score-status { font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-top: 12px; }
+
+        /* МАРКЕТИНГОВЫЕ КНОПКИ */
+        .btn-marketing {
+            display: inline-flex; align-items: center; justify-content: center; width: 100%;
+            padding: 22px 30px; background: var(--accent-berry); color: #FFF; border: none;
+            border-radius: 16px; font-family: var(--font-main); font-size: 15px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: var(--transition);
+            box-shadow: 0 10px 25px rgba(194,24,91,0.25);
+        }
+        .btn-marketing:hover { transform: translateY(-2px); box-shadow: 0 15px 35px rgba(194,24,91,0.4); opacity: 0.95; }
+
+        .btn-reset {
+            background: transparent; border: 1px dashed var(--text-dim); color: var(--text-dim);
+            padding: 10px 20px; border-radius: 10px; font-size: 12px; font-weight: 600;
+            cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: var(--transition);
+        }
+        .btn-reset:hover { border-color: var(--accent-berry); color: var(--accent-berry); }
+
+        /* НАУЧНЫЕ СПИСКИ И РЕЦЕПТЫ */
+        .fact-num { font-size: 32px; font-family: var(--font-serif); color: var(--accent-gold); font-weight: 700; margin-bottom: 5px; }
+        .fact-title { font-size: 18px; font-weight: 600; margin-bottom: 10px; line-height: 1.3; font-family: var(--font-serif); color: var(--text-main); }
+        .fact-desc { font-size: 14px; color: var(--text-dim); line-height: 1.6; }
+
+        .recipe-badge { background: var(--accent-green); color: #FFF; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; text-transform: uppercase; display: inline-block; margin-bottom: 15px; }
+
+        /* УЛЬТРА-ЯРКАЯ КНОПКА ШЕРИНГА */
+        .share-section { margin-top: 50px; background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), rgba(179, 134, 57, 0.08)); border: 2px solid var(--accent-green); border-radius: 28px; padding: 40px 30px; text-align: center; box-shadow: 0 15px 40px rgba(76,175,80,0.1); }
+        .btn-share {
+            display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 18px 40px;
+            background: linear-gradient(135deg, var(--accent-green), #2E7D32); border: none; border-radius: 16px;
+            font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: var(--transition); color: #FFF;
+            box-shadow: 0 10px 25px rgba(76, 175, 80, 0.4); width: 100%; max-width: 400px;
+        }
+        .btn-share:hover { transform: scale(1.03) translateY(-2px); box-shadow: 0 15px 35px rgba(76, 175, 80, 0.6); }
+
+        /* ИСПРАВЛЕННЫЙ И ЦЕНТРИРОВАННЫЙ ПОДВАЛ */
+        footer { 
+            margin-top: 80px; 
+            padding: 60px 0 40px; 
+            border-top: var(--glass-border); 
+            background: transparent;
+            width: 100%;
+        }
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+        .footer-text-main {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+        .footer-text-sub {
+            font-size: 11px;
+            line-height: 1.6;
+            color: var(--text-dim);
+            opacity: 0.85;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 968px) {
+            .bento-grid { grid-template-columns: 1fr; }
+            .span-2, .span-3 { grid-column: span 1; }
+            .main-layout { margin-top: 90px; }
+        }
+    </style>
+</head>
+<body>
+
+<header id="header">
+    <div class="brand-name">РЕСУРС</div>
+    <div>
+        <button id="themeToggle" onclick="toggleTheme()">ТЕНЬ</button>
+    </div>
+</header>
+
+<main class="main-layout">
+    
+    <section style="text-align: center; max-width: 800px; margin: 0 auto 40px;">
+        <h1 style="font-size: clamp(28px, 4vw, 46px); line-height: 1.2; margin-bottom: 15px;">
+            Измерьте свой <span style="color: var(--accent-gold); font-style: italic;">Стресс-индекс</span> и баланс сил
+        </h1>
+        <p style="font-size: 15px; color: var(--text-dim); line-height: 1.7;">
+            Хроническое психоэмоциональное напряжение, недосып и холодный северный климат Коми перегружают надпочечники и вызывают стойкий дисбаланс гормональной системы. Узнайте текущий уровень истощения ресурсов вашего организма и получите научно обоснованный план восстановления энергии.
+        </p>
+    </section>
+
+    <nav class="tabs-nav" aria-label="Разделы страницы">
+        <button class="tab-btn active" onclick="switchTab(event, 'tab-calc')">📊 Интерактивный замер стресса</button>
+        <button class="tab-btn" onclick="switchTab(event, 'tab-facts')">🔬 10 фактов о гормонах и теле</button>
+        <button class="tab-btn" onclick="switchTab(event, 'tab-recipes')">🌿 5 антистресс-шагов от Ольги</button>
+    </nav>
+
+    <!-- ТАБ 1: КАЛЬКУЛЯТОР СТРЕСС-ИНДЕКСА -->
+    <div id="tab-calc" class="tab-content active">
+        <div class="bento-grid">
+            
+            <div class="bento-card span-2">
+                <h2 class="serif" style="font-size: 24px; margin-bottom: 25px; color: var(--text-main);">Аудит маркеров нервного истощения</h2>
+                
+                <div class="calc-group">
+                    <label class="calc-label">1. Опишите ваше качество сна и процесс засыпания в последнее время:</label>
+                    <div class="radio-box-group">
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="sleep_quality" value="3" checked>
+                            <span class="radio-tile-title">Бессонница, мысли в голове</span>
+                            <span class="radio-tile-desc">Долго кручусь в постели, просыпаюсь разбитой среди ночи.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="sleep_quality" value="2">
+                            <span class="radio-tile-title">Поверхностный сон</span>
+                            <span class="radio-tile-desc">Просыпаюсь от любого шороха, с трудом встаю утром.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="sleep_quality" value="1">
+                            <span class="radio-tile-title">Крепкий здоровый сон</span>
+                            <span class="radio-tile-desc">Засыпаю мгновенно, утром чувствую полную бодрость.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="calc-group">
+                    <label class="calc-label">2. Как реагирует ваша нервная система на мелкие бытовые раздражители и задачи?</label>
+                    <div class="radio-box-group">
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="anxiety_level" value="3" checked>
+                            <span class="radio-tile-title">Часто взрываюсь / тревожусь</span>
+                            <span class="radio-tile-desc">Постоянно нахожусь в мысленном напряжении, внутри всё горит.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="anxiety_level" value="2">
+                            <span class="radio-tile-title">Бывает апатия</span>
+                            <span class="radio-tile-desc">Периодически опускаются руки, ничего не хочется делать.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="anxiety_level" value="1">
+                            <span class="radio-tile-title">Полное спокойствие</span>
+                            <span class="radio-tile-desc">Стабильно и ровно реагирую на любые форс-мажоры.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="calc-group">
+                    <label class="calc-label">3. Замечаете ли вы беспричинную мышечную зажатость в теле в течение дня?</label>
+                    <div class="radio-box-group">
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="body_spasm" value="3" checked>
+                            <span class="radio-tile-title">Постоянно сжаты челюсти</span>
+                            <span class="radio-tile-desc">Зубы стиснуты, плечи рефлекторно приподняты к ушам.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="body_spasm" value="2">
+                            <span class="radio-tile-title">Зажимает лопатки</span>
+                            <span class="radio-tile-desc">Периодически чувствую комок между лопатками или в шее.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="body_spasm" value="1">
+                            <span class="radio-tile-title">Тело полностью мягкое</span>
+                            <span class="radio-tile-desc">Контролирую расслабление мышц, зажимов нет.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="calc-group">
+                    <label class="calc-label">4. Сколько чашек кофе или энергетиков вы используете как «допинг» для бодрости?</label>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                        <span style="font-size: 13px; color: var(--text-dim);">Допинг-стимуляторы:</span>
+                        <span id="range-coffee-val" class="range-val" style="color: var(--accent-green);">1-2 чашки</span>
+                    </div>
+                    <input type="range" id="stress_coffee" class="range-slider" min="0" max="3" value="1" step="1" oninput="calculateStressIndex()">
+                </div>
+
+                <div style="margin-top: 30px; display: flex; justify-content: flex-end;">
+                    <button class="btn-reset" onclick="resetCalculator()">Сбросить параметры теста</button>
+                </div>
+            </div>
+
+            <!-- Результат расчета -->
+            <div class="bento-card result-score-box">
+                <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; color: var(--text-dim); margin-bottom: 10px;">Ваш расчетный уровень стресса:</div>
+                <div id="calc-score-percent" class="score-number">78%</div>
+                <div id="calc-status" class="score-status" style="color: var(--accent-berry);">Адреналиновое выгорание</div>
+                <p id="calc-text" style="font-size: 13px; opacity: 0.8; margin-top: 15px; line-height: 1.5; text-align: center;">
+                    Нервная система истощена. Кортизол блокирует расслабление мышц, вызывая хронические зажимы в шее. Жесткий фитнес сейчас запрещен.
+                </p>
+            </div>
+
+            <!-- Научный разбор влияния стресса на фасции -->
+            <div class="bento-card span-3" style="border-left: 4px solid var(--accent-gold);">
+                <div style="display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: start;">
+                    <div>
+                        <h3 class="serif" style="font-size: 22px; margin-bottom: 10px;">Почему кардио-тренировки и штанги при стрессе разрушают женское тело</h3>
+                        <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                            Когда вы находитесь в затяжном стрессе, ваши надпочечники непрерывно выбрасывают в кровь *кортизол* (главный гормон стресса). Этот гормон переводит организм в аварийный режим выживания. Если в этот момент прийти в спортзал и начать изнурять себя тяжелыми гантелями, прыжками или агрессивным бегом, тело воспримет это как физическую угрозу жизни. Кортизол взлетит до критических пиков, запуская механизмы разрушения мышц и принудительного накопления жира на животе. Нервная система перегрузится окончательно, лишая вас сна. Единственное спасение в этой точке — активация *парасимпатической нервной системы* (природного режима отдыха и восстановления). Мягкая Йога релакс, бережный Пилатес и декомпрессионная растяжка мягко снижают уровень кортизола, расслабляют мышечную броню и возвращают телу глубокий сильный сон и ресурсы.
+                        </p>
+                    </div>
+                    <div style="background: var(--elem-bg); padding: 15px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent-gold)" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ВШИТАЯ МАРКЕТИНГОВАЯ КНОПКА ЗАПИСИ С УТВЕРЖДЕННЫМ ПРИЗЫВОМ -->
+            <div class="bento-card span-3" style="background: var(--elem-bg); text-align: center; padding: 40px 30px;">
+                <span class="recipe-badge" style="background: var(--accent-gold);">Антистресс перезагрузка</span>
+                <h3 class="serif" style="font-size: 26px; margin-bottom: 15px;">Переключите тело из режима выживания в режим глубокого ресурса</h3>
+                <p style="font-size: 14px; max-width: 600px; margin: 0 auto 25px; color: var(--text-dim);">
+                    Подарите себе 50 минут тотальной тишины и бережной заботы. Мягкие восстановительные практики в студиях «РЕСУРС» вернут вам энергию, снимут спазм с шеи и подарят крепкий сон.
+                </p>
+                <div style="max-width: 450px; margin: 0 auto;">
+                    <a href="index.html?page=booking" class="btn-marketing">Записаться на тест-драйв тренировок</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ТАБ 2: 10 НАУЧНЫХ ФАКТОВ -->
+    <div id="tab-facts" class="tab-content">
+        <div class="bento-grid">
+            
+            <div class="bento-card">
+                <div class="fact-num">01</div>
+                <h3 class="fact-title">Кортизоловый тип зажима</h3>
+                <p class="fact-desc">Стресс рефлекторно заставляет человека сжимать зубы и приподнимать плечи. Это эволюционный механизм защиты сонной артерии, формирующий стойкие триггеры в шее.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">02</div>
+                <h3 class="fact-title">Блокада фазы глубокого сна</h3>
+                <p class="fact-desc">Высокий вечерний кортизол подавляет выработку мелатонина (гормона сна). Вы можете спать по 9 часов, но просыпаться полностью разбитой и без сил.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">03</div>
+                <h3 class="fact-title">Стресс и накопление жира</h3>
+                <p class="fact-desc">Хроническая тревожность заставляет организм запасать висцеральный (внутренний) жир в области живота для защиты внутренних органов от «мнимой» опасности.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">04</div>
+                <h3 class="fact-title">Иссушение соединительной ткани</h3>
+                <p class="fact-desc">Гормоны стресса делают фасции (оболочки мышц) жесткими и сухими, склеивая их между собой. Тело начинает казаться деревянным и скованным без объективных причин.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">05</div>
+                <h3 class="fact-title">Выключение блуждающего нерва</h3>
+                <p class="fact-desc">Постоянная тревога угнетает работу *nervus vagus* (блуждающего нерва) — главного дирижера нашего расслабления, замедляя регенерацию клеток и тканей.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">06</div>
+                <h3 class="fact-title">Падение уровня прогестерона</h3>
+                <p class="fact-desc">Для производства гормона стресса организм использует то же сырье, что и для женских половых гормонов, буквально обкрадывая репродуктивную систему (синдром обкрадывания).</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">07</div>
+                <h3 class="fact-title">Хронические спазмы диафрагмы</h3>
+                <p class="fact-desc">При стрессе дыхание становится поверхностным и частым. Грудобрюшная диафрагма спазмируется, зажимая нижнюю полую вену и провоцируя отечность ног.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">08</div>
+                <h3 class="fact-title">Вымывание магния и кальция</h3>
+                <p class="fact-desc">Адреналиновая перегрузка заставляет почки усиленно выводить магний — ключевой минерал для расслабления мышц, что приводит к ночным судорогам.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">09</div>
+                <h3 class="fact-title">Зависимость от сладкого «допинга»</h3>
+                <p class="fact-desc">Истощенный мозг требует быстрых калорий (глюкозы) для поддержания аварийной работы, что вызывает непреодолимую тягу к сладкому во второй половине дня.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">10</div>
+                <h3 class="fact-title">Эффект дыхательной разгрузки</h3>
+                <p class="fact-desc">Мягкие практики с фокусом на удлиненный выдох способны снизить уровень адреналина в крови уже через 10 минут после начала занятия.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ТАБ 3: ПРАВИЛА ОТ ЭКСПЕРТА ОЛЬГИ -->
+    <div id="tab-recipes" class="tab-content">
+        <div class="bento-grid">
+            
+            <div class="bento-card span-2">
+                <span class="recipe-badge">Правило 01</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px;">Практикуйте вечернее заземление и цифровой детокс</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    За 1 час до сна полностью выключите телефон. Синий свет экрана разрушает мелатонин. Ольга рекомендует заменить скроллинг ленты на мягкую пассивную растяжку на коврике: лягте у стены, поднимите прямые ноги вверх на стену и раскиньте руки в стороны. Побудьте в этой позе 7-10 минут, глубоко дыша животом. Это переведет мозг в сонный режим.
+                </p>
+            </div>
+
+            <div class="bento-card">
+                <span class="recipe-badge">Правило 02</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px;">Убирайте зажим с челюсти</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    В течение дня осознанно проверяйте: сомкнуты ли ваши зубы? Жевательные мышцы — главный накопитель стресса. Слегка приоткройте рот и мягко помассируйте пальцами углы нижней челюсти.
+                </p>
+            </div>
+
+            <div class="bento-card">
+                <span class="recipe-badge">Правило 03</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px;">Удлиняйте выдох в два раза</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    Если чувствуете приступ тревоги, сделайте вдох носом на 4 счета, а выдох через расслабленный рот — на 8 счетов. Это мгновенно включает парасимпатику (режим торможения и покоя).
+                </p>
+            </div>
+
+            <div class="bento-card span-2">
+                <span class="recipe-badge">Правило 04</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px;">Используйте гамаки и МФР для бережного расслабления тела</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    Когда нервная система истощена, обычный массаж может казаться болезненным, а спорт — пыткой. Ольга Мартынова рекомендует использовать мягкое покачивание в гамаках на направлении «Аэростретчинг» или расслабление триггерных точек на роллах МФР. В невесомости гамака тело подсознательно вспоминает состояние абсолютной безопасности. Мышцы расслабляются, зажимы с шеи и лопаток сползают сами, а дыхание становится глубоким. Это бережная терапия, которая возвращает вам силы без насилия над уставшим организмом.
+                </p>
+            </div>
+
+            <div class="bento-card span-3" style="background: linear-gradient(135deg, rgba(76,175,80,0.08), transparent); border-color: var(--accent-green);">
+                <span class="recipe-badge" style="background: var(--accent-green);">Послание от топ-тренера Ольги</span>
+                <h3 class="serif" style="font-size: 26px; margin-bottom: 15px;">«Ваше тело не железное, ему нужно вовремя возвращать ресурс...»</h3>
+                <p style="font-size: 15px; line-height: 1.7; color: var(--text-main); margin-bottom: 25px;">
+                    «Дорогие мои, я знаю, как тяжело жить в постоянном режиме "я должна всё успеть". Хронический стресс буквально высушивает наши мышцы, зажимает шею и забирает последнюю радость. Но вы не должны терпеть эту разбитость по утрам! В студии "РЕСУРС" мы создали специальные направления "Йога релакс", "Здоровая спина" и "МФР", где нет никакой гонки за рекордами. Мы учим ваше тело заново дышать, бережно снимаем многолетние блоки и помогаем нервной системе полностью перезагрузиться. Вы выйдете с тренировки с абсолютно легкой головой, мягкими плечами и ощущением, что заново родились. Приходите ко мне на тест-драйв в Сыктывкаре или занимайтесь в Онлайн-клубе — верните себе право на отдых и внутреннее спокойствие!»
+                </p>
+                <div style="max-width: 450px;">
+                    <a href="index.html?page=booking" class="btn-marketing" style="background: var(--accent-green); box-shadow: 0 10px 25px rgba(76,175,80,0.3);">Записаться на тест-драйв тренировок</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- УЛЬТРА-ЯРКАЯ КНОПКА ШЕРИНГА -->
+    <section class="share-section">
+        <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">🔥 Поделиться тестом на стресс-индекс с подругами!</h3>
+        <p style="font-size: 14px; color: var(--text-dim); margin-bottom: 25px;">Отправьте этот тест близким, маме или коллегам по работе, кто постоянно устает, плохо спит и нуждается в бережном восстановлении сил.</p>
+        <button class="btn-share" onclick="sharePage()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            <span id="share-btn-text">Отправить подругам</span>
+        </button>
+    </section>
+
+</main>
+
+<footer>
+    <div class="footer-container">
+        <p class="footer-text-main">© 2026 РЕСУРС | Студия мягкого фитнеса, растяжки и движения. Сыктывкар, ул. Коммунистическая 77/2.</p>
+        <p class="footer-text-sub">Интерактивный расчет стресс-индекса является скрининговым тестом и носит информационный характер. При стойких клинических депрессивных состояниях или нарушениях сна обратитесь к профильному специалисту.</p>
+    </div>
+</footer>
+
+<script>
+    function toggleTheme() {
+        const html = document.documentElement;
+        const currentTheme = html.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        document.getElementById('themeToggle').innerText = newTheme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        const theme = document.documentElement.getAttribute('data-theme');
+        document.getElementById('themeToggle').innerText = theme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
+        
+        restoreCalculatorData();
+        calculateStressIndex();
+    });
+
+    function switchTab(event, tabId) {
+        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        
+        document.getElementById(tabId).classList.add('active');
+        event.currentTarget.classList.add('active');
+        
+        window.scrollTo({ top: document.querySelector('.tabs-nav').offsetTop - 80, behavior: 'smooth' });
+    }
+
+    function selectTile(element) {
+        const name = element.querySelector('input').name;
+        document.querySelectorAll(`input[name="${name}"]`).forEach(input => {
+            input.parentElement.classList.remove('selected');
+        });
+        element.classList.add('selected');
+        
+        calculateStressIndex();
+    }
+
+    // ИНТЕРАКТИВНЫЙ РАСЧЕТ ИНДЕКСА СТРЕССА
+    function calculateStressIndex() {
+        const sleep = parseInt(document.querySelector('input[name="sleep_quality"]:checked').value);
+        const anxiety = parseInt(document.querySelector('input[name="anxiety_level"]:checked').value);
+        const bodySpasm = parseInt(document.querySelector('input[name="body_spasm"]:checked').value);
+        const coffee = parseInt(document.getElementById('stress_coffee').value);
+
+        const drinkLabels = ['0 чашек (Отлично)', '1-2 чашки', '3-4 чашки', 'Более 5 порций'];
+        document.getElementById('range-coffee-val').innerText = drinkLabels[coffee];
+
+        // Математика весов (3 = высокий стресс, 1 = норма)
+        let score = 0;
+        if (sleep === 3) score += 25;
+        if (sleep === 2) score += 12;
+
+        if (anxiety === 3) score += 25;
+        if (anxiety === 2) score += 12;
+
+        if (bodySpasm === 3) score += 25;
+        if (bodySpasm === 2) score += 10;
+
+        score += (coffee * 8.3);
+
+        let stressPercent = Math.round(score);
+        if (stressPercent > 95) stressPercent = 95;
+        if (stressPercent < 15) stressPercent = 15;
+
+        const scoreEl = document.getElementById('calc-score-percent');
+        const statusEl = document.getElementById('calc-status');
+        const textEl = document.getElementById('calc-text');
+
+        scoreEl.innerText = stressPercent + "%";
+
+        if (stressPercent >= 70) {
+            statusEl.innerText = "Адреналиновое выгорание";
+            statusEl.style.color = "var(--accent-berry)";
+            textEl.innerText = "Нервная система истощена. Кортизол полностью блокирует расслабление, вызывая зажимы в шее. Тяжелый фитнес сейчас противопоказан, начните со спокойной Йоги релакс и МФР.";
+        } else if (stressPercent >= 40 && stressPercent < 70) {
+            statusEl.innerText = "Стадия накопления стресса";
+            statusEl.style.color = "var(--accent-gold)";
+            textEl.innerText = "Организм держится, но резервы на исходе. Сон поверхностный, плечи зажимаются. Ольга рекомендует чередовать расслабляющий Аэростретчинг и Пилатес для возвращения баланса.";
+        } else {
+            statusEl.innerText = "Нервная система в балансе";
+            statusEl.style.color = "var(--accent-green)";
+            textEl.innerText = "Отличный показатель! Ваша вегетативная система адаптирована к нагрузкам, зажимов нет. Для поддержания тонуса и рельефа вам подходят абсолютно любые активные направления студии.";
+        }
+
+        const calcData = { sleep, anxiety, bodySpasm, coffee };
+        localStorage.setItem('stress_calc_data', JSON.stringify(calcData));
+    }
+
+    function resetCalculator() {
+        document.querySelectorAll('input[name="sleep_quality"]')[0].checked = true;
+        document.querySelectorAll('input[name="anxiety_level"]')[0].checked = true;
+        document.querySelectorAll('input[name="body_spasm"]')[0].checked = true;
+        document.getElementById('stress_coffee').value = 1;
+
+        document.querySelectorAll('.radio-tile').forEach(tile => tile.classList.remove('selected'));
+        document.querySelectorAll('input[name="sleep_quality"]')[0].parentElement.classList.add('selected');
+        document.querySelectorAll('input[name="anxiety_level"]')[0].parentElement.classList.add('selected');
+        document.querySelectorAll('input[name="body_spasm"]')[0].parentElement.classList.add('selected');
+
+        localStorage.removeItem('stress_calc_data');
+        calculateStressIndex();
+    }
+
+    function restoreCalculatorData() {
+        const saved = localStorage.getItem('stress_calc_data');
+        if (saved) {
+            try {
+                const data = JSON.parse(saved);
+                document.querySelectorAll(`input[name="sleep_quality"]`).forEach(i => { if(parseInt(i.value) === data.sleep) i.checked = true; });
+                document.querySelectorAll(`input[name="anxiety_level"]`).forEach(i => { if(parseInt(i.value) === data.anxiety) i.checked = true; });
+                document.querySelectorAll(`input[name="body_spasm"]`).forEach(i => { if(parseInt(i.value) === data.bodySpasm) i.checked = true; });
+                document.getElementById('stress_coffee').value = data.coffee;
+            } catch (e) {
+                console.log("LocalStorage matrix sync fail");
+            }
+        }
+
+        document.querySelectorAll('.radio-tile').forEach(tile => {
+            if (tile.querySelector('input').checked) tile.classList.add('selected');
+        });
+    }
+
+    async function sharePage() {
+        const shareData = {
+            title: 'Измерь свой Стресс-индекс гормонального баланса онлайн',
+            text: 'Я прошла интерактивный тест-анализ уровня выгорания от студии РЕСУРС. Проверь и ты свои ресурсы организма!',
+            url: window.location.href
+        };
+        const btnText = document.getElementById('share-btn-text');
+        if (navigator.share) {
+            try { await navigator.share(shareData); } catch (err) { console.log('Share canceled'); }
+        } else {
+            try {
+                await navigator.clipboard.writeText(window.location.href);
+                btnText.innerText = 'Ссылка скопирована!';
+                setTimeout(() => { btnText.innerText = 'Отправить подругам'; }, 3000);
+            } catch (err) {
+                alert('Скопируйте ссылку из адресной строки браузера.');
+            }
+        }
+    }
+
+    window.addEventListener('scroll', () => {
+        const header = document.getElementById('header');
+        if (window.scrollY > 30) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
+    });
+</script>
+
+<!-- РЕНДЕР КАНАЛОВ РСЯ FLOOR AD -->
+<script>
+window.yaContextCb.push(() => {
+    Ya.Context.AdvManager.render({
+        "blockId": "R-A-19181219-6",
+        "type": "floorAd",
+        "platform": "touch"
+    })
+})
+</script>
+<script>
+window.yaContextCb.push(() => {
+    Ya.Context.AdvManager.render({
+        "blockId": "R-A-19181219-7",
+        "type": "floorAd",
+        "platform": "desktop"
+    })
+})
+</script>
+
+</body>
+</html>
