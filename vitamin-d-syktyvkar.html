@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <script>
+        // ИЗМЕНЕНО: По умолчанию для инфо-страниц ставим эко-светлую тему, сохраняем выбор
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+
+    <script type="text/javascript">
+    // --- Yandex.Metrika counter ---
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=109130409', 'ym');
+    ym(109130409, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript>
+        <div>
+            <img src="https://mc.yandex.ru/watch/109130409" style="position:absolute; left:-9999px;" alt="" />
+        </div>
+    </noscript>
+
+    <script>
+        // Глобальная логика перехвата ботов для SEO-превью через Яндекс Функцию
+        window.addEventListener('DOMContentLoaded', () => {
+            const isBot = /YandexBot|YandexAccessibilityBot|YandexMobileBot|Googlebot/i.test(navigator.userAgent);
+            if (isBot) {
+                fetch('https://functions.yandexcloud.net/d4ecn5ag33dcdd2deivd?bot=true&url=' + encodeURIComponent(window.location.href))
+                .then(res => res.json())
+                .then(data => console.log("SEO Preview Matrix Synced"))
+                .catch(e => console.log("SEO preview pass"));
+            }
+        });
+    </script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Калькулятор дефицита витамина D в Сыктывкаре | Тест на нехватку солнца и упадок сил в Коми</title>
+    <meta name="description" content="Узнайте свой уровень дефицита витамина D из-за нехватки солнца на Севере. Интерактивный онлайн-тест, влияние на женское здоровье, мышцы, осанку и суставы. Золотые правила и фитнес-рецепты от Ольги Мартыновой, студия РЕСУРС Сыктывкар.">
+    <meta name="keywords" content="витамин д сыктывкар, нехватка солнца коми, почему нет сил, постоянная усталость, калькулятор витамина д, женское здоровье сыктывкар, боли в мышцах, плохая осанка, студия ресурс сыктывкар, растяжка сыктывкар, пилатес коми, утренние отеки причины">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://resurs-stretch.ru/vitamin-d-syktyvkar.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Проверь свой уровень «солнечного гормона» — Онлайн Калькулятор для жителей Коми">
+    <meta property="og:description" content="Почему в Сыктывкаре постоянно хочется спать и болит спина? Пройди мгновенный тест на дефицит витамина D и получи пошаговый план восстановления энергии.">
+    <meta property="og:url" content="https://resurs-stretch.ru/vitamin-d-syktyvkar.html">
+    <meta property="og:image" content="https://resurs-stretch.ru/logo_header_final.png">
+    <meta property="og:site_name" content="РЕСУРС">
+    <meta property="og:locale" content="ru_RU">
+
+    <link rel="icon" type="image/png" href="logo_header_final.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <script src="https://reservi.ru/widget-fit1c.v2/js/config.js" data-fit-salon-id="02977247-3381-4559-b9ef-1cf88d2731a2"></script>
+    <script src="https://unpkg.com/imask"></script>
+
+    <style>
+        /* CSS ПЕРЕМЕННЫЕ ДЛЯ СВЕТЛОЙ ЭКО-ТЕМЫ (БАЗОВАЯ) */
+        :root {
+            --bg-deep: #F8F9F6; /* Легкая эко-бумага */
+            --glass-bg: rgba(255, 255, 255, 0.9); 
+            --glass-border: 1px solid rgba(43, 46, 42, 0.08); 
+            --accent-gold: #B38639; 
+            --accent-green: #4CAF50; /* Сочный росток */
+            --accent-berry: #C2185B; /* Северная ягода */
+            --text-main: #2B2E2A; /* Глубокий графит */
+            --text-dim: rgba(43, 46, 42, 0.7);
+            --elem-bg: rgba(76, 175, 80, 0.06);
+            --elem-border: rgba(43, 46, 42, 0.1);
+            --nav-bg: rgba(248, 249, 246, 0.95);
+            --font-main: 'Manrope', sans-serif;
+            --font-serif: 'Cormorant Garamond', serif;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ТЕМНАЯ ТЕМА (ТЕНЬ) */
+        [data-theme="dark"] {
+            --bg-deep: #080814; /* Глубокий премиальный индиго */
+            --glass-bg: rgba(255, 255, 255, 0.03); 
+            --glass-border: 1px solid rgba(255, 255, 255, 0.08); 
+            --accent-gold: #C5A059; 
+            --accent-green: #66BB6A;
+            --accent-berry: #E91E63;
+            --text-main: #F4F4F9;
+            --text-dim: rgba(244, 244, 249, 0.6);
+            --elem-bg: rgba(255, 255, 255, 0.04);
+            --elem-border: rgba(255, 255, 255, 0.15);
+            --nav-bg: rgba(8, 8, 20, 0.95);
+        }
+
+        /* RESET */
+        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
+        html { scroll-behavior: smooth; }
+        body { 
+            background: var(--bg-deep); 
+            color: var(--text-main);
+            font-family: var(--font-main); 
+            line-height: 1.6;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            transition: background-color 0.4s ease, color 0.4s ease;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, .serif { font-family: var(--font-serif); font-weight: 600; letter-spacing: 0.5px; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+
+        /* HEADER */
+        header {
+            position: fixed; top: 0; width: 100%; padding: 20px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 2000; background: transparent; transition: var(--transition);
+        }
+        header.scrolled { 
+            background: var(--glass-bg) !important; 
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            padding: 12px 5% !important; border-bottom: var(--glass-border);
+        }
+        .brand-name { font-family: var(--font-serif); font-size: 22px; letter-spacing: 8px; text-transform: uppercase; font-weight: 600; }
+        
+        #themeToggle {
+            padding: 0 15px; height: 35px; font-size: 10px; font-weight: 600; letter-spacing: 2px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 8px; border: 1px solid var(--elem-border); background: var(--elem-bg);
+            cursor: pointer; transition: var(--transition); color: var(--text-main); text-transform: uppercase;
+        }
+        #themeToggle:hover { border-color: var(--accent-gold); transform: translateY(-2px); }
+
+        /* MAIN CONTAINER */
+        .main-layout { max-width: 1200px; margin: 100px auto 60px; padding: 0 20px; }
+
+        /* ТАБЫ */
+        .tabs-nav { display: flex; gap: 10px; margin-bottom: 30px; border-bottom: var(--glass-border); padding-bottom: 15px; overflow-x: auto; scrollbar-width: none; }
+        .tabs-nav::-webkit-scrollbar { display: none; }
+        .tab-btn {
+            padding: 12px 24px; border: 1px solid var(--elem-border); background: var(--glass-bg);
+            color: var(--text-dim); border-radius: 12px; cursor: pointer; font-size: 14px; font-weight: 500;
+            white-space: nowrap; transition: var(--transition); font-family: var(--font-main);
+        }
+        .tab-btn:hover { border-color: var(--accent-gold); color: var(--text-main); }
+        .tab-btn.active { background: var(--accent-green); color: #FFF; border-color: var(--accent-green); box-shadow: 0 8px 20px rgba(76,175,80,0.2); }
+
+        .tab-content { display: none; animation: fadeIn 0.5s ease; }
+        .tab-content.active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* BENTO GRID STRUCTURE */
+        .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .bento-card { background: var(--glass-bg); border: var(--glass-border); border-radius: 24px; padding: 30px; position: relative; overflow: hidden; transition: var(--transition); }
+        .bento-card:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(0,0,0,0.03); }
+        
+        .span-2 { grid-column: span 2; }
+        .span-3 { grid-column: span 3; }
+
+        /* ИНПУТЫ И КАЛЬКУЛЯТОР */
+        .calc-group { margin-bottom: 22px; }
+        .calc-label { font-size: 14px; font-weight: 600; margin-bottom: 10px; display: block; color: var(--text-main); }
+        
+        .radio-box-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+        .radio-tile {
+            border: 1px solid var(--elem-border); background: var(--elem-bg); padding: 15px;
+            border-radius: 12px; cursor: pointer; display: flex; flex-direction: column; gap: 4px;
+            position: relative; transition: var(--transition);
+        }
+        .radio-tile input { position: absolute; top: 15px; right: 15px; accent-color: var(--accent-green); }
+        .radio-tile-title { font-size: 14px; font-weight: 600; color: var(--text-main); }
+        .radio-tile-desc { font-size: 12px; color: var(--text-dim); line-height: 1.4; }
+        .radio-tile.selected { border-color: var(--accent-green); background: rgba(76,175,80,0.1); }
+
+        .range-slider { width: 100%; accent-color: var(--accent-green); margin: 10px 0; height: 6px; border-radius: 3px; }
+        .range-val { font-size: 18px; font-weight: 700; color: var(--accent-gold); }
+
+        /* РЕЗУЛЬТАТЫ БЕНТО */
+        .result-score-box { text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(135deg, var(--elem-bg), transparent); }
+        .score-number { font-size: 64px; font-weight: 800; line-height: 1; color: var(--accent-berry); font-family: var(--font-serif); }
+        .score-status { font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-top: 10px; }
+
+        /* МАРКЕТИНГОВЫЕ КНОПКИ */
+        .btn-marketing {
+            display: inline-flex; align-items: center; justify-content: center; width: 100%;
+            padding: 22px 30px; background: var(--accent-berry); color: #FFF; border: none;
+            border-radius: 16px; font-family: var(--font-main); font-size: 15px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: var(--transition);
+            box-shadow: 0 10px 25px rgba(194,24,91,0.25);
+        }
+        .btn-marketing:hover { transform: translateY(-2px); box-shadow: 0 15px 35px rgba(194,24,91,0.4); opacity: 0.95; }
+
+        .btn-reset {
+            background: transparent; border: 1px dashed var(--text-dim); color: var(--text-dim);
+            padding: 10px 20px; border-radius: 10px; font-size: 12px; font-weight: 600;
+            cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: var(--transition);
+        }
+        .btn-reset:hover { border-color: var(--accent-berry); color: var(--accent-berry); }
+
+        /* НАУЧНЫЕ СПИСКИ И РЕЦЕПТЫ */
+        .fact-num { font-size: 32px; font-family: var(--font-serif); color: var(--accent-gold); font-weight: 700; margin-bottom: 5px; }
+        .fact-title { font-size: 18px; font-weight: 600; margin-bottom: 10px; line-height: 1.3; font-family: var(--font-serif); color: var(--text-main); }
+        .fact-desc { font-size: 14px; color: var(--text-dim); line-height: 1.6; }
+
+        .recipe-badge { background: var(--accent-green); color: #FFF; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; text-transform: uppercase; display: inline-block; margin-bottom: 15px; }
+
+        /* ШЕРИНГ */
+        .share-section { margin-top: 50px; background: var(--glass-bg); border: var(--glass-border); border-radius: 24px; padding: 30px; text-align: center; }
+        .btn-share {
+            display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px;
+            background: var(--elem-bg); border: 1px solid var(--elem-border); border-radius: 12px;
+            font-size: 14px; font-weight: 600; cursor: pointer; transition: var(--transition); color: var(--text-main);
+        }
+        .btn-share:hover { border-color: var(--accent-gold); background: var(--bg-deep); }
+
+        /* FOOTER */
+        footer { margin-top: 80px; padding: 60px 0 40px; border-top: var(--glass-border); text-align: center; font-size: 12px; color: var(--text-dim); }
+
+        /* АДАПТИВНОСТЬ */
+        @media (max-width: 968px) {
+            .bento-grid { grid-template-columns: 1fr; }
+            .span-2, .span-3 { grid-column: span 1; }
+            .main-layout { margin-top: 90px; }
+        }
+    </style>
+</head>
+<body>
+
+<header id="header">
+    <div class="brand-name">РЕСУРС</div>
+    <div>
+        <button id="themeToggle" onclick="toggleTheme()">ТЕНЬ</button>
+    </div>
+</header>
+
+<main class="main-layout">
+    
+    <section style="text-align: center; max-width: 800px; margin: 0 auto 40px;">
+        <h1 style="font-size: clamp(28px, 4vw, 48px); line-height: 1.2; margin-bottom: 15px;">
+            Уровень вашей энергии в <span style="color: var(--accent-gold); font-style: italic;">Сыктывкаре</span>
+        </h1>
+        <p style="font-size: 15px; color: var(--text-dim); line-height: 1.7;">
+            Жители Республики Коми находятся в зоне высокой группы риска по экстремальному дефициту инсоляции (нехватки естественного солнечного света). Пройдите мгновенный расчёт влияния климата на ваше тело, мышцы и общее самочувствие.
+        </p>
+    </section>
+
+    <nav class="tabs-nav" aria-label="Разделы страницы">
+        <button class="tab-btn active" onclick="switchTab(event, 'tab-calc')">📊 Калькулятор нехватки солнца</button>
+        <button class="tab-btn" onclick="switchTab(event, 'tab-facts')">🔬 10 фактов для женского здоровья</button>
+        <button class="tab-btn" onclick="switchTab(event, 'tab-recipes')">🌿 5 золотых правил от Ольги</button>
+    </nav>
+
+    <div id="tab-calc" class="tab-content active">
+        <div class="bento-grid">
+            
+            <div class="bento-card span-2">
+                <h2 class="serif" style="font-size: 24px; margin-bottom: 25px; color: var(--text-main);">Тест-анализ факторов дефицита</h2>
+                
+                <div class="calc-group">
+                    <label class="calc-label">1. Как часто вы находитесь на улице в светлое время суток?</label>
+                    <div class="radio-box-group">
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="sun_time" value="3" checked>
+                            <span class="radio-tile-title">Почти никогда</span>
+                            <span class="radio-tile-desc">Офис, дом, передвигаюсь на авто / автобусе.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="sun_time" value="2">
+                            <span class="radio-tile-title">Редкие прогулки</span>
+                            <span class="radio-tile-desc">До 30-40 минут пешком в день суммарно.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="sun_time" value="1">
+                            <span class="radio-tile-title">Активно гуляю</span>
+                            <span class="radio-tile-desc">Более 1-2 часов ежедневно на открытом воздухе.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="calc-group">
+                    <label class="calc-label">2. Оцените ваш текущий уровень утренней усталости:</label>
+                    <div class="radio-box-group">
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="fatigue" value="3" checked>
+                            <span class="radio-tile-title">Тяжело встаю</span>
+                            <span class="radio-tile-desc">Будильник вызывает стресс, нет сил сразу после сна.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="fatigue" value="2">
+                            <span class="radio-tile-title">Раскачиваюсь к обеду</span>
+                            <span class="radio-tile-desc">Нужен кофе или чай, чтобы включиться в работу.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="fatigue" value="1">
+                            <span class="radio-tile-title">Энергична</span>
+                            <span class="radio-tile-desc">Просыпаюсь легко, чувствую бодрость в теле.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="calc-group">
+                    <label class="calc-label">3. Беспокоят ли вас дискомфорт в спине, шее или мышечная слабость?</label>
+                    <div class="radio-box-group">
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="muscles" value="3" checked>
+                            <span class="radio-tile-title">Постоянно ноет спина</span>
+                            <span class="radio-tile-desc">Чувствую зажатость, скованность после рабочего дня.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="muscles" value="2">
+                            <span class="radio-tile-title">Бывает периодически</span>
+                            <span class="radio-tile-desc">Реагирую на смену погоды, долгое сидение на стуле.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="muscles" value="1">
+                            <span class="radio-tile-title">Всё отлично</span>
+                            <span class="radio-tile-desc">Ощущаю полную свободу движений в суставах.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="calc-group">
+                    <label class="calc-label">4. Сколько полных месяцев в году вы проводите за пределами Коми (на юге)?</label>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                        <span style="font-size: 13px; color: var(--text-dim);">Длительность отпуска:</span>
+                        <span id="range-months-val" class="range-slider-val">0 месяцев</span>
+                    </div>
+                    <input type="range" id="south_months" class="range-slider" min="0" max="3" value="0" step="1" oninput="calculateVitaminD()">
+                </div>
+
+                <div style="margin-top: 30px; display: flex; justify-content: flex-end;">
+                    <button class="btn-reset" onclick="resetCalculator()">Сбросить и начать новый расчет</button>
+                </div>
+            </div>
+
+            <div class="bento-card result-score-box">
+                <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; color: var(--text-dim); margin-bottom: 10px;">Ваш расчетный индекс рисков:</div>
+                <div id="calc-score" class="score-number">85%</div>
+                <div id="calc-status" class="score-status" style="color: var(--accent-berry);">Критический дефицит</div>
+                <p id="calc-text" style="font-size: 13px; opacity: 0.8; margin-top: 15px; line-height: 1.5; text-align: center;">
+                    Организм находится в режиме жесткого энергосбережения. Нехватка солнца тормозит обмен веществ и делает мышцы дряблыми.
+                </p>
+            </div>
+
+            <div class="bento-card span-3" style="border-left: 4px solid var(--accent-gold);">
+                <div style="display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: start;">
+                    <div>
+                        <h3 class="serif" style="font-size: 22px; margin-bottom: 10px;">Связь нехватки солнца с болями в пояснице и шее</h3>
+                        <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                            Витамин D регулирует кальциевый обмен и напрямую влияет на *миофасциальный тонус* (врожденное здоровое напряжение и эластичность мышц и соединительных тканей). Когда его уровень критически падает, мышцы спины теряют способность удерживать позвоночник в правильном положении. Мелкие мышцы-стабилизаторы перегружаются, возникают глубокие спазмы и триггерные точки (болезненные уплотнения в мышцах). Физическая растяжка, умный пилатес и лимфодренажный МФР (миофасциальный релиз — самомассаж специальными роллами) жизненно необходимы на Севере для принудительного разгона лимфы и снятия этой скованности.
+                        </p>
+                    </div>
+                    <div style="background: var(--elem-bg); padding: 15px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent-gold)" stroke-width="2"><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bento-card span-3" style="background: var(--elem-bg); text-align: center; padding: 40px 30px;">
+                <span class="recipe-badge" style="background: var(--accent-gold);">Специальное предложение</span>
+                <h3 class="serif" style="font-size: 26px; margin-bottom: 15px;">Запустите выработку гормонов радости через движение</h3>
+                <p style="font-size: 14px; max-width: 600px; margin: 0 auto 25px; color: var(--text-dim);">
+                    Мягкие тренировки в студии «РЕСУРС» компенсируют недостаток гормона сна и солнца, убирают утренние отеки и восстанавливают гибкость. Сделайте первый шаг к полному обновлению вашего состояния.
+                </p>
+                <div style="max-width: 450px; margin: 0 auto;">
+                    <a href="index.html?page=booking" class="btn-marketing">Записаться на пробную тренировку за 455 руб.</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="tab-facts" class="tab-content">
+        <div class="bento-grid">
+            
+            <div class="bento-card">
+                <div class="fact-num">01</div>
+                <h3 class="fact-title">Упругость скелетных мышц</h3>
+                <p class="fact-desc">Дефицит солнца ослабляет связь между нервными импульсами и мышечными волокнами. Восстановление баланса повышает плотность мышц и убирает дряблость кожи.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">02</div>
+                <h3 class="fact-title">Контроль скрытых отеков</h3>
+                <p class="fact-desc">«Солнечный гормон» регулирует работу почек и выведение жидкости. Без него возникают застойные явления (задержка лимфы), проявляющиеся мешками под глазами по утрам.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">03</div>
+                <h3 class="fact-title">Ускорение клеточного метаболизма</h3>
+                <p class="fact-desc">Низкий уровень компонента буквально замедляет метаболизм (скорость расщепления жиров и углеводов), из-за чего лишний вес в Сыктывкаре уходит значительно медленнее даже при диетах.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">04</div>
+                <h3 class="fact-title">Красота и симметрия осанки</h3>
+                <p class="fact-desc">Хроническая нехватка вызывает слабость глубоких мышц кора (центра тела), из-за чего плечи заворачиваются вперед, а голова выдвигается (компьютерная шея).</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">05</div>
+                <h3 class="fact-title">Прочность суставных хрящей</h3>
+                <p class="fact-desc">Кальций не усваивается хрящевой тканью без достаточной солнечной стимуляции. Возникает хруст в коленях и скованность в тазобедренных суставах.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">06</div>
+                <h3 class="fact-title">Синтез дофамина и серотонина</h3>
+                <p class="fact-desc">Эти вещества — гормоны радости и мотивации. Именно их падение вызывает у жителей Севера синдром хронической усталости и нежелание выходить из дома.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">07</div>
+                <h3 class="fact-title">Защита от раннего старения</h3>
+                <p class="fact-desc">Обладает мощным антиоксидантным (защитным) эффектом. Сохраняет деление клеток кожи здоровым, предотвращая появление ранних мимических морщин.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">08</div>
+                <h3 class="fact-title">Качество глубокого сна</h3>
+                <p class="fact-desc">Влияет на выработку мелатонина (гормона сна). Нормализация уровня устраняет ночную бессонницу и дневную сонливость.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">09</div>
+                <h3 class="fact-title">Эластичность связочного аппарата</h3>
+                <p class="fact-desc">Совместно с физической растяжкой улучшает синтез коллагена, делая связки податливыми, а процесс растяжки на шпагат — безболезненным.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">10</div>
+                <h3 class="fact-title">Укрепление общего иммунитета</h3>
+                <p class="fact-desc">Активирует Т-клетки (главные защитники иммунной системы), помогая организму противостоять затяжным простудам в холодном климате Коми.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="tab-recipes" class="tab-content">
+        <div class="bento-grid">
+            
+            <div class="bento-card span-2">
+                <span class="recipe-badge">Правило 01</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px;">Синхронизируйте утренний свет с пробуждением</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    Даже если небо над Сыктывкаром затянуто тучами, плотность ультрафиолетовых волн утром выше, чем в квартире при искусственных лампах. Сразу после пробуждения откройте шторы и посмотрите в окно минимум 5 минут. Это запускает биологические часы организма и дает первый сигнал к выработке энергии.
+                </p>
+            </div>
+
+            <div class="bento-card">
+                <span class="recipe-badge">Правило 02</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px;">Лимфодренажный самомассаж</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    При северном дефиците солнца кровь становится более вязкой. Начните утро со стакана теплой воды и 20 легких прыжков на носочках для запуска работы лимфоузлов.
+                </p>
+            </div>
+
+            <div class="bento-card">
+                <span class="recipe-badge">Правило 03</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px;">Жиры-проводники в рационе</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    Поскольку этот важный витамин является жирорастворимым, он не усвоится без правильных жиров в пище. Ольга рекомендует добавлять в утренний рацион яйца всмятку или авокадо.
+                </p>
+            </div>
+
+            <div class="bento-card span-2">
+                <span class="recipe-badge">Правило 04</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px;">Исключите осевые нагрузки при усталости</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    Если вы чувствуете жесткий упадок сил, тяжелый силовой фитнес с гантелями и штангами добьет вашу гормональную систему, вызвав резкий скачок кортизола (гормона стресса). Наша цель — мягкое восстановление. Используйте декомпрессионные тренировки (занятия без сдавливания позвоночника), такие как Аэростретчинг в гамаках или Пилатес на ковриках. Мы бережно вытягиваем межпозвоночные диски, снимаем блоки и возвращаем легкость за 50 минут без насилия над уставшим телом.
+                </p>
+            </div>
+
+            <div class="bento-card span-3" style="background: linear-gradient(135deg, rgba(76,175,80,0.1), transparent); border-color: var(--accent-green);">
+                <span class="recipe-badge" style="background: var(--accent-green);">Главный секрет Ольги Мартыновой</span>
+                <h3 class="serif" style="font-size: 26px; margin-bottom: 15px;">«Движение способно заменить любое лекарство...»</h3>
+                <p style="font-size: 15px; line-height: 1.7; color: var(--text-main); margin-bottom: 25px;">
+                    «Дорогие девочки, мы не можем заставить солнце в Коми светить круглый год. Но в наших силах разбудить спящие ресурсы внутри собственного тела. Когда вы приходите на МФР или бережную растяжку спины, мы деликатно раскрываем грудной отдел. Ваши легкие начинают раскрываться полностью, кровь насыщается кислородом, уходят многолетние зажимы в шее, и мозг получает мощный приток энергии. Вы выходите со студии совершенно другим человеком — обновленной, летящей и уверенной в своей красоте. Перестаньте терпеть усталость, приходите ко мне на практику, мы изменим ваше состояние вместе!»
+                </p>
+                <div style="max-width: 400px;">
+                    <a href="index.html?page=booking" class="btn-marketing" style="background: var(--accent-green); box-shadow: 0 10px 25px rgba(76,175,80,0.3);">Начать преображение тела</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <section class="share-section">
+        <h3 class="serif" style="font-size: 20px; margin-bottom: 10px;">Поделиться полезным калькулятором с подругами</h3>
+        <p style="font-size: 13px; color: var(--text-dim); margin-bottom: 20px;">Помогите близким узнать причины утренней усталости и вернуть тонус мышцам</p>
+        <button class="btn-share" onclick="sharePage()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            <span id="share-btn-text">Скопировать ссылку</span>
+        </button>
+    </section>
+
+</main>
+
+<footer>
+    <p>© 2026 РЕСУРС | Студия растяжки и движения. Сыктывкар, ул. Коммунистическая 77/2.</p>
+    <p style="margin-top: 5px; opacity: 0.6; font-size: 10px;">Информация на странице носит исключительно ознакомительный характер. Перед приемом любых нутрицевтиков (добавок) требуется консультация специалиста.</p>
+</footer>
+
+<script>
+    // ПЕРЕКЛЮЧЕНИЕ ТЕМЫ
+    function toggleTheme() {
+        const html = document.documentElement;
+        const currentTheme = html.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        document.getElementById('themeToggle').innerText = newTheme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
+    }
+
+    // ИНИЦИАЛИЗАЦИЯ КНОПКИ ТЕМЫ ПРИ ЗАГРУЗКЕ
+    window.addEventListener('DOMContentLoaded', () => {
+        const theme = document.documentElement.getAttribute('data-theme');
+        document.getElementById('themeToggle').innerText = theme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
+        
+        // Восстановление данных калькулятора из LocalStorage
+        restoreCalculatorData();
+        calculateVitaminD();
+    });
+
+    // ПЕРЕКЛЮЧЕНИЕ ТАБОВ
+    function switchTab(event, tabId) {
+        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        
+        document.getElementById(tabId).classList.add('active');
+        event.currentTarget.classList.add('active');
+        
+        // Плавный скролл к началу таба на мобильных устройствах
+        window.scrollTo({ top: document.querySelector('.tabs-nav').offsetTop - 80, behavior: 'smooth' });
+    }
+
+    // ВИЗУАЛЬНОЕ ВЫДЕЛЕНИЕ ВЫБРАННЫХ РАДИО-ПЛИТОК
+    function selectTile(element) {
+        const name = element.querySelector('input').name;
+        document.querySelectorAll(`input[name="${name}"]`).forEach(input => {
+            input.parentElement.classList.remove('selected');
+        });
+        element.classList.add('selected');
+        
+        // Запуск авторасчета на лету
+        calculateVitaminD();
+    }
+
+    // ИНТЕРАКТИВНАЯ ЛОГИКА КАЛЬКУЛЯТОРА
+    function calculateVitaminD() {
+        const sunTime = parseInt(document.querySelector('input[name="sun_time"]:checked').value);
+        const fatigue = parseInt(document.querySelector('input[name="fatigue"]:checked').value);
+        const muscles = parseInt(document.querySelector('input[name="muscles"]:checked').value);
+        const southMonths = parseInt(document.getElementById('south_months').value);
+
+        // Обновление текстового лейбла ползунка месяцев
+        document.getElementById('range-months-val').innerText = southMonths === 0 ? '0 месяцев' : southMonths + ' мес.';
+
+        // Математическая формула расчета индекса дефицита
+        let baseScore = (sunTime * 25) + (fatigue * 20) + (muscles * 20);
+        
+        // Южный отпуск снижает индекс рисков
+        baseScore = baseScore - (southMonths * 15);
+        
+        // Ограничения лимитов
+        if (baseScore > 100) baseScore = 100;
+        if (baseScore < 15) baseScore = 15;
+
+        // Вывод результатов на лету
+        const scoreEl = document.getElementById('calc-score');
+        const statusEl = document.getElementById('calc-status');
+        const textEl = document.getElementById('calc-text');
+
+        scoreEl.innerText = baseScore + '%';
+
+        // Градация Bento-статусов
+        if (baseScore >= 75) {
+            statusEl.innerText = "Критический дефицит";
+            statusEl.style.color = "var(--accent-berry)";
+            textEl.innerText = "Организм работает на пределе. Нехватка ультрафиолета блокирует тонус мышц, вызывая мышечные спазмы в спине и постоянное чувство сонливости.";
+        } else if (baseScore >= 45 && baseScore < 75) {
+            statusEl.innerText = "Умеренная нехватка";
+            statusEl.style.color = "var(--accent-gold)";
+            textEl.innerText = "Ресурс энергии снижен. Вы часто чувствуете усталость к вечеру. Мягкий пилатес и МФР помогут восстановить кровоток и убрать скованность.";
+        } else {
+            statusEl.innerText = "Стабильный уровень";
+            statusEl.style.color = "var(--accent-green)";
+            textEl.innerText = "Ваш показатель рисков в норме. Чтобы поддерживать идеальную гибкость и упругость тела, продолжайте регулярные тренировки на растяжку.";
+        }
+
+        // Сохранение настроек пользователя в LocalStorage
+        const calcData = { sunTime, fatigue, muscles, southMonths };
+        localStorage.setItem('vitamin_calc_data', JSON.stringify(calcData));
+    }
+
+    // СБРОС ДАННЫХ
+    function resetCalculator() {
+        document.querySelectorAll('input[name="sun_time"]')[0].checked = true;
+        document.querySelectorAll('input[name="fatigue"]')[0].checked = true;
+        document.querySelectorAll('input[name="muscles"]')[0].checked = true;
+        document.getElementById('south_months').value = 0;
+
+        document.querySelectorAll('.radio-tile').forEach(tile => tile.classList.remove('selected'));
+        document.querySelectorAll('input[name="sun_time"]')[0].parentElement.classList.add('selected');
+        document.querySelectorAll('input[name="fatigue"]')[0].parentElement.classList.add('selected');
+        document.querySelectorAll('input[name="muscles"]')[0].parentElement.classList.add('selected');
+
+        localStorage.removeItem('vitamin_calc_data');
+        calculateVitaminD();
+    }
+
+    // ВОССТАНОВЛЕНИЕ ДАННЫХ ИЗ LOCALSTORAGE
+    function restoreCalculatorData() {
+        const saved = localStorage.getItem('vitamin_calc_data');
+        if (saved) {
+            try {
+                const data = JSON.parse(saved);
+                
+                document.querySelectorAll(`input[name="sun_time"]`).forEach(i => { if(parseInt(i.value) === data.sunTime) i.checked = true; });
+                document.querySelectorAll(`input[name="fatigue"]`).forEach(i => { if(parseInt(i.value) === data.fatigue) i.checked = true; });
+                document.querySelectorAll(`input[name="muscles"]`).forEach(i => { if(parseInt(i.value) === data.muscles) i.checked = true; });
+                document.getElementById('south_months').value = data.southMonths;
+            } catch (e) {
+                console.log("Error restoring storage parameters");
+            }
+        }
+
+        // Синхронизация визуальных стилей плиток после восстановления радиокнопок
+        document.querySelectorAll('.radio-tile').forEach(tile => {
+            if (tile.querySelector('input').checked) {
+                tile.classList.add('selected');
+            }
+        });
+    }
+
+    // ЛОГИКА КНОПКИ ШЕРИНГА (NAVIGATOR SHARE / БУФЕР ОБМЕНА)
+    async function sharePage() {
+        const shareData = {
+            title: 'Калькулятор дефицита витамина D в Сыктывкаре',
+            text: 'Пройди интерактивный тест на уровень солнечной энергии и усталости.',
+            url: window.location.href
+        };
+
+        const btnText = document.getElementById('share-btn-text');
+
+        if (navigator.share) {
+            try {
+                await navigator.share(shareData);
+            } catch (err) {
+                console.log('Share canceled or failed');
+            }
+        } else {
+            // Фолбэк для ПК: копирование ссылки в буфер обмена
+            try {
+                await navigator.clipboard.writeText(window.location.href);
+                btnText.innerText = 'Ссылка скопирована!';
+                setTimeout(() => { btnText.innerText = 'Скопировать ссылку'; }, 3000);
+            } catch (err) {
+                alert('Не удалось скопировать ссылку автоматически. Скопируйте её из адресной строки.');
+            }
+        }
+    }
+
+    // ЭФФЕКТ СЛИТНОГО ХЕДЕРА ПРИ СКРОЛЛЕ
+    window.addEventListener('scroll', () => {
+        const header = document.getElementById('header');
+        if (window.scrollY > 30) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
+    });
+</script>
+</body>
+</html>
