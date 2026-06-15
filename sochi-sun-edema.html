@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <script>
+        // ИЗМЕНЕНО: По умолчанию для сочинского инфо-слоя ставим освежающую светлую тему, сохраняем выбор
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+
+    <script type="text/javascript">
+    // --- Yandex.Metrika counter ---
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=109130409', 'ym');
+    ym(109130409, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript>
+        <div>
+            <img src="https://mc.yandex.ru/watch/109130409" style="position:absolute; left:-9999px;" alt="" />
+        </div>
+    </noscript>
+
+    <script>
+        // Глобальная логика перехвата ботов для SEO-превью через Яндекс Функцию
+        window.addEventListener('DOMContentLoaded', () => {
+            const isBot = /YandexBot|YandexAccessibilityBot|YandexMobileBot|Googlebot/i.test(navigator.userAgent);
+            if (isBot) {
+                fetch('https://functions.yandexcloud.net/d4ecn5ag33dcdd2deivd?bot=true&url=' + encodeURIComponent(window.location.href))
+                .then(res => res.json())
+                .then(data => console.log("SEO Preview Matrix Synced"))
+                .catch(e => console.log("SEO preview pass"));
+            }
+        });
+    </script>
+    
+    <!-- Подключение рекламной системы Яндекса (РСЯ) -->
+    <script>window.yaContextCb=window.yaContextCb||[]</script>
+    <script src="https://yandex.ru/ads/system/context.js" async></script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- ЛОКАЛЬНОЕ СЕО ОПТИМИЗАЦИЯ ПОД СОЧИ И КРАСНОДАРСКИЙ КРАЙ -->
+    <title>Калькулятор отеков и влияния солнца в Сочи | Тест на задержку лимфы и фотостарение кожи</title>
+    <meta name="description" content="Узнайте, как южное солнце и влажность Сочи влияют на утренние отеки, упругость мышц и дряблость кожи. Интерактивный онлайн-тест, 10 научных фактов и 5 правил восстановления лимфотока от Ольги Мартыновой, студия РЕСУРС.">
+    <meta name="keywords" content="отеки в сочи причины, сильная влажность застой лимфы, почему отекают ноги летом, фотостарение кожи защита, калькулятор задержки воды, женское здоровье сочи, растяжка сочи, пилатес лимфодренаж, студия ресурс сочи, убрать отеки с лица">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://resurs-stretch.ru/sochi-sun-edema.html">
+
+    <!-- OPEN GRAPH ДЛЯ СОЦСЕТЕЙ -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Влажность, SPF и Отеки — Интерактивный Тест-Калькулятор для женщин в Сочи">
+    <meta property="og:description" content="Почему в Сочи отекают ноги, а кожа сохнет от избытка солнца? Измерьте индекс скрытых рисков и получите пошаговый план спасения молодости тела.">
+    <meta property="og:url" content="https://resurs-stretch.ru/sochi-sun-edema.html">
+    <meta property="og:image" content="https://resurs-stretch.ru/logo_header_final.png">
+    <meta property="og:site_name" content="РЕСУРС">
+    <meta property="og:locale" content="ru_RU">
+
+    <link rel="icon" type="image/png" href="logo_header_final.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <script src="https://reservi.ru/widget-fit1c.v2/js/config.js" data-fit-salon-id="02977247-3381-4559-b9ef-1cf88d2731a2"></script>
+    <script src="https://unpkg.com/imask"></script>
+
+    <style>
+        /* CSS ПЕРЕМЕННЫЕ ДЛЯ СОЧИНСКОЙ СВЕТЛОЙ ТЕМЫ (МОРСКОЙ КУРОРТНЫЙ МИНИМАЛИЗМ) */
+        :root {
+            --bg-deep: #F5F6F3; /* Прохладный белый песок */
+            --glass-bg: rgba(255, 255, 255, 0.92); 
+            --glass-border: 1px solid rgba(32, 178, 170, 0.08); 
+            --accent-gold: #C5A059; 
+            --accent-green: #20B2AA; /* Освежающий цвет морской волны */
+            --accent-berry: #D32F2F; /* Глубокий кораллово-красный */
+            --text-main: #1C2321; /* Глубокий морской графит */
+            --text-dim: rgba(28, 35, 33, 0.7);
+            --elem-bg: rgba(32, 178, 170, 0.05);
+            --elem-border: rgba(28, 35, 33, 0.1);
+            --nav-bg: rgba(245, 246, 243, 0.96);
+            --font-main: 'Manrope', sans-serif;
+            --font-serif: 'Cormorant Garamond', serif;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ТЕМНАЯ ТЕМА (МОРСКАЯ НОЧЬ) */
+        [data-theme="dark"] {
+            --bg-deep: #0B1315; /* Глубокая черноморская бездна */
+            --glass-bg: rgba(255, 255, 255, 0.02); 
+            --glass-border: 1px solid rgba(255, 255, 255, 0.08); 
+            --accent-gold: #E5C185; 
+            --accent-green: #4DB6AC;
+            --accent-berry: #FF5252;
+            --text-main: #EAF2F0;
+            --text-dim: rgba(234, 242, 240, 0.6);
+            --elem-bg: rgba(255, 255, 255, 0.03);
+            --elem-border: rgba(255, 255, 255, 0.12);
+            --nav-bg: rgba(11, 19, 21, 0.96);
+        }
+
+        /* RESET */
+        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
+        html { scroll-behavior: smooth; }
+        body { 
+            background: var(--bg-deep); 
+            color: var(--text-main);
+            font-family: var(--font-main); 
+            line-height: 1.6;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.025'/%3E%3C/svg%3E");
+            transition: background-color 0.4s ease, color 0.4s ease;
+            -webkit-font-smoothing: antialiased;
+            padding-bottom: 60px; /* Запас под полоску РСЯ */
+        }
+
+        h1, h2, h3, .serif { font-family: var(--font-serif); font-weight: 600; letter-spacing: 0.3px; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+
+        /* HEADER */
+        header {
+            position: fixed; top: 0; width: 100%; padding: 20px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 2000; background: transparent; transition: var(--transition);
+        }
+        header.scrolled { 
+            background: var(--glass-bg) !important; 
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            padding: 12px 5% !important; border-bottom: var(--glass-border);
+        }
+        .brand-name { font-family: var(--font-serif); font-size: 22px; letter-spacing: 8px; text-transform: uppercase; font-weight: 600; }
+        
+        #themeToggle {
+            padding: 0 15px; height: 35px; font-size: 10px; font-weight: 600; letter-spacing: 2px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 8px; border: 1px solid var(--elem-border); background: var(--elem-bg);
+            cursor: pointer; transition: var(--transition); color: var(--text-main); text-transform: uppercase;
+        }
+        #themeToggle:hover { border-color: var(--accent-green); transform: translateY(-2px); }
+
+        /* MAIN CONTAINER */
+        .main-layout { max-width: 1200px; margin: 100px auto 60px; padding: 0 20px; }
+
+        /* ТАБЫ */
+        .tabs-nav { display: flex; gap: 10px; margin-bottom: 30px; border-bottom: var(--glass-border); padding-bottom: 15px; overflow-x: auto; scrollbar-width: none; }
+        .tabs-nav::-webkit-scrollbar { display: none; }
+        .tab-btn {
+            padding: 12px 24px; border: 1px solid var(--elem-border); background: var(--glass-bg);
+            color: var(--text-dim); border-radius: 12px; cursor: pointer; font-size: 14px; font-weight: 500;
+            white-space: nowrap; transition: var(--transition); font-family: var(--font-main);
+        }
+        .tab-btn:hover { border-color: var(--accent-green); color: var(--text-main); }
+        .tab-btn.active { background: var(--accent-green); color: #FFF; border-color: var(--accent-green); box-shadow: 0 8px 20px rgba(32,178,170,0.2); }
+
+        .tab-content { display: none; animation: fadeIn 0.5s ease; }
+        .tab-content.active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* BENTO GRID STRUCTURE */
+        .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .bento-card { background: var(--glass-bg); border: var(--glass-border); border-radius: 24px; padding: 30px; position: relative; overflow: hidden; transition: var(--transition); }
+        .bento-card:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(0,0,0,0.02); }
+        
+        .span-2 { grid-column: span 2; }
+        .span-3 { grid-column: span 3; }
+
+        /* ИНПУТЫ И КАЛЬКУЛЯТОР */
+        .calc-group { margin-bottom: 22px; }
+        .calc-label { font-size: 14px; font-weight: 600; margin-bottom: 10px; display: block; color: var(--text-main); }
+        
+        .radio-box-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+        .radio-tile {
+            border: 1px solid var(--elem-border); background: var(--elem-bg); padding: 15px;
+            border-radius: 12px; cursor: pointer; display: flex; flex-direction: column; gap: 4px;
+            position: relative; transition: var(--transition);
+        }
+        .radio-tile input { position: absolute; top: 15px; right: 15px; accent-color: var(--accent-green); }
+        .radio-tile-title { font-size: 14px; font-weight: 600; color: var(--text-main); }
+        .radio-tile-desc { font-size: 12px; color: var(--text-dim); line-height: 1.4; }
+        .radio-tile.selected { border-color: var(--accent-green); background: rgba(32,178,170,0.08); }
+
+        .range-slider { width: 100%; accent-color: var(--accent-green); margin: 10px 0; height: 6px; border-radius: 3px; }
+        .range-val { font-size: 18px; font-weight: 700; color: var(--accent-green); }
+
+        /* РЕЗУЛЬТАТЫ БЕНТО */
+        .result-score-box { text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(135deg, var(--elem-bg), transparent); }
+        .score-number { font-size: 64px; font-weight: 800; line-height: 1; color: var(--accent-berry); font-family: var(--font-serif); }
+        .score-status { font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-top: 10px; }
+
+        /* МАРКЕТИНГОВЫЕ КНОПКИ */
+        .btn-marketing {
+            display: inline-flex; align-items: center; justify-content: center; width: 100%;
+            padding: 22px 30px; background: var(--accent-berry); color: #FFF; border: none;
+            border-radius: 16px; font-family: var(--font-main); font-size: 15px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: var(--transition);
+            box-shadow: 0 10px 25px rgba(211,47,47,0.25);
+        }
+        .btn-marketing:hover { transform: translateY(-2px); box-shadow: 0 15px 35px rgba(211,47,47,0.4); opacity: 0.95; }
+
+        .btn-reset {
+            background: transparent; border: 1px dashed var(--text-dim); color: var(--text-dim);
+            padding: 10px 20px; border-radius: 10px; font-size: 12px; font-weight: 600;
+            cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: var(--transition);
+        }
+        .btn-reset:hover { border-color: var(--accent-berry); color: var(--accent-berry); }
+
+        /* НАУЧНЫЕ СПИСКИ И РЕЦЕПТЫ */
+        .fact-num { font-size: 32px; font-family: var(--font-serif); color: var(--accent-green); font-weight: 700; margin-bottom: 5px; }
+        .fact-title { font-size: 18px; font-weight: 600; margin-bottom: 10px; line-height: 1.3; font-family: var(--font-serif); color: var(--text-main); }
+        .fact-desc { font-size: 14px; color: var(--text-dim); line-height: 1.6; }
+
+        .recipe-badge { background: var(--accent-green); color: #FFF; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; text-transform: uppercase; display: inline-block; margin-bottom: 15px; }
+
+        /* ШЕРИНГ */
+        .share-section { margin-top: 50px; background: var(--glass-bg); border: var(--glass-border); border-radius: 24px; padding: 30px; text-align: center; }
+        .btn-share {
+            display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px;
+            background: var(--elem-bg); border: 1px solid var(--elem-border); border-radius: 12px;
+            font-size: 14px; font-weight: 600; cursor: pointer; transition: var(--transition); color: var(--text-main);
+        }
+        .btn-share:hover { border-color: var(--accent-green); background: var(--bg-deep); }
+
+        /* FOOTER */
+        footer { margin-top: 80px; padding: 60px 0 40px; border-top: var(--glass-border); text-align: center; font-size: 12px; color: var(--text-dim); }
+
+        /* АДАПТИВНОСТЬ */
+        @media (max-width: 968px) {
+            .bento-grid { grid-template-columns: 1fr; }
+            .span-2, .span-3 { grid-column: span 1; }
+            .main-layout { margin-top: 90px; }
+        }
+    </style>
+</head>
+<body>
+
+<header id="header">
+    <div class="brand-name">РЕСУРС</div>
+    <div>
+        <button id="themeToggle" onclick="toggleTheme()">ТЕНЬ</button>
+    </div>
+</header>
+
+<main class="main-layout">
+    
+    <!-- СЕО-ОПТИМИЗИРОВАННЫЙ ВВОДНЫЙ БЛОК ДЛЯ СОЧИ -->
+    <section style="text-align: center; max-width: 800px; margin: 0 auto 40px;">
+        <h1 style="font-size: clamp(28px, 4vw, 48px); line-height: 1.2; margin-bottom: 15px;">
+            Солнце, влажность и <span style="color: var(--accent-green); font-style: italic;">утренние отеки</span> в Сочи
+        </h1>
+        <p style="font-size: 15px; color: var(--text-dim); line-height: 1.7;">
+            Субтропический климат Краснодарского края ставит перед женским организмом сложные задачи. Избыточная солнечная радиация и высокая влажность воздуха часто провоцируют скрытую задержку жидкости. Рассчитайте личные риски фотостарения (возрастных изменений кожи под действием солнца) и нарушения лимфотока.
+        </p>
+    </section>
+
+    <!-- НАВИГАЦИЯ ПО ТАБАМ -->
+    <nav class="tabs-nav" aria-label="Разделы страницы">
+        <button class="tab-btn active" onclick="switchTab(event, 'tab-calc')">📊 Калькулятор застоя лимфы</button>
+        <button class="tab-btn" onclick="switchTab(event, 'tab-facts')">🔬 10 факторов климата и тела</button>
+        <button class="tab-btn" onclick="switchTab(event, 'tab-recipes')">🌿 5 южных правил от Ольги</button>
+    </nav>
+
+    <!-- ТАБ 1: ИНТЕРАКТИВНЫЙ КАЛЬКУЛЯТОР ДЛЯ СОЧИ -->
+    <div id="tab-calc" class="tab-content active">
+        <div class="bento-grid">
+            
+            <!-- Опросник -->
+            <div class="bento-card span-2">
+                <h2 class="serif" style="font-size: 24px; margin-bottom: 25px; color: var(--text-main);">Анализ влияния южного климата на задержку воды</h2>
+                
+                <div class="calc-group">
+                    <label class="calc-label">1. Сколько времени вы проводите на открытом солнце в пиковые часы (с 11:00 до 16:00)?</label>
+                    <div class="radio-box-group">
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="sun_time" value="3" checked>
+                            <span class="radio-tile-title">Более 2 часов</span>
+                            <span class="radio-tile-desc">Пляж, прогулки по набережной, экскурсии в горах.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="sun_time" value="2">
+                            <span class="radio-tile-title">Около часа</span>
+                            <span class="radio-tile-desc">Короткие перебежки, в основном нахожусь в тени.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="sun_time" value="1">
+                            <span class="radio-tile-title">Менее 30 минут</span>
+                            <span class="radio-tile-desc">Прячусь в кондиционируемых помещениях.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="calc-group">
+                    <label class="calc-label">2. Замечаете ли вы отечность лица по утрам или тяжесть в ногах к вечеру?</label>
+                    <div class="radio-box-group">
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="fatigue" value="3" checked>
+                            <span class="radio-tile-title">Да, выраженно</span>
+                            <span class="radio-tile-desc">Следы от носков на лодыжках, кольца врезаются в пальцы.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="fatigue" value="2">
+                            <span class="radio-tile-title">Только в сильную жару</span>
+                            <span class="radio-tile-desc">Проявляется при резком росте влажности воздуха.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="fatigue" value="1">
+                            <span class="radio-tile-title">Редко или никогда</span>
+                            <span class="radio-tile-desc">Чувствую легкость в ногах и теле в течение суток.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="calc-group">
+                    <label class="calc-label">3. Беспокоит ли вас стянутость кожи, сухость или зажатость в шее?</label>
+                    <div class="radio-box-group">
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="muscles" value="3" checked>
+                            <span class="radio-tile-title">Да, постоянно щурусь</span>
+                            <span class="radio-tile-desc">Мышцы лица напряжены, шея затекает от яркого света.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="muscles" value="2">
+                            <span class="radio-tile-title">Только после пляжа</span>
+                            <span class="radio-tile-desc">Кожа требует мгновенного увлажнения кремом.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="muscles" value="1">
+                            <span class="radio-tile-title">Всё комфортно</span>
+                            <span class="radio-tile-desc">Ощущаю эластичность кожи и расслабление плеч.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="calc-group">
+                    <label class="calc-label">4. Какое количество чистой воды (без чая и лимонадов) вы выпиваете в день?</label>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                        <span style="font-size: 13px; color: var(--text-dim);">Суточный объем жидкости:</span>
+                        <span id="range-months-val" class="range-slider-val">Меньше 1 литра</span>
+                    </div>
+                    <input type="range" id="south_months" class="range-slider" min="0" max="3" value="0" step="1" oninput="calculateVitaminD()">
+                </div>
+
+                <div style="margin-top: 30px; display: flex; justify-content: flex-end;">
+                    <button class="btn-reset" onclick="resetCalculator()">Сбросить и начать новый расчет</button>
+                </div>
+            </div>
+
+            <!-- Результат Bento Сочи -->
+            <div class="bento-card result-score-box">
+                <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; color: var(--text-dim); margin-bottom: 10px;">Индекс риска застоя жидкости:</div>
+                <div id="calc-score" class="score-number">85%</div>
+                <div id="calc-status" class="score-status" style="color: var(--accent-berry);">Лимфатический блок</div>
+                <p id="calc-text" style="font-size: 13px; opacity: 0.8; margin-top: 15px; line-height: 1.5; text-align: center;">
+                    Высокая влажность блокирует нормальное испарение пота. Организм задерживает воду, перегружая капилляры и вызывая утренние отеки.
+                </p>
+            </div>
+
+            <!-- Блок глубокой аналитики влияния на фасции и мышцы -->
+            <div class="bento-card span-3" style="border-left: 4px solid var(--accent-green);">
+                <div style="display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: start;">
+                    <div>
+                        <h3 class="serif" style="font-size: 22px; margin-bottom: 10px;">Как южное солнце «иссушает» ваши мышцы изнутри</h3>
+                        <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                            При избыточной солнечной нагрузке в Сочи происходит незаметная, но глубокая *миофасциальная дегидратация* (обезвоживание мышечных оболочек). Под воздействием ультрафиолетовых лучей фасции (пленки, соединяющие наши мышцы) теряют влагу, склеиваются и становятся жесткими. Ткани зажимаются, блокируя глубокие сосуды. Из-за этого лимфа (межклеточная жидкость, очищающая тело) не может свободно течь наверх, застаивается в бедрах, лодыжках и лице. Умные тренировки, такие как мягкий Пилатес и лимфодренажный МФР (миофасциальный релиз — раскатка мышц на специальных роллах), буквально возвращают воду внутрь сжатых фасций, действуя как внутренний омолаживающий компресс.
+                        </p>
+                    </div>
+                    <div style="background: var(--elem-bg); padding: 15px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- МАРКЕТИНГОВАЯ КНОПКА ЗАПИСИ -->
+            <div class="bento-card span-3" style="background: var(--elem-bg); text-align: center; padding: 40px 30px;">
+                <span class="recipe-badge" style="background: var(--accent-gold);">Лимфодренажный тест-драйв</span>
+                <h3 class="serif" style="font-size: 26px; margin-bottom: 15px;">Запустите бережное очищение и моделирование контуров тела</h3>
+                <p style="font-size: 14px; max-width: 600px; margin: 0 auto 25px; color: var(--text-dim);">
+                    Снимите климатический стресс с сосудов. Мягкие восстановительные практики в студии «РЕСУРС» выведут лишнюю воду, уберут объемы с талии и вернут лицу четкий овал за 50 минут.
+                </p>
+                <div style="max-width: 450px; margin: 0 auto;">
+                    <a href="index.html?page=booking" class="btn-marketing" style="background: var(--accent-green); box-shadow: 0 10px 25px rgba(32,178,170,0.3);">Записаться на проработку тела за 455 руб.</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ТАБ 2: ТОП-10 НАУЧНЫХ ФАКТОВ О ЮЖНОМ КЛИМАТЕ -->
+    <div id="tab-facts" class="tab-content">
+        <div class="bento-grid">
+            
+            <div class="bento-card">
+                <div class="fact-num">01</div>
+                <h3 class="fact-title">Субтропический лимфостаз</h3>
+                <p class="fact-desc">Высокая сочинская влажность снижает скорость испарения влаги с кожи. Замедляется *лимфостаз* (природная циркуляция лимфы), что ведет к застою жидкости в ногах.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">02</div>
+                <h3 class="fact-title">Разрушение коллагеновых связей</h3>
+                <p class="fact-desc">Ультрафиолет проникает в глубокие слои тканей и разрушает коллаген. Без бережной растяжки мышцы теряют упругость, появляется дряблость кожи над коленями.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">03</div>
+                <h3 class="fact-title">Мимический шейный зажим</h3>
+                <p class="fact-desc">Яркое южное солнце заставляет постоянно зажмуривать глаза. Этот рефлекторный спазм передается на мышцы шеи, ухудшая отток венозной крови от головы и вызывая утренние отеки лица.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">04</div>
+                <h3 class="fact-title">Загущение межклеточного матрикса</h3>
+                <p class="fact-desc">В жару тело теряет воду через дыхание. Межклеточный матрикс (жидкая среда вокруг клеток) становится вязким, затрудняя транспорт питательных веществ к суставам.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">05</div>
+                <h3 class="fact-title">Защитная задержка натрия</h3>
+                <p class="fact-desc">При дефиците правильного питьевого режима в жарком климате надпочечники начинают выделять гормоны, принудительно задерживающие соль, чтобы спасти тело от обезвоживания.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">06</div>
+                <h3 class="fact-title">Снижение тонуса венозных стенок</h3>
+                <p class="fact-desc">Высокая температура воздуха расширяет периферические (поверхностные) сосуды. Кровь под действием силы тяжести застаивается внизу, создавая ощущение тяжелых свинцовых ног.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">07</div>
+                <h3 class="fact-title">Ограничение суставной смазки</h3>
+                <p class="fact-desc">Перегрев без мягкого движения снижает выработку синовиальной (суставной) жидкости. Возникает характерный хруст в коленях при приседаниях.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">08</div>
+                <h3 class="fact-title">Перегрузка нервной системы солнцем</h3>
+                <p class="fact-desc">Длительное нахождение на сильной жаре истощает запасы калия и магния, провоцируя судороги в икроножных мышцах по ночам и внутреннее беспокойство.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">09</div>
+                <h3 class="fact-title">Ухудшение эластичности связок</h3>
+                <p class="fact-desc">Агрессивный загар делает связки более хрупкими. Южный стретчинг должен быть максимально мягким и осознанным, без резких рывков.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">10</div>
+                <h3 class="fact-title">Компенсаторный метаболический спад</h3>
+                <p class="fact-desc">Чтобы защитить внутренние органы от перегрева, тело в сильный зной замедляет внутренний метаболизм (скорость сжигания калорий), из-за чего падает общая активность.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ТАБ 3: 5 ЗОЛОТЫХ ПРАВИЛ ОТ ОЛЬГИ МАРТЫНОВОЙ ДЛЯ ЮГА -->
+    <div id="tab-recipes" class="tab-content">
+        <div class="bento-grid">
+            
+            <div class="bento-card span-2">
+                <span class="recipe-badge">Правило 01</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px;">Управляйте водно-солевым балансом</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    Главная ошибка в Сочи — пить ледяную воду большими глотками во время жары. Она мгновенно выводится почками, не успевая напитать фасции. Ольга рекомендует пить чистую воду комнатной температуры небольшими глотками каждые 20 минут. Для удержания влаги в клетках, а не под кожей, добавьте в рацион зелень и минеральную воду без газа.
+                </p>
+            </div>
+
+            <div class="bento-card">
+                <span class="recipe-badge">Правило 02</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px;">МФР-разгрузка стоп после пляжа</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    Ходьба по сочинской гальке — отличный массаж, но она сильно перегружает подошвенный апоневроз (широкую связку на стопе). Вечером уделите 5 минут раскатке стоп обычным теннисным мячом. Это расслабит всю заднюю линию тела и снимет утреннюю отечность.
+                </p>
+            </div>
+
+            <div class="bento-card">
+                <span class="recipe-badge">Правило 03</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px;">Защищайте шею от «солнечного зажима»</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    Когда вы долго лежите на пляже с приподнятой головой или смотрите в телефон, пережимаются лимфатические протоки шеи. Обязательно делайте мягкие круговые наклоны головы в стороны, чтобы вернуть свободный кровоток к лицу.
+                </p>
+            </div>
+
+            <div class="bento-card span-2">
+                <span class="recipe-badge">Правило 04</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px;">Замените изнуряющий кардио-фитнес в жару</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    Интенсивные прыжки и тяжелые силовые тренировки при высокой южной влажности создают колоссальную нагрузку на сердце и вызывают сильный выброс кортизола (гормона стресса), который заставляет тело удерживать воду еще сильнее. Перейдите на охлаждающие и лимфодренажные форматы. Пилатес, Аэростретчинг в гамаках и декомпрессионная растяжка (упражнения без давления на суставы) бережно раскрывают тазобедренные суставы, освобождают крупные лимфоузлы и буквально «сливают» лишнюю жидкость из тканей, делая силуэт точеным и рельефным.
+                </p>
+            </div>
+
+            <div class="bento-card span-3" style="background: linear-gradient(135deg, rgba(32,178,170,0.08), transparent); border-color: var(--accent-green);">
+                <span class="recipe-badge" style="background: var(--accent-green);">Секрет южной молодости от Ольги</span>
+                <h3 class="serif" style="font-size: 26px; margin-bottom: 15px;">«Красота — это свободный и легкий ток жидкостей в теле...»</h3>
+                <p style="font-size: 15px; line-height: 1.7; color: var(--text-main); margin-bottom: 25px;">
+                    «Девочки, жизнь на юге создана для наслаждения, а не для борьбы с тяжестью в ногах. Жара и солнце пытаются "склеить" наши ткани, сделать их жесткими и застойными. Но мы можем вернуть телу природную прохладу и легкость. Когда мы работаем на роллах МФР или мягко вытягиваем позвоночник в шелковых гамаках, мы действуем как профессиональный скульптор. Мы бережно убираем застой воды из "проблемных зон", освобождаем зажатые капилляры и возвращаем упругость каждой мышце. Вы выходите с занятия без отеков, с идеальной легкой осанкой, красивым рельефом пресса и свежим лицом. Ваше тело создано быть гибким и послушным в любом климате, давайте вернем ему этот ресурс вместе!»
+                </p>
+                <div style="max-width: 400px;">
+                    <a href="index.html?page=booking" class="btn-marketing" style="background: var(--accent-green); box-shadow: 0 10px 25px rgba(32,178,170,0.3);">Вернуть телу легкость</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- АДАПТИВНЫЙ БЛОК ШЕРИНГА -->
+    <section class="share-section">
+        <h3 class="serif" style="font-size: 20px; margin-bottom: 10px;">Поделиться полезным южным калькулятором с подругами</h3>
+        <p style="font-size: 13px; color: var(--text-dim); margin-bottom: 20px;">Помогите близким избавиться от тяжести в ногах и защитить молодость тела</p>
+        <button class="btn-share" onclick="sharePage()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            <span id="share-btn-text">Скопировать ссылку</span>
+        </button>
+    </section>
+
+</main>
+
+<footer>
+    <p>© 2026 РЕСУРС | Студия умного фитнеса и движения. Сочи, Курортный проспект.</p>
+    <p style="margin-top: 5px; opacity: 0.6; font-size: 10px;">Информация на странице носит исключительно ознакомительный характер и не заменяет медицинскую консультацию при выраженных патологиях лимфатической системы.</p>
+</footer>
+
+<script>
+    // ПЕРЕКЛЮЧЕНИЕ ТЕМЫ
+    function toggleTheme() {
+        const html = document.documentElement;
+        const currentTheme = html.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        document.getElementById('themeToggle').innerText = newTheme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
+    }
+
+    // ИНИЦИАЛИЗАЦИЯ КНОПКИ ТЕМЫ ПРИ ЗАГРУЗКЕ
+    window.addEventListener('DOMContentLoaded', () => {
+        const theme = document.documentElement.getAttribute('data-theme');
+        document.getElementById('themeToggle').innerText = theme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
+        
+        // Восстановление данных из LocalStorage
+        restoreCalculatorData();
+        calculateVitaminD();
+    });
+
+    // ПЕРЕКЛЮЧЕНИЕ ТАБОВ
+    function switchTab(event, tabId) {
+        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        
+        document.getElementById(tabId).classList.add('active');
+        event.currentTarget.classList.add('active');
+        
+        window.scrollTo({ top: document.querySelector('.tabs-nav').offsetTop - 80, behavior: 'smooth' });
+    }
+
+    // ВИЗУАЛЬНОЕ ВЫДЕЛЕНИЕ ПЛИТОК
+    function selectTile(element) {
+        const name = element.querySelector('input').name;
+        document.querySelectorAll(`input[name="${name}"]`).forEach(input => {
+            input.parentElement.classList.remove('selected');
+        });
+        element.classList.add('selected');
+        
+        calculateVitaminD();
+    }
+
+    // ИНТЕРАКТИВНАЯ ЛОГИКА КАЛЬКУЛЯТОРА
+    function calculateVitaminD() {
+        const sunTime = parseInt(document.querySelector('input[name="sun_time"]:checked').value);
+        const fatigue = parseInt(document.querySelector('input[name="fatigue"]:checked').value);
+        const muscles = parseInt(document.querySelector('input[name="muscles"]:checked').value);
+        const southMonths = parseInt(document.getElementById('south_months').value);
+
+        // Обновление текстового лейбла ползунка (в Сочи это объем воды)
+        const waterLabels = ['Меньше 1 литра', 'Около 1.5 литров', 'От 2 литров', 'Более 3 литров'];
+        document.getElementById('range-months-val').innerText = waterLabels[southMonths];
+
+        // Математическая формула расчета застоя (мало воды = выше застой)
+        let baseScore = (sunTime * 20) + (fatigue * 25) + (muscles * 20);
+        
+        // Хороший питьевой режим снижает риски застоя
+        baseScore = baseScore - (southMonths * 15);
+        
+        if (baseScore > 100) baseScore = 100;
+        if (baseScore < 15) baseScore = 15;
+
+        const scoreEl = document.getElementById('calc-score');
+        const statusEl = document.getElementById('calc-status');
+        const textEl = document.getElementById('calc-text');
+
+        scoreEl.innerText = baseScore + '%';
+
+        if (baseScore >= 75) {
+            statusEl.innerText = "Лимфатический блок";
+            statusEl.style.color = "var(--accent-berry)";
+            textEl.innerText = "Высокая влажность блокирует нормальное испарение пота. Организм задерживает воду, перегружая капилляры и вызывая утренние отеки.";
+        } else if (baseScore >= 45 && baseScore < 75) {
+            statusEl.innerText = "Умеренный застой";
+            statusEl.style.color = "var(--accent-gold)";
+            textEl.innerText = "Присутствует скрытое обезвоживание фасций. Тело копит жидкость " + "в проблемных зонах" + ". Попробуйте лимфодренажный МФР для разгона застоя.";
+        } else {
+            statusEl.innerText = "Идеальный баланс";
+            statusEl.style.color = "var(--accent-green)";
+            textEl.innerText = "Ваша лимфатическая система работает отлично. Чтобы защитить коллаген от фотостарения и сохранить тонус, продолжайте мягкие практики Пилатеса.";
+        }
+
+        const calcData = { sunTime, fatigue, muscles, southMonths };
+        localStorage.setItem('sochi_calc_data', JSON.stringify(calcData));
+    }
+
+    // СБРОС ДАННЫХ
+    function resetCalculator() {
+        document.querySelectorAll('input[name="sun_time"]')[0].checked = true;
+        document.querySelectorAll('input[name="fatigue"]')[0].checked = true;
+        document.querySelectorAll('input[name="muscles"]')[0].checked = true;
+        document.getElementById('south_months').value = 0;
+
+        document.querySelectorAll('.radio-tile').forEach(tile => tile.classList.remove('selected'));
+        document.querySelectorAll('input[name="sun_time"]')[0].parentElement.classList.add('selected');
+        document.querySelectorAll('input[name="fatigue"]')[0].parentElement.classList.add('selected');
+        document.querySelectorAll('input[name="muscles"]')[0].parentElement.classList.add('selected');
+
+        localStorage.removeItem('sochi_calc_data');
+        calculateVitaminD();
+    }
+
+    // ВОССТАНОВЛЕНИЕ ДАННЫХ
+    function restoreCalculatorData() {
+        const saved = localStorage.getItem('sochi_calc_data');
+        if (saved) {
+            try {
+                const data = JSON.parse(saved);
+                document.querySelectorAll(`input[name="sun_time"]`).forEach(i => { if(parseInt(i.value) === data.sunTime) i.checked = true; });
+                document.querySelectorAll(`input[name="fatigue"]`).forEach(i => { if(parseInt(i.value) === data.fatigue) i.checked = true; });
+                document.querySelectorAll(`input[name="muscles"]`).forEach(i => { if(parseInt(i.value) === data.muscles) i.checked = true; });
+                document.getElementById('south_months').value = data.southMonths;
+            } catch (e) {
+                console.log("Error data repair");
+            }
+        }
+
+        document.querySelectorAll('.radio-tile').forEach(tile => {
+            if (tile.querySelector('input').checked) tile.classList.add('selected');
+        });
+    }
+
+    // КНОПКА ШЕРИНГА
+    async function sharePage() {
+        const shareData = {
+            title: 'Калькулятор отеков и влияния солнца в Сочи',
+            text: 'Пройди тест на уровень скрытой задержки жидкости в субтропиках.',
+            url: window.location.href
+        };
+        const btnText = document.getElementById('share-btn-text');
+        if (navigator.share) {
+            try { await navigator.share(shareData); } catch (err) { console.log('Share canceled'); }
+        } else {
+            try {
+                await navigator.clipboard.writeText(window.location.href);
+                btnText.innerText = 'Ссылка скопирована!';
+                setTimeout(() => { btnText.innerText = 'Скопировать ссылку'; }, 3000);
+            } catch (err) {
+                alert('Скопируйте ссылку из адресной строки.');
+            }
+        }
+    }
+
+    window.addEventListener('scroll', () => {
+        const header = document.getElementById('header');
+        if (window.scrollY > 30) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
+    });
+</script>
+
+<!-- РЕНДЕР КАНАЛОВ РСЯ FLOOR AD ДЛЯ СОЧИ -->
+<script>
+window.yaContextCb.push(() => {
+    Ya.Context.AdvManager.render({
+        "blockId": "R-A-19181219-6",
+        "type": "floorAd",
+        "platform": "touch"
+    })
+})
+</script>
+<script>
+window.yaContextCb.push(() => {
+    Ya.Context.AdvManager.render({
+        "blockId": "R-A-19181219-7",
+        "type": "floorAd",
+        "platform": "desktop"
+    })
+})
+</script>
+
+</body>
+</html>
