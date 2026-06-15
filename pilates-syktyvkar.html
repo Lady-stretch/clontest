@@ -186,7 +186,7 @@
         
         /* РЕЗУЛЬТАТЫ БЕНТО */
         .result-score-box { text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(135deg, var(--elem-bg), transparent); padding: 40px 20px; }
-        .score-number { font-size: 50px; font-weight: 800; line-height: 1.2; color: var(--accent-berry); font-family: var(--font-serif); }
+        .score-number { font-size: 40px; font-weight: 800; line-height: 1.2; color: var(--accent-berry); font-family: var(--font-serif); }
         .score-status { font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-top: 12px; }
 
         /* МАРКЕТИНГОВЫЕ КНОПКИ */
@@ -393,10 +393,10 @@
             <!-- Результат расчета -->
             <div class="bento-card result-score-box">
                 <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; color: var(--text-dim); margin-bottom: 10px;">Состояние вашего мышечного центра:</div>
-                <div id="calc-result-title" class="score-number" style="font-size: 24px; margin: 15px 0; color: var(--accent-berry);">Атрофия стабилизаторов</div>
+                <div id="calc-result-title" class="score-number">Выключен</div>
                 <div id="calc-status" class="score-status" style="color: var(--accent-gold);">Рекомендован: Пилатес 3D</div>
                 <p id="calc-text" style="font-size: 13px; opacity: 0.8; margin-top: 15px; line-height: 1.5; text-align: center;">
-                    Поверхностные мышцы перегружены, а глубокий кор полностью выключен из работы. Поясница находится под ударом. Нужен срочный запуск стабилизаторов.
+                    Расчет...
                 </p>
             </div>
 
@@ -533,7 +533,6 @@
                 </p>
             </div>
 
-            <!-- ИСПРАВЛЕНО: ЯРКАЯ ЗЕЛЕНАЯ ПЛАТФОРМА И ЗЕЛЕНАЯ КНОПКА ЗАПИСИ -->
             <div class="bento-card span-3" style="background: linear-gradient(135deg, rgba(76,175,80,0.12), transparent); border: 2px solid var(--accent-green);">
                 <span class="recipe-badge">Вдохновение от Ольги Мартыновой</span>
                 <h3 class="serif" style="font-size: 26px; margin-bottom: 15px; color: var(--text-main);">«Пилатес — это архитектура тела, созданная для долголетия...»</h3>
@@ -606,7 +605,7 @@
         calculatePilatesIndex();
     }
 
-    // МАТЕМАТИЧЕСКАЯ МОДЕЛЬ СТАБИЛЬНОСТИ КОРА И ПИЛАТЕСА
+    // ИСПРАВЛЕННАЯ, ИНТЕЛЛЕКТУАЛЬНАЯ МАТЕМАТИЧЕСКАЯ МОДЕЛЬ
     function calculatePilatesIndex() {
         const balance = document.querySelector('input[name="balance_status"]:checked').value;
         const abs = document.querySelector('input[name="abs_status"]:checked').value;
@@ -622,22 +621,36 @@
 
         let bodyText = "";
 
-        // Дерево решений подбора программы Пилатеса
-        if (abs === 'weak' && spine === 'block') {
-            titleEl.innerText = "Пилатес 3D + МФР спины";
-            statusEl.innerText = "Режим глубокого включения";
+        // Умная проверка: если сидение жесткое (7-8 часов), диагноз суровый, но радиокнопки ЖИВО влияют на итоговый вывод
+        if (sit >= 2) {
+            statusEl.innerText = "Индекс осанки: Под угрозой";
             statusEl.style.color = "var(--accent-berry)";
-            bodyText = "Мышцы центра полностью выключены, а позвоночник зажат жестким мышечным блоком. Начнем с раскатки триггеров на МФР и базовых 3D-упражнений пилатеса для мягкого пробуждения глубоких стабилизаторов.";
-        } else if (balance === 'low' || sit >= 2) {
-            titleEl.innerText = "Пилатес Осанка + Баланс";
-            statusEl.innerText = "Стабилизация таза";
-            statusEl.style.color = "var(--accent-gold)";
-            bodyText = "Многочасовое сидение перекосило нейтраль таза и выключило ягодицы. Фокус на упражнения для выравнивания оси тела, раскрытия грудного отдела и тренировку глубокого удерживающего баланса.";
+            
+            if (abs === 'weak' || spine === 'block') {
+                titleEl.innerText = "Критический спазм + МФР";
+                bodyText = "Из-за долгого сидения (" + sitLabels[sit] + ") ваш позвоночник заблокирован доской, а поперечная мышца полностью атрофирована. Живот выпирает рефлекторно. Срочно нужен Пилатес 3D в паре с МФР для разгрузки поясницы.";
+            } else {
+                titleEl.innerText = "Скрытая нестабильность кора";
+                bodyText = "Несмотря на хорошую природную гибкость, долгое сидение по " + sitLabels[sit] + " в день подтачивает диски. Ваши мышцы-стабилизаторы работают на износ. Ольга рекомендует Пилатес для фиксации оси таза.";
+            }
         } else {
-            titleEl.innerText = "Продвинутый Пилатес матов";
-            statusEl.innerText = "Максимальный мышечный контроль";
-            statusEl.style.color = "var(--accent-green)";
-            bodyText = "У вас хороший уровень базовой стабильности кора! Вы готовы к интенсивному пилатесу с использованием дополнительного оборудования (малые мячи, ленты) для создания точеного рельефа и кошачьей гибкости.";
+            // Если сидение умеренное, работает стандартное дерево подбора
+            if (abs === 'weak' && spine === 'block') {
+                titleEl.innerText = "Пилатес 3D + МФР спины";
+                statusEl.innerText = "Режим глубокого включения";
+                statusEl.style.color = "var(--accent-berry)";
+                bodyText = "Поверхностные мышцы перегружены, а глубокий кор выключен. Поясница под ударом. Начнем со спокойного пилатеса и раскатки на роллах МФР для безопасного пробуждения стабилизаторов.";
+            } else if (balance === 'low' || sit === 1) {
+                titleEl.innerText = "Пилатес Осанка + Баланс";
+                statusEl.innerText = "Стабилизация таза";
+                statusEl.style.color = "var(--accent-gold)";
+                bodyText = "Статичная работа перекосила нейтраль таза. Будем делать упражнения на выравнивание оси тела, раскрытие грудного отдела и тренировку глубокого удерживающего баланса.";
+            } else {
+                titleEl.innerText = "Продвинутый Пилатес матов";
+                statusEl.innerText = "Мышцы кора в тонусе";
+                statusEl.style.color = "var(--accent-green)";
+                bodyText = "Великолепный уровень суставного контроля и баланса! Вы готовы к интенсивному пилатесу с использованием оборудования (мячи, ленты) для создания точеного рельефа и кошачьей гибкости.";
+            }
         }
 
         textEl.innerText = bodyText;
