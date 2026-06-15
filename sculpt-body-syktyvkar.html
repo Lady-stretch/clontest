@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <script>
+        // По умолчанию для инфо-страниц ставим чистую светлую эко-тему, сохраняем выбор пользователя
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+
+    <script type="text/javascript">
+    // --- Yandex.Metrika counter ---
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=109130409', 'ym');
+    ym(109130409, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript>
+        <div>
+            <img src="https://mc.yandex.ru/watch/109130409" style="position:absolute; left:-9999px;" alt="" />
+        </div>
+    </noscript>
+
+    <script>
+        // Глобальная логика перехвата ботов для SEO-превью через Яндекс Функцию
+        window.addEventListener('DOMContentLoaded', () => {
+            const isBot = /YandexBot|YandexAccessibilityBot|YandexMobileBot|Googlebot/i.test(navigator.userAgent);
+            if (isBot) {
+                fetch('https://functions.yandexcloud.net/d4ecn5ag33dcdd2deivd?bot=true&url=' + encodeURIComponent(window.location.href))
+                .then(res => res.json())
+                .then(data => console.log("SEO Preview Matrix Synced"))
+                .catch(e => console.log("SEO preview pass"));
+            }
+        });
+    </script>
+    
+    <!-- Подключение рекламной системы Яндекса (РСЯ) -->
+    <script>window.yaContextCb=window.yaContextCb||[]</script>
+    <script src="https://yandex.ru/ads/system/context.js" async></script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- УЛЬТРА-ПРОФИ SEO ОПТИМИЗАЦИЯ ПОД СЫКТЫВКАР И РЕСПУБЛИКУ КОМИ -->
+    <title>Подкачка с растяжкой Сыктывкар | Рельефное тело и гибкость в студии РЕСУРС</title>
+    <meta name="description" content="Эффективная подкачка с растяжкой в Сыктывкаре. Формируем аппетитный рельеф мышц, убираем дряблость и обретаем гибкость за 50 минут. Авторская методика Ольги Мартыновой, студия РЕСУРС.">
+    <meta name="keywords" content="подкачка с растяжкой сыктывкар, подтянуть тело сыктывкар, как убрать дряблость мышц, фитнес для рельефа коми, тренировка ягодицы пресс сыктывкар, студия ресурс растяжка, скульптура тела фитнес, тренировки коммунистическая 77/2">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://resurs-stretch.ru/sculpt-body-syktyvkar.html">
+
+    <!-- OPEN GRAPH ДЛЯ СОЦСЕТЕЙ И МЕССЕНДЖЕРОВ -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Подкачка + Растяжка: Формируем точеное тело в Сыктывкаре">
+    <meta property="og:description" content="Сочетание силового тонуса и глубокого стретчинга для идеальных контуров без перекачивания. Запишитесь в студию РЕСУРС!">
+    <meta property="og:url" content="https://resurs-stretch.ru/sculpt-body-syktyvkar.html">
+    <meta property="og:image" content="https://resurs-stretch.ru/logo_header_final.png">
+    <meta property="og:site_name" content="РЕСУРС">
+    <meta property="og:locale" content="ru_RU">
+
+    <link rel="icon" type="image/png" href="logo_header_final.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <script src="https://reservi.ru/widget-fit1c.v2/js/config.js" data-fit-salon-id="02977247-3381-4559-b9ef-1cf88d2731a2"></script>
+    <script src="https://unpkg.com/imask"></script>
+
+    <style>
+        /* CSS ПЕРЕМЕННЫЕ */
+        :root {
+            --bg-deep: #F8F9F6; 
+            --glass-bg: rgba(255, 255, 255, 0.9); 
+            --glass-border: 1px solid rgba(43, 46, 42, 0.08); 
+            --accent-gold: #B38639; 
+            --accent-green: #4CAF50; 
+            --accent-berry: #C2185B; 
+            --text-main: #2B2E2A; 
+            --text-dim: rgba(43, 46, 42, 0.7);
+            --elem-bg: rgba(76, 175, 80, 0.06);
+            --elem-border: rgba(43, 46, 42, 0.1);
+            --nav-bg: rgba(248, 249, 246, 0.95);
+            --font-main: 'Manrope', sans-serif;
+            --font-serif: 'Cormorant Garamond', serif;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="dark"] {
+            --bg-deep: #080814; 
+            --glass-bg: rgba(255, 255, 255, 0.03); 
+            --glass-border: 1px solid rgba(255, 255, 255, 0.08); 
+            --accent-gold: #C5A059; 
+            --accent-green: #66BB6A;
+            --accent-berry: #E91E63;
+            --text-main: #F4F4F9;
+            --text-dim: rgba(244, 244, 249, 0.6);
+            --elem-bg: rgba(255, 255, 255, 0.04);
+            --elem-border: rgba(255, 255, 255, 0.15);
+            --nav-bg: rgba(8, 8, 20, 0.95);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
+        html { scroll-behavior: smooth; }
+        body { 
+            background: var(--bg-deep); 
+            color: var(--text-main);
+            font-family: var(--font-main); 
+            line-height: 1.6;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            transition: background-color 0.4s ease, color 0.4s ease;
+            -webkit-font-smoothing: antialiased;
+            padding-bottom: 60px;
+        }
+
+        h1, h2, h3, .serif { font-family: var(--font-serif); font-weight: 600; letter-spacing: 0.5px; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+
+        header {
+            position: fixed; top: 0; width: 100%; padding: 20px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 2000; background: transparent; transition: var(--transition);
+        }
+        header.scrolled { 
+            background: var(--glass-bg) !important; 
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            padding: 12px 5% !important; border-bottom: var(--glass-border);
+        }
+        .brand-name { font-family: var(--font-serif); font-size: 22px; letter-spacing: 8px; text-transform: uppercase; font-weight: 600; }
+        
+        #themeToggle {
+            padding: 0 15px; height: 35px; font-size: 10px; font-weight: 600; letter-spacing: 2px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 8px; border: 1px solid var(--elem-border); background: var(--elem-bg);
+            cursor: pointer; transition: var(--transition); color: var(--text-main); text-transform: uppercase;
+        }
+        #themeToggle:hover { border-color: var(--accent-gold); transform: translateY(-2px); }
+
+        .main-layout { max-width: 1200px; margin: 100px auto 60px; padding: 0 20px; }
+
+        .tabs-nav { display: flex; gap: 10px; margin-bottom: 30px; border-bottom: var(--glass-border); padding-bottom: 15px; overflow-x: auto; scrollbar-width: none; }
+        .tabs-nav::-webkit-scrollbar { display: none; }
+        .tab-btn {
+            padding: 12px 24px; border: 1px solid var(--elem-border); background: var(--glass-bg);
+            color: var(--text-dim); border-radius: 12px; cursor: pointer; font-size: 14px; font-weight: 500;
+            white-space: nowrap; transition: var(--transition); font-family: var(--font-main);
+        }
+        .tab-btn:hover { border-color: var(--accent-gold); color: var(--text-main); }
+        .tab-btn.active { background: var(--accent-green); color: #FFF; border-color: var(--accent-green); box-shadow: 0 8px 20px rgba(76,175,80,0.2); }
+
+        .tab-content { display: none; animation: fadeIn 0.5s ease; }
+        .tab-content.active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .bento-card { background: var(--glass-bg); border: var(--glass-border); border-radius: 24px; padding: 30px; position: relative; overflow: hidden; transition: var(--transition); }
+        .bento-card:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(0,0,0,0.03); }
+        
+        .span-2 { grid-column: span 2; }
+        .span-3 { grid-column: span 3; }
+
+        .calc-group { margin-bottom: 25px; }
+        .calc-label { font-size: 15px; font-weight: 600; margin-bottom: 12px; display: block; color: var(--text-main); line-height: 1.4; }
+        
+        .radio-box-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+        .radio-tile {
+            border: 1px solid var(--elem-border); background: var(--elem-bg); padding: 16px;
+            border-radius: 12px; cursor: pointer; display: flex; flex-direction: column; gap: 4px;
+            position: relative; transition: var(--transition);
+        }
+        .radio-tile input { position: absolute; top: 16px; right: 16px; accent-color: var(--accent-green); }
+        .radio-tile-title { font-size: 14px; font-weight: 700; color: var(--text-main); }
+        .radio-tile-desc { font-size: 12px; color: var(--text-dim); line-height: 1.4; }
+        .radio-tile.selected { border-color: var(--accent-green); background: rgba(76,175,80,0.08); }
+
+        .range-slider { width: 100%; accent-color: var(--accent-green); margin: 10px 0; height: 6px; border-radius: 3px; }
+        .range-val { font-size: 18px; font-weight: 700; color: var(--accent-gold); }
+        
+        .result-score-box { text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(135deg, var(--elem-bg), transparent); padding: 40px 20px; }
+        .score-number { font-size: 50px; font-weight: 800; line-height: 1.2; color: var(--accent-berry); font-family: var(--font-serif); }
+        .score-status { font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-top: 12px; }
+
+        .btn-marketing {
+            display: inline-flex; align-items: center; justify-content: center; width: 100%;
+            padding: 22px 30px; background: var(--accent-berry); color: #FFF; border: none;
+            border-radius: 16px; font-family: var(--font-main); font-size: 15px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: var(--transition);
+            box-shadow: 0 10px 25px rgba(194,24,91,0.25);
+        }
+        .btn-marketing:hover { transform: translateY(-2px); box-shadow: 0 15px 35px rgba(194,24,91,0.4); opacity: 0.95; }
+
+        .btn-green-rule {
+            background: var(--accent-green) !important;
+            box-shadow: 0 10px 25px rgba(76,175,80,0.3) !important;
+        }
+        .btn-green-rule:hover {
+            box-shadow: 0 15px 35px rgba(76,175,80,0.5) !important;
+        }
+
+        .btn-reset {
+            background: transparent; border: 1px dashed var(--text-dim); color: var(--text-dim);
+            padding: 10px 20px; border-radius: 10px; font-size: 12px; font-weight: 600;
+            cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: var(--transition);
+        }
+        .btn-reset:hover { border-color: var(--accent-berry); color: var(--accent-berry); }
+
+        .fact-num { font-size: 32px; font-family: var(--font-serif); color: var(--accent-gold) !important; font-weight: 700; margin-bottom: 5px; }
+        .fact-title { font-size: 18px; font-weight: 600; margin-bottom: 10px; line-height: 1.3; font-family: var(--font-serif); color: var(--text-main); }
+        .fact-desc { font-size: 14px; color: var(--text-dim); line-height: 1.6; }
+
+        .recipe-badge { 
+            background: var(--accent-green) !important; 
+            color: #FFF !important; 
+            padding: 6px 16px; 
+            border-radius: 30px; 
+            font-size: 11px; 
+            font-weight: 700; 
+            text-transform: uppercase; 
+            display: inline-block; 
+            margin-bottom: 15px; 
+            letter-spacing: 1px;
+        }
+
+        .share-section { margin-top: 50px; background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), rgba(179, 134, 57, 0.08)); border: 2px solid var(--accent-green); border-radius: 28px; padding: 40px 30px; text-align: center; box-shadow: 0 15px 40px rgba(76,175,80,0.1); }
+        .btn-share {
+            display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 18px 40px;
+            background: linear-gradient(135deg, var(--accent-green), #2E7D32); border: none; border-radius: 16px;
+            font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: var(--transition); color: #FFF;
+            box-shadow: 0 10px 25px rgba(76, 175, 80, 0.4); width: 100%; max-width: 400px;
+        }
+        .btn-share:hover { transform: scale(1.03) translateY(-2px); box-shadow: 0 15px 35px rgba(76, 175, 80, 0.6); }
+
+        footer { margin-top: 80px; padding: 60px 0 40px; border-top: var(--glass-border); background: transparent; width: 100%; }
+        .footer-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; text-align: center; }
+        .footer-text-main { font-size: 13px; font-weight: 500; color: var(--text-main); margin-bottom: 8px; }
+        .footer-text-sub { font-size: 11px; line-height: 1.6; color: var(--text-dim); opacity: 0.85; max-width: 900px; margin: 0 auto; }
+
+        @media (max-width: 968px) {
+            .bento-grid { grid-template-columns: 1fr; }
+            .span-2, .span-3 { grid-column: span 1; }
+            .main-layout { margin-top: 90px; }
+        }
+    </style>
+</head>
+<body>
+
+<header id="header">
+    <div class="brand-name">РЕСУРС</div>
+    <div>
+        <button id="themeToggle" onclick="toggleTheme()">ТЕНЬ</button>
+    </div>
+</header>
+
+<main class="main-layout">
+    
+    <section style="text-align: center; max-width: 800px; margin: 0 auto 40px;">
+        <h1 style="font-size: clamp(28px, 4vw, 46px); line-height: 1.2; margin-bottom: 15px;">
+            Подкачка и тонус: <span style="color: var(--accent-gold); font-style: italic;">Формируем рельеф тела</span>
+        </h1>
+        <p style="font-size: 15px; color: var(--text-dim); line-height: 1.7;">
+            Мечтаете о подтянутых мышцах, но боитесь перекачаться? Секрет эстетичного тела в Сыктывкаре — это грамотное сочетание силовой работы и качественного стретчинга. Узнайте свой потенциал к быстрому сжиганию лишних объемов и моделированию силуэта.
+        </p>
+    </section>
+
+    <nav class="tabs-nav" aria-label="Разделы страницы">
+        <button class="tab-btn active" onclick="switchTab(event, 'tab-calc')">📊 Тест-анализ метаболизма</button>
+        <button class="tab-btn" onclick="switchTab(event, 'tab-facts')">🔬 10 фактов о рельефе и тонусе</button>
+        <button class="tab-btn" onclick="switchTab(event, 'tab-recipes')">🌿 4 правила моделирования тела</button>
+    </nav>
+
+    <!-- ТАБ 1: КАЛЬКУЛЯТОР-АНАЛИЗАТОР -->
+    <div id="tab-calc" class="tab-content active">
+        <div class="bento-grid">
+            
+            <div class="bento-card span-2">
+                <h2 class="serif" style="font-size: 24px; margin-bottom: 25px; color: var(--text-main);">Скрининг состояния мышечного тонуса</h2>
+                
+                <div class="calc-group">
+                    <label class="calc-label">1. Как часто вы ощущаете мышечную слабость или быструю усталость при обычной активности?</label>
+                    <div class="radio-box-group">
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="muscle_tonus" value="3" checked>
+                            <span class="radio-tile-title">Постоянная слабость</span>
+                            <span class="radio-tile-desc">Даже простые дела вызывают желание присесть.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="muscle_tonus" value="2">
+                            <span class="radio-tile-title">Устаю к вечеру</span>
+                            <span class="radio-tile-desc">Днем чувствую себя нормально, но к вечеру ноги "гудят".</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="muscle_tonus" value="1">
+                            <span class="radio-tile-title">Энергия бьет ключом</span>
+                            <span class="radio-tile-desc">Могу заниматься делами весь день и чувствую легкость.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="calc-group">
+                    <label class="calc-label">2. Какова ваша главная цель по изменению фигуры?</label>
+                    <div class="radio-box-group">
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="body_goal" value="tight" checked>
+                            <span class="radio-tile-title">Убрать дряблость</span>
+                            <span class="radio-tile-desc">Хочу вернуть упругость коже и мышцам, сделать тело плотнее.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="body_goal" value="volume">
+                            <span class="radio-tile-title">Уменьшить объёмы</span>
+                            <span class="radio-tile-desc">Лишние сантиметры в талии и на бедрах, хочу стройности.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="body_goal" value="sculpt">
+                            <span class="radio-tile-title">Создать рельеф</span>
+                            <span class="radio-tile-desc">Хочу видеть красивые очертания мышц, ягодиц и пресса.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="calc-group">
+                    <label class="calc-label">3. Какое количество белка (мясо, рыба, яйца, творог) вы съедаете в день?</label>
+                    <div class="radio-box-group">
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="protein_level" value="1" checked>
+                            <span class="radio-tile-title">Почти не ем белок</span>
+                            <span class="radio-tile-desc">В рационе в основном углеводы, мучное, сладкое.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="protein_level" value="2">
+                            <span class="radio-tile-title">Ем иногда</span>
+                            <span class="radio-tile-desc">Один раз в день, не слежу за нормой.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="protein_level" value="3">
+                            <span class="radio-tile-title">Слежу за питанием</span>
+                            <span class="radio-tile-desc">Белковый продукт есть в каждом основном приеме пищи.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="calc-group">
+                    <label class="calc-label">4. Оцените ваш средний уровень подвижности за день:</label>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                        <span style="font-size: 13px; color: var(--text-dim);">Уровень активности:</span>
+                        <span id="range-act-val" class="range-val" style="color: var(--accent-gold);">Низкий</span>
+                    </div>
+                    <input type="range" id="activity_slider" class="range-slider" min="0" max="2" value="0" step="1" oninput="calculateSculptIndex()">
+                </div>
+
+                <div style="margin-top: 30px; display: flex; justify-content: flex-end;">
+                    <button class="btn-reset" onclick="resetCalculator()">Сбросить параметры теста</button>
+                </div>
+            </div>
+
+            <div class="bento-card result-score-box">
+                <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; color: var(--text-dim); margin-bottom: 10px;">Ваш индекс метаболического отклика:</div>
+                <div id="calc-result-title" class="score-number">--</div>
+                <div id="calc-status" class="score-status" style="color: var(--accent-berry);">Расчет...</div>
+                <p id="calc-text" style="font-size: 13px; opacity: 0.8; margin-top: 15px; line-height: 1.5; text-align: center;">
+                    Пожалуйста, ответьте на вопросы теста слева.
+                </p>
+            </div>
+
+            <div class="bento-card span-3" style="border-left: 4px solid var(--accent-gold);">
+                <div style="display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: start;">
+                    <div>
+                        <h3 class="serif" style="font-size: 22px; margin-bottom: 10px;">Почему силовая подкачка без растяжки — путь к дряблости</h3>
+                        <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                            Многие совершают ошибку, концентрируясь только на нагрузке. Но если мышечные волокна находятся в постоянном спазме из-за отсутствия стретчинга, их эластичность падает, а капиллярная сеть (доставляющая кислород) сжимается. В итоге мышца становится жесткой, но не функциональной, а кровоснабжение зоны ухудшается — именно так возникают «жировые ловушки» и целлюлит. Наш метод «Подкачка + Растяжка» решает эту проблему: мы даем мышце качественный силовой импульс (запускаем обмен веществ), а затем глубоко вытягиваем её. Это растяжение увеличивает приток крови, делает мышцы длинными и упругими, а контуры тела — изящными и рельефными, как у балерин.
+                        </p>
+                    </div>
+                    <div style="background: var(--elem-bg); padding: 15px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent-gold)" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bento-card span-3" style="background: var(--elem-bg); text-align: center; padding: 40px 30px;">
+                <span class="recipe-badge" style="background: var(--accent-gold);">Тест-драйв в Сыктывкаре</span>
+                <h3 class="serif" style="font-size: 26px; margin-bottom: 15px;">Создайте тело своей мечты в бережном ритме студии «РЕСУРС»</h3>
+                <p style="font-size: 14px; max-width: 600px; margin: 0 auto 25px; color: var(--text-dim);">
+                    Не нужно изнурять себя часами. 50 минут концентрированной работы с рельефом и гибкостью — этого достаточно, чтобы уже через месяц заметить первые кубики на прессе и красивый изгиб бедра.
+                </p>
+                <div style="max-width: 450px; margin: 0 auto;">
+                    <a href="index.html?page=booking" class="btn-marketing">Записаться на тест-драйв тренировок</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="tab-facts" class="tab-content">
+        <div class="bento-grid">
+            <div class="bento-card"><div class="fact-num">01</div><h3 class="fact-title">Метаболический эффект</h3><p class="fact-desc">Правильное сочетание нагрузки и стретчинга повышает скорость основного обмена веществ на 15% на следующие сутки после тренировки.</p></div>
+            <div class="bento-card"><div class="fact-num">02</div><h3 class="fact-title">Коллагеновый синтез</h3><p class="fact-desc">Растяжка стимулирует фибробласты (клетки кожи), вырабатывающие коллаген, что делает кожу упругой и эластичной.</p></div>
+            <div class="bento-card"><div class="fact-num">03</div><h3 class="fact-title">Лимфодренаж</h3><p class="fact-desc">Активные сокращения мышц при подкачке работают как помпа, выбрасывая токсины из тканей через лимфатическую систему.</p></div>
+            <div class="bento-card"><div class="fact-num">04</div><h3 class="fact-title">Миофасциальное освобождение</h3><p class="fact-desc">Стретчинг после нагрузки расслабляет фасции, предотвращая их склеивание, что является ключом к избавлению от целлюлита.</p></div>
+            <div class="bento-card"><div class="fact-num">05</div><h3 class="fact-title">Стабилизация гормонального фона</h3><p class="fact-desc">Дозированная интенсивность поддерживает уровень кортизола в норме, помогая худеть, а не накапливать «стрессовый» жир.</p></div>
+            <div class="bento-card"><div class="fact-num">06</div><h3 class="fact-title">Профилактика остеопороза</h3><p class="fact-desc">Силовой тонус заставляет кости укрепляться, увеличивая их плотность и предотвращая возрастную хрупкость.</p></div>
+            <div class="bento-card"><div class="fact-num">07</div><h3 class="fact-title">Эффективность сжигания жира</h3><p class="fact-desc">Сочетание тонуса и растяжки позволяет тратить энергию не только во время, но и после тренировки за счет восстановления мышечных волокон.</p></div>
+            <div class="bento-card"><div class="fact-num">08</div><h3 class="fact-title">Улучшение осанки</h3><p class="fact-desc">Сильные мышцы пресса и спины в комплексе с гибкостью удерживают позвоночник в идеальном, ровном положении.</p></div>
+            <div class="bento-card"><div class="fact-num">09</div><h3 class="fact-title">Снятие отечности ног</h3><p class="fact-desc">Работа с мышцами голени и бедра улучшает возврат крови от нижних конечностей к сердцу, убирая тяжесть и отеки.</p></div>
+            <div class="bento-card"><div class="fact-num">10</div><h3 class="fact-title">Психологический тонус</h3><p class="fact-desc">Работа с телом и мышцами стимулирует выработку эндорфинов — гормонов счастья, что важно для борьбы с осенне-зимней хандрой.</p></div>
+        </div>
+    </div>
+
+    <div id="tab-recipes" class="tab-content">
+        <div class="bento-grid">
+            <div class="bento-card span-2">
+                <span class="recipe-badge">Правило 01</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">Не забывайте про белок в рационе</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">Мышцы не могут строиться из воздуха. Белок — основной кирпич для рельефа. Старайтесь включать мясо, рыбу, яйца или бобовые в каждый приём пищи.</p>
+            </div>
+            <div class="bento-card">
+                <span class="recipe-badge">Правило 02</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">Водный тайминг</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">Мышцы состоят из воды на 75%. Обезвоживание приводит к потере тонуса. Пейте понемногу, но часто, в течение всего дня.</p>
+            </div>
+            <div class="bento-card">
+                <span class="recipe-badge">Правило 03</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">Слушайте мышцы, а не боль</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">В подкачке должно быть «приятное жжение» в целевых мышцах, а не острая боль в суставах. Всегда корректируйте технику при появлении дискомфорта.</p>
+            </div>
+            <div class="bento-card span-2">
+                <span class="recipe-badge">Правило 04</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">Растяжка после тренировки обязательна</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">Это правило №1 в нашей студии. Растяжка помогает мышцам вернуться в нормальную длину, снижает риск травм и убирает послетренировочную скованность, делая контуры тела более изящными.</p>
+            </div>
+            <div class="bento-card span-3" style="background: linear-gradient(135deg, rgba(76,175,80,0.12), transparent); border: 2px solid var(--accent-green);">
+                <span class="recipe-badge">Послание от Ольги Мартыновой</span>
+                <h3 class="serif" style="font-size: 26px; margin-bottom: 15px; color: var(--text-main);">«Сила и грация — это два крыла вашего тела...»</h3>
+                <p style="font-size: 15px; line-height: 1.7; color: var(--text-main); margin-bottom: 25px;">«Девочки, я хочу, чтобы вы поняли главное: не нужно выбирать между рельефом и гибкостью. Мы можем быть сильными и при этом невероятно женственными! Наша программа — это безопасная подкачка, которая уберет лишние сантиметры, и растяжка, которая придаст телу ту самую "балетную" стать. Вы забудете об отеках, почувствуете, как каждый шаг дается легче, а отражение в зеркале будет только радовать. Это не про насилие, это про ваш лучший ресурс. Жду вас на практике!»</p>
+                <div style="max-width: 450px;"><a href="index.html?page=booking" class="btn-marketing btn-green-rule">Записаться на тест-драйв тренировок</a></div>
+            </div>
+        </div>
+    </div>
+
+    <section class="share-section">
+        <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">🔥 Отправить тест-анализ рельефа подругам!</h3>
+        <p style="font-size: 14px; color: var(--text-dim); margin-bottom: 25px;">Поделитесь с подругами, которые хотят подтянутое тело без тяжелых штанг.</p>
+        <button class="btn-share" onclick="sharePage()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            <span id="share-btn-text">Отправить подругам</span>
+        </button>
+    </section>
+
+</main>
+
+<footer>
+    <div class="footer-container">
+        <p class="footer-text-main">© 2026 РЕСУРС | Студия фитнеса, растяжки и движения. Сыктывкар, ул. Коммунистическая 77/2.</p>
+        <p class="footer-text-sub">Интерактивный расчет является скрининговым тестом. При наличии противопоказаний к силовым нагрузкам (тяжелые заболевания сердца, грыжи в стадии обострения) перед тренировкой обязательна консультация врача.</p>
+    </div>
+</footer>
+
+<script>
+    function toggleTheme() {
+        const html = document.documentElement;
+        const currentTheme = html.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        document.getElementById('themeToggle').innerText = newTheme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        const theme = document.documentElement.getAttribute('data-theme');
+        document.getElementById('themeToggle').innerText = theme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
+        restoreCalculatorData();
+        calculateSculptIndex();
+    });
+
+    function switchTab(event, tabId) {
+        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        document.getElementById(tabId).classList.add('active');
+        event.currentTarget.classList.add('active');
+        window.scrollTo({ top: document.querySelector('.tabs-nav').offsetTop - 80, behavior: 'smooth' });
+    }
+
+    function selectTile(element) {
+        const name = element.querySelector('input').name;
+        document.querySelectorAll(`input[name="${name}"]`).forEach(input => {
+            input.parentElement.classList.remove('selected');
+        });
+        element.classList.add('selected');
+        calculateSculptIndex();
+    }
+
+    function calculateSculptIndex() {
+        const tonus = parseInt(document.querySelector('input[name="muscle_tonus"]:checked').value);
+        const goal = document.querySelector('input[name="body_goal"]:checked').value;
+        const protein = parseInt(document.querySelector('input[name="protein_level"]:checked').value);
+        const activity = parseInt(document.getElementById('activity_slider').value);
+
+        const actLabels = ['Низкий', 'Средний', 'Высокий'];
+        document.getElementById('range-act-val').innerText = actLabels[activity];
+
+        let score = (tonus * 20) + (protein * 15) + (activity * 15);
+        if (goal === 'sculpt') score += 20;
+        else if (goal === 'tight') score += 10;
+
+        let index = Math.round(score);
+        if (index > 95) index = 95;
+        if (index < 20) index = 20;
+
+        const titleEl = document.getElementById('calc-result-title');
+        const statusEl = document.getElementById('calc-status');
+        const textEl = document.getElementById('calc-text');
+
+        titleEl.innerText = index + "% Готовность";
+        
+        if (index >= 70) {
+            statusEl.innerText = "Интенсивный метаболизм";
+            statusEl.style.color = "var(--accent-green)";
+            textEl.innerText = "Ваш организм готов к серьезной работе над рельефом! Интенсивные круговые тренировки и силовая подкачка дадут максимально быстрый результат.";
+        } else if (index >= 40) {
+            statusEl.innerText = "Режим моделирования";
+            statusEl.style.color = "var(--accent-gold)";
+            textEl.innerText = "Нужен баланс. Мы начнем с умеренной подкачки и постепенного увеличения интенсивности, чтобы укрепить мышцы, не перегружая нервную систему.";
+        } else {
+            statusEl.innerText = "Мягкое включение";
+            statusEl.style.color = "var(--accent-berry)";
+            textEl.innerText = "Мышцам требуется пробуждение. Начнем с базовой подкачки в медленном темпе, чтобы вернуть телу естественный мышечный корсет без перенапряжения.";
+        }
+
+        const calcData = { tonus, goal, protein, activity };
+        localStorage.setItem('sculpt_calc_data', JSON.stringify(calcData));
+    }
+
+    function resetCalculator() {
+        document.querySelectorAll('input[name="muscle_tonus"]')[0].checked = true;
+        document.querySelectorAll('input[name="body_goal"]')[0].checked = true;
+        document.querySelectorAll('input[name="protein_level"]')[0].checked = true;
+        document.getElementById('activity_slider').value = 0;
+
+        document.querySelectorAll('.radio-tile').forEach(tile => tile.classList.remove('selected'));
+        document.querySelectorAll('input[name="muscle_tonus"]')[0].parentElement.classList.add('selected');
+        document.querySelectorAll('input[name="body_goal"]')[0].parentElement.classList.add('selected');
+        document.querySelectorAll('input[name="protein_level"]')[0].parentElement.classList.add('selected');
+
+        localStorage.removeItem('sculpt_calc_data');
+        calculateSculptIndex();
+    }
+
+    function restoreCalculatorData() {
+        const saved = localStorage.getItem('sculpt_calc_data');
+        if (saved) {
+            try {
+                const data = JSON.parse(saved);
+                document.querySelectorAll(`input[name="muscle_tonus"]`).forEach(i => { if(parseInt(i.value) === data.tonus) i.checked = true; });
+                document.querySelectorAll(`input[name="body_goal"]`).forEach(i => { if(i.value === data.goal) i.checked = true; });
+                document.querySelectorAll(`input[name="protein_level"]`).forEach(i => { if(parseInt(i.value) === data.protein) i.checked = true; });
+                document.getElementById('activity_slider').value = data.activity;
+            } catch (e) { console.log("Data restore error"); }
+        }
+        document.querySelectorAll('.radio-tile').forEach(tile => { if (tile.querySelector('input').checked) tile.classList.add('selected'); });
+    }
+
+    async function sharePage() {
+        const shareData = {
+            title: 'Рассчитай свой индекс рельефа и тонуса!',
+            text: 'Я проверила готовность своего тела к подкачке в студии РЕСУРС. Проверь и ты свой метаболический отклик!',
+            url: window.location.href
+        };
+        const btnText = document.getElementById('share-btn-text');
+        if (navigator.share) { try { await navigator.share(shareData); } catch (err) { console.log('Share error'); } } 
+        else {
+            try {
+                await navigator.clipboard.writeText(window.location.href);
+                btnText.innerText = 'Ссылка скопирована!';
+                setTimeout(() => { btnText.innerText = 'Отправить подругам'; }, 3000);
+            } catch (err) { alert('Скопируйте ссылку вручную.'); }
+        }
+    }
+
+    window.addEventListener('scroll', () => {
+        const header = document.getElementById('header');
+        if (window.scrollY > 30) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
+    });
+</script>
+
+<script>
+window.yaContextCb.push(() => {
+    Ya.Context.AdvManager.render({
+        "blockId": "R-A-19181219-6",
+        "type": "floorAd",
+        "platform": "touch"
+    })
+})
+</script>
+<script>
+window.yaContextCb.push(() => {
+    Ya.Context.AdvManager.render({
+        "blockId": "R-A-19181219-7",
+        "type": "floorAd",
+        "platform": "desktop"
+    })
+})
+</script>
+
+</body>
+</html>
