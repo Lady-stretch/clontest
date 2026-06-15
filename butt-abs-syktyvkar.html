@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <script>
+        // По умолчанию для инфо-страниц ставим чистую светлую эко-тему, сохраняем выбор пользователя
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+
+    <script type="text/javascript">
+    // --- Yandex.Metrika counter ---
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=109130409', 'ym');
+    ym(109130409, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript>
+        <div>
+            <img src="https://mc.yandex.ru/watch/109130409" style="position:absolute; left:-9999px;" alt="" />
+        </div>
+    </noscript>
+
+    <script>
+        // Глобальная логика перехвата ботов для SEO-превью через Яндекс Функцию
+        window.addEventListener('DOMContentLoaded', () => {
+            const isBot = /YandexBot|YandexAccessibilityBot|YandexMobileBot|Googlebot/i.test(navigator.userAgent);
+            if (isBot) {
+                fetch('https://functions.yandexcloud.net/d4ecn5ag33dcdd2deivd?bot=true&url=' + encodeURIComponent(window.location.href))
+                .then(res => res.json())
+                .then(data => console.log("SEO Preview Matrix Synced"))
+                .catch(e => console.log("SEO preview pass"));
+            }
+        });
+    </script>
+    
+    <!-- Подключение рекламной системы Яндекса (РСЯ) -->
+    <script>window.yaContextCb=window.yaContextCb||[]</script>
+    <script src="https://yandex.ru/ads/system/context.js" async></script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- ГЕО-ЗАВИСИМАЯ СЕО ОПТИМИЗАЦИЯ ПОД СЫКТЫВКАР И РЕСПУБЛИКУ КОМИ -->
+    <title>Ягодицы + Пресс Сыктывкар | Эффективная прокачка и рельеф на Коммунистической</title>
+    <meta name="description" content="Прицельная тренировка «Ягодицы + Пресс» в Сыктывкаре. Формируем красивый рельеф живота, упругие округлые формы и тонкую талию за 50 минут. Анатомически безопасный фитнес от Ольги Мартыновой, студия РЕСУРС.">
+    <meta name="keywords" content="ягодицы пресс сыктывкар, подкачка ягодиц коми, плоский живот убрать бока, фитнес для пресса сыктывкар, как накачать ягодицы без боли в пояснице, студия ресурс сыктывкар, детокс стройность коми, тренировка на коммунистической">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://resurs-stretch.ru/butt-abs-syktyvkar.html">
+
+    <!-- OPEN GRAPH ДЛЯ СОЦСЕТЕЙ И МЕССЕНДЖЕРОВ -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Интенсив Ягодицы + Пресс в Сыктывкаре — Студия РЕСУРС">
+    <meta property="og:description" content="Точеное моделирование самых сочных зон фигуры за 50 минут. Безопасные упражнения для плоского пресса и упругих форм без вреда для суставов.">
+    <meta property="og:url" content="https://resurs-stretch.ru/butt-abs-syktyvkar.html">
+    <meta property="og:image" content="https://resurs-stretch.ru/logo_header_final.png">
+    <meta property="og:site_name" content="РЕСУРС">
+    <meta property="og:locale" content="ru_RU">
+
+    <link rel="icon" type="image/png" href="logo_header_final.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <script src="https://reservi.ru/widget-fit1c.v2/js/config.js" data-fit-salon-id="02977247-3381-4559-b9ef-1cf88d2731a2"></script>
+    <script src="https://unpkg.com/imask"></script>
+
+    <style>
+        /* CSS ПЕРЕМЕННЫЕ ДЛЯ СВЕТЛОЙ ЭКО-ТЕМЫ */
+        :root {
+            --bg-deep: #F8F9F6; 
+            --glass-bg: rgba(255, 255, 255, 0.9); 
+            --glass-border: 1px solid rgba(43, 46, 42, 0.08); 
+            --accent-gold: #B38639; 
+            --accent-green: #4CAF50; 
+            --accent-berry: #C2185B; 
+            --text-main: #2B2E2A; 
+            --text-dim: rgba(43, 46, 42, 0.7);
+            --elem-bg: rgba(76, 175, 80, 0.06);
+            --elem-border: rgba(43, 46, 42, 0.1);
+            --nav-bg: rgba(248, 249, 246, 0.95);
+            --font-main: 'Manrope', sans-serif;
+            --font-serif: 'Cormorant Garamond', serif;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ТЕМНАЯ ТЕМА */
+        [data-theme="dark"] {
+            --bg-deep: #080814; 
+            --glass-bg: rgba(255, 255, 255, 0.03); 
+            --glass-border: 1px solid rgba(255, 255, 255, 0.08); 
+            --accent-gold: #C5A059; 
+            --accent-green: #66BB6A;
+            --accent-berry: #E91E63;
+            --text-main: #F4F4F9;
+            --text-dim: rgba(244, 244, 249, 0.6);
+            --elem-bg: rgba(255, 255, 255, 0.04);
+            --elem-border: rgba(255, 255, 255, 0.15);
+            --nav-bg: rgba(8, 8, 20, 0.95);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
+        html { scroll-behavior: smooth; }
+        body { 
+            background: var(--bg-deep); 
+            color: var(--text-main);
+            font-family: var(--font-main); 
+            line-height: 1.6;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            transition: background-color 0.4s ease, color 0.4s ease;
+            -webkit-font-smoothing: antialiased;
+            padding-bottom: 60px;
+        }
+
+        h1, h2, h3, .serif { font-family: var(--font-serif); font-weight: 600; letter-spacing: 0.5px; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+
+        /* HEADER */
+        header {
+            position: fixed; top: 0; width: 100%; padding: 20px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 2000; background: transparent; transition: var(--transition);
+        }
+        header.scrolled { 
+            background: var(--glass-bg) !important; 
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            padding: 12px 5% !important; border-bottom: var(--glass-border);
+        }
+        .brand-name { font-family: var(--font-serif); font-size: 22px; letter-spacing: 8px; text-transform: uppercase; font-weight: 600; }
+        
+        #themeToggle {
+            padding: 0 15px; height: 35px; font-size: 10px; font-weight: 600; letter-spacing: 2px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 8px; border: 1px solid var(--elem-border); background: var(--elem-bg);
+            cursor: pointer; transition: var(--transition); color: var(--text-main); text-transform: uppercase;
+        }
+        #themeToggle:hover { border-color: var(--accent-gold); transform: translateY(-2px); }
+
+        /* MAIN CONTAINER */
+        .main-layout { max-width: 1200px; margin: 100px auto 60px; padding: 0 20px; }
+
+        /* ТАБЫ */
+        .tabs-nav { display: flex; gap: 10px; margin-bottom: 30px; border-bottom: var(--glass-border); padding-bottom: 15px; overflow-x: auto; scrollbar-width: none; }
+        .tabs-nav::-webkit-scrollbar { display: none; }
+        .tab-btn {
+            padding: 12px 24px; border: 1px solid var(--elem-border); background: var(--glass-bg);
+            color: var(--text-dim); border-radius: 12px; cursor: pointer; font-size: 14px; font-weight: 500;
+            white-space: nowrap; transition: var(--transition); font-family: var(--font-main);
+        }
+        .tab-btn:hover { border-color: var(--accent-gold); color: var(--text-main); }
+        .tab-btn.active { background: var(--accent-green); color: #FFF; border-color: var(--accent-green); box-shadow: 0 8px 20px rgba(76,175,80,0.2); }
+
+        .tab-content { display: none; animation: fadeIn 0.5s ease; }
+        .tab-content.active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* BENTO GRID */
+        .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .bento-card { background: var(--glass-bg); border: var(--glass-border); border-radius: 24px; padding: 30px; position: relative; overflow: hidden; transition: var(--transition); }
+        .bento-card:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(0,0,0,0.03); }
+        
+        .span-2 { grid-column: span 2; }
+        .span-3 { grid-column: span 3; }
+
+        /* ИНПУТЫ И КАЛЬКУЛЯТОР */
+        .calc-group { margin-bottom: 25px; }
+        .calc-label { font-size: 15px; font-weight: 600; margin-bottom: 12px; display: block; color: var(--text-main); line-height: 1.4; }
+        
+        .radio-box-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+        .radio-tile {
+            border: 1px solid var(--elem-border); background: var(--elem-bg); padding: 16px;
+            border-radius: 12px; cursor: pointer; display: flex; flex-direction: column; gap: 4px;
+            position: relative; transition: var(--transition);
+        }
+        .radio-tile input { position: absolute; top: 16px; right: 16px; accent-color: var(--accent-green); }
+        .radio-tile-title { font-size: 14px; font-weight: 700; color: var(--text-main); }
+        .radio-tile-desc { font-size: 12px; color: var(--text-dim); line-height: 1.4; }
+        .radio-tile.selected { border-color: var(--accent-green); background: rgba(76,175,80,0.08); }
+
+        .range-slider { width: 100%; accent-color: var(--accent-green); margin: 10px 0; height: 6px; border-radius: 3px; }
+        .range-val { font-size: 18px; font-weight: 700; color: var(--accent-gold); }
+        
+        /* РЕЗУЛЬТАТЫ БЕНТО */
+        .result-score-box { text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(135deg, var(--elem-bg), transparent); padding: 40px 20px; }
+        .score-number { font-size: 44px; font-weight: 800; line-height: 1.2; color: var(--accent-berry); font-family: var(--font-serif); }
+        .score-status { font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-top: 12px; }
+
+        /* МАРКЕТИНГОВЫЕ КНОПКИ */
+        .btn-marketing {
+            display: inline-flex; align-items: center; justify-content: center; width: 100%;
+            padding: 22px 30px; background: var(--accent-berry); color: #FFF; border: none;
+            border-radius: 16px; font-family: var(--font-main); font-size: 15px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: var(--transition);
+            box-shadow: 0 10px 25px rgba(194,24,91,0.25);
+        }
+        .btn-marketing:hover { transform: translateY(-2px); box-shadow: 0 15px 35px rgba(194,24,91,0.4); opacity: 0.95; }
+
+        /* ЭТАЛОННАЯ ЗЕЛЕНАЯ КНОПКА ДЛЯ ТАБА ПРАВИЛ */
+        .btn-marketing.btn-green-rule {
+            background: var(--accent-green) !important;
+            box-shadow: 0 10px 25px rgba(76,175,80,0.3) !important;
+        }
+        .btn-marketing.btn-green-rule:hover {
+            box-shadow: 0 15px 35px rgba(76,175,80,0.5) !important;
+        }
+
+        .btn-reset {
+            background: transparent; border: 1px dashed var(--text-dim); color: var(--text-dim);
+            padding: 10px 20px; border-radius: 10px; font-size: 12px; font-weight: 600;
+            cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: var(--transition);
+        }
+        .btn-reset:hover { border-color: var(--accent-berry); color: var(--accent-berry); }
+
+        /* ЭТАЛОННАЯ ЗОЛОТИСТАЯ НУМЕРАЦИЯ 10 СОВЕТОВ/ФАКТОВ */
+        .fact-num { font-size: 32px; font-family: var(--font-serif); color: var(--accent-gold) !important; font-weight: 700; margin-bottom: 5px; }
+        .fact-title { font-size: 18px; font-weight: 600; margin-bottom: 10px; line-height: 1.3; font-family: var(--font-serif); color: var(--text-main); }
+        .fact-desc { font-size: 14px; color: var(--text-dim); line-height: 1.6; }
+
+        /* ЭТАЛОННЫЕ ЗЕЛЕНЫЕ СКРУГЛЕННЫЕ ПЛАШКИ ПРАВИЛ */
+        .recipe-badge { 
+            background: var(--accent-green) !important; 
+            color: #FFF !important; 
+            padding: 6px 16px; 
+            border-radius: 30px; 
+            font-size: 11px; 
+            font-weight: 700; 
+            text-transform: uppercase; 
+            display: inline-block; 
+            margin-bottom: 15px; 
+            letter-spacing: 1px;
+        }
+
+        /* УЛЬТРА-ЯРКАЯ КНОПКА ШЕРИНГА */
+        .share-section { margin-top: 50px; background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), rgba(179, 134, 57, 0.08)); border: 2px solid var(--accent-green); border-radius: 28px; padding: 40px 30px; text-align: center; box-shadow: 0 15px 40px rgba(76,175,80,0.1); }
+        .btn-share {
+            display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 18px 40px;
+            background: linear-gradient(135deg, var(--accent-green), #2E7D32); border: none; border-radius: 16px;
+            font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: var(--transition); color: #FFF;
+            box-shadow: 0 10px 25px rgba(76, 175, 80, 0.4); width: 100%; max-width: 400px;
+        }
+        .btn-share:hover { transform: scale(1.03) translateY(-2px); box-shadow: 0 15px 35px rgba(76, 175, 80, 0.6); }
+
+        /* ЦЕНТРИРОВАННЫЙ ПОДВАЛ ДЛЯ БОЛЬШИХ МОНИТОРОВ */
+        footer { 
+            margin-top: 80px; 
+            padding: 60px 0 40px; 
+            border-top: var(--glass-border); 
+            background: transparent;
+            width: 100%;
+        }
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+        .footer-text-main {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+        .footer-text-sub {
+            font-size: 11px;
+            line-height: 1.6;
+            color: var(--text-dim);
+            opacity: 0.85;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 968px) {
+            .bento-grid { grid-template-columns: 1fr; }
+            .span-2, .span-3 { grid-column: span 1; }
+            .main-layout { margin-top: 90px; }
+        }
+    </style>
+</head>
+<body>
+
+<header id="header">
+    <div class="brand-name">РЕСУРС</div>
+    <div>
+        <button id="themeToggle" onclick="toggleTheme()">ТЕНЬ</button>
+    </div>
+</header>
+
+<main class="main-layout">
+    
+    <section style="text-align: center; max-width: 800px; margin: 0 auto 40px;">
+        <h1 style="font-size: clamp(28px, 4vw, 46px); line-height: 1.2; margin-bottom: 15px;">
+            Интерактивный тест: <span style="color: var(--accent-gold); font-style: italic;">Ягодицы + Пресс</span>
+        </h1>
+        <p style="font-size: 15px; color: var(--text-dim); line-height: 1.7;">
+            Прицельная проработка целевых зон фигуры требует строгого анатомического контроля. Прямые скручивания на полу или бездумные тяжелые приседы часто перегружают поясницу и ломают колени, оставляя ягодицы плоскими. Пройдите профессиональный аудит мышечной координации, чтобы подобрать идеальный режим нагрузки.
+        </p>
+    </section>
+
+    <nav class="tabs-nav" aria-label="Разделы страницы">
+        <button class="tab-btn active" onclick="switchTab(event, 'tab-calc')">📊 Тест-анализ целевых мышечных зон</button>
+        <button class="tab-btn" onclick="switchTab(event, 'tab-facts')">🔬 10 фактов об умной коррекции фигуры</button>
+        <button class="tab-btn" onclick="switchTab(event, 'tab-recipes')">🌿 4 золотых правила от Ольги Мартыновой</button>
+    </nav>
+
+    <!-- ТАБ 1: ИНТЕРАКТИВНЫЙ БЕНТО-КАЛЬКУЛЯТОР -->
+    <div id="tab-calc" class="tab-content active">
+        <div class="bento-grid">
+            
+            <div class="bento-card span-2">
+                <h2 class="serif" style="font-size: 24px; margin-bottom: 25px; color: var(--text-main);">Скрининг нейромышечной связи и осанки</h2>
+                
+                <div class="calc-group">
+                    <label class="calc-label">1. Какие ощущения доминируют в вашем теле при выполнении стандартных приседаний на коврик?</label>
+                    <div class="radio-box-group">
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="squat_sensation" value="back_thigh" checked>
+                            <span class="radio-tile-title">Устает поясница / забивается перед бедра</span>
+                            <span class="radio-tile-desc">Ягодичные мышцы практически не включаются и не горят.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="squat_sensation" value="partial_butt">
+                            <span class="radio-tile-title">Чувствую ягодицы слабо</span>
+                            <span class="radio-tile-desc">Напряжение есть, но бедра всё равно забирают 80% нагрузки.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="squat_sensation" value="pure_butt">
+                            <span class="radio-tile-title">Горят именно ягодицы</span>
+                            <span class="radio-tile-desc">Идеальная изоляция, спина разгружена, чувствую целевую зону.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="calc-group">
+                    <label class="calc-label">2. Сталкиваетесь ли вы с проблемой выпирания нижней части живота даже при строгих диетах?</label>
+                    <div class="radio-box-group">
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="belly_type" value="lordosis" checked>
+                            <span class="radio-tile-title">Да, живот «вываливается»</span>
+                            <span class="radio-tile-desc">Есть сильный прогиб в пояснице, таз рефлекторно наклонен вперед.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="belly_type" value="bloating">
+                            <span class="radio-tile-title">Только к вечеру</span>
+                            <span class="radio-tile-desc">Утром пресс плоский, но в течение дня мышцы кора расслабляются.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="belly_type" value="flat">
+                            <span class="radio-tile-title">Всегда собранный и плоский</span>
+                            <span class="radio-tile-desc">Стена живота плотная, мышечный корсет держит органы.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="calc-group">
+                    <label class="calc-label">3. Оцените общее состояние вашей поясницы после долгого рабочего дня за рабочим столом:</label>
+                    <div class="radio-box-group">
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="lumbar_pain" value="heavy" checked>
+                            <span class="radio-tile-title">Сильно ноет и ломит</span>
+                            <span class="radio-tile-desc">Хочется согнуться или лечь, мышцы нижней части спины каменные.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="lumbar_pain" value="medium">
+                            <span class="radio-tile-title">Легкая скованность</span>
+                            <span class="radio-tile-desc">Дискомфорт присутствует, но проходит после небольшой прогулки.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="lumbar_pain" value="ok">
+                            <span class="radio-tile-title">Полная легкость</span>
+                            <span class="radio-tile-desc">Спина сильная, боли и мышечных зажимов нет вообще.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="calc-group">
+                    <label class="calc-label">4. Укажите ваше среднее количество тренировок на данные зоны за последний месяц:</label>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                        <span style="font-size: 13px; color: var(--text-dim);">Регулярность практики:</span>
+                        <span id="range-train-val" class="range-val" style="color: var(--accent-green);">0 занятий</span>
+                    </div>
+                    <input type="range" id="train_slider" class="range-slider" min="0" max="3" value="0" step="1" oninput="calculateButtAbsIndex()">
+                </div>
+
+                <div style="margin-top: 30px; display: flex; justify-content: flex-end;">
+                    <button class="btn-reset" onclick="resetCalculator()">Сбросить параметры теста</button>
+                </div>
+            </div>
+
+            <!-- Результат расчета чуткий к кликам -->
+            <div class="bento-card result-score-box">
+                <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; color: var(--text-dim); margin-bottom: 10px;">Рекомендуемая схема проработки:</div>
+                <div id="calc-result-title" class="score-number" style="font-size: 24px; margin: 15px 0;">Изоляция + МФР</div>
+                <div id="calc-status" class="score-status" style="color: var(--accent-gold);">Нейромышечный зажим</div>
+                <p id="calc-text" style="font-size: 13px; opacity: 0.8; margin-top: 15px; line-height: 1.5; text-align: center;">
+                    Расчет...
+                </p>
+            </div>
+
+            <!-- Научный разбор амнезии ягодиц -->
+            <div class="bento-card span-3" style="border-left: 4px solid var(--accent-gold);">
+                <div style="display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: start;">
+                    <div>
+                        <h3 class="serif" style="font-size: 22px; margin-bottom: 10px;">Синдром «ягодичной амнезии» — почему ваши приседания качают бедра, а не формы</h3>
+                        <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                            Большинство женщин уверены: чтобы накачать ягодицы, нужно приседать со штангой. Однако при многочасовом сидении в офисе возникает медицинский феномен *«ягодичной амнезии»* — мозг буквально теряет нервную связь с большими ягодичными мышцами. Они блокируются и засыпают. Если начать приседать с этой блокировкой, тело рефлекторно перенесет всю нагрузку на квадрицепсы (переднюю поверхность бедра) и поясницу. В итоге бедра становятся огромными и тяжелыми, спина начинает болеть, а ягодицы остаются плоскими. Программа «Ягодицы + Пресс» в студии «РЕСУРС» ломает этот спазм: сначала мы «включаем» спящие нервные волокна через миофасциальный релиз стоп и таза, разгружаем поясницу, а затем изолированно нагружаем целевые зоны под идеальным анатомическим углом.
+                        </p>
+                    </div>
+                    <div style="background: var(--elem-bg); padding: 15px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent-gold)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- МАРКЕТИНГОВАЯ КНОПКА (СТРОГО КРАСНАЯ) -->
+            <div class="bento-card span-3" style="background: var(--elem-bg); text-align: center; padding: 40px 30px;">
+                <span class="recipe-badge" style="background: var(--accent-gold) !important;">Скульптура тела в Сыктывкаре</span>
+                <h3 class="serif" style="font-size: 26px; margin-bottom: 15px;">Создайте безупречные контуры фигуры без вреда для спины</h3>
+                <p style="font-size: 14px; max-width: 600px; margin: 0 auto 25px; color: var(--text-dim);">
+                    Попробуйте наш прицельный класс в уютном, камерном формате на Коммунистической 77/2. Никаких осевых перегрузок, только чистая биомеханика, тонкая талия и подтянутый, сочный рельеф.
+                </p>
+                <div style="max-width: 450px; margin: 0 auto;">
+                    <a href="index.html?page=booking" class="btn-marketing">Записаться на тест-драйв тренировок</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ТАБ 2: 10 НАУЧНЫХ ФАКТОВ С ЗОЛОТИСТОЙ НУМЕРАЦИЕЙ -->
+    <div id="tab-facts" class="tab-content">
+        <div class="bento-grid">
+            
+            <div class="bento-card">
+                <div class="fact-num">01</div>
+                <h3 class="fact-title">Роль поперечной мышцы живота</h3>
+                <p class="fact-desc">Пакет кубиков пресса не сделает живот плоским. За утяжку талии отвечает глубокая поперечная мышца, которую мы целенаправленно включаем в работу.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">02</div>
+                <h3 class="fact-title">Рефлекторное выключение ягодиц</h3>
+                <p class="fact-desc">При укорочении подвздошно-поясничной мышцы из-за сидячей работы, ягодицы выключаются по закону *взаимного торможения* (синдром Шеррингтона).</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">03</div>
+                <h3 class="fact-title">Разгон метаболизма</h3>
+                <p class="fact-desc">Большая ягодичная мышца — одна из самых крупных в теле. Её изоляция сжигает в 3 раза больше калорий, чем любые стандартные махи руками.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">04</div>
+                <h3 class="fact-title">Причина вываливания живота</h3>
+                <p class="fact-desc">Слабый тонус ягодиц приводит к наклону таза вперед (передний наклон). Это чисто механически выдавливает внутренние органы наружу, имитируя лишний вес.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">05</div>
+                <h3 class="fact-title">Ликвидация венозного застоя</h3>
+                <p class="fact-desc">Принудительное сокращение и расслабление ягодичных зон работает как мощная помпа, ликвидируя застойные отечные явления в малом тазу у женщин.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">06</div>
+                <h3 class="fact-title">Изоляция без роста квадрицепса</h3>
+                <p class="fact-desc">Специальные горизонтальные упоры и ленты на тренировке позволяют нагрузить среднюю и большую ягодичные мышцы, сохраняя бедра худыми и тонкими.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">07</div>
+                <h3 class="fact-title">Внутрибрюшное давление и пресс</h3>
+                <p class="fact-desc">Классические подъемы ног из положения лежа травмируют поясницу, если кор слаб. Мы качаем пресс через безопасные дыхательные фиксации по методу Пилатеса.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">08</div>
+                <h3 class="fact-title">Капиллярный липолиз</h3>
+                <p class="fact-desc">Прицельный многоповторный тренинг пробивает новые кровеносные сосуды в жировой прослойке ягодиц, убирая фиброз (целлюлит) за счет кислорода.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">09</div>
+                <h3 class="fact-title">Защита коленных менисков</h3>
+                <p class="fact-desc">Сильная средняя ягодичная мышца удерживает бедро от завала внутрь при ходьбе, защищая коленные суставы от преждевременного износа хряща.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">10</div>
+                <h3 class="fact-title">Гормональный тонус</h3>
+                <p class="fact-desc">Плотная тренировка крупных мышечных групп стимулирует выработку естественных эндорфинов, полностью снимая вечернюю хандру и усталость.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ТАБ 3: ЧЕТКО 4 ЗОЛОТЫХ ПРАВИЛА И 5-Я ЯРКАЯ ЗЕЛЕНАЯ КНОПКА СТУДИИ -->
+    <div id="tab-recipes" class="tab-content">
+        <div class="bento-grid">
+            
+            <div class="bento-card span-2">
+                <span class="recipe-badge">Правило 01</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">Включайте ягодицы через активацию стопы</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    По задней анатомической линии нашего тела стопа намертво связана с большой ягодичной мышцей. Если вы приседаете или делаете выпады на жесткой, «выключенной» стопе — ягодица не проснется. Ольга Мартынова рекомендует: перед тренировкой разомните подошвенный апоневроз роллом или теннисным мячом, а во время упражнений плотно давите в пол пяткой и основанием большого пальца.
+                </p>
+            </div>
+
+            <div class="bento-card">
+                <span class="recipe-badge">Правило 02</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">Контролируйте домик на животе</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    При прокачке пресса следите, чтобы белая линия живота не надувалась «домиком» вверх. Это маркер того, что поперечная мышца выключена, а нагрузка выдавливает тазовое дно. На выдохе принудительно стягивайте ребра к центру и утапливайте пупок внутрь к коврику.
+                </p>
+            </div>
+
+            <div class="bento-card">
+                <span class="recipe-badge">Правило 03</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">Держите нейтраль поясницы</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    Во время выполнения ягодичного мостика не выталкивайте таз слишком высоко за счет излома в пояснице. В верхней точке ваши ребра и кости таза должны оставаться в единой, жесткой линии, а сжатие должно происходить исключительно за счет ягодиц.
+                </p>
+            </div>
+
+            <div class="bento-card span-2">
+                <span class="recipe-badge">Правило 04</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">Обязательно растягивайте сгибатели бедра после тонуса</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    После плотной силовой проработки мышцы остаются жесткими и укороченными. Если сразу уйти домой, спазм усилится, блокируя нормальный кровоток. Ольга настаивает: финальные 10 минут мы посвящаем глубокому стретчингу ягодиц и квадрицепсов. Это выведет продукты метаболического распада, уберет боль на следующий день и сделает контуры бедер длинными, точеными и изящными.
+                </p>
+            </div>
+
+            <!-- ИСПРАВЛЕНО: ЯРКАЯ ЗЕЛЕНАЯ ПЛАТФОРМА И ЗЕЛЕНАЯ КНОПКА ЗАПИСИ -->
+            <div class="bento-card span-3" style="background: linear-gradient(135deg, rgba(76,175,80,0.12), transparent); border: 2px solid var(--accent-green);">
+                <span class="recipe-badge">Вдохновение от Ольги Мартыновой</span>
+                <h3 class="serif" style="font-size: 26px; margin-bottom: 15px; color: var(--text-main);">«Сочный рельеф и тонкая талия — это результат умных законов физиологии...»</h3>
+                <p style="font-size: 15px; line-height: 1.7; color: var(--text-main); margin-bottom: 25px;">
+                    «Мои прекрасные, забудьте про изнурительные прыжки до седьмого пота и тяжеленные штанги, от которых ломит спину. Эстетичное женское тело создается вдумчиво. Наш класс "Ягодицы + Пресс" — это идеальный баланс высокой интенсивности и мягкой анатомической безопасности. Мы прицельно разбудим каждую спящую мышцу, вернем упругость животу и сформируем красивую, точеную линию бедер без капли лишнего объема. В нашей камерной студии "РЕСУРС" на Коммунистической вы будете тренироваться в атмосфере тотальной поддержки и заботы. Путь к фигуре вашей мечты может быть приятным и безопасным. Приходите на тест-драйв, вы влюбитесь в этот формат с первой минуты!»
+                </p>
+                <div style="max-width: 450px;">
+                    <a href="index.html?page=booking" class="btn-marketing btn-green-rule">Записаться на тест-драйв тренировок</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- УЛЬТРА-ЯРКАЯ КНОПКА ШЕРИНГА -->
+    <section class="share-section">
+        <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">🔥 Отправить тест-анализ рельефа подругам!</h3>
+        <p style="font-size: 14px; color: var(--text-dim); margin-bottom: 25px;">Поделитесь этой страницей с подругами, которые мечтают о плоском животе, тонкой талии и красивых упругих ягодицах без жестких изнурительных диет и штанг.</p>
+        <button class="btn-share" onclick="sharePage()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            <span id="share-btn-text">Отправить подругам</span>
+        </button>
+    </section>
+
+</main>
+
+<footer>
+    <div class="footer-container">
+        <p class="footer-text-main">© 2026 РЕСУРС | Студия фитнеса, растяжки и движения. Сыктывкар, ул. Коммунистическая 77/2.</p>
+        <p class="footer-text-sub">Интерактивный расчет нейромышечной координации является скрининговым тестом и носит ознакомительный характер. При наличии выраженных стадий протрузий или грыж в фазе острого воспаления поясничного отдела перед началом силовых тренировок проконсультируйтесь со специалистом.</p>
+    </div>
+</footer>
+
+<script>
+    function toggleTheme() {
+        const html = document.documentElement;
+        const currentTheme = html.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        document.getElementById('themeToggle').innerText = newTheme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        const theme = document.documentElement.getAttribute('data-theme');
+        document.getElementById('themeToggle').innerText = theme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
+        
+        restoreCalculatorData();
+        calculateButtAbsIndex();
+    });
+
+    function switchTab(event, tabId) {
+        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        
+        document.getElementById(tabId).classList.add('active');
+        event.currentTarget.classList.add('active');
+        
+        window.scrollTo({ top: document.querySelector('.tabs-nav').offsetTop - 80, behavior: 'smooth' });
+    }
+
+    function selectTile(element) {
+        const name = element.querySelector('input').name;
+        document.querySelectorAll(`input[name="${name}"]`).forEach(input => {
+            input.parentElement.classList.remove('selected');
+        });
+        element.classList.add('selected');
+        
+        calculateButtAbsIndex();
+    }
+
+    // ИНТЕЛЛЕКТУАЛЬНАЯ ЧУТКАЯ МАТЕМАТИЧЕСКАЯ МОДЕЛЬ ДЛЯ ЯГОДИЦ И ПРЕССА
+    function calculateButtAbsIndex() {
+        const squat = document.querySelector('input[name="squat_sensation"]:checked').value;
+        const belly = document.querySelector('input[name="belly_type"]:checked').value;
+        const lumbar = document.querySelector('input[name="lumbar_pain"]:checked').value;
+        const trainIndex = parseInt(document.getElementById('train_slider').value);
+
+        const trainLabels = ['0 занятий (Перерыв)', '1-2 тренировки', '3-4 тренировки', 'Более 5 занятий (Регулярно)'];
+        document.getElementById('range-train-val').innerText = trainLabels[trainIndex];
+
+        const titleEl = document.getElementById('calc-result-title');
+        const statusEl = document.getElementById('calc-status');
+        const textEl = document.getElementById('calc-text');
+
+        let bodyText = "";
+
+        // Умная логика: если поясница сильно болит или есть наклон таза (вываливание живота)
+        if (lumbar === 'heavy' || belly === 'lordosis') {
+            statusEl.innerText = "Нейромышечный блок";
+            statusEl.style.color = "var(--accent-berry)";
+            
+            if (squat === 'back_thigh') {
+                titleEl.innerText = "Изоляция таза + МФР спины";
+                bodyText = "Ваша поясница берет на себя всю разрушительную нагрузку из-за отключения ягодиц. Приседания со штангой вам запрещены! Сначала мы расслабим поясничный отдел через МФР-роллы, а затем изолированно включим ягодичные мышцы в горизонтальных позах.";
+            } else {
+                titleEl.innerText = "Декомпрессия + Пилатес Кор";
+                bodyText = "Выпирание живота вызвано передним наклоном таза и перегрузкой поясницы. Вам необходим глубокий Пилатес для принудительного включения поперечной мышцы живота, которая вернет таз в нейтраль и сделает живот плоским.";
+            }
+        } else {
+            // Если спина в норме, работает классическая схема
+            if (squat === 'back_thigh' || trainIndex === 0) {
+                titleEl.innerText = "Активация стоп + Изоляция";
+                statusEl.innerText = "Пробуждение мышц";
+                statusEl.style.color = "var(--accent-gold)";
+                bodyText = "Наблюдается синдром ягодичной амнезии — бедра забирают нагрузку. Мы начнем с мягкой активации подошвенных нервных окончаний и перейдем к точечным упражнениям с фитнес-резинками под строгим контролем тренера.";
+            } else {
+                titleEl.innerText = "Ягодичный Интенсив + Пресс 3D";
+                statusEl.innerText = "Максимальный мышечный отклик";
+                statusEl.style.color = "var(--accent-green)";
+                bodyText = "Прекрасный показатель нейромышечной связи! Ваше тело готово к полноценному, интенсивному моделированию контуров. Включаем силовую многоповторную нагрузку для создания сочного объема и точеного пресса.";
+            }
+        }
+
+        textEl.innerText = bodyText;
+
+        const calcData = { squat, belly, lumbar, trainIndex };
+        localStorage.setItem('butt_abs_calc_data', JSON.stringify(calcData));
+    }
+
+    function resetCalculator() {
+        document.querySelectorAll('input[name="squat_sensation"]')[0].checked = true;
+        document.querySelectorAll('input[name="belly_type"]')[0].checked = true;
+        document.querySelectorAll('input[name="lumbar_pain"]')[0].checked = true;
+        document.getElementById('train_slider').value = 0;
+
+        document.querySelectorAll('.radio-tile').forEach(tile => tile.classList.remove('selected'));
+        document.querySelectorAll('input[name="squat_sensation"]')[0].parentElement.classList.add('selected');
+        document.querySelectorAll('input[name="belly_type"]')[0].parentElement.classList.add('selected');
+        document.querySelectorAll('input[name="lumbar_pain"]')[0].parentElement.classList.add('selected');
+
+        localStorage.removeItem('butt_abs_calc_data');
+        calculateButtAbsIndex();
+    }
+
+    function restoreCalculatorData() {
+        const saved = localStorage.getItem('butt_abs_calc_data');
+        if (saved) {
+            try {
+                const data = JSON.parse(saved);
+                document.querySelectorAll(`input[name="squat_sensation"]`).forEach(i => { if(i.value === data.squat) i.checked = true; });
+                document.querySelectorAll(`input[name="belly_type"]`).forEach(i => { if(i.value === data.belly) i.checked = true; });
+                document.querySelectorAll(`input[name="lumbar_pain"]`).forEach(i => { if(i.value === data.lumbar) i.checked = true; });
+                document.getElementById('train_slider').value = data.trainIndex;
+            } catch (e) {
+                console.log("Storage backup sync error butt abs pass");
+            }
+        }
+
+        document.querySelectorAll('.radio-tile').forEach(tile => {
+            if (tile.querySelector('input').checked) tile.classList.add('selected');
+        });
+    }
+
+    async function sharePage() {
+        const shareData = {
+            title: 'Рассчитай готовность своих мышц к идеальному рельефу Ягодиц и Пресса!',
+            text: 'Я прошла интерактивный анатомический аудит силуэта на сайте студии РЕСУРС. Узнай, как правильно качать форму без боли в спине!',
+            url: window.location.href
+        };
+        const btnText = document.getElementById('share-btn-text');
+        if (navigator.share) {
+            try { await navigator.share(shareData); } catch (err) { console.log('Share canceled'); }
+        } else {
+            try {
+                await navigator.clipboard.writeText(window.location.href);
+                btnText.innerText = 'Ссылка скопирована!';
+                setTimeout(() => { btnText.innerText = 'Отправить подругам'; }, 3000);
+            } catch (err) {
+                alert('Скопируйте ссылку из адресной строки вашего браузера.');
+            }
+        }
+    }
+
+    window.addEventListener('scroll', () => {
+        const header = document.getElementById('header');
+        if (window.scrollY > 30) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
+    });
+</script>
+
+<!-- РЕНДЕР КАНАЛОВ РСЯ FLOOR AD -->
+<script>
+window.yaContextCb.push(() => {
+    Ya.Context.AdvManager.render({
+        "blockId": "R-A-19181219-6",
+        "type": "floorAd",
+        "platform": "touch"
+    })
+})
+</script>
+<script>
+window.yaContextCb.push(() => {
+    Ya.Context.AdvManager.render({
+        "blockId": "R-A-19181219-7",
+        "type": "floorAd",
+        "platform": "desktop"
+    })
+})
+</script>
+
+</body>
+</html>
