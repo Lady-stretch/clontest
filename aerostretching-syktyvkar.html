@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <script>
+        // По умолчанию для инфо-страниц ставим чистую светлую эко-тему, сохраняем выбор пользователя
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+
+    <script type="text/javascript">
+    // --- Yandex.Metrika counter ---
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=109130409', 'ym');
+    ym(109130409, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript>
+        <div>
+            <img src="https://mc.yandex.ru/watch/109130409" style="position:absolute; left:-9999px;" alt="" />
+        </div>
+    </noscript>
+
+    <script>
+        // Глобальная логика перехвата ботов для SEO-превью через Яндекс Функцию
+        window.addEventListener('DOMContentLoaded', () => {
+            const isBot = /YandexBot|YandexAccessibilityBot|YandexMobileBot|Googlebot/i.test(navigator.userAgent);
+            if (isBot) {
+                fetch('https://functions.yandexcloud.net/d4ecn5ag33dcdd2deivd?bot=true&url=' + encodeURIComponent(window.location.href))
+                .then(res => res.json())
+                .then(data => console.log("SEO Preview Matrix Synced"))
+                .catch(e => console.log("SEO preview pass"));
+            }
+        });
+    </script>
+    
+    <!-- Подключение рекламной системы Яндекса (РСЯ) -->
+    <script>window.yaContextCb=window.yaContextCb||[]</script>
+    <script src="https://yandex.ru/ads/system/context.js" async></script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- ГЕО-ЗАВИСИМАЯ СЕО ОПТИМИЗАЦИЯ ПОД СЫКТЫВКАР И РЕСПУБЛИКУ КОМИ -->
+    <title>Аэростретчинг Сыктывкар | Растяжка в гамаках и аэройога на Коммунистической</title>
+    <meta name="description" content="Занятия аэростретчингом (растяжкой в гамаках) в Сыктывкаре. Безопасная декомпрессия позвоночника, развитие гибкости, раскрытие таза и шпагат в воздухе без боли. Профессиональные тренеры, студия РЕСУРС.">
+    <meta name="keywords" content="аэростретчинг сыктывкар, растяжка в гамаках коми, аэройога сыктывкар, фитнес в воздухе, декомпрессия позвоночника, сесть на шпагат в гамаке, студия ресурс растяжка, мягкий фитнес коммунистическая, похудение грация сыктывкар">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://resurs-stretch.ru/aerostretching-syktyvkar.html">
+
+    <!-- OPEN GRAPH ДЛЯ СОЦСЕТЕЙ И МЕССЕНДЖЕРОВ -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Аэростретчинг и растяжка в гамаках в Сыктывкаре — Студия РЕСУРС">
+    <meta property="og:description" content="Почувствуйте невесомость, снимите зажимы со спины и шеи и раскройте кошачью гибкость за 50 минут. Безопасный фитнес в воздухе для женщин любого возраста.">
+    <meta property="og:url" content="https://resurs-stretch.ru/aerostretching-syktyvkar.html">
+    <meta property="og:image" content="https://resurs-stretch.ru/logo_header_final.png">
+    <meta property="og:site_name" content="РЕСУРС">
+    <meta property="og:locale" content="ru_RU">
+
+    <link rel="icon" type="image/png" href="logo_header_final.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <script src="https://reservi.ru/widget-fit1c.v2/js/config.js" data-fit-salon-id="02977247-3381-4559-b9ef-1cf88d2731a2"></script>
+    <script src="https://unpkg.com/imask"></script>
+
+    <style>
+        /* CSS ПЕРЕМЕННЫЕ ДЛЯ СВЕТЛОЙ ЭКО-ТЕМЫ */
+        :root {
+            --bg-deep: #F8F9F6; 
+            --glass-bg: rgba(255, 255, 255, 0.9); 
+            --glass-border: 1px solid rgba(43, 46, 42, 0.08); 
+            --accent-gold: #B38639; 
+            --accent-green: #4CAF50; 
+            --accent-berry: #C2185B; 
+            --text-main: #2B2E2A; 
+            --text-dim: rgba(43, 46, 42, 0.7);
+            --elem-bg: rgba(76, 175, 80, 0.06);
+            --elem-border: rgba(43, 46, 42, 0.1);
+            --nav-bg: rgba(248, 249, 246, 0.95);
+            --font-main: 'Manrope', sans-serif;
+            --font-serif: 'Cormorant Garamond', serif;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ТЕМНАЯ ТЕМА */
+        [data-theme="dark"] {
+            --bg-deep: #080814; 
+            --glass-bg: rgba(255, 255, 255, 0.03); 
+            --glass-border: 1px solid rgba(255, 255, 255, 0.08); 
+            --accent-gold: #C5A059; 
+            --accent-green: #66BB6A;
+            --accent-berry: #E91E63;
+            --text-main: #F4F4F9;
+            --text-dim: rgba(244, 244, 249, 0.6);
+            --elem-bg: rgba(255, 255, 255, 0.04);
+            --elem-border: rgba(255, 255, 255, 0.15);
+            --nav-bg: rgba(8, 8, 20, 0.95);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
+        html { scroll-behavior: smooth; }
+        body { 
+            background: var(--bg-deep); 
+            color: var(--text-main);
+            font-family: var(--font-main); 
+            line-height: 1.6;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            transition: background-color 0.4s ease, color 0.4s ease;
+            -webkit-font-smoothing: antialiased;
+            padding-bottom: 60px;
+        }
+
+        h1, h2, h3, .serif { font-family: var(--font-serif); font-weight: 600; letter-spacing: 0.5px; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+
+        /* HEADER */
+        header {
+            position: fixed; top: 0; width: 100%; padding: 20px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 2000; background: transparent; transition: var(--transition);
+        }
+        header.scrolled { 
+            background: var(--glass-bg) !important; 
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            padding: 12px 5% !important; border-bottom: var(--glass-border);
+        }
+        .brand-name { font-family: var(--font-serif); font-size: 22px; letter-spacing: 8px; text-transform: uppercase; font-weight: 600; }
+        
+        #themeToggle {
+            padding: 0 15px; height: 35px; font-size: 10px; font-weight: 600; letter-spacing: 2px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 8px; border: 1px solid var(--elem-border); background: var(--elem-bg);
+            cursor: pointer; transition: var(--transition); color: var(--text-main); text-transform: uppercase;
+        }
+        #themeToggle:hover { border-color: var(--accent-gold); transform: translateY(-2px); }
+
+        /* MAIN CONTAINER */
+        .main-layout { max-width: 1200px; margin: 100px auto 60px; padding: 0 20px; }
+
+        /* ТАБЫ */
+        .tabs-nav { display: flex; gap: 10px; margin-bottom: 30px; border-bottom: var(--glass-border); padding-bottom: 15px; overflow-x: auto; scrollbar-width: none; }
+        .tabs-nav::-webkit-scrollbar { display: none; }
+        .tab-btn {
+            padding: 12px 24px; border: 1px solid var(--elem-border); background: var(--glass-bg);
+            color: var(--text-dim); border-radius: 12px; cursor: pointer; font-size: 14px; font-weight: 500;
+            white-space: nowrap; transition: var(--transition); font-family: var(--font-main);
+        }
+        .tab-btn:hover { border-color: var(--accent-gold); color: var(--text-main); }
+        .tab-btn.active { background: var(--accent-green); color: #FFF; border-color: var(--accent-green); box-shadow: 0 8px 20px rgba(76,175,80,0.2); }
+
+        .tab-content { display: none; animation: fadeIn 0.5s ease; }
+        .tab-content.active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* BENTO GRID */
+        .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .bento-card { background: var(--glass-bg); border: var(--glass-border); border-radius: 24px; padding: 30px; position: relative; overflow: hidden; transition: var(--transition); }
+        .bento-card:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(0,0,0,0.03); }
+        
+        .span-2 { grid-column: span 2; }
+        .span-3 { grid-column: span 3; }
+
+        /* ИНПУТЫ И КАЛЬКУЛЯТОР */
+        .calc-group { margin-bottom: 25px; }
+        .calc-label { font-size: 15px; font-weight: 600; margin-bottom: 12px; display: block; color: var(--text-main); line-height: 1.4; }
+        
+        .radio-box-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+        .radio-tile {
+            border: 1px solid var(--elem-border); background: var(--elem-bg); padding: 16px;
+            border-radius: 12px; cursor: pointer; display: flex; flex-direction: column; gap: 4px;
+            position: relative; transition: var(--transition);
+        }
+        .radio-tile input { position: absolute; top: 16px; right: 16px; accent-color: var(--accent-green); }
+        .radio-tile-title { font-size: 14px; font-weight: 700; color: var(--text-main); }
+        .radio-tile-desc { font-size: 12px; color: var(--text-dim); line-height: 1.4; }
+        .radio-tile.selected { border-color: var(--accent-green); background: rgba(76,175,80,0.08); }
+
+        .range-slider { width: 100%; accent-color: var(--accent-green); margin: 10px 0; height: 6px; border-radius: 3px; }
+        .range-val { font-size: 18px; font-weight: 700; color: var(--accent-gold); }
+        
+        /* РЕЗУЛЬТАТЫ БЕНТО */
+        .result-score-box { text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(135deg, var(--elem-bg), transparent); padding: 40px 20px; }
+        .score-number { font-size: 50px; font-weight: 800; line-height: 1.2; color: var(--accent-berry); font-family: var(--font-serif); }
+        .score-status { font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-top: 12px; }
+
+        /* МАРКЕТИНГОВЫЕ КНОПКИ */
+        .btn-marketing {
+            display: inline-flex; align-items: center; justify-content: center; width: 100%;
+            padding: 22px 30px; background: var(--accent-berry); color: #FFF; border: none;
+            border-radius: 16px; font-family: var(--font-main); font-size: 15px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: var(--transition);
+            box-shadow: 0 10px 25px rgba(194,24,91,0.25);
+        }
+        .btn-marketing:hover { transform: translateY(-2px); box-shadow: 0 15px 35px rgba(194,24,91,0.4); opacity: 0.95; }
+
+        .btn-reset {
+            background: transparent; border: 1px dashed var(--text-dim); color: var(--text-dim);
+            padding: 10px 20px; border-radius: 10px; font-size: 12px; font-weight: 600;
+            cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: var(--transition);
+        }
+        .btn-reset:hover { border-color: var(--accent-berry); color: var(--accent-berry); }
+
+        /* УЛЬТРА-ЯРКАЯ КНОПКА ШЕРИНГА */
+        .share-section { margin-top: 50px; background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), rgba(179, 134, 57, 0.08)); border: 2px solid var(--accent-green); border-radius: 28px; padding: 40px 30px; text-align: center; box-shadow: 0 15px 40px rgba(76,175,80,0.1); }
+        .btn-share {
+            display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 18px 40px;
+            background: linear-gradient(135deg, var(--accent-green), #2E7D32); border: none; border-radius: 16px;
+            font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: var(--transition); color: #FFF;
+            box-shadow: 0 10px 25px rgba(76, 175, 80, 0.4); width: 100%; max-width: 400px;
+        }
+        .btn-share:hover { transform: scale(1.03) translateY(-2px); box-shadow: 0 15px 35px rgba(76, 175, 80, 0.6); }
+
+        /* ПРЕМИАЛЬНЫЙ СИММЕТРИЧНЫЙ ПОДВАЛ */
+        footer { 
+            margin-top: 80px; 
+            padding: 60px 0 40px; 
+            border-top: var(--glass-border); 
+            background: transparent;
+            width: 100%;
+        }
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+        .footer-text-main {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+        .footer-text-sub {
+            font-size: 11px;
+            line-height: 1.6;
+            color: var(--text-dim);
+            opacity: 0.85;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 968px) {
+            .bento-grid { grid-template-columns: 1fr; }
+            .span-2, .span-3 { grid-column: span 1; }
+            .main-layout { margin-top: 90px; }
+        }
+    </style>
+</head>
+<body>
+
+<header id="header">
+    <div class="brand-name">РЕСУРС</div>
+    <div>
+        <button id="themeToggle" onclick="toggleTheme()">ТЕНЬ</button>
+    </div>
+</header>
+
+<main class="main-layout">
+    
+    <section style="text-align: center; max-width: 800px; margin: 0 auto 40px;">
+        <h1 style="font-size: clamp(28px, 4vw, 46px); line-height: 1.2; margin-bottom: 15px;">
+            Гравитационный расчет: <span style="color: var(--accent-gold); font-style: italic;">Аэростретчинг в гамаках</span>
+        </h1>
+        <p style="font-size: 15px; color: var(--text-dim); line-height: 1.7;">
+            Растяжка в воздухе (аэро-стретчинг) использует законы физики для бережного оздоровления тела. Плотный подвесной гамак забирает на себя вес вашего тела, отключая панический защитный рефлекс мышц и позволяя безопасно вытянуть позвоночник. Рассчитайте ваш индекс гравитационной разгрузки суставов.
+        </p>
+    </section>
+
+    <nav class="tabs-nav" aria-label="Разделы страницы">
+        <button class="tab-btn active" onclick="switchTab(event, 'tab-calc')">📊 Расчет декомпрессии суставов</button>
+        <button class="tab-btn" onclick="switchTab(event, 'tab-facts')">🔬 10 фактов о фитнесе в воздухе</button>
+        <button class="tab-btn" onclick="switchTab(event, 'tab-recipes')">🌿 5 правил полета от Ольги Мартыновой</button>
+    </nav>
+
+    <!-- ТАБ 1: ИНТЕРАКТИВНЫЙ БЕНТО-КАЛЬКУЛЯТОР -->
+    <div id="tab-calc" class="tab-content active">
+        <div class="bento-grid">
+            
+            <div class="bento-card span-2">
+                <h2 class="serif" style="font-size: 24px; margin-bottom: 25px; color: var(--text-main);">Аудит готовности к инверсионным (перевернутым) позам</h2>
+                
+                <div class="calc-group">
+                    <label class="calc-label">1. Испытываете ли вы головокружение при резком подъеме с кровати или наклонах?</label>
+                    <div class="radio-box-group">
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="dizzy_status" value="heavy" checked>
+                            <span class="radio-tile-title">Да, темнеет в глазах</span>
+                            <span class="radio-tile-desc">Слабый вестибулярный аппарат, реагирую на перепады давления.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="dizzy_status" value="medium">
+                            <span class="radio-tile-title">Очень редко</span>
+                            <span class="radio-tile-desc">Бывает только при сильной утренней усталости или недосыпе.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="dizzy_status" value="low">
+                            <span class="radio-tile-title">Никогда не бывает</span>
+                            <span class="radio-tile-desc">Отлично переношу любые наклоны, укачивания и турбулентность.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="calc-group">
+                    <label class="calc-label">2. Оцените уровень жесткости ваших мышц ног и бедер при попытке сесть на пол с прямыми ногами:</label>
+                    <div class="radio-box-group">
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="legs_stiff" value="3" checked>
+                            <span class="radio-tile-title">Мышцы как струны</span>
+                            <span class="radio-tile-desc">Подколенные сухожилия жестко тянет, спина сразу круглится.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="legs_stiff" value="2">
+                            <span class="radio-tile-title">Тянусь умеренно</span>
+                            <span class="radio-tile-desc">Есть легкая податливость, но до полной складки далеко.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="legs_stiff" value="1">
+                            <span class="radio-tile-title">Хорошая эластичность</span>
+                            <span class="radio-tile-desc">Легко складываюсь вперед, связки мягкие от природы.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="calc-group">
+                    <label class="calc-label">3. Беспокоит ли вас зажатость плечевых суставов (трудно ли соединить руки в замок за спиной)?</label>
+                    <div class="radio-box-group">
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="shoulder_stiff" value="3" checked>
+                            <span class="radio-tile-title">Руки не соединяются</span>
+                            <span class="radio-tile-desc">Плечи полностью заблокированы сидячей офисной работой.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="shoulder_stiff" value="2">
+                            <span class="radio-tile-title">Соединяю с трудом</span>
+                            <span class="radio-tile-desc">С одной стороны получается лучше, с другой — пальцы не дотягиваются.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="shoulder_stiff" value="1">
+                            <span class="radio-tile-title">Легкий свободный замок</span>
+                            <span class="radio-tile-desc">Грудной отдел раскрыт, лопатки двигаются идеально.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="calc-group">
+                    <label class="calc-label">4. Укажите ваш примерный вес (необходим для расчета натяжения полотна гамака):</label>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                        <span style="font-size: 13px; color: var(--text-dim);">Весовая категория:</span>
+                        <span id="range-weight-val" class="range-val" style="color: var(--accent-green);">60 кг</span>
+                    </div>
+                    <input type="range" id="weight_slider" class="range-slider" min="40" max="100" value="60" step="1" oninput="calculateAeroIndex()">
+                </div>
+
+                <div style="margin-top: 30px; display: flex; justify-content: flex-end;">
+                    <button class="btn-reset" onclick="resetCalculator()">Сбросить параметры теста</button>
+                </div>
+            </div>
+
+            <!-- Результат подбора Bento -->
+            <div class="bento-card result-score-box">
+                <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; color: var(--text-dim); margin-bottom: 10px;">Ваш индекс декомпрессии в гамаке:</div>
+                <div id="calc-result-title" class="score-number">75%</div>
+                <div id="calc-status" class="score-status" style="color: var(--accent-gold);">Мягкий полет</div>
+                <p id="calc-text" style="font-size: 13px; opacity: 0.8; margin-top: 15px; line-height: 1.5; text-align: center;">
+                    Гамак разгрузит ваши суставы на 75%. Осевое давление на межпозвоночные диски снизится, позволяя безопасно растянуть связки без боли.
+                </p>
+            </div>
+
+            <!-- Научный разбор биомеханики аэростретчинга -->
+            <div class="bento-card span-3" style="border-left: 4px solid var(--accent-gold);">
+                <div style="display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: start;">
+                    <div>
+                        <h3 class="serif" style="font-size: 22px; margin-bottom: 10px;">Как шелковое полотно обманывает защитные барьеры вашего мозга</h3>
+                        <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                            При обычной растяжке на полу сила гравитации прижимает ваше тело к коврику. Жесткий упор заставляет суставы блокироваться, а нервные окончания отправляют в мозг сигнал тревоги: «Опасность разрыва связок!». В ответ включается рефлекторный зажим, и мышцы каменеют. В гамаке для аэростретчинга тело находится в состоянии частичного или полного подвешивания. Под воздействием веса собственных ног позвоночник начинает плавно и бережно растягиваться сверху вниз — происходит глубокая *декомпрессия межпозвоночных дисков* (освобождение от сдавливания). Поскольку жесткого упора о пол нет, мозг воспринимает это как полную безопасность и выключает мышечный блок. Амплитуда растяжки на шпагат в гамаке увеличивается на 20–30% абсолютно без слез, криков и микронадрывов тканей.
+                        </p>
+                    </div>
+                    <div style="background: var(--elem-bg); padding: 15px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent-gold)" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- МАРКЕТИНГОВАЯ КНОПКА ЗАПИСИ -->
+            <div class="bento-card span-3" style="background: var(--elem-bg); text-align: center; padding: 40px 30px;">
+                <span class="recipe-badge" style="background: var(--accent-gold);">Полет в Сыктывкаре</span>
+                <h3 class="serif" style="font-size: 26px; margin-bottom: 15px;">Ощутите невероятную легкость тела и свободу движений</h3>
+                <p style="font-size: 14px; max-width: 600px; margin: 0 auto 25px; color: var(--text-dim);">
+                    Попробуйте безопасный аэростретчинг в нашей уютной камерной студии «РЕСУРС» на Коммунистической 77/2. Наши гамаки выдерживают до 450 кг, а тренеры бережно за руку проведут вас от базовых висов до первых красивых элементов в воздухе.
+                </p>
+                <div style="max-width: 450px; margin: 0 auto;">
+                    <a href="index.html?page=booking" class="btn-marketing">Записаться на тест-драйв тренировок</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ТАБ 2: 10 НАУЧНЫХ ФАКТОВ ОБ АЭРОСТРЕТЧИНГЕ -->
+    <div id="tab-facts" class="tab-content">
+        <div class="bento-grid">
+            
+            <div class="bento-card">
+                <div class="fact-num">01</div>
+                <h3 class="fact-title">Декомпрессионный эффект</h3>
+                <p class="fact-desc">Перевернутые висы в гамаке увеличивают расстояние между позвонками, возвращая дискам влагу и питательные вещества. Это ликвидирует боли в пояснице.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">02</div>
+                <h3 class="fact-title">Включение глубоких мышц-стабилизаторов</h3>
+                <p class="fact-desc">Поскольку гамак слегка покачивается, тело вынуждено ежесекундно удерживать баланс. Это включает в работу мелкие мышцы кора, которые спят на обычных тренажерах.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">03</div>
+                <h3 class="fact-title">Мощный лимфодренаж от отеков</h3>
+                <p class="fact-desc">Полотно гамака деликатно обхватывает и массирует зоны крупных лимфоузлов под коленями и в паху. Это принудительно разгоняет лимфу, ликвидируя утренние отеки.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">04</div>
+                <h3 class="fact-title">Омоложение клеток головного мозга</h3>
+                <p class="fact-desc">Инверсионные положения (вниз головой) улучшают приток богатой кислородом крови к коре головного мозга, повышая концентрацию и снимая головную боль.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">05</div>
+                <h3 class="fact-title">Безопасный шпагат без боли</h3>
+                <p class="fact-desc">Гамак берет на себя до 80% веса вашего тела. Мышцы паха растягиваются под мягким, регулируемым углом, исключая разрывы связок.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">06</div>
+                <h3 class="fact-title">Тренировка вестибулярного аппарата</h3>
+                <p class="fact-desc">Покачивания и повороты в трехмерном пространстве развивают координацию движений и избавляют от укачивания в автотранспорте.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">07</div>
+                <h3 class="fact-title">Раскрытие плеч и грудного отдела</h3>
+                <p class="fact-desc">Хваты за ленты гамака позволяют бережно убрать сутулость, раскрыть грудную клетку и ликвидировать «компьютерную шею».</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">08</div>
+                <h3 class="fact-title">Гормональный всплеск радости</h3>
+                <p class="fact-desc">Преодоление страха оторваться от земли стимулирует выброс эндорфинов и дофамина, убирая хронический стресс и тревожность.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">09</div>
+                <h3 class="fact-title">Профилактика варикозного расширения вен</h3>
+                <p class="fact-desc">Подъем ног выше уровня сердца в гамаке облегчает венозный отток, снимая тяжесть, гул и усталость в лодыжках в конце дня.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">10</div>
+                <h3 class="fact-title">Кошачья гибкость и грация походки</h3>
+                <p class="fact-desc">Вытяжение фасций (мышечных оболочек) в воздухе делает движения плавными, убирает скованность шага и дарит королевскую осанку.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ТАБ 3: 5 ЗОЛОТЫХ ПРАВИЛ ОТ ЭКСПЕРТА ОЛЬГИ МАРТЫНОВОЙ -->
+    <div id="tab-recipes" class="tab-content">
+        <div class="bento-grid">
+            
+            <div class="bento-card span-2">
+                <span class="recipe-badge">Правило 01</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px;">Полностью доверяйте полотну гамака</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    Главная ошибка новичка — попытка удержать себя силой рук в воздухе. Наше нейлоновое полотно выдерживает экстремальный вес до 450 килограммов. Ольга Мартынова рекомендует: как только вы вошли в вис, сделайте глубокий выдох и расслабьте тело, позволив гамаку принять ваш вес. Только при полном ментальном доверии мышцы спины раскроются и растянутся безопасно.
+                </p>
+            </div>
+
+            <div class="bento-card">
+                <span class="recipe-badge">Правило 02</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px;">Плавный выход из инверсии</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    После виса вниз головой никогда не вставайте резко на ноги. Поднимайтесь плавно, задержитесь в наклоне на 3-4 дыхания, чтобы давление выровнялось плавно без головокружения.
+                </p>
+            </div>
+
+            <div class="bento-card">
+                <span class="recipe-badge">Правило 03</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px;">Правильная форма одежды</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    Для занятий в воздухе выбирайте облегающую одежду без молний и замков (чтобы не повредить ткань гамака). Лосины и футболка с закрытыми плечами обязательны для комфорта кожи.
+                </p>
+            </div>
+
+            <div class="bento-card span-2">
+                <span class="recipe-badge">Правило 04</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px;">Используйте покачивание гамака для глубокого расслабления ума</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    В финале каждой тренировки мы погружаемся в гамак полностью, как в кокон, для расслабления. Легкое мерное покачивание полотна в воздухе запускает глубинные механизмы нашей памяти, ассоциируясь с абсолютной безопасностью. В этот момент падает уровень гормона стресса кортизола, уходит мышечный зажим с челюсти, и тело погружается в состояние тотального восстановления, восстанавливая ресурсы нервной системы.
+                </p>
+            </div>
+
+            <div class="bento-card span-3" style="background: linear-gradient(135deg, rgba(76,175,80,0.08), transparent); border-color: var(--accent-green);">
+                <span class="recipe-badge" style="background: var(--accent-green);">Послание от главного тренера Ольги</span>
+                <h3 class="serif" style="font-size: 26px; margin-bottom: 15px;">«Аэростретчинг — это свидание со своим телом в невесомости...»</h3>
+                <p style="font-size: 15px; line-height: 1.7; color: var(--text-main); margin-bottom: 25px;">
+                    «Дорогие мои, если вы устали от тяжелой рутины, серого неба над Коми и постоянного напряжения в спине — гамак станет вашим спасением. Тренировка в воздухе — это удивительный баланс детского восторга от полета и глубокой, вдумчивой работы по законам анатомии. У нас нет задачи сделать из вас цирковых акробатов. Мы бережно, сантиметр за сантиметром, раскрываем ваши суставы, убираем застой жидкости и вытягиваем уставший позвоночник. Вы выйдете из гамака окрыленной, с абсолютно легкой поясницей, красивой летящей походкой и улыбкой на лице. Перестаньте бояться, у нас все группы камерные, я поддержу вас на каждом висе. Жду вас на тест-драйв на Коммунистической!»
+                </p>
+                <div style="max-width: 450px;">
+                    <a href="index.html?page=booking" class="btn-marketing" style="background: var(--accent-green); box-shadow: 0 10px 25px rgba(76,175,80,0.3);">Записаться на тест-драйв тренировок</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- УЛЬТРА-ЯРКАЯ КНОПКА ШЕРИНГА -->
+    <section class="share-section">
+        <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">🔥 Отправить тест-расчет аэростретчинга подругам!</h3>
+        <p style="font-size: 14px; color: var(--text-dim); margin-bottom: 25px;">Поделитесь этой страницей с подругами, которые мечтают о кошачьей гибкости, шпагате без боли и хотят бережно разгрузить спину после тяжелого дня.</p>
+        <button class="btn-share" onclick="sharePage()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            <span id="share-btn-text">Отправить подругам</span>
+        </button>
+    </section>
+
+</main>
+
+<footer>
+    <div class="footer-container">
+        <p class="footer-text-main">© 2026 РЕСУРС | Студия фитнеса, растяжки и движения. Сыктывкар, ул. Коммунистическая 77/2.</p>
+        <p class="footer-text-sub">Интерактивный расчет является скрининговым тестом. Занятия аэростретчингом имеют противопоказания: тяжелые стадии гипертонии, недавние операции на глаза (отслоение сетчатки), беременность со 2-го триместра. При сомнениях проконсультируйтесь со специалистом.</p>
+    </div>
+</footer>
+
+<script>
+    function toggleTheme() {
+        const html = document.documentElement;
+        const currentTheme = html.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        document.getElementById('themeToggle').innerText = newTheme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        const theme = document.documentElement.getAttribute('data-theme');
+        document.getElementById('themeToggle').innerText = theme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
+        
+        restoreCalculatorData();
+        calculateAeroIndex();
+    });
+
+    function switchTab(event, tabId) {
+        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        
+        document.getElementById(tabId).classList.add('active');
+        event.currentTarget.classList.add('active');
+        
+        window.scrollTo({ top: document.querySelector('.tabs-nav').offsetTop - 80, behavior: 'smooth' });
+    }
+
+    function selectTile(element) {
+        const name = element.querySelector('input').name;
+        document.querySelectorAll(`input[name="${name}"]`).forEach(input => {
+            input.parentElement.classList.remove('selected');
+        });
+        element.classList.add('selected');
+        
+        calculateAeroIndex();
+    }
+
+    // МАТЕМАТИЧЕСКАЯ МОДЕЛЬ ДЕКОМПРЕССИИ В ГАМАКЕ
+    function calculateAeroIndex() {
+        const dizzy = document.querySelector('input[name="dizzy_status"]:checked').value;
+        const legs = parseInt(document.querySelector('input[name="legs_stiff"]:checked').value);
+        const shoulder = parseInt(document.querySelector('input[name="shoulder_stiff"]:checked').value);
+        const weight = parseInt(document.getElementById('weight_slider').value);
+
+        document.getElementById('range-weight-val').innerText = weight + ' кг';
+
+        // Базовый расчет процента разгрузки на основе веса и зажимов
+        let baseDecompression = 85;
+        
+        // Чем тяжелее тело, тем сильнее гамак вытягивает позвоночник под действием гравитации
+        if (weight > 75) baseDecompression += 5;
+        if (weight < 55) baseDecompression -= 5;
+
+        // Коррекция по жесткости мышц
+        baseDecompression -= (legs * 2) + (shoulder * 2);
+
+        if (baseDecompression > 95) baseDecompression = 95;
+        if (baseDecompression < 40) baseDecompression = 40;
+
+        const scoreEl = document.getElementById('calc-result-title');
+        const statusEl = document.getElementById('calc-status');
+        const textEl = document.getElementById('calc-text');
+
+        scoreEl.innerText = baseDecompression + "%";
+
+        if (dizzy === 'heavy') {
+            statusEl.innerText = "Адаптационный режим";
+            statusEl.style.color = "var(--accent-berry)";
+            textEl.innerText = "Ваш вестибулярный аппарат требует мягкой подготовки. Полные перевернутые висы мы заменим на плавные наклоны с опорой на гамак. Это уберет зажимы со спины без риска головокружения.";
+        } else if (baseDecompression < 65) {
+            statusEl.innerText = "Режим глубокого раскрытия";
+            statusEl.style.color = "var(--accent-gold)";
+            textEl.innerText = "Мышцы и плечи сильно скованы. Гамак разгрузит суставы на " + baseDecompression + "%, деликатно растягивая жесткие фасции. Вы почувствуете свободу в лопатках и пояснице уже на первом занятии.";
+        } else {
+            statusEl.innerText = "Свободный полет";
+            statusEl.style.color = "var(--accent-green)";
+            textEl.innerText = "Идеальные параметры для декомпрессии! Гамак полностью снимет осевое давление с дисков. Вы готовы к выполнению красивых элементов в воздухе и мягкой растяжке на шпагат.";
+        }
+
+        const calcData = { dizzy, legs, shoulder, weight };
+        localStorage.setItem('aero_calc_data', JSON.stringify(calcData));
+    }
+
+    function resetCalculator() {
+        document.querySelectorAll('input[name="dizzy_status"]')[0].checked = true;
+        document.querySelectorAll('input[name="legs_stiff"]')[0].checked = true;
+        document.querySelectorAll('input[name="shoulder_stiff"]')[0].checked = true;
+        document.getElementById('weight_slider').value = 60;
+
+        document.querySelectorAll('.radio-tile').forEach(tile => tile.classList.remove('selected'));
+        document.querySelectorAll('input[name="dizzy_status"]')[0].parentElement.classList.add('selected');
+        document.querySelectorAll('input[name="legs_stiff"]')[0].parentElement.classList.add('selected');
+        document.querySelectorAll('input[name="shoulder_stiff"]')[0].parentElement.classList.add('selected');
+
+        localStorage.removeItem('aero_calc_data');
+        calculateAeroIndex();
+    }
+
+    function restoreCalculatorData() {
+        const saved = localStorage.getItem('aero_calc_data');
+        if (saved) {
+            try {
+                const data = JSON.parse(saved);
+                document.querySelectorAll(`input[name="dizzy_status"]`).forEach(i => { if(i.value === data.dizzy) i.checked = true; });
+                document.querySelectorAll(`input[name="legs_stiff"]`).forEach(i => { if(parseInt(i.value) === data.legs) i.checked = true; });
+                document.querySelectorAll(`input[name="shoulder_stiff"]`).forEach(i => { if(parseInt(i.value) === data.shoulder) i.checked = true; });
+                document.getElementById('weight_slider').value = data.weight;
+            } catch (e) {
+                console.log("Storage backup sync error");
+            }
+        }
+
+        document.querySelectorAll('.radio-tile').forEach(tile => {
+            if (tile.querySelector('input').checked) tile.classList.add('selected');
+        });
+    }
+
+    async function sharePage() {
+        const shareData = {
+            title: 'Рассчитай свой личный индекс декомпрессии в гамаке!',
+            text: 'Я прошла тест на гравитационную разгрузку суставов на сайте студии РЕСУРС. Проверь свой потенциал к полету!',
+            url: window.location.href
+        };
+        const btnText = document.getElementById('share-btn-text');
+        if (navigator.share) {
+            try { await navigator.share(shareData); } catch (err) { console.log('Share canceled'); }
+        } else {
+            try {
+                await navigator.clipboard.writeText(window.location.href);
+                btnText.innerText = 'Ссылка скопирована!';
+                setTimeout(() => { btnText.innerText = 'Отправить подругам'; }, 3000);
+            } catch (err) {
+                alert('Скопируйте ссылку из адресной строки вашего браузера.');
+            }
+        }
+    }
+
+    window.addEventListener('scroll', () => {
+        const header = document.getElementById('header');
+        if (window.scrollY > 30) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
+    });
+</script>
+
+<!-- РЕНДЕР КАНАЛОВ РСЯ FLOOR AD -->
+<script>
+window.yaContextCb.push(() => {
+    Ya.Context.AdvManager.render({
+        "blockId": "R-A-19181219-6",
+        "type": "floorAd",
+        "platform": "touch"
+    })
+})
+</script>
+<script>
+window.yaContextCb.push(() => {
+    Ya.Context.AdvManager.render({
+        "blockId": "R-A-19181219-7",
+        "type": "floorAd",
+        "platform": "desktop"
+    })
+})
+</script>
+
+</body>
+</html>
