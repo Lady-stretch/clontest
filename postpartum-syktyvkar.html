@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <script>
+        // По умолчанию для инфо-страниц ставим чистую светлую эко-тему, сохраняем выбор пользователя
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+
+    <script type="text/javascript">
+    // --- Yandex.Metrika counter ---
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=109130409', 'ym');
+    ym(109130409, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript>
+        <div>
+            <img src="https://mc.yandex.ru/watch/109130409" style="position:absolute; left:-9999px;" alt="" />
+        </div>
+    </noscript>
+
+    <script>
+        // Глобальная логика перехвата ботов для SEO-превью через Яндекс Функцию
+        window.addEventListener('DOMContentLoaded', () => {
+            const isBot = /YandexBot|YandexAccessibilityBot|YandexMobileBot|Googlebot/i.test(navigator.userAgent);
+            if (isBot) {
+                fetch('https://functions.yandexcloud.net/d4ecn5ag33dcdd2deivd?bot=true&url=' + encodeURIComponent(window.location.href))
+                .then(res => res.json())
+                .then(data => console.log("SEO Preview Matrix Synced"))
+                .catch(e => console.log("SEO preview pass"));
+            }
+        });
+    </script>
+    
+    <!-- Подключение рекламной системы Яндекса (РСЯ) -->
+    <script>window.yaContextCb=window.yaContextCb||[]</script>
+    <script src="https://yandex.ru/ads/system/context.js" async></script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- ГЕО-ЗАВИСИМАЯ СЕО ОПТИМИЗАЦИЯ ПОД СЫКТЫВКАР И РЕСПУБЛИКУ КОМИ -->
+    <title>Восстановление после родов Сыктывкар | Укрепление мышц тазового дна и кора РЕСУРС</title>
+    <meta name="description" content="Интерактивный тест-анализ восстановления после родов в Сыктывкаре. Бережная коррекция диастаза, укрепление мышц тазового дна и избавление от болей в пояснице. Программа умного движения от Ольги Мартыновой.">
+    <meta name="keywords" content="восстановление после родов сыктывкар, убрать живот после родов коми, диастаз коррекция сыктывкар, укрепление тазового дна упражнения, болит поясница после родов, студия ресурс сыктывкар, пилатес для мам коммунистическая">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://resurs-stretch.ru/postpartum-syktyvkar.html">
+
+    <!-- OPEN GRAPH ДЛЯ СОЦСЕТЕЙ И МЕССЕНДЖЕРОВ -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Бережное восстановление после родов в Сыктывкаре — Студия РЕСУРС">
+    <meta property="og:description" content="Узнайте уровень готовности тела к нагрузкам онлайн. Мягкий пилатес, коррекция диастаза и укрепление интимных мышц без прыжков и тяжестей.">
+    <meta property="og:url" content="https://resurs-stretch.ru/postpartum-syktyvkar.html">
+    <meta property="og:image" content="https://resurs-stretch.ru/logo_header_final.png">
+    <meta property="og:site_name" content="РЕСУРС">
+    <meta property="og:locale" content="ru_RU">
+
+    <link rel="icon" type="image/png" href="logo_header_final.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <script src="https://reservi.ru/widget-fit1c.v2/js/config.js" data-fit-salon-id="02977247-3381-4559-b9ef-1cf88d2731a2"></script>
+    <script src="https://unpkg.com/imask"></script>
+
+    <style>
+        /* CSS ПЕРЕМЕННЫЕ ДЛЯ СВЕТЛОЙ ЭКО-ТЕМЫ */
+        :root {
+            --bg-deep: #F8F9F6; 
+            --glass-bg: rgba(255, 255, 255, 0.9); 
+            --glass-border: 1px solid rgba(43, 46, 42, 0.08); 
+            --accent-gold: #B38639; 
+            --accent-green: #4CAF50; 
+            --accent-berry: #C2185B; 
+            --text-main: #2B2E2A; 
+            --text-dim: rgba(43, 46, 42, 0.7);
+            --elem-bg: rgba(76, 175, 80, 0.06);
+            --elem-border: rgba(43, 46, 42, 0.1);
+            --nav-bg: rgba(248, 249, 246, 0.95);
+            --font-main: 'Manrope', sans-serif;
+            --font-serif: 'Cormorant Garamond', serif;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ТЕМНАЯ ТЕМА */
+        [data-theme="dark"] {
+            --bg-deep: #080814; 
+            --glass-bg: rgba(255, 255, 255, 0.03); 
+            --glass-border: 1px solid rgba(255, 255, 255, 0.08); 
+            --accent-gold: #C5A059; 
+            --accent-green: #66BB6A;
+            --accent-berry: #E91E63;
+            --text-main: #F4F4F9;
+            --text-dim: rgba(244, 244, 249, 0.6);
+            --elem-bg: rgba(255, 255, 255, 0.04);
+            --elem-border: rgba(255, 255, 255, 0.15);
+            --nav-bg: rgba(8, 8, 20, 0.95);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
+        html { scroll-behavior: smooth; }
+        body { 
+            background: var(--bg-deep); 
+            color: var(--text-main);
+            font-family: var(--font-main); 
+            line-height: 1.6;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            transition: background-color 0.4s ease, color 0.4s ease;
+            -webkit-font-smoothing: antialiased;
+            padding-bottom: 60px;
+        }
+
+        h1, h2, h3, .serif { font-family: var(--font-serif); font-weight: 600; letter-spacing: 0.5px; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+
+        /* HEADER */
+        header {
+            position: fixed; top: 0; width: 100%; padding: 20px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 2000; background: transparent; transition: var(--transition);
+        }
+        header.scrolled { 
+            background: var(--glass-bg) !important; 
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            padding: 12px 5% !important; border-bottom: var(--glass-border);
+        }
+        .brand-name { font-family: var(--font-serif); font-size: 22px; letter-spacing: 8px; text-transform: uppercase; font-weight: 600; }
+        
+        #themeToggle {
+            padding: 0 15px; height: 35px; font-size: 10px; font-weight: 600; letter-spacing: 2px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 8px; border: 1px solid var(--elem-border); background: var(--elem-bg);
+            cursor: pointer; transition: var(--transition); color: var(--text-main); text-transform: uppercase;
+        }
+        #themeToggle:hover { border-color: var(--accent-gold); transform: translateY(-2px); }
+
+        /* MAIN CONTAINER */
+        .main-layout { max-width: 1200px; margin: 100px auto 60px; padding: 0 20px; }
+
+        /* ТАБЫ */
+        .tabs-nav { display: flex; gap: 10px; margin-bottom: 30px; border-bottom: var(--glass-border); padding-bottom: 15px; overflow-x: auto; scrollbar-width: none; }
+        .tabs-nav::-webkit-scrollbar { display: none; }
+        .tab-btn {
+            padding: 12px 24px; border: 1px solid var(--elem-border); background: var(--glass-bg);
+            color: var(--text-dim); border-radius: 12px; cursor: pointer; font-size: 14px; font-weight: 500;
+            white-space: nowrap; transition: var(--transition); font-family: var(--font-main);
+        }
+        .tab-btn:hover { border-color: var(--accent-gold); color: var(--text-main); }
+        .tab-btn.active { background: var(--accent-green); color: #FFF; border-color: var(--accent-green); box-shadow: 0 8px 20px rgba(76,175,80,0.2); }
+
+        .tab-content { display: none; animation: fadeIn 0.5s ease; }
+        .tab-content.active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* BENTO GRID */
+        .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .bento-card { background: var(--glass-bg); border: var(--glass-border); border-radius: 24px; padding: 30px; position: relative; overflow: hidden; transition: var(--transition); }
+        .bento-card:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(0,0,0,0.03); }
+        
+        .span-2 { grid-column: span 2; }
+        .span-3 { grid-column: span 3; }
+
+        /* ИНПУТЫ И КАЛЬКУЛЯТОР */
+        .calc-group { margin-bottom: 25px; }
+        .calc-label { font-size: 15px; font-weight: 600; margin-bottom: 12px; display: block; color: var(--text-main); line-height: 1.4; }
+        
+        .radio-box-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+        .radio-tile {
+            border: 1px solid var(--elem-border); background: var(--elem-bg); padding: 16px;
+            border-radius: 12px; cursor: pointer; display: flex; flex-direction: column; gap: 4px;
+            position: relative; transition: var(--transition);
+        }
+        .radio-tile input { position: absolute; top: 16px; right: 16px; accent-color: var(--accent-green); }
+        .radio-tile-title { font-size: 14px; font-weight: 700; color: var(--text-main); }
+        .radio-tile-desc { font-size: 12px; color: var(--text-dim); line-height: 1.4; }
+        .radio-tile.selected { border-color: var(--accent-green); background: rgba(76,175,80,0.08); }
+
+        .range-slider { width: 100%; accent-color: var(--accent-green); margin: 10px 0; height: 6px; border-radius: 3px; }
+        .range-val { font-size: 18px; font-weight: 700; color: var(--accent-gold); }
+        
+        /* РЕЗУЛЬТАТЫ БЕНТО */
+        .result-score-box { text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(135deg, var(--elem-bg), transparent); padding: 40px 20px; transition: var(--transition); }
+        .score-number { font-size: 32px; font-weight: 800; line-height: 1.2; color: var(--accent-berry); font-family: var(--font-serif); }
+        .score-status { font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-top: 12px; }
+
+        /* МАРКЕТИНГОВЫЕ КНОПКИ */
+        .btn-marketing {
+            display: inline-flex; align-items: center; justify-content: center; width: 100%;
+            padding: 22px 30px; background: var(--accent-berry); color: #FFF; border: none;
+            border-radius: 16px; font-family: var(--font-main); font-size: 15px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: var(--transition);
+            box-shadow: 0 10px 25px rgba(194,24,91,0.25);
+        }
+        .btn-marketing:hover { transform: translateY(-2px); box-shadow: 0 15px 35px rgba(194,24,91,0.4); opacity: 0.95; }
+
+        /* ЭТАЛОННАЯ ЗЕЛЕНАЯ КНОПКА ДЛЯ ТАБА ПРАВИЛ */
+        .btn-marketing.btn-green-rule {
+            background: var(--accent-green) !important;
+            box-shadow: 0 10px 25px rgba(76,175,80,0.3) !important;
+        }
+        .btn-marketing.btn-green-rule:hover {
+            box-shadow: 0 15px 35px rgba(76,175,80,0.5) !important;
+        }
+
+        .btn-reset {
+            background: transparent; border: 1px dashed var(--text-dim); color: var(--text-dim);
+            padding: 10px 20px; border-radius: 10px; font-size: 12px; font-weight: 600;
+            cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: var(--transition);
+        }
+        .btn-reset:hover { border-color: var(--accent-berry); color: var(--accent-berry); }
+
+        /* ЭТАЛОННАЯ ЗОЛОТИСТАЯ НУМЕРАЦИЯ 10 СОВЕТОВ/ФАКТОВ */
+        .fact-num { font-size: 32px; font-family: var(--font-serif); color: var(--accent-gold) !important; font-weight: 700; margin-bottom: 5px; }
+        .fact-title { font-size: 18px; font-weight: 600; margin-bottom: 10px; line-height: 1.3; font-family: var(--font-serif); color: var(--text-main); }
+        .fact-desc { font-size: 14px; color: var(--text-dim); line-height: 1.6; }
+
+        /* ЭТАЛОННЫЕ ЗЕЛЕНЫЕ СКРУГЛЕННЫЕ ПЛАШКИ ПРАВИЛ */
+        .recipe-badge { 
+            background: var(--accent-green) !important; 
+            color: #FFF !important; 
+            padding: 6px 16px; 
+            border-radius: 30px; 
+            font-size: 11px; 
+            font-weight: 700; 
+            text-transform: uppercase; 
+            display: inline-block; 
+            margin-bottom: 15px; 
+            letter-spacing: 1px;
+        }
+
+        /* УЛЬТРА-ЯРКАЯ ГРАДИЕНТНАЯ КНОПКА ШЕРИНГА */
+        .share-section { margin-top: 50px; background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), rgba(179, 134, 57, 0.08)); border: 2px solid var(--accent-green); border-radius: 28px; padding: 40px 30px; text-align: center; box-shadow: 0 15px 40px rgba(76,175,80,0.1); }
+        .btn-share {
+            display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 18px 40px;
+            background: linear-gradient(135deg, var(--accent-green), #2E7D32) !important; border: none; border-radius: 16px;
+            font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: var(--transition); color: #FFF;
+            box-shadow: 0 10px 25px rgba(76, 175, 80, 0.4) !important; width: 100%; max-width: 400px;
+        }
+        .btn-share:hover { transform: scale(1.03) translateY(-2px); box-shadow: 0 15px 35px rgba(76, 175, 80, 0.6) !important; }
+
+        /* ЦЕНТРИРОВАННЫЙ ПОДВАЛ ДЛЯ БОЛЬШИХ МОНИТОРОВ */
+        footer { 
+            margin-top: 80px; 
+            padding: 60px 0 40px; 
+            border-top: var(--glass-border); 
+            background: transparent;
+            width: 100%;
+        }
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+        .footer-text-main {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+        .footer-text-sub {
+            font-size: 11px;
+            line-height: 1.6;
+            color: var(--text-dim);
+            opacity: 0.85;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 968px) {
+            .bento-grid { grid-template-columns: 1fr; }
+            .span-2, .span-3 { grid-column: span 1; }
+            .main-layout { margin-top: 90px; }
+        }
+    </style>
+</head>
+<body>
+
+<header id="header">
+    <div class="brand-name">РЕСУРС</div>
+    <div>
+        <button id="themeToggle" onclick="toggleTheme()">ТЕНЬ</button>
+    </div>
+</header>
+
+<main class="main-layout">
+    
+    <section style="text-align: center; max-width: 800px; margin: 0 auto 40px;">
+        <h1 style="font-size: clamp(28px, 4vw, 46px); line-height: 1.2; margin-bottom: 15px;">
+            Послеродовой замер: <span style="color: var(--accent-gold); font-style: italic;">Кора & Тазовое дно</span>
+        </h1>
+        <p style="font-size: 15px; color: var(--text-dim); line-height: 1.7;">
+            Бережное восстановление женского организма после вынашивания и родов требует строгого анатомического контроля. Классическая закачка пресса или прыжки сейчас опасны. Рассчитайте ваш персональный уровень готовности глубоких стабилизаторов к деликатному фитнесу.
+        </p>
+    </section>
+
+    <nav class="tabs-nav" aria-label="Разделы страницы">
+        <button class="tab-btn active" onclick="switchTab(event, 'tab-calc')">📊 Тест-анализ глубоких мышц кора</button>
+        <button class="tab-btn" onclick="switchTab(event, 'tab-facts')">🔬 10 фактов об истинной задаче фитнеса</button>
+        <button class="tab-btn" onclick="switchTab(event, 'tab-recipes')">🌿 4 золотых правила от Ольги Мартыновой</button>
+    </nav>
+
+    <!-- ТАБ 1: ИНТЕРАКТИВНЫЙ БЕНТО-КАЛЬКУЛЯТОР -->
+    <div id="tab-calc" class="tab-content active">
+        <div class="bento-grid">
+            
+            <div class="bento-card span-2">
+                <h2 class="serif" style="font-size: 24px; margin-bottom: 25px; color: var(--text-main);">Скрининг состояния белой линии живота и стабильности таза</h2>
+                
+                <div class="calc-group">
+                    <label class="calc-label">1. Какие ощущения доминируют в вашей пояснице при длительном ношении ребенка на руках или прогулках с коляской?</label>
+                    <div class="radio-box-group">
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="back_sensation" value="heavy_ache" checked>
+                            <span class="radio-tile-title">Сильно ломит и тянет</span>
+                            <span class="radio-tile-desc">Нижняя часть спины каменная, хочется поскорее лечь и согнуться.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="back_sensation" value="only_fatigue">
+                            <span class="radio-tile-title">Легкая усталость спины</span>
+                            <span class="radio-tile-desc">Дискомфорт терпимый, но мышцы между лопаток сильно зажимаются.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="back_sensation" value="ok_spine">
+                            <span class="radio-tile-title">Полная легкость</span>
+                            <span class="radio-tile-desc">Спина сильная, без труда выдерживаю любую бытовую нагрузку мамы.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="calc-group">
+                    <label class="calc-label">2. Замечаете ли вы, что передняя брюшная стенка надувается «домиком» или валиком при попытке лечь на спину и приподнять голову?</label>
+                    <div class="radio-box-group">
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="abs_dome" value="hump_visible" checked>
+                            <span class="radio-tile-title">Да, живот встает домиком</span>
+                            <span class="radio-tile-desc">Мышцы пресса расходятся по центру, белая линия теряет плотность (диастаз).</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="abs_dome" value="soft_flat">
+                            <span class="radio-tile-title">Живот просто мягкий</span>
+                            <span class="radio-tile-desc">Домика нет, но кожа и мышцы растянуты, прессу не хватает плотности.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="abs_dome" value="strong_core">
+                            <span class="radio-tile-title">Живот плоский и собранный</span>
+                            <span class="radio-tile-desc">Стена пресса удерживает форму идеально, провалов и валиков нет.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="calc-group">
+                    <label class="calc-label">3. Сталкиваетесь ли вы с дискомфортом (подтекание при чихании/кашле, тяжесть внизу живота) из-за слабости тазового дна?</label>
+                    <div class="radio-box-group">
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="floor_weakness" value="heavy_dys" checked>
+                            <span class="radio-tile-title">Да, симптомы присутствуют</span>
+                            <span class="radio-tile-desc">Интимные мышцы перерастянуты родами, чувствую нестабильность.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="floor_weakness" value="rare_dys">
+                            <span class="radio-tile-title">Бывает крайне редко</span>
+                            <span class="radio-tile-desc">Только при сильном прыжке, кашле или резком поднятии тяжестей.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="floor_weakness" value="perfect">
+                            <span class="radio-tile-title">Полный контроль и тонус</span>
+                            <span class="radio-tile-desc">Интимная мускулатура сильная, никаких дисфункций нет.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="calc-group">
+                    <label class="calc-label">4. Укажите, сколько месяцев или лет назад произошли ваши крайние роды:</label>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                        <span style="font-size: 13px; color: var(--text-dim);">Период послеродовой адаптации:</span>
+                        <span id="range-months-val" class="range-val" style="color: var(--accent-green);">Более 1 года (Статика зажима)</span>
+                    </div>
+                    <input type="range" id="months_slider" class="range-slider" min="0" max="3" value="3" step="1" oninput="calculatePostpartumIndex()">
+                </div>
+
+                <div style="margin-top: 30px; display: flex; justify-content: flex-end;">
+                    <button class="btn-reset" onclick="resetCalculator()">Сбросить параметры теста</button>
+                </div>
+            </div>
+
+            <!-- Результат расчета -->
+            <div class="bento-card result-score-box">
+                <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; color: var(--text-dim); margin-bottom: 10px;">Карта послеродового восстановления:</div>
+                <div id="calc-result-title" class="score-number" style="font-size: 24px; margin: 15px 0;">Атрофия глубокого кора</div>
+                <div id="calc-status" class="score-status" style="color: var(--accent-gold);">Режим: Декомпрессия 3D</div>
+                <p id="calc-text" style="font-size: 13px; opacity: 0.8; margin-top: 15px; line-height: 1.5; text-align: center;">
+                    Расчет...
+                </p>
+            </div>
+
+            <!-- Научный разбор внутрибрюшного давления -->
+            <div class="bento-card span-3" style="border-left: 4px solid var(--accent-gold);">
+                <div style="display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: start;">
+                    <div>
+                        <h3 class="serif" style="font-size: 22px; margin-bottom: 10px;">Почему обычный фитнес и классический пресс калечат молодую маму</h3>
+                        <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                            Во время беременности плод месяцами растягивал белую линию живота и давил на тазовое дно. После родов эти зоны остаются перерастянутыми. Если женщина, пытаясь вернуть форму, начинает бездумно качать пресс обычными скручиваниями или прыгать, она создает колоссальное внутрибрюшное давление. Прямая мышца встает «домиком», увеличивая диастаз, а избыточное давление буквально выдавливает внутренние органы вниз, уничтожая остатки тонуса тазового дна. Восстановление в студии «РЕСУРС» строится по-другому. Наша цель — **не похудение**, а возвращение здоровья. Через латеральное дыхание Пилатеса мы сначала собираем цилиндр кора изнутри, укрепляем интимные мышцы, разгружаем поясницу от ношения ребенка, и только потом плавно возвращаем телу деликатный тонус.
+                        </p>
+                    </div>
+                    <div style="background: var(--elem-bg); padding: 15px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent-gold)" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- МАРКЕТИНГОВАЯ КНОПКА (СТРОГО КРАСНАЯ ДЕПЛИНК В ВК К ВЕРЕ) -->
+            <div class="bento-card span-3" style="background: var(--elem-bg); text-align: center; padding: 40px 30px;">
+                <span class="recipe-badge" style="background: var(--accent-gold) !important;">Бережная забота в Сыктывкаре</span>
+                <h3 class="serif" style="font-size: 26px; margin-bottom: 15px;">Восстановите ресурсы тела и забудьте о боли в пояснице</h3>
+                <p style="font-size: 14px; max-width: 600px; margin: 0 auto 25px; color: var(--text-dim);">
+                    Получите вашу анатомическую карту тренировок у Веры в сообщениях ВК. Начните деликатную практику восстановления в уютных, камерных группах на Коммунистической 77/2.
+                </p>
+                <div style="max-width: 450px; margin: 0 auto;">
+                    <a id="vk-link-btn" href="vk://im?sel=-221142875" class="btn-marketing">Записаться на тест-драйв: 3 занятия за 990₽</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ТАБ 2: 10 НАУЧНЫХ ФАКТОВ ОБ ИСТИННОЙ ЗАДАЧЕ ФИТНЕСА -->
+    <div id="tab-facts" class="tab-content">
+        <div class="bento-grid">
+            
+            <div class="bento-card span-3" style="background: linear-gradient(135deg, rgba(179, 134, 57, 0.05), transparent); border-left: 4px solid var(--accent-gold);">
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 10px;">Главное откровение: Фитнес после родов нужен НЕ для похудения</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    Никогда не бегите в зал сразу после родов ради сжигания калорий или похудения! Похудение и возврат к прежнему весу — это строго результат вашего питания, восстановления гормонального фона и бытовой активности. Фундаментальная задача послеродового фитнеса принципиально в другом: это бережная декомпрессия суставов, ликвидация спазма поясницы от ношения младенца, безопасное стягивание диастаза, восстановление тонуса тазового дна и возвращение маме утраченной жизненной энергии. Сначала возвращаем здоровье и ось тела, а былая стройность придет следом!
+                </p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">01</div>
+                <h3 class="fact-title">Действие гормона релаксина</h3>
+                <p class="fact-desc">Во время беременности вырабатывался гормон релаксин, размягчавший связки таза. Он вымывается из тела до 5-6 месяцев, делая суставы крайне уязвимыми.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">02</div>
+                <h3 class="fact-title">Опасность классических планок</h3>
+                <p class="fact-desc">Классическая статическая планка при невосстановленном коре намертво фиксирует внутрибрюшное давление, надувая живот «домиком» и увеличивая диастаз.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">03</div>
+                <h3 class="fact-title">Роль поперечной мышцы</h3>
+                <p class="fact-desc">За плоский живот отвечает не прямая мышца (кубики пресса), а глубокая поперечная мышца. Только она способна бережно стянуть разошедшийся диастаз.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">04</div>
+                <h3 class="fact-title">Перекос нейтрали таза</h3>
+                <p class="fact-desc">Смещение центра тяжести при вынашивании наклоняет таз вперед. Это перегружает крестец и блокирует работу больших ягодичных мышц.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">05</div>
+                <h3 class="fact-title">Лимфодренажный эффект дыхания</h3>
+                <p class="fact-desc">3D-дыхание ребрами в пилатесе задействует глубокую диафрагму, которая работает как насос, убирая послеродовую отечность ног и лица.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">06</div>
+                <h3 class="fact-title">Профилактика опущений органов</h3>
+                <p class="fact-desc">Бережная тренировка мышц тазового дна восстанавливает их поддерживающую функцию, ликвидируя стрессовое подтекание при чихании.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">07</div>
+                <h3 class="fact-title">Зажим грудного протока</h3>
+                <p class="fact-desc">Постоянное удержание младенца на руках сутулит плечи. Этот зажим блокирует кровоток к грудным железам, ухудшая лактацию.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">08</div>
+                <h3 class="fact-title">Капиллярное восстановление тканей</h3>
+                <p class="fact-desc">Мягкие растягивающие движения раскрывают спящие капилляры, ускоряя регенерацию растянутой кожи живота изнутри.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">09</div>
+                <h3 class="fact-title">Снижение послеродовой тревожности</h3>
+                <p class="fact-desc">Камерная физическая практика стимулирует синтез окситоцина и серотонина, спасая маму от эмоционального выгорания и депрессии.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">10</div>
+                <h3 class="fact-title">Эксцентрический тонус мышц</h3>
+                <p class="fact-desc">Пилатес укрепляет волокна в фазе их удлинения. Тело мамы становится подтянутым, сильным и грациозным без жестких мышечных объемов.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ТАБ 3: ЧЕТКО 4 ЗОЛОТЫХ ПРАВИЛА И 5-Я ЗЕЛЕНАЯ КНОПКА СТУДИИ С DEEPLINK -->
+    <div id="tab-recipes" class="tab-content">
+        <div class="bento-grid">
+            
+            <div class="bento-card span-2">
+                <span class="recipe-badge">Правило 01</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">Синхронизируйте любое усилие с выдохом снизу вверх</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    Когда вы поднимаете ребенка из кроватки, коляску на бордюр или выполняете упражнение, всегда делайте это строго на выдохе. Причем выдох должен начинаться мысленно от мышц тазового дна и подниматься вверх к пупку. Это рефлекторно собирает глубокий кор и защищает ваши внутренние органы от разрушительного внутрибрюшного давления.
+                </p>
+            </div>
+
+            <div class="bento-card">
+                <span class="recipe-badge">Правило 02</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">Исключите прыжки и бег до полного укрепления кора</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    Пока мышцы тазового дна перерастянуты, любая ударная нагрузка (прыжки, скакалка, бег) бьет по внутренним органам как гидроудар. Замените их на текучее 3D-движение на коврике или в гамаках.
+                </p>
+            </div>
+
+            <div class="bento-card">
+                <span class="recipe-badge">Правило 03</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">Не спите на животе при наличии диастаза</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    Сон на животе в первые месяцы после родов создает избыточное механическое растяжение белой линии живота в стороны, мешая расхождениям пресса затянуться естественным образом. Отдавайте приоритет сну на боку с подушкой между коленей.
+                </p>
+            </div>
+
+            <div class="bento-card span-2">
+                <span class="recipe-badge">Правило 04</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">Разгружайте шейно-грудной отдел перед сном</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    Постоянное укачивание малыша, кормление грудью или из бутылочки наклоняет плечи вперед, намертво блокируя грудной отдел. Поясница вынуждена прогибаться сильнее, чтобы удержать баланс. Ольга Мартынова настаивает: завершайте день мягкой растяжкой плеч у стены или раскаткой на МФР-ролле. Это вернет лопаткам подвижность, разгрузит шею, уберет головную боль и спасет вашу поясницу от перегрузки.
+                </p>
+            </div>
+
+            <!-- ИСПРАВЛЕНО: ЯРКАЯ ЗЕЛЕНАЯ ПЛАТФОРМА И ЗЕЛЕНАЯ КНОПКА ЗАПИСИ С УНИВЕРСАЛЬНЫМ ШАБЛОНОМ ДЛЯ ВЕРЫ -->
+            <div class="bento-card span-3" style="background: linear-gradient(135deg, rgba(76,175,80,0.12), transparent); border: 2px solid var(--accent-green);">
+                <span class="recipe-badge">Вдохновение от Ольги Мартыновой</span>
+                <h3 class="serif" style="font-size: 26px; margin-bottom: 15px; color: var(--text-main);">«Материнство — это время бережного восстановления ваших ресурсов...»</h3>
+                <p style="font-size: 15px; line-height: 1.7; color: var(--text-main); margin-bottom: 25px;">
+                    «Мои дорогие девочки, рождение ребенка — это великое чудо, но и колоссальная нагрузка на женский организм. Девять месяцев ваше тело отдавало все ресурсы малышу, и сейчас оно нуждается в умной, бережной реабилитации. Пожалуйста, забудьте про жесткие фитнес-марафоны похудения, прыжки и голодовки! Вашему телу нужен не дефицит калорий, а восстановление оси. Мы в студии "РЕСУРС" на Коммунистической знаем, как сильно у вас ломит поясницу, как вываливается уставший пупок и как тяжело молодой маме выкроить время на себя. Наши занятия — это ваш тихий островок безопасности. Мы за руку поведем вас по протоколам Пилатеса и МФР: соберем мышцы кора, укрепим тазовое дно и уберем тяжесть из плеч. Вы вернете себе легкость движений, королевскую осанку и море энергии. Приходите на тест-драйв, мы позаботимся о вас бережно!»
+                </p>
+                <div style="max-width: 450px;">
+                    <a id="vk-link-recipe" href="vk://im?sel=-221142875" class="btn-marketing btn-green-rule">Записаться на тест-драйв: 3 занятия за 990₽</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- УЛЬТРА-ЯРКАЯ КНОПКА ШЕРИНГА -->
+    <section class="share-section">
+        <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">🔥 Отправить послеродовой тест знакомым молодым мамам!</h3>
+        <p style="font-size: 14px; color: var(--text-dim); margin-bottom: 25px;">Поделитесь этой страницей с подругами-мамами, которые тоже страдают от болей в пояснице, отеков и мечтают бережно вернуть фигуре плотность без прыжков и вреда для здоровья.</p>
+        <button class="btn-share" onclick="sharePage()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            <span id="share-btn-text">Отправить молодым мамам</span>
+        </button>
+    </section>
+
+</main>
+
+<footer>
+    <div class="footer-container">
+        <p class="footer-text-main">© 2026 РЕСУРС | Студия фитнеса, растяжки и движения. Сыктывкар, ул. Коммунистическая 77/2.</p>
+        <p class="footer-text-sub">Интерактивный послеродовой скрининг носит ознакомительный характер. При наличии выраженного расхождения прямых мышц (диастаз 3 степени), опущений органов малого таза или в ранний период после кесарева сечения (до заживления швов) перед началом любых тренировок обязательна консультация врача.</p>
+    </div>
+</footer>
+
+<script>
+    function toggleTheme() {
+        const html = document.documentElement;
+        const currentTheme = html.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        document.getElementById('themeToggle').innerText = newTheme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        const theme = document.documentElement.getAttribute('data-theme');
+        document.getElementById('themeToggle').innerText = theme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
+        
+        restoreCalculatorData();
+        calculatePostpartumIndex();
+    });
+
+    function switchTab(event, tabId) {
+        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        
+        document.getElementById(tabId).classList.add('active');
+        event.currentTarget.classList.add('active');
+        
+        window.scrollTo({ top: document.querySelector('.tabs-nav').offsetTop - 80, behavior: 'smooth' });
+    }
+
+    function selectTile(element) {
+        const name = element.querySelector('input').name;
+        document.querySelectorAll(`input[name="${name}"]`).forEach(input => {
+            input.parentElement.classList.remove('selected');
+        });
+        element.classList.add('selected');
+        
+        calculatePostpartumIndex();
+    }
+
+    // ИНТЕЛЛЕКТУАЛЬНАЯ ЛОГИКА КАЛЬКУЛЯТОРА С ВЗАИМОСВЯЗАННЫМ ОТКЛИКОМ СЛАЙДЕРА И КАРТОЧЕК
+    function calculatePostpartumIndex() {
+        const back = document.querySelector('input[name="back_sensation"]:checked').value;
+        let absDome = document.querySelector('input[name="abs_dome"]:checked').value;
+        const floor = document.querySelector('input[name="floor_weakness"]:checked').value;
+        const months = parseInt(document.getElementById('months_slider').value);
+
+        const breakLabels = ['До 3 месяцев (Ранний этап)', 'От 3 до 6 месяцев', 'От 6 до 12 месяцев', 'Более 1 года (Статика зажима)'];
+        document.getElementById('range-months-val').innerText = breakLabels[months];
+
+        // ЖИВОЙ ВЗАИМОСВЯЗАННЫЙ ОТКЛИК:
+        // Если стаж после родов велик (более года), а живот всё еще мягкий — принудительно подсвечиваем карточку "домика"
+        if (months === 3 && absDome === 'soft_flat') {
+            document.querySelectorAll('input[name="abs_dome"]').forEach(input => {
+                if (input.value === 'hump_visible') {
+                    input.checked = true;
+                    input.parentElement.classList.add('selected');
+                } else {
+                    input.parentElement.classList.remove('selected');
+                }
+            });
+            absDome = 'hump_visible';
+        }
+
+        const titleEl = document.getElementById('calc-result-title');
+        const statusEl = document.getElementById('calc-status');
+        const textEl = document.getElementById('calc-text');
+
+        let bodyText = "";
+        let diagnosticResult = "";
+
+        // Анализ комбинаций маркеров
+        if (floor === 'heavy_dys' || absDome === 'hump_visible') {
+            titleEl.innerText = "Растяжение белой линии + Дисфункция дна";
+            statusEl.innerText = "Режим: Полная изоляция";
+            statusEl.style.color = "var(--accent-berry)";
+            bodyText = "Внимание! Спустя время (" + breakLabels[months] + ") ваш глубокий мышечный цилиндр пресса остается разорванным. Классические планки и прыжки вам категорически запрещены. Начнем с дыхательного пилатеса и деликатного укрепления интимных зон.";
+            diagnosticResult = "Диастаз / Дисфункция дна (Срок: " + breakLabels[months] + ")";
+        } else if (back === 'heavy_ache' || months <= 1) {
+            titleEl.innerText = "Перекос таза + Спазм поясницы";
+            statusEl.innerText = "Режим: Восстановление оси";
+            statusEl.style.color = "var(--accent-gold)";
+            bodyText = "Ваша поясница берет на себя всю нагрузку от укачиваний и ношения малыша. Натяжение фасций заблокировало крестец. Ольга рекомендует курс 'Здоровая Спина' и МФР для мягкого снятия спазмов и высвобождения зажимов.";
+            diagnosticResult = "Сильный спазм поясницы (Срок: " + breakLabels[months] + ")";
+        } else {
+            titleEl.innerText = "Базовая послеродовая готовность";
+            statusEl.innerText = "Режим: Плавный силовой тонус";
+            statusEl.style.color = "var(--accent-green)";
+            bodyText = "Прекрасный уровень естественного восстановления! Кости таза и мышцы кора адаптировались к нагрузкам за период " + breakLabels[months] + ". Вы полностью готовы к классическому мягкому Пилатесу и Аэростретчингу.";
+            diagnosticResult = "Базовая адаптация пройдена (Срок: " + breakLabels[months] + ")";
+        }
+
+        textEl.innerText = bodyText;
+
+        // Визуальная микро-анимация отклика блока результатов
+        const scoreBox = document.querySelector('.result-score-box');
+        scoreBox.style.transform = 'scale(1.02)';
+        setTimeout(() => { scoreBox.style.transform = 'scale(1)'; }, 150);
+
+        // УНИВЕРСАЛЬНЫЙ ДЕПЛИНК ШАБЛОН ДЛЯ ВЕРЫ В ВК (БЕЗ ЖЕСТКОЙ КОНКРЕТИКИ ПРОФЕССИЙ)
+        const baseVkUrl = "https://vk.com/im?sel=-221142875";
+        const messageText = "Вера, здравствуйте! У меня сидячая работа, я прошла тест на компьютерную сутулость. У меня кажется сильно зажат грудной отдел. Ольга Мартынова рекомендовала мне режим разгрузки спины и шеи. Запишите меня на тест-драйв - 3 тренировки за 990 руб. Мой маркер: " + diagnosticResult;
+        
+        const encodedMessage = encodeURIComponent(messageText);
+        const finalVkLink = baseVkUrl + "&message=" + encodedMessage;
+
+        // Обновляем ссылки кнопок
+        document.getElementById('vk-link-btn').setAttribute('href', finalVkLink);
+        document.getElementById('vk-link-recipe').setAttribute('href', finalVkLink);
+
+        const calcData = { back, absDome, floor, months };
+        localStorage.setItem('postpartum_data', JSON.stringify(calcData));
+    }
+
+    function resetCalculator() {
+        document.querySelectorAll('input[name="back_sensation"]')[0].checked = true;
+        document.querySelectorAll('input[name="abs_dome"]')[0].checked = true;
+        document.querySelectorAll('input[name="floor_weakness"]')[0].checked = true;
+        document.getElementById('months_slider').value = 3;
+
+        document.querySelectorAll('.radio-tile').forEach(tile => tile.classList.remove('selected'));
+        document.querySelectorAll('input[name="back_sensation"]')[0].parentElement.classList.add('selected');
+        document.querySelectorAll('input[name="abs_dome"]')[0].parentElement.classList.add('selected');
+        document.querySelectorAll('input[name="floor_weakness"]')[0].parentElement.classList.add('selected');
+
+        localStorage.removeItem('postpartum_data');
+        calculatePostpartumIndex();
+    }
+
+    function restoreCalculatorData() {
+        const saved = localStorage.getItem('postpartum_data');
+        if (saved) {
+            try {
+                const data = JSON.parse(saved);
+                document.querySelectorAll(`input[name="back_sensation"]`).forEach(i => { if(i.value === data.back) i.checked = true; });
+                document.querySelectorAll(`input[name="abs_dome"]`).forEach(i => { if(i.value === data.absDome) i.checked = true; });
+                document.querySelectorAll(`input[name="floor_weakness"]`).forEach(i => { if(i.value === data.floor) i.checked = true; });
+                document.getElementById('months_slider').value = data.months;
+            } catch (e) {
+                console.log("Storage backup sync error postpartum pass");
+            }
+        }
+
+        document.querySelectorAll('.radio-tile').forEach(tile => {
+            if (tile.querySelector('input').checked) tile.classList.add('selected');
+        });
+    }
+
+    async function sharePage() {
+        const shareData = {
+            title: 'Пройди тест-проверку восстановления мышц кора после родов!',
+            text: 'Я проверила состояние интимных мышц и диастаза на сайте студии РЕСУРС. Узнай свой уровень стабильности таза!',
+            url: window.location.href
+        };
+        const btnText = document.getElementById('share-btn-text');
+        if (navigator.share) {
+            try { await navigator.share(shareData); } catch (err) { console.log('Share canceled'); }
+        } else {
+            try {
+                await navigator.clipboard.writeText(window.location.href);
+                btnText.innerText = 'Ссылка скопирована!';
+                setTimeout(() => { btnText.innerText = 'Отправить молодым мамам'; }, 3000);
+            } catch (err) {
+                alert('Скопируйте ссылку вручную.');
+            }
+        }
+    }
+
+    window.addEventListener('scroll', () => {
+        const header = document.getElementById('header');
+        if (window.scrollY > 30) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
+    });
+</script>
+
+</body>
+</html>
