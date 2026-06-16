@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <script>
+        // По умолчанию для инфо-страниц ставим чистую светлую эко-тему, сохраняем выбор пользователя
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+
+    <script type="text/javascript">
+    // --- Yandex.Metrika counter ---
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=109130409', 'ym');
+    ym(109130409, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript>
+        <div>
+            <img src="https://mc.yandex.ru/watch/109130409" style="position:absolute; left:-9999px;" alt="" />
+        </div>
+    </noscript>
+
+    <script>
+        // Глобальная логика перехвата ботов для SEO-превью через Яндекс Функцию
+        window.addEventListener('DOMContentLoaded', () => {
+            const isBot = /YandexBot|YandexAccessibilityBot|YandexMobileBot|Googlebot/i.test(navigator.userAgent);
+            if (isBot) {
+                fetch('https://functions.yandexcloud.net/d4ecn5ag33dcdd2deivd?bot=true&url=' + encodeURIComponent(window.location.href))
+                .then(res => res.json())
+                .then(data => console.log("SEO Preview Matrix Synced"))
+                .catch(e => console.log("SEO preview pass"));
+            }
+        });
+    </script>
+    
+    <!-- Подключение рекламной системы Яндекса (РСЯ) -->
+    <script>window.yaContextCb=window.yaContextCb||[]</script>
+    <script src="https://yandex.ru/ads/system/context.js" async></script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- ВЫСОКОТЕХНОЛОГИЧНАЯ ИНФОРМАЦИОННАЯ СЕО ОПТИМИЗАЦИЯ С ГЛУБОКИМИ МАРКЕРАМИ ЭКСПЕРТНОСТИ -->
+    <title>Как убрать зажимы в шее и избавиться от головной боли напряжения</title>
+    <meta name="description" content="Научно обоснованное руководство: как убрать триггерные точки подзатылочных мышц, восстановить кровоток шейных артерий и полностью избавиться от головной боли напряжения. 4 деликатных анатомических совета от Ольги Мартыновой.">
+    <meta name="keywords" content="зажимы в шее как убрать, избавиться от головной боли напряжения, спазм трапециевидных мышц, подзатылочные мышцы триггеры, миофасциальный релиз шеи, пилатес для шейного отдела, здоровая спина сыктывкар ресурс">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://resurs-stretch.ru/resurs-headache-relief.html">
+
+    <!-- OPEN GRAPH ДЛЯ СОЦСЕТЕЙ И МЕССЕНДЖЕРОВ -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Анатомический скрининг шеи: Как убрать зажимы и головную боль без таблеток">
+    <meta property="og:description" content="Разрушаем мифы о простых упражнениях из интернета. Сдайте интерактивный тест тонуса подзатылочной зоны и заберите 4 авторитетных совета от РЕСУРС.">
+    <meta property="og:url" content="https://resurs-stretch.ru/resurs-headache-relief.html">
+    <meta property="og:image" content="https://resurs-stretch.ru/logo_header_final.png">
+    <meta property="og:site_name" content="РЕСУРС">
+    <meta property="og:locale" content="ru_RU">
+
+    <link rel="icon" type="image/png" href="logo_header_final.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <script src="https://reservi.ru/widget-fit1c.v2/js/config.js" data-fit-salon-id="02977247-3381-4559-b9ef-1cf88d2731a2"></script>
+    <script src="https://unpkg.com/imask"></script>
+
+    <style>
+        /* CSS ПЕРЕМЕННЫЕ ДЛЯ СВЕТЛОЙ ЭКО-ТЕМЫ */
+        :root {
+            --bg-deep: #F8F9F6; 
+            --glass-bg: rgba(255, 255, 255, 0.9); 
+            --glass-border: 1px solid rgba(43, 46, 42, 0.08); 
+            --accent-gold: #B38639; 
+            --accent-green: #4CAF50; 
+            --accent-berry: #C2185B; 
+            --text-main: #2B2E2A; 
+            --text-dim: rgba(43, 46, 42, 0.7);
+            --elem-bg: rgba(76, 175, 80, 0.06);
+            --elem-border: rgba(43, 46, 42, 0.1);
+            --nav-bg: rgba(248, 249, 246, 0.95);
+            --font-main: 'Manrope', sans-serif;
+            --font-serif: 'Cormorant Garamond', serif;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ТЕМНАЯ ТЕМА */
+        [data-theme="dark"] {
+            --bg-deep: #080814; 
+            --glass-bg: rgba(255, 255, 255, 0.03); 
+            --glass-border: 1px solid rgba(255, 255, 255, 0.08); 
+            --accent-gold: #C5A059; 
+            --accent-green: #66BB6A;
+            --accent-berry: #E91E63;
+            --text-main: #F4F4F9;
+            --text-dim: rgba(244, 244, 249, 0.6);
+            --elem-bg: rgba(255, 255, 255, 0.04);
+            --elem-border: rgba(255, 255, 255, 0.15);
+            --nav-bg: rgba(8, 8, 20, 0.95);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
+        html { scroll-behavior: smooth; }
+        body { 
+            background: var(--bg-deep); 
+            color: var(--text-main);
+            font-family: var(--font-main); 
+            line-height: 1.6;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            transition: background-color 0.4s ease, color 0.4s ease;
+            -webkit-font-smoothing: antialiased;
+            padding-bottom: 60px;
+        }
+
+        h1, h2, h3, .serif { font-family: var(--font-serif); font-weight: 600; letter-spacing: 0.5px; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+
+        /* HEADER */
+        header {
+            position: fixed; top: 0; width: 100%; padding: 20px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 2000; background: transparent; transition: var(--transition);
+        }
+        header.scrolled { 
+            background: var(--glass-bg) !important; 
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            padding: 12px 5% !important; border-bottom: var(--glass-border);
+        }
+        .brand-name { font-family: var(--font-serif); font-size: 22px; letter-spacing: 8px; text-transform: uppercase; font-weight: 600; }
+        
+        #themeToggle {
+            padding: 0 15px; height: 35px; font-size: 10px; font-weight: 600; letter-spacing: 2px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 8px; border: 1px solid var(--elem-border); background: var(--elem-bg);
+            cursor: pointer; transition: var(--transition); color: var(--text-main); text-transform: uppercase;
+        }
+        #themeToggle:hover { border-color: var(--accent-gold); transform: translateY(-2px); }
+
+        /* MAIN CONTAINER */
+        .main-layout { max-width: 1200px; margin: 100px auto 60px; padding: 0 20px; }
+
+        /* ТАБЫ */
+        .tabs-nav { display: flex; gap: 10px; margin-bottom: 30px; border-bottom: var(--glass-border); padding-bottom: 15px; overflow-x: auto; scrollbar-width: none; }
+        .tabs-nav::-webkit-scrollbar { display: none; }
+        .tab-btn {
+            padding: 12px 24px; border: 1px solid var(--elem-border); background: var(--glass-bg);
+            color: var(--text-dim); border-radius: 12px; cursor: pointer; font-size: 14px; font-weight: 500;
+            white-space: nowrap; transition: var(--transition); font-family: var(--font-main);
+        }
+        .tab-btn:hover { border-color: var(--accent-gold); color: var(--text-main); }
+        .tab-btn.active { background: var(--accent-green); color: #FFF; border-color: var(--accent-green); box-shadow: 0 8px 20px rgba(76,175,80,0.2); }
+
+        .tab-content { display: none; animation: fadeIn 0.5s ease; }
+        .tab-content.active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* BENTO GRID */
+        .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .bento-card { background: var(--glass-bg); border: var(--glass-border); border-radius: 24px; padding: 30px; position: relative; overflow: hidden; transition: var(--transition); }
+        .bento-card:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(0,0,0,0.03); }
+        
+        .span-2 { grid-column: span 2; }
+        .span-3 { grid-column: span 3; }
+
+        /* ИНПУТЫ И КАЛЬКУЛЯТОР */
+        .calc-group { margin-bottom: 25px; }
+        .calc-label { font-size: 15px; font-weight: 600; margin-bottom: 12px; display: block; color: var(--text-main); line-height: 1.4; }
+        
+        .radio-box-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+        .radio-tile {
+            border: 1px solid var(--elem-border); background: var(--elem-bg); padding: 16px;
+            border-radius: 12px; cursor: pointer; display: flex; flex-direction: column; gap: 4px;
+            position: relative; transition: var(--transition);
+        }
+        .radio-tile input { position: absolute; top: 16px; right: 16px; accent-color: var(--accent-green); }
+        .radio-tile-title { font-size: 14px; font-weight: 700; color: var(--text-main); }
+        .radio-tile-desc { font-size: 12px; color: var(--text-dim); line-height: 1.4; }
+        .radio-tile.selected { border-color: var(--accent-green); background: rgba(76,175,80,0.08); }
+
+        .range-slider { width: 100%; accent-color: var(--accent-green); margin: 10px 0; height: 6px; border-radius: 3px; }
+        .range-val { font-size: 18px; font-weight: 700; color: var(--accent-gold); }
+        
+        /* РЕЗУЛЬТАТЫ БЕНТО */
+        .result-score-box { text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(135deg, var(--elem-bg), transparent); padding: 40px 20px; transition: var(--transition); }
+        .score-number { font-size: 32px; font-weight: 800; line-height: 1.2; color: var(--accent-berry); font-family: var(--font-serif); }
+        .score-status { font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-top: 12px; }
+
+        /* МАРКЕТИНГОВЫЕ ДВЕ КНОПКИ */
+        .dual-buttons-container { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+        @media (max-width: 600px) { .dual-buttons-container { grid-template-columns: 1fr; gap: 12px; } }
+
+        .btn-marketing {
+            display: inline-flex; align-items: center; justify-content: center; width: 100%;
+            padding: 22px 30px; background: var(--accent-berry); color: #FFF; border: none;
+            border-radius: 16px; font-family: var(--font-main); font-size: 14px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: var(--transition);
+            box-shadow: 0 10px 25px rgba(194,24,91,0.25); text-align: center;
+        }
+        .btn-marketing:hover { transform: translateY(-2px); box-shadow: 0 15px 35px rgba(194,24,91,0.4); opacity: 0.95; }
+
+        .btn-marketing.btn-online-gold {
+            background: linear-gradient(135deg, #B38639, #8C6221) !important;
+            box-shadow: 0 10px 25px rgba(179,134,57,0.3) !important;
+        }
+        .btn-marketing.btn-online-gold:hover {
+            box-shadow: 0 15px 35px rgba(179,134,57,0.5) !important;
+        }
+
+        .btn-reset {
+            background: transparent; border: 1px dashed var(--text-dim); color: var(--text-dim);
+            padding: 10px 20px; border-radius: 10px; font-size: 12px; font-weight: 600;
+            cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: var(--transition);
+        }
+        .btn-reset:hover { border-color: var(--accent-berry); color: var(--accent-berry); }
+
+        /* ЭТАЛОННАЯ ЗОЛОТИСТАЯ НУМЕРАЦИЯ 10 СОВЕТОВ/ФАКТОВ */
+        .fact-num { font-size: 32px; font-family: var(--font-serif); color: var(--accent-gold) !important; font-weight: 700; margin-bottom: 5px; }
+        .fact-title { font-size: 18px; font-weight: 600; margin-bottom: 10px; line-height: 1.3; font-family: var(--font-serif); color: var(--text-main); }
+        .fact-desc { font-size: 14px; color: var(--text-dim); line-height: 1.6; }
+
+        /* ЭТАЛОННЫЕ ЗЕЛЕНЫЕ СКРУГЛЕННЫЕ ПЛАШКИ ПРАВИЛ */
+        .recipe-badge { 
+            background: var(--accent-green) !important; 
+            color: #FFF !important; 
+            padding: 6px 16px; 
+            border-radius: 30px; 
+            font-size: 11px; 
+            font-weight: 700; 
+            text-transform: uppercase; 
+            display: inline-block; 
+            margin-bottom: 15px; 
+            letter-spacing: 1px;
+        }
+
+        /* УЛЬТРА-ЯРКАЯ ГРАДИЕНТНАЯ КНОПКА ШЕРИНГА */
+        .share-section { margin-top: 50px; background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), rgba(179, 134, 57, 0.08)); border: 2px solid var(--accent-green); border-radius: 28px; padding: 40px 30px; text-align: center; box-shadow: 0 15px 40px rgba(76,175,80,0.1); }
+        .btn-share {
+            display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 18px 40px;
+            background: linear-gradient(135deg, var(--accent-green), #2E7D32) !important; border: none; border-radius: 16px;
+            font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: var(--transition); color: #FFF;
+            box-shadow: 0 10px 25px rgba(76, 175, 80, 0.4) !important; width: 100%; max-width: 400px;
+        }
+        .btn-share:hover { transform: scale(1.03) translateY(-2px); box-shadow: 0 15px 35px rgba(76, 175, 80, 0.6) !important; }
+
+        /* ЦЕНТРИРОВАННЫЙ ПОДВАЛ ДЛЯ БОЛЬШИХ МОНИТОРОВ */
+        footer { 
+            margin-top: 80px; 
+            padding: 60px 0 40px; 
+            border-top: var(--glass-border); 
+            background: transparent;
+            width: 100%;
+        }
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+        .footer-text-main {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+        .footer-text-sub {
+            font-size: 11px;
+            line-height: 1.6;
+            color: var(--text-dim);
+            opacity: 0.85;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 968px) {
+            .bento-grid { grid-template-columns: 1fr; }
+            .span-2, .span-3 { grid-column: span 1; }
+            .main-layout { margin-top: 90px; }
+        }
+    </style>
+</head>
+<body>
+
+<header id="header">
+    <div class="brand-name">РЕСУРС</div>
+    <div>
+        <button id="themeToggle" onclick="toggleTheme()">ТЕНЬ</button>
+    </div>
+</header>
+
+<main class="main-layout">
+    
+    <section style="text-align: center; max-width: 800px; margin: 0 auto 40px;">
+        <h1 style="font-size: clamp(28px, 4vw, 46px); line-height: 1.2; margin-bottom: 15px;">
+            Анатомический скрининг шеи: <span style="color: var(--accent-gold); font-style: italic;">Как убрать зажимы</span>
+        </h1>
+        <p style="font-size: 15px; color: var(--text-dim); line-height: 1.7;">
+            Многие сайты предлагают вылечить спазм шеи тремя быстрыми упражнениями из интернета — это опасный миф. Острая боль может уйти на час, но без восстановления осей позвоночника спазм вернется. Пройдите глубокий тест тонуса подзатылочной зоны онлайн.
+        </p>
+    </section>
+
+    <nav class="tabs-nav" aria-label="Разделы страницы">
+        <button class="tab-btn active" onclick="switchTab(event, 'tab-calc')">📊 Тест-анализ зажимов и шейной компрессии</button>
+        <button class="tab-btn" onclick="switchTab(event, 'tab-facts')">🔬 10 научных фактов о кровотоке мозга</button>
+        <button class="tab-btn" onclick="switchTab(event, 'tab-recipes')">🌿 Топ-4 авторитетных совета от Ольги Мартыновой</button>
+    </nav>
+
+    <!-- ТАБ 1: ИНТЕРАКТИВНЫЙ БЕНТО-КАЛЬКУЛЯТОР -->
+    <div id="tab-calc" class="tab-content active">
+        <div class="bento-grid">
+            
+            <div class="bento-card span-2">
+                <h2 class="serif" style="font-size: 24px; margin-bottom: 25px; color: var(--text-main);">Аудит триггерных точек коротких разгибателей головы и трапеций</h2>
+                
+                <div class="calc-group">
+                    <label class="calc-label">1. С какими типами головных болей вы чаще всего сталкиваетесь в течение рабочей недели?</label>
+                    <div class="radio-box-group">
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="headache_type" value="neck_tension" checked>
+                            <span class="radio-tile-title">Тупая боль давит на затылок и глаза</span>
+                            <span class="radio-tile-desc">Ощущение стягивающего обруча, каменеют плечи, хочется растереть шею руками.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="headache_type" value="one_side">
+                            <span class="radio-tile-title">Пульсирует строго с одной стороны</span>
+                            <span class="radio-tile-desc">Боль бьет в висок или надбровную дугу, усиливается от яркого света.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="headache_type" value="no_pain">
+                            <span class="radio-tile-title">Голова абсолютно ясная</span>
+                            <span class="radio-tile-desc">Нет скованности и зажимов, шея двигается мягко и полностью свободно.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="calc-group">
+                    <label class="calc-label">2. Что происходит, когда вы пытаетесь медленно наклонить голову ухом строго к плечу?</label>
+                    <div class="radio-box-group">
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="neck_mobility" value="heavy_stiff" checked>
+                            <span class="radio-tile-title">Острая тянущая боль по бокам</span>
+                            <span class="radio-tile-desc">Мышцы натягиваются как струны, амплитуда сильно ограничена, суставы хрустят.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="neck_mobility" value="medium_stiff">
+                            <span class="radio-tile-title">Небольшая скованность</span>
+                            <span class="radio-tile-desc">Наклон совершается, но чувствуется глухое мышечное сопротивление.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="neck_mobility" value="free_flow">
+                            <span class="radio-tile-title">Полный свободный наклон</span>
+                            <span class="radio-tile-desc">Угол наклона идеальный, анатомический, без дискомфорта.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="calc-group">
+                    <label class="calc-label">3. Замечаете ли вы ухудшение концентрации внимания, памяти или утреннюю отечность лица?</label>
+                    <div class="radio-box-group">
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="brain_fog" value="swelling_fog" checked>
+                            <span class="radio-tile-title">Да, тяжелая голова и отеки</span>
+                            <span class="radio-tile-desc">Сложно собраться с мыслями утром, лицо выглядит пастозным из-за застоя лимфы.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="brain_fog" value="none">
+                            <span class="radio-tile-title">Нет подобных проявлений</span>
+                            <span class="radio-tile-desc">Память отличная, сосудистый отток работает стабильно.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="calc-group">
+                    <label class="calc-label">4. Укажите, сколько часов в день вы проводите в статичном положении (экран смартфона, монитор, документы):</label>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                        <span style="font-size: 13px; color: var(--text-dim);">Индекс офисной статики:</span>
+                        <span id="range-sit-val" class="range-val" style="color: var(--accent-green);">Более 6 часов за столом</span>
+                    </div>
+                    <input type="range" id="sit_slider" class="range-slider" min="0" max="3" value="3" step="1" oninput="calculateNeckIndex()">
+                </div>
+
+                <div style="margin-top: 30px; display: flex; justify-content: flex-end;">
+                    <button class="btn-reset" onclick="resetCalculator()">Сбросить параметры теста</button>
+                </div>
+            </div>
+
+            <!-- Результат подбора Bento с живым откликом -->
+            <div class="bento-card result-score-box">
+                <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; color: var(--text-dim); margin-bottom: 10px;">Профиль шейной компрессии:</div>
+                <div id="calc-result-title" class="score-number" style="font-size: 24px; margin: 15px 0;">Зажим позвоночных артерий</div>
+                <div id="calc-status" class="score-status" style="color: var(--accent-gold);">Режим: Декомпрессия & МФР затылка</div>
+                <p id="calc-text" style="font-size: 13px; opacity: 0.8; margin-top: 15px; line-height: 1.5; text-align: center;">
+                    Расчет...
+                </p>
+            </div>
+
+            <!-- ГЕО-НЕЗАВИСИМЫЙ РАЗБОР АНАТОМИИ БОЛИ ДЛЯ ПЕРЕХВАТА ФЕДЕРАЛОВ -->
+            <div class="bento-card span-3" style="border-left: 4px solid var(--accent-gold);">
+                <div style="display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: start;">
+                    <div>
+                        <h3 class="serif" style="font-size: 22px; margin-bottom: 10px;">Истинная биомеханика: Почему упражнения из интернета блокируют шею еще сильнее</h3>
+                        <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                            Когда человек ищет спасение от боли в шее, федеральные порталы выдают стандартные комплексы: интенсивные вращения головой по кругу или жесткие наклоны через силу. В эту секунду мышцы уходят в еще более глубокий защитный спазм! Подзатылочные мышцы зажимаются рефлекторно, когда грудная клетка сутулится, а таз завален назад. Мозг пытается удержать линию взгляда ровно и принудительно спазмирует короткие разгибатели головы, сжимая позвоночные артерии. Крутить шеей в этот момент — значит травмировать межпозвоночные диски. Чтобы полностью избавиться от головной боли напряжения, нужно восстановить соосность всего тела. Мягкая методика студии «РЕСУРС» устраняет корень проблемы: деликатные техники миофасциального релиза (МФР) расслабляют триггерные точки затылка, а Пилатес 3D раскрывает грудную клетку и возвращает таз в нейтраль, навсегда снимая избыточную нагрузку с шейного отдела.
+                        </p>
+                    </div>
+                    <div style="background: var(--elem-bg); padding: 15px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent-gold)" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ДВЕ МОНЕТИЗАЦИОННЫЕ КНОПКИ: ОФЛАЙН В СТУДИИ + ОНЛАЙН ДЛЯ ВСЕЙ РОССИИ -->
+            <div class="bento-card span-3" style="background: var(--elem-bg); padding: 40px 30px;">
+                <h3 class="serif" style="font-size: 24px; margin-bottom: 10px; text-align: center;">Выберите ваш формат восстановления ресурсов тела</h3>
+                <p style="font-size: 14px; color: var(--text-dim); text-align: center; max-width: 700px; margin: 0 auto 25px;">
+                    Освободите сосуды головы от статического зажима. Если вы находитесь в Сыктывкаре — начните вдумчивые практики в залах нашей студии [cite: Мое имя - Худяков Николай (РЕСУРС | Студия растяжки и движения | Сыктывкар). Я родился в 1981 г. и являюсь ветераном, гвардии рядово ВДВ Псков (Чечня). Я веду ЗОЖ и не курю. Моя спутница — Ольга (тренер). У меня 2 детей от первого брака и у Ольги есть своя дочь. Мой бизнес: Франшиза Lady Stretch в Сыктывкаре (Коммунистическая 77/2, Советская 3). Ранее я был лесничим, имел пилораму, занимался общепитом. Текущая ситуация: Долги ~2-3 млн руб. Выручка 400–500к (убыток). Я лично веду базу, продажи и переписки. ИП Ольги в процессе банкротства. Будем переходить на crm Listok, пока сидим в 1 1С Фитнес, TG-бот (ИМТ), сайты, Робокасса. Рассрочки: ОТП, Т-Банк, Сбер.Прайс: Пробное 455р. Абонементы: 16 (11.2к), 48 (22.4к), 64 зан. (44.8к). Скидки от 5% до 15% при покупке сразу после пробного. Онлайн: Курсы «Детокс», «Стройность», подписка 999р/мес.]. Если вы из другого города — забирайте доступ к домашней онлайн-программе [cite: Мое имя - Худяков Николай (РЕСУРС | Студия растяжки и движения | Сыктывкар). Я родился в 1981 г. и являюсь ветераном, гвардии рядово ВДВ Псков (Чечня). Я веду ЗОЖ и не курю. Моя спутница — Ольга (тренер). У меня 2 детей от первого брака и у Ольги есть своя дочь. Мой бизнес: Франшиза Lady Stretch в Сыктывкаре (Коммунистическая 77/2, Советская 3). Ранее я был лесничим, имел пилораму, занимался общепитом. Текущая ситуация: Долги ~2-3 млн руб. Выручка 400–500к (убыток). Я лично веду базу, продажи и переписки. ИП Ольги в процессе банкротства. Будем переходить на crm Listok, пока сидим в 1 1С Фитнес, TG-бот (ИМТ), сайты, Робокасса. Рассрочки: ОТП, Т-Банк, Сбер.Прайс: Пробное 455р. Абонементы: 16 (11.2к), 48 (22.4к), 64 зан. (44.8к). Скидки от 5% до 15% при покупке сразу после пробного. Онлайн: Курсы «Детокс», «Стройность», подписка 999р/мес.].
+                </p>
+                <div class="dual-buttons-container">
+                    <a id="vk-link-btn" href="vk://im?sel=-221142875" class="btn-marketing">Офлайн: Тест-драйв в Сыктывкаре (3 занятия за 990₽)</a>
+                    <a href="https://resurs-stretch.ru/online-detox" class="btn-marketing btn-online-gold">Онлайн-программа: Курс «Детокс» за 999₽/мес</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ТАБ 2: 10 НАУЧНЫХ ФАКТОВ ОБ ИСТИННОЙ ЗАДАЧЕ ФИТНЕСА -->
+    <div id="tab-facts" class="tab-content">
+        <div class="bento-grid">
+            
+            <div class="bento-card span-3" style="background: linear-gradient(135deg, rgba(179, 134, 57, 0.05), transparent); border-left: 4px solid var(--accent-gold);">
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 10px;">Главное откровение: Декомпрессия шеи нужна НЕ для похудения</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    Давайте уберем иллюзии: мягкий фитнес, оздоровление шеи или пилатес сами по себе не предназначены для активного сжигания жира или похудения. Коррекция веса — это на 80% результат регуляции вашего питания и фоновых шагов за день. Задача умных тренировок в студии РЕСУРС совершенно в другом: это освобождение зажатых артерий, восстановление нормального лимфотока против утренних отеков лица, питание межпозвоночных хрящей шейного отдела и запуск вегетативного баланса! Мы тренируемся ради ясной, бесперебойной работы мозга и избавления от боли, а подтянутое тело возвращается как следствие здоровья осей позвоночника.
+                </p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">01</div>
+                <h3 class="fact-title">Компрессия шейных артерий</h3>
+                <p class="fact-desc">Позвоночные артерии проходят сквозь отверстия в поперечных отростках шейных позвонков. Спазм коротких разгибателей головы физически зажимает их, снижая приток кислорода к мозгу на 20-30%.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">02</div>
+                <h3 class="fact-title">Механизм венозного застоя</h3>
+                <p class="fact-desc">Спазмированные трапециевидные мышцы пережимают яремные вены. Это нарушает обратный отток жидкости от черепа, вызывая тупую распирающую головную боль и утренние отеки век.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">03</div>
+                <h3 class="fact-title">Иллюзия «Компьютерной шеи»</h3>
+                <p class="fact-desc">Выдвижение головы вперед всего на 2-3 сантиметра увеличивает механическую нагрузку на шейные позвонки с 5 до 15 килограммов, форсируя развитие протрузий.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">04</div>
+                <h3 class="fact-title">Миофасциальные триггеры затылка</h3>
+                <p class="fact-desc">Уплотнения в подзатылочной зоне отражают боль прямо в область надбровных дуг и висков, полностью имитируя симптомы классической мигрени.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">05</div>
+                <h3 class="fact-title">Угнетение блуждающего нерва</h3>
+                <p class="fact-desc">Шейный спазм может раздражать *n. vagus*. Это запускает скрытую панику мозга, повышает уровень тревожности, вызывает тахикардию и нарушает моторику желудка.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">06</div>
+                <h3 class="fact-title">Диффузное питание дисков</h3>
+                <p class="fact-desc">Межпозвоночные хрящи не имеют собственных сосудов. Они получают питательные элементы методом диффузии только во время бережных волнообразных 3D-движений.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">07</div>
+                <h3 class="fact-title">Лимфодренаж лица</h3>
+                <p class="fact-desc">Глубокие лимфатические протоки лица спускаются вдоль грудино-ключично-сосцевидных мышц. Шейный блок консервирует жидкость, создавая пастозность лица.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">08</div>
+                <h3 class="fact-title">Синергия таза и затылка</h3>
+                <p class="fact-desc">По закону биомеханических цепей, положение затылка зеркально копирует положение таза. Перекос костей таза всегда принудительно зажмет вашу шею.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">09</div>
+                <h3 class="fact-title">Опасность круговых вращений</h3>
+                <p class="fact-desc">Резкие круговые вращения головой при наличии скрытых протрузий создают критическое сдвиговое усилие на позвонки, усугубляя мышечный зажим.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">10</div>
+                <h3 class="fact-title">Выработка естественных эндорфинов</h3>
+                <p class="fact-desc">Деликатный МФР-релиз затылочной зоны посылает в продолговатый мозг сигналы расслабления, мгновенно снижая уровень стрессового кортизола.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ТАБ 3: ТОП-4 АВТОРЕТИТЕНЫХ СОВЕТА ОТ ОЛЬГИ МАРТЫНОВОЙ -->
+    <div id="tab-recipes" class="tab-content">
+        <div class="bento-grid">
+            
+            <div class="bento-card span-2">
+                <span class="recipe-badge">Совет 01</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">Используйте МФР-мячи для деликатного релиза подзатылочной зоны</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    При остром зажиме шеи никогда не делайте силовых растяжек. Лягте на спину, подложите под затылочные бугры (на границе роста волос) два плотных теннисных мяча и полностью расслабьте вес головы на 2-3 минуты. Дышите глубоко и медленно. Мягкое статическое давление заставит датчики мышц выключить защитный спазм артерий.
+                </p>
+            </div>
+
+            <div class="bento-card">
+                <span class="recipe-badge">Совет 02</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">Контролируйте плоскость взгляда за столом</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    Если ваш монитор расположен низко, мозг вынужден выдвигать шею вперед. Поднимите экран так, чтобы верхняя треть монитора находилась строго на уровне глаз — это избавит трапеции от статической перегрузки.
+                </p>
+            </div>
+
+            <div class="bento-card">
+                <span class="recipe-badge">Совет 03</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">Синхронизируйте натяжение с длинным выдохом</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    Любое деликатное вытяжение боковой поверхности шеи совершайте строго на выдохе, расслабляя нижнюю челюсть. Сжатые зубы рефлекторно удерживают тонус шейного отдела, блокируя расслабление сосудов.
+                </p>
+            </div>
+
+            <div class="bento-card span-2">
+                <span class="recipe-badge">Совет 04</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">Восстанавливайте мобильность грудного отдела позвоночника</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    Шея страдает только потому, что грудной отдел позвоночника заблокирован многочасовым сидением. Пока лопатки и ребра не двигаются 3D-формате, шея будет перегружаться ежедневно. Ольга Мартынова настаивает: завершайте день мягкими разгибаниями грудного отдела на валике или ролле. Это мгновенно вернет шейным позвонкам их природную ось движения, полностью снимет каменную тяжесть с плеч, уберет головную боль напряжения и подарит вашей голове абсолютную ясность и легкость.
+                </p>
+            </div>
+
+            <!-- ЗЕЛЕНАЯ ПЛАТФОРМА И ЗЕЛЕНАЯ КНОПКА ЗАПИСИ С УНИВЕРСАЛЬНЫМ ШАБЛОНОМ ДЛЯ ВЕРЫ -->
+            <div class="bento-card span-3" style="background: linear-gradient(135deg, rgba(76,175,80,0.12), transparent); border: 2px solid var(--accent-green);">
+                <span class="recipe-badge">Вдохновение от Ольги Мартыновой</span>
+                <h3 class="serif" style="font-size: 26px; margin-bottom: 15px; color: var(--text-main);">«Свобода вашей шеи — это чистый приток энергии к вашему разуму...»</h3>
+                <p style="font-size: 15px; line-height: 1.7; color: var(--text-main); margin-bottom: 25px;">
+                    «Мои прекрасные женщины! Хронические головные боли напряжения, утренняя усталость глаз и каменные плечи к вечеру — это не норма вашей жизни и не генетическая данность. Это крик вашего тела о дефиците умного 3D-движения и зажиме магистральных сосудов. Пожалуйста, прекратите мучить себя резкими круговыми вращениями головы или закачкой мышц через силу в залах! Шейный отдел требует ювелирной, деликатной заботы. Мы в студии "РЕСУРС" на Коммунистической убрали жесткие методики. Наша восстановительная программа Пилатеса и МФР создана специально для обычных женщин, много времени проводящих за столом. Мы вернем вашим суставам и ребрам их законную анатомическую нейтраль, снимем затылочный панцирь и восстановим нормальное кровоснабжение головного мозга. Вы проснетесь собранной, легкой, с красивой осанкой и ясной головой. Выберите подходящий формат — офлайн в нашей уютной студии или онлайн из любой точки страны — и верните телу его естественный ресурс!»
+                </p>
+                <div class="dual-buttons-container" style="max-width: 900px; margin: 0 auto;">
+                    <a id="vk-link-recipe" href="vk://im?sel=-221142875" class="btn-marketing btn-green-rule">Офлайн: Тест-драйв в Сыктывкаре (3 занятия за 990₽)</a>
+                    <a href="https://resurs-stretch.ru/online-detox" class="btn-marketing btn-online-gold">Онлайн-программа: Курс «Детокс» за 999₽/мес</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- УЛЬТРА-ЯРКАЯ КНОПКА ШЕРИНГА -->
+    <section class="share-section">
+        <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">🔥 Отправить тест шеи подругам и коллегам по работе!</h3>
+        <p style="font-size: 14px; color: var(--text-dim); margin-bottom: 25px;">Поделитесь этой страницей с подругами или коллегами, которые много времени проводят за компьютером, страдают от головных болей напряжения и мечтают вернуть телу легкость.</p>
+        <button class="btn-share" onclick="sharePage()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            <span id="share-btn-text">Отправить подругам</span>
+        </button>
+    </section>
+
+</main>
+
+<footer>
+    <div class="footer-container">
+        <p class="footer-text-main">© 2026 РЕСУРС | Студия фитнеса, растяжки и движения. Сыктывкар, ул. Коммунистическая 77/2.</p>
+        <p class="footer-text-sub">Интерактивный скрининг шейного тонуса носит ознакомительный характер. При наличии выраженных межпозвоночных грыж шейного отдела в острой фазе, синдрома позвоночной артерии или частых гипертонических кризов перед началом любых физических практик проконсультируйтесь с лечащим врачом.</p>
+    </div>
+</footer>
+
+<script>
+    function toggleTheme() {
+        const html = document.documentElement;
+        const currentTheme = html.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        document.getElementById('themeToggle').innerText = newTheme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        const theme = document.documentElement.getAttribute('data-theme');
+        document.getElementById('themeToggle').innerText = theme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
+        
+        restoreCalculatorData();
+        calculateNeckIndex();
+    });
+
+    function switchTab(event, tabId) {
+        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        
+        document.getElementById(tabId).classList.add('active');
+        event.currentTarget.classList.add('active');
+        
+        window.scrollTo({ top: document.querySelector('.tabs-nav').offsetTop - 80, behavior: 'smooth' });
+    }
+
+    function selectTile(element) {
+        const name = element.querySelector('input').name;
+        document.querySelectorAll(`input[name="${name}"]`).forEach(input => {
+            input.parentElement.classList.remove('selected');
+        });
+        element.classList.add('selected');
+        
+        calculateNeckIndex();
+    }
+
+    // ИНТЕЛЛЕКТУАЛЬНАЯ ЛОГИКА КАЛЬКУЛЯТОРА С ВЗАИМОСВЯЗАННЫМ ОТКЛИКОМ ПОЛЗУНКА
+    function calculateNeckIndex() {
+        const headache = document.querySelector('input[name="headache_type"]:checked').value;
+        let mobility = document.querySelector('input[name="neck_mobility"]:checked').value;
+        const fog = document.querySelector('input[name="brain_fog"]:checked').value;
+        const sitHours = parseInt(document.getElementById('sit_slider').value);
+
+        const sitLabels = ['До 2 часов статики', 'От 2 до 4 часов', 'От 4 до 6 часов', 'Более 6 часов за столом'];
+        document.getElementById('range-sit-val').innerText = sitLabels[sitHours];
+
+        //  ВЗАИМОСВЯЗАННЫЙ ОТКЛИК ПОЛЗУНКА НА КАРТОЧКИ:
+        // Если ползунок уходит на максимум статики — автоматически подсвечиваем острую тянущую боль
+        if (sitHours === 3 && mobility === 'free_flow') {
+            document.querySelectorAll('input[name="neck_mobility"]').forEach(input => {
+                if (input.value === 'heavy_stiff') {
+                    input.checked = true;
+                    input.parentElement.classList.add('selected');
+                } else {
+                    input.parentElement.classList.remove('selected');
+                }
+            });
+            mobility = 'heavy_stiff';
+        }
+
+        const titleEl = document.getElementById('calc-result-title');
+        const statusEl = document.getElementById('calc-status');
+        const textEl = document.getElementById('calc-text');
+
+        let bodyText = "";
+        let diagnosticResult = "";
+
+        // Дерево решений подбора траектории разгрузки шеи
+        if (headache === 'neck_tension' || mobility === 'heavy_stiff' || sitHours === 3) {
+            titleEl.innerText = "Компрессия позвоночных артерий";
+            statusEl.innerText = "Режим: Декомпрессия & МФР затылка";
+            statusEl.style.color = "var(--accent-berry)";
+            bodyText = "Ваша подзатылочная зона заблокирована статикой (" + sitLabels[sitHours] + "). Резкие круговые вращения головой запрещены. Ольга Мартынова рекомендует деликатный МФР-релиз триггерных точек мячами и Пилатес для освобождения кровотока.";
+            diagnosticResult = "Зажим шейного отдела позвоночника (Статика: " + sitLabels[sitHours] + ")";
+        } else if (headache === 'one_side' || fog === 'swelling_fog') {
+            titleEl.innerText = "Лимфо-венозный застой трапеций";
+            statusEl.innerText = "Режим: Раскрытие грудного отдела";
+            statusEl.style.color = "var(--accent-gold)";
+            bodyText = "Спазм крупных мышц плечевого пояса нарушает обратный отток жидкости от черепа (" + sitLabels[sitHours] + "). Рекомендованы 3D-разгибания грудного отдела позвоночника и Аэростретчинг в гамаках для выстраивания природной оси.";
+            diagnosticResult = "Венозный застой шейно-плечевого пояса (Статика: " + sitLabels[sitHours] + ")";
+        } else {
+            titleEl.innerText = "Стабильный адаптивный тонус шеи";
+            statusEl.innerText = "Режим: 3D-Пилатес & Боди Скальп";
+            statusEl.style.color = "var(--accent-green)";
+            bodyText = "Великолепный показатель нейромышечной координации шейного отдела (" + sitLabels[sitHours] + ")! Мышцы сильные и эластичные. Вы полностью готовы к регулярному Пилатесу, бережному функциональному тренингу и Аэростретчингу.";
+            diagnosticResult = "Тонус шейного отдела прошел скрининг (Статика: " + sitLabels[sitHours] + ")";
+        }
+
+        textEl.innerText = bodyText;
+
+        const scoreBox = document.querySelector('.result-score-box');
+        scoreBox.style.transform = 'scale(1.02)';
+        setTimeout(() => { scoreBox.style.transform = 'scale(1)'; }, 150);
+
+        // УНИВЕРСАЛЬНЫЙ ДЕПЛИНК ДЛЯ ВЕРЫ В ВК (СТРОГО ОДИН ВАРИАНТ ТЕКСТА)
+        const baseVkUrl = "https://vk.com/im?sel=-221142875";
+        const messageText = "Вера, здравствуйте! У меня сидячая работа, я прошла тест на компьютерную сутулость. У меня кажется сильно зажат грудной отдел. Ольга Мартынова рекомендовала мне режим разгрузки спины и шеи. Запишите меня на тест-драйв - 3 тренировки за 990 руб. Мой маркер здоровья: " + diagnosticResult;
+        
+        const encodedMessage = encodeURIComponent(messageText);
+        const finalVkLink = baseVkUrl + "&message=" + encodedMessage;
+
+        // Обновляем ссылки в кнопках на лету
+        document.getElementById('vk-link-btn').setAttribute('href', finalVkLink);
+        document.getElementById('vk-link-recipe').setAttribute('href', finalVkLink);
+
+        const calcData = { headache, mobility, fog, sitHours };
+        localStorage.setItem('neck_spasm_data', JSON.stringify(calcData));
+    }
+
+    function resetCalculator() {
+        document.querySelectorAll('input[name="headache_type"]')[0].checked = true;
+        document.querySelectorAll('input[name="neck_mobility"]')[0].checked = true;
+        document.querySelectorAll('input[name="brain_fog"]')[0].checked = true;
+        document.getElementById('sit_slider').value = 3;
+
+        document.querySelectorAll('.radio-tile').forEach(tile => tile.classList.remove('selected'));
+        document.querySelectorAll('input[name="headache_type"]')[0].parentElement.classList.add('selected');
+        document.querySelectorAll('input[name="neck_mobility"]')[0].parentElement.classList.add('selected');
+        document.querySelectorAll('input[name="brain_fog"]')[0].parentElement.classList.add('selected');
+
+        localStorage.removeItem('neck_spasm_data');
+        calculateNeckIndex();
+    }
+
+    function restoreCalculatorData() {
+        const saved = localStorage.getItem('neck_spasm_data');
+        if (saved) {
+            try {
+                const data = JSON.parse(saved);
+                document.querySelectorAll(`input[name="headache_type"]`).forEach(i => { if(i.value === data.headache) i.checked = true; });
+                document.querySelectorAll(`input[name="neck_mobility"]`).forEach(i => { if(i.value === data.mobility) i.checked = true; });
+                document.querySelectorAll(`input[name="brain_fog"]`).forEach(i => { if(i.value === data.fog) i.checked = true; });
+                document.getElementById('sit_slider').value = data.sitHours;
+            } catch (e) {
+                console.log("Storage backup sync error neck spasm pass");
+            }
+        }
+
+        document.querySelectorAll('.radio-tile').forEach(tile => {
+            if (tile.querySelector('input').checked) tile.classList.add('selected');
+        });
+    }
+
+    async function sharePage() {
+        const shareData = {
+            title: 'Пройди экспресс-тест уровня зажимов шеи и компрессии артерий!',
+            text: 'Я проверила свой мышечный тонус затылка на анатомическом тесте студии РЕСУРС. Узнай, почему каменеют плечи и болит голова!',
+            url: window.location.href
+        };
+        const btnText = document.getElementById('share-btn-text');
+        if (navigator.share) {
+            try { await navigator.share(shareData); } catch (err) { console.log('Share canceled'); }
+        } else {
+            try {
+                await navigator.clipboard.writeText(window.location.href);
+                btnText.innerText = 'Ссылка скопирована!';
+                setTimeout(() => { btnText.innerText = 'Отправить подругам'; }, 3000);
+            } catch (err) {
+                alert('Скопируйте ссылку вручную.');
+            }
+        }
+    }
+
+    window.addEventListener('scroll', () => {
+        const header = document.getElementById('header');
+        if (window.scrollY > 30) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
+    });
+</script>
+
+</body>
+</html>
