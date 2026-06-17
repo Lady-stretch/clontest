@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <script>
+        // По умолчанию для инфо-страниц ставим чистую светлую эко-тему, сохраняем выбор пользователя
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+
+    <script type="text/javascript">
+    // --- Yandex.Metrika counter ---
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=109130409', 'ym');
+    ym(109130409, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript>
+        <div>
+            <img src="https://mc.yandex.ru/watch/109130409" style="position:absolute; left:-9999px;" alt="" />
+        </div>
+    </noscript>
+
+    <script>
+        // Глобальная логика перехвата ботов для SEO-превью через Яндекс Функцию
+        window.addEventListener('DOMContentLoaded', () => {
+            const isBot = /YandexBot|YandexAccessibilityBot|YandexMobileBot|Googlebot/i.test(navigator.userAgent);
+            if (isBot) {
+                fetch('https://functions.yandexcloud.net/d4ecn5ag33dcdd2deivd?bot=true&url=' + encodeURIComponent(window.location.href))
+                .then(res => res.json())
+                .then(data => console.log("SEO Preview Matrix Synced"))
+                .catch(e => console.log("SEO preview pass"));
+            }
+        });
+    </script>
+    
+    <!-- Подключение рекламной системы Яндекса (РСЯ) -->
+    <script>window.yaContextCb=window.yaContextCb||[]</script>
+    <script src="https://yandex.ru/ads/system/context.js" async></script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- ТОТАЛЬНАЯ ГЕО-ОПТИМИЗАЦИЯ ПОД НАШ СЕО-СТАНДАРТ С ХВОСТОМ СЫКТЫВКАР -->
+    <title>Фитнес-клуб или Студия фитнеса и растяжки Сыктывкар | Что выбрать | РЕСУРС</title>
+    <meta name="description" content="Интерактивный тест-анализ: Обычный фитнес-клуб с тренажерами или камерная Студия фитнеса и растяжки РЕСУРС в Сыктывкаре. Рассчитайте готовность организма к нагрузкам онлайн.">
+    <meta name="keywords" content="фитнес club сыктывкар, фитнес центр сыктывкар, студия фитнеса сыктывкар, тренажерный зал сыктывкар цены, растяжка на коммунистической акция, пилатес мфр здоровая спина коми">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://resurs-stretch.ru/fitness-or-studio-syktyvkar.html">
+
+    <!-- OPEN GRAPH ДЛЯ СОЦСЕТЕЙ И МЕССЕНДЖЕРОВ -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Фитнес-центр с тренажерами или Студия РЕСУРС? Тест-выбор в Сыктывкаре">
+    <meta property="og:description" content="Узнайте, какой формат тренировок безопасен для ваших суставов и позвоночника. Пройдите аудит целей онлайн.">
+    <meta property="og:url" content="https://resurs-stretch.ru/fitness-or-studio-syktyvkar.html">
+    <meta property="og:image" content="https://resurs-stretch.ru/logo_header_final.png">
+    <meta property="og:site_name" content="РЕСУРС">
+    <meta property="og:locale" content="ru_RU">
+
+    <link rel="icon" type="image/png" href="logo_header_final.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <script src="https://reservi.ru/widget-fit1c.v2/js/config.js" data-fit-salon-id="02977247-3381-4559-b9ef-1cf88d2731a2"></script>
+    <script src="https://unpkg.com/imask"></script>
+
+    <style>
+        /* CSS ПЕРЕМЕННЫЕ ДЛЯ СВЕТЛОЙ ЭКО-ТЕМЫ */
+        :root {
+            --bg-deep: #F8F9F6; 
+            --glass-bg: rgba(255, 255, 255, 0.9); 
+            --glass-border: 1px solid rgba(43, 46, 42, 0.08); 
+            --accent-gold: #B38639; 
+            --accent-green: #4CAF50; 
+            --accent-berry: #C2185B; 
+            --text-main: #2B2E2A; 
+            --text-dim: rgba(43, 46, 42, 0.7);
+            --elem-bg: rgba(76, 175, 80, 0.06);
+            --elem-border: rgba(43, 46, 42, 0.1);
+            --nav-bg: rgba(248, 249, 246, 0.95);
+            --font-main: 'Manrope', sans-serif;
+            --font-serif: 'Cormorant Garamond', serif;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ТЕМНАЯ ТЕМА */
+        [data-theme="dark"] {
+            --bg-deep: #080814; 
+            --glass-bg: rgba(255, 255, 255, 0.03); 
+            --glass-border: 1px solid rgba(255, 255, 255, 0.08); 
+            --accent-gold: #C5A059; 
+            --accent-green: #66BB6A;
+            --accent-berry: #E91E63;
+            --text-main: #F4F4F9;
+            --text-dim: rgba(244, 244, 249, 0.6);
+            --elem-bg: rgba(255, 255, 255, 0.04);
+            --elem-border: rgba(255, 255, 255, 0.15);
+            --nav-bg: rgba(8, 8, 20, 0.95);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
+        html { scroll-behavior: smooth; }
+        body { 
+            background: var(--bg-deep); 
+            color: var(--text-main);
+            font-family: var(--font-main); 
+            line-height: 1.6;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            transition: background-color 0.4s ease, color 0.4s ease;
+            -webkit-font-smoothing: antialiased;
+            padding-bottom: 60px;
+        }
+
+        h1, h2, h3, .serif { font-family: var(--font-serif); font-weight: 600; letter-spacing: 0.5px; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+
+        /* HEADER */
+        header {
+            position: fixed; top: 0; width: 100%; padding: 20px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 2000; background: transparent; transition: var(--transition);
+        }
+        header.scrolled { 
+            background: var(--glass-bg) !important; 
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            padding: 12px 5% !important; border-bottom: var(--glass-border);
+        }
+        .brand-name { font-family: var(--font-serif); font-size: 22px; letter-spacing: 8px; text-transform: uppercase; font-weight: 600; }
+        
+        #themeToggle {
+            padding: 0 15px; height: 35px; font-size: 10px; font-weight: 600; letter-spacing: 2px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 8px; border: 1px solid var(--elem-border); background: var(--elem-bg);
+            cursor: pointer; transition: var(--transition); color: var(--text-main); text-transform: uppercase;
+        }
+        #themeToggle:hover { border-color: var(--accent-gold); transform: translateY(-2px); }
+
+        /* MAIN CONTAINER */
+        .main-layout { max-width: 1200px; margin: 100px auto 60px; padding: 0 20px; }
+
+        /* ТАБЫ */
+        .tabs-nav { display: flex; gap: 10px; margin-bottom: 30px; border-bottom: var(--glass-border); padding-bottom: 15px; overflow-x: auto; scrollbar-width: none; }
+        .tabs-nav::-webkit-scrollbar { display: none; }
+        .tab-btn {
+            padding: 12px 24px; border: 1px solid var(--elem-border); background: var(--glass-bg);
+            color: var(--text-dim); border-radius: 12px; cursor: pointer; font-size: 14px; font-weight: 500;
+            white-space: nowrap; transition: var(--transition); font-family: var(--font-main);
+        }
+        .tab-btn:hover { border-color: var(--accent-gold); color: var(--text-main); }
+        .tab-btn.active { background: var(--accent-green); color: #FFF; border-color: var(--accent-green); box-shadow: 0 8px 20px rgba(76,175,80,0.2); }
+
+        .tab-content { display: none; animation: fadeIn 0.5s ease; }
+        .tab-content.active { display: block; }
+
+        @media (max-width: 968px) {
+            .bento-grid { grid-template-columns: 1fr; }
+            .span-2, .span-3 { grid-column: span 1; }
+            .main-layout { margin-top: 90px; }
+        }
+
+        /* BENTO GRID */
+        .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .bento-card { background: var(--glass-bg); border: var(--glass-border); border-radius: 24px; padding: 30px; position: relative; overflow: hidden; transition: var(--transition); }
+        .bento-card:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(0,0,0,0.03); }
+        
+        .span-2 { grid-column: span 2; }
+        .span-3 { grid-column: span 3; }
+
+        /* ИНПУТЫ И КАЛЬКУЛЯТОР */
+        .calc-group { margin-bottom: 25px; }
+        .calc-label { font-size: 15px; font-weight: 600; margin-bottom: 12px; display: block; color: var(--text-main); line-height: 1.4; }
+        
+        .radio-box-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+        .radio-tile {
+            border: 1px solid var(--elem-border); background: var(--elem-bg); padding: 16px;
+            border-radius: 12px; cursor: pointer; display: flex; flex-direction: column; gap: 4px;
+            position: relative; transition: var(--transition);
+        }
+        .radio-tile input { position: absolute; top: 16px; right: 16px; accent-color: var(--accent-green); }
+        .radio-tile-title { font-size: 14px; font-weight: 700; color: var(--text-main); }
+        .radio-tile-desc { font-size: 12px; color: var(--text-dim); line-height: 1.4; }
+        .radio-tile.selected { border-color: var(--accent-green); background: rgba(76,175,80,0.08); }
+
+        .range-slider { width: 100%; accent-color: var(--accent-green); margin: 10px 0; height: 6px; border-radius: 3px; }
+        .range-val { font-size: 18px; font-weight: 700; color: var(--accent-gold); }
+        
+        /* РЕЗУЛЬТАТЫ БЕНТО */
+        .result-score-box { text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(135deg, var(--elem-bg), transparent); padding: 40px 20px; transition: var(--transition); }
+        .score-number { font-size: 32px; font-weight: 800; line-height: 1.2; color: var(--accent-berry); font-family: var(--font-serif); }
+        .score-status { font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-top: 12px; }
+
+        /* МАРКЕТИНГОВЫЕ КНОПКИ */
+        .btn-marketing {
+            display: inline-flex; align-items: center; justify-content: center; width: 100%;
+            padding: 22px 30px; background: var(--accent-berry); color: #FFF; border: none;
+            border-radius: 16px; font-family: var(--font-main); font-size: 15px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: var(--transition);
+            box-shadow: 0 10px 25px rgba(194,24,91,0.25);
+        }
+        .btn-marketing:hover { transform: translateY(-2px); box-shadow: 0 15px 35px rgba(194,24,91,0.4); opacity: 0.95; }
+
+        .btn-green-rule {
+            background: var(--accent-green) !important;
+            box-shadow: 0 10px 25px rgba(76,175,80,0.3) !important;
+        }
+        .btn-green-rule:hover {
+            box-shadow: 0 15px 35px rgba(76,175,80,0.5) !important;
+        }
+
+        .btn-reset {
+            background: transparent; border: 1px dashed var(--text-dim); color: var(--text-dim);
+            padding: 10px 20px; border-radius: 10px; font-size: 12px; font-weight: 600;
+            cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: var(--transition);
+        }
+        .btn-reset:hover { border-color: var(--accent-berry); color: var(--accent-berry); }
+
+        .fact-num { font-size: 32px; font-family: var(--font-serif); color: var(--accent-gold) !important; font-weight: 700; margin-bottom: 5px; }
+        .fact-title { font-size: 18px; font-weight: 600; margin-bottom: 10px; line-height: 1.3; font-family: var(--font-serif); color: var(--text-main); }
+        .fact-desc { font-size: 14px; color: var(--text-dim); line-height: 1.6; }
+
+        .recipe-badge { 
+            background: var(--accent-green) !important; 
+            color: #FFF !important; 
+            padding: 6px 16px; 
+            border-radius: 30px; 
+            font-size: 11px; 
+            font-weight: 700; 
+            text-transform: uppercase; 
+            display: inline-block; 
+            margin-bottom: 15px; 
+            letter-spacing: 1px;
+        }
+
+        .share-section { margin-top: 50px; background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), rgba(179, 134, 57, 0.08)); border: 2px solid var(--accent-green); border-radius: 28px; padding: 40px 30px; text-align: center; box-shadow: 0 15px 40px rgba(76,175,80,0.1); }
+        .btn-share {
+            display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 18px 40px;
+            background: linear-gradient(135deg, var(--accent-green), #2E7D32) !important; border: none; border-radius: 16px;
+            font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: var(--transition); color: #FFF;
+            box-shadow: 0 10px 25px rgba(76, 175, 80, 0.4) !important; width: 100%; max-width: 400px;
+        }
+        .btn-share:hover { transform: scale(1.03) translateY(-2px); box-shadow: 0 15px 35px rgba(76, 175, 80, 0.6) !important; }
+
+        .dual-buttons-container { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 25px; }
+        @media (max-width: 600px) { .dual-buttons-container { grid-template-columns: 1fr; gap: 12px; } }
+
+        .btn-online-gold {
+            background: linear-gradient(135deg, #B38639, #8C6221) !important;
+            box-shadow: 0 10px 25px rgba(179,134,57,0.2) !important;
+        }
+        .btn-online-gold:hover { box-shadow: 0 15px 35px rgba(179,134,57,0.4) !important; }
+
+        footer { 
+            margin-top: 80px; 
+            padding: 60px 0 40px; 
+            border-top: var(--glass-border); 
+            background: transparent;
+            width: 100%;
+        }
+        .footer-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; text-align: center; }
+    </style>
+</head>
+<body>
+
+<header id="header">
+    <div class="brand-name">РЕСУРС</div>
+    <div>
+        <button id="themeToggle" onclick="toggleTheme()">ТЕНЬ</button>
+    </div>
+</header>
+
+<main class="main-layout">
+    
+    <section style="text-align: center; max-width: 800px; margin: 0 auto 40px;">
+        <h1 style="font-size: clamp(24px, 4vw, 42px); line-height: 1.2; margin-bottom: 15px;">
+            Фитнес-клуб с тренажерами или <span style="color: var(--accent-gold); font-style: italic;">Студия фитнеса РЕСУРС</span>?
+        </h1>
+        <p style="font-size: 15px; color: var(--text-dim); line-height: 1.7;">
+            Многие ищут классический фитнес-клуб или крупный фитнес-центр в Сыктывкаре по привычке, не задумываясь о рисках для позвоночника. Разомните зажимы стереотипов. Пройдите тест-анализ, чтобы рассчитать личный индекс безопасности тренировок и определить идеальный формат движения.
+        </p>
+    </section>
+
+    <nav class="tabs-nav" aria-label="Разделы страницы">
+        <button class="tab-btn active" onclick="switchTab(event, 'tab-calc')">📊 Тест-анализ целей и нагрузок</button>
+        <button class="tab-btn" onclick="switchTab(event, 'tab-facts')">🔬 10 фактов об истинной задаче фитнеса</button>
+        <button class="tab-btn" onclick="switchTab(event, 'tab-recipes')">🌿 4 правила безопасного движения от Ольги Мартыновой</button>
+    </nav>
+
+    <!-- ТАБ 1: ИНТЕРАКТИВНЫЙ БЕНТО-КАЛЬКУЛЯТОР -->
+    <div id="tab-calc" class="tab-content active">
+        <div class="bento-grid">
+            
+            <div class="bento-card span-2">
+                <h2 class="serif" style="font-size: 24px; margin-bottom: 25px; color: var(--text-main);">Аудит готовности опорно-двигательного аппарата к тренировкам</h2>
+                
+                <div class="calc-group">
+                    <label class="calc-label">1. Какая главная цель стоит перед вами при выборе фитнес-центра в Сыктывкаре?</label>
+                    <div class="radio-box-group">
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="fitness_goal" value="spine_health" checked>
+                            <span class="radio-tile-title">Избавиться от болей в спине</span>
+                            <span class="radio-tile-desc">Убрать зажимы в шее, ломоту в пояснице от сидячей работы.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="fitness_goal" value="sculpt_body">
+                            <span class="radio-tile-title">Подтянуть тело / убрать отеки</span>
+                            <span class="radio-tile-desc">Вернуть тонус мышцам, уменьшить объемы, вернуть легкую походку.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="fitness_goal" value="hard_power">
+                            <span class="radio-tile-title">Жесткий силовой тренинг</span>
+                            <span class="radio-tile-desc">Работать с большими весами на тренажерах, бегать до изнеможения.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="calc-group">
+                    <label class="calc-label">2. Замечаете ли вы хруст в суставах, дискомфорт в коленях или скованность по утрам?</label>
+                    <div class="radio-box-group">
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="joints_status" value="heavy_stiff" checked>
+                            <span class="radio-tile-title">Да, суставы скованы</span>
+                            <span class="radio-tile-desc">Спина деревянная, колени ноют при приседаниях или подъеме.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="joints_status" value="rare_crunch">
+                            <span class="radio-tile-title">Редкий хруст без боли</span>
+                            <span class="radio-tile-desc">Иногда хрустит шея или поясница после долгого сидения в офисе.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="joints_status" value="perfect_joints">
+                            <span class="radio-tile-title">Полная гибкость и легкость</span>
+                            <span class="radio-tile-desc">Суставы двигаются свободно, ограничений и боли нет вообще.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="calc-group">
+                    <label class="calc-label">3. Какой формат контроля на тренировках для вас является наиболее комфортным?</label>
+                    <div class="radio-box-group">
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="control_type" value="strict_expert" checked>
+                            <span class="radio-tile-title">Строгий надзор биомеханика</span>
+                            <span class="radio-tile-desc">Чтобы тренер лично правил каждое движение и ставил технику.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="control_type" value="just_program">
+                            <span class="radio-tile-title">Готовая программа занятий</span>
+                            <span class="radio-tile-desc">Могу заниматься сама по шаблону, изредка сверяясь с инструктором.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="control_type" value="alone">
+                            <span class="radio-tile-title">Полная автономность в зале</span>
+                            <span class="radio-tile-desc">Предпочитаю наушники, тренажеры и отсутствие подсказок со стороны.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="calc-group">
+                    <label class="calc-label">4. Оцените уровень вашей ежедневной статической нагрузки (сидя за ПК/рулем):</label>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                        <span style="font-size: 13px; color: var(--text-dim);">Время статического зажима в день:</span>
+                        <span id="range-hours-val" class="range-val" style="color: var(--accent-green);">Более 8 часов (Жесткий зажим)</span>
+                    </div>
+                    <input type="range" id="hours_slider" class="range-slider" min="0" max="3" value="3" step="1" oninput="calculateFitnessIndex()">
+                </div>
+
+                <div style="margin-top: 30px; display: flex; justify-content: flex-end;">
+                    <button class="btn-reset" onclick="resetCalculator()">Сбросить параметры теста</button>
+                </div>
+            </div>
+
+            <!-- Результат расчета -->
+            <div class="bento-card result-score-box">
+                <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; color: var(--text-dim); margin-bottom: 10px;">Ваш индекс безопасности движения:</div>
+                <div id="calc-result-title" class="score-number" style="font-size: 24px; margin: 15px 0;">35% Безопасности</div>
+                <div id="calc-status" class="score-status" style="color: var(--accent-berry);">Тренажеры противопоказаны</div>
+                <p id="calc-text" style="font-size: 13px; opacity: 0.8; margin-top: 15px; line-height: 1.5; text-align: center;">
+                    Расчет...
+                </p>
+            </div>
+
+            <!-- Научный разбор -->
+            <div class="bento-card span-3" style="border-left: 4px solid var(--accent-gold);">
+                <div style="display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: start;">
+                    <div>
+                        <h3 class="serif" style="font-size: 22px; margin-bottom: 10px;">Почему бездумный поход в тренажерный зал усугубит боли в спине</h3>
+                        <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                            Когда человек часами сидит в офисе, его глубокие мышцы-стабилизаторы позвоночника атрофируются, а крупные скелетные мышцы уходят в жесткий спазм. Приходя в обычный фитнес-клуб в Сыктывкаре и начиная приседать со штангой или качать тренажеры, вы накладываете осевую нагрузку на уже деформированную ось. Спазмированные мышцы затягивают зажим еще сильнее, намертво сдавливая межпозвоночные диски. Результат — протрузии и грыжи. Обычный фитнес-центр рассчитан на потоковую работу со здоровыми людьми. Студия «РЕСУРС» на Коммунистической работает иначе: мы сначала снимаем зажимы через **МФР** (миофасциальный релиз роллами), возвращаем осям нейтраль с помощью **Пилатеса**, разгружаем суставы в шелковых гамаках, и только потом плавно возвращаем телу деликатный тонус без осевых перегрузок.
+                        </p>
+                    </div>
+                    <div style="background: var(--elem-bg); padding: 15px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent-gold)" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- МАРКЕТИНГОВЫЙ БЛОК ДВУХ КНОПОК -->
+            <div class="bento-card span-3" style="background: var(--elem-bg); text-align: center; padding: 40px 30px;">
+                <span class="recipe-badge" style="background: var(--accent-gold) !important;">Твой осознанный выбор в Сыктывкаре</span>
+                <h3 class="serif" style="font-size: 26px; margin-bottom: 15px;">Начните практику безопасного движения</h3>
+                <p style="font-size: 14px; max-width: 700px; margin: 0 auto 25px; color: var(--text-dim);">
+                    Получите вашу персональную карту безопасности у Веры в сообщениях сообщества. Выберите комфортный формат — живые занятия в Сыктывкаре в уютных группах до 12 человек или деликатный домашний онлайн-клуб.
+                </p>
+                <div class="dual-buttons-container">
+                    <a id="vk-link-btn" href="vk://im?sel=-221142875" class="btn-marketing">Офлайн: Тест-драйв в Сыктывкаре (3 занятия за 990₽)</a>
+                    <a href="club.html" class="btn-marketing btn-online-gold">Онлайн: Тест-драйв за 300₽ (на 3 дня)</a>
+                </div>
+            </div>
+
+            <!-- АДАПТИВНЫЙ БЛОК РСЯ НА ВСЮ ШИРИНУ ВНИЗУ ТАБА -->
+            <div class="bento-card span-3" style="background: transparent; border: none; box-shadow: none; padding: 10px 0; text-align: center; width: 100%;">
+                <div id="yandex_rtb_R-A-19181219-4_t1"></div>
+                <script>
+                    window.yaContextCb.push(()=>{
+                        Ya.Context.AdvManager.render({
+                            "blockId": "R-A-19181219-4",
+                            "renderTo": "yandex_rtb_R-A-19181219-4_t1"
+                        })
+                    })
+                </script>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ТАБ 2: 10 НАУЧНЫХ ФАКТОВ ОБ ИСТИННОЙ ЗАДАЧЕ ФИТНЕСА -->
+    <div id="tab-facts" class="tab-content">
+        <div class="bento-grid">
+            
+            <div class="bento-card span-3" style="background: linear-gradient(135deg, rgba(179, 134, 57, 0.05), transparent); border-left: 4px solid var(--accent-gold);">
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 10px;">Главное разоблачение: Фитнес-центр нужен НЕ для сжигания калорий</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    Большинство женщин Сыктывкара покупают карту в тренажерный зал ради похудения, изнуряя себя часами на беговых дорожках. Это стратегическая ошибка. Похудение и снижение веса — это результат контроля питания и баланса гормональной системы. Истинная задача фитнеса — это декомпрессия суставов, выстраивание осей позвоночника, снятие мышечных спазмов от сидячей работы, запуск лимфодренажного насоса для избавления от отеков и возвращение телу энергии. Сначала возвращаем здоровье, а подтянутая фигура станет неизбежным следствием!
+                </p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">01</div>
+                <h3 class="fact-title">Осевая нагрузка тренажеров</h3>
+                <p class="fact-desc">Работа с весами в тренажерном зале при зажатой офисной спине намертво сдавливает межпозвоночные диски, провоцируя появление грыж.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">02</div>
+                <h3 class="fact-title">Слепая зона классического пресса</h3>
+                <p class="fact-desc">Обычные скручивания качают лишь внешние кубики пресса, но увеличивают внутрибрюшное давление, вываливая нижнюю часть живота вперед.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">03</div>
+                <h3 class="fact-title">Сила поперечной мышцы</h3>
+                <p class="fact-desc">За по-настоящему плоский живот и тонкую талию отвечает глубокая поперечная мышца, которую невозможно включить без латерального дыхания Пилатеса.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">04</div>
+                <h3 class="fact-title">Вред прыжков при зажимах</h3>
+                <p class="fact-desc">Интенсивный бег или агрессивная табата при деформациях таза травмируют коленные суставы. Нужен только бережный 3D-тренинг.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">05</div>
+                <h3 class="fact-title">Лимфатический застой от статики</h3>
+                <p class="fact-desc">У лимфатической системы нет сердца — её насосом служат только сокращения глубоких скелетных мышц, которые мы включаем на классах МФР.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">06</div>
+                <h3 class="fact-title">Декомпрессия суставов в гамаке</h3>
+                <p class="fact-desc">Шелковые гамаки на Аэростретчинге позволяют вытягивать позвоночник под весом собственного тела, бережно раскрывая каждый сегмент.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">07</div>
+                <h3 class="fact-title">Массовый поток против фокуса</h3>
+                <p class="fact-desc">В крупных фитнес-центрах инструктор физически не способен контролировать углы движений 30 человек. В РЕСУРСе в группах строго до 12 мест.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">08</div>
+                <h3 class="fact-title">Разгрузка нервной системы</h3>
+                <p class="fact-desc">Громкая музыка и грохот железа перегружают симпатическую нервную систему, а мягкие практики МФР переключают тело в режим восстановления.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">09</div>
+                <h3 class="fact-title">Капиллярный кровоток и кожа</h3>
+                <p class="fact-desc">Деликатный стретчинг раскрывает спящую капиллярную сеть, улучшая питание тканей и разглаживая кожу без фиброзных отеков.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">10</div>
+                <h3 class="fact-title">Умный тонус без объемов</h3>
+                <p class="fact-desc">Нейроцентрические тренировки укрепляют мышечные волокна в фазе их удлинения, делая силуэт изящным и подтянутым без перекачки.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ТАБ 3: ЧЕТКО 4 ЗОЛОТЫХ ПРАВИЛА И КНОПКА С DEEPLINK -->
+    <div id="tab-recipes" class="tab-content">
+        <div class="bento-grid">
+            
+            <div class="bento-card span-2">
+                <span class="recipe-badge">Правило 01</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">Сначала освобождайте ткани, затем выстраивайте оси</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    Никогда не начинайте закачку мышц, если тело находится в офисном зажиме. Спазмированная мышца не способна эффективно сокращаться. Наш базовый закон: сначала раскатываем триггеры на роллах МФР, расслабляя фасции, затем возвращаем суставам естественную мобильность и только потом даем нагрузку.
+                </p>
+            </div>
+
+            <div class="bento-card">
+                <span class="recipe-badge">Правило 02</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">Исключите ударные прыжки при болях в спине</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    Если после рабочего дня у вас ломит поясницу или зажата шея — беговая дорожка или прыжки в фитнес-клубе добьют межпозвоночные диски. Заменяйте их на декомпрессионные висы в гамаках and деликатное 3D-вытяжение.
+                </p>
+            </div>
+
+            <div class="bento-card">
+                <span class="recipe-badge">Rule 03</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">Дышите ребрами, а не надувайте живот</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    При любых усилиях на тренировках удерживайте латеральное дыхание Пилатеса — расширяйте ребра в стороны и назад на вдохе, а на выдохе плавно стягивайте их к центру. Это рефлекторно включает поперечную мышцу, делая живот плоским без роста внутрибрюшного давления.
+                </p>
+            </div>
+
+            <div class="bento-card span-2">
+                <span class="recipe-badge">Правило 04</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">Синхронизируйте офлайн-практику с домашним онлайн-клубом</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    Здоровье и легкость тела — это результат регулярных микро-привычек. Ольга Мартынова настаивает: идеальная схема — это сочетание 2-3 живых глубоких классов в залах студии РЕСУРС на Коммунистической с короткими 15-минутными утренними зарядками из нашего закрытого онлайн-клуба. Это не дает фасциям склеиваться во время многочасовой офисной статики, сохраняя королевскую осанку и высокий уровень энергии каждый день.
+                </p>
+            </div>
+
+            <!-- ЯРКАЯ ЗЕЛЕНАЯ ПЛАТФОРМА И ЗЕЛЕНАЯ КНОПКА ЗАПИСИ -->
+            <div class="bento-card span-3" style="background: linear-gradient(135deg, rgba(76,175,80,0.12), transparent); border: 2px solid var(--accent-green);">
+                <span class="recipe-badge">Вдохновение от Ольги Мартыновой</span>
+                <h3 class="serif" style="font-size: 26px; margin-bottom: 15px; color: var(--text-main);">«Ваше тело заслуживает бережного и научного отношения...»</h3>
+                <p style="font-size: 15px; line-height: 1.7; color: var(--text-main); margin-bottom: 25px;">
+                    «Дорогие мои, мы привыкли воспринимать фитнес-центры как место изнурения, где нужно пахать через боль ради мифических стандартов. Но истинная сила женщины — в легкости её движений, свободе от боли и чистоте лимфы. Обычный тренажерный зал Сыктывкара с огромными весами часто калечит зажатые офисом спины. Мы в нашей уютной камерной студии "РЕСУРС" создали альтернативу. Мы убрали надрыв, тяжелое железо и суету. Через мягкие роллы МФР, шелковые гамаки и точную биомеханику Пилатеса мы вернем вашему позвоночнику ось, выгоним отеки и разбудим глубокие спящие мышцы. Вы выйдете с тренировки не разбитой, а окрыленной, с ясной головой и морем жизненной энергии. Сделайте выбор в пользу здоровья, жду вас на тест-драйв!»
+                </p>
+                <div style="max-width: 450px;">
+                    <a id="vk-link-recipe" href="vk://im?sel=-221142875" class="btn-marketing btn-green-rule">Записаться на тест-драйв: 3 занятия за 990₽</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- УЛЬТРА-ЯРКАЯ КНОПКА ШЕРИНГА -->
+    <section class="share-section">
+        <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">🔥 Отправить этот тест-анализ подругам и коллегам!</h3>
+        <p style="font-size: 14px; color: var(--text-dim); margin-bottom: 25px;">Поделитесь этой страницей с коллегами или подругами, которые часами сидят в офисах, жалуются на вечную усталость, боли в пояснице и зажимы в шее.</p>
+        <button class="btn-share" onclick="sharePage()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            <span id="share-btn-text">Поделиться тестом</span>
+        </button>
+    </section>
+
+</main>
+
+<footer>
+    <div class="footer-container">
+        <p class="footer-text-main">© 2026 РЕСУРС | Студия фитнеса, растяжки и движения. Сыктывкар, ул. Коммунистическая 77/2.</p>
+        <p class="footer-text-sub">Интерактивный аудит нагрузок является скрининговым тестом и носит информационный характер. При наличии серьезных хронических грыж в стадии обострения, острых патологий опорно-двигательного аппарата перед началом любых тренировок рекомендуется проконсультироваться со специалистом.</p>
+    </div>
+</footer>
+
+<script>
+    function toggleTheme() {
+        const html = document.documentElement;
+        const currentTheme = html.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        document.getElementById('themeToggle').innerText = newTheme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        const theme = document.documentElement.getAttribute('data-theme');
+        document.getElementById('themeToggle').innerText = theme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
+        
+        restoreCalculatorData();
+        calculateFitnessIndex();
+    });
+
+    function switchTab(event, tabId) {
+        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        
+        document.getElementById(tabId).classList.add('active');
+        event.currentTarget.classList.add('active');
+        
+        window.scrollTo({ top: document.querySelector('.tabs-nav').offsetTop - 80, behavior: 'smooth' });
+    }
+
+    function selectTile(element) {
+        const name = element.querySelector('input').name;
+        document.querySelectorAll(`input[name="${name}"]`).forEach(input => {
+            input.parentElement.classList.remove('selected');
+        });
+        element.classList.add('selected');
+        
+        calculateFitnessIndex();
+    }
+
+    // ИНТЕЛЛЕКТУАЛЬНАЯ ЛОГИКА КАЛЬКУЛЯТОРА С ВЗАИМОСВЯЗАННЫМ ОТКЛИКОМ
+    function calculateFitnessIndex() {
+        const goal = document.querySelector('input[name="fitness_goal"]:checked').value;
+        const joints = document.querySelector('input[name="joints_status"]:checked').value;
+        const control = document.querySelector('input[name="control_type"]:checked').value;
+        const hoursIndex = parseInt(document.getElementById('hours_slider').value);
+
+        const hoursLabels = ['До 3 часов', 'От 3 до 6 часов', 'От 6 до 8 часов', 'Более 8 часов (Жесткий зажим)'];
+        document.getElementById('range-hours-val').innerText = hoursLabels[hoursIndex];
+
+        // ЖИВОЙ ВЗАИМОСВЯЗАННЫЙ ОТКЛИК:
+        // Если человек сидит более 8 часов — принудительно переключаем симптомы на скованность суставов
+        if (hoursIndex === 3) {
+            document.querySelectorAll('input[name="joints_status"]').forEach(input => {
+                if (input.value === 'heavy_stiff') {
+                    input.checked = true;
+                    input.parentElement.classList.add('selected');
+                } else {
+                    input.parentElement.classList.remove('selected');
+                }
+            });
+        }
+
+        const titleEl = document.getElementById('calc-result-title');
+        const statusEl = document.getElementById('calc-status');
+        const textEl = document.getElementById('calc-text');
+
+        let bodyText = "";
+        let diagnosticResult = "";
+
+        if (joints === 'heavy_stiff' || goal === 'spine_health') {
+            titleEl.innerText = "35% Безопасности: Тренажеры опасны";
+            statusEl.innerText = "Формат: Только умная Студия";
+            statusEl.style.color = "var(--accent-berry)";
+            bodyText = "Критический зажим мышечных цепей! При многочасовой статике (" + hoursLabels[hoursIndex] + ") ваши суставы скованы. Классический фитнес-клуб с тяжелым железом усугубит боли. Ольга рекомендует МФР и Пилатес для безопасного восстановления осей.";
+            diagnosticResult = "Зажим спины + Риск тренажеров";
+        } else if (control === 'strict_expert' || goal === 'sculpt_body') {
+            titleEl.innerText = "60% Безопасности: Нужен контроль";
+            statusEl.innerText = "Формат: Студия РЕСУРС";
+            statusEl.style.color = "var(--accent-gold)";
+            bodyText = "Ваше тело готово к коррекции объемов, но без жесткого надзора техника сломается, перегружая крестец. Камерный формат студии РЕСУРС (до 12 человек) гарантирует ювелирную точность под контролем эксперта.";
+            diagnosticResult = "Коррекция объемов под контролем";
+        } else {
+            titleEl.innerText = "90% Безопасности: Тело адаптировано";
+            statusEl.innerText = "Формат: Продвинутый тренинг";
+            statusEl.style.color = "var(--accent-green)";
+            bodyText = "Отличный показатель тонуса! Ограничений нет. Вам доступна любая нагрузка. Для сохранения королевской осанки и грации Ольга рекомендует наш продвинутый Пилатес и функциональный Аэростретчинг.";
+            diagnosticResult = "Адаптация в норме";
+        }
+
+        textEl.innerText = bodyText;
+
+        const scoreBox = document.querySelector('.result-score-box');
+        scoreBox.style.transform = 'scale(1.02)';
+        setTimeout(() => { scoreBox.style.transform = 'scale(1)'; }, 150);
+
+        // ДИНАМИЧЕСКИЙ ДЕПЛИНК ШАБЛОН ДЛЯ ВЕРЫ В ВК
+        const baseVkUrl = "https://vk.com/im?sel=-221142875";
+        const messageText = "Вера, здравствуйте! Я изучила разбор форматов на странице выбора. Прошла тест-анализ нагрузок. Мой индекс показал, что обычный потоковый фитнес-центр мне не подходит. Запишите меня на очный тест-драйв в Сыктывкаре за 990 рублей. Мой маркер: " + diagnosticResult;
+        const encodedMessage = encodeURIComponent(messageText);
+        
+        document.getElementById('vk-link-btn').setAttribute('href', baseVkUrl + "&message=" + encodedMessage);
+        document.getElementById('vk-link-recipe').setAttribute('href', baseVkUrl + "&message=" + encodedMessage);
+
+        const calcData = { goal, joints, control, hoursIndex };
+        localStorage.setItem('fitness_choose_data', JSON.stringify(calcData));
+    }
+
+    function resetCalculator() {
+        document.querySelectorAll('input[name="fitness_goal"]')[0].checked = true;
+        document.querySelectorAll('input[name="joints_status"]')[0].checked = true;
+        document.querySelectorAll('input[name="control_type"]')[0].checked = true;
+        document.getElementById('hours_slider').value = 3;
+
+        document.querySelectorAll('.radio-tile').forEach(tile => tile.classList.remove('selected'));
+        document.querySelectorAll('input[name="fitness_goal"]')[0].parentElement.classList.add('selected');
+        document.querySelectorAll('input[name="joints_status"]')[0].parentElement.classList.add('selected');
+        document.querySelectorAll('input[name="control_type"]')[0].parentElement.classList.add('selected');
+
+        localStorage.removeItem('fitness_choose_data');
+        calculateFitnessIndex();
+    }
+
+    function restoreCalculatorData() {
+        const saved = localStorage.getItem('fitness_choose_data');
+        if (saved) {
+            try {
+                const data = JSON.parse(saved);
+                document.querySelectorAll(`input[name="fitness_goal"]`).forEach(i => { if(i.value === data.goal) i.checked = true; });
+                document.querySelectorAll(`input[name="joints_status"]`).forEach(i => { if(i.value === data.joints) i.checked = true; });
+                document.querySelectorAll(`input[name="control_type"]`).forEach(i => { if(i.value === data.control) i.checked = true; });
+                document.getElementById('hours_slider').value = data.hoursIndex;
+            } catch (e) {
+                console.log("Storage backup sync error fitness pass");
+            }
+        }
+
+        document.querySelectorAll('.radio-tile').forEach(tile => {
+            if (tile.querySelector('input').checked) tile.classList.add('selected');
+        });
+    }
+
+    async function sharePage() {
+        const shareData = {
+            title: 'Рассчитай свой личный индекс безопасности тренировок перед покупкой карты в фитнес-клуб!',
+            text: 'Я прошла аудит целей на сайте РЕСУРСА. Узнай, безопасен ли тренажерный зал для твоего позвоночника!',
+            url: window.location.href
+        };
+        const btnText = document.getElementById('share-btn-text');
+        if (navigator.share) {
+            try { await navigator.share(shareData); } catch (err) { console.log('Share canceled'); }
+        } else {
+            try {
+                await navigator.clipboard.writeText(window.location.href);
+                btnText.innerText = 'Ссылка скопирована!';
+                setTimeout(() => { btnText.innerText = 'Поделиться тестом'; }, 3000);
+            } catch (err) {
+                alert('Скопируйте ссылку вручную.');
+            }
+        }
+    }
+
+    window.addEventListener('scroll', () => {
+        const header = document.getElementById('header');
+        if (window.scrollY > 30) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
+    });
+</script>
+
+</body>
+</html>
