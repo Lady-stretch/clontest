@@ -36,21 +36,18 @@
         });
     </script>
     
-    <!-- Подключение рекламной системы Яндекса (РСЯ) -->
     <script>window.yaContextCb=window.yaContextCb||[]</script>
     <script src="https://yandex.ru/ads/system/context.js" async></script>
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- ТОТАЛЬНАЯ ГЕО-ОПТИМИЗАЦИЯ ПОД НАШ СЕО-СТАНДАРТ С ХВОСТОМ СЫКТЫВКАР -->
     <title>Фитнес-клуб или Студия фитнеса и растяжки Сыктывкар | Что выбрать | РЕСУРС</title>
     <meta name="description" content="Интерактивный тест-анализ: Обычный фитнес-клуб с тренажерами или камерная Студия фитнеса и растяжки РЕСУРС в Сыктывкаре. Рассчитайте готовность организма к нагрузкам онлайн.">
     <meta name="keywords" content="фитнес club сыктывкар, фитнес центр сыктывкар, студия фитнеса сыктывкар, тренажерный зал сыктывкар цены, растяжка на коммунистической акция, пилатес мфр здоровая спина коми">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://resurs-stretch.ru/fitness-or-studio-syktyvkar.html">
 
-    <!-- OPEN GRAPH ДЛЯ СОЦСЕТЕЙ И МЕССЕНДЖЕРОВ -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Фитнес-центр с тренажерами или Студия РЕСУРС? Тест-выбор в Сыктывкаре">
     <meta property="og:description" content="Узнайте, какой формат тренировок безопасен для ваших суставов и позвоночника. Пройдите аудит целей онлайн.">
@@ -156,11 +153,7 @@
         .tab-content { display: none; animation: fadeIn 0.5s ease; }
         .tab-content.active { display: block; }
 
-        @media (max-width: 968px) {
-            .bento-grid { grid-template-columns: 1fr; }
-            .span-2, .span-3 { grid-column: span 1; }
-            .main-layout { margin-top: 90px; }
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         /* BENTO GRID */
         .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
@@ -289,7 +282,6 @@
         <button class="tab-btn" onclick="switchTab(event, 'tab-recipes')">🌿 4 правила безопасного движения от Ольги Мартыновой</button>
     </nav>
 
-    <!-- ТАБ 1: ИНТЕРАКТИВНЫЙ БЕНТО-КАЛЬКУЛЯТОР -->
     <div id="tab-calc" class="tab-content active">
         <div class="bento-grid">
             
@@ -373,7 +365,6 @@
                 </div>
             </div>
 
-            <!-- Результат расчета -->
             <div class="bento-card result-score-box">
                 <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; color: var(--text-dim); margin-bottom: 10px;">Ваш индекс безопасности движения:</div>
                 <div id="calc-result-title" class="score-number" style="font-size: 24px; margin: 15px 0;">35% Безопасности</div>
@@ -383,7 +374,6 @@
                 </p>
             </div>
 
-            <!-- Научный разбор -->
             <div class="bento-card span-3" style="border-left: 4px solid var(--accent-gold);">
                 <div style="display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: start;">
                     <div>
@@ -398,7 +388,6 @@
                 </div>
             </div>
 
-            <!-- МАРКЕТИНГОВЫЙ БЛОК ДВУХ КНОПОК -->
             <div class="bento-card span-3" style="background: var(--elem-bg); text-align: center; padding: 40px 30px;">
                 <span class="recipe-badge" style="background: var(--accent-gold) !important;">Твой осознанный выбор в Сыктывкаре</span>
                 <h3 class="serif" style="font-size: 26px; margin-bottom: 15px;">Начните практику безопасного движения</h3>
@@ -411,23 +400,9 @@
                 </div>
             </div>
 
-            <!-- АДАПТИВНЫЙ БЛОК РСЯ НА ВСЮ ШИРИНУ ВНИЗУ ТАБА -->
-            <div class="bento-card span-3" style="background: transparent; border: none; box-shadow: none; padding: 10px 0; text-align: center; width: 100%;">
-                <div id="yandex_rtb_R-A-19181219-4_t1"></div>
-                <script>
-                    window.yaContextCb.push(()=>{
-                        Ya.Context.AdvManager.render({
-                            "blockId": "R-A-19181219-4",
-                            "renderTo": "yandex_rtb_R-A-19181219-4_t1"
-                        })
-                    })
-                </script>
-            </div>
-
         </div>
     </div>
 
-    <!-- ТАБ 2: 10 НАУЧНЫХ ФАКТОВ ОБ ИСТИННОЙ ЗАДАЧЕ ФИТНЕСА -->
     <div id="tab-facts" class="tab-content">
         <div class="bento-grid">
             
@@ -501,7 +476,6 @@
         </div>
     </div>
 
-    <!-- ТАБ 3: ЧЕТКО 4 ЗОЛОТЫХ ПРАВИЛА И КНОПКА С DEEPLINK -->
     <div id="tab-recipes" class="tab-content">
         <div class="bento-grid">
             
@@ -537,7 +511,6 @@
                 </p>
             </div>
 
-            <!-- ЯРКАЯ ЗЕЛЕНАЯ ПЛАТФОРМА И ЗЕЛЕНАЯ КНОПКА ЗАПИСИ -->
             <div class="bento-card span-3" style="background: linear-gradient(135deg, rgba(76,175,80,0.12), transparent); border: 2px solid var(--accent-green);">
                 <span class="recipe-badge">Вдохновение от Ольги Мартыновой</span>
                 <h3 class="serif" style="font-size: 26px; margin-bottom: 15px; color: var(--text-main);">«Ваше тело заслуживает бережного и научного отношения...»</h3>
@@ -552,7 +525,6 @@
         </div>
     </div>
 
-    <!-- УЛЬТРА-ЯРКАЯ КНОПКА ШЕРИНГА -->
     <section class="share-section">
         <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">🔥 Отправить этот тест-анализ подругам и коллегам!</h3>
         <p style="font-size: 14px; color: var(--text-dim); margin-bottom: 25px;">Поделитесь этой страницей с коллегами или подругами, которые часами сидят в офисах, жалуются на вечную усталость, боли в пояснице и зажимы в шее.</p>
@@ -739,7 +711,6 @@
     });
 </script>
 
-    <!-- РЕНДЕР КАНАЛОВ РСЯ FLOOR AD -->
 <script>
 window.yaContextCb.push(() => {
     Ya.Context.AdvManager.render({
