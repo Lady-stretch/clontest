@@ -36,17 +36,18 @@
         });
     </script>
     
+    <script>window.yaContextCb=window.yaContextCb||[]</script>
+    <script src="https://yandex.ru/ads/system/context.js" async></script>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- ГЛУБОКАЯ ГЕО-ОПТИМИЗАЦИЯ И ЭКСПЕРТНОЕ СЕО НА ВСЕ НАПРАВЛЕНИЯ -->
     <title>Команда и тренеры студии РЕСУРС Сыктывкар | Ольга Мартынова</title>
     <meta name="description" content="Познакомьтесь с главным экспертом студии РЕСУРС в Сыктывкаре. Ольга Мартынова — дипломированный специалист по нейробиомеханике, умному пилатесу, МФР и декомпрессии позвоночника в гамаках. Автор онлайн-программ.">
-    <meta name="keywords" content="тренеры сыктывкар фитнес, ольга мартынова ресурс, здоровая спина сыктывкар, пилатес сыктывкар, аэростретчинг в гамаках коми, миофасциальный релиз обучение, боди скальп табата, функциональный тренинг">
+    <meta name="keywords" content="тренеры сыктывкар фитнес, ольга мартынова ресурс, здоровая спина сыктывкар, пилатес сыктывкар, аэростретчинг в гамаках коми, миофасциальный релиз обучение, боди скальп табата, functional тренировка">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://team-resurs.html">
+    <link rel="canonical" href="https://resurs-stretch.ru/team-resurs.html">
 
-    <!-- OPEN GRAPH -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Экспертный тренерский состав РЕСУРС | Ольга Мартынова">
     <meta property="og:description" content="Научный подход к движению вместо изнурения. Познакомьтесь с ведущим биомехаником студии в Сыктывкаре и автором онлайн-курсов.">
@@ -108,6 +109,7 @@
         }
 
         h1, h2, h3, .serif { font-family: var(--font-serif); font-weight: 600; letter-spacing: 0.5px; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
         
         header {
             position: fixed; top: 0; width: 100%; padding: 20px 5%;
@@ -191,6 +193,14 @@
         }
         .btn-marketing.btn-online-gold:hover { box-shadow: 0 15px 35px rgba(179,134,57,0.4) !important; }
 
+        /* СКРЫТИЕ РЕКЛАМНЫХ КОНТЕЙНЕРОВ ДЛЯ МОБИЛЬНЫХ/ПК */
+        .rca-desktop { display: block; }
+        .rca-mobile { display: none; }
+        @media (max-width: 1024px) {
+            .rca-desktop { display: none; }
+            .rca-mobile { display: block; }
+        }
+
         footer { margin-top: 80px; padding: 40px 0; border-top: var(--glass-border); text-align: center; }
 
         @media (max-width: 968px) {
@@ -221,7 +231,6 @@
 
     <div class="bento-grid">
         
-        <!-- КАРТОЧКА 1: ФОТОГРАФИЯ ЭКСПЕРТА (АДАПТИВНЫЙ КОНТЕЙНЕР) -->
         <div class="bento-card">
             <div class="trainer-photo-holder">
                 <img src="olga-trainer.jpg" alt="Ольга Мартынова — эксперт по пилатесу, МФР и здоровой спине в Сыктывкаре" class="trainer-img" onerror="this.style.display='none'">
@@ -232,7 +241,6 @@
             </div>
         </div>
 
-        <!-- КАРТОЧКА 2: ГЛАВНЫЕ РЕГАЛИИ И ОБРАЗОВАНИЕ -->
         <div class="bento-card span-2" style="display: flex; flex-direction: column; justify-content: center;">
             <span style="font-size: 11px; text-transform: uppercase; letter-spacing: 3px; color: var(--accent-gold); font-weight: 700; display: block; margin-bottom: 5px;">Профессиональный статус</span>
             <h2 class="serif" style="font-size: 28px; margin-bottom: 15px;">Дипломированный эксперт физической культуры и умного фитнеса</h2>
@@ -247,11 +255,10 @@
             </ul>
         </div>
 
-        <!-- КАРТОЧКА 3: КРУТОЕ СЕО ПО ВСЕМ НАПРАВЛЕНИЯМ ТРЕНИРОВОК -->
         <div class="bento-card span-3">
             <h3 class="serif" style="font-size: 22px; margin-bottom: 15px;">Научное управление движением: Авторский контроль 11 направлений</h3>
             <p style="font-size: 14px; color: var(--text-dim); margin-bottom: 20px;">
-                Каждое направление в залах студии РЕСУРС в Сыктывкаре и в закрытом онлайн-клубе находится под личным контролем Ольги. Мы убрали деструктивные прыжки, ударный бег и агрессивную закачку мышц через силу, заменив их ювелирной биомеханической настройкой осей позвоночника.
+                Каждое direction в залах студии РЕСУРС в Сыктывкаре и в закрытом онлайн-клубе находится под личным контролем Ольги. Мы убрали деструктивные прыжки, ударный бег и агрессивную закачку мышц через силу, заменив их ювелирной биомеханической настройкой осей позвоночника.
             </p>
             
             <div class="direction-tags-container">
@@ -273,7 +280,30 @@
             </p>
         </div>
 
-        <!-- КАРТОЧКА 4: ЕДИНЫЙ ЦЕНТР ДВУХ КНОПОК -->
+        <div class="bento-card span-3 rca-desktop" style="background: transparent; border: none; box-shadow: none; padding: 10px 0; text-align: center;">
+            <div id="yandex_rtb_R-A-19181219-4_d"></div>
+            <script>
+                window.yaContextCb.push(()=>{
+                    Ya.Context.AdvManager.render({
+                        "blockId": "R-A-19181219-4",
+                        "renderTo": "yandex_rtb_R-A-19181219-4_d"
+                    })
+                })
+            </script>
+        </div>
+
+        <div class="bento-card span-3 rca-mobile" style="background: transparent; border: none; box-shadow: none; padding: 10px 0; text-align: center;">
+            <div id="yandex_rtb_R-A-19181219-4_m"></div>
+            <script>
+                window.yaContextCb.push(()=>{
+                    Ya.Context.AdvManager.render({
+                        "blockId": "R-A-19181219-4",
+                        "renderTo": "yandex_rtb_R-A-19181219-4_m"
+                    })
+                })
+            </script>
+        </div>
+
         <div class="bento-card span-3" style="background: var(--elem-bg); text-align: center; padding: 40px 30px;">
             <h3 class="serif" style="font-size: 24px; margin-bottom: 10px;">Начните практику под личным кураторством Ольги</h3>
             <p style="font-size: 14px; color: var(--text-dim); max-width: 700px; margin: 0 auto 25px;">
@@ -281,7 +311,7 @@
             </p>
             <div class="dual-buttons-container">
                 <a id="vk-link-btn" href="vk://im?sel=-221142875" class="btn-marketing">Офлайн: Тест-драйв в Сыктывкаре (3 занятия за 990₽)</a>
-                <a href="https://resurs-stretch.ru/online-club" class="btn-marketing btn-online-gold">Онлайн: Тест-драйв за 300₽ (на 3 дня) / далее от 1600₽/мес</a>
+                <a href="club.html" class="btn-marketing btn-online-gold">Онлайн: Тест-драйв за 300₽ (на 3 дня) / далее от 1600₽/мес</a>
             </div>
         </div>
 
@@ -290,10 +320,10 @@
 
 <footer>
     <div class="footer-container">
-        <p style="font-size: 13px; font-weight: 500; color: var(--text-main); margin-bottom: 8px;">
+        <p class="footer-text-main">
             © 2026 РЕСУРС | Студия фитнеса, растяжки и движения. Сыктывкар, ул. Коммунистическая 77/2.
         </p>
-        <p style="font-size: 11px; color: var(--text-dim); opacity: 0.85; max-width: 900px; margin: 0 auto;">
+        <p class="footer-text-sub">
             Все программы, представленные на сайте и в онлайн-клубе, разработаны экспертом Ольгой Мартыновой. Перед началом физических тренировок при наличии серьезных хронических грыж в стадии обострения или иных медицинских противопоказаний рекомендуется проконсультироваться со специалистом.
         </p>
     </div>
@@ -327,7 +357,6 @@
     });
 </script>
 
-    <!-- РЕНДЕР КАНАЛОВ РСЯ FLOOR AD -->
 <script>
 window.yaContextCb.push(() => {
     Ya.Context.AdvManager.render({
