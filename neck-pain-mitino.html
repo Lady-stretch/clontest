@@ -48,21 +48,18 @@
         });
     </script>
     
-    <!-- Подключение рекламной системы Яндекса (РСЯ) -->
     <script>window.yaContextCb=window.yaContextCb||[]</script>
     <script src="https://yandex.ru/ads/system/context.js" async></script>
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- ПАРТИЗАНСКАЯ РАЙОННАЯ СЕО ОПТИМИЗАЦИЯ ПОД МИТИНО И СЗАО -->
     <title>Как убрать зажимы в шее в Митино | Головная боль напряжения | РЕСУРС</title>
     <meta name="description" content="Интерактивный bento-анализ шейных зажимов и компьютерной сутулости в районе Митино. Программа декомпрессии позвоночника, МФР затылка и умный Пилатес из дома в онлайн-клубе РЕСУРС.">
     <meta name="keywords" content="зажимы в шее митино, головная боль напряжения москва, пилатес пятницкое шоссе, мфр ролл митино купить, фитнес клуб митино цены, здоровая спина сзао, растяжка в гамаках москва">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://resurs-stretch.ru/neck-pain-mitino.html">
 
-    <!-- OPEN GRAPH ДЛЯ МОСКОВСКОГО ТРАФИКА -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Скрининг зажимов шеи в Митино: Тест подзатылочной компрессии">
     <meta property="og:description" content="Узнайте, почему каменеют плечи и ноет голова от работы за монитором. Разверните 10 модулей ИТ-платформы РЕСУРС онлайн.">
@@ -71,7 +68,6 @@
     <meta property="og:site_name" content="РЕСУРС">
     <meta property="og:locale" content="ru_RU">
 
-    <!-- LSI MICRODATA SCHEMA.ORG ДЛЯ ПОИСКОВЫХ РОБОТОВ МОСКВЫ -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -106,7 +102,7 @@
     <link rel="icon" type="image/png" href="logo_header_final.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2 family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
         /* CSS ПЕРЕМЕННЫЕ ДЛЯ ПРЕМИАЛЬНОЙ ГРАФИТОВО-ПЛАТИНОВОЙ ТЕМЫ МОСКВЫ */
@@ -170,13 +166,17 @@
         }
         .brand-name { font-family: var(--font-serif); font-size: 22px; letter-spacing: 8px; text-transform: uppercase; font-weight: 600; }
         
-        #themeToggle {
+        .header-controls { display: flex; gap: 12px; align-items: center; }
+        
+        #themeToggle, .btn-journal-nav {
             padding: 0 15px; height: 35px; font-size: 10px; font-weight: 600; letter-spacing: 2px;
-            display: flex; align-items: center; justify-content: center;
+            display: inline-flex; align-items: center; justify-content: center;
             border-radius: 8px; border: 1px solid var(--elem-border); background: var(--elem-bg);
             cursor: pointer; transition: var(--transition); color: var(--text-main); text-transform: uppercase;
         }
-        #themeToggle:hover { border-color: var(--accent-gold); transform: translateY(-2px); }
+        #themeToggle:hover, .btn-journal-nav:hover { border-color: var(--accent-gold); transform: translateY(-2px); }
+        .btn-journal-nav { background: rgba(65, 178, 157, 0.15); border-color: var(--accent-green); color: var(--text-main); }
+        .btn-journal-nav:hover { border-color: var(--accent-green); background: var(--accent-green); color: #fff; }
 
         /* MAIN CONTAINER */
         .main-layout { max-width: 1200px; margin: 100px auto 60px; padding: 0 20px; }
@@ -199,11 +199,19 @@
 
         /* BENTO GRID */
         .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        .bento-card { background: var(--glass-bg); border: var(--glass-border); border-radius: 24px; padding: 30px; position: relative; overflow: hidden; transition: var(--transition); }
+        .bento-card { background: var(--glass-bg); border: var(--glass-border); border-radius: 24px; padding: 30px; position: relative; overflow: hidden; transition: var(--transition); display: flex; flex-direction: column; justify-content: space-between; }
         .bento-card:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(0,0,0,0.2); }
         
         .span-2 { grid-column: span 2; }
         .span-3 { grid-column: span 3; }
+
+        /* INLINE КНОПКИ ДЛЯ ЖУРНАЛА ВНУТРИ КАРТОЧЕК */
+        .bento-inline-btn {
+            margin-top: 15px; padding: 10px 18px; border-radius: 10px; font-size: 12px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.5px; display: inline-flex; align-items: center; justify-content: center;
+            gap: 6px; border: 1px solid var(--accent-green); background: rgba(65, 178, 157, 0.08); color: var(--text-main); transition: var(--transition); width: fit-content;
+        }
+        .bento-inline-btn:hover { background: var(--accent-green); color: #FFF; transform: translateY(-1px); }
 
         /* ИНПУТЫ И КАЛЬКУЛЯТОР */
         .calc-group { margin-bottom: 25px; }
@@ -246,6 +254,14 @@
             box-shadow: 0 15px 35px rgba(179,134,57,0.5) !important;
         }
 
+        .btn-marketing.btn-online-green {
+            background: linear-gradient(135deg, var(--accent-green), #1b6354) !important;
+            box-shadow: 0 10px 25px rgba(69, 178, 157, 0.3) !important;
+        }
+        .btn-marketing.btn-online-green:hover {
+            box-shadow: 0 15px 35px rgba(69, 178, 157, 0.5) !important;
+        }
+
         .btn-reset {
             background: transparent; border: 1px dashed var(--text-dim); color: var(--text-dim);
             padding: 10px 20px; border-radius: 10px; font-size: 12px; font-weight: 600;
@@ -273,7 +289,7 @@
         }
 
         /* УЛЬТРА-ЯРКАЯ ГРАДИЕНТНАЯ КНОПКА ШЕРИНГА */
-        .share-section { margin-top: 50px; background: linear-gradient(135deg, rgba(69, 178, 157, 0.08), rgba(179, 134, 57, 0.08)); border: 2px solid var(--accent-green); border-radius: 28px; padding: 40px 30px; text-align: center; box-shadow: 0 15px 40px rgba(69,178,157,0.1); }
+        .share-section { margin-top: 40px; background: linear-gradient(135deg, rgba(69, 178, 157, 0.08), rgba(179, 134, 57, 0.08)); border: 2px solid var(--accent-green); border-radius: 28px; padding: 40px 30px; text-align: center; box-shadow: 0 15px 40px rgba(69,178,157,0.1); }
         .btn-share {
             display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 18px 40px;
             background: linear-gradient(135deg, var(--accent-green), #1b6354) !important; border: none; border-radius: 16px;
@@ -302,7 +318,8 @@
 
 <header id="header">
     <div class="brand-name">РЕСУРС | ОНЛАЙН</div>
-    <div>
+    <div class="header-controls">
+        <a href="journal.html" class="btn-journal-nav">ЖУРНАЛ</a>
         <button id="themeToggle" onclick="toggleTheme()">ТЕНЬ</button>
     </div>
 </header>
@@ -324,78 +341,79 @@
         <button class="tab-btn" onclick="switchTab(event, 'tab-recipes')">🌿 4 правила декомпрессии от Ольги Мартыновой</button>
     </nav>
 
-    <!-- ТАБ 1: ИНТЕРАКТИВНЫЙ БЕНТО-КАЛЬКУЛЯТОР -->
     <div id="tab-calc" class="tab-content active">
         <div class="bento-grid">
             
             <div class="bento-card span-2">
-                <h2 class="serif" style="font-size: 24px; margin-bottom: 25px; color: var(--text-main);">Аудит триггерных точек коротких разгибателей головы и трапеций</h2>
-                
-                <div class="calc-group">
-                    <label class="calc-label">1. С какими типами головных болей вы чаще всего сталкиваетесь в течение рабочей недели?</label>
-                    <div class="radio-box-group">
-                        <label class="radio-tile" onclick="selectTile(this)">
-                            <input type="radio" name="headache_type" value="neck_tension" checked>
-                            <span class="radio-tile-title">Тупая боль давит на затылок и глаза</span>
-                            <span class="radio-tile-desc">Ощущение стягивающего обруча, каменеют плечи, хочется растереть шею руками.</span>
-                        </label>
-                        <label class="radio-tile" onclick="selectTile(this)">
-                            <input type="radio" name="headache_type" value="one_side">
-                            <span class="radio-tile-title">Пульсирует строго с одной стороны</span>
-                            <span class="radio-tile-desc">Боль бьет в висок или надбровную дугу, усиливается от яркого света.</span>
-                        </label>
-                        <label class="radio-tile" onclick="selectTile(this)">
-                            <input type="radio" name="headache_type" value="no_pain">
-                            <span class="radio-tile-title">Голова абсолютно ясная</span>
-                            <span class="radio-tile-desc">Нет скованности и зажимов, шея двигается мягко и полностью свободно.</span>
-                        </label>
+                <div>
+                    <h2 class="serif" style="font-size: 24px; margin-bottom: 25px; color: var(--text-main);">Аудит триггерных точек коротких разгибателей головы и трапеций</h2>
+                    
+                    <div class="calc-group">
+                        <label class="calc-label">1. С какими типами головных болей вы чаще всего сталкиваетесь в течение рабочей недели?</label>
+                        <div class="radio-box-group">
+                            <label class="radio-tile" onclick="selectTile(this)">
+                                <input type="radio" name="headache_type" value="neck_tension" checked>
+                                <span class="radio-tile-title">Тупая боль давит на затылок и глаза</span>
+                                <span class="radio-tile-desc">Ощущение стягивающего обруча, каменеют плечи, хочется растереть шею руками.</span>
+                            </label>
+                            <label class="radio-tile" onclick="selectTile(this)">
+                                <input type="radio" name="headache_type" value="one_side">
+                                <span class="radio-tile-title">Пульсирует строго с одной стороны</span>
+                                <span class="radio-tile-desc">Боль бьет в висок или надбровную дугу, усиливается от яркого света.</span>
+                            </label>
+                            <label class="radio-tile" onclick="selectTile(this)">
+                                <input type="radio" name="headache_type" value="no_pain">
+                                <span class="radio-tile-title">Голова абсолютно ясная</span>
+                                <span class="radio-tile-desc">Нет скованности и зажимов, шея двигается мягко и полностью свободно.</span>
+                            </label>
+                        </div>
                     </div>
-                </div>
 
-                <div class="calc-group">
-                    <label class="calc-label">2. Что происходит, когда вы пытаетесь медленно наклонить голову ухом строго к плечу?</label>
-                    <div class="radio-box-group">
-                        <label class="radio-tile" onclick="selectTile(this)">
-                            <input type="radio" name="neck_mobility" value="heavy_stiff" checked>
-                            <span class="radio-tile-title">Острая тянущая боль по бокам</span>
-                            <span class="radio-tile-desc">Мышцы натягиваются как струны, амплитуда сильно ограничена, суставы хрустят.</span>
-                        </label>
-                        <label class="radio-tile" onclick="selectTile(this)">
-                            <input type="radio" name="neck_mobility" value="medium_stiff">
-                            <span class="radio-tile-title">Небольшая скованность</span>
-                            <span class="radio-tile-desc">Наклон совершается, но чувствуется глухое мышечное сопротивление.</span>
-                        </label>
-                        <label class="radio-tile" onclick="selectTile(this)">
-                            <input type="radio" name="neck_mobility" value="free_flow">
-                            <span class="radio-tile-title">Полный свободный наклон</span>
-                            <span class="radio-tile-desc">Угол наклона идеальный, анатомический, без дискомфорта.</span>
-                        </label>
+                    <div class="calc-group">
+                        <label class="calc-label">2. Что происходит, когда вы пытаетесь медленно наклонить голову ухом строго к плечу?</label>
+                        <div class="radio-box-group">
+                            <label class="radio-tile" onclick="selectTile(this)">
+                                <input type="radio" name="neck_mobility" value="heavy_stiff" checked>
+                                <span class="radio-tile-title">Острая тянущая боль по бокам</span>
+                                <span class="radio-tile-desc">Мышцы натягиваются как струны, амплитуда сильно ограничена, суставы хрустят.</span>
+                            </label>
+                            <label class="radio-tile" onclick="selectTile(this)">
+                                <input type="radio" name="neck_mobility" value="medium_stiff">
+                                <span class="radio-tile-title">Небольшая скованность</span>
+                                <span class="radio-tile-desc">Наклон совершается, но чувствуется глухое мышечное сопротивление.</span>
+                            </label>
+                            <label class="radio-tile" onclick="selectTile(this)">
+                                <input type="radio" name="neck_mobility" value="free_flow">
+                                <span class="radio-tile-title">Полный свободный наклон</span>
+                                <span class="radio-tile-desc">Угол наклона идеальный, анатомический, без дискомфорта.</span>
+                            </label>
+                        </div>
                     </div>
-                </div>
 
-                <div class="calc-group">
-                    <label class="calc-label">3. Замечаете ли вы ухудшение концентрации внимания, памяти или утреннюю отечность лица?</label>
-                    <div class="radio-box-group">
-                        <label class="radio-tile" onclick="selectTile(this)">
-                            <input type="radio" name="brain_fog" value="swelling_fog" checked>
-                            <span class="radio-tile-title">Да, тяжелая голова и отеки</span>
-                            <span class="radio-tile-desc">Сложно собраться с мыслями утром, лицо выглядит пастозным из-за застоя лимфы.</span>
-                        </label>
-                        <label class="radio-tile" onclick="selectTile(this)">
-                            <input type="radio" name="brain_fog" value="none">
-                            <span class="radio-tile-title">Нет подобных проявлений</span>
-                            <span class="radio-tile-desc">Память отличная, сосудистый отток работает стабильно.</span>
-                        </label>
+                    <div class="calc-group">
+                        <label class="calc-label">3. Замечаете ли вы ухудшение концентрации внимания, памяти или утреннюю отечность лица?</label>
+                        <div class="radio-box-group">
+                            <label class="radio-tile" onclick="selectTile(this)">
+                                <input type="radio" name="brain_fog" value="swelling_fog" checked>
+                                <span class="radio-tile-title">Да, тяжелая голова и отеки</span>
+                                <span class="radio-tile-desc">Сложно собраться с мыслями утром, лицо выглядит пастозным из-за застоя лимфы.</span>
+                            </label>
+                            <label class="radio-tile" onclick="selectTile(this)">
+                                <input type="radio" name="brain_fog" value="none">
+                                <span class="radio-tile-title">Нет подобных проявлений</span>
+                                <span class="radio-tile-desc">Память отличная, сосудистый отток работает стабильно.</span>
+                            </label>
+                        </div>
                     </div>
-                </div>
 
-                <div class="calc-group">
-                    <label class="calc-label">4. Укажите, сколько часов в день вы проводите в статичном положении (экран смартфона, монитор, документы):</label>
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
-                        <span style="font-size: 13px; color: var(--text-dim);">Индекс офисной статики в Митино:</span>
-                        <span id="range-sit-val" class="range-val" style="color: var(--accent-green);">Более 6 часов за столом</span>
+                    <div class="calc-group">
+                        <label class="calc-label">4. Укажите, сколько часов в день вы проводите в статичном положении (экран смартфона, монитор, документы):</label>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                            <span style="font-size: 13px; color: var(--text-dim);">Индекс офисной статики в Митино:</span>
+                            <span id="range-sit-val" class="range-val" style="color: var(--accent-green);">Более 6 часов за столом</span>
+                        </div>
+                        <input type="range" id="sit_slider" class="range-slider" min="0" max="3" value="3" step="1" oninput="calculateNeckIndex()">
                     </div>
-                    <input type="range" id="sit_slider" class="range-slider" min="0" max="3" value="3" step="1" oninput="calculateNeckIndex()">
                 </div>
 
                 <div style="margin-top: 30px; display: flex; justify-content: flex-end;">
@@ -426,7 +444,6 @@
                 </div>
             </div>
 
-            <!-- ИНТЕГРАЦИОННЫЙ БЛОК: ССЫЛКА НА CLUB.HTML ДЛЯ МИТИНО -->
             <div class="bento-card span-3" style="background: var(--elem-bg); padding: 40px 30px; text-align: center;">
                 <h3 class="serif" style="font-size: 24px; margin-bottom: 10px;">Начните деликатное восстановление баланса тела прямо сейчас</h3>
                 <p style="font-size: 14px; color: var(--text-dim); max-width: 700px; margin: 0 auto 25px;">
@@ -440,7 +457,6 @@
         </div>
     </div>
 
-    <!-- ТАБ 2: 10 ИТ-МОДУЛЕЙ КЛУБА НА ОСНОВЕ ФАЙЛОВ ИЗ ЛИЧНОГО КАБИНЕТА -->
     <div id="tab-facts" class="tab-content">
         <div class="bento-grid">
             
@@ -452,111 +468,140 @@
             </div>
 
             <div class="bento-card">
-                <div class="fact-num">01</div>
-                <h3 class="fact-title">Курс «Стройность» (6 недель)</h3>
-                <p class="fact-desc">Пошаговый, структурный онлайн-курс глубокой трансформации тела, рассчитанный на 6 недель последовательного движения день за днем.</p>
+                <div>
+                    <div class="fact-num">01</div>
+                    <h3 class="fact-title">Курс «Стройность» (6 недель)</h3>
+                    <p class="fact-desc">Пошаговый, структурный онлайн-курс глубокой трансформации тела, рассчитанный на 6 недель последовательного движения день за днем.</p>
+                </div>
             </div>
 
             <div class="bento-card">
-                <div class="fact-num">02</div>
-                <h3 class="fact-title">Программа «Детокс» (7 дней)</h3>
-                <p class="fact-desc">Специализированный блок мягкого очищения организма, направленный на оперативный вывод токсинов и ликвидацию пастозности лица.</p>
+                <div>
+                    <div class="fact-num">02</div>
+                    <h3 class="fact-title">Программа «Детокс» (7 дней)</h3>
+                    <p class="fact-desc">Специализированный блок мягкого очищения организма, направленный на оперативный вывод токсинов и ликвидацию пастозности лица.</p>
+                </div>
             </div>
 
             <div class="bento-card">
-                <div class="fact-num">03</div>
-                <h3 class="fact-title">Интерактивный трекер веса</h3>
-                <p class="fact-desc">Умный цифровой модуль для фиксации вашей целевой отметки. Система автоматически рассчитывает остаток пути и мотивирует вас.</p>
+                <div>
+                    <div class="fact-num">03</div>
+                    <h3 class="fact-title">Интерактивный трекер веса</h3>
+                    <p class="fact-desc">Умный цифровой модуль для фиксации вашей целевой отметки. Система автоматически рассчитывает остаток пути и мотивирует вас.</p>
+                </div>
             </div>
 
             <div class="bento-card">
-                <div class="fact-num">04</div>
-                <h3 class="fact-title">График «Дневник прогресса»</h3>
-                <p class="fact-desc">Автоматизированная система графической визуализации ваших параметров: вес, объем груди, талии и бедер в реальном времени.</p>
+                <div>
+                    <div class="fact-num">04</div>
+                    <h3 class="fact-title">График «Дневник прогресса»</h3>
+                    <p class="fact-desc">Автоматизированная система графической визуализации ваших параметров: вес, объем груди, талии и бедер в реальном времени.</p>
+                </div>
             </div>
 
             <div class="bento-card">
-                <div class="fact-num">05</div>
-                <h3 class="fact-title">Контроль результатов по фото</h3>
-                <p class="fact-desc">Удобный инструмент для загрузки контрольных снимков «ДО» и «ПОСЛЕ» с целью проведения объективного аудита осанки и получения бонусов.</p>
+                <div>
+                    <div class="fact-num">05</div>
+                    <h3 class="fact-title">Контроль результатов по photo</h3>
+                    <p class="fact-desc">Удобный инструмент для загрузки контрольных снимков «ДО» и «ПОСЛЕ» с целью проведения объективного аудита осанки и получения бонусов.</p>
+                </div>
             </div>
 
             <div class="bento-card">
-                <div class="fact-num">06</div>
-                <h3 class="fact-title">База знаний «Рецепты»</h3>
-                <p class="fact-desc">Раздел сбалансированного питания, разбитый на категории: Памятка, Завтраки, Смузи, Перекусы, Супы, Крупы и полезные Десерты.</p>
+                <div>
+                    <div class="fact-num">06</div>
+                    <h3 class="fact-title">База знаний «Рецепты»</h3>
+                    <p class="fact-desc">Раздел сбалансированного питания, разбитый на категории: Памятка, Завтраки, Смузи, Перекусы, Супы, Крупы и полезные Десерты.</p>
+                </div>
+                <a href="journal.html" class="bento-inline-btn">Читать статьи нутрициологов →</a>
             </div>
 
             <div class="bento-card">
-                <div class="fact-num">07</div>
-                <h3 class="fact-title">Библиотека видеотренировок</h3>
-                <p class="fact-desc">Множество полноценных, структурированных видеоуроков, доступных в один клик в любой точке мира 24 часа в сутки.</p>
+                <div>
+                    <div class="fact-num">07</div>
+                    <h3 class="fact-title">Библиотека видеотренировок</h3>
+                    <p class="fact-desc">Множество полноценных, структурированных видеоуроков, доступных в один клик в любой точке мира 24 часа в сутки.</p>
+                </div>
             </div>
 
             <div class="bento-card">
-                <div class="fact-num">08</div>
-                <h3 class="fact-title">Видеокурс умного Пилатеса</h3>
-                <p class="fact-desc">Полноформатные сессии (~54 минуты), нацеленные на бережное укрепление мышечного корсета и восстановление естественных изгибов позвоночника.</p>
+                <div>
+                    <div class="fact-num">08</div>
+                    <h3 class="fact-title">Видеокурс умного Пилатеса</h3>
+                    <p class="fact-desc">Полноформатные сессии (~54 минуты), нацеленные на бережное укрепление мышечного корсета и восстановление естественных изгибов позвоночника.</p>
+                </div>
             </div>
 
             <div class="bento-card">
-                <div class="fact-num">09</div>
-                <h3 class="fact-title">Миофасциальный релиз и ПСР</h3>
-                <p class="fact-desc">Специальные практики с роллами и мячами для деликатного снятия зажимов, триггерных точек, разгрузки психики и улучшения кровотока мозга.</p>
+                <div>
+                    <div class="fact-num">09</div>
+                    <h3 class="fact-title">Миофасциальный релиз и ПСР</h3>
+                    <p class="fact-desc">Специальные практики с роллами и мячами для деликатного снятия зажимов, триггерных точек, разгрузки психики и улучшения кровотока мозга.</p>
+                </div>
             </div>
 
             <div class="bento-card">
-                <div class="fact-num">10</div>
-                <h3 class="fact-title">Экспресс-зарядки и Разминки</h3>
-                <p class="fact-desc">Короткие, высокоэффективные сессии (от 5 до 15 минут) для быстрой активации лимфотока в условиях жесткого дефицита времени в мегаполисе.</p>
+                <div>
+                    <div class="fact-num">10</div>
+                    <h3 class="fact-title">Экспресс-зарядки и Разминки</h3>
+                    <p class="fact-desc">Короткие, высокоэффективные сессии (от 5 до 15 минут) для быстрой активации лимфотока в условиях жесткого дефицита времени в мегаполисе.</p>
+                </div>
             </div>
 
         </div>
     </div>
 
-    <!-- ТАБ 3: ТОП-4 ПРАВИЛА РАЗГРУЗКИ ШЕИ ОТ ОЛЬГИ МАРТЫНОВОЙ -->
     <div id="tab-recipes" class="tab-content">
         <div class="bento-grid">
             
             <div class="bento-card span-2">
-                <span class="recipe-badge">Совет 01</span>
-                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">Используйте МФР-мячи для деликатного релиза подзатылочной зоны</h3>
-                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
-                    При остром зажиме шеи никогда не делайте силовых растяжек. Лягте на спину, подложите под затылочные бугры два плотных мяча и полностью расслабьте вес головы на 2-3 минуты. Дышите глубоко и медленно. Мягкое статическое давление заставит датчики мышц выключить защитный спазм артерий.
-                </p>
+                <div>
+                    <span class="recipe-badge">Совет 01</span>
+                    <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">Используйте МФР-мячи для деликатного релиза подзатылочной зоны</h3>
+                    <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                        При остром зажиме шеи никогда не делайте силовых растяжек. Лягте на спину, подложите под затылочные бугры два плотных мяча и полностью расслабьте вес головы на 2-3 минуты. Дышите глубоко и медленно. Мягкое статическое давление заставит датчики мышц выключить защитный спазм артерий.
+                    </p>
+                </div>
             </div>
 
             <div class="bento-card">
-                <span class="recipe-badge">Совет 02</span>
-                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">Контролируйте плоскость взгляда за столом</h3>
-                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
-                    Если ваш монитор расположен низко, мозг вынужден выдвигать шею вперед. Поднимите экран так, чтобы верхняя треть монитора находилась строго на уровне глаз — это избавит трапеции от статической перегрузки.
-                </p>
+                <div>
+                    <span class="recipe-badge">Совет 02</span>
+                    <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">Контролируйте плоскость взгляда за столом</h3>
+                    <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                        If ваш монитор расположен низко, мозг вынужден выдвигать шею вперед. Поднимите экран так, чтобы верхняя треть монитора находилась строго на уровне глаз — это избавит трапеции от статической перегрузки.
+                    </p>
+                </div>
             </div>
 
             <div class="bento-card">
-                <span class="recipe-badge">Совет 03</span>
-                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">Синхронизируйте натяжение с длинным выдохом</h3>
-                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
-                    Любое деликатное вытяжение боковой поверхности шеи совершайте строго на выдохе, расслабляя нижнюю челюсть. Сжатые зубы рефлекторно удерживают тонус шейного отдела, блокируя расслабление сосудов.
-                </p>
+                <div>
+                    <span class="recipe-badge">Совет 03</span>
+                    <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">Синхронизируйте натяжение с длинным выдохом</h3>
+                    <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                        Любое деликатное вытяжение боковой поверхности шеи совершайте строго на выдохе, расслабляя нижнюю челюсть. Сжатые зубы рефлекторно удерживают тонус шейного отдела, блокируя расслабление сосудов.
+                    </p>
+                </div>
             </div>
 
             <div class="bento-card span-2">
-                <span class="recipe-badge">Совет 04</span>
-                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">Восстанавливайте мобильность грудного отдела позвоночника</h3>
-                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
-                    Шея страдает только потому, что грудной отдел позвоночника заблокирован многочасовым сидением. Пока лопатки и ребра не двигаются в 3D-формате, шея будет перегружаться ежедневно. Ольга Мартынова настаивает: завершайте день мягкими разгибаниями грудного отдела на валике или ролле. Это мгновенно вернет шейным позвонкам их природную ось движения, полностью снимет каменную тяжесть с плеч, уберет головную боль напряжения и подарит вашей голове абсолютную ясность.
-                </p>
+                <div>
+                    <span class="recipe-badge">Совет 04</span>
+                    <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">Восстанавливайте мобильность грудного отдела позвоночника</h3>
+                    <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                        Шея страдает только потому, что грудной отдел позвоночника заблокирован многочасовым сидением. Пока лопатки и ребра не двигаются в 3D-формате, шея будет перегружаться ежедневно. Ольга Мартынова настаивает: завершайте день мягкими разгибаниями грудного отдела на валике или ролле. Это мгновенно вернет шейным позвонкам их природную ось движения, полностью снимет каменную тяжесть с плеч, уберет головную боль напряжения и подарит вашей голове абсолютную ясность.
+                    </p>
+                </div>
             </div>
 
-            <!-- ИНСПИРАЦИОННЫЙ БЛОК ОЛЬГИ С ЖЕСТКИМ ПЕРЕХОДОМ НА CLUB.HTML -->
             <div class="bento-card span-3" style="background: linear-gradient(135deg, rgba(65,178,157,0.12), transparent); border: 2px solid var(--accent-green);">
-                <span class="recipe-badge">Вдохновение от Ольги Мартыновой</span>
-                <h3 class="serif" style="font-size: 26px; margin-bottom: 15px; color: var(--text-main);">«Свобода вашей шеи — это чистый приток энергии к вашему разуму...»</h3>
-                <p style="font-size: 15px; line-height: 1.7; color: var(--text-main); margin-bottom: 25px;">
-                    «Мои прекрасные женщины! Хронические головные боли напряжения, утренняя усталость глаз и каменные плечи к вечеру — это не норма вашей жизни. Это крик вашего тела о дефиците умного 3D-движения и зажиме магистральных сосудов. Пожалуйста, прекратите мучить себя резкими круговыми вращениями головы или закачкой мышц через силу в залах! Шейный отдел требует ювелирной, деликатной заботы. Наша восстановительная программа Пилатеса и МФР внутри онлайн-клуба создана специально для тех, кто много времени проводит за столом. Мы вернем вашим суставам и ребрам их законную анатомическую нейтраль, снимем затылочный панцирь и восстановим нормальное кровоснабжение головного мозга. Вы проснетесь собранной, легкой, с красивой осанкой и ясной головой. Активируйте личный кабинет и верните телу его естественный ресурс!»
-                </p>
+                <div>
+                    <span class="recipe-badge">Вдохновение от Ольги Мартыновой</span>
+                    <h3 class="serif" style="font-size: 26px; margin-bottom: 15px; color: var(--text-main);">«Свобода вашей шеи — это чистый приток энергии к вашему разуму...»</h3>
+                    <p style="font-size: 15px; line-height: 1.7; color: var(--text-main); margin-bottom: 25px;">
+                        «Мои прекрасные женщины! Хронические головные боли напряжения, утренняя усталость глаз и каменные плечи к вечеру — это не норма вашей жизни. Это крик вашего тела о дефиците умного 3D-движения и зажиме магистральных сосудов. Пожалуйста, прекратите мучить себя резкими круговыми вращениями головы или закачкой мышц через силу в залах! Шейный отдел требует ювелирной, деликатной заботы. Наша восстановительная программа Пилатеса и МФР внутри онлайн-клуба создана специально для тех, кто много времени проводит за столом. Мы вернем вашим суставам и ребрам их законную анатомическую нейтраль, снимем затылочный панцирь и восстановим нормальное кровоснабжение головного мозга. Вы проснетесь собранной, легкой, с красивой осанкой и яской головой. Активируйте личный кабинет и верните телу его естественный ресурс!»
+                    </p>
+                </div>
                 <div style="max-width: 450px; margin: 0 auto;">
                     <a href="club.html" class="btn-marketing btn-online-gold">Получить доступ к онлайн-клубу: тест-драйв за 300₽</a>
                 </div>
@@ -565,7 +610,26 @@
         </div>
     </div>
 
-    <!-- УЛЬТРА-ЯРКАЯ КНОПКА ШЕРИНГА -->
+    <section class="bento-grid" style="margin-top: 20px;">
+        <div class="bento-card span-3" style="background: linear-gradient(135deg, rgba(11, 12, 16, 0.95), rgba(26, 26, 36, 0.8)); border-top: 3px solid var(--accent-green); box-shadow: 0 10px 30px rgba(65, 178, 157, 0.05);">
+            <div style="display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: start; margin-bottom: 20px;">
+                <div>
+                    <span class="recipe-badge" style="background: var(--accent-gold) !important;">Борьба с невежеством</span>
+                    <h2 class="serif" style="font-size: clamp(22px, 3vw, 28px); margin-bottom: 12px; line-height: 1.3;">Научный подход к биохакингу тела: Читайте наш Экспертный Журнал</h2>
+                    <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6; max-width: 900px;">
+                        Мы создали не просто фитнес-платформу, а полноценный прикладной путеводитель по изменению качества вашей жизни. В Журнале РЕСУРСА мы безжалостно рушим мифы классического фитнеса и даем глубокий, кристально чистый анализ взаимосвязей в теле. Узнайте, как скрытый стресс и паттерны психосоматики спазмируют шею, почему застой лимфы блокирует метаболизм, и как нейромышечные тренировки перепрошивают привычки мозга. Каждая статья — это концентрат практической пользы мирового уровня для тех, кто ценит научную обоснованность и готов менять свое состояние к лучшему.
+                    </p>
+                </div>
+                <div style="background: rgba(65, 178, 157, 0.1); padding: 15px; border-radius: 16px; display: flex; align-items: center; justify-content: center;">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5z"/><path d="M6 6h10M6 10h10"/></svg>
+                </div>
+            </div>
+            <div style="max-width: 450px; margin: 10px auto 0;">
+                <a href="journal.html" class="btn-marketing btn-online-green">Перейти в журнал: изменить привычки и жизнь</a>
+            </div>
+        </div>
+    </section>
+
     <section class="share-section">
         <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">🔥 Отправить тест шеи подругам и коллегам по работе!</h3>
         <p style="font-size: 14px; color: var(--text-dim); margin-bottom: 25px;">Поделитесь этой страницей с подругами или коллегами в Митино, которые много времени проводят за компьютером, страдают от головных болей напряжения и мечтают вернуть телу легкость.</p>
@@ -738,8 +802,7 @@
     });
 </script>
 
-    <!-- РЕНДЕР КАНАЛОВ РСЯ FLOOR AD -->
-<script>
+    <script>
 window.yaContextCb.push(() => {
     Ya.Context.AdvManager.render({
         "blockId": "R-A-19181219-6",
