@@ -2,623 +2,823 @@
 <html lang="ru">
 <head>
     <script>
+        // Инициализация темы при загрузке (для Митино жестко фиксируем дорогую премиум-темную эко-тему)
         const savedTheme = localStorage.getItem('theme') || 'dark';
         document.documentElement.setAttribute('data-theme', savedTheme);
-        if (savedTheme === 'light') { document.documentElement.classList.add('light-theme'); }
     </script>
-    
+
     <script type="text/javascript">
-    (function(m,e,t,r,i,k,a){
-        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-        m[i].l=1*new Date();
-        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108177329', 'ym');
-    ym(108177329, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    // --- Yandex.Metrika counter ---
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108177329', 'ym');
+        ym(108177329, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+
+        // --- Top.Mail.Ru counter ---
+        var _tmr = window._tmr || (window._tmr = []);
+        _tmr.push({id: "3755240", type: "pageView", start: (new Date()).getTime()});
+        (function (d, w, id) {
+            if (d.getElementById(id)) return;
+            var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
+            ts.src = "https://top-fwz1.mail.ru/js/code.js";
+            var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
+            if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
+        })(document, window, "tmr-code");
     </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/108177329" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <noscript>
+        <div>
+            <img src="https://mc.yandex.ru/watch/108177329" style="position:absolute; left:-9999px;" alt="" />
+            <img src="https://top-fwz1.mail.ru/counter?id=3755240;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" />
+        </div>
+    </noscript>
+
+    <script>
+        // Глобальная логика перехвата ботов для SEO-превью через Яндекс Функцию
+        window.addEventListener('DOMContentLoaded', () => {
+            const isBot = /YandexBot|YandexAccessibilityBot|YandexMobileBot|Googlebot/i.test(navigator.userAgent);
+            if (isBot) {
+                fetch('https://functions.yandexcloud.net/d4ecn5ag33dcdd2deivd?bot=true&url=' + encodeURIComponent(window.location.href))
+                .then(res => res.json())
+                .then(data => console.log("SEO Preview Matrix Synced"))
+                .catch(e => console.log("SEO preview pass"));
+            }
+        });
+    </script>
     
     <script>window.yaContextCb=window.yaContextCb||[]</script>
     <script src="https://yandex.ru/ads/system/context.js" async></script>
     
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Журнал РЕСУРС | Экспертный блог о движении и здоровье в Сыктывкаре</title>
-    <meta name="description" content="Масштабный проект студии РЕСУРС. Читайте статьи от топ-тренеров о том, как избавиться от боли, правильно тянуться и восстановить энергию.">
-    <meta name="keywords" content="фитнес блог, растяжка сыктывкар, здоровая спина, мфр, шпагат без боли, лимфодренаж, ресурс">
+    <title>Как убрать зажимы в шее в Митино | Головная боль напряжения | РЕСУРС</title>
+    <meta name="description" content="Интерактивный bento-анализ шейных зажимов и компьютерной сутулости в районе Митино. Программа декомпрессии позвоночника, МФР затылка и умный Пилатес из дома в онлайн-клубе РЕСУРС.">
+    <meta name="keywords" content="зажимы в шее митино, головная боль напряжения москва, пилатес пятницкое шоссе, мфр ролл митино купить, фитнес клуб митино цены, здоровая спина сзао, растяжка в гамаках москва">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://resurs-stretch.ru/journal.html">
+    <link rel="canonical" href="https://resurs-stretch.ru/neck-pain-mitino.html">
 
-    <!-- ИНТЕГРАЦИЯ МИКРОРАЗМЕТКИ SCHEMA.ORG ДЛЯ ПОВЫШЕНИЯ СЕО ДО 5 БАЛЛОВ -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Скрининг зажимов шеи в Митино: Тест подзатылочной компрессии">
+    <meta property="og:description" content="Узнайте, почему каменеют плечи и ноет голова от работы за монитором. Разверните 10 модулей ИТ-платформы РЕСУРС онлайн.">
+    <meta property="og:url" content="https://resurs-stretch.ru/neck-pain-mitino.html">
+    <meta property="og:image" content="https://resurs-stretch.ru/logo_header_final.png">
+    <meta property="og:site_name" content="РЕСУРС">
+    <meta property="og:locale" content="ru_RU">
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Blog",
-      "name": "Журнал РЕСУРС",
-      "description": "Масштабный проект студии РЕСУРС. Читайте статьи от топ-тренеров о том, как избавиться от боли, правильно тянуться и восстановить энергию в Сыктывкаре.",
-      "url": "https://resurs-stretch.ru/journal.html",
-      "publisher": {
-        "@type": "Organization",
-        "name": "Студия фитнеса и растяжки РЕСУРС",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://resurs-stretch.ru/logo_header_final.png"
-        }
+      "@type": "Product",
+      "name": "Интерактивная онлайн-программа Декомпрессия шеи в Митино",
+      "image": "https://resurs-stretch.ru/logo_header_final.png",
+      "description": "Экосистема умного фитнеса и восстановления ресурсов организма. Интерактивный личный кабинет домашних тренировок.",
+      "brand": {
+        "@type": "Brand",
+        "name": "РЕСУРС"
+      },
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "RUB",
+        "lowPrice": "300",
+        "highPrice": "1600",
+        "offerCount": "1",
+        "offers": [
+          {
+            "@type": "Offer",
+            "name": "Тест-драйв личного кабинета онлайн-клуба на 3 дня",
+            "price": "300",
+            "priceCurrency": "RUB",
+            "availability": "https://schema.org/InStock",
+            "url": "https://resurs-stretch.ru/neck-pain-mitino.html"
+          }
+        ]
       }
     }
     </script>
 
     <link rel="icon" type="image/png" href="logo_header_final.png">
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        :root { 
-            --bg-deep: #F4F4F9; --glass-border: 1px solid rgba(0, 0, 0, 0.08); --accent-gold: #B38639; 
-            --text-main: #05050A; --elem-bg: rgba(0, 0, 0, 0.04); --elem-border: rgba(0, 0, 0, 0.1); 
-            --nav-bg: rgba(244, 244, 249, 0.95); --font-main: 'Manrope', sans-serif; 
-            --font-serif: 'Cormorant Garamond', serif; --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+        /* CSS ПЕРЕМЕННЫЕ ДЛЯ ПРЕМИАЛЬНОЙ ГРАФИТОВО-ПЛАТИНОВОЙ ТЕМЫ МОСКВЫ */
+        :root {
+            --bg-deep: #0B0C10; 
+            --glass-bg: rgba(26, 26, 36, 0.65); 
+            --glass-border: 1px solid rgba(255, 255, 255, 0.08); 
+            --accent-gold: #C5A059; 
+            --accent-green: #45B29D;
+            --accent-berry: #E91E63;
+            --text-main: #F5F5F5;
+            --text-dim: rgba(245, 245, 245, 0.55);
+            --elem-bg: rgba(255, 255, 255, 0.03);
+            --elem-border: rgba(255, 255, 255, 0.1);
+            --nav-bg: rgba(11, 12, 16, 0.95);
+            --font-main: 'Manrope', sans-serif;
+            --font-serif: 'Cormorant Garamond', serif;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        [data-theme="dark"] { 
-            --bg-deep: #080814; --glass-border: 1px solid rgba(255, 255, 255, 0.08); --accent-gold: #C5A059; 
-            --text-main: #F4F4F9; --elem-bg: rgba(255, 255, 255, 0.05); --elem-border: rgba(255, 255, 255, 0.15); 
-            --nav-bg: rgba(8, 8, 20, 0.95); 
+
+        [data-theme="light"] {
+            --bg-deep: #F4F5F7; 
+            --glass-bg: rgba(255, 255, 255, 0.9); 
+            --glass-border: 1px solid rgba(11, 12, 16, 0.08); 
+            --accent-gold: #B38639; 
+            --accent-green: #338A75;
+            --accent-berry: #C2185B;
+            --text-main: #1F2022;
+            --text-dim: rgba(31, 32, 34, 0.65);
+            --elem-bg: rgba(0, 0, 0, 0.02);
+            --elem-border: rgba(0, 0, 0, 0.08);
+            --nav-bg: rgba(244, 245, 247, 0.95);
         }
+
         * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
         html { scroll-behavior: smooth; }
         body { 
-            background: var(--bg-deep); color: var(--text-main); font-family: var(--font-main); line-height: 1.6; 
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
-            transition: background-color 0.5s ease, color 0.5s ease; -webkit-font-smoothing: antialiased; padding-top: 90px; 
-            display: flex; flex-direction: column; min-height: 100vh;
+            background: var(--bg-deep); 
+            color: var(--text-main);
+            font-family: var(--font-main); 
+            line-height: 1.6;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.02'/%3E%3C/svg%3E");
+            transition: background-color 0.4s ease, color 0.4s ease;
+            -webkit-font-smoothing: antialiased;
+            padding-bottom: 60px;
         }
-        
-        /* Прогресс чтения */
-        #reading-progress { position: fixed; top: 0; left: 0; height: 3px; background-color: var(--accent-gold); width: 0%; z-index: 10001; transition: width 0.1s ease-out; }
 
+        h1, h2, h3, .serif { font-family: var(--font-serif); font-weight: 600; letter-spacing: 0.5px; }
         a { text-decoration: none; color: inherit; transition: var(--transition); }
-        header { position: fixed; top: 0; width: 100%; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: var(--nav-bg); border-bottom: var(--glass-border); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); }
-        .header-left { display: flex; align-items: center; gap: 15px; }
-        .logo-img { height: 35px; width: auto; }
-        .back-link { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; font-weight: 600; opacity: 0.7; }
-        .back-link:hover { color: var(--accent-gold); opacity: 1; }
-        .brand-name { font-family: var(--font-serif); font-size: 24px; letter-spacing: 12px; text-transform: uppercase; margin-right: -12px; cursor: pointer; }
-        #themeToggle { padding: 8px 15px; font-size: 10px; font-weight: 600; letter-spacing: 2px; border-radius: 8px; border: 1px solid var(--elem-border); background: var(--elem-bg); cursor: pointer; color: var(--text-main); text-transform: uppercase; }
-        #themeToggle:hover { border-color: var(--accent-gold); }
 
-        .journal-container { max-width: 1200px; margin: 0 auto; padding: 40px 5%; flex: 1; }
+        /* HEADER */
+        header {
+            position: fixed; top: 0; width: 100%; padding: 20px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 2000; background: transparent; transition: var(--transition);
+        }
+        header.scrolled { 
+            background: var(--glass-bg) !important; 
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            padding: 12px 5% !important; border-bottom: var(--glass-border);
+        }
+        .brand-name { font-family: var(--font-serif); font-size: 22px; letter-spacing: 8px; text-transform: uppercase; font-weight: 600; }
         
-        /* SPA Виды */
-        #home-view { display: block; animation: fadeIn 0.5s; }
-        #article-view { display: none; animation: fadeIn 0.5s; max-width: 800px; margin: 0 auto; }
+        .header-controls { display: flex; gap: 12px; align-items: center; }
+        
+        #themeToggle, .btn-journal-nav {
+            padding: 0 15px; height: 35px; font-size: 10px; font-weight: 600; letter-spacing: 2px;
+            display: inline-flex; align-items: center; justify-content: center;
+            border-radius: 8px; border: 1px solid var(--elem-border); background: var(--elem-bg);
+            cursor: pointer; transition: var(--transition); color: var(--text-main); text-transform: uppercase;
+        }
+        #themeToggle:hover, .btn-journal-nav:hover { border-color: var(--accent-gold); transform: translateY(-2px); }
+        .btn-journal-nav { background: rgba(65, 178, 157, 0.15); border-color: var(--accent-green); color: var(--text-main); }
+        .btn-journal-nav:hover { border-color: var(--accent-green); background: var(--accent-green); color: #fff; }
+
+        /* MAIN CONTAINER */
+        .main-layout { max-width: 1200px; margin: 100px auto 60px; padding: 0 20px; }
+
+        /* ТАБЫ */
+        .tabs-nav { display: flex; gap: 10px; margin-bottom: 30px; border-bottom: var(--glass-border); padding-bottom: 15px; overflow-x: auto; scrollbar-width: none; }
+        .tabs-nav::-webkit-scrollbar { display: none; }
+        .tab-btn {
+            padding: 12px 24px; border: 1px solid var(--elem-border); background: var(--glass-bg);
+            color: var(--text-dim); border-radius: 12px; cursor: pointer; font-size: 14px; font-weight: 500;
+            white-space: nowrap; transition: var(--transition); font-family: var(--font-main);
+        }
+        .tab-btn:hover { border-color: var(--accent-gold); color: var(--text-main); }
+        .tab-btn.active { background: var(--accent-green); color: #FFF; border-color: var(--accent-green); box-shadow: 0 8px 20px rgba(69,178,157,0.2); }
+
+        .tab-content { display: none; animation: fadeIn 0.5s ease; }
+        .tab-content.active { display: block; }
+
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Элементы главной страницы */
-        .journal-header { text-align: center; margin-bottom: 50px; }
-        .journal-category { font-size: 11px; text-transform: uppercase; letter-spacing: 4px; color: var(--accent-gold); font-weight: 600; display: block; margin-bottom: 15px; }
-        .journal-title { font-family: var(--font-serif); font-size: clamp(36px, 5vw, 54px); line-height: 1.1; margin-bottom: 20px; }
-        .journal-subtitle { font-size: 16px; opacity: 0.7; max-width: 600px; margin: 0 auto; }
+        /* BENTO GRID */
+        .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .bento-card { background: var(--glass-bg); border: var(--glass-border); border-radius: 24px; padding: 30px; position: relative; overflow: hidden; transition: var(--transition); display: flex; flex-direction: column; justify-content: space-between; }
+        .bento-card:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(0,0,0,0.2); }
         
-        .expert-block { display: flex; align-items: center; gap: 25px; background: var(--elem-bg); padding: 30px; border-radius: 24px; border: var(--glass-border); margin-bottom: 50px; flex-wrap: wrap; }
-        .expert-photo { width: 110px; height: 110px; border-radius: 50%; overflow: hidden; border: 2px solid var(--accent-gold); flex-shrink: 0; margin: 0 auto; }
-        .expert-photo img { width: 100%; height: 100%; object-fit: cover; }
+        .span-2 { grid-column: span 2; }
+        .span-3 { grid-column: span 3; }
 
-        /* --- ПОИСК --- */
-        .search-input {
+        /* INLINE КНОПКИ ДЛЯ ЖУРНАЛА ВНУТРИ КАРТОЧЕК */
+        .bento-inline-btn {
+            margin-top: 15px; padding: 10px 18px; border-radius: 10px; font-size: 12px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.5px; display: inline-flex; align-items: center; justify-content: center;
+            gap: 6px; border: 1px solid var(--accent-green); background: rgba(65, 178, 157, 0.08); color: var(--text-main); transition: var(--transition); width: fit-content;
+        }
+        .bento-inline-btn:hover { background: var(--accent-green); color: #FFF; transform: translateY(-1px); }
+
+        /* ИНПУТЫ И КАЛЬКУЛЯТОР */
+        .calc-group { margin-bottom: 25px; }
+        .calc-label { font-size: 15px; font-weight: 600; margin-bottom: 12px; display: block; color: var(--text-main); line-height: 1.4; }
+        
+        .radio-box-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+        .radio-tile {
+            border: 1px solid var(--elem-border); background: var(--elem-bg); padding: 16px;
+            border-radius: 12px; cursor: pointer; display: flex; flex-direction: column; gap: 4px;
+            position: relative; transition: var(--transition);
+        }
+        .radio-tile input { position: absolute; top: 16px; right: 16px; accent-color: var(--accent-green); }
+        .radio-tile-title { font-size: 14px; font-weight: 700; color: var(--text-main); }
+        .radio-tile-desc { font-size: 12px; color: var(--text-dim); line-height: 1.4; }
+        .radio-tile.selected { border-color: var(--accent-green); background: rgba(65,178,157,0.08); }
+
+        .range-slider { width: 100%; accent-color: var(--accent-green); margin: 10px 0; height: 6px; border-radius: 3px; }
+        .range-val { font-size: 18px; font-weight: 700; color: var(--accent-gold); }
+        
+        /* РЕЗУЛЬТАТЫ БЕНТО */
+        .result-score-box { text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(135deg, var(--elem-bg), transparent); padding: 40px 20px; transition: var(--transition); }
+        .score-number { font-size: 32px; font-weight: 800; line-height: 1.2; color: var(--accent-berry); font-family: var(--font-serif); }
+        .score-status { font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-top: 12px; }
+
+        /* МАРКЕТИНГОВЫЕ КНОПКИ */
+        .btn-marketing {
+            display: inline-flex; align-items: center; justify-content: center; width: 100%;
+            padding: 22px 30px; background: var(--accent-berry); color: #FFF; border: none;
+            border-radius: 16px; font-family: var(--font-main); font-size: 15px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: var(--transition);
+            box-shadow: 0 10px 25px rgba(233,30,99,0.25); text-align: center;
+        }
+        .btn-marketing:hover { transform: translateY(-2px); box-shadow: 0 15px 35px rgba(233,30,99,0.4); opacity: 0.95; }
+
+        .btn-marketing.btn-online-gold {
+            background: linear-gradient(135deg, #B38639, #8C6221) !important;
+            box-shadow: 0 10px 25px rgba(179,134,57,0.3) !important;
+        }
+        .btn-marketing.btn-online-gold:hover {
+            box-shadow: 0 15px 35px rgba(179,134,57,0.5) !important;
+        }
+
+        .btn-marketing.btn-online-green {
+            background: linear-gradient(135deg, var(--accent-green), #1b6354) !important;
+            box-shadow: 0 10px 25px rgba(69, 178, 157, 0.3) !important;
+        }
+        .btn-marketing.btn-online-green:hover {
+            box-shadow: 0 15px 35px rgba(69, 178, 157, 0.5) !important;
+        }
+
+        .btn-reset {
+            background: transparent; border: 1px dashed var(--text-dim); color: var(--text-dim);
+            padding: 10px 20px; border-radius: 10px; font-size: 12px; font-weight: 600;
+            cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: var(--transition);
+        }
+        .btn-reset:hover { border-color: var(--accent-berry); color: var(--accent-berry); }
+
+        /* ЭТАЛОННАЯ ПЛАТИНОВАЯ НУМЕРАЦИЯ ИТ-МОДУЛЕЙ */
+        .fact-num { font-size: 36px; font-family: var(--font-serif); color: var(--accent-gold) !important; font-weight: 700; margin-bottom: 5px; }
+        .fact-title { font-size: 18px; font-weight: 600; margin-bottom: 10px; line-height: 1.3; font-family: var(--font-serif); color: var(--text-main); }
+        .fact-desc { font-size: 14px; color: var(--text-dim); line-height: 1.6; }
+
+        /* ЭТАЛОННЫЕ СКРУГЛЕННЫЕ ПЛАШКИ */
+        .recipe-badge { 
+            background: var(--accent-green) !important; 
+            color: #FFF !important; 
+            padding: 6px 16px; 
+            border-radius: 30px; 
+            font-size: 11px; 
+            font-weight: 700; 
+            text-transform: uppercase; 
+            display: inline-block; 
+            margin-bottom: 15px; 
+            letter-spacing: 1px;
+        }
+
+        /* УЛЬТРА-ЯРКАЯ ГРАДИЕНТНАЯ КНОПКА ШЕРИНГА */
+        .share-section { margin-top: 40px; background: linear-gradient(135deg, rgba(69, 178, 157, 0.08), rgba(179, 134, 57, 0.08)); border: 2px solid var(--accent-green); border-radius: 28px; padding: 40px 30px; text-align: center; box-shadow: 0 15px 40px rgba(69,178,157,0.1); }
+        .btn-share {
+            display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 18px 40px;
+            background: linear-gradient(135deg, var(--accent-green), #1b6354) !important; border: none; border-radius: 16px;
+            font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: var(--transition); color: #FFF;
+            box-shadow: 0 10px 25px rgba(69, 178, 157, 0.4) !important; width: 100%; max-width: 400px;
+        }
+        .btn-share:hover { transform: scale(1.03) translateY(-2px); box-shadow: 0 15px 35px rgba(69, 178, 157, 0.6) !important; }
+
+        footer { 
+            margin-top: 80px; 
+            padding: 60px 0 40px; 
+            border-top: var(--glass-border); 
+            background: transparent;
             width: 100%;
-            padding: 16px 25px;
-            border: 1px solid var(--elem-border);
-            border-radius: 16px;
-            box-sizing: border-box;
-            background-color: var(--elem-bg);
-            color: var(--text-main);
-            font-family: var(--font-main);
-            font-size: 16px;
-            margin-bottom: 40px;
-            transition: var(--transition);
         }
-        .search-input:focus {
-            outline: none;
-            border-color: var(--accent-gold);
-            box-shadow: 0 0 15px rgba(179, 134, 57, 0.15);
-        }
+        .footer-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; text-align: center; }
 
-        /* Сетка и карточки */
-        .journal-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; margin-bottom: 40px; }
-        .article-card { display: flex; flex-direction: column; background: var(--elem-bg); border: var(--glass-border); border-radius: 24px; overflow: hidden; transition: var(--transition); cursor: pointer; }
-        .article-card:hover { transform: translateY(-8px); border-color: var(--accent-gold); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
-        .card-img { width: 100%; height: 240px; object-fit: cover; border-bottom: var(--glass-border); }
-        .card-img-container { width: 100%; height: 240px; overflow: hidden; position: relative; }
-        .card-body { padding: 30px; display: flex; flex-direction: column; flex-grow: 1; }
-        .card-tag { font-size: 10px; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 2px; font-weight: 600; margin-bottom: 12px; }
-        .card-title { font-family: var(--font-serif); font-size: 24px; line-height: 1.2; margin-bottom: 15px; }
-        .card-excerpt { font-size: 14px; opacity: 0.7; line-height: 1.6; margin-bottom: 20px; flex-grow: 1; }
-        .card-footer { display: flex; justify-content: space-between; align-items: center; font-size: 12px; opacity: 0.5; border-top: 1px solid var(--elem-border); padding-top: 15px; }
-        
-        .btn-lens { background: var(--elem-bg); backdrop-filter: blur(15px); border: 1px solid var(--elem-border); border-radius: 12px; transition: 0.4s; cursor: pointer; text-transform: uppercase; font-size: 11px; letter-spacing: 2px; font-weight: 600; color: var(--text-main); }
-        .btn-lens:hover { border-color: var(--accent-gold); transform: scale(1.05); }
-
-        /* Стили окна чтения статьи */
-        .btn-back-article { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: var(--text-main); border: 1px solid var(--elem-border); padding: 10px 20px; border-radius: 12px; cursor: pointer; font-weight: 600; text-transform: uppercase; font-size: 11px; letter-spacing: 2px; margin-bottom: 30px; transition: var(--transition); }
-        .btn-back-article:hover { border-color: var(--accent-gold); background: var(--elem-bg); }
-
-        .full-article-title { font-family: var(--font-serif); font-size: clamp(32px, 5vw, 46px); color: var(--text-main); margin-bottom: 15px; line-height: 1.1; }
-        .full-article-meta { font-size: 12px; opacity: 0.5; margin-bottom: 30px; display: flex; gap: 20px; text-transform: uppercase; letter-spacing: 1px; }
-        .full-article-cover { width: 100%; max-height: 450px; object-fit: cover; border-radius: 24px; margin-bottom: 40px; border: var(--glass-border); }
-        
-        .full-article-content { font-size: 17px; line-height: 1.8; opacity: 0.95; }
-        .full-article-content p { margin-bottom: 20px; }
-        .full-article-content h2, .full-article-content h3 { font-family: var(--font-serif); color: var(--accent-gold); margin: 40px 0 20px; line-height: 1.2; }
-        .full-article-content h2 { font-size: 32px; }
-        .full-article-content img { max-width: 100%; height: auto; border-radius: 12px; margin: 25px 0; }
-        
-        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 20px; margin: 35px 0; border: var(--glass-border); background: #000; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
-        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-
-        footer { padding: 60px 5% 40px; border-top: var(--glass-border); background: var(--elem-bg); margin-top: auto; text-align: center; }
-        
-        @media (max-width: 768px) { 
-            header { padding: 15px 5%; } 
-            .brand-name { font-size: 18px; letter-spacing: 6px; margin-right: -6px; } 
-            .logo-img { height: 28px; } 
-            .journal-title { font-size: 32px; } 
-            .full-article-title { font-size: 28px; }
+        @media (max-width: 968px) {
+            .bento-grid { grid-template-columns: 1fr; }
+            .span-2, .span-3 { grid-column: span 1; }
+            .main-layout { margin-top: 90px; }
         }
     </style>
 </head>
 <body>
 
-<div id="reading-progress"></div>
-
-<header>
-    <div class="header-left">
-        <img src="logo_header_final.png" alt="Студия фитнеса и растяжки РЕСУРС Сыктывкар" class="logo-img" onerror="this.style.display='none'">
-        <a href="index.html" class="back-link" id="header-back-btn">← На главную</a>
+<header id="header">
+    <div class="brand-name">РЕСУРС | ОНЛАЙН</div>
+    <div class="header-controls">
+        <a href="journal.html" class="btn-journal-nav">ЖУРНАЛ</a>
+        <button id="themeToggle" onclick="toggleTheme()">ТЕНЬ</button>
     </div>
-    <div class="brand-name" onclick="goHome()">Ресурс</div>
-    <button id="themeToggle" onclick="toggleTheme()" aria-label="Переключить тему">ТЕНЬ</button>
 </header>
 
-<main class="journal-container">
+<main class="main-layout">
     
-    <div id="home-view">
-        <div class="journal-header">
-            <span class="journal-category">Экспертный блог</span>
-            <h1 class="journal-title">Как обрести и сохранить здоровье...</h1>
-            <p class="journal-subtitle">Официальный журнал студии РЕСУРС в Сыктывкаре. Меняем подход к фитнесу: от насилия над собой к любви, осознанности и здоровью.</p>
-        </div>
+    <section style="text-align: center; max-width: 800px; margin: 0 auto 40px;">
+        <h1 style="font-size: clamp(26px, 4vw, 44px); line-height: 1.2; margin-bottom: 15px;">
+            Декомпрессия шеи в Митино: <span style="color: var(--accent-gold); font-style: italic;">Устранение зажимов и болей</span>
+        </h1>
+        <p style="font-size: 15px; color: var(--text-dim); line-height: 1.7;">
+            Проводите более 6 часов за монитором в Митино, а к вечеру плечи каменеют и раскалывается голова? Обычные массажи дают лишь временный эффект. Пройдите экспресс-аудит тонуса подзатылочной зоны и откройте для себя интерактивные ИТ-решения для восстановления здоровья осей тела.
+        </p>
+    </section>
 
-        <div class="expert-block">
-            <div class="expert-photo">
-                <img src="https://storage.yandexcloud.net/resurs-content/journal/olga-trainer.jpg" alt="Главный тренер Ольга Мартынова Сыктывкар" onerror="this.src='https://via.placeholder.com/110?text=Ольга'">
-            </div>
-            <div style="flex: 1; min-width: 250px; text-align: left;">
-                <h3 style="font-family: var(--font-serif); font-size: 26px; margin-bottom: 5px; color: var(--accent-gold);">Ольга Мартынова</h3>
-                <span style="font-size: 11px; text-transform: uppercase; letter-spacing: 2px; opacity: 0.6; display: block; margin-bottom: 10px;">Главный эксперт студии</span>
-                <p style="font-size: 14px; opacity: 0.9; line-height: 1.6; margin: 0;">
-                    <strong>Научный подход:</strong> Дипломированный специалист по физической культуре и спорту, применяющий методики доказательной фитнес-медицины и нейробиомеханики для восстановления ресурсного состояния организма без медикаментов. Все материалы блога проходят строгую проверку.
-                </p>
-            </div>
-        </div>
+    <nav class="tabs-nav" aria-label="Разделы страницы">
+        <button class="tab-btn active" onclick="switchTab(event, 'tab-calc')">📊 Скрининг зажимов шеи и статики</button>
+        <button class="tab-btn" onclick="switchTab(event, 'tab-facts')">💻 Интерактивные ИТ-модули платформы</button>
+        <button class="tab-btn" onclick="switchTab(event, 'tab-recipes')">🌿 4 правила декомпрессии от Ольги Мартыновой</button>
+    </nav>
 
-        <h2 style="font-family: var(--font-serif); font-size: clamp(32px, 5vw, 48px); text-align: center; color: var(--accent-gold); margin-bottom: 30px;">Статьи и анонсы.</h2>
-        
-        <input type="text" id="article-search" class="search-input" placeholder="🔍 Найти статью по слову или теме..." oninput="filterArticles()">
-
-        <div id="dynamic-grid" class="journal-grid">
-        </div>
-        
-        <div id="load-more-container" style="text-align: center; display: none; margin-bottom: 60px;">
-            <button id="load-more-btn" class="btn-lens" style="padding: 12px 30px;" onclick="loadMoreArticles()">Показать еще материалы ↓</button>
-        </div>
-
-        <div id="static-articles-wrapper">
-            <h2 style="font-family: var(--font-serif); font-size: 28px; text-align: center; color: var(--accent-gold); margin-bottom: 30px; opacity: 0.8;">Ранние публикации</h2>
-
-            <div class="journal-grid">
-                <a href="mfr-spine.html" class="article-card">
-                    <img src="https://storage.yandexcloud.net/resurs-content/journal/mfr-main.jpg" alt="Упражнения МФР для расслабления спины в Сыктывкаре" class="card-img" onerror="this.src='https://via.placeholder.com/600x400?text=МФР'">
-                    <div class="card-body">
-                        <span class="card-tag">Здоровая спина</span>
-                        <h2 class="card-title">Почему болит спина при сидячей работе и как МФР за 15 минут заменяет массаж</h2>
-                        <p class="card-excerpt">Глубокий разбор биомеханики: как слипшаяся фасция отравляет жизнь, и почему 15 минут МФР эффективнее часа классического массажа.</p>
-                        <div class="card-footer">
-                            <span>Читать статью →</span>
-                            <span>5 мин</span>
+    <div id="tab-calc" class="tab-content active">
+        <div class="bento-grid">
+            
+            <div class="bento-card span-2">
+                <div>
+                    <h2 class="serif" style="font-size: 24px; margin-bottom: 25px; color: var(--text-main);">Аудит триггерных точек коротких разгибателей головы и трапеций</h2>
+                    
+                    <div class="calc-group">
+                        <label class="calc-label">1. С какими типами головных болей вы чаще всего сталкиваетесь в течение рабочей недели?</label>
+                        <div class="radio-box-group">
+                            <label class="radio-tile" onclick="selectTile(this)">
+                                <input type="radio" name="headache_type" value="neck_tension" checked>
+                                <span class="radio-tile-title">Тупая боль давит на затылок и глаза</span>
+                                <span class="radio-tile-desc">Ощущение стягивающего обруча, каменеют плечи, хочется растереть шею руками.</span>
+                            </label>
+                            <label class="radio-tile" onclick="selectTile(this)">
+                                <input type="radio" name="headache_type" value="one_side">
+                                <span class="radio-tile-title">Пульсирует строго с одной стороны</span>
+                                <span class="radio-tile-desc">Боль бьет в висок или надбровную дугу, усиливается от яркого света.</span>
+                            </label>
+                            <label class="radio-tile" onclick="selectTile(this)">
+                                <input type="radio" name="headache_type" value="no_pain">
+                                <span class="radio-tile-title">Голова абсолютно ясная</span>
+                                <span class="radio-tile-desc">Нет скованности и зажимов, шея двигается мягко и полностью свободно.</span>
+                            </label>
                         </div>
                     </div>
-                </a>
 
-                <a href="splits-30.html" class="article-card">
-                    <img src="https://storage.yandexcloud.net/resurs-content/journal/splits-main.jpg" alt="Безопасная растяжка на шпагат после 30 лет" class="card-img" onerror="this.src='https://via.placeholder.com/600x400?text=Шпагат'">
-                    <div class="card-body">
-                        <span class="card-tag">Гибкость</span>
-                        <h2 class="card-title">Шпагат после 30 лет: мифы и реальность</h2>
-                        <p class="card-excerpt">Разоблачаем мифы фитнес-индустрии. Как перехитрить рефлекс растяжения и научить нервную систему расслабляться без боли.</p>
-                        <div class="card-footer">
-                            <span>Читать статью →</span>
-                            <span>4 мин</span>
+                    <div class="calc-group">
+                        <label class="calc-label">2. Что происходит, когда вы пытаетесь медленно наклонить голову ухом строго к плечу?</label>
+                        <div class="radio-box-group">
+                            <label class="radio-tile" onclick="selectTile(this)">
+                                <input type="radio" name="neck_mobility" value="heavy_stiff" checked>
+                                <span class="radio-tile-title">Острая тянущая боль по бокам</span>
+                                <span class="radio-tile-desc">Мышцы натягиваются как струны, амплитуда сильно ограничена, суставы хрустят.</span>
+                            </label>
+                            <label class="radio-tile" onclick="selectTile(this)">
+                                <input type="radio" name="neck_mobility" value="medium_stiff">
+                                <span class="radio-tile-title">Небольшая скованность</span>
+                                <span class="radio-tile-desc">Наклон совершается, но чувствуется глухое мышечное сопротивление.</span>
+                            </label>
+                            <label class="radio-tile" onclick="selectTile(this)">
+                                <input type="radio" name="neck_mobility" value="free_flow">
+                                <span class="radio-tile-title">Полный свободный наклон</span>
+                                <span class="radio-tile-desc">Угол наклона идеальный, анатомический, без дискомфорта.</span>
+                            </label>
                         </div>
                     </div>
-                </a>
 
-                <a href="detox-drainage.html" class="article-card">
-                    <img src="https://storage.yandexcloud.net/resurs-content/journal/detox-main.jpg" alt="Лимфодренажные тренировки и детокс организма" class="card-img" onerror="this.src='https://via.placeholder.com/600x400?text=Детокс'">
-                    <div class="card-body">
-                        <span class="card-tag">Питание и Детокс</span>
-                        <h2 class="card-title">Лимфодренаж: как убрать отеки без диет</h2>
-                        <p class="card-excerpt">Анатомия лимфатической системы. Почему вода задерживается в теле, и как правильные движения запускают процесс естественного похудения.</p>
-                        <div class="card-footer">
-                            <span>Читать статью →</span>
-                            <span>6 мин</span>
+                    <div class="calc-group">
+                        <label class="calc-label">3. Замечаете ли вы ухудшение концентрации внимания, памяти или утреннюю отечность лица?</label>
+                        <div class="radio-box-group">
+                            <label class="radio-tile" onclick="selectTile(this)">
+                                <input type="radio" name="brain_fog" value="swelling_fog" checked>
+                                <span class="radio-tile-title">Да, тяжелая голова и отеки</span>
+                                <span class="radio-tile-desc">Сложно собраться с мыслями утром, лицо выглядит пастозным из-за застоя лимфы.</span>
+                            </label>
+                            <label class="radio-tile" onclick="selectTile(this)">
+                                <input type="radio" name="brain_fog" value="none">
+                                <span class="radio-tile-title">Нет подобных проявлений</span>
+                                <span class="radio-tile-desc">Память отличная, сосудистый отток работает стабильно.</span>
+                            </label>
                         </div>
                     </div>
-                </a>
 
-                <a href="stretching-mistake.html" class="article-card">
-                    <img src="https://storage.yandexcloud.net/resurs-content/journal/stretching-mistake-main.jpg" alt="Травмобезопасная растяжка без боли в студии Ресурс" class="card-img" onerror="this.src='https://via.placeholder.com/600x400?text=Растяжка'">
-                    <div class="card-body">
-                        <span class="card-tag">Биомеханика</span>
-                        <h2 class="card-title">Главная ошибка на растяжке: почему шпагат через боль ведет к травмам</h2>
-                        <p class="card-excerpt">Разбираем с точки зрения нейрофизиологии, почему попытки тянуться через боль блокируют гибкость и цементируют зажимы в теле.</p>
-                        <div class="card-footer">
-                            <span>Читать статью →</span>
-                            <span>4 мин</span>
+                    <div class="calc-group">
+                        <label class="calc-label">4. Укажите, сколько часов в день вы проводите в статичном положении (экран смартфона, монитор, документы):</label>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                            <span style="font-size: 13px; color: var(--text-dim);">Индекс офисной статики в Митино:</span>
+                            <span id="range-sit-val" class="range-val" style="color: var(--accent-green);">Более 6 часов за столом</span>
                         </div>
+                        <input type="range" id="sit_slider" class="range-slider" min="0" max="3" value="3" step="1" oninput="calculateNeckIndex()">
                     </div>
-                </a>
-
-                <div style="display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 24px;">
-                    <div id="yandex_rtb_R-A-19181219-23" style="width: 100%; display: flex; justify-content: center;"></div>
-                    <script>
-                    window.yaContextCb.push(() => {
-                        Ya.Context.AdvManager.render({
-                            "blockId": "R-A-19181219-23",
-                            "renderTo": "yandex_rtb_R-A-19181219-23"
-                        })
-                    })
-                    </script>
                 </div>
 
-                <a href="pelvic-floor-health.html" class="article-card">
-                    <img src="https://storage.yandexcloud.net/resurs-content/journal/pelvic-floor-main.jpg" alt="Упражнения для укрепления мышц тазового дна Сыктывкар" class="card-img" onerror="this.src='https://via.placeholder.com/600x400?text=Здоровье'">
-                    <div class="card-body">
-                        <span class="card-tag">Женское здоровье</span>
-                        <h2 class="card-title">Плоский живот: почему скручивания подходят не всем</h2>
-                        <p class="card-excerpt">Почему погоня за быстрыми результатами и ошибки в технике вредят тазовому дну. Как сделать живот плоским правильно.</p>
-                        <div class="card-footer">
-                            <span>Читать статью →</span>
-                            <span>6 мин</span>
-                        </div>
+                <div style="margin-top: 30px; display: flex; justify-content: flex-end;">
+                    <button class="btn-reset" onclick="resetCalculator()">Сбросить параметры теста</button>
+                </div>
+            </div>
+
+            <div class="bento-card result-score-box">
+                <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; color: var(--text-dim); margin-bottom: 10px;">Профиль шейной компрессии:</div>
+                <div id="calc-result-title" class="score-number" style="font-size: 24px; margin: 15px 0;">Зажим позвоночных артерий</div>
+                <div id="calc-status" class="score-status" style="color: var(--accent-gold);">Режим: Декомпрессия & МФР затылка</div>
+                <p id="calc-text" style="font-size: 13px; opacity: 0.8; margin-top: 15px; line-height: 1.5; text-align: center;">
+                    Расчет...
+                </p>
+            </div>
+
+            <div class="bento-card span-3" style="border-left: 4px solid var(--accent-gold);">
+                <div style="display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: start;">
+                    <div>
+                        <h3 class="serif" style="font-size: 22px; margin-bottom: 10px;">Почему пробки и статичная работа в СЗАО зажимают шею, и как это решить без выезда в центр</h3>
+                        <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                            Многочасовое сидение за компьютером на удаленке в Митино или изнуряющая логистика за рулем приводят к одному итогу: грудной отдел позвоночника блокируется, лопатки склеиваются, а голова вынужденно выдвигается вперед. Чтобы удержать линию взгляда ровно, мозг принудительно спазмирует подзатылочные мышцы, зажимающие позвоночные артерии. Тратить драгоценное личное время на поездки в крупные фитнес-центры Москвы ради шаблонных тренировок — неэффективно. Наша ИТ-платформа онлайн-клуба позволяет запустить декомпрессию сосудов, не выходя из квартиры. Вы получаете ювелирные, научно обоснованные практики от экспертов международного уровня, которые мягко раскатают триггеры, снимут затылочный панцирь и вернут голове абсолютную ясность.
+                        </p>
                     </div>
-                </a>
+                    <div style="background: var(--elem-bg); padding: 15px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent-gold)" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bento-card span-3" style="background: var(--elem-bg); padding: 40px 30px; text-align: center;">
+                <h3 class="serif" style="font-size: 24px; margin-bottom: 10px;">Начните деликатное восстановление баланса тела прямо сейчас</h3>
+                <p style="font-size: 14px; color: var(--text-dim); max-width: 700px; margin: 0 auto 25px;">
+                    Активируйте полноценный доступ к интерактивной ИТ-платформе здоровья. Получите личный кабинет с трекерами целей, дневником прогресса, базой знаний и сотнями умных тренировок.
+                </p>
+                <div style="max-width: 450px; margin: 0 auto;">
+                    <a href="club.html" class="btn-marketing btn-online-gold">Получить доступ к онлайн-клубу: тест-драйв за 300₽</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="tab-facts" class="tab-content">
+        <div class="bento-grid">
+            
+            <div class="bento-card span-3" style="background: linear-gradient(135deg, rgba(179, 134, 57, 0.05), transparent); border-left: 4px solid var(--accent-gold);">
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 10px;">Устройство интерактивного личного кабинета платформы РЕСУРС</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    Ваше здоровье — это управляемый ИТ-продукт. Внутри нашего технологичного онлайн-клуба развернута полноценная экосистема аналитики и практик. Посмотрите на архитектуру модулей, спроектированных на базе многолетнего опыта экспертов физической культуры:
+                </p>
+            </div>
+
+            <div class="bento-card">
+                <div>
+                    <div class="fact-num">01</div>
+                    <h3 class="fact-title">Курс «Стройность» (6 недель)</h3>
+                    <p class="fact-desc">Пошаговый, структурный онлайн-курс глубокой трансформации тела, рассчитанный на 6 недель последовательного движения день за днем.</p>
+                </div>
+            </div>
+
+            <div class="bento-card">
+                <div>
+                    <div class="fact-num">02</div>
+                    <h3 class="fact-title">Программа «Детокс» (7 дней)</h3>
+                    <p class="fact-desc">Специализированный блок мягкого очищения организма, направленный на оперативный вывод токсинов и ликвидацию пастозности лица.</p>
+                </div>
+            </div>
+
+            <div class="bento-card">
+                <div>
+                    <div class="fact-num">03</div>
+                    <h3 class="fact-title">Интерактивный трекер веса</h3>
+                    <p class="fact-desc">Умный цифровой модуль для фиксации вашей целевой отметки. Система автоматически рассчитывает остаток пути и мотивирует вас.</p>
+                </div>
+            </div>
+
+            <div class="bento-card">
+                <div>
+                    <div class="fact-num">04</div>
+                    <h3 class="fact-title">График «Дневник прогресса»</h3>
+                    <p class="fact-desc">Автоматизированная система графической визуализации ваших параметров: вес, объем груди, талии и бедер в реальном времени.</p>
+                </div>
+            </div>
+
+            <div class="bento-card">
+                <div>
+                    <div class="fact-num">05</div>
+                    <h3 class="fact-title">Контроль результатов по photo</h3>
+                    <p class="fact-desc">Удобный инструмент для загрузки контрольных снимков «ДО» и «ПОСЛЕ» с целью проведения объективного аудита осанки и получения бонусов.</p>
+                </div>
+            </div>
+
+            <div class="bento-card">
+                <div>
+                    <div class="fact-num">06</div>
+                    <h3 class="fact-title">База знаний «Рецепты»</h3>
+                    <p class="fact-desc">Раздел сбалансированного питания, разбитый на категории: Памятка, Завтраки, Смузи, Перекусы, Супы, Крупы и полезные Десерты.</p>
+                </div>
+                <a href="journal.html" class="bento-inline-btn">Читать статьи нутрициологов →</a>
+            </div>
+
+            <div class="bento-card">
+                <div>
+                    <div class="fact-num">07</div>
+                    <h3 class="fact-title">Библиотека видеотренировок</h3>
+                    <p class="fact-desc">Множество полноценных, структурированных видеоуроков, доступных в один клик в любой точке мира 24 часа в сутки.</p>
+                </div>
+            </div>
+
+            <div class="bento-card">
+                <div>
+                    <div class="fact-num">08</div>
+                    <h3 class="fact-title">Видеокурс умного Пилатеса</h3>
+                    <p class="fact-desc">Полноформатные сессии (~54 минуты), нацеленные на бережное укрепление мышечного корсета и восстановление естественных изгибов позвоночника.</p>
+                </div>
+            </div>
+
+            <div class="bento-card">
+                <div>
+                    <div class="fact-num">09</div>
+                    <h3 class="fact-title">Миофасциальный релиз и ПСР</h3>
+                    <p class="fact-desc">Специальные практики с роллами и мячами для деликатного снятия зажимов, триггерных точек, разгрузки психики и улучшения кровотока мозга.</p>
+                </div>
+            </div>
+
+            <div class="bento-card">
+                <div>
+                    <div class="fact-num">10</div>
+                    <h3 class="fact-title">Экспресс-зарядки и Разминки</h3>
+                    <p class="fact-desc">Короткие, высокоэффективные сессии (от 5 до 15 минут) для быстрой активации лимфотока в условиях жесткого дефицита времени в мегаполисе.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="tab-recipes" class="tab-content">
+        <div class="bento-grid">
+            
+            <div class="bento-card span-2">
+                <div>
+                    <span class="recipe-badge">Совет 01</span>
+                    <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">Используйте МФР-мячи для деликатного релиза подзатылочной зоны</h3>
+                    <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                        При остром зажиме шеи никогда не делайте силовых растяжек. Лягте на спину, подложите под затылочные бугры два плотных мяча и полностью расслабьте вес головы на 2-3 минуты. Дышите глубоко и медленно. Мягкое статическое давление заставит датчики мышц выключить защитный спазм артерий.
+                    </p>
+                </div>
+            </div>
+
+            <div class="bento-card">
+                <div>
+                    <span class="recipe-badge">Совет 02</span>
+                    <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">Контролируйте плоскость взгляда за столом</h3>
+                    <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                        If ваш монитор расположен низко, мозг вынужден выдвигать шею вперед. Поднимите экран так, чтобы верхняя треть монитора находилась строго на уровне глаз — это избавит трапеции от статической перегрузки.
+                    </p>
+                </div>
+            </div>
+
+            <div class="bento-card">
+                <div>
+                    <span class="recipe-badge">Совет 03</span>
+                    <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">Синхронизируйте натяжение с длинным выдохом</h3>
+                    <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                        Любое деликатное вытяжение боковой поверхности шеи совершайте строго на выдохе, расслабляя нижнюю челюсть. Сжатые зубы рефлекторно удерживают тонус шейного отдела, блокируя расслабление сосудов.
+                    </p>
+                </div>
+            </div>
+
+            <div class="bento-card span-2">
+                <div>
+                    <span class="recipe-badge">Совет 04</span>
+                    <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">Восстанавливайте мобильность грудного отдела позвоночника</h3>
+                    <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                        Шея страдает только потому, что грудной отдел позвоночника заблокирован многочасовым сидением. Пока лопатки и ребра не двигаются в 3D-формате, шея будет перегружаться ежедневно. Ольга Мартынова настаивает: завершайте день мягкими разгибаниями грудного отдела на валике или ролле. Это мгновенно вернет шейным позвонкам их природную ось движения, полностью снимет каменную тяжесть с плеч, уберет головную боль напряжения и подарит вашей голове абсолютную ясность.
+                    </p>
+                </div>
+            </div>
+
+            <div class="bento-card span-3" style="background: linear-gradient(135deg, rgba(65,178,157,0.12), transparent); border: 2px solid var(--accent-green);">
+                <div>
+                    <span class="recipe-badge">Вдохновение от Ольги Мартыновой</span>
+                    <h3 class="serif" style="font-size: 26px; margin-bottom: 15px; color: var(--text-main);">«Свобода вашей шеи — это чистый приток энергии к вашему разуму...»</h3>
+                    <p style="font-size: 15px; line-height: 1.7; color: var(--text-main); margin-bottom: 25px;">
+                        «Мои прекрасные женщины! Хронические головные боли напряжения, утренняя усталость глаз и каменные плечи к вечеру — это не норма вашей жизни. Это крик вашего тела о дефиците умного 3D-движения и зажиме магистральных сосудов. Пожалуйста, прекратите мучить себя резкими круговыми вращениями головы или закачкой мышц через силу в залах! Шейный отдел требует ювелирной, деликатной заботы. Наша восстановительная программа Пилатеса и МФР внутри онлайн-клуба создана специально для тех, кто много времени проводит за столом. Мы вернем вашим суставам и ребрам их законную анатомическую нейтраль, снимем затылочный панцирь и восстановим нормальное кровоснабжение головного мозга. Вы проснетесь собранной, легкой, с красивой осанкой и яской головой. Активируйте личный кабинет и верните телу его естественный ресурс!»
+                    </p>
+                </div>
+                <div style="max-width: 450px; margin: 0 auto;">
+                    <a href="club.html" class="btn-marketing btn-online-gold">Получить доступ к онлайн-клубу: тест-драйв за 300₽</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <section class="bento-grid" style="margin-top: 20px;">
+        <div class="bento-card span-3" style="background: linear-gradient(135deg, rgba(11, 12, 16, 0.95), rgba(26, 26, 36, 0.8)); border-top: 3px solid var(--accent-green); box-shadow: 0 10px 30px rgba(65, 178, 157, 0.05);">
+            <div style="display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: start; margin-bottom: 20px;">
+                <div>
+                    <span class="recipe-badge" style="background: var(--accent-gold) !important;">Борьба с невежеством</span>
+                    <h2 class="serif" style="font-size: clamp(22px, 3vw, 28px); margin-bottom: 12px; line-height: 1.3;">Научный подход к биохакингу тела: Читайте наш Экспертный Журнал</h2>
+                    <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6; max-width: 900px;">
+                        Мы создали не просто фитнес-платформу, а полноценный прикладной путеводитель по изменению качества вашей жизни. В Журнале РЕСУРСА мы безжалостно рушим мифы классического фитнеса и даем глубокий, кристально чистый анализ взаимосвязей в теле. Узнайте, как скрытый стресс и паттерны психосоматики спазмируют шею, почему застой лимфы блокирует метаболизм, и как нейромышечные тренировки перепрошивают привычки мозга. Каждая статья — это концентрат практической пользы мирового уровня для тех, кто ценит научную обоснованность и готов менять свое состояние к лучшему.
+                    </p>
+                </div>
+                <div style="background: rgba(65, 178, 157, 0.1); padding: 15px; border-radius: 16px; display: flex; align-items: center; justify-content: center;">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5z"/><path d="M6 6h10M6 10h10"/></svg>
+                </div>
+            </div>
+            <div style="max-width: 450px; margin: 10px auto 0;">
+                <a href="journal.html" class="btn-marketing btn-online-green">Перейти в журнал: изменить привычки и жизнь</a>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div id="article-view">
-        <button class="btn-back-article" onclick="goHome()">← Назад в журнал</button>
-        
-        <h1 id="full-title" class="full-article-title">Загрузка...</h1>
-        <div id="full-meta" class="full-article-meta"></div>
-        
-        <img id="full-cover" class="full-article-cover" src="" alt="Обложка статьи" style="display: none;">
-        
-        <div id="video-wrapper" class="video-container" style="display: none;"></div>
-        
-        <div id="full-content" class="full-article-content">
-            <p style="text-align: center; opacity: 0.5;">Настройка ресурсного состояния...</p>
-        </div>
-    </div>
-
-    <script>
-    window.yaContextCb.push(() => {
-        Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-5", "type": "floorAd", "platform": "touch" })
-    });
-    window.yaContextCb.push(() => {
-        Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-6", "type": "floorAd", "platform": "touch" })
-    });
-    window.yaContextCb.push(() => {
-        Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-7", "type": "floorAd", "platform": "desktop" })
-    });
-    </script>
+    <section class="share-section">
+        <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">🔥 Отправить тест шеи подругам и коллегам по работе!</h3>
+        <p style="font-size: 14px; color: var(--text-dim); margin-bottom: 25px;">Поделитесь этой страницей с подругами или коллегами в Митино, которые много времени проводят за компьютером, страдают от головных болей напряжения и мечтают вернуть телу легкость.</p>
+        <button class="btn-share" onclick="sharePage()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            <span id="share-btn-text">Отправить подругам</span>
+        </button>
+    </section>
 
 </main>
 
-<!-- СКРЫТЫЙ СЕО КОНТЕЙНЕР ДЛЯ СБОРА И ТЕКСТОВОГО СКАНИРОВАНИЯ РОБОТАМИ ЯНДЕКСА И GOOGLE -->
-<div id="seo-robot-content" style="display: none !important; visibility: hidden !important;" aria-hidden="true"></div>
-
 <footer>
-    <div style="max-width: 1200px; margin: 0 auto;">
-        <div style="font-family: var(--font-serif); font-size: 20px; letter-spacing: 8px; margin-bottom: 20px; text-transform: uppercase;">Ресурс</div>
-        <p style="font-size: 12px; opacity: 0.6; line-height: 1.6; margin-bottom: 30px;">Сыктывкар, ул. Советская 3 | ул. Коммунистическая 77/2<br>ИП Худяков Николай Сергеевич</p>
-        <div style="font-size: 10px; opacity: 0.4; letter-spacing: 2px; text-transform: uppercase;">© <script>document.write(new Date().getFullYear())</script> Студия растяжки и движения Ресурс. Экспертный блог.</div>
+    <div class="footer-container">
+        <p class="footer-text-main">© 2026 РЕСУРС | Интерактивная онлайн-платформа здоровья и умного движения.</p>
+        <p class="footer-text-sub">Интерактивный скрининг шейного тонуса носит ознакомительный характер. При наличии выраженных межпозвоночных грыж шейного отдела в острой фазе, синдрома позвоночной артерии или частых гипертонических кризов перед началом любых физических практик проконсультируйтесь с лечащим врачом.</p>
     </div>
 </footer>
 
 <script>
-    // --- ТЕМА И ПРОГРЕСС ЧТЕНИЯ ---
     function toggleTheme() {
         const html = document.documentElement;
         const currentTheme = html.getAttribute('data-theme');
         const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
         html.setAttribute('data-theme', newTheme);
         localStorage.setItem('theme', newTheme);
-        if (newTheme === 'light') { html.classList.add('light-theme'); } 
-        else { html.classList.remove('light-theme'); }
         document.getElementById('themeToggle').innerText = newTheme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
     }
 
-    window.addEventListener('scroll', () => {
-        if (document.getElementById('article-view').style.display === 'block') {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            document.getElementById("reading-progress").style.width = scrolled + "%";
-        } else {
-            document.getElementById("reading-progress").style.width = "0%";
-        }
-    });
-
-    // --- ЛОГИКА SPA (БАЗА ЯДБ) ---
-    const API_URL = 'https://functions.yandexcloud.net/d4eqj03a2p0lq05nm4k4';
-    let articlesData = [];
-    let currentOffset = 0;
-    const ARTICLES_LIMIT = 6; 
-
-    async function initApp() {
+    window.addEventListener('DOMContentLoaded', () => {
         const theme = document.documentElement.getAttribute('data-theme');
         document.getElementById('themeToggle').innerText = theme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
+        
+        restoreCalculatorData();
+        calculateNeckIndex();
+    });
 
-        const urlParams = new URLSearchParams(window.location.search);
-        const postSlug = urlParams.get('slug');
-        const postId = urlParams.get('id');
-
-        await fetchArticlesData(); 
-
-        if (postSlug) {
-            const targetArticle = articlesData.find(a => a.slug === postSlug);
-            if (targetArticle) renderArticleView(targetArticle.id);
-        } else if (postId) {
-            renderArticleView(postId);
-        } else {
-            renderHomeView();
-        }
+    function switchTab(event, tabId) {
+        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        
+        document.getElementById(tabId).classList.add('active');
+        event.currentTarget.classList.add('active');
+        
+        window.scrollTo({ top: document.querySelector('.tabs-nav').offsetTop - 80, behavior: 'smooth' });
     }
 
-    async function fetchArticlesData(append = false) {
-        try {
-            if (!append) {
-                currentOffset = 0;
-                articlesData = [];
-            }
-            
-            const response = await fetch(`${API_URL}?action=list&limit=${ARTICLES_LIMIT}&offset=${currentOffset}&t=${new Date().getTime()}`);
-            const data = await response.json();
-            
-            if (data.articles) {
-                let fetchedArticles = data.articles;
-                
-                if (append) {
-                    articlesData = articlesData.concat(fetchedArticles);
-                } else {
-                    articlesData = fetchedArticles;
-                }
-
-                // Сортировка свежих наверху
-                articlesData.sort((a, b) => {
-                    const parseDate = (d) => {
-                        if (!d) return 0;
-                        const match = String(d).match(/(\d{4})-(\d{2})-(\d{2})/);
-                        if (match) return new Date(match[1], match[2]-1, match[3]).getTime();
-                        return 0;
-                    };
-                    return parseDate(b.published_at) - parseDate(a.published_at);
-                }); 
-                
-                const loadMoreBtn = document.getElementById('load-more-container');
-                if (loadMoreBtn) {
-                    if (fetchedArticles.length === ARTICLES_LIMIT) {
-                        loadMoreBtn.style.display = 'block';
-                    } else {
-                        loadMoreBtn.style.display = 'none';
-                    }
-                }
-            }
-        } catch (error) {
-            console.error('Ошибка загрузки данных из БД', error);
-        }
-    }
-
-    // --- ФУНКЦИЯ ПОИСКА (ФИЛЬТР) ---
-    function filterArticles() {
-        const query = document.getElementById('article-search').value.toLowerCase();
-        const loadMoreBtn = document.getElementById('load-more-container');
-        const staticArticles = document.getElementById('static-articles-wrapper'); // Блок старых статей
-        
-        if (query !== '') {
-            if (loadMoreBtn) loadMoreBtn.style.display = 'none';
-            if (staticArticles) staticArticles.style.display = 'none'; // Скрываем старые при поиске
-        } else {
-            if (staticArticles) staticArticles.style.display = 'block'; // Возвращаем, если поиск пуст
-            if (loadMoreBtn && articlesData.length > 0 && (articlesData.length % ARTICLES_LIMIT === 0)) {
-                loadMoreBtn.style.display = 'block';
-            }
-        }
-        
-        const filtered = articlesData.filter(article => {
-            const titleMatch = article.title && article.title.toLowerCase().includes(query);
-            const contentMatch = article.content && article.content.toLowerCase().includes(query);
-            return titleMatch || contentMatch;
+    function selectTile(element) {
+        const name = element.querySelector('input').name;
+        document.querySelectorAll(`input[name="${name}"]`).forEach(input => {
+            input.parentElement.classList.remove('selected');
         });
+        element.classList.add('selected');
         
-        renderArticlesGrid(filtered);
+        calculateNeckIndex();
     }
 
-    async function loadMoreArticles() {
-        const btn = document.getElementById('load-more-btn');
-        btn.innerText = 'Загрузка...';
-        btn.disabled = true;
-        
-        currentOffset += ARTICLES_LIMIT;
-        await fetchArticlesData(true);
-        filterArticles(); 
-        
-        btn.innerText = 'Показать еще материалы ↓';
-        btn.disabled = false;
-    }
+    function calculateNeckIndex() {
+        const headache = document.querySelector('input[name="headache_type"]:checked').value;
+        let mobility = document.querySelector('input[name="neck_mobility"]:checked').value;
+        const fog = document.querySelector('input[name="brain_fog"]:checked').value;
+        const sitHours = parseInt(document.getElementById('sit_slider').value);
 
-    function renderArticlesGrid(articlesList) {
-        const container = document.getElementById('dynamic-grid');
-        if (articlesList.length > 0) {
-            container.innerHTML = '';
-            articlesList.forEach(article => {
-                const imgUrl = article.cover_image_url && article.cover_image_url.trim() !== "" 
-                    ? article.cover_image_url 
-                    : 'https://placehold.co/600x400/05050A/B38639?text=Ресурс';
-                
-                // Создаем короткое описание, очищая HTML
-                const plainText = article.content ? article.content.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim() : '';
-                const excerpt = plainText.length > 120 ? plainText.substring(0, 120) + '...' : plainText;
-                const readTime = Math.max(1, Math.ceil(plainText.split(/\s+/).length / 150));
-                
-                const linkUrl = article.slug ? `?slug=${article.slug}` : `?id=${article.id}`;
-                
-                container.innerHTML += `
-                    <a href="${linkUrl}" class="article-card" onclick="routeToArticle(event, '${article.id}', '${article.slug}')">
-                        <img src="${imgUrl}" alt="${article.title}" class="card-img" onerror="this.src='https://placehold.co/600x400/05050A/B38639?text=Ресурс'">
-                        <div class="card-body">
-                            <span class="card-tag">Блог</span>
-                            <h2 class="card-title">${article.title}</h2>
-                            <p class="card-excerpt">${excerpt}</p>
-                            <div class="card-footer">
-                                <span>Читать статью →</span>
-                                <span>~${readTime} мин • 👁 ${article.view_count || 0}</span>
-                            </div>
-                        </div>
-                    </a>
-                `;
+        const sitLabels = ['До 2 часов статики', 'От 2 до 4 часов', 'От 4 до 6 часов', 'Более 6 часов за столом'];
+        document.getElementById('range-sit-val').innerText = sitLabels[sitHours];
+
+        if (sitHours === 3 && mobility === 'free_flow') {
+            document.querySelectorAll('input[name="neck_mobility"]').forEach(input => {
+                if (input.value === 'heavy_stiff') {
+                    input.checked = true;
+                    input.parentElement.classList.add('selected');
+                } else {
+                    input.parentElement.classList.remove('selected');
+                }
             });
+            mobility = 'heavy_stiff';
+        }
+
+        const titleEl = document.getElementById('calc-result-title');
+        const statusEl = document.getElementById('calc-status');
+        const textEl = document.getElementById('calc-text');
+
+        let bodyText = "";
+
+        if (headache === 'neck_tension' || mobility === 'heavy_stiff' || sitHours === 3) {
+            titleEl.innerText = "Компрессия позвоночных артерий";
+            statusEl.innerText = "Режим: Декомпрессия & МФР затылка";
+            statusEl.style.color = "var(--accent-berry)";
+            bodyText = "Ваша подзатылочная зона заблокирована московской статикой (" + sitLabels[sitHours] + "). Резкие круговые вращения головой запрещены. Ольга Мартынова рекомендует деликатный МФР-релиз триггерных точек мячами и Пилатес для освобождения кровотока.";
+        } else if (headache === 'one_side' || fog === 'swelling_fog') {
+            titleEl.innerText = "Лимфо-венозный застой трапеций";
+            statusEl.innerText = "Режим: Раскрытие грудного отдела";
+            statusEl.style.color = "var(--accent-gold)";
+            bodyText = "Спазм крупных мышц плечевого пояса нарушает обратный отток жидкости от черепа (" + sitLabels[sitHours] + "). Рекомендованы 3D-разгибания грудного отдела позвоночника и Аэростретчингу в гамаках для выстраивания природной оси.";
         } else {
-            container.innerHTML = '<p style="grid-column: 1 / -1; opacity: 0.7; text-align: center;">По вашему запросу ничего не найдено.</p>';
+            titleEl.innerText = "Стабильный адаптивный тонус шеи";
+            statusEl.innerText = "Режим: 3D-Пилатес & Боди Скальп";
+            statusEl.style.color = "var(--accent-green)";
+            bodyText = "Великолепный показатель нейромышечной координации шейного отдела (" + sitLabels[sitHours] + ")! Мышцы сильные и эластичные. Вы полностью готовы к регулярному Пилатесу, бережному функциональному тренингу и Аэростретчингу.";
+        }
+
+        textEl.innerText = bodyText;
+
+        const scoreBox = document.querySelector('.result-score-box');
+        scoreBox.style.transform = 'scale(1.02)';
+        setTimeout(() => { scoreBox.style.transform = 'scale(1)'; }, 150);
+
+        const calcData = { headache, mobility, fog, sitHours };
+        localStorage.setItem('neck_spasm_data', JSON.stringify(calcData));
+    }
+
+    function resetCalculator() {
+        document.querySelectorAll('input[name="headache_type"]')[0].checked = true;
+        document.querySelectorAll('input[name="neck_mobility"]')[0].checked = true;
+        document.querySelectorAll('input[name="brain_fog"]')[0].checked = true;
+        document.getElementById('sit_slider').value = 3;
+
+        document.querySelectorAll('.radio-tile').forEach(tile => tile.classList.remove('selected'));
+        document.querySelectorAll('input[name="headache_type"]')[0].parentElement.classList.add('selected');
+        document.querySelectorAll('input[name="neck_mobility"]')[0].parentElement.classList.add('selected');
+        document.querySelectorAll('input[name="brain_fog"]')[0].parentElement.classList.add('selected');
+
+        localStorage.removeItem('neck_spasm_data');
+        calculateNeckIndex();
+    }
+
+    function restoreCalculatorData() {
+        const saved = localStorage.getItem('neck_spasm_data');
+        if (saved) {
+            try {
+                const data = JSON.parse(saved);
+                document.querySelectorAll(`input[name="headache_type"]`).forEach(i => { if(i.value === data.headache) i.checked = true; });
+                document.querySelectorAll(`input[name="neck_mobility"]`).forEach(i => { if(i.value === data.mobility) i.checked = true; });
+                document.querySelectorAll(`input[name="brain_fog"]`).forEach(i => { if(i.value === data.fog) i.checked = true; });
+                document.getElementById('sit_slider').value = data.sitHours;
+            } catch (e) {
+                console.log("Storage backup sync error neck spasm pass");
+            }
+        }
+
+        document.querySelectorAll('.radio-tile').forEach(tile => {
+            if (tile.querySelector('input').checked) tile.classList.add('selected');
+        });
+    }
+
+    async function sharePage() {
+        const shareData = {
+            title: 'Пройди экспресс-тест уровня зажимов шеи и компрессии артерий!',
+            text: 'Я проверила свой мышечный тонус затылка на анатомическом тесте онлайн-клуба РЕСУРС. Узнай, почему каменеют плечи!',
+            url: window.location.href
+        };
+        const btnText = document.getElementById('share-btn-text');
+        if (navigator.share) {
+            try { await navigator.share(shareData); } catch (err) { console.log('Share canceled'); }
+        } else {
+            try {
+                await navigator.clipboard.writeText(window.location.href);
+                btnText.innerText = 'Ссылка скопирована!';
+                setTimeout(() => { btnText.innerText = 'Отправить подругам'; }, 3000);
+            } catch (err) {
+                alert('Скопируйте ссылку вручную.');
+            }
         }
     }
 
-    function renderHomeView() {
-        document.getElementById('article-view').style.display = 'none';
-        document.getElementById('home-view').style.display = 'block';
-        document.title = "Журнал РЕСУРС | Экспертный блог";
-        document.getElementById('header-back-btn').href = "index.html";
-        document.getElementById('header-back-btn').innerText = "← На главную";
-        document.getElementById('header-back-btn').onclick = null; // Восстанавливаем дефолтную ссылку для перехода на индекс
-        
-        const searchInput = document.getElementById('article-search');
-        if(searchInput) searchInput.value = '';
+    window.addEventListener('scroll', () => {
+        const header = document.getElementById('header');
+        if (window.scrollY > 30) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
+    });
+</script>
 
-        filterArticles();
-    }
-
-    function routeToArticle(event, id, slug) {
-        event.preventDefault();
-        const newUrl = slug ? `?slug=${slug}` : `?id=${id}`;
-        window.history.pushState({}, "", newUrl); 
-        renderArticleView(id); 
-    }
-
-    function renderArticleView(id) {
-        document.getElementById('home-view').style.display = 'none';
-        document.getElementById('article-view').style.display = 'block';
-        window.scrollTo(0, 0); 
-        
-        document.getElementById('header-back-btn').href = "javascript:void(0)";
-        document.getElementById('header-back-btn').innerText = "← В журнал";
-        document.getElementById('header-back-btn').onclick = goHome;
-
-        const article = articlesData.find(a => a.id === id);
-        
-        if(article) {
-            document.title = `${article.title} | Журнал РЕСУРС`;
-            document.getElementById('full-title').innerText = article.title;
-            
-            const plainText = article.content ? article.content.replace(/<[^>]+>/g, '') : '';
-            const readTime = Math.max(1, Math.ceil(plainText.split(/\s+/).length / 150));
-            
-            let metaHtml = '';
-            if(article.published_at) metaHtml += `<span>📅 ${article.published_at}</span>`;
-            metaHtml += `<span>👁 ${(article.view_count || 0) + 1}</span>`;
-            metaHtml += `<span>⏱ ~${readTime} мин чтения</span>`;
-            document.getElementById('full-meta').innerHTML = metaHtml;
-            
-            const coverImg = document.getElementById('full-cover');
-            if (article.cover_image_url && article.cover_image_url.trim() !== "") {
-                coverImg.src = article.cover_image_url;
-                coverImg.style.display = 'block';
-            } else {
-                coverImg.style.display = 'none';
-            }
-
-            const videoWrapper = document.getElementById('video-wrapper');
-            if (article.rutube_iframe && article.rutube_iframe.trim() !== "") {
-                videoWrapper.innerHTML = article.rutube_iframe;
-                videoWrapper.style.display = 'block';
-            } else {
-                videoWrapper.style.display = 'none';
-                videoWrapper.innerHTML = '';
-            }
-            
-            if (article.content && article.content.trim() !== "") {
-                document.getElementById('full-content').innerHTML = article.content;
-                // СИНХРОНИЗАЦИЯ ТЕКСТА СО СКРЫТЫМ СЕО-КОНТЕЙНЕРОМ ДЛЯ ИНДЕКСАЦИИ РОБОТАМИ
-                document.getElementById('seo-robot-content').innerHTML = article.content;
-            } else {
-                document.getElementById('full-content').innerHTML = `<p><i>Текст статьи скоро появится.</i></p>`;
-                document.getElementById('seo-robot-content').innerHTML = '';
-            }
-            
-            // Накрутка просмотров
-            setTimeout(() => {
-                fetch(API_URL, {
-                    method: 'POST',
-                    body: JSON.stringify({ action: 'increment_view', id: article.id })
-                }).catch(e => console.log('Счетчик не сработал', e));
-            }, 2000);
-
-        } else {
-            document.title = "Статья не найдена";
-            document.getElementById('full-title').innerText = "Статья не найдена";
-            document.getElementById('full-meta').innerHTML = "";
-            document.getElementById('full-content').innerHTML = "<p>Возможно, material был удален или ссылка устарела.</p>";
-            document.getElementById('seo-robot-content').innerHTML = '';
-            document.getElementById('full-cover').style.display = 'none';
-            document.getElementById('video-wrapper').style.display = 'none';
-        }
-    }
-
-    function goHome(e) {
-        if(e) e.preventDefault();
-        window.history.pushState({}, document.title, window.location.pathname);
-        renderHomeView();
-    }
-
-    window.onpopstate = function() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const postSlug = urlParams.get('slug');
-        const postId = urlParams.get('id');
-        
-        if (postSlug) {
-            const targetArticle = articlesData.find(a => a.slug === postSlug);
-            if (targetArticle) renderArticleView(targetArticle.id);
-        } else if (postId) {
-            renderArticleView(postId);
-        } else {
-            renderHomeView();
-        }
-    };
-
-    window.addEventListener('DOMContentLoaded', initApp);
+    <script>
+window.yaContextCb.push(() => {
+    Ya.Context.AdvManager.render({
+        "blockId": "R-A-19181219-6",
+        "type": "floorAd",
+        "platform": "touch"
+    })
+})
+</script>
+<script>
+window.yaContextCb.push(() => {
+    Ya.Context.AdvManager.render({
+        "blockId": "R-A-19181219-7",
+        "type": "floorAd",
+        "platform": "desktop"
+    })
+})
 </script>
 
 </body>
