@@ -58,7 +58,7 @@
     <!-- ПАРТИЗАНСКАЯ МЕДИЦИНСКАЯ СЕО ОПТИМИЗАЦИЯ ПОД НИЖНИЙ НОВГОРОД -->
     <title>Абдоминопластика живота в Нижнем Новгороде | Цена, отзывы, альтернатива | РЕСУРС</title>
     <meta name="description" content="Честный анализ абдоминопластики живота в Нижнем Новгороде. Когда операция действительно необходима, а когда диастаз, фартук кожи и выпирающий низ живота можно убрать без ножа с помощью умного Пилатеса.">
-    <meta name="keywords" content="абдоминопластика нижний новгород цена, пластика живота в нижнем новгороде отзывы, подтяжка кожи живота нн, убрать фартук живота нижегородская область, клиника пластической хирургии большая покровская, площадь лядова">
+    <meta name="keywords" content="абдоминопластика нижний новгород цена, plastic живота в нижнем новгороде отзывы, подтяжка кожи живота нн, убрать фартук живота нижегородская область, клиника пластической хирургии большая покровская, площадь лядова">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://resurs-stretch.ru/abdominoplastika-nn.html">
 
@@ -159,16 +159,16 @@
         h1, h2, h3, .serif { font-family: var(--font-serif); font-weight: 600; letter-spacing: 0.5px; }
         a { text-decoration: none; color: inherit; transition: var(--transition); }
 
-        /* HEADER */
+        /* HEADER (СТЕКЛЯННАЯ МАТОВАЯ ШАПКА) */
         header {
             position: fixed; top: 0; width: 100%; padding: 20px 5%;
             display: flex; justify-content: space-between; align-items: center;
-            z-index: 2000; background: transparent; transition: var(--transition);
+            z-index: 2000; background: var(--glass-bg); 
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-bottom: var(--glass-border); transition: var(--transition);
         }
         header.scrolled { 
-            background: var(--glass-bg) !important; 
-            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            padding: 12px 5% !important; border-bottom: var(--glass-border);
+            padding: 12px 5% !important;
         }
         .brand-name { font-family: var(--font-serif); font-size: 22px; letter-spacing: 8px; text-transform: uppercase; font-weight: 600; }
         
@@ -217,6 +217,9 @@
         .guide-tab.active { background: var(--accent-green); color: #FFF; border-color: var(--accent-green); }
         .guide-step-content { display: none; animation: fadeIn 0.4s ease; font-size: 14px; line-height: 1.6; color: var(--text-main); }
         .guide-step-content.active { display: block; }
+
+        /* РСЯ КАРТОЧКА МИМИКРИРУЮЩАЯ ПОД БЕНТО (ФОРМАТ 1х1) */
+        .bento-rsya-box { border: var(--glass-border); background: var(--glass-bg); display: flex; justify-content: center; align-items: center; min-height: 310px; padding: 15px; border-radius: 24px; }
 
         /* ИНПУТЫ И КАЛЬКУЛЯТОР */
         .calc-group { margin-bottom: 25px; }
@@ -298,6 +301,13 @@
         }
         .btn-share:hover { transform: scale(1.03) translateY(-2px); box-shadow: 0 15px 35px rgba(216, 27, 96, 0.6) !important; }
 
+        /* ЖЕСТКИЕ СТИЛИ ДЛЯ РЕКОМЕНДАТЕЛЬНОЙ ЛЕНТЫ FEED (3 БЛОКА НА ПК, 1 НА МОБИЛЬНОМ) */
+        .feed-container { margin-top: 20px; border-radius: 24px; overflow: hidden; background: var(--glass-bg); padding: 25px; border: var(--glass-border); }
+        
+        @media (min-width: 969px) {
+            .feed-container #yandex_rtb_R-A-19181219-22 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+        }
+
         footer { 
             margin-top: 80px; 
             padding: 60px 0 40px; 
@@ -308,16 +318,18 @@
         .footer-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; text-align: center; }
 
         @media (max-width: 968px) {
-            .bento-grid { grid-template-columns: 1fr; }
-            .span-2, .span-3 { grid-column: span 1; }
+            .bento-grid { display: grid; grid-template-columns: 1fr !important; }
+            .span-2, .span-3 { grid-column: span 1 !important; }
             .main-layout { margin-top: 90px; }
+            /* Мобильное скрытие лишних десктопных рекламных контейнеров для удержания симметрии */
+            .desktop-only-rsya { display: none !important; }
         }
     </style>
 </head>
 <body>
 
 <header id="header">
-    <div class="brand-name">РЕСУРС | ОНЛАЙН</div>
+    <div class="brand-name">РЕСУРС | АНАТОМИЯ</div>
     <div class="header-controls">
         <a href="journal.html" class="btn-journal-nav">ЖУРНАЛ</a>
         <button id="themeToggle" onclick="toggleTheme()">ТЕНЬ</button>
@@ -341,7 +353,7 @@
         <button class="tab-btn" onclick="switchTab(event, 'tab-recipes')">🌿 Разбор альтернатив от Ольги Мартыновой</button>
     </nav>
 
-    <!-- ТАБ 1: ИНТЕРАКТИВНЫЙ БЕНТО-КАЛЬКУЛЯТОР -->
+    <!-- ТАБ 1: ИНТЕРАКТИВНЫЙ БЕНТО-КАЛЬКУЛЯТОР + ШАХМАТНЫЙ РСЯ -->
     <div id="tab-calc" class="tab-content active">
         <div class="bento-grid">
             
@@ -431,16 +443,16 @@
                 </p>
             </div>
 
-            <!-- ШАХМАТНЫЙ ИНТЕГРАЦИОННЫЙ БЛОК РСЯ НА ДЕСКТОПЕ / ЦЕНТРАЛЬНЫЙ НА МОБИЛЬНЫХ -->
-            <div class="bento-card" style="border: var(--glass-border); background: var(--glass-bg); display: flex; justify-content: center; align-items: center; min-height: 280px; padding: 20px;">
+            <!-- ШАХМАТНЫЙ ИНТЕГРАЦИОННЫЙ БЛОК РСЯ №1 (ВЫРАВНЕН СИММЕТРИЧНО ФОРМАТУ КАРТОЧЕК 1х1) -->
+            <div class="bento-rsya-box">
                 <div style="width: 100%; text-align: center;">
                     <!-- Yandex.RTB R-A-19181219-23 -->
-                    <div id="yandex_rtb_R-A-19181219-23"></div>
+                    <div id="yandex_rtb_tab1_placement"></div>
                     <script>
                     window.yaContextCb.push(() => {
                         Ya.Context.AdvManager.render({
                             "blockId": "R-A-19181219-23",
-                            "renderTo": "yandex_rtb_R-A-19181219-23"
+                            "renderTo": "yandex_rtb_tab1_placement"
                         })
                     })
                     </script>
@@ -448,17 +460,15 @@
             </div>
 
             <div class="bento-card span-2" style="border-left: 4px solid var(--accent-gold);">
-                <div style="display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: start;">
-                    <div>
-                        <h3 class="serif" style="font-size: 22px; margin-bottom: 10px;">Вся правда об абдоминопластике в Нижнем Новгороде: Кожа против глубокой биомеханики</h3>
-                        <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
-                            Когда женщина решается на абдоминопластику в Нижнем Новгороде, она платит огромную цену за эстетический лоскут кожи: долгий наркоз, тяжелейшая реабилитация, шрамы от бедра до бедра и риски сером. Хирург натягивает кожу снаружи и может ушить разошедшиеся прямые мышцы. Но он не способен залезть внутрь нервной системы и «включить» мертвую поперечную мышцу живота и дыхательную диафрагму! Если таз завален вперед, а поясница зажата статической гиподинамией в офисах города, ИТ-кластерах или на Родионова, то даже после операции внутренние органы продолжат давить на брюшную стенку, выдавливая живот «домиком» и перегружая швы. Эксперты платформы РЕСУРС настаивают: хирургия обязательна только тогда, когда есть огромный дефект тканей 3-4 степени или пупочная грыжа. В остальных 80% случаев дряблость, расхождение 1-2 степени и выпирающий низ живота убираются ювелирной нейроцентрической активацией кора и латеральным дыханием. Мы возвращаем органам их законную колыбель, стягиваем талию изнутри и создаем плоский живот естественным, безопасным путем.
-                        </p>
-                    </div>
+                <div style="display: flex; flex-direction: column; justify-content: center; height: 100%;">
+                    <h3 class="serif" style="font-size: 22px; margin-bottom: 10px;">Вся правда об абдоминопластике в Нижнем Новгороде: Кожа против глубокой биомеханики</h3>
+                    <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                        Когда женщина решается на абдоминопластику в Нижнем Новгороде, она платит огромную цену за эстетический лоскут кожи: долгий наркоз, тяжелейшая реабилитация, шрамы от бедра до бедра и риски сером. Хирург натягивает кожу снаружи и может ушить разошедшиеся прямые мышцы. Но он не способен залезть внутрь нервной системы и «включить» мертвую поперечную мышцу живота и дыхательную диафрагму! Если таз завален вперед, а поясница зажата статической гиподинамией в офисах города, ИТ-кластерах или на Родионова, то даже после операции внутренние органы продолжат давить на брюшную стенку, выдавливая живот «домиком» и перегружая швы. Эксперты платформы РЕСУРС настаивают: хирургия обязательна только тогда, когда есть огромный дефект тканей 3-4 степени или пупочная грыжа. В остальных 80% случаев дряблость, расхождение 1-2 степени и выпирающий низ живота убираются ювелирной нейроцентрической активацией кора и латеральным дыханием. Мы возвращаем органам их законную колыбель, стягиваем талию изнутри и создаем плоский живот естественным, безопасным путем.
+                    </p>
                 </div>
             </div>
 
-            <!-- ИНТЕРАКТИВНЫЙ БЕНТО ТЕКСТ-ГАЙД ОЛЬГИ МАРТЫНОВОЙ ДЛЯ УДЕРЖАНИЯ ВНИМАНИЯ -->
+            <!-- ИНТЕРАКТИВНЫЙ БЕНТО ТЕКСТ-ГАЙД ОЛЬГИ МАРТЫНОВОЙ ДЛЯ УДЕРЖАНИЯ ВНИМАНИЯ (ТАБЫ 1-2-3) -->
             <div class="bento-card span-3" style="border-top: 3px solid var(--accent-green); background: var(--glass-bg);">
                 <div>
                     <span class="recipe-badge" style="background: var(--accent-gold) !important; color: #FFF !important;">Самодиагностика за столом</span>
@@ -489,7 +499,7 @@
 
             <!-- ИНТЕГРАЦИОННЫЙ БЛОК: ССЫЛКА НА CLUB.HTML ДЛЯ НН -->
             <div class="bento-card span-3" style="background: var(--elem-bg); padding: 40px 30px; text-align: center;">
-                <h3 class="serif" style="font-size: 24px; margin-bottom: 10px;">Включите внутренний мышечный корсет вашего тела прямо из дома</h3>
+                <h3 class="serif" style="font-size: 24px; margin-bottom: 10px;">Выберите ваш формат активации глубоких мышц кора</h3>
                 <p style="font-size: 14px; color: var(--text-dim); max-width: 700px; margin: 0 auto 25px;">
                     Восстановите соосность костей таза, верните тонус тазовому дну и безопасно уменьшите объем талии. Получите личный кабинет с умными графиками параметров, трекером целей и сотнями бережных 3D-практик Пилатеса.
                 </p>
@@ -501,9 +511,9 @@
         </div>
     </div>
 
-    <!-- ТАБ 2: 10 ИТ-МОДУЛЕЙ КЛУБА -->
+    <!-- ТАБ 2: 10 ИТ-МОДУЛЕЙ КЛУБА С ИНЪЕКЦИЕЙ РСЯ КАЖДЫЕ 3 КАРТОЧКИ НА СМАРТФОНЕ И ПК -->
     <div id="tab-facts" class="tab-content">
-        <div class="bento-grid">
+        <div class="bento-grid" id="facts-bento-grid">
             
             <div class="bento-card span-3" style="background: linear-gradient(135deg, rgba(179, 134, 57, 0.05), transparent); border-left: 4px solid var(--accent-gold);">
                 <h3 class="serif" style="font-size: 22px; margin-bottom: 10px;">Устройство интерактивного личного кабинета платформы РЕСУРС</h3>
@@ -512,7 +522,7 @@
                 </p>
             </div>
 
-            <div class="bento-card">
+            <div class="bento-card text-card-counter">
                 <div>
                     <div class="fact-num">01</div>
                     <h3 class="fact-title">Курс «Стройность» (6 недель)</h3>
@@ -520,19 +530,35 @@
                 </div>
             </div>
 
-            <div class="bento-card">
+            <div class="bento-card text-card-counter">
                 <div>
                     <div class="fact-num">02</div>
                     <h3 class="fact-title">Программа «Детокс» (7 дней)</h3>
-                    <p class="fact-desc">Специализированный блок мягкого очищения организма, направленный на оперативный вывод токсинов и ликвидацию пастозности лица.</p>
+                    <p class="fact-desc">Специализированный block мягкого очищения организма, направленный на оперативный вывод токсинов и ликвидацию пастозности лица.</p>
                 </div>
             </div>
 
-            <div class="bento-card">
+            <div class="bento-card text-card-counter">
                 <div>
                     <div class="fact-num">03</div>
                     <h3 class="fact-title">Интерактивный трекер веса</h3>
                     <p class="fact-desc">Умный цифровой модуль для фиксации вашей целевой отметки. Система автоматически рассчитывает остаток пути и мотивирует вас.</p>
+                </div>
+            </div>
+
+            <!-- ШАХМАТНЫЙ ИНТЕГРАЦИОННЫЙ БЛОК РСЯ №2 (АВТОМАТИЧЕСКИ ВСТАЕТ ПОСЛЕ 3-Й КАРТОЧКИ) -->
+            <div class="bento-rsya-box">
+                <div style="width:100%; text-align:center;">
+                    <!-- Yandex.RTB R-A-19181219-23_tab2_1 -->
+                    <div id="yandex_rtb_tab2_1"></div>
+                    <script>
+                    window.yaContextCb.push(() => {
+                        Ya.Context.AdvManager.render({
+                            "blockId": "R-A-19181219-23",
+                            "renderTo": "yandex_rtb_R-A-19181219-23"
+                        })
+                    })
+                    </script>
                 </div>
             </div>
 
@@ -561,6 +587,22 @@
                 <a href="journal.html" class="bento-inline-btn">Читать статьи нутрициологов →</a>
             </div>
 
+            <!-- ШАХМАТНЫЙ ИНТЕГРАЦИОННЫЙ БЛОК РСЯ №3 (СИММЕТРИЧНО ПОСЛЕ СЛЕДУЮЩИХ 3 КАРТОЧЕК) -->
+            <div class="bento-rsya-box">
+                <div style="width:100%; text-align:center;">
+                    <!-- Yandex.RTB R-A-19181219-23_tab2_2 -->
+                    <div id="yandex_rtb_tab2_2"></div>
+                    <script>
+                    window.yaContextCb.push(() => {
+                        Ya.Context.AdvManager.render({
+                            "blockId": "R-A-19181219-23",
+                            "renderTo": "yandex_rtb_tab2_2"
+                        })
+                    })
+                    </script>
+                </div>
+            </div>
+
             <div class="bento-card">
                 <div>
                     <div class="fact-num">07</div>
@@ -585,6 +627,21 @@
                 </div>
             </div>
 
+            <!-- ШАХМАТНЫЙ ИНТЕГРАЦИОННЫЙ БЛОК РСЯ №4 -->
+            <div class="bento-rsya-box">
+                <div style="width:100%; text-align:center;">
+                    <div id="yandex_rtb_tab2_3"></div>
+                    <script>
+                    window.yaContextCb.push(() => {
+                        Ya.Context.AdvManager.render({
+                            "blockId": "R-A-19181219-23",
+                            "renderTo": "yandex_rtb_tab2_3"
+                        })
+                    })
+                    </script>
+                </div>
+            </div>
+
             <div class="bento-card">
                 <div>
                     <div class="fact-num">10</div>
@@ -596,7 +653,7 @@
         </div>
     </div>
 
-    <!-- ТАБ 3: ПРАВИЛА ОТ ОЛЬГИ МАРТЫНОВОЙ -->
+    <!-- ТАБ 3: ПРАВИЛА БИОХАКИНГА И МАНИФЕСТ ОЛЬГИ -->
     <div id="tab-recipes" class="tab-content">
         <div class="bento-grid">
             
@@ -607,6 +664,21 @@
                     <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
                         Будем честны: если после экстремального похудения на 40-50 кг или тяжелых родов у вас сформировался огромный пустой «фартук» из кожи (когда подкожно-фасциальный лоскут безвольно свисает вниз), ни одно упражнение эту кожу назад не сожмет. Здесь абдоминопластика оправдана на 100%. Хирург иссечет лишнюю ткань и сформирует новый пупок.
                     </p>
+                </div>
+            </div>
+
+            <!-- СИММЕТРИЧНЫЙ БЛОК РСЯ №5 ДЛЯ ТАБА 3 В ШАХМАТНОМ ПОРЯДКЕ (НА ПК ВСТАЕТ СПРАВА ОТ ПЕРВОЙ КАРТОЧКИ) -->
+            <div class="bento-rsya-box">
+                <div style="width:100%; text-align:center;">
+                    <div id="yandex_rtb_tab3_1"></div>
+                    <script>
+                    window.yaContextCb.push(() => {
+                        Ya.Context.AdvManager.render({
+                            "blockId": "R-A-19181219-23",
+                            "renderTo": "yandex_rtb_tab3_1"
+                        })
+                    })
+                    </script>
                 </div>
             </div>
 
@@ -630,6 +702,21 @@
                 </div>
             </div>
 
+            <!-- СИММЕТРИЧНЫЙ БЛОК РСЯ №6 (МОБИЛЬНАЯ ИНЪЕКЦИЯ ПОСЛЕ ЕЩЕ 3 ЭЛЕМЕНТОВ ТАБА) -->
+            <div class="bento-rsya-box">
+                <div style="width:100%; text-align:center;">
+                    <div id="yandex_rtb_tab3_2"></div>
+                    <script>
+                    window.yaContextCb.push(() => {
+                        Ya.Context.AdvManager.render({
+                            "blockId": "R-A-19181219-23",
+                            "renderTo": "yandex_rtb_tab3_2"
+                        })
+                    })
+                    </script>
+                </div>
+            </div>
+
             <div class="bento-card span-2">
                 <div>
                     <span class="recipe-badge">Анализ 04</span>
@@ -640,7 +727,7 @@
                 </div>
             </div>
 
-            <!-- ИНСПИРАЦИОННЫЙ БЛОК ОЛЬГИ — ЧИСТЫЙ СТЕКЛЯННЫЙ ФОН -->
+            <!-- ИНСПИРАЦИОННЫЙ БЛОК ОЛЬГИ — КРИСТАЛЬНО ЧИСТЫЙ СТЕКЛЯННЫЙ ФОН БЕЗ ИНЛАЙН ПЯТЕН -->
             <div class="bento-card span-3" style="background: var(--glass-bg); border: 2px solid var(--accent-green);">
                 <div>
                     <span class="recipe-badge">Вдохновение от Ольги Мартыновой</span>
@@ -678,8 +765,8 @@
         </div>
     </section>
 
-    <!-- РЕКОМЕНДАТЕЛЬНАЯ НАЛЬНАЯ ЛЕНТА РСЯ FEED ВНИЗУ СТРАНИЦЫ -->
-    <section style="margin-top: 20px; border-radius: 24px; overflow: hidden; background: var(--glass-bg); padding: 20px; border: var(--glass-border);">
+    <!-- РЕКОМЕНДАТЕЛЬНАЯ НАЛЬНАЯ ЛЕНТА РСЯ FEED (3 БЛОКА НА ПК ГОРИЗОНТАЛЬНО, 1 НА МОБИЛЬНОМ) -->
+    <section class="feed-container">
         <!-- Yandex.RTB R-A-19181219-22 -->
         <div id="yandex_rtb_R-A-19181219-22"></div>
         <script>
@@ -878,7 +965,7 @@
     });
 </script>
 
-<!-- СКОЗНЫЕ РЕКЛАМНЫЕ КАНАЛЫ РСЯ FLOOR AD (НИЖНЯЯ ФИКСИРОВАННАЯ ЛЕНТА) -->
+<!-- СКВОЗНЫЕ РЕКЛАМНЫЕ КАНАЛЫ РСЯ FLOOR AD (НИЖНЯЯ ФИКСИРОВАННАЯ ЛЕНТА) -->
 <script>
 window.yaContextCb.push(() => {
     Ya.Context.AdvManager.render({
