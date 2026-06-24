@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <script>
+        // Инициализация темы при загрузке (фиксируем дорогую фиолетовую тему)
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+
+    <script type="text/javascript">
+    // --- Yandex.Metrika counter ---
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108177329', 'ym');
+        ym(108177329, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+
+        // --- Top.Mail.Ru counter ---
+        var _tmr = window._tmr || (window._tmr = []);
+        _tmr.push({id: "3755240", type: "pageView", start: (new Date()).getTime()});
+        (function (d, w, id) {
+            if (d.getElementById(id)) return;
+            var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
+            ts.src = "https://top-fwz1.mail.ru/js/code.js";
+            var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
+            if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
+        })(document, window, "tmr-code");
+    </script>
+    <noscript>
+        <div>
+            <img src="https://mc.yandex.ru/watch/108177329" style="position:absolute; left:-9999px;" alt="" />
+            <img src="https://top-fwz1.mail.ru/counter?id=3755240;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" />
+        </div>
+    </noscript>
+
+    <script>
+        // Глобальная логика перехвата ботов для SEO-превью через Яндекс Функцию
+        window.addEventListener('DOMContentLoaded', () => {
+            const isBot = /YandexBot|YandexAccessibilityBot|YandexMobileBot|Googlebot/i.test(navigator.userAgent);
+            if (isBot) {
+                fetch('https://functions.yandexcloud.net/d4ecn5ag33dcdd2deivd?bot=true&url=' + encodeURIComponent(window.location.href))
+                .then(res => res.json())
+                .then(data => console.log("SEO Preview Matrix Synced"))
+                .catch(e => console.log("SEO preview pass"));
+            }
+        });
+    </script>
+    
+    <!-- Подключение рекламной системы Яндекса (РСЯ) -->
+    <script>window.yaContextCb=window.yaContextCb||[]</script>
+    <script src="https://yandex.ru/ads/system/context.js" async></script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- ДИНАМИЧЕСКАЯ СЕО ПРОШИВКА КОНВЕЙЕРА -->
+    <title>Абдоминопластика живота в Балаково | Цена, отзывы, alternative | РЕСУРС</title>
+    <meta name="description" content="Честный анализ абдоминопластики живота в Балаково. Когда operation действительно необходима, а когда диастаз и фартук кожи убираются без ножа Пилатесом Ольги Мартыновой.">
+    <meta name="keywords" content="абдоминопластика balakovo цена, пластика живота в Балаково отзывы, подтяжка кожи живота balakovo, убрать фартук живота balakovo">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://resurs-stretch.ru/abdominoplastika-balakovo.html">
+
+    <!-- OPEN GRAPH -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Пластика живота или умное восстановление? Скрининг кора в Балаково">
+    <meta property="og:description" content="Не спешите ложиться под нож хирурга в Балаково. Сдайте интерактивный bento-тест контроля тонуса мышц и разверните текст-гайд Ольги Мартыновой.">
+    <meta property="og:url" content="https://resurs-stretch.ru/abdominoplastika-balakovo.html">
+    <meta property="og:image" content="https://resurs-stretch.ru/logo_header_final.png">
+    <meta property="og:site_name" content="РЕСУРС">
+    <meta property="og:locale" content="ru_RU">
+
+    <!-- MICRODATA SCHEMA.ORG -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Анатомическая онлайн-программа восстановления кора РЕСУРС Балаково",
+      "image": "https://resurs-stretch.ru/logo_header_final.png",
+      "description": "Экосистема безоперационного восстановления тонуса живота, тазового дна и утягивания белой линии после родов в Балаково.",
+      "brand": {
+        "@type": "Brand",
+        "name": "РЕСУРС"
+      },
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "RUB",
+        "lowPrice": "300",
+        "highPrice": "1600",
+        "offerCount": "1",
+        "offers": [
+          {
+            "@type": "Offer",
+            "name": "Тест-драйв личного кабинета онлайн-клуба на 3 дня",
+            "price": "300",
+            "priceCurrency": "RUB",
+            "availability": "https://schema.org/InStock",
+            "url": "https://resurs-stretch.ru/abdominoplastika-balakovo.html"
+          }
+        ]
+      }
+    }
+    </script>
+
+    <link rel="icon" type="image/png" href="logo_header_final.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS ПЕРЕМЕННЫЕ ДЛЯ БЛАГОРОДНОЙ ФИОЛЕТОВОЙ ТЕМЫ (НЕО-ГРАФИТ) */
+        :root {
+            --bg-deep: #09040D; 
+            --glass-bg: rgba(22, 11, 31, 0.75); 
+            --glass-border: 1px solid rgba(255, 255, 255, 0.08); 
+            --accent-gold: #E5A93C; 
+            --accent-green: #8E24AA; 
+            --accent-berry: #BA68C8;
+            --text-main: #F7F3FA;
+            --text-dim: rgba(247, 243, 250, 0.55);
+            --elem-bg: rgba(255, 255, 255, 0.03);
+            --elem-border: rgba(255, 255, 255, 0.1);
+            --nav-bg: rgba(9, 4, 13, 0.95);
+            --font-main: 'Manrope', sans-serif;
+            --font-serif: 'Cormorant Garamond', serif;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --journal-card-bg: linear-gradient(135deg, rgba(9, 4, 13, 0.95), rgba(22, 11, 31, 0.8));
+        }
+
+        [data-theme="light"] {
+            --bg-deep: #F9F6FC; 
+            --glass-bg: rgba(255, 255, 255, 0.92); 
+            --glass-border: 1px solid rgba(9, 4, 13, 0.08); 
+            --accent-gold: #B38639; 
+            --accent-green: #7B1FA2;
+            --accent-berry: #4A148C;
+            --text-main: #1F1226;
+            --text-dim: rgba(31, 18, 38, 0.65);
+            --elem-bg: rgba(0, 0, 0, 0.02);
+            --elem-border: rgba(0, 0, 0, 0.08);
+            --nav-bg: rgba(249, 26, 252, 0.95);
+            --journal-card-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(142, 36, 170, 0.05));
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
+        html { scroll-behavior: smooth; }
+        body { 
+            background: var(--bg-deep); 
+            color: var(--text-main);
+            font-family: var(--font-main); 
+            line-height: 1.6;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.02'/%3E%3C/svg%3E");
+            transition: background-color 0.4s ease, color 0.4s ease;
+            -webkit-font-smoothing: antialiased;
+            padding-bottom: 20px;
+        }
+
+        h1, h2, h3, .serif { font-family: var(--font-serif); font-weight: 600; letter-spacing: 0.5px; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+
+        /* HEADER */
+        header {
+            position: fixed; top: 0; width: 100%; padding: 20px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 2000; background: var(--glass-bg); 
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-bottom: var(--glass-border); transition: var(--transition);
+        }
+        header.scrolled { padding: 12px 5% !important; }
+        .brand-name { font-family: var(--font-serif); font-size: 22px; letter-spacing: 8px; text-transform: uppercase; font-weight: 600; }
+        
+        .header-controls { display: flex; gap: 12px; align-items: center; }
+        
+        #themeToggle, .btn-journal-nav {
+            padding: 0 15px; height: 35px; font-size: 10px; font-weight: 600; letter-spacing: 2px;
+            display: inline-flex; align-items: center; justify-content: center;
+            border-radius: 8px; border: 1px solid var(--elem-border); background: var(--elem-bg);
+            cursor: pointer; transition: var(--transition); color: var(--text-main); text-transform: uppercase;
+        }
+        #themeToggle:hover, .btn-journal-nav:hover { border-color: var(--accent-gold); transform: translateY(-2px); }
+        .btn-journal-nav { background: rgba(142, 36, 170, 0.15); border-color: var(--accent-green); color: var(--text-main); }
+        .btn-journal-nav:hover { border-color: var(--accent-green); background: var(--accent-green); color: #fff; }
+
+        /* MAIN CONTAINER */
+        .main-layout { max-width: 1200px; margin: 120px auto 40px; padding: 0 20px; }
+
+        /* BENTO GRID */
+        .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .bento-card { background: var(--glass-bg); border: var(--glass-border); border-radius: 24px; padding: 30px; position: relative; overflow: hidden; transition: var(--transition); display: flex; flex-direction: column; justify-content: space-between; }
+        .bento-card:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(0,0,0,0.3); }
+        
+        .span-2 { grid-column: span 2; }
+        .span-3 { grid-column: span 3; }
+
+        /* ИНТЕРАКТИВНЫЕ ТАБЫ ВНУТРИ ГАЙДА */
+        .guide-nav { display: flex; gap: 8px; margin-bottom: 15px; }
+        .guide-tab { padding: 8px 16px; background: rgba(255,255,255,0.04); border: 1px solid var(--elem-border); border-radius: 10px; color: var(--text-dim); font-size: 12px; font-weight: 600; cursor: pointer; transition: var(--transition); }
+        .guide-tab.active { background: var(--accent-green); color: #FFF; border-color: var(--accent-green); }
+        .guide-step-content { display: none; animation: fadeIn 0.4s ease; font-size: 14px; line-height: 1.6; color: var(--text-main); }
+        .guide-step-content.active { display: block; }
+
+        /* ЖЕСТКИЕ ТИСКИ ДЛЯ РСЯ КАРТОЧЕК */
+        .bento-rsya-box { 
+            border: var(--glass-border); 
+            background: var(--glass-bg); 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            width: 100%; 
+            height: 100%; 
+            min-height: 310px; 
+            max-height: 340px; 
+            padding: 15px; 
+            border-radius: 24px; 
+            overflow: hidden; 
+        }
+
+        /* ИНПУТЫ И КАЛЬКУЛЯТОР */
+        .calc-group { margin-bottom: 25px; }
+        .calc-label { font-size: 15px; font-weight: 600; margin-bottom: 12px; display: block; color: var(--text-main); line-height: 1.4; }
+        
+        .radio-box-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+        .radio-tile {
+            border: 1px solid var(--elem-border); background: var(--elem-bg); padding: 16px;
+            border-radius: 12px; cursor: pointer; display: flex; flex-direction: column; gap: 4px;
+            position: relative; transition: var(--transition);
+        }
+        .radio-tile input { position: absolute; top: 16px; right: 16px; accent-color: var(--accent-green); }
+        .radio-tile.selected { border-color: var(--accent-green); background: rgba(142,36,170,0.08); }
+
+        .range-slider { width: 100%; accent-color: var(--accent-green); margin: 10px 0; height: 6px; border-radius: 3px; }
+        .range-val { font-size: 18px; font-weight: 700; color: var(--accent-gold); }
+        
+        /* РЕЗУЛЬТАТЫ БЕНТО */
+        .result-score-box { text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(135deg, var(--elem-bg), transparent); padding: 40px 20px; transition: var(--transition); }
+        .score-number { font-size: 32px; font-weight: 800; line-height: 1.2; color: var(--accent-berry); font-family: var(--font-serif); }
+        .score-status { font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-top: 12px; }
+
+        /* МАРКЕТИНГОВЫЕ КНОПКИ */
+        .btn-marketing {
+            display: inline-flex; align-items: center; justify-content: center; width: 100%;
+            padding: 22px 30px; background: var(--accent-berry); color: #FFF; border: none;
+            border-radius: 16px; font-family: var(--font-main); font-size: 15px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: var(--transition);
+            box-shadow: 0 10px 25px rgba(142,36,170,0.2); text-align: center;
+        }
+        .btn-marketing:hover { transform: translateY(-2px); box-shadow: 0 15px 35px rgba(142,36,170,0.35); opacity: 0.95; }
+
+        .btn-marketing.btn-online-gold {
+            background: linear-gradient(135deg, #B38639, #8C6221) !important;
+            box-shadow: 0 10px 25px rgba(179,134,57,0.3) !important;
+        }
+        .btn-marketing.btn-online-gold:hover { box-shadow: 0 15px 35px rgba(179,134,57,0.5) !important; }
+
+        .btn-reset {
+            background: transparent; border: 1px dashed var(--text-dim); color: var(--text-dim);
+            padding: 10px 20px; border-radius: 10px; font-size: 12px; font-weight: 600;
+            cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: var(--transition);
+        }
+        .btn-reset:hover { border-color: var(--accent-berry); color: var(--accent-berry); }
+
+        .recipe-badge { 
+            background: var(--accent-green) !important; 
+            color: #FFF !important; 
+            padding: 6px 16px; 
+            border-radius: 30px; 
+            font-size: 11px; 
+            font-weight: 700; 
+            text-transform: uppercase; 
+            display: inline-block; 
+            margin-bottom: 15px; 
+            letter-spacing: 1px;
+        }
+
+        .share-section { margin-top: 40px; background: linear-gradient(135deg, rgba(142, 36, 170, 0.08), rgba(179, 134, 57, 0.08)); border: 2px solid var(--accent-green); border-radius: 28px; padding: 40px 30px; text-align: center; box-shadow: 0 15px 40px rgba(142,36,170,0.1); }
+        .btn-share {
+            display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 18px 40px;
+            background: linear-gradient(135deg, var(--accent-green), #2A0835) !important; border: none; border-radius: 16px;
+            font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: var(--transition); color: #FFF;
+            box-shadow: 0 10px 25px rgba(142, 36, 170, 0.4) !important; width: 100%; max-width: 400px;
+        }
+        .btn-share:hover { transform: scale(1.03) translateY(-2px); box-shadow: 0 15px 35px rgba(142, 36, 170, 0.6) !important; }
+
+        /* РЕКОМЕНДАТЕЛЬНАЯ ЛЕНТА FEED */
+        .feed-container { 
+            margin: 25px 0; 
+            border-radius: 24px; 
+            overflow: hidden; 
+            background: var(--glass-bg); 
+            padding: 25px; 
+            border: var(--glass-border); 
+            max-height: 400px;
+        }
+        
+        /* ГЕОМЕТРИЧЕСКИЙ ФИКС ПОДВАЛА ПО СЕТКЕ */
+        footer {
+            width: 100%;
+            background: transparent;
+        }
+        .footer-container {
+            max-width: 1200px;
+            margin: 40px auto 0;
+            padding: 30px 20px;
+            border-top: 1px solid var(--glass-border);
+            text-align: left;
+        }
+        .footer-text-main {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+        .footer-text-sub {
+            font-size: 11px;
+            color: var(--text-dim);
+            line-height: 1.6;
+        }
+        
+        @media (min-width: 969px) {
+            .feed-container #yandex_rtb_R-A-19181219-22 { 
+                display: grid !important; 
+                grid-template-columns: repeat(3, 1fr) !important; 
+                gap: 15px !important; 
+            }
+        }
+
+        @media (max-width: 968px) {
+            .bento-grid { display: grid; grid-template-columns: 1fr !important; }
+            .span-2, .span-3 { grid-column: span 1 !important; }
+            .main-layout { margin-top: 90px; }
+            .bento-rsya-box { max-height: 280px !important; min-height: 250px !important; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- АБСОЛЮТНЫЕ БОЕВЫЕ ССЫЛКИ ДЛЯ КНОПОК ПЛАТФОРМЫ -->
+<header id="header">
+    <div class="brand-name">РЕСУРС | АНАТОМИЯ</div>
+    <div class="header-controls">
+        <a href="https://resurs-stretch.ru/journal.html" class="btn-journal-nav">ЖУРНАЛ</a>
+        <button id="themeToggle" onclick="toggleTheme()">ТЕНЬ</button>
+    </div>
+</header>
+
+<main class="main-layout">
+    
+    <section style="text-align: center; max-width: 800px; margin: 0 auto 40px;">
+        <h1 style="font-size: clamp(24px, 4vw, 42px); line-height: 1.2; margin-bottom: 15px;">
+            Абдоминопластика в Балаково: <span style="color: var(--accent-gold); font-style: italic;">Операция или Умный Корсет?</span>
+        </h1>
+        <p style="font-size: 15px; color: var(--text-dim); line-height: 1.7;">
+            Задумываетесь о хирургической пластике живота, чтобы убрать диастаз, растянутую кожу или вываливающийся фартук после родов? Нож хирурга иссекает лишнюю кожу, но он физически не способен вернуть тонус поперечной мышце и восстановить соосность таза. Пройдите экспресс-диагностику в Балаково и узнайте честные безоперационные альтернативы.
+        </p>
+    </section>
+
+    <div class="tab-content active">
+        <div class="bento-grid">
+            
+            <!-- ЛОГИЧЕСКИЙ БЛОК АУДИТА КОРА -->
+            <div class="bento-card span-2">
+                <div>
+                    <h2 class="serif" style="font-size: 24px; margin-bottom: 25px; color: var(--text-main);">Аудит состояния белой линии живота и глубинных стабилизаторов</h2>
+                    
+                    <div class="calc-group">
+                        <label class="calc-label">1. Какое состояние тканей и кожи живота беспокоит вас сильнее всего в повседневной жизни?</label>
+                        <div class="radio-box-group">
+                            <label class="radio-tile" onclick="selectTile(this)">
+                                <input type="radio" name="belly_state" value="heavy_apron" checked>
+                                <span class="radio-tile-title">Глубокий свисающий кожный «фартук»</span>
+                                <span class="radio-tile-desc">Большой избыток дряблой фасциальной ткани висит над лобком, растяжки затронули всю зону в Балаково.</span>
+                            </label>
+                            <label class="radio-tile" onclick="selectTile(this)">
+                                <input type="radio" name="belly_state" value="muscle_weakness">
+                                <span class="radio-tile-title">Живот просто круглый и вываливается</span>
+                                <span class="radio-tile-desc">Кожа относительно упругая, но внутренние органы выдавливаются наружу, пупок торчит вперед.</span>
+                            </label>
+                            <label class="radio-tile" onclick="selectTile(this)">
+                                <input type="radio" name="belly_state" value="bloating_only">
+                                <span class="radio-tile-title">Сильное вздутие и домик при нагрузке</span>
+                                <span class="radio-tile-desc">Утром плоско, но после любой еды встает твердый валик по центру из-за несоосности ребер.</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="calc-group">
+                        <label class="calc-label">2. Измеряли ли вы расхождение прямой мышцы живота (диастаз) у специалистов в Балаково?</label>
+                        <div class="radio-box-group">
+                            <label class="radio-tile" onclick="selectTile(this)">
+                                <input type="radio" name="diastasis_degree" value="severe_diastasis" checked>
+                                <span class="radio-tile-title">Диастаз 3 степени / Есть грыжа</span>
+                                <span class="radio-tile-desc">Расхождение более 5-8 см, пальцы проваливаются, диагностирована пупочная грыжа белой линии.</span>
+                            </label>
+                            <label class="radio-tile" onclick="selectTile(this)">
+                                <input type="radio" name="diastasis_degree" value="medium_diastasis">
+                                <span class="radio-tile-title">Диастаз 1-2 степени (до 4 см)</span>
+                                <span class="radio-tile-desc">Есть глухое расхождение в районе пупка после родов, но края мышц упругие, грыж нет.</span>
+                            </label>
+                            <label class="radio-tile" onclick="selectTile(this)">
+                                <input type="radio" name="diastasis_degree" value="no_diastasis">
+                                <span class="radio-tile-title">Мышцы сомкнуты / Нет диастаза</span>
+                                <span class="radio-tile-desc">Белая линия плотная, расхождение отсутствует, ткани удерживают структуру.</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- ИСПРАВЛЕННЫЙ И СИНХРОНИЗИРОВАННЫЙ ПОЛЗУНОК -->
+                    <div class="calc-group">
+                        <label class="calc-label">3. Оцените уровень статического зажима спины во время сидячей работы за компьютером:</label>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                            <span style="font-size: 13px; color: var(--text-dim);">Состояние осанки в Балаково:</span>
+                            <span id="range-sit-val" class="range-val" style="color: var(--accent-green);">Сильно сутулюсь за столом</span>
+                        </div>
+                        <input type="range" id="sit_slider" class="range-slider" min="0" max="3" value="3" step="1" oninput="calculateWeightIndex()">
+                    </div>
+                </div>
+
+                <div style="margin-top: 30px; display: flex; justify-content: flex-end;">
+                    <button class="btn-reset" onclick="resetCalculator()">Сбросить параметры теста</button>
+                </div>
+            </div>
+
+            <!-- ДИНАМИЧЕСКИЙ ВЕРДИКТ -->
+            <div class="bento-card result-score-box">
+                <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; color: var(--text-dim); margin-bottom: 10px;">Клинический вердикт кора:</div>
+                <div id="calc-result-title" class="score-number" style="font-size: 24px; margin: 15px 0;">Показана консультация хирурга</div>
+                <div id="calc-status" class="score-status" style="color: var(--accent-berry);">Режим: Радикальная пластика + Реабилитация</div>
+                <p id="calc-text" style="font-size: 13px; opacity: 0.8; margin-top: 15px; line-height: 1.5; text-align: center;">
+                    Расчет...
+                </p>
+            </div>
+
+            <!-- ШАХМАТНЫЙ ИНТЕГРАЦИОННЫЙ БЛОК РСЯ №1 -->
+            <div class="bento-rsya-box">
+                <div style="width: 100%; text-align: center; height: 100%;">
+                    <div id="yandex_rtb_tab1_placement"></div>
+                    <script>
+                    window.yaContextCb.push(() => {
+                        Ya.Context.AdvManager.render({
+                            "blockId": "R-A-19181219-23",
+                            "renderTo": "yandex_rtb_tab1_placement"
+                        })
+                    })
+                    </script>
+                </div>
+            </div>
+
+            <!-- АНАТОМИЧЕСКИЙ ЭКСПЕРТНЫЙ РАЗБОР -->
+            <div class="bento-card span-2" style="border-left: 4px solid var(--accent-gold);">
+                <div style="display: flex; flex-direction: column; justify-content: center; height: 100%;">
+                    <h3 class="serif" style="font-size: 22px; margin-bottom: 10px;">Вся правда об абдоминопластике в Балаково: Кожа против глубокой биомеханики</h3>
+                    <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                        Когда женщина решается на абдоминопластику в Балаково, она платит огромную цену за эстетический лоскут кожи: долгий наркоз, тяжелейшая реабилитация, шрамы от бедра до бедра и риски сером. Хирург натягивает кожу снаружи и может ушить разошедшиеся прямые мышцы. Но он не способен залезть внутрь нервной системы и «включить» мертвую поперечную мышцу живота и дыхательную диафрагму! Если таз завален вперед, а поясница зажата статической гиподинамией в офисах города, то даже после операции внутренние органы продолжaт давить на брюшную стенку, выдавливая живот «домиком» и перегружая швы. Эксперты платформы РЕСУРС настаивают: хирургия обязательна только тогда, когда есть огромный дефект тканей 3-4 степени или пупочная грыжа. В остальных 80% случаев дряблость, расхождение 1-2 степени и выпирающий низ живота убираются ювелирной нейроцентрической активацией кора и латеральным дыханием без единого разреза напрямую из дома.
+                    </p>
+                </div>
+            </div>
+
+            <!-- ИНТЕРАКТИВНЫЙ БЕНТО ТЕКСТ-ГАЙД ОЛЬГИ МАРТЫНОВОЙ -->
+            <div class="bento-card span-3" style="border-top: 3px solid var(--accent-green); background: var(--glass-bg);">
+                <div>
+                    <span class="recipe-badge" style="background: var(--accent-gold) !important; color: #FFF !important;">Самодиагностика</span>
+                    <h3 class="serif" style="font-size: 22px; margin-bottom: 15px;">3 шага к разгрузке поясницы и утягиванию живота прямо за рабочим столом</h3>
+                    
+                    <div class="guide-nav">
+                        <button class="guide-tab active" onclick="switchGuideStep(event, 'step-1')">Шаг 01: Тест-активация</button>
+                        <button class="guide-tab" onclick="switchGuideStep(event, 'step-2')">Шаг 02: Укол биомеханики</button>
+                        <button class="guide-tab" onclick="switchGuideStep(event, 'step-3')">Шаг 03: Фиксация оси</button>
+                    </div>
+
+                    <div id="step-1" class="guide-step-content active">
+                        <p><strong>Действие:</strong> Отложите мышку, сядьте на край стула ровно. Нащупайте пальцами выступающие кости таза спереди (подвздошные ости). Теперь плавно завалите таз назад, скругляя поясницу, а затем перекатитесь вперед, чрезмерно прогибая спину.</p>
+                        <p style="margin-top: 10px; color: var(--text-dim); font-size: 13px;"><em>Анатомический маркер:</em> Ваша задача — найти среднюю точку между этими положениями, где вы четко сидите на седалищных буграх. Это природная нейтраль таза, которая мгновенно снимает каменную нагрузку с пояснично-крестцового сочленения.</p>
+                    </div>
+
+                    <div id="step-2" class="guide-step-content">
+                        <p><strong>Действие:</strong> Находясь в найденной нейтрали таза, положите ладони на нижние ребра по бокам. Сделайте плавный вдох носом так, чтобы ваши ребра раскрылись в стороны как зонтик, расталкивая ладони. Живот при этом не должен надуваться вперед.</p>
+                        <p style="margin-top: 10px; color: var(--text-dim); font-size: 13px;"><em>Анатомический маркер:</em> Теперь сделайте долгий, спокойный выдох через слегка приоткрытые губы. Почувствуйте, как ребра опускаются вниз к центру, а передняя стенка живота сама утапливается внутрь к коврику. Это латеральное дыхание включает поперечную мышцу-корсет.</p>
+                    </div>
+
+                    <div id="step-3" class="guide-step-content">
+                        <p><strong>Действие:</strong> Поставьте стопы ровно на пол параллельно друг другу на ширине тазобедренных суставов. Слегка погрузите подушечки под большим пальцами и пятки в пол. Представьте, что вы макушкой вытягиваетесь вверх, удлиняя всю вертикаль позвоночника.</p>
+                        <p style="margin-top: 10px; color: var(--text-dim); font-size: 13px;"><em>Анатомический маркер:</em> Удерживая это положение стоп и дыхание ребрами во время работы за компьютером, вы создаете постоянный, безопасный тонус глубоких стабилизаторов. Органы возвращаются в свою колыбель, а живот перестает вываливаться вперед.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- МАНИФЕСТ ОЛЬГИ МАРТЫНОВОЙ -->
+            <div class="bento-card span-3" style="background: var(--glass-bg); border: 2px solid var(--accent-green);">
+                <div>
+                    <span class="recipe-badge">Вдохновение от Ольги Мартыновой</span>
+                    <h3 class="serif" style="font-size: 26px; margin-bottom: 15px; color: var(--text-main);">«Хирургия меняет форму кожи, но только умное движение меняет функцию...»</h3>
+                    <p style="font-size: 15px; line-height: 1.7; color: var(--text-main); margin-bottom: 25px;">
+                        «Мои прекрасные девочки! Пожалуйста, не спешите ложиться на операционный стол клиник эстетической хирургии Балаково от отчаяния! Абдоминопластика — это тяжелейшая травма для организма, огромный рубец и долгие месяцы скованности. Операция убирает следствие, но полностью игнорирует причину. Торчащий низ живота, вываливающийся "домик" при нагрузке и ноющая поясница — это крик вашего тела о слабости глубокой системы стабилизации и потере соосности суставов. Как специалист с высшим физкультурным образованием, я уверяю вас: ваше тело способно на колоссальное восстановление без ножа! В нашем онлайн-клубе мы возвращаем кости таза в идеальную нейтраль, разгружаем крестец и через мягкие дыхательные практики возвращаем тонус поперечной мышце живота, создавая глубокую утяжку силуэта изнутри. Вы проснетесь легкой, собранной, с красивой тонкой талией и здоровой летящей осанкой. Подарите своему телу шанс вернуть свой естественный РЕСУРС вдумчиво!»
+                    </p>
+                </div>
+                <div style="max-width: 450px; margin: 0 auto;">
+                    <a href="https://resurs-stretch.ru/club.html" class="btn-marketing btn-online-gold">Получить доступ к онлайн-клубу: тест-драйв за 300₽</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ЭКСПЕРТНО-МАРКЕТИНГОВЫЙ БЕНТО-БЛОК ДЛЯ ЖУРНАЛА -->
+    <section class="bento-grid" style="margin-top: 20px;">
+        <div class="bento-card span-3" style="background: var(--journal-card-bg) !important; border-top: 3px solid var(--accent-green); box-shadow: 0 10px 30px rgba(142, 36, 170, 0.05);">
+            <div style="display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: start; margin-bottom: 20px;">
+                <div>
+                    <span class="recipe-badge" style="background: var(--accent-gold) !important; color: #FFF !important;">Борьба с невежеством</span>
+                    <h2 class="serif" style="font-size: clamp(22px, 3vw, 28px); margin-bottom: 12px; line-height: 1.3;">Научный подход к биохакингу тела: Читайте наш Экспертный Журнал</h2>
+                    <p style="font-size: 14px; color: var(--text-main); opacity: 0.85; line-height: 1.6; max-width: 900px;">
+                        В Журнале РЕСУРСА мы безжалостно рушим мифы классического фитнеса и даем глубокий, кристально чистый анализ взаимосвязей в теле. Узнайте, как скрытый стресс и паттерны психосоматики спазмируют шею, почему застой лимфы блокирует метаболизм, и как нейромышечные тренировки перепрошивают привычки мозга. Каждая статья — это концентрат практической пользы мирового уровня для тех, кто ценит научную обоснованность и готов менять свое состояние к лучшему.
+                    </p>
+                </div>
+                <div style="background: rgba(142, 36, 170, 0.1); padding: 15px; border-radius: 16px; display: flex; align-items: center; justify-content: center;">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5z"/><path d="M6 6h10M6 10h10"/></svg>
+                </div>
+            </div>
+            <div style="max-width: 450px; margin: 10px auto 0;">
+                <a href="https://resurs-stretch.ru/journal.html" class="btn-marketing btn-online-green">Перейти в журнал: изменить привычки и жизнь</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- РЕКОМЕНДАТЕЛЬНАЯ ЛЕНТА РСЯ FEED -->
+    <section class="feed-container">
+        <div id="yandex_rtb_R-A-19181219-22"></div>
+        <script>
+        window.yaContextCb.push(() => {
+            Ya.Context.AdvManager.render({
+                "blockId": "R-A-19181219-22",
+                "renderTo": "yandex_rtb_R-A-19181219-22",
+                "type": "feed"
+            })
+        })
+        </script>
+    </section>
+
+    <!-- КНОПКА ШЕРИНГА -->
+    <section class="share-section">
+        <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">🔥 Отправить этот честный разбор подругам</h3>
+        <p style="font-size: 14px; color: var(--text-dim); margin-bottom: 25px;">Поделитесь этой страницей с подругами или коллегами в Балаково, которые задумываются об абдоминопластике, страдают от диастаза или безуспешно пытаются убрать низ живота обычными диетами.</p>
+        <button class="btn-share" onclick="sharePage()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            <span id="share-btn-text">Отправить подругам</span>
+        </button>
+    </section>
+
+</main>
+
+<!-- ОТЛАДОЧНЫЙ ИДЕАЛЬНЫЙ ПОДВАЛ ПО КОНТУРУ СЕТКИ -->
+<footer>
+    <div class="footer-container">
+        <p class="footer-text-main">© 2026 РЕСУРС | Интерактивная онлайн-платформа здоровья и умного движения.</p>
+        <p class="footer-text-sub">Интерактивный скрининг носит ознакомительный характер. При наличии выраженных ущемленных пупочных грыж, грыж белой линии живота или обширных кожных изменений перед началом физических практик проконсультируйтесь с оперирующим хирургом.</p>
+    </div>
+</footer>
+
+<script>
+    function toggleTheme() {
+        const html = document.documentElement;
+        const currentTheme = html.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        document.getElementById('themeToggle').innerText = newTheme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        const theme = document.documentElement.getAttribute('data-theme');
+        document.getElementById('themeToggle').innerText = theme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
+        
+        restoreCalculatorData();
+        calculateWeightIndex();
+    });
+
+    function switchGuideStep(event, stepId) {
+        const card = event.currentTarget.closest('.bento-card');
+        card.querySelectorAll('.guide-step-content').forEach(content => content.classList.remove('active'));
+        card.querySelectorAll('.guide-tab').forEach(tab => tab.classList.remove('active'));
+        
+        document.getElementById(stepId).classList.add('active');
+        event.currentTarget.classList.add('active');
+    }
+
+    function selectTile(element) {
+        const name = element.querySelector('input').name;
+        document.querySelectorAll(`input[name="${name}"]`).forEach(input => {
+            input.parentElement.classList.remove('selected');
+        });
+        element.classList.add('selected');
+        
+        calculateWeightIndex();
+    }
+
+    function calculateWeightIndex() {
+        const belly = document.querySelector('input[name="belly_state"]:checked').value;
+        const diastasis = document.querySelector('input[name="diastasis_degree"]:checked').value;
+        const sitHours = parseInt(document.getElementById('sit_slider').value);
+
+        const sitLabels = ['Идеальная нейтраль', 'Небольшой наклон', 'Умеренная сутулость', 'Сильно сутулюсь за столом'];
+        document.getElementById('range-sit-val').innerText = sitLabels[sitHours];
+
+        const titleEl = document.getElementById('calc-result-title');
+        const statusEl = document.getElementById('calc-status');
+        const textEl = document.getElementById('calc-text');
+
+        let bodyText = "";
+        let diagnosticResult = "";
+
+        if (diastasis === 'severe_diastasis' || belly === 'heavy_apron') {
+            titleEl.innerText = "Показана консультация хирурга";
+            statusEl.innerText = "Режим: Радикальная пластика + Реабилитация";
+            statusEl.style.color = "var(--accent-green)";
+            bodyText = "Наблюдается выраженный кожный лоскут или высокий риск грыжевого ущемления белой линии. Рекомендуется очная консультация хирурга в Балаково. Практики Пилатеса показаны как бережная предоперационная подготовка и послеоперационный запуск лимфотока.";
+            diagnosticResult = "Показана консультация хирурга (Статика: " + sitLabels[sitHours] + ")";
+        } else if (diastasis === 'medium_diastasis' || belly === 'muscle_weakness' || sitHours === 3) {
+            titleEl.innerText = "Биомеханический спад глубокого кора";
+            statusEl.innerText = "Режим: Умный Пилатес & Нейтраль таза";
+            statusEl.style.color = "var(--accent-gold)";
+            bodyText = "У вас нет показаний к операции. Живот вываливается из-за расслабления поперечной мышцы и переднего перекоса таза сидячим положением (" + sitLabels[sitHours] + "). Ольга Мартынова рекомендует Пилатес 3D для возвращения органов в анатомическую нейтраль.";
+            diagnosticResult = "Безоперационный гипотонус кора (Статика: " + sitLabels[sitHours] + ")";
+        } else {
+            titleEl.innerText = "Адаптивный тонус стабилизаторов";
+            statusEl.innerText = "Режим: Силовой Пилатес & Боди Скальп";
+            statusEl.style.color = "var(--accent-berry)";
+            bodyText = "Великолепный тонус соединительной ткани! Фасции упругие, расхождения мышц нет. Живот собран. Вы полностью готовы к регулярному Пилатесу, функциональному тренингу для поддержания идеального силуэта.";
+            diagnosticResult = "Глубокий корсет в норме нейтрали (Статика: " + sitLabels[sitHours] + ")";
+        }
+
+        textEl.innerText = bodyText;
+
+        const scoreBox = document.querySelector('.result-score-box');
+        scoreBox.style.transform = 'scale(1.02)';
+        setTimeout(() => { scoreBox.style.transform = 'scale(1)'; }, 150);
+
+        const baseVkUrl = "https://vk.com/im?sel=-221142875";
+        const messageText = "Вера, здравствуйте! Я изучила экспертный разбор абдоминопластики. Прошла интерактивный аудит живота в Балаково. Мой маркер здоровья: " + diagnosticResult + ". Запишите меня на тест-драйв за 990 рублей.";
+        const encodedMessage = encodeURIComponent(messageText);
+        const finalVkLink = baseVkUrl + "&message=" + encodedMessage;
+
+        const vkBtn = document.getElementById('vk-link-btn');
+        const vkRecipe = document.getElementById('vk-link-recipe');
+        if (vkBtn) vkBtn.setAttribute('href', finalVkLink);
+        if (vkRecipe) vkRecipe.setAttribute('href', finalVkLink);
+
+        const calcData = { belly, diastasis, sitHours };
+        localStorage.setItem('abdomino_data', JSON.stringify(calcData));
+    }
+
+    function resetCalculator() {
+        document.querySelectorAll('input[name="belly_state"]')[0].checked = true;
+        document.querySelectorAll('input[name="diastasis_degree"]')[0].checked = true;
+        document.getElementById('sit_slider').value = 3;
+
+        document.querySelectorAll('.radio-tile').forEach(tile => tile.classList.remove('selected'));
+        document.querySelectorAll('input[name="belly_state"]')[0].parentElement.classList.add('selected');
+        document.querySelectorAll('input[name="diastasis_degree"]')[0].parentElement.classList.add('selected');
+
+        localStorage.removeItem('abdomino_data');
+        calculateWeightIndex();
+    }
+
+    function restoreCalculatorData() {
+        const saved = localStorage.getItem('abdomino_data');
+        if (saved) {
+            try {
+                const data = JSON.parse(saved);
+                document.querySelectorAll(`input[name="belly_state"]`).forEach(i => { if(i.value === data.belly) i.checked = true; });
+                document.querySelectorAll(`input[name="diastasis_degree"]`).forEach(i => { if(i.value === data.diastasis) i.checked = true; });
+                document.getElementById('sit_slider').value = data.sitHours;
+            } catch (e) {
+                console.log("Storage sync fail pass");
+            }
+        }
+
+        document.querySelectorAll('.radio-tile').forEach(tile => {
+            if (tile.querySelector('input').checked) tile.classList.add('selected');
+        });
+    }
+
+    async function sharePage() {
+        const shareData = {
+            title: 'Операция или Пилатес? Честный audit живота перед абдоминопластикой!',
+            text: 'Я проверила тонус своих мышц на анатомическом калькуляторе платформы РЕСУРС. Узнай маркеры своего тела!',
+            url: window.location.href
+        };
+        const btnText = document.getElementById('share-btn-text');
+        if (navigator.share) {
+            try { await navigator.share(shareData); } catch (err) { console.log('Share canceled'); }
+        } else {
+            try {
+                await navigator.clipboard.writeText(window.location.href);
+                btnText.innerText = 'Ссылка скопирована!';
+                setTimeout(() => { btnText.innerText = 'Отправить подругам'; }, 3000);
+            } catch (err) {
+                alert('Скопируйте ссылку вручную.');
+            }
+        }
+    }
+</script>
+
+<!-- СКВОЗНЫЕ РЕКЛАМНЫЕ КАНАЛЫ РСЯ FLOOR AD -->
+<script>
+window.yaContextCb.push(() => {
+    Ya.Context.AdvManager.render({
+        "blockId": "R-A-19181219-6",
+        "type": "floorAd",
+        "platform": "touch"
+    })
+})
+</script>
+<script>
+window.yaContextCb.push(() => {
+    Ya.Context.AdvManager.render({
+        "blockId": "R-A-19181219-7",
+        "type": "floorAd",
+        "platform": "desktop"
+    })
+})
+</script>
+
+</body>
+</html>
