@@ -55,7 +55,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>Абдоминопластика живота в Нижнем Новгороде | Цена, отзывы, альтернатива | РЕСУРС</title>
-    <meta name="description" content="Честный анализ абдоминопластики живота в Нижнем Новгороде. When операция действительно необходима, а когда диастаз, фартук кожи и выпирающий низ живота можно убрать без ножа с помощью умного Пилатеса.">
+    <meta name="description" content="Честный анализ абдоминопластики живота в Нижнем Новгороде. Когда операция действительно необходима, а когда диастаз, фартук кожи и выпирающий низ живота можно убрать без ножа с помощью умного Пилатеса.">
     <meta name="keywords" content="абдоминопластика нижний новгород цена, пластика живота в нижнем новгороде отзывы, подтяжка кожи живота нн, убрать фартук живота нижегородская область, клиника пластической хирургии большая покровская, площадь лядова">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://resurs-stretch.ru/abdominoplastika-nn.html">
@@ -214,8 +214,21 @@
         .guide-step-content { display: none; animation: fadeIn 0.4s ease; font-size: 14px; line-height: 1.6; color: var(--text-main); }
         .guide-step-content.active { display: block; }
 
-        /* РСЯ КАРТОЧКА МИМИКРИРУЮЩАЯ ПОД БЕНТО (ФОРМАТ 1х1) */
-        .bento-rsya-box { border: var(--glass-border); background: var(--glass-bg); display: flex; justify-content: center; align-items: center; min-height: 310px; padding: 15px; border-radius: 24px; }
+        /* ЖЕСТКИЕ ТИСКИ ДЛЯ РСЯ КАРТОЧЕК (ФОРМАТ СТРОГО 1х1 БЕЗ ВЫПАДЕНИЯ ИЗ РАЗМЕРОВ) */
+        .bento-rsya-box { 
+            border: var(--glass-border); 
+            background: var(--glass-bg); 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            width: 100%; 
+            height: 100%; 
+            min-height: 310px; 
+            max-height: 340px; 
+            padding: 15px; 
+            border-radius: 24px; 
+            overflow: hidden; 
+        }
 
         /* ИНПУТЫ И КАЛЬКУЛЯТОР */
         .calc-group { margin-bottom: 25px; }
@@ -297,11 +310,30 @@
         }
         .btn-share:hover { transform: scale(1.03) translateY(-2px); box-shadow: 0 15px 35px rgba(216, 27, 96, 0.6) !important; }
 
+        /* ЖЕСТКИЕ СТИЛИ ДЛЯ РЕКОМЕНДАТЕЛЬНОЙ ЛЕНТЫ FEED МЕЖДУ КНОПКАМИ (3 БЛОКА НА ПК, 1 НА МОБИЛЬНОМ) */
+        .feed-container { 
+            margin: 25px 0; 
+            border-radius: 24px; 
+            overflow: hidden; 
+            background: var(--glass-bg); 
+            padding: 25px; 
+            border: var(--glass-border); 
+            max-height: 400px;
+        }
+        
+        @media (min-width: 969px) {
+            .feed-container #yandex_rtb_R-A-19181219-22 { 
+                display: grid !important; 
+                grid-template-columns: repeat(3, 1fr) !important; 
+                gap: 15px !important; 
+            }
+        }
+
         @media (max-width: 968px) {
             .bento-grid { display: grid; grid-template-columns: 1fr !important; }
             .span-2, .span-3 { grid-column: span 1 !important; }
             .main-layout { margin-top: 90px; }
-            .desktop-only-rsya { display: none !important; }
+            .bento-rsya-box { max-height: 280px !important; min-height: 250px !important; }
         }
     </style>
 </head>
@@ -422,7 +454,7 @@
             </div>
 
             <div class="bento-rsya-box">
-                <div style="width: 100%; text-align: center;">
+                <div style="width: 100%; text-align: center; height: 100%;">
                     <div id="yandex_rtb_tab1_placement"></div>
                     <script>
                     window.yaContextCb.push(() => {
@@ -520,7 +552,7 @@
             </div>
 
             <div class="bento-rsya-box">
-                <div style="width:100%; text-align:center;">
+                <div style="width:100%; text-align:center; height:100%;">
                     <div id="yandex_rtb_tab2_1"></div>
                     <script>
                     window.yaContextCb.push(() => {
@@ -544,7 +576,7 @@
             <div class="bento-card">
                 <div>
                     <div class="fact-num">05</div>
-                    <h3 class="fact-title">Контроль результатов по фото</h3>
+                    <h3 class="fact-title">Контроль результатов по photo</h3>
                     <p class="fact-desc">Удобный инструмент для загрузки контрольных снимков «ДО» и «ПОСЛЕ» с целью проведения объективного аудита осанки и получения бонусов.</p>
                 </div>
             </div>
@@ -559,7 +591,7 @@
             </div>
 
             <div class="bento-rsya-box">
-                <div style="width:100%; text-align:center;">
+                <div style="width:100%; text-align:center; height:100%;">
                     <div id="yandex_rtb_tab2_2"></div>
                     <script>
                     window.yaContextCb.push(() => {
@@ -597,7 +629,7 @@
             </div>
 
             <div class="bento-rsya-box">
-                <div style="width:100%; text-align:center;">
+                <div style="width:100%; text-align:center; height:100%;">
                     <div id="yandex_rtb_tab2_3"></div>
                     <script>
                     window.yaContextCb.push(() => {
@@ -635,7 +667,7 @@
             </div>
 
             <div class="bento-rsya-box">
-                <div style="width:100%; text-align:center;">
+                <div style="width:100%; text-align:center; height:100%;">
                     <div id="yandex_rtb_tab3_1"></div>
                     <script>
                     window.yaContextCb.push(() => {
@@ -669,7 +701,7 @@
             </div>
 
             <div class="bento-rsya-box">
-                <div style="width:100%; text-align:center;">
+                <div style="width:100%; text-align:center; height:100%;">
                     <div id="yandex_rtb_tab3_2"></div>
                     <script>
                     window.yaContextCb.push(() => {
@@ -697,7 +729,7 @@
                     <span class="recipe-badge">Вдохновение от Ольги Мартыновой</span>
                     <h3 class="serif" style="font-size: 26px; margin-bottom: 15px; color: var(--text-main);">«Хирургия меняет форму кожи, но только умное движение меняет функцию...»</h3>
                     <p style="font-size: 15px; line-height: 1.7; color: var(--text-main); margin-bottom: 25px;">
-                        «Мои прекрасные девочки! Пожалуйста, не спешите ложиться на операционный стол клиник эстетической хирургии от отчаяния! Абдоминопластика — это тяжелейшая травма для организма, огромный рубец и долгие месяцы скованности. Операция убирает следствие, но полностью игнорирует причину. Торчащий низ живота, вываливающийся "домик" при нагрузке и ноющая поясница — это крик вашего тела о слабости глубокой системы стабилизации и потере соосности суставов. Как специалист с высшим физкультурным образованием, я уверяю вас: ваше тело способно на колоссальное восстановление без ножа! В нашем онлайн-клубе мы возвращаем кости таза в идеальную нейтраль, разгружаем крестец и через мягкие дыхательные практики возвращаем тонус поперечной мышце живота, создавая глубокую утяжку силуэта изнутри. Вы проснетесь легкой, собранной, с красивой тонкой талией и здоровой летящей осанкой. Подарите своему телу шанс вернуть свой естественный РЕСУРС вдумчиво!»
+                        «Мои прекрасные девочки! Пожалуйста, не спешите ложиться на операционный стол клиник эстетической хирургии от отчаяния! Абдоминопластика — это тяжелейшая травма для организма, огромный рубец и долгие месяцы скованности. Операция убирает следствие, но полностью игнорирует причину. Торчащий низ живота, вываливающийся "домик" при нагрузке и ноющая поясница — это крик вашего тела о слабости глубокой системы стабилизации и потере соосности суставов. Как специалист с высшим физкультурным образованием, я уверяю вас: ваше... тело способно на колоссальное восстановление без ножа! В нашем онлайн-клубе мы возвращаем кости таза в идеальную нейтраль, разгружаем крестец и через мягкие дыхательные практики возвращаем тонус поперечной мышце живота, создавая глубокую утяжку силуэта изнутри. Вы проснетесь легкой, собранной, с красивой тонкой талией и здоровой летящей осанкой. Подарите своему телу шанс вернуть свой естественный РЕСУРС вдумчиво!»
                     </p>
                 </div>
                 <div style="max-width: 450px; margin: 0 auto;">
@@ -728,9 +760,22 @@
         </div>
     </section>
 
+    <section class="feed-container">
+        <div id="yandex_rtb_R-A-19181219-22"></div>
+        <script>
+        window.yaContextCb.push(() => {
+            Ya.Context.AdvManager.render({
+                "blockId": "R-A-19181219-22",
+                "renderTo": "yandex_rtb_R-A-19181219-22",
+                "type": "feed"
+            })
+        })
+        </script>
+    </section>
+
     <section class="share-section">
         <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">🔥 Отправить этот честный разбор подругам после родов</h3>
-        <p style="font-size: 14px; color: var(--text-dim); margin-bottom: 25px;">Поделитесь этой страницей с подругами или коллегам в Нижнем Новгороде, которые задумываются об абдоминопластике, страдают от диастаза или безуспешно пытаются убрать низ живота обычными диетами.</p>
+        <p style="font-size: 14px; color: var(--text-dim); margin-bottom: 25px;">Поделитесь этой страницей с подругами или коллегами в Нижнем Новгороде, которые задумываются об абдоминопластике, страдают от диастаза или безуспешно пытаются убрать низ живота обычными диетами.</p>
         <button class="btn-share" onclick="sharePage()">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
             <span id="share-btn-text">Отправить подругам</span>
@@ -784,6 +829,7 @@
         event.currentTarget.classList.add('active');
     }
 
+    // Восстановление утвержденных описаний и логики
     function selectTile(element) {
         const name = element.querySelector('input').name;
         document.querySelectorAll(`input[name="${name}"]`).forEach(input => {
