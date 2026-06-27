@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <script>
+        // Премиальная мятно-изумрудная тема биохакинга по умолчанию
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+
+    <script type="text/javascript">
+    // --- Yandex.Metrika counter ---
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108177329', 'ym');
+        ym(108177329, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+
+        // --- Top.Mail.Ru counter ---
+        var _tmr = window._tmr || (window._tmr = []);
+        _tmr.push({id: "3755240", type: "pageView", start: (new Date()).getTime()});
+        (function (d, w, id) {
+            if (d.getElementById(id)) return;
+            var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
+            ts.src = "https://top-fwz1.mail.ru/js/code.js";
+            var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
+            if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
+        })(document, window, "tmr-code");
+    </script>
+    <noscript>
+        <div>
+            <img src="https://mc.yandex.ru/watch/108177329" style="position:absolute; left:-9999px;" alt="" />
+            <img src="https://top-fwz1.mail.ru/counter?id=3755240;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" />
+        </div>
+    </noscript>
+
+    <script>
+        // Логика перехвата поисковых роботов Яндекса
+        window.addEventListener('DOMContentLoaded', () => {
+            const isBot = /YandexBot|YandexAccessibilityBot|YandexMobileBot|Googlebot/i.test(navigator.userAgent);
+            if (isBot) {
+                fetch('https://functions.yandexcloud.net/d4ecn5ag33dcdd2deivd?bot=true&url=' + encodeURIComponent(window.location.href))
+                .then(res => res.json())
+                .then(data => console.log("SEO Matrix Synced"))
+                .catch(e => console.log("SEO pass"));
+            }
+        });
+    </script>
+    
+    <script>window.yaContextCb=window.yaContextCb||[]</script>
+    <script src="https://yandex.ru/ads/system/context.js" async></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Биохакинг питания и микробиома в Сыктывкаре | Лимфодренаж и молодость фасций | РЕСУРС</title>
+    <meta name="description" content="Интерактивный нутригенетический скрининг в Сыктывкаре. Как поднять уровень энергии, убрать скрытые отеки и восстановить эластичность связок без жестких диет. Протоколы от Ольги Мартыновой.">
+    <meta name="keywords" content="биохакинг питания сыктывкар, застой лимфы отеки, восстановление микробиома, питание для фасций суставов">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://resurs-stretch.ru/diet-biohacking-syktyvkar.html">
+
+    <!-- OPEN GRAPH ДЛЯ СОЦСЕТЕЙ -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Биохакинг питания и микробиома в Сыктывкаре | РЕСУРС">
+    <meta property="og:description" content="Управляйте энергией и лимфостазом через ось кишечник-мозг. Пройдите экспресс-тест на скрытые дефициты.">
+    <meta property="og:url" content="https://resurs-stretch.ru/diet-biohacking-syktyvkar.html">
+    <meta property="og:image" content="https://resurs-stretch.ru/logo_header_final.png">
+
+    <link rel="icon" type="image/png" href="logo_header_final.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,400&family=Manrope:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-deep: #020805; 
+            --glass-bg: rgba(6, 20, 13, 0.85); 
+            --glass-border: 1px solid rgba(255, 255, 255, 0.06); 
+            --accent-gold: #D4A373; 
+            --accent-mint: #34D399; 
+            --accent-emerald: #059669;
+            --text-main: #EDF7F4;
+            --text-dim: rgba(237, 247, 244, 0.55);
+            --elem-bg: rgba(255, 255, 255, 0.02);
+            --elem-border: rgba(255, 255, 255, 0.08);
+            --font-main: 'Manrope', sans-serif;
+            --font-serif: 'Cormorant Garamond', serif;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --journal-card-bg: linear-gradient(135deg, #020805, rgba(6, 20, 13, 0.9));
+            --conversion-bg: linear-gradient(135deg, rgba(2, 8, 5, 0.95), rgba(6, 20, 13, 0.9));
+        }
+
+        [data-theme="light"] {
+            --bg-deep: #F7FCF9; 
+            --glass-bg: rgba(255, 255, 255, 0.95); 
+            --glass-border: 1px solid rgba(5, 150, 105, 0.08); 
+            --accent-gold: #B38639; 
+            --accent-mint: #059669;
+            --accent-emerald: #047857;
+            --text-main: #06140D;
+            --text-dim: rgba(6, 20, 13, 0.65);
+            --elem-bg: rgba(0, 0, 0, 0.01);
+            --elem-border: rgba(0, 0, 0, 0.06);
+            --journal-card-bg: linear-gradient(135deg, #255, 255, 255, rgba(52, 211, 153, 0.04));
+            --conversion-bg: linear-gradient(135deg, #ffffff, rgba(52, 211, 153, 0.05));
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
+        html { scroll-behavior: smooth; }
+        body { 
+            background: var(--bg-deep); 
+            color: var(--text-main);
+            font-family: var(--font-main); 
+            line-height: 1.6;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.015'/%3E%3C/svg%3E");
+            transition: background-color 0.4s ease, color 0.4s ease;
+            -webkit-font-smoothing: antialiased;
+            padding-bottom: 20px;
+        }
+
+        h1, h2, h3, .serif { font-family: var(--font-serif); font-weight: 600; letter-spacing: 0.5px; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+
+        /* HEADER */
+        header {
+            position: fixed; top: 0; width: 100%; padding: 20px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 2000; background: var(--glass-bg); 
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-bottom: var(--glass-border); transition: var(--transition);
+        }
+        .brand-name { font-family: var(--font-serif); font-size: 22px; letter-spacing: 6px; text-transform: uppercase; font-weight: 600; }
+        .header-controls { display: flex; gap: 12px; align-items: center; }
+        
+        #themeToggle, .btn-journal-nav {
+            padding: 0 15px; height: 35px; font-size: 10px; font-weight: 600; letter-spacing: 2px;
+            display: inline-flex; align-items: center; justify-content: center;
+            border-radius: 8px; border: 1px solid var(--elem-border); background: var(--elem-bg);
+            cursor: pointer; transition: var(--transition); color: var(--text-main); text-transform: uppercase;
+        }
+        #themeToggle:hover, .btn-journal-nav:hover { border-color: var(--accent-mint); transform: translateY(-2px); }
+        .btn-journal-nav { background: rgba(52, 211, 153, 0.1); border-color: var(--accent-mint); }
+
+        /* MAIN CONTAINER */
+        .main-layout { max-width: 1200px; margin: 120px auto 40px; padding: 0 20px; }
+
+        /* BENTO GRID */
+        .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .bento-card { background: var(--glass-bg); border: var(--glass-border); border-radius: 24px; padding: 30px; position: relative; overflow: hidden; transition: var(--transition); display: flex; flex-direction: column; justify-content: space-between; }
+        .bento-card:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(0,0,0,0.15); }
+        
+        .span-2 { grid-column: span 2; }
+        .span-3 { grid-column: span 3; }
+
+        /* ГОР-СКРОЛЛ ДЛЯ МОБИЛЬНЫХ В КАРТОЧКАХ ШАГОВ */
+        .guide-nav { 
+            display: flex; 
+            gap: 8px; 
+            margin-bottom: 20px; 
+            border-bottom: 1px solid var(--elem-border); 
+            padding-bottom: 12px; 
+            overflow-x: auto; 
+            -webkit-overflow-scrolling: touch; 
+            scrollbar-width: none; 
+        }
+        .guide-nav::-webkit-scrollbar { display: none; }
+        
+        .guide-tab { 
+            padding: 10px 20px; 
+            background: rgba(255,255,255,0.01); 
+            border: 1px solid var(--elem-border); 
+            border-radius: 12px; 
+            color: var(--text-dim); 
+            font-family: var(--font-main); 
+            font-size: 13px; 
+            font-weight: 600; 
+            cursor: pointer; 
+            transition: var(--transition); 
+            white-space: nowrap; 
+            flex-shrink: 0;
+        }
+        .guide-tab.active { background: var(--accent-emerald); color: #FFF; border-color: var(--accent-emerald); }
+        .guide-step-content { display: none; font-size: 15px; line-height: 1.7; color: var(--text-main); }
+        .guide-step-content.active { display: block; animation: fadeIn 0.5s ease; }
+
+        /* ЖЕСТКИЕ ТИСКИ ДЛЯ РСЯ КАРТОЧЕК */
+        .bento-rsya-box { 
+            border: var(--glass-border); 
+            background: var(--glass-bg); 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            width: 100%; 
+            height: 100%; 
+            min-height: 310px; 
+            max-height: 340px; 
+            padding: 15px; 
+            border-radius: 24px; 
+            overflow: hidden; 
+        }
+
+        /* ИНПУТЫ АУДИТА ПИТАНИЯ */
+        .calc-group { margin-bottom: 25px; }
+        .calc-label { font-size: 15px; font-weight: 600; margin-bottom: 12px; display: block; color: var(--text-main); line-height: 1.4; }
+        .radio-box-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+        .radio-tile {
+            border: 1px solid var(--elem-border); background: var(--elem-bg); padding: 16px;
+            border-radius: 12px; cursor: pointer; display: flex; flex-direction: column; gap: 4px; position: relative; transition: var(--transition);
+        }
+        .radio-tile input { position: absolute; top: 16px; right: 16px; accent-color: var(--accent-mint); }
+        .radio-tile.selected { border-color: var(--accent-mint); background: rgba(52, 211, 153, 0.06); }
+        .range-slider { width: 100%; accent-color: var(--accent-mint); margin: 10px 0; height: 6px; border-radius: 3px; cursor: pointer; }
+        .range-val { font-size: 16px; font-weight: 700; color: var(--accent-mint); }
+
+        /* РЕЗУЛЬТАТЫ */
+        .result-score-box { text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 40px 20px; border: 1px solid rgba(52, 211, 153, 0.15); }
+        .score-number { font-size: 24px; font-weight: 800; color: var(--accent-mint); font-family: var(--font-serif); line-height: 1.3; }
+        .score-status { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-top: 12px; }
+
+        /* КНОПКА */
+        .btn-marketing {
+            display: inline-flex; align-items: center; justify-content: center; width: 100%; padding: 22px 30px;
+            background: linear-gradient(135deg, var(--accent-emerald), #020805); color: #FFF; border: none; border-radius: 16px;
+            font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: var(--transition);
+            box-shadow: 0 8px 20px rgba(5,150,105,0.2); text-align: center;
+        }
+        .btn-marketing:hover { transform: translateY(-1px); box-shadow: 0 12px 25px rgba(5,150,105,0.3); }
+        .btn-marketing.btn-online-gold {
+            background: linear-gradient(135deg, #B38639, #8C6221) !important;
+            box-shadow: 0 8px 20px rgba(179,134,57,0.2) !important;
+        }
+
+        .btn-reset {
+            background: transparent; border: 1px dashed var(--text-dim); color: var(--text-dim);
+            padding: 10px 20px; border-radius: 10px; font-size: 12px; font-weight: 600;
+            cursor: pointer; text-transform: uppercase; transition: var(--transition);
+        }
+        .btn-reset:hover { border-color: var(--accent-mint); color: var(--accent-mint); }
+
+        .badge { background: var(--accent-emerald); color: #FFF; padding: 6px 16px; border-radius: 30px; font-size: 11px; font-weight: 700; text-transform: uppercase; display: inline-block; margin-bottom: 15px; letter-spacing: 1px; }
+
+        .share-section { margin-top: 40px; background: linear-gradient(135deg, rgba(52, 211, 153, 0.05), rgba(212, 163, 115, 0.05)); border: 1px solid var(--accent-mint); border-radius: 28px; padding: 40px 30px; text-align: center; }
+        .btn-share {
+            display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 18px 40px;
+            background: var(--accent-emerald); border: none; border-radius: 16px;
+            font-size: 16px; font-weight: 700; text-transform: uppercase; cursor: pointer; transition: var(--transition); color: #FFF;
+            width: 100%; max-width: 400px;
+        }
+
+        .feed-container { margin: 25px 0; border-radius: 24px; overflow: hidden; background: var(--glass-bg); padding: 25px; border: var(--glass-border); max-height: 400px; }
+
+        footer { width: 100%; background: transparent; }
+        .footer-container { max-width: 1200px; margin: 40px auto 0; padding: 30px 20px; border-top: 1px solid var(--glass-border); }
+        .footer-text-main { font-size: 13px; font-weight: 600; color: var(--text-main); margin-bottom: 8px; }
+        .footer-text-sub { font-size: 11px; color: var(--text-dim); }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 968px) {
+            .bento-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+            .span-2, .span-3 { grid-column: span 1 !important; }
+            .bento-card { padding: 22px !important; height: auto !important; min-height: min-content !important; }
+            .main-layout { margin-top: 90px; padding: 0 12px; }
+            .bento-rsya-box { max-height: 280px !important; min-height: 250px !important; }
+            .guide-nav { display: flex !important; flex-direction: row !important; gap: 8px !important; border-bottom: 1px solid var(--elem-border) !important; padding-bottom: 12px !important; }
+            .guide-tab { width: auto !important; text-align: center !important; }
+            .guide-step-content { display: none !important; }
+            .guide-step-content.active { display: block !important; }
+        }
+    </style>
+</head>
+<body>
+
+<header id="header">
+    <div class="brand-name">РЕСУРС | БИОХАКИНГ</div>
+    <div class="header-controls">
+        <a href="https://resurs-stretch.ru/journal.html" class="btn-journal-nav">ЖУРНАЛ</a>
+        <button id="themeToggle" onclick="toggleTheme()">ТЕНЬ</button>
+    </div>
+</header>
+
+<main class="main-layout">
+        
+    <section style="text-align: center; margin-bottom: 40px;">
+        <h1 style="font-size: clamp(24px, 4vw, 42px); line-height: 1.2; margin-bottom: 15px;">Биохакинг питания и микробиома в Сыктывкаре</h1>
+        <p style="font-size: 13pt; color: var(--text-dim); max-width: 800px; margin: 0 auto;">
+            Управляйте уровнем энергии, эластичностью связок и заемными отеками через ось «кишечник-мозг». Экспресс-тест на скрытые дефициты и застой лимфы с чистым, гипоаллергенным протоколом без лектиновых триггеров.
+        </p>
+    </section>
+
+    <div class="bento-grid">
+            
+        <!-- БЛОК 1: ИНТЕРАКТИВНЫЙ БИОХАКИНГ-ТЕСТ ПИТАНИЯ -->
+        <div class="bento-card span-2">
+            <div>
+                <span class="badge">Нутри-Скрининг</span>
+                <h2 class="serif" style="font-size: 24px; margin-bottom: 25px;">Интерактивный экспресс-анализ клеточных дефицитов</h2>
+                    
+                <!-- ШАГ 1 -->
+                <div class="calc-group">
+                    <label class="calc-label">1. Фиксируете ли вы маркеры лимфостаза (скрытые отеки)?</label>
+                    <div class="radio-box-group">
+                        <label class="radio-tile selected" onclick="selectTile(this)">
+                            <input type="radio" name="lymph_state" value="heavy_edema" checked>
+                            <span class="radio-tile-title" style="font-weight:700;">Утренние отеки лица</span>
+                            <span class="radio-tile-desc" style="font-size:12px; color:var(--text-dim); margin-top:4px;">Следы от подушки, припухлость век, тяжелые лодыжки к вечеру.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="lymph_state" value="soft_edema">
+                            <span class="radio-tile-title" style="font-weight:700;">Следы от одежды</span>
+                            <span class="radio-tile-desc" style="font-size:12px; color:var(--text-dim); margin-top:4px;">Резинки носков или белья намертво отпечатываются на коже.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="lymph_state" value="no_edema">
+                            <span class="radio-tile-title" style="font-weight:700;">Чистый лимфоток</span>
+                            <span class="radio-tile-desc" style="font-size:12px; color:var(--text-dim); margin-top:4px;">Вес стабилен, отечность отсутствует в любое время суток.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- ШАГ 2 -->
+                <div class="calc-group">
+                    <label class="calc-label">2. Оцените ваш текущий уровень энергии в течение дня:</label>
+                    <div class="radio-box-group">
+                        <label class="radio-tile selected" onclick="selectTile(this)">
+                            <input type="radio" name="energy_state" value="food_coma" checked>
+                            <span class="radio-tile-title" style="font-weight:700;">Спад после еды / Туман</span>
+                            <span class="radio-tile-desc" style="font-size:12px; color:var(--text-dim); margin-top:4px;">Через 40 минут после обеда дико клонит в сон, голова не варит.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="energy_state" value="sugar_crash">
+                            <span class="radio-tile-title" style="font-weight:700;">Тяга к сладкому в 16:00</span>
+                            <span class="radio-tile-desc" style="font-size:12px; color:var(--text-dim); margin-top:4px;">Резкое падение глюкозы, требующее дозаправки кофе и углеводами.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="energy_state" value="high_energy">
+                            <span class="radio-tile-title" style="font-weight:700;">Стабильный ровный тонус</span>
+                            <span class="radio-tile-desc" style="font-size:12px; color:var(--text-dim); margin-top:4px;">Высокая продуктивность с утра до вечера без стимуляторов.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- ШАГ 3 -->
+                <div class="calc-group">
+                    <label class="calc-label">3. Каково состояние ваших фасций и соединительной ткани?</label>
+                    <div class="radio-box-group">
+                        <label class="radio-tile selected" onclick="selectTile(this)">
+                            <input type="radio" name="fascia_state" value="dry_joints" checked>
+                            <span class="radio-tile-title" style="font-weight:700;">Хруст / Утренняя скованность</span>
+                            <span class="radio-tile-desc" style="font-size:12px; color:var(--text-dim); margin-top:4px;">Суставы «сухие», связкам не хватает эластичности при движении.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="fascia_state" value="inflammation">
+                            <span class="radio-tile-title" style="font-weight:700;">Летучие боли в суставах</span>
+                            <span class="radio-tile-desc" style="font-size:12px; color:var(--text-dim); margin-top:4px;">Периодические воспаления в коленях или поясничном отделе.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="fascia_state" value="elastic">
+                            <span class="radio-tile-title" style="font-weight:700;">Полная гибкость тканей</span>
+                            <span class="radio-tile-desc" style="font-size:12px; color:var(--text-dim); margin-top:4px;">Связки эластичные, тело мягко гнется без дискомфорта.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- ШАГ 4 -->
+                <div class="calc-group">
+                    <label class="calc-label">4. Оцените ваш средний уровень психологического или кортизолового стресса:</label>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                        <span style="font-size: 13px; color: var(--text-dim);">Уровень блокады ферментов оси «кишечник-мозг»:</span>
+                        <span id="range-sit-val" class="range-val">Высокий кортизол (8/12)</span>
+                    </div>
+                    <input type="range" id="sit_slider" class="range-slider" min="1" max="12" value="8" oninput="updateHours(this.value)">
+                </div>
+            </div>
+
+            <div style="margin-top: 20px; display: flex; justify-content: flex-end;">
+                <button class="btn-reset" onclick="resetCalculator()">Сбросить аудит</button>
+            </div>
+        </div>
+
+        <!-- БЛОК 2: ВЕРДИКТ МИКРОБИОМА -->
+        <div class="bento-card result-score-box">
+            <div>
+                <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; color: var(--text-dim); margin-bottom: 10px;">Статус оси кишечник-мозг:</div>
+                <div class="score-number" id="status-title">Кортизоловое закисление</div>
+                <div id="calc-status" class="score-status" style="color: var(--accent-mint);">Протокол: Лимфодренаж & Чистый Энерго-Пак</div>
+                <p style="font-size: 13px; opacity: 0.8; margin-top: 15px; line-height: 1.5; text-align: center;" id="status-text">
+                    Синхронизация биомаркеров...
+                </p>
+            </div>
+        </div>
+
+        <!-- РСЯ БАННЕР -->
+        <div class="bento-rsya-box">
+            <div style="width: 100%; text-align: center; height: 100%;">
+                <div id="yandex_rtb_tab1_placement"></div>
+                <script>
+                window.yaContextCb.push(() => {
+                    Ya.Context.AdvManager.render({
+                        "blockId": "R-A-19181219-23",
+                        "renderTo": "yandex_rtb_tab1_placement"
+                    })
+                })
+                </script>
+            </div>
+        </div>
+
+        <!-- БЛОК 3: НАУЧНЫЙ РАЗБОР И СЕО-БЛОК СЫКТЫВКАРА -->
+        <div class="bento-card span-2" style="border-left: 4px solid var(--accent-mint);">
+            <h2 style="font-size: 20pt; margin-bottom: 10px;">Почему подсчет калорий больше не работает?</h2>
+            <p style="font-size: 11pt; color: var(--text-dim); text-align: justify; margin-bottom: 15px;">
+                Попытки похудеть или поднять энергию обычным урезанием еды обречены на провал, если в организме заблокирован лимфоток. Застой лимфы буквально затапливает межклеточное пространство метаболическими отходами, вызывая скрытые отеки, которые люди ошибочно принимают за лишний жир. Когда кишечный барьер нарушен лектинами и скрытыми сахарами, воспалительные маркеры через кровоток атакуют ваши фасции и суставы, вызывая утреннюю скованность в пояснице и хруст. Наш интерактивный нутригенетический скрининг позволяет выстроить чистейший протокол питания, восстанавливающий баланс оси «кишечник-мозг».
+            </p>
+            <p style="font-size: 11pt; color: var(--text-main); font-weight: 600; background: rgba(52, 211, 153, 0.04); padding: 15px; border-radius: 12px; border: 1px dashed rgba(52, 211, 153, 0.15);">
+                Для жителей Сыктывкара в нашей флагманской студии на Коммунистической 77/2 доступны как живые персональные тренировки с Ольгой Мартыновой, так и интерактивные онлайн-программы.
+            </p>
+        </div>
+
+        <!-- БЛОК 4: ЭЛИТНЫЙ ПРОТОКОЛ С АВТОЗАМЕНОЙ ПРОДУКТОВ-ТРИГГЕРОВ -->
+        <div class="bento-card span-3" style="border-top: 3px solid var(--accent-mint);">
+            <div>
+                <span class="badge" style="background: var(--accent-gold); color:#fff;">Чистая альтернатива</span>
+                <h2 style="font-size: 18pt; margin-bottom: 15px;">Ваш персональный протокол замены скрытых пищевых триггеров</h2>
+                    
+                <div class="guide-nav">
+                    <button class="guide-tab active" onclick="switchGuideStep(event, 'diet-1')">Замена Лектинов & Пасленовых</button>
+                    <button class="guide-tab" onclick="switchGuideStep(event, 'diet-2')">Замена Белка & Омега-3</button>
+                    <button class="guide-tab" onclick="switchGuideStep(event, 'diet-3')">Замена Корнеплодов</button>
+                </div>
+
+                <div id="diet-1" class="guide-step-content active">
+                    <p><strong>Исключено из базы:</strong> Помидоры и огурцы (источники жестких растительных лектинов, травмирующих ворсинки кишечника и вызывающих задержку воды).</p>
+                    <p style="margin-top: 10px; color: var(--accent-mint); font-weight: 700;">Премиум Альтернатива:</p>
+                    <p style="color: var(--text-main); margin-top: 4px;">Авокадо Хасс (мононенасыщенные жиры для мембран клеток), органический свежий шпинат, спаржа на пару и брокколини. Они мягко дренируют лимфатическую систему и убирают утреннюю пастозность лица.</p>
+                </div>
+
+                <div id="diet-2" class="guide-step-content">
+                    <p><strong>Исключено из базы:</strong> Рыба и морепродукты массового разведения (риск накопления тяжелых металлов и скрытого воспаления суставов).</p>
+                    <p style="margin-top: 10px; color: var(--accent-mint); font-weight: 700;">Премиум Альтернатива:</p>
+                    <p style="color: var(--text-main); margin-top: 4px;">Фермерская перепелка, дикое мясо (оленина, косуля), чистейший конопляный протеин холодного отжима. В качестве источника незаменимых жирных кислот используется концентрированное масло антарктического криля и высокоочищенная водорослевая Омега-3 формула.</p>
+                </div>
+
+                <div id="diet-3" class="guide-step-content">
+                    <p><strong>Исключено из базы:</strong> Свекла и крахмалистые корнеплоды (высокий гликемический индекс, вызывающий инсулиновые качели и спад энергии в 16:00).</p>
+                    <p style="margin-top: 10px; color: var(--accent-mint); font-weight: 700;">Премиум Альтернатива:</p>
+                    <p style="color: var(--text-main); margin-top: 4px;">Артишоки, корни сельдерея, запеченная цветная капуста с добавлением топленого масла гхи. Обеспечивают идеальное питание для микробиома (ось кишечник-мозг) и пролонгированную клеточную энергию без скачков сахара.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- БЛОК 5: КОНВЕРСИОННЫЙ МАНИФЕСТ СТУДИИ (ПИТАНИЕ + ДВИЖЕНИЕ) -->
+        <div class="bento-card span-3" style="border: 1px solid var(--accent-mint); background: var(--conversion-bg);">
+            <div style="text-align: center; max-width: 900px; margin: 0 auto; width: 100%;">
+                <span class="badge">Энергия & Фасции</span>
+                <h2 style="font-size: 22pt; margin-bottom: 15px;">Запустите лимфодренаж и очищение организма на клеточном уровне</h2>
+                <p style="font-size: 12pt; color: var(--text-dim); margin-bottom: 25px;">
+                    Умное питание работает в 2 раза эффективнее, когда оно синхронизировано с правильным движением. Дипломированный специалист по физической культуре и спорту Ольга Мартынова создала комплексную матрицу биохакинга: МФР-релиз раскрывает лимфатические протоки, а чистый протокол питания восстанавливает эластичность фасций. Начните с тест-драйва нашего онлайн-клуба.
+                </p>
+                <div style="max-width: 450px; margin: 0 auto; width: 100%;">
+                    <a href="https://resurs-stretch.ru/club.html" class="btn-marketing btn-online-gold">Активировать нутри-тест клуба за 300₽</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ЭКСПЕРТНЫЙ БЛОК ЖУРНАЛА -->
+    <section class="bento-grid" style="margin-top: 20px;">
+        <div class="bento-card span-3" style="background: var(--journal-card-bg) !important; border-top: 2px solid var(--accent-mint);">
+            <div style="display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: start; margin-bottom: 20px;">
+                <div>
+                    <span class="badge">Экспертные знания</span>
+                    <h2 class="serif" style="font-size: clamp(22px, 3vw, 28px); margin-bottom: 12px;">Научный подход к управлению организмом: Читайте Наш Журнал</h2>
+                    <p style="font-size: 14px; color: var(--text-main); opacity: 0.85; line-height: 1.6; max-width: 900px;">
+                        В Журнале РЕСУРСА мы даем глубокий, кристально чистый анализ взаимосвязей нутрициологии и биомеханики. Узнайте, как дефицит коллагена разрушает межпозвонковые диски, почему застой желчи блокирует детоксикацию, и как кортизоловый стресс спазмирует мышцы поясницы. Каждая статья — это вклад в ваше идеальное состояние здоровья.
+                    </p>
+                </div>
+            </div>
+            <div style="max-width: 450px; margin: 10px auto 0; width: 100%;">
+                <a href="https://resurs-stretch.ru/journal.html" class="btn-marketing">Перейти в экспертный журнал</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- РЕКОМЕНДАТЕЛЬНАЯ ЛЕНТА РСЯ FEED -->
+    <section class="feed-container">
+        <div id="yandex_rtb_R-A-19181219-22"></div>
+        <script>
+        window.yaContextCb.push(() => {
+            Ya.Context.AdvManager.render({
+                "blockId": "R-A-19181219-22",
+                "renderTo": "yandex_rtb_R-A-19181219-22",
+                "type": "feed"
+            })
+        })
+        </script>
+    </section>
+
+    <!-- КНОПКА ШЕРИНГА -->
+    <section class="share-section">
+        <h3 class="serif" style="font-size: 22px; margin-bottom: 12px;">🔥 Отправить этот разбор биохакинга близким</h3>
+        <p style="font-size: 14px; color: var(--text-dim); margin-bottom: 25px;">Поделитесь этой страницей с друзьями или коллегами в Сыктывкаре, которые устали от постоянных отеков, нехватки энергии и жестких диет.</p>
+        <button class="btn-share" onclick="sharePage()">
+            <span id="share-btn-text">Поделиться протоколом</span>
+        </button>
+    </section>
+
+</main>
+
+<footer>
+    <div class="footer-container">
+        <p class="footer-text-main">© 2026 РЕСУРС | Интерактивная онлайн-платформа здоровья и умного движения.</p>
+        <p class="footer-text-sub">Результаты скрининга носят рекомендательный характер и направлены на общую оптимизацию образа жизни. При наличии острых заболеваний ЖКТ или нарушений обмена веществ проконсультируйтесь со своим лечащим врачом.</p>
+    </div>
+</footer>
+
+<script>
+    function toggleTheme() {
+        const html = document.documentElement;
+        const currentTheme = html.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        document.getElementById('themeToggle').innerText = newTheme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        const theme = document.documentElement.getAttribute('data-theme');
+        document.getElementById('themeToggle').innerText = theme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
+        calculateStatus();
+    });
+
+    function switchGuideStep(event, stepId) {
+        const card = event.currentTarget.closest('.bento-card');
+        card.querySelectorAll('.guide-step-content').forEach(content => content.classList.remove('active'));
+        card.querySelectorAll('.guide-tab').forEach(tab => tab.classList.remove('active'));
+        
+        document.getElementById(stepId).classList.add('active');
+        event.currentTarget.classList.add('active');
+    }
+
+    function selectTile(element) {
+        element.parentElement.querySelectorAll('.radio-tile').forEach(t => t.classList.remove('selected'));
+        element.classList.add('selected');
+        element.querySelector('input').checked = true;
+        calculateStatus();
+    }
+
+    function updateHours(val) {
+        document.getElementById('range-sit-val').innerText = "Высокий кортизол (" + val + "/12)";
+        calculateStatus();
+    }
+
+    function calculateStatus() {
+        const slider = document.getElementById('sit_slider');
+        const stressLevel = slider ? parseInt(slider.value) : 8;
+        
+        const title = document.getElementById('status-title');
+        const statusEl = document.getElementById('calc-status');
+        const text = document.getElementById('status-text');
+
+        const activeLymph = document.querySelector('input[name="lymph_state"]:checked');
+        const lymph = activeLymph ? activeLymph.value : 'heavy_edema';
+
+        const activeEnergy = document.querySelector('input[name="energy_state"]:checked');
+        const energy = activeEnergy ? activeEnergy.value : 'food_coma';
+
+        if (stressLevel >= 8) {
+            title.innerText = "Кортизоловый лимфостаз";
+            statusEl.innerText = "Протокол: Лимфодренаж & Чистый Энерго-Пак";
+            statusEl.style.color = "#df4759";
+            text.innerText = "Критический уровень стресса (" + stressLevel + "/12) полностью блокирует выработку соляной кислоты и ферментов поджелудочной железы. Лектины вызывают микровоспаление стенок кишечника, провоцируя скрытые отеки и утренний хруст в связках. Вам строго противопоказаны помидоры, огурцы, свекла и промышленная рыба. Замените их на дикую оленину, авокадо Хасс и спаржу.";
+        } else if (stressLevel >= 5 && stressLevel <= 7) {
+            title.innerText = "Инсулиновые качели фасций";
+            statusEl.innerText = "Протокол: Микробиота-Реставрация";
+            statusEl.style.color = "var(--accent-gold)";
+            text.innerText = "Умеренная нагрузка (" + stressLevel + "/12) в сочетании с углеводными спадами формирует скрытые дефициты коллагена. Связки теряют эластичность. Исключение свеклы и пасленовых снизит гликемический индекс, а добавление костных бульонов и масла криля восстановит водно-солевой баланс и уберет отеки со стоп.";
+        } else {
+            title.innerText = "Оптимальный статус метаболизма";
+            statusEl.innerText = "Протокол: Клеточное поддержание";
+            statusEl.style.color = "var(--accent-mint)";
+            text.innerText = "Ваши биомаркеры и ось кишечник-мозг находятся в стабильном тонусе. Хронического застоя лимфы не обнаружено. Для поддержания гибкости фасций и высокого уровня энергии продолжайте использовать чистый протокол питания на основе суперфудов, шпината и ягод.";
+        }
+    }
+
+    async function sharePage() {
+        const shareData = {
+            title: 'Биохакинг питания и микробиома РЕСУРС',
+            text: 'Я прошел интерактивный аудит дефицитов и скрытых отеков. Проверь свои маркеры!',
+            url: window.location.href
+        };
+        try {
+            await navigator.clipboard.writeText(window.location.href);
+            document.getElementById('share-btn-text').innerText = 'Ссылка скопирована!';
+            setTimeout(() => { document.getElementById('share-btn-text').innerText = 'Поделиться протоколом'; }, 3000);
+        } catch (err) {
+            alert('Скопируйте ссылку из браузера.');
+        }
+    }
+</script>
+
+</body>
+</html>
