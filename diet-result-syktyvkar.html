@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <script>
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ваш персональный статус биохакинга | Результаты | РЕСУРС</title>
+    
+    <link rel="icon" type="image/png" href="logo_header_final.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,400&family=Manrope:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <script>window.yaContextCb=window.yaContextCb||[]</script>
+    <script src="https://yandex.ru/ads/system/context.js" async></script>
+
+    <style>
+        :root {
+            --bg-deep: #020805; 
+            --glass-bg: rgba(6, 20, 13, 0.85); 
+            --glass-border: 1px solid rgba(255, 255, 255, 0.05); 
+            --accent-gold: #D4A373; 
+            --accent-mint: #34D399; 
+            --accent-emerald: #059669;
+            --text-main: #EDF7F4;
+            --text-dim: rgba(237, 247, 244, 0.5);
+            --card-radius: 32px;
+            --neon-glow: rgba(52, 211, 153, 0.05);
+            --font-main: 'Manrope', sans-serif;
+            --font-serif: 'Cormorant Garamond', serif;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --conversion-bg: linear-gradient(135deg, rgba(2, 8, 5, 0.95), rgba(6, 20, 13, 0.9));
+        }
+
+        [data-theme="light"] {
+            --bg-deep: #F6FBF8; 
+            --glass-bg: rgba(255, 255, 255, 0.95); 
+            --glass-border: 1px solid rgba(5, 150, 105, 0.06); 
+            --accent-gold: #B38639; 
+            --accent-mint: #059669;
+            --accent-emerald: #047857;
+            --text-main: #07170E;
+            --text-dim: rgba(7, 23, 14, 0.6);
+            --conversion-bg: linear-gradient(135deg, #ffffff, rgba(52, 211, 153, 0.05));
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; }
+        body { 
+            background: var(--bg-deep); color: var(--text-main); font-family: var(--font-main); line-height: 1.6;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.015'/%3E%3C/svg%3E");
+        }
+        h1, h2, h3 { font-family: var(--font-serif); font-weight: 600; }
+
+        header {
+            position: fixed; top: 0; width: 100%; padding: 20px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 2000; background: var(--glass-bg); backdrop-filter: blur(20px); border-bottom: var(--glass-border);
+        }
+        .brand-name { font-family: var(--font-serif); font-size: 22px; letter-spacing: 6px; text-transform: uppercase; }
+
+        .main-layout { max-width: 1200px; margin: 120px auto 0; padding: 0 20px; }
+        .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .bento-card { background: var(--glass-bg); border: var(--glass-border); border-radius: var(--card-radius); padding: 30px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 10px 30px var(--neon-glow); }
+        
+        .span-2 { grid-column: span 2; }
+        .span-3 { grid-column: span 3; }
+
+        .rsya-strict-frame {
+            border: var(--glass-border) !important;
+            background: var(--glass-bg);
+            border-radius: var(--card-radius);
+            padding: 20px; width: 100%; height: 100%; min-height: 330px; max-height: 360px; overflow: hidden;
+            display: flex; justify-content: center; align-items: center; box-shadow: 0 10px 30px var(--neon-glow);
+        }
+
+        .menu-item-box { background: rgba(255,255,255,0.01); border-left: 3px solid var(--accent-mint); padding: 15px; border-radius: 0 14px 14px 0; margin-top: 12px; }
+
+        .btn-marketing {
+            display: inline-flex; align-items: center; justify-content: center; width: 100%; padding: 22px 30px;
+            background: linear-gradient(135deg, #B38639, #8C6221); color: #FFF; border: none; border-radius: 16px;
+            font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: var(--transition);
+            box-shadow: 0 10px 25px rgba(179,134,57,0.2); text-align: center;
+        }
+        .btn-marketing:hover { transform: translateY(-2px); box-shadow: 0 15px 35px rgba(179,134,57,0.4); }
+
+        .badge { background: var(--accent-emerald); color: #FFF; padding: 6px 16px; border-radius: 30px; font-size: 11px; font-weight: 700; text-transform: uppercase; display: inline-block; margin-bottom: 15px; }
+
+        @media (max-width: 968px) {
+            .bento-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+            .span-2, .span-3 { grid-column: span 1 !important; }
+            .bento-card, .rsya-strict-frame { padding: 22px !important; height: auto !important; min-height: min-content !important; }
+            .rsya-strict-frame { min-height: 280px !important; }
+            .main-layout { margin-top: 90px; padding: 0 12px; }
+        }
+    </style>
+</head>
+<body>
+
+<header id="header">
+    <div class="brand-name">РЕСУРС | БИОХАКИНГ</div>
+</header>
+
+<main class="main-layout">
+    <section style="text-align: center; margin-bottom: 40px;">
+        <h1 style="font-size: clamp(24px, 4vw, 40px); margin-bottom: 12px;">Шаг 2: Ваша персональная карта оптимизации</h1>
+    </section>
+
+    <div class="bento-grid">
+        <!-- БЛОК 1: ДИАГНОЗ (СПАН 2) -->
+        <div class="bento-card span-2">
+            <div>
+                <span class="badge">Экспертное заключение кора</span>
+                <h2 class="serif" id="res-title" style="font-size: 24px; margin-bottom: 15px;">Анализ параметров...</h2>
+                <p id="res-text" style="font-size: 14px; color: var(--text-dim); text-align: justify;"></p>
+            </div>
+        </div>
+
+        <!-- БЛОК 2: ВШИТАЯ РЕКЛАМА РСЯ В ШАХМАТНОМ ПОРЯДКЕ (СПАН 1) -->
+        <div class="rsya-strict-frame">
+            <div style="width: 100%; text-align: center;">
+                <div id="yandex_rtb_p2_b1"></div>
+                <script>
+                window.yaContextCb.push(() => {
+                    Ya.Context.AdvManager.render({
+                        "blockId": "R-A-19181219-23",
+                        "renderTo": "yandex_rtb_p2_b1"
+                    })
+                })
+                </script>
+            </div>
+        </div>
+
+        <!-- БЛОК 3: ВШИТАЯ РЕКЛАМА РСЯ В ШАХМАТНОМ ПОРЯДКЕ (СПАН 1) -->
+        <div class="rsya-strict-frame">
+            <div style="width: 100%; text-align: center;">
+                <div id="yandex_rtb_p2_b2"></div>
+                <script>
+                window.yaContextCb.push(() => {
+                    Ya.Context.AdvManager.render({
+                        "blockId": "R-A-19181219-23",
+                        "renderTo": "yandex_rtb_p2_b2"
+                    })
+                })
+                </script>
+            </div>
+        </div>
+
+        <!-- БЛОК 4: ИНТЕЛЛЕКТУАЛЬНОЕ МЕНЮ С АВТОЗАМЕНОЙ (СПАН 2) -->
+        <div class="bento-card span-2" style="border-left: 4px solid var(--accent-mint);">
+            <div>
+                <span class="badge" style="background:var(--accent-gold);">Ваш чистый рацион</span>
+                <h2>Индивидуальный протокол замен суперфудов:</h2>
+                
+                <div class="menu-item-box">
+                    <strong>Салаты и Клетчатка:</strong>
+                    <p id="food-veg" style="font-size: 13px; opacity:0.9; margin-top:4px;"></p>
+                </div>
+
+                <div class="menu-item-box">
+                    <strong>Источники Эссенциального Белка & Омега-3:</strong>
+                    <p id="food-protein" style="font-size: 13px; opacity:0.9; margin-top:4px;"></p>
+                </div>
+
+                <div class="menu-item-box">
+                    <strong>Энергетические Углеводы:</strong>
+                    <p id="food-carb" style="font-size: 13px; opacity:0.9; margin-top:4px;"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- БЛОК 5: КОНВЕРСИЯ СТУДИИ (СПАН 3) -->
+        <div class="bento-card span-3" style="border: 1px solid var(--accent-mint); background: var(--conversion-bg);">
+            <div style="text-align: center; max-width: 900px; margin: 0 auto; width: 100%;">
+                <span class="badge">Энергия & Движение</span>
+                <h2 style="font-size: 22pt; margin-bottom: 15px;">Синхронизируйте чистую энергию клеток с движением</h2>
+                <p style="font-size: 12pt; color: var(--text-dim); margin-bottom: 25px;">
+                    Оптимизация питания восстанавливает эластичность связок и убирает воспаления изнутри, но застой лимфы снимается только через движение. Дипломированный специалист Ольга Мартынова разработала 50-минутные нейромышечные комплексы, которые раскрывают крупные лимфотоки. Верните свой истинный Ресурс.
+                </p>
+                <div style="max-width: 420px; margin: 0 auto; width: 100%;">
+                    <a href="https://resurs-stretch.ru/club.html" class="btn-marketing">Активировать тест-драйв за 300₽</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const stored = localStorage.getItem('user_bio_data');
+        if (!stored) {
+            window.location.href = "diet-biohacking-syktyvkar.html";
+            return;
+        }
+
+        const data = JSON.parse(stored);
+        
+        const title = document.getElementById('res-title');
+        const text = document.getElementById('res-text');
+        
+        const fVeg = document.getElementById('food-veg');
+        const fProtein = document.getElementById('food-protein');
+        const fCarb = document.getElementById('food-carb');
+
+        // Логика вердикта
+        if (data.stress >= 8) {
+            title.innerText = "Кортизоловый лимфостаз коры";
+            text.innerText = "Критический уровень кортизола (" + data.stress + "/12) спазмирует протоки печени и блокирует переваривание лектинов. Ткани задерживают воду, вызывая пастозность. Вашему кишечнику требуется строгий разгрузочный протокол без раздражающих триггеров.";
+        } else {
+            title.innerText = "Функциональный застой лимфатических депо";
+            text.innerText = "Уровень стресса в норме, но маркеры малоподвижности замедляют движение межклеточной жидкости. Требуется мягкая стимуляция фасций и добавление чистых жирных кислот для улучшения эластичности клеточных мембран.";
+        }
+
+        // Интеллектуальный фильтр продуктов
+        if (data.exTomatoes || data.exCucumbers) {
+            fVeg.innerText = "Авокадо Хасс (мононенасыщенные жиры), свежий органический шпинат, спаржа на пару, брокколини и стебли сельдерея. Лектиновые триггеры пасленовых полностью исключены.";
+        } else {
+            fVeg.innerText = "Легкие салаты на основе огурцов и томатов черри с обязательным добавлением рукколы, микрозелени и оливкового масла холодного отжима.";
+        }
+
+        if (data.exFish) {
+            fProtein.innerText = "Фермерская перепелка, дикое мясо (оленина), конопляный протеин. Омега-3 восполняется премиальным концентрированным маслом антарктического криля и водорослевой формулой DHA.";
+        } else {
+            fProtein.innerText = "Дикий лосось, сибас, радужная форель и запеченные морепродукты — источники чистейшего аминокислотного профиля и природной Омега-3.";
+        }
+
+        if (data.exBeets) {
+            fCarb.innerText = "Запеченная цветная капуста, артишоки, пюре из пастернака, киноа и масло гхи. Продукты с высоким гликемическим индексом убраны для исключения инсулиновых спадов.";
+        } else {
+            fCarb.innerText = "Молодой отварной картофель, запеченная свекла с кедровыми орехами, бурый рис и органический батат для пролонгированного запаса гликогена.";
+        }
+    });
+</script>
+</body>
+</html>
