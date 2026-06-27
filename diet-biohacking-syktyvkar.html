@@ -124,16 +124,30 @@
         h1, h2, h3, .serif { font-family: var(--font-serif); font-weight: 600; letter-spacing: 0.5px; }
         a { text-decoration: none; color: inherit; transition: var(--transition); }
 
+        /* ИСПРАВЛЕННЫЙ ХЕДЕР С ПОЛНОЙ НАВИГАЦИЕЙ КЛУБА И ЖУРНАЛА */
         header {
-            position: fixed; top: 0; width: 100%; padding: 20px 5%;
+            position: fixed; top: 0; width: 100%; padding: 15px 5%;
             display: flex; justify-content: space-between; align-items: center;
             z-index: 2000; background: var(--glass-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
             border-bottom: var(--glass-border);
         }
-        .brand-name { font-family: var(--font-serif); font-size: 22px; letter-spacing: 6px; text-transform: uppercase; font-weight: 600; }
+        .brand-name { font-family: var(--font-serif); font-size: 20px; letter-spacing: 4px; text-transform: uppercase; font-weight: 600; }
         
+        .header-controls { display: flex; gap: 10px; align-items: center; max-width: 65%; overflow-x: auto; scrollbar-width: none; }
+        .header-controls::-webkit-scrollbar { display: none; }
+        
+        .btn-nav-link {
+            padding: 0 14px; height: 35px; font-size: 11px; font-weight: 700; letter-spacing: 1px;
+            display: inline-flex; align-items: center; justify-content: center; border-radius: 8px;
+            border: 1px solid var(--elem-border); background: var(--elem-bg); color: var(--text-main);
+            text-transform: uppercase; white-space: nowrap; transition: var(--transition);
+        }
+        .btn-nav-link:hover { border-color: var(--accent-mint); background: rgba(52, 211, 153, 0.05); }
+        .btn-nav-accent { background: rgba(52, 211, 153, 0.12); border-color: var(--accent-mint); }
+        .btn-nav-accent:hover { background: var(--accent-mint); color: #fff; }
+
         #themeToggle {
-            padding: 0 15px; height: 35px; font-size: 10px; font-weight: 600; letter-spacing: 2px;
+            padding: 0 12px; height: 35px; font-size: 10px; font-weight: 600; letter-spacing: 2px;
             border-radius: 8px; border: 1px solid var(--elem-border); background: var(--elem-bg);
             cursor: pointer; color: var(--text-main); text-transform: uppercase; transition: var(--transition);
         }
@@ -190,6 +204,7 @@
         
         .menu-item-box { background: rgba(255,255,255,0.01); border-left: 3px solid var(--accent-mint); padding: 15px; border-radius: 0 14px 14px 0; margin-top: 12px; text-align: left; width: 100%; }
 
+        /* ИСПРАВЛЕННАЯ СМАРТФОН-КНОПКА */
         .btn-marketing {
             display: inline-flex; align-items: center; justify-content: center; width: 100%; padding: 22px 30px;
             background: linear-gradient(135deg, var(--accent-emerald), #020805); color: #FFF; border: none; border-radius: 16px;
@@ -199,25 +214,44 @@
         .btn-marketing:hover { transform: translateY(-1px); box-shadow: 0 12px 25px rgba(5,150,105,0.3); }
         .btn-marketing.btn-online-gold { background: linear-gradient(135deg, #B38639, #8C6221) !important; box-shadow: 0 8px 20px rgba(179,134,57,0.2) !important; }
 
+        /* АДАПТИВНЫЙ ТЕКСТ КНОПКИ ЧЕРЕЗ CONTENT ПО УМОЛЧАНИЮ ДЛЯ ДЕСКТОПА */
+        .btn-marketing-text::after { content: "Рассчитать диету и узнать причину зажима живота →"; }
+
         .badge { background: var(--accent-emerald); color: #FFF; padding: 6px 16px; border-radius: 30px; font-size: 11px; font-weight: 700; text-transform: uppercase; display: inline-block; margin-bottom: 15px; }
         .feed-container { margin: 25px 0; border-radius: var(--card-radius); overflow: hidden; background: var(--glass-bg); padding: 25px; border: var(--glass-border); max-height: 400px; }
 
         .hidden-result-node { display: none; opacity: 0; transition: opacity 0.5s ease; }
+
+        /* ЭЛИТНАЯ СОВРЕМЕННАЯ СТУДИЙНАЯ КНОПКА ШЕРИНГА */
+        .share-section { margin-top: 40px; background: linear-gradient(135deg, rgba(52, 211, 153, 0.04), rgba(212, 163, 115, 0.03)); border: 1px solid var(--glass-border); border-radius: 28px; padding: 40px 30px; text-align: center; }
+        .btn-share {
+            display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 18px 35px;
+            background: var(--glass-bg); border: 1px solid var(--accent-mint); border-radius: 16px;
+            font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: var(--transition); color: var(--text-main);
+            box-shadow: 0 4px 15px var(--neon-glow); width: 100%; max-width: 380px; margin: 0 auto;
+        }
+        .btn-share:hover { border-color: var(--accent-mint); background: var(--accent-emerald); color: #fff; box-shadow: 0 8px 25px rgba(5,150,105,0.3); transform: translateY(-1px); }
+        .btn-share svg { fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; transition: var(--transition); }
 
         @media (max-width: 968px) {
             .bento-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
             .span-2, .span-3 { grid-column: span 1 !important; }
             .bento-card, .rsya-strict-frame { padding: 22px !important; height: auto !important; min-height: min-content !important; }
             .rsya-strict-frame { min-height: 280px !important; }
-            .main-layout { margin-top: 90px; padding: 0 12px; }
+            .main-layout { margin-top: 100px; padding: 0 12px; }
+            /* СЖАТИЕ ТЕКСТА ДЛЯ МОБИЛЫ */
+            .btn-marketing-text::after { content: "Получить полезную диету →" !important; }
+            .header-controls { max-width: 100%; width: auto; }
         }
     </style>
 </head>
 <body>
 
 <header id="header">
-    <div class="brand-name">РЕСУРС | Оптимизация Тела</div>
+    <div class="brand-name">РЕСУРС</div>
     <div class="header-controls">
+        <a href="https://resurs-stretch.ru/journal.html" class="btn-nav-link">Журнал</a>
+        <a href="https://resurs-stretch.ru/club.html" class="btn-nav-link btn-nav-accent">Онлайн Клуб</a>
         <button id="themeToggle" onclick="toggleTheme()">ТЕНЬ</button>
     </div>
 </header>
@@ -302,14 +336,16 @@
                     <label class="calc-label">4. Сколько часов в день вы проводите сидя (работа, автомобиль, диван)?</label>
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
                         <span style="font-size: 13px; color: var(--text-dim);">Уровень застоя жидкости и лимфы:</span>
-                        <span id="range-sit-val" class="range-val">Высокий риск застоя (8 часов)</span>
+                        <span id="range-sit-val" class="range-val">Риск лимфостаза высокий (8 часов)</span>
                     </div>
                     <input type="range" id="sit_slider" class="range-slider" min="1" max="12" value="8" oninput="updateHours(this.value)">
                 </div>
             </div>
             
             <div style="margin-top: 15px;">
-                <button class="btn-marketing" onclick="calculateBentoDiet()">Рассчитать диету и узнать причину зажима живота →</button>
+                <button class="btn-marketing" onclick="calculateBentoDiet()">
+                    <span class="btn-marketing-text"></span>
+                </button>
             </div>
         </div>
 
@@ -363,7 +399,7 @@
             </div>
         </div>
 
-        <!-- БЛОК 5: АДАРТИВНАЯ РАМКА РСЯ №2 В ШАХМАТНОМ ПОРЯДКЕ (СПАН 1) -->
+        <!-- БЛОК 5: АДАПТИВНАЯ РАМКА РСЯ №2 В ШАХМАТНОМ ПОРЯДКЕ (СПАН 1) -->
         <div class="rsya-strict-frame hidden-result-node" id="rsya-2">
             <div style="width: 100%; text-align: center;">
                 <div id="yandex_rtb_b2"></div>
@@ -420,8 +456,14 @@
 
     <!-- КНОПКА ШЕРИНГА -->
     <section class="share-section">
-        <h3 class="serif" style="font-size: 22px; margin-bottom: 12px;">🔥 Поделиться полезным тестом похудения с близкими</h3>
-        <button class="btn-share" onclick="sharePage()"><span id="share-btn-text">Скопировать ссылку на тест</span></button>
+        <h3 class="serif" style="font-size: 20px; margin-bottom: 15px; color: var(--text-main);">🔥 Поделиться полезным тестом похудения с близкими</h3>
+        <button class="btn-share" onclick="sharePage()">
+            <svg width="18" height="18" viewBox="0 0 24 24">
+                <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+            </svg>
+            <span id="share-btn-text">Скопировать ссылку на тест</span>
+        </button>
     </section>
 </main>
 
@@ -484,16 +526,16 @@ window.yaContextCb.push(() => {
         const goal = document.querySelector('input[name="user_goal"]:checked').value;
 
         // Считываем статусы 10 триггеров исключений
-        const exMeat = document.getElementById('ex_meat').parentElement.classList.contains('active');
-        const exMilk = document.getElementById('ex_milk').parentElement.classList.contains('active');
-        const exFish = document.getElementById('ex_fish').parentElement.classList.contains('active');
-        const exTomato = document.getElementById('ex_tomato').parentElement.classList.contains('active');
-        const exCucumber = document.getElementById('ex_cucumber').parentElement.classList.contains('active');
-        const exBeet = document.getElementById('ex_beet').parentElement.classList.contains('active');
-        const exGluten = document.getElementById('ex_gluten').parentElement.classList.contains('active');
-        const exGrain = document.getElementById('ex_grain').parentElement.classList.contains('active');
-        const exSugar = document.getElementById('ex_sugar').parentElement.classList.contains('active');
-        const exBroccoli = document.getElementById('ex_broccoli').parentElement.classList.contains('active');
+        const exMeat = document.getElementById('ex_meat').checked;
+        const exMilk = document.getElementById('ex_milk').checked;
+        const exFish = document.getElementById('ex_fish').checked;
+        const exTomato = document.getElementById('ex_tomato').checked;
+        const exCucumber = document.getElementById('ex_cucumber').checked;
+        const exBeet = document.getElementById('ex_beet').checked;
+        const exGluten = document.getElementById('ex_gluten').checked;
+        const exGrain = document.getElementById('ex_grain').checked;
+        const exSugar = document.getElementById('ex_sugar').checked;
+        const exBroccoli = document.getElementById('ex_broccoli').checked;
 
         const title = document.getElementById('status-title');
         const statusEl = document.getElementById('calc-status');
@@ -534,7 +576,7 @@ window.yaContextCb.push(() => {
         // Углеводный блок
         let carbList = ["киноа"];
         if (!exGluten && !exGrain) carbList.push("бурый дикий рис", "зеленая гречка");
-        if (!exBeets) carbList.push("запеченная свекла с кедровыми орехами");
+        if (!exBeet) carbList.push("запеченная свекла с кедровыми орехами");
         if (!exSugar) carbList.push("органические лесные ягоды (малина, голубика) как антиоксиданты");
         if (exBeet || exGrain) carbList.push("пюре из пастернака и артишоки");
         fCarb.innerText = carbList.join(", ") + ". Обеспечивает ровный тонус энергии без инсулиновых качелей и срывов.";
