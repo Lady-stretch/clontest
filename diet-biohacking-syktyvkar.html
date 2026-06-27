@@ -54,7 +54,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>Как убрать живот, скинуть 10 кг и избавиться от отеков в Сыктывкаре | Полезные диеты без спорта | РЕСУРС</title>
-    <meta name="description" content="Честный answer: что делать при толстом животе и утренних отеках в Сыктывкаре. Как правильно кушать, быстро похудеть без жесткого спорта и голодовок. Интерактивный тест-меню от Ольги Мартыновой.">
+    <meta name="description" content="Честный answer: что делать при толстом животе and утренних отеках в Сыктывкаре. Как правильно кушать, быстро похудеть без жесткого спорта и голодовок. Интерактивный тест-меню от Ольги Мартыновой.">
     <meta name="keywords" content="как убрать живот сыктывкар, как быстро похудеть без спорта, что делать при толстом животе, как скинуть 10 кг, убрать отеки лица тела, полезные диеты как правильно кушать">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://resurs-stretch.ru/diet-biohacking-syktyvkar.html">
@@ -84,6 +84,22 @@
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Поможет. Многочасовое сидение за столом спазмирует глубокие мышцы таза и грудной клетки, физически пережимая крупные лимфатические протоки. МФР-релиз мягко снимает эти тиски, восстанавливая естественный лимфодренаж."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Правда ли, что для реальной пользы и похудения не нужен изнурительный фитнес?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Абсолютная правда. Тяжелый изнурительный фитнес загоняет уставший организм в состояние жесткого кортизолового стресса, из-за чего тело начинает еще сильнее удерживать воду и копить висцеральный жир в области талии. Мягкие, физиологичные нагрузки запускают жиросжигание без истощения нервной системы."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Как Пилатес и тренировки Здоровая спина влияют на выпирающий живот?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Эти направления работают напрямую с первопричиной проблемы — восстанавливают физиологические изгибы позвоночника, снимают зажимы с дыхательной диафрагмы и укрепляют глубокий мышечный корсет (поперечную мышцу). Живот уходит за счет того, что внутренние органы возвращаются в свое естественное анатомическое положение."
           }
         }
       ]
@@ -270,6 +286,16 @@
         .faq-item { border-bottom: 1px solid var(--elem-border); padding: 18px 0; text-align: left; cursor: pointer; }
         .faq-question { font-size: 16px; font-weight: 700; display: flex; justify-content: space-between; align-items: center; }
         .faq-answer { display: none; font-size: 14px; color: var(--text-dim); margin-top: 10px; line-height: 1.6; }
+
+        /* ИНТЕЛЛЕКТУАЛЬНЫЕ СТИЛИ ДЛЯ ОТЗЫВОВ И СМАРТ-КНОПКИ */
+        .review-card { background: var(--elem-bg); padding: 15px; border-radius: 14px; transition: var(--transition); display: block; }
+        .stars-container { display: inline-block; margin-left: 8px; color: #FBBF24; font-size: 14px; vertical-align: middle; letter-spacing: 1px; }
+        .btn-show-more-reviews {
+            display: inline-flex; align-items: center; justify-content: center; margin: 20px auto 0; padding: 12px 28px;
+            background: var(--elem-bg); border: 1px solid var(--elem-border); border-radius: 12px; color: var(--text-main);
+            font-size: 13px; font-weight: 700; text-transform: uppercase; cursor: pointer; transition: var(--transition);
+        }
+        .btn-show-more-reviews:hover { border-color: var(--accent-mint); background: rgba(52, 211, 153, 0.05); }
 
         /* ВЫРАВНИВАНИЕ ПОДВАЛА СТРОГО ПО ЦЕНТРУ */
         footer { width: 100%; background: transparent; text-align: center; }
@@ -477,39 +503,57 @@
                 <div class="faq-question">Поможет ли миофасциальный релиз (МФР) от утренних отеков лица? <span>+</span></div>
                 <div class="faq-answer">Поможет. Многочасовое сидение спазмирует глубокие мышцы таза и грудной клетки, физически пережимая крупные лимфатические протоки. МФР-релиз мягко снимает эти мышечные тиски, восстанавливая естественный лимфодренаж по всему телу.</div>
             </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">Правда ли, что для реальной пользы и похудения не нужен изнурительный фитнес? <span>+</span></div>
+                <div class="faq-answer">Абсолютная правда. Тяжелый изнурительный фитнес загоняет уставший организм в состояние жесткого кортизолового стресса, из-за чего тело начинает еще сильнее удерживать воду и копить висцеральный жир в области талии. Мягкие, физиологичные нагрузки запускают жиросжигание без истощения нервной системы.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">Как Пилатес и тренировки Здоровая спина влияют на выпирающий живот? <span>+</span></div>
+                <div class="faq-answer">Эти направления работают напрямую с первопричиной проблемы — восстанавливают физиологические изгибы позвоночника, снимают зажимы с дыхательной диафрагмы и укрепляют глубокий мышечный корсет (поперечную мышцу). Живот уходит за счет того, что внутренние органы возвращаются в свое естественное анатомическое положение.</div>
+            </div>
         </div>
 
         <div class="bento-card span-3" style="border-top: 2px solid var(--accent-mint);">
             <h2 class="serif" style="font-size: 20px; margin-bottom: 15px;">Отзывы тех, кто уже меняет свою жизнь в РЕСУРСЕ</h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; text-align: left;">
-                <div style="background: var(--elem-bg); padding: 15px; border-radius: 14px;">
-                    <strong>Полина Ч.</strong><p style="font-size:12px; opacity:0.7;">25 июня 2026</p>
+            <div id="reviews-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; text-align: left;">
+                <div class="review-card">
+                    <strong>Полина Ч.</strong><div class="stars-container">★★★★★</div>
+                    <p style="font-size:12px; opacity:0.7; margin-top:2px;">25 июня 2026</p>
                     <p style="font-size:13px; margin-top:6px;">Все замечательно! Если усталость или скучно без зарядки - после тренировки настроение отличное! Спасибо за ваш отклик, мы старались.</p>
                 </div>
-                <div style="background: var(--elem-bg); padding: 15px; border-radius: 14px;">
-                    <strong>Александра Ш.</strong><p style="font-size:12px; opacity:0.7;">24 июня 2026</p>
+                <div class="review-card">
+                    <strong>Александра Ш.</strong><div class="stars-container">★★★★★</div>
+                    <p style="font-size:12px; opacity:0.7; margin-top:2px;">24 июня 2026</p>
                     <p style="font-size:13px; margin-top:6px;">Всем рекомендую студию Ресурс. Прекрасная перезагрузка после рабочего дня. Посещаю тренировки: пилатес, здоровая спина, МФР, стретчинг. Очень нравится, справятся все. Тренер Ольга супер профессионал и просто очень позитивный человек.</p>
                 </div>
-                <div style="background: var(--elem-bg); padding: 15px; border-radius: 14px;">
-                    <strong>Чугаева А.</strong><p style="font-size:12px; opacity:0.7;">24 июня 2026</p>
+                <div class="review-card">
+                    <strong>Чугаева А.</strong><div class="stars-container">★★★★★</div>
+                    <p style="font-size:12px; opacity:0.7; margin-top:2px;">24 июня 2026</p>
                     <p style="font-size:13px; margin-top:6px;">Хожу в студию растяжки и движения «Ресурс» уже более 6 месяцев — и ни разу не пожалела! Атмосфера здесь невероятно уютная: сразу чувствуешь, что ты в надёжных руках и можешь расслабиться. Отдельное спасибо тренеру Ольге — она настоящий профессионал: всё объясняет понятно, следит за техникой, но при этом не давит, а мягко помогает дойти до своего предела.</p>
                 </div>
-                <div style="background: var(--elem-bg); padding: 15px; border-radius: 14px;">
-                    <strong>Ольга Н.</strong><p style="font-size:12px; opacity:0.7;">21 июня 2026</p>
+                <div class="review-card">
+                    <strong>Ольга Н.</strong><div class="stars-container">★★★★★</div>
+                    <p style="font-size:12px; opacity:0.7; margin-top:2px;">21 июня 2026</p>
                     <p style="font-size:13px; margin-top:6px;">Отличная студия растяжки! Рекомендую всем! Долгое время занимаюсь в этой студии и очень довольна своим выбором. Первое, что впечатлило – это профессиональный подход к тренировкам. Ольга-тренер настоящий эксперт, который умеет найти индивидуальный подход к каждому клиенту.</p>
                 </div>
-                <div style="background: var(--elem-bg); padding: 15px; border-radius: 14px;">
-                    <strong>Лена Ш.</strong><p style="font-size:12px; opacity:0.7;">18 июня 2026</p>
+                <div class="review-card">
+                    <strong>Лена Ш.</strong><div class="stars-container">★★★★★</div>
+                    <p style="font-size:12px; opacity:0.7; margin-top:2px;">18 июня 2026</p>
                     <p style="font-size:13px; margin-top:6px;">Попала к Высокопрофессиональному тренеру Ольге. Заряжает своей энергией и позитивом. Все сюда. Очень правильное и приятное времяпрепровождение.</p>
                 </div>
-                <div style="background: var(--elem-bg); padding: 15px; border-radius: 14px;">
-                    <strong>Наталья С.</strong><p style="font-size:12px; opacity:0.7;">15 июня 2026</p>
+                <div class="review-card">
+                    <strong>Наталья С.</strong><div class="stars-container">★★★★★</div>
+                    <p style="font-size:12px; opacity:0.7; margin-top:2px;">15 июня 2026</p>
                     <p style="font-size:13px; margin-top:6px;">Отличная студия👍Очень внимательные и знающие свою работу тренера. Получаешь полный заряд энергии и уверенность в себе.</p>
                 </div>
-                <div style="background: var(--elem-bg); padding: 15px; border-radius: 14px;">
-                    <strong>Жанна Т.</strong><p style="font-size:12px; opacity:0.7;">10 мая 2026</p>
+                <div class="review-card">
+                    <strong>Жанна Т.</strong><div class="stars-container">★★★★★</div>
+                    <p style="font-size:12px; opacity:0.7; margin-top:2px;">10 мая 2026</p>
                     <p style="font-size:13px; margin-top:6px;">Рядом с домом, удобное расписание проведения тренировок. Профессиональный фитнес тренер Ольга Мартынова поможет подготовить фигуру к лету и держать форму, научит разным оздоровительным упражнениям. Очень нравится её ответственный подход к проведению тренировок!</p>
                 </div>
+            </div>
+            <div style="text-align: center;">
+                <button id="show-more-reviews-btn" class="btn-show-more-reviews" onclick="showAllReviews()">Показать еще</button>
             </div>
         </div>
 
@@ -590,6 +634,39 @@
         else { ans.style.display = 'block'; span.innerText = '-'; }
     }
 
+    /* АДАПТИВНАЯ ИНИЦИАЛИЗАЦИЯ И ФИЛЬТРАЦИЯ ОТЗЫВОВ */
+    function initReviews() {
+        const reviews = document.querySelectorAll('.review-card');
+        const isMobile = window.innerWidth <= 768;
+        const limit = isMobile ? 2 : 3;
+
+        reviews.forEach((review, index) => {
+            if (index >= limit) {
+                review.style.display = 'none';
+            } else {
+                review.style.display = 'block';
+            }
+        });
+        
+        const btn = document.getElementById('show-more-reviews-btn');
+        if (reviews.length <= limit) {
+            btn.style.display = 'none';
+        } else {
+            btn.style.display = 'inline-flex';
+        }
+    }
+
+    function showAllReviews() {
+        document.querySelectorAll('.review-card').forEach(review => {
+            review.style.display = 'block';
+        });
+        document.getElementById('show-more-reviews-btn').style.display = 'none';
+    }
+
+    // Запуск адаптивного скрытия при загрузке страницы и ресайзе окна
+    window.addEventListener('DOMContentLoaded', initReviews);
+    window.addEventListener('resize', initReviews);
+
     function calculateBentoDiet() {
         const slider = document.getElementById('sit_slider');
         const sitHours = slider ? parseInt(slider.value) : 8;
@@ -627,10 +704,10 @@
             title.innerText = "Лимфатический отек и пастозность тканей";
             statusEl.innerText = "Решение: Слив лишней воды & Активация лимфотока";
             statusEl.style.color = "var(--accent-mint)";
-            text.innerText = "Ваш выпирающий живот и дряблость во многом вызваны нарушением дренажной функции лимфы. Из-за многочасовой статики за столом (" + sitHours + " ч.) глубокие мышцы таза зажимают крупные протоки, и тело начинает консервировать межклеточную жидкость, маскируя её под лишний вес. Вывести до 7-10 кг отеков без изнуряющего кардио-нагрузок позволяет отказ от скрытых триггеров брожения и раскрытие зажимов скелета методами МФР-релиза.";
+            text.innerText = "Ваш выпирающий живот и дряблость во многом вызваны нарушением дренажной функции лимфы. Из-за многочасовой статики за столом (" + sitHours + " ч.) глубокие мышцы таза зажимают крупные протоки, и тело начинает консервировать межклеточную жидкость, маскируя её под лишний вес. Вывести до 7-10 кг отеков без изнурующего кардио-нагрузок позволяет отказ от скрытых триггеров брожения и раскрытие зажимов скелета методами МФР-релиза.";
         } else {
             title.innerText = "Углеводная дряблость и дефицит энергии";
-            statusEl.innerText = "Решение: Реставрация Микробиома & Тонус кора";
+            statusEl.innerText = "Решение: Реставрация Микробиома & Toнус кора";
             statusEl.style.color = "var(--accent-gold)";
             text.innerText = "Избыточный объем в талии вызван снижением тонуса глубокой поперечной мышцы живота, которая перестает выполнять функцию живого анатомического корсета. Постоянные инсулиновые качели из-за скрытых сахаров в еде провоцируют упадок сил. Персональный полезный рацион без рафинированных углеводов вернет ровную энергию клеткам и вернет упругость мышцам кора.";
         }
