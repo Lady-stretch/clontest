@@ -48,32 +48,27 @@
         });
     </script>
     
-    <!-- Подключение рекламной системы Яндекса (РСЯ) -->
     <script>window.yaContextCb=window.yaContextCb||[]</script>
     <script src="https://yandex.ru/ads/system/context.js" async></script>
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- ГЕО-ЗАВИСИМАЯ СЕО ОПТИМИЗАЦИЯ ПОД СЫКТЫВКАР И РЕСПУБЛИКУ КОМИ -->
     <title>Купить микрозелень в Сыктывкаре от 180 руб | Клеточный детокс и фитнес РЕСУРС</title>
     <meta name="description" content="Прямая продажа микрозелени брокколи и гороха в Сыктывкаре на Коммунистической 77/2. Цена от 180 руб, предзаказ для физлиц от 5 лотков. Интерактивный калькулятор детокса и лимфодренажный МФР фитнес Ольги Мартыновой.">
     <meta name="keywords" content="микрозелень сыктывкар купить, правильное питание коми, детокс программа сыктывкар, витамины для женщин, как убрать утренние отеки, студия ресурс сыктывкар, эко омоложение тела, фитнес на коммунистической">
     <meta name="robots" content="index, follow">
     
-    <!-- ТОЧНАЯ КАНОНИЧЕСКАЯ ССЫЛКА ПОД ИМЯ ФАЙЛА С ГЕО-ХВОСТОМ -->
     <link rel="canonical" href="https://resurs-stretch.ru/microgreen-detox-syktyvkar.html">
 
-    <!-- OPEN GRAPH ДЛЯ СОЦСЕТЕЙ И МЕССЕНДЖЕРОВ -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Купить микрозелень в Сыктывкаре от 180 руб | Клеточный детокс РЕСУРС">
+    <meta property="og:title" content="Купить микрозелень в Сыктывкаре от 180 руб | Клеточный Детокс РЕСУРС">
     <meta property="og:description" content="Прямые заказы на живую микрозелень брокколи и гороха партиями от 5 лотков в Сыктывкаре. Рассчитайте уровень застоя лимфы на сайте студии РЕСУРС.">
     <meta property="og:url" content="https://resurs-stretch.ru/microgreen-detox-syktyvkar.html">
     <meta property="og:image" content="https://resurs-stretch.ru/logo_header_final.png">
     <meta property="og:site_name" content="РЕСУРС">
     <meta property="og:locale" content="ru_RU">
 
-    <!-- ВНЕДРЕНИЕ SCHEMA.ORG ПРАЙС-ЛИСТА ДЛЯ КАТЕГОРИИ ТОВАРОВ И УСЛУГ -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -273,6 +268,39 @@
         .fact-title { font-size: 18px; font-weight: 600; margin-bottom: 10px; line-height: 1.3; font-family: var(--font-serif); color: var(--text-main); }
         .fact-desc { font-size: 14px; color: var(--text-dim); line-height: 1.6; }
 
+        /* ИСПРАВЛЕННЫЙ И СТИЛИЗОВАННЫЙ ЗНАЧОК ДЛЯ ПРАВИЛ */
+        .recipe-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px 18px;
+            background: var(--elem-bg);
+            border: 2px solid var(--accent-green);
+            color: var(--accent-green);
+            font-family: var(--font-main);
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border-radius: 30px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 10px rgba(76, 175, 80, 0.1);
+            transition: var(--transition);
+        }
+
+        /* КОНТЕНТНЫЙ ФРЕЙМ РСЯ БЕЗ РАЗРУШЕНИЯ СТИЛИСТИКИ BENTO */
+        .rsya-bento-frame {
+            background: var(--glass-bg);
+            border: var(--glass-border);
+            border-radius: 24px;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 280px;
+            overflow: hidden;
+        }
+
         .share-section { margin-top: 50px; background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), rgba(179, 134, 57, 0.08)); border: 2px solid var(--accent-green); border-radius: 28px; padding: 40px 30px; text-align: center; box-shadow: 0 15px 40px rgba(76,175,80,0.1); }
         .btn-share {
             display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 18px 40px;
@@ -308,13 +336,13 @@
             opacity: 0.85;
             max-width: 900px;
             margin: 0 auto;
-            
         }
 
         @media (max-width: 968px) {
             .bento-grid { grid-template-columns: 1fr; }
             .span-2, .span-3 { grid-column: span 1; }
             .main-layout { margin-top: 90px; }
+            .rsya-bento-frame { min-height: 250px; }
         }
     </style>
 </head>
@@ -338,7 +366,6 @@
         </p>
     </section>
 
-    <!-- ВНЕДРЕН ПРЯМОЙ КОММЕРЧЕСКИЙ КАТАЛОГ С ЦЕНАМИ ДЛЯ СЕО-ОБХОДА -->
     <section class="bento-grid" style="margin-bottom: 40px;">
         <div class="bento-card span-3" style="border-bottom: 2px solid var(--accent-green);">
             <h2 class="serif" style="font-size: 22px; margin-bottom: 15px;">Прайс-лист на микрозелень на Коммунистической (Предзаказ от 5 лотков)</h2>
@@ -363,12 +390,11 @@
     </section>
 
     <nav class="tabs-nav" aria-label="Разделы страницы">
-        <button class="tab-btn active" onclick="switchTab(event, 'tab-calc')">Direct-Тест нутриентного баланса</button>
+        <button class="tab-btn active" onclick="switchTab(event, 'tab-calc')">📊 Экспресс-тест нутриентного баланса</button>
         <button class="tab-btn" onclick="switchTab(event, 'tab-facts')">🔬 10 фактов о биохимии омоложения</button>
         <button class="tab-btn" onclick="switchTab(event, 'tab-recipes')">🌿 4 золотых правила детокса от Ольги Мартыновой</button>
     </nav>
 
-    <!-- ТАБ 1: ИНТЕРАКТИВНЫЙ БЕНТО-КАЛЬКУЛЯТОР -->
     <div id="tab-calc" class="tab-content active">
         <div class="bento-grid">
             
@@ -441,7 +467,7 @@
                 <div class="calc-group">
                     <label class="calc-label">4. Укажите, сколько порций свежей сырой зелени и овощей вы съедаете ежедневно:</label>
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
-                        <span style="font-size: 13px; color: var(--text-dim);">Потребление живых нутриентов:</span>
+                        <span style="font-size: 13px; color: var(--text-dim);) ">Потребление живых нутриентов:</span>
                         <span id="range-green-val" class="range-val" style="color: var(--accent-green);">Практически не ем зелень</span>
                     </div>
                     <input type="range" id="green_slider" class="range-slider" min="0" max="3" value="0" step="1" oninput="calculateDetoxIndex()">
@@ -452,7 +478,6 @@
                 </div>
             </div>
 
-            <!-- Результат расчета -->
             <div class="bento-card result-score-box">
                 <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; color: var(--text-dim); margin-bottom: 10px;">Ваш индекс эко-очищения организма:</div>
                 <div id="calc-result-title" class="score-number">35% Защиты</div>
@@ -462,24 +487,44 @@
                 </p>
             </div>
 
-            <!-- Научный разбор лимфо-насоса -->
-            <div class="bento-card span-3" style="border-left: 4px solid var(--accent-gold);">
+            <div class="bento-card span-2" style="border-left: 4px solid var(--accent-gold);">
                 <div style="display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: start;">
                     <div>
-                        <h3 class="serif" style="font-size: 22px; margin-bottom: 10px;">Почему микрозелень не сработает без механической активации мышц</h3>
+                        <h3 class="serif" style="font-size: 22px; margin-bottom: 10px;">Why микрозелень не сработает без механической активации мышц</h3>
                         <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
                             Микрозелень редиса, брокколи или гороха — это сокровищница витаминов и антиоксидантов (сульфорафана, хлорофилла), запускающая глубокий клеточный детокс печени и крови. Однако ни один самый дорогой суперфуд не принесет пользы, если застойная лимфа стоит колом. В отличие от кровеносной системы, у лимфы нет сердца — её «насосом» служат исключительно сокращения глубоких скелетных мышц и движение диафрагмы. Если вы сидите часами в офисе, лимфоток останавливается, вызывая отеки под глазами и целлюлит на бедрах. Нутриенты из еды просто не могут пробиться сквозь эту «болотную» жидкость к клеткам кожи! Чтобы запустить омоложение, нужен комплексный подход студии «РЕСУРС» на Коммунистической: мы проталкиваем антиоксиданты микрозелени в ткани через лимфодренажный **МФР** (самомассаж роллами) и бережный **Аэростретчинг** в гамаках.
                         </p>
                     </div>
-                    <div style="background: var(--elem-bg); padding: 15px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent-gold)" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                    </div>
                 </div>
             </div>
 
-            <!-- МАРКЕТИНГОВАЯ КНОПКА (СТРОГО КРАСНАЯ) -->
+            <div class="rsya-bento-frame">
+                <div id="yandex_rtb_tab1_1"></div>
+                <script>
+                window.yaContextCb.push(() => {
+                    Ya.Context.AdvManager.render({
+                        "blockId": "R-A-19181219-20",
+                        "renderTo": "yandex_rtb_tab1_1"
+                    })
+                })
+                </script>
+            </div>
+
+            <div class="rsya-bento-frame span-3">
+                <div id="yandex_rtb_tab1_2" style="width: 100%;"></div>
+                <script>
+                window.yaContextCb.push(() => {
+                    Ya.Context.AdvManager.render({
+                        "blockId": "R-A-19181219-22",
+                        "renderTo": "yandex_rtb_tab1_2",
+                        "type": "feed"
+                    })
+                })
+                </script>
+            </div>
+
             <div class="bento-card span-3" style="background: var(--elem-bg); text-align: center; padding: 40px 30px;">
-                <span class="recipe-badge" style="background: var(--accent-gold) !important;">Эко-Детокс в Сыктывкаре</span>
+                <span class="recipe-badge" style="border-color: var(--accent-gold); color: var(--accent-gold);">Эко-Детокс в Сыктывкаре</span>
                 <h3 class="serif" style="font-size: 26px; margin-bottom: 15px;">Разгоните застой жидкости и запустите сияние кожи изнутри</h3>
                 <p style="font-size: 14px; max-width: 600px; margin: 0 auto 25px; color: var(--text-dim);">
                     Объедините силу природного питания и умного фитнеса. Наши деликатные программы МФР и Пилатеса созданы специально для восстановления ресурса уставших женщин без изнуряющего кардио.
@@ -492,7 +537,6 @@
         </div>
     </div>
 
-    <!-- ТАБ 2: 10 НАУЧНЫХ ФАКТОВ С ЗОЛОТИСТОЙ НУМЕРАЦИЕЙ -->
     <div id="tab-facts" class="tab-content">
         <div class="bento-grid">
             
@@ -508,6 +552,18 @@
                 <p class="fact-desc">Ростки брокколи лидируют по содержанию сульфорафана — органического соединения, активирующего внутриклеточную систему очищения (аутофагию).</p>
             </div>
 
+            <div class="rsya-bento-frame">
+                <div id="yandex_rtb_tab2_1"></div>
+                <script>
+                window.yaContextCb.push(() => {
+                    Ya.Context.AdvManager.render({
+                        "blockId": "R-A-19181219-20",
+                        "renderTo": "yandex_rtb_tab2_1"
+                    })
+                })
+                </script>
+            </div>
+
             <div class="bento-card">
                 <div class="fact-num">03</div>
                 <h3 class="fact-title">Движение лимфы и целлюлит</h3>
@@ -517,13 +573,26 @@
             <div class="bento-card">
                 <div class="fact-num">04</div>
                 <h3 class="fact-title">Жидкий хлорофилл как детокс</h3>
-                <p class="fact-desc">Зеленые ростки гороха и подсолнечника богаты хлорофиллом, который по структуре схож с гемоглобином. Он насыщает ткани кислородом и убирая серость лица.</p>
+                <p class="fact-desc">Зеленые ростки гороха и подсолнечника богаты хлорофиллом, который по структуру схож с гемоглобином. Он насыщает ткани кислородом и убирая серость лица.</p>
             </div>
 
             <div class="bento-card">
                 <div class="fact-num">05</div>
                 <h3 class="fact-title">Вред прыжков при сильных отеках</h3>
                 <p class="fact-desc">Жесткий бег или прыжки при застойном лимфостазе травмируют перегруженные жидкостью ткани, усугубляя отечность. Нужен только мягкий Пилатес.</p>
+            </div>
+
+            <div class="rsya-bento-frame">
+                <div id="yandex_rtb_tab2_2" style="width: 100%;"></div>
+                <script>
+                window.yaContextCb.push(() => {
+                    Ya.Context.AdvManager.render({
+                        "blockId": "R-A-19181219-22",
+                        "renderTo": "yandex_rtb_tab2_2",
+                        "type": "feed"
+                    })
+                })
+                </script>
             </div>
 
             <div class="bento-card">
@@ -534,32 +603,43 @@
 
             <div class="bento-card">
                 <div class="fact-num">07</div>
-                <div class="fact-title">Дыхание как лимфатический насос</div>
+                <h3 class="fact-title">Дыхание как лимфатический насос</h3>
                 <p class="fact-desc">Глубокое 3D-дыхание ребрами на тренировках Пилатеса создает перепад давления, принудительно прокачивая грудной лимфатический проток.</p>
             </div>
 
             <div class="bento-card">
                 <div class="fact-num">08</div>
-                <div class="fact-title">Снижение тяги к сладкому</div>
+                <h3 class="fact-title">Снижение тяги к сладкому</h3>
                 <p class="fact-desc">Высокая плотность микроэлементов (хрома, магния) в микрозелени редиса мгновенно закрывает дефициты клеток, ликвидируя углеводную зависимость.</p>
             </div>
 
             <div class="bento-card">
                 <div class="fact-num">09</div>
-                <div class="fact-title">Декомпрессия сосудов в гамаке</div>
+                <h3 class="fact-title">Декомпрессия сосудов в гамаке</h3>
                 <p class="fact-desc">Перевернутые висы на Аэростретчинге поднимают лодыжки выше сердца, облегчая венозный и лимфатический отток из нижних конечностей.</p>
             </div>
 
-            <div class="bento-card">
+            <div class="rsya-bento-frame">
+                <div id="yandex_rtb_tab2_3"></div>
+                <script>
+                window.yaContextCb.push(() => {
+                    Ya.Context.AdvManager.render({
+                        "blockId": "R-A-19181219-20",
+                        "renderTo": "yandex_rtb_tab2_3"
+                    })
+                })
+                </script>
+            </div>
+
+            <div class="bento-card span-3">
                 <div class="fact-num">10</div>
-                <div class="fact-title">Восстановление ресурсов кожи</div>
+                <h3 class="fact-title">Восстановление ресурсов кожи</h3>
                 <p class="fact-desc">Связка антиоксидантов и мягкого фитнеса нормализует синтез коллагена, возвращая коже упругость, тонус и сияние без дорогих инъекций.</p>
             </div>
 
         </div>
     </div>
 
-    <!-- ТАБ 3: ЧЕТКО 4 ПРАВИЛА, ФОРМИРОВАНИЕ ОПТА И КОММЕРЧЕСКИЙ МАРКЕР С ЦЕНОЙ -->
     <div id="tab-recipes" class="tab-content">
         <div class="bento-grid">
             
@@ -571,6 +651,18 @@
                 </p>
             </div>
 
+            <div class="rsya-bento-frame">
+                <div id="yandex_rtb_tab3_1"></div>
+                <script>
+                window.yaContextCb.push(() => {
+                    Ya.Context.AdvManager.render({
+                        "blockId": "R-A-19181219-20",
+                        "renderTo": "yandex_rtb_tab3_1"
+                    })
+                })
+                </script>
+            </div>
+
             <div class="bento-card">
                 <span class="recipe-badge">Правило 02</span>
                 <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">Соблюдайте питьевой детокс-тайминг</h3>
@@ -580,11 +672,36 @@
             </div>
 
             <div class="bento-card">
-                <span class="recipe-badge">Rule 03</span>
+                <span class="recipe-badge">Правило 03</span>
                 <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">Исключите сахарные триггеры отечности</h3>
                 <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
                     Рафинированный сахар и избыток соли на ночь намертво задерживают воду в тканях. 1 грамм простых углеводов удерживает 4 грамма лишней жидкости в межклеточном пространстве, превращая утреннее лицо в припухшую маску. Заменяйте сладкое живой зеленью гороха.
                 </p>
+            </div>
+
+            <div class="rsya-bento-frame">
+                <div id="yandex_rtb_tab3_2" style="width: 100%;"></div>
+                <script>
+                window.yaContextCb.push(() => {
+                    Ya.Context.AdvManager.render({
+                        "blockId": "R-A-19181219-22",
+                        "renderTo": "yandex_rtb_tab3_2",
+                        "type": "feed"
+                    })
+                })
+                </script>
+            </div>
+
+            <div class="rsya-bento-frame">
+                <div id="yandex_rtb_tab3_3"></div>
+                <script>
+                window.yaContextCb.push(() => {
+                    Ya.Context.AdvManager.render({
+                        "blockId": "R-A-19181219-20",
+                        "renderTo": "yandex_rtb_tab3_3"
+                    })
+                })
+                </script>
             </div>
 
             <div class="bento-card span-2">
@@ -595,9 +712,8 @@
                 </p>
             </div>
 
-            <!-- ВНЕДРЕН ПАРТИЗАНСКИЙ КОММЕРЧЕСКИЙ БЛОК: СРЕЗАННЫЙ ЛОТОК ОТ 180 РУБ, ПАРТИИ ОТ 5 ЛОТКОВ ДЛЯ ФИЗЛИЦ -->
             <div class="bento-card span-3" style="background: linear-gradient(135deg, rgba(76,175,80,0.12), transparent); border: 2px solid var(--accent-green);">
-                <span class="recipe-badge">Вдохновение от Ольги Мартыновой</span>
+                <span class="recipe-badge" style="border-color: var(--accent-gold); color: var(--accent-gold);">Вдохновение от Ольги Мартыновой</span>
                 <h3 class="serif" style="font-size: 26px; margin-bottom: 15px; color: var(--text-main);">«Истинная красота женщины — это чистота каждой клетки её тела...»</h3>
                 <p style="font-size: 15px; line-height: 1.7; color: var(--text-main); margin-bottom: 25px;">
                     «Дорогие мои девочки, мы на Севере Коми живем в условиях сурового дефицита солнца, чистого воздуха и живой зелени. Хроническая усталость, тусклый цвет лица и отеки по утрам — это маркеры лимфостаза. Срезанный лоток живой микрозелени брокколи/гороха в нашей студии на Коммунистической — от 180 руб. Обращаем ваше внимание: для вашего максимального удобства и свежести срезки мы централизованно формируем заказы для физлиц партиями от 5 лотков. Наша восстановительная система эко-омоложения через мягкие роллы МФР и шелковые гамаки запустит мощный лимфодренаж, выгонит лишнюю воду и откроет дорогу витаминам ко всем тканям. Вы проснетесь легкой, с чистой кожей и невероятным запасом энергии. Сделайте шаг к обновлению ресурсов ради себя, жду вас на тест-драйв!»
@@ -610,10 +726,9 @@
         </div>
     </div>
 
-    <!-- УЛЬТРА-ЯРКАЯ КНОПКА ШЕРИНГА -->
     <section class="share-section">
         <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">🔥 Отправить детокс-тест любимым подругам!</h3>
-        <p style="font-size: 14px; color: var(--text-dim); margin-bottom: 25px;">Поделитесь этой страницей с подругами или коллегам, которые мечтают избавиться от утренней отечности, вечной усталости, вернуть свежесть коже и узнать силу эко-очищения организма.</p>
+        <p style="font-size: 14px; color: var(--text-dim); margin-bottom: 25px;">Поделитесь этой страницей с подругами или коллегами, которые мечтают избавиться от утренней отечности, вечной усталости, вернуть свежесть коже и узнать силу эко-очищения организма.</p>
         <button class="btn-share" onclick="sharePage()">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
             <span id="share-btn-text">Отправить подругам</span>
@@ -668,6 +783,7 @@
         calculateDetoxIndex();
     }
 
+    // ИНТЕЛЛЕКТУАЛЬНАЯ МОДЕЛЬ ДЛЯ ДЕТОКСА С ВЗАИМОСВЯЗАННЫМ ОТКЛИКОМ
     function calculateDetoxIndex() {
         const energy = document.querySelector('input[name="energy_status"]:checked').value;
         const edema = document.querySelector('input[name="edema_type"]:checked').value;
@@ -677,6 +793,7 @@
         const greenLabels = ['Практически не ем зелень', 'Редко (1-2 раза в неделю)', 'Ем овощи ежедневно', 'Зелень в каждом приеме (Идеал)'];
         document.getElementById('range-green-val').innerText = greenLabels[greenIndex];
 
+        // ЖИВОЙ ВЗАИМОСВЯЗАННЫЙ ОТКЛИК ПОЛЗУНКА НА КАРТОЧКИ
         if (greenIndex === 0) {
             document.querySelectorAll('input[name="energy_status"]').forEach(input => {
                 if (input.value === 'heavy') {
@@ -710,22 +827,22 @@
             
             if (energy === 'heavy' || greenIndex === 0) {
                 titleEl.innerText = "35% Защиты: МФР + Детокс-ростки";
-                bodyText = "Критический зажим межклеточной жидкости! По причине минимального уровня живой зелени (" + greenLabels[greenIndex] + ") ткани забиты лактатом, а клетки голодают. Жесткий бег и прыжки запрещены. Срочно нужен лимфодренажный МФР роллами на Коммунистической и микрозелень брокколи.";
+                bodyText = "Критический зажим межклеточной жидкости! По причине minimal уровня живой зелени (" + greenLabels[greenIndex] + ") ткани забиты лактатом, а клетки голодают. Бег и прыжки запрещены. Срочно нужен лимфодренажный МФР роллами и микрозелень брокколи.";
             } else {
                 titleEl.innerText = "55% Защиты: Аэростретчинг + Горох";
-                bodyText = "Отеки в ногах вызваны сидячей офисной статикой. Несмотря на то, что у вас " + greenLabels[greenIndex] + ", лимфатический насос выключен. Ольга Мартынова рекомендует Аэростретчинг в гамаках для форсированного вывода лишней воды.";
+                bodyText = "Отеки в ногах вызваны сидячей офисной статикой. Несмотря на то, что у вас " + greenLabels[greenIndex] + ", лимфатический насос выключен. Ольга рекомендует Аэростретчинг в гамаках для форсированного вывода лишней воды.";
             }
         } else {
             if (greenIndex === 0 || greenIndex === 1) {
                 titleEl.innerText = "60% Защиты: Умный Пилатес + Витграсс";
                 statusEl.innerText = "Адаптивный детокс-режим";
                 statusEl.style.color = "var(--accent-gold)";
-                bodyText = "Организм чист от явных отеков, но испытывает скрытый авитаминоз из-за северного рациона (" + greenLabels[greenIndex] + "). Включаем Пилатес 3D в нашей студии для мягкого ускорения обмена веществ.";
+                bodyText = "Организм чист от явных отеков, но испытывает скрытый авитаминоз из-за северного рациона (" + greenLabels[greenIndex] + "). Включаем Пилатес 3D для мягкого ускорения обмена веществ и активируем капиллярный кровоток.";
             } else {
                 titleEl.innerText = "90% Защиты: Эко-Баланс PRO";
                 statusEl.innerText = "Организм полностью очищен";
                 statusEl.style.color = "var(--accent-green)";
-                bodyText = "Превосходный показатель здоровья! Вы питаетесь идеально (" + greenLabels[greenIndex] + "). Клетки защищены антиоксидантами. Рекомендован продвинутый Пилатес и Стретчинг для поддержания королевской осанки.";
+                bodyText = "Превосходный показатель здоровья! Вы питаетесь идеально (" + greenLabels[greenIndex] + "). Клетки защищены антиоксидантами. Рекомендован продвинутый Пилатес и Стретчинг для поддержания королевской осанки и гибкости суставов.";
             }
         }
 
@@ -775,8 +892,8 @@
 
     async function sharePage() {
         const shareData = {
-            title: 'Купить микрозелень в Сыктывкаре от 180 руб | Клеточный Детокс',
-            text: 'Я прошла эко-тест уровня зашлакованности лимфы на сайте студии РЕСУРС в Сыктывкаре. Узнай, как микрозелень и фитнес омолаживают тело...',
+            title: 'Рассчитай свой личный детокс-индекс и антиоксидантную защиту организма!',
+            text: 'Я прошла эко-тест уровня зашлакованности лимфы на сайте студии РЕСУРС. Узнай, как микрозелень и фитнес омолаживают... ',
             url: window.location.href
         };
         const btnText = document.getElementById('share-btn-text');
@@ -800,11 +917,10 @@
     });
 </script>
 
-<!-- РЕНДЕР КАНАЛОВ РСЯ FLOOR AD ДЛЯ МАКСИМАЛЬНОЙ МОНЕТИЗАЦИИ ТРАФИКА -->
 <script>
 window.yaContextCb.push(() => {
     Ya.Context.AdvManager.render({
-        "blockId": "R-A-19181219-16",
+        "blockId": "R-A-19181219-6",
         "type": "floorAd",
         "platform": "touch"
     })
@@ -813,7 +929,7 @@ window.yaContextCb.push(() => {
 <script>
 window.yaContextCb.push(() => {
     Ya.Context.AdvManager.render({
-        "blockId": "R-A-19181219-17",
+        "blockId": "R-A-19181219-7",
         "type": "floorAd",
         "platform": "desktop"
     })
