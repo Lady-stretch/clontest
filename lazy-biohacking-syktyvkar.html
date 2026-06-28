@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <script>
+        // По умолчанию для инфо-страниц ставим чистую светлую эко-тему, сохраняем выбор пользователя
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+
+    <script type="text/javascript">
+    // --- Yandex.Metrika counter ---
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108177329', 'ym');
+        ym(108177329, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+
+        // --- Top.Mail.Ru counter ---
+        var _tmr = window._tmr || (window._tmr = []);
+        _tmr.push({id: "3755240", type: "pageView", start: (new Date()).getTime()});
+        (function (d, w, id) {
+            if (d.getElementById(id)) return;
+            var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
+            ts.src = "https://top-fwz1.mail.ru/js/code.js";
+            var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
+            if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
+        })(document, window, "tmr-code");
+    </script>
+    <noscript>
+        <div>
+            <img src="https://mc.yandex.ru/watch/108177329" style="position:absolute; left:-9999px;" alt="" />
+            <img src="https://top-fwz1.mail.ru/counter?id=3755240;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" />
+        </div>
+    </noscript>
+
+    <script>
+        // Глобальная логика перехвата ботов для SEO-превью через Яндекс Функцию
+        window.addEventListener('DOMContentLoaded', () => {
+            const isBot = /YandexBot|YandexAccessibilityBot|YandexMobileBot|Googlebot/i.test(navigator.userAgent);
+            if (isBot) {
+                fetch('https://functions.yandexcloud.net/d4ecn5ag33dcdd2deivd?bot=true&url=' + encodeURIComponent(window.location.href))
+                .then(res => res.json())
+                .then(data => console.log("SEO Preview Matrix Synced"))
+                .catch(e => console.log("SEO preview pass"));
+            }
+        });
+    </script>
+    
+    <!-- Подключение рекламной системы Яндекса (РСЯ) -->
+    <script>window.yaContextCb=window.yaContextCb||[]</script>
+    <script src="https://yandex.ru/ads/system/context.js" async></script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- СЕО ОПТИМИЗАЦИЯ НА СЫКТЫВКАР: ТАКТИКА ЛЕНИВОГО БИОХАКИНГА -->
+    <title>Биохакинг для ленивых в Сыктывкаре | Тест утреннего энергетического долга РЕСУРС</title>
+    <meta name="description" content="Устали просыпаться разбитыми и с отеками? Пройдите интерактивный экспресс-тест энергетического долга организма. 15-минутные утренние пижамные практики и зарядки от Ольги Мартыновой в Сыктывкаре.">
+    <meta name="keywords" content="биохакинг сыктывкар, утренняя зарядка дома, почему болит поясница по утрам, как убрать отеки лица, студия ресурс сыктывкар, легкая гимнастика для ленивых, коммунистическая 77">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://resurs-stretch.ru/lazy-biohacking-syktyvkar.html">
+
+    <!-- OPEN GRAPH ДЛЯ ВИРУСНОГО ШЕРИНГА В МЕССЕНДЖЕРАХ -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Тест: В какой тип 'Офисного тела' превращает тебя сидячая работа?">
+    <meta property="og:description" content="Пройди ленивый биохакинг-тест и забери 15-минутный пижамный комплекс утренней зарядки от Ольги Мартыновой.">
+    <meta property="og:url" content="https://resurs-stretch.ru/lazy-biohacking-syktyvkar.html">
+    <meta property="og:image" content="https://resurs-stretch.ru/logo_header_final.png">
+    <meta property="og:site_name" content="РЕСУРС">
+    <meta property="og:locale" content="ru_RU">
+
+    <link rel="icon" type="image/png" href="logo_header_final.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-deep: #F8F9F6; 
+            --glass-bg: rgba(255, 255, 255, 0.9); 
+            --glass-border: 1px solid rgba(43, 46, 42, 0.08); 
+            --accent-gold: #B38639; 
+            --accent-green: #4CAF50; 
+            --accent-berry: #C2185B; 
+            --text-main: #2B2E2A; 
+            --text-dim: rgba(43, 46, 42, 0.7);
+            --elem-bg: rgba(76, 175, 80, 0.06);
+            --elem-border: rgba(43, 46, 42, 0.1);
+            --font-main: 'Manrope', sans-serif;
+            --font-serif: 'Cormorant Garamond', serif;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="dark"] {
+            --bg-deep: #080814; 
+            --glass-bg: rgba(255, 255, 255, 0.03); 
+            --glass-border: 1px solid rgba(255, 255, 255, 0.08); 
+            --accent-gold: #C5A059; 
+            --accent-green: #66BB6A;
+            --accent-berry: #E91E63;
+            --text-main: #F4F4F9;
+            --text-dim: rgba(244, 244, 249, 0.6);
+            --elem-bg: rgba(255, 255, 255, 0.04);
+            --elem-border: rgba(255, 255, 255, 0.15);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
+        html { scroll-behavior: smooth; }
+        body { 
+            background: var(--bg-deep); 
+            color: var(--text-main);
+            font-family: var(--font-main); 
+            line-height: 1.6;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            transition: background-color 0.4s ease, color 0.4s ease;
+            -webkit-font-smoothing: antialiased;
+            padding-bottom: 60px;
+        }
+
+        h1, h2, h3, .serif { font-family: var(--font-serif); font-weight: 600; letter-spacing: 0.5px; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+
+        header {
+            position: fixed; top: 0; width: 100%; padding: 20px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 2000; background: transparent; transition: var(--transition);
+        }
+        header.scrolled { 
+            background: var(--glass-bg) !important; 
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            padding: 12px 5% !important; border-bottom: var(--glass-border);
+        }
+        .brand-name { font-family: var(--font-serif); font-size: 22px; letter-spacing: 8px; text-transform: uppercase; font-weight: 600; }
+        
+        #themeToggle {
+            padding: 0 15px; height: 35px; font-size: 10px; font-weight: 600; letter-spacing: 2px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 8px; border: 1px solid var(--elem-border); background: var(--elem-bg);
+            cursor: pointer; transition: var(--transition); color: var(--text-main); text-transform: uppercase;
+        }
+
+        .main-layout { max-width: 1200px; margin: 100px auto 60px; padding: 0 20px; }
+
+        /* ТАБЫ */
+        .tabs-nav { display: flex; gap: 10px; margin-bottom: 30px; border-bottom: var(--glass-border); padding-bottom: 15px; overflow-x: auto; scrollbar-width: none; }
+        .tabs-nav::-webkit-scrollbar { display: none; }
+        .tab-btn {
+            padding: 12px 24px; border: 1px solid var(--elem-border); background: var(--glass-bg);
+            color: var(--text-dim); border-radius: 12px; cursor: pointer; font-size: 14px; font-weight: 500;
+            white-space: nowrap; transition: var(--transition);
+        }
+        .tab-btn.active { background: var(--accent-green); color: #FFF; border-color: var(--accent-green); box-shadow: 0 8px 20px rgba(76,175,80,0.2); }
+
+        .tab-content { display: none; animation: fadeIn 0.5s ease; }
+        .tab-content.active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* BENTO GRID */
+        .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .bento-card { background: var(--glass-bg); border: var(--glass-border); border-radius: 24px; padding: 30px; position: relative; overflow: hidden; transition: var(--transition); }
+        .bento-card:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(0,0,0,0.03); }
+        
+        .span-2 { grid-column: span 2; }
+        .span-3 { grid-column: span 3; }
+
+        /* ИНТЕГРИРОВАННЫЙ СТИЛЬНЫЙ НЕЙРО-КОНТЕЙНЕР ДЛЯ ФОТО ИЗ ИИ */
+        .bento-ai-photo {
+            min-height: 320px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 24px;
+            border: var(--glass-border);
+            transition: var(--transition);
+        }
+
+        .calc-group { margin-bottom: 25px; }
+        .calc-label { font-size: 15px; font-weight: 600; margin-bottom: 12px; display: block; color: var(--text-main); }
+        
+        .radio-box-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+        .radio-tile {
+            border: 1px solid var(--elem-border); background: var(--elem-bg); padding: 16px;
+            border-radius: 12px; cursor: pointer; display: flex; flex-direction: column; gap: 4px;
+            position: relative; transition: var(--transition);
+        }
+        .radio-tile input { position: absolute; top: 16px; right: 16px; accent-color: var(--accent-green); }
+        .radio-tile-title { font-size: 14px; font-weight: 700; color: var(--text-main); }
+        .radio-tile-desc { font-size: 12px; color: var(--text-dim); line-height: 1.4; }
+        .radio-tile.selected { border-color: var(--accent-green); background: rgba(76,175,80,0.08); }
+
+        .result-score-box { text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(135deg, var(--elem-bg), transparent); padding: 40px 20px; }
+        .score-number { font-size: 44px; font-weight: 800; color: var(--accent-berry); font-family: var(--font-serif); }
+        .score-status { font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-top: 12px; }
+
+        .btn-marketing {
+            display: inline-flex; align-items: center; justify-content: center; width: 100%;
+            padding: 22px 30px; background: var(--accent-berry); color: #FFF; border: none;
+            border-radius: 16px; font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: var(--transition);
+            box-shadow: 0 10px 25px rgba(194,24,91,0.25);
+        }
+        .btn-marketing:hover { transform: translateY(-2px); box-shadow: 0 15px 35px rgba(194,24,91,0.4); }
+
+        .recipe-badge {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 6px 18px; background: var(--elem-bg); border: 2px solid var(--accent-green); color: var(--accent-green);
+            font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; border-radius: 30px; margin-bottom: 15px;
+        }
+
+        .rsya-bento-frame {
+            background: var(--glass-bg); border: var(--glass-border); border-radius: 24px;
+            padding: 15px; display: flex; justify-content: center; align-items: center; min-height: 280px; overflow: hidden;
+        }
+
+        .share-section { margin-top: 50px; background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), rgba(179, 134, 57, 0.08)); border: 2px solid var(--accent-green); border-radius: 28px; padding: 40px 30px; text-align: center; }
+        .btn-share {
+            display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 18px 40px;
+            background: linear-gradient(135deg, var(--accent-green), #2E7D32) !important; border: none; border-radius: 16px;
+            font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: var(--transition); color: #FFF;
+            width: 100%; max-width: 400px;
+        }
+
+        footer { margin-top: 80px; padding: 60px 0 40px; border-top: var(--glass-border); text-align: center; }
+        .footer-text-sub { font-size: 11px; color: var(--text-dim); max-width: 900px; margin: 0 auto; }
+
+        @media (max-width: 968px) {
+            .bento-grid { grid-template-columns: 1fr; }
+            .span-2, .span-3 { grid-column: span 1; }
+            .main-layout { margin-top: 90px; }
+        }
+    </style>
+</head>
+<body>
+
+<header id="header">
+    <div class="brand-name">РЕСУРС</div>
+    <div>
+        <button id="themeToggle" onclick="toggleTheme()">ТЕНЬ</button>
+    </div>
+</header>
+
+<main class="main-layout">
+    
+    <section style="text-align: center; max-width: 800px; margin: 0 auto 40px;">
+        <span class="recipe-badge" style="border-color: var(--accent-gold); color: var(--accent-gold);">Движение без насилия</span>
+        <h1 style="font-size: clamp(24px, 4vw, 42px); line-height: 1.2; margin-bottom: 15px;">
+            Ленивый Биохакинг: Скан «Энергетического Долга» твоего тела
+        </h1>
+        <p style="font-size: 15px; color: var(--text-dim); line-height: 1.7;">
+            Этот тест создан для тех, кто не представляет себя в спорте и у кого нет сил на тренажерные залы. Проверьте, в какой тип «Офисного тела» превращает вас сидячая сидячая работа в Сыктывкаре, и получите легкий 15-минутный пижамный комплекс, который вернет вам легкость утреннего пробуждения прямо в кровати.
+        </p>
+    </section>
+
+    <nav class="tabs-nav" aria-label="Разделы системы">
+        <button class="tab-btn active" onclick="switchTab(event, 'tab-calc')">🎯 Тест: Твой утренний статус</button>
+        <button class="tab-btn" onclick="switchTab(event, 'tab-facts')">🔬 Правда о теле: Почему мы разваливаемся</button>
+        <button class="tab-btn" onclick="switchTab(event, 'tab-recipes')">🛏 Пижамный утренний комплекс Ольги Мартыновой</button>
+    </nav>
+
+    <!-- ТАБ 1: ИНТЕРАКТИВНЫЙ ТЕСТ-СКАНЕР -->
+    <div id="tab-calc" class="tab-content active">
+        <div class="bento-grid">
+            
+            <div class="bento-card span-2">
+                <h2 class="serif" style="font-size: 24px; margin-bottom: 25px;">Скрининг ежедневных маркеров усталости и зажимов</h2>
+                
+                <div class="calc-group">
+                    <label class="calc-label">1. Опишите ваши первые 15 минут после утреннего будильника:</label>
+                    <div class="radio-box-group">
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="morning_status" value="zombie" checked>
+                            <span class="radio-tile-title">Состояние «Утренний зомби»</span>
+                            <span class="radio-tile-desc">Лицо припухшее, мешки под глазами, пытаюсь выжить с помощью чашки кофе.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="morning_status" value="stiff">
+                            <span class="radio-tile-title">Деревянное тело</span>
+                            <span class="radio-tile-desc">Спина скована, шею заклинило, расхаживаюсь только к середине дня.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="morning_status" value="ok">
+                            <span class="radio-tile-title">Встаю легко</span>
+                            <span class="radio-tile-desc">Чувствую себя свежей, но к вечеру батарейка полностью садится.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="calc-group">
+                    <label class="calc-label">2. Как ведет себя ваша спина и живот при долгой работе за столом?</label>
+                    <div class="radio-box-group">
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="body_posture" value="belly" checked>
+                            <span class="radio-tile-title">Вываливается «офисный живот»</span>
+                            <span class="radio-tile-desc">Вес в норме, но нижняя часть живота вываливается расслабленным мешком.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="body_posture" value="neck">
+                            <span class="radio-tile-title">Шея улетает вперед</span>
+                            <span class="radio-tile-desc">Голова сильно выдвинута к монитору, плечи подняты, горит зона лопаток.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="calc-group">
+                    <label class="calc-label">3. Каких физических нагрузок вы боитесь или избегаете больше всего?</label>
+                    <div class="radio-box-group">
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="lazy_type" value="heavy_cardio" checked>
+                            <span class="radio-tile-title">Тяжелое кардио и бег</span>
+                            <span class="radio-tile-desc">Ненавижу прыгать, задыхаюсь, пульс улетает в космос, лень пахать.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="lazy_type" value="gym">
+                            <span class="radio-tile-title">Тренажеры и штанги</span>
+                            <span class="radio-tile-desc">Боюсь сорвать спину, мне там скучно, не хочу чувствовать себя слабой.</span>
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- РЕЗУЛЬТАТ С БИО-ОТКЛИКОМ -->
+            <div class="bento-card result-score-box">
+                <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; color: var(--text-dim); margin-bottom: 10px;">Статус твоего тела:</div>
+                <div id="calc-result-title" class="score-number">65% Долга</div>
+                <div id="calc-status" class="score-status" style="color: var(--accent-berry);">Хронический застой</div>
+                <p id="calc-text" style="font-size: 13px; opacity: 0.8; margin-top: 15px; line-height: 1.5; text-align: center;">
+                    Расчет...
+                </p>
+            </div>
+
+            <!-- ИНТЕГРИРОВАННАЯ ЛЕГКАЯ КАРТИНКА ИЗ НЕЙРОСЕТИ (ПРОМТ 1) -->
+            <div class="bento-ai-photo" id="ai-photo-slot" style="background-image: url('zombie.webp');"></div>
+
+            <!-- ТАБ 1 / РЕКЛАМНЫЙ БЛОК РСЯ В ШАХМАТНОМ ПОРЯДКЕ -->
+            <div class="rsya-bento-frame span-2">
+                <div id="yandex_rtb_lazy_1"></div>
+                <script>
+                window.yaContextCb.push(() => {
+                    Ya.Context.AdvManager.render({
+                        "blockId": "R-A-19181219-20",
+                        "renderTo": "yandex_rtb_lazy_1"
+                    })
+                })
+                </script>
+            </div>
+
+            <!-- ЛЕНИВАЯ МАРКЕТИНГОВАЯ ЗОНА -->
+            <div class="bento-card span-3" style="background: var(--elem-bg); text-align: center; padding: 40px 30px;">
+                <h3 class="serif" style="font-size: 26px; margin-bottom: 15px;">Мы не заставим вас страдать на тренировках</h3>
+                <p style="font-size: 14px; max-width: 600px; margin: 0 auto 25px; color: var(--text-dim);">
+                    Студия «РЕСУРС» на Коммунистической создана для восстановления уставших людей. Никакого железа и изнуряющих прыжков. Только мягкий лимфодренаж, МФР роллами и расслабляющий Аэростретчинг в гамаках.
+                </p>
+                <div style="max-width: 450px; margin: 0 auto;">
+                    <a href="https://resurs-stretch.ru/club.html" class="btn-marketing">Получить мягкий тест-драйв в студии</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ТАБ 2: НАУЧНЫЕ ФАКТЫ ДЛЯ 94,9% ОФИСНЫХ ЖИТЕЛЕЙ -->
+    <div id="tab-facts" class="tab-content">
+        <div class="bento-grid">
+            
+            <div class="bento-card">
+                <div class="fact-num">01</div>
+                <h3 class="fact-title">Отеки — это выключенные мышцы</h3>
+                <p class="fact-desc">У лимфы нет сердца. Её качают только сокращения глубоких мышц. Если вы сидите часами, жидкость застаивается, превращая утреннее лицо в отечную маску.</p>
+            </div>
+
+            <!-- ТАБ 2 / РЕКЛАМНЫЙ БЛОК РСЯ №1 -->
+            <div class="rsya-bento-frame">
+                <div id="yandex_rtb_lazy_2"></div>
+                <script>
+                window.yaContextCb.push(() => {
+                    Ya.Context.AdvManager.render({
+                        "blockId": "R-A-19181219-20",
+                        "renderTo": "yandex_rtb_lazy_2"
+                    })
+                })
+                </script>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">02</div>
+                <h3 class="fact-title">Почему торчит «ленивый живот»</h3>
+                <p class="fact-desc">При долгой сидячей работе таз наклоняется вперед, а диафрагма зажимается. Внутренние органы смещаются, и живот вываливается вперед, даже если у вас нет лишнего веса.</p>
+            </div>
+
+            <!-- ИНТЕГРИРОВАННАЯ ЛЕГКАЯ КАРТИНКА ИЗ НЕЙРОСЕТИ (ПРОМТ 2) -->
+            <div class="bento-ai-photo" style="background-image: url('back-pain.webp');"></div>
+
+            <div class="bento-card">
+                <div class="fact-num">03</div>
+                <h3 class="fact-title">Опасность резкого спорта</h3>
+                <p class="fact-desc">Если нетренированный человек с зажатой поясницей резко начинает бегать или прыгать, ударная нагрузка уничтожает межпозвоночные диски. Нужна плавная зарядка.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">04</div>
+                <h3 class="fact-title">15 минут решают всё</h3>
+                <p class="fact-desc">Короткие ежедневные потягивания в пижаме запускают капиллярный кровоток и выработку синовиальной жидкости в суставах эффективнее, чем одна тяжелая тренировка в неделю.</p>
+            </div>
+
+            <!-- ТАБ 2 / РЕКЛАМНЫЙ БЛОК РСЯ №2 (ЛЕНТА ФИД) -->
+            <div class="rsya-bento-frame span-3">
+                <div id="yandex_rtb_lazy_3" style="width: 100%;"></div>
+                <script>
+                window.yaContextCb.push(() => {
+                    Ya.Context.AdvManager.render({
+                        "blockId": "R-A-19181219-22",
+                        "renderTo": "yandex_rtb_lazy_3",
+                        "type": "feed"
+                    })
+                })
+                </script>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ТАБ 3: ПИЖАМНЫЙ КОМПЛЕКС (ПРАКТИКА) -->
+    <div id="tab-recipes" class="tab-content">
+        <div class="bento-grid">
+            
+            <div class="bento-card span-2">
+                <span class="recipe-badge">Шаг 01</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px;">Утренние лимфодренажные микро-толчки (В кровати)</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    Лежа на спине, поднимите руки и ноги вертикально вверх под углом 90 градусов к телу. В течение 2 минут совершайте мелкие, вибрирующие, частые потряхивания капиллярами. Это мгновенно открывает венозные клапаны и сливает застойную утреннюю жидкость от лица вниз к крупным лимфоузлам.
+                </p>
+            </div>
+
+            <!-- ИНТЕГРИРОВАННАЯ ЛЕГКАЯ КАРТИНКА ИЗ НЕЙРОСЕТИ (ПРОМТ 3) -->
+            <div class="bento-ai-photo" style="background-image: url('pajama-yoga.webp');"></div>
+
+            <!-- ТАБ 3 / РЕКЛАМНЫЙ БЛОК РСЯ №1 -->
+            <div class="rsya-bento-frame">
+                <div id="yandex_rtb_lazy_4"></div>
+                <script>
+                window.yaContextCb.push(() => {
+                    Ya.Context.AdvManager.render({
+                        "blockId": "R-A-19181219-20",
+                        "renderTo": "yandex_rtb_lazy_4"
+                    })
+                })
+                </script>
+            </div>
+
+            <div class="bento-card span-2">
+                <span class="recipe-badge">Шаг 02</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px;">Пижамное 3D-раскрытие ребер и диафрагмы</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    Сядьте по-турецки прямо на постели. Положите ладони на нижние ребра. Сделайте глубокий вдох носом так, чтобы ваши руки разъехались в стороны (надуваем не живот, а ребра в 3D-объеме). Задержите дыхание на 3 секунды и медленно выдохните через сложенные трубочкой губы. Повторите 10 раз для активации главного лимфатического насоса.
+                </p>
+            </div>
+
+            <div class="bento-card">
+                <span class="recipe-badge">Шаг 03</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px;">Кошачье бережное пробуждение поясницы</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    Встаньте на четвереньки на матрасе. На выдохе плавно скруглите спину вверх, опуская голову вниз и поджимая таз. На вдохе бережно прогнитесь в грудном отделе, потягиваясь макушкой к потолку. Выполняйте мягко, без боли, в течение 1 минуты. Это уберет ноющую скованность.
+                </p>
+            </div>
+
+            <!-- ТАБ 3 / РЕКЛАМНЫЙ БЛОК РСЯ №2 (ЛЕНТА ФИД) -->
+            <div class="rsya-bento-frame span-2">
+                <div id="yandex_rtb_lazy_5" style="width: 100%;"></div>
+                <script>
+                window.yaContextCb.push(() => {
+                    Ya.Context.AdvManager.render({
+                        "blockId": "R-A-19181219-22",
+                        "renderTo": "yandex_rtb_lazy_5",
+                        "type": "feed"
+                    })
+                })
+                </script>
+            </div>
+
+            <!-- ЛЕНИВАЯ ПРЯМАЯ РЕЧЬ ОЛЬГИ МАРТЫНОВОЙ -->
+            <div class="bento-card span-3" style="border-left: 4px solid var(--accent-green);">
+                <span class="recipe-badge">Манифест Ольги Мартыновой</span>
+                <h3 class="serif" style="font-size: 24px; margin-bottom: 15px;">«Здоровье начинается не со штанги, оно начинается с уважения к своей лени...»</h3>
+                <p style="font-size: 15px; line-height: 1.7; color: var(--text-main);">
+                    «Девочки и мальчики, если у вас сейчас нет сил на полноценный фитнес — оставьте себя в покое, не насилуйте организм. Лень — это просто сигнал истощения вашей нервной и лимфатической систем. Начните с малого. Делайте этот легкий пижамный комплекс прямо в постели каждое утро. Всего 15 минут. Вы заметите, как через неделю спадут отеки лица, перестанет ныть поясница от стула, а энергии станет в два раза больше. А когда ваше тело само захочет двигаться дальше — приходите к нам в "РЕСУРС" на Коммунистическую 77/2 на бережный самомассаж МФР. Мы вернем вам ресурс бережно и с любовью».
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ВИРУСНАЯ КНОПКА ОТПРАВКИ В РАБОЧИЕ ЧАТЫ -->
+    <section class="share-section">
+        <h3 class="serif" style="font-size: 22px; margin-bottom: 12px;">🔥 Отправить тест в рабочий чат коллег!</h3>
+        <p style="font-size: 14px; color: var(--text-dim); margin-bottom: 25px;">Поделитесь этим тестом в чате офиса, отдела или компании. Узнайте, кто из ваших коллег сегодня "Утренний зомби", а у кого окончательно заклинило шею от сидения за монитором!</p>
+        <button class="btn-share" onclick="sharePage()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            <span id="share-btn-text">Скинуть коллегам в чат</span>
+        </button>
+    </section>
+
+</main>
+
+<footer>
+    <div class="footer-container">
+        <p class="footer-text-main">© 2026 РЕСУРС | Автономная экосистема восстановления тела. Сыктывкар, ул. Коммунистическая 77/2.</p>
+        <p class="footer-text-sub">Интерактивный ленивый биохакинг-скрининг носит ознакомительный характер. При наличии острых грыж позвоночника или сильного воспалительного процесса перед началом выполнения утренних практик проконсультируйтесь с Ольгой Мартыновой.</p>
+    </div>
+</footer>
+
+<script>
+    function toggleTheme() {
+        const html = document.documentElement;
+        const currentTheme = html.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        document.getElementById('themeToggle').innerText = newTheme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        const theme = document.documentElement.getAttribute('data-theme');
+        document.getElementById('themeToggle').innerText = theme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
+        calculateLazyIndex();
+    });
+
+    function switchTab(event, tabId) {
+        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        document.getElementById(tabId).classList.add('active');
+        event.currentTarget.classList.add('active');
+        window.scrollTo({ top: document.querySelector('.tabs-nav').offsetTop - 80, behavior: 'smooth' });
+    }
+
+    function selectTile(element) {
+        const name = element.querySelector('input').name;
+        document.querySelectorAll(`input[name="${name}"]`).forEach(input => {
+            input.parentElement.classList.remove('selected');
+        });
+        element.classList.add('selected');
+        calculateLazyIndex();
+    }
+
+    // ИНТЕЛЛЕКТУАЛЬНЫЙ БИО-ОТКЛИК И СМЕНА ФОТО ОТ ВЫБОРА ПОЛЬЗОВАТЕЛЯ
+    function calculateLazyIndex() {
+        const morning = document.querySelector('input[name="morning_status"]:checked').value;
+        const posture = document.querySelector('input[name="body_posture"]:checked').value;
+        
+        const titleEl = document.getElementById('calc-result-title');
+        const statusEl = document.getElementById('calc-status');
+        const textEl = document.getElementById('calc-text');
+        const photoSlot = document.getElementById('ai-photo-slot');
+
+        if (morning === 'zombie') {
+            titleEl.innerText = "75% Долга";
+            statusEl.innerText = "Лимфатическое Болото";
+            textEl.innerText = "Критический застой межклеточной жидкости из-за выключенного лимфо-насоса! Никакого бега. Лицо отекает, а энергия на нуле. Срочно нужен Шаг 01 утреннего пижамного комплекса прямо в кровати.";
+            photoSlot.style.backgroundImage = "url('zombie.webp')";
+        } else if (posture === 'belly') {
+            titleEl.innerText = "60% Долга";
+            statusEl.innerText = "Офисный Аквариум";
+            textEl.innerText = "Живот торчит не от еды, а от перекоса таза и зажатой диафрагмы. Обычный пресс делать нельзя, это усугубит проблему. Начните с Шага 02 дыхательной практики Ольги Мартыновой.";
+            photoSlot.style.backgroundImage = "url('pajama-yoga.webp')";
+        } else {
+            titleEl.innerText = "50% Долга";
+            statusEl.innerText = "Стеклянная Спина";
+            textEl.innerText = "Поясница и лопатки горят из-за статической перегрузки мышц. Мозг буквально забыл, как включать тело. Запустите Шаг 03 деликатного кошачьего потягивания по утрам.";
+            photoSlot.style.backgroundImage = "url('back-pain.webp')";
+        }
+    }
+
+    async function sharePage() {
+        const shareData = {
+            title: 'Тест: Каков скрытый уровень Энергетического Долга твоего тела?',
+            text: 'Я прошла тест ленивого биохакинга от студии РЕСУРС в Сыктывкаре. Узнай, в какой тип офисного тела превращает тебя стул!',
+            url: window.location.href
+        };
+        const btnText = document.getElementById('share-btn-text');
+        if (navigator.share) {
+            try { await navigator.share(shareData); } catch (err) { }
+        } else {
+            try {
+                await navigator.clipboard.writeText(window.location.href);
+                btnText.innerText = 'Ссылка скопирована!';
+                setTimeout(() => { btnText.innerText = 'Скинуть коллегам в чат'; }, 3000);
+            } catch (err) {
+                alert('Скопируйте ссылку из адресной строки браузера.');
+            }
+        }
+    }
+
+    window.addEventListener('scroll', () => {
+        const header = document.getElementById('header');
+        if (window.scrollY > 30) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
+    });
+</script>
+
+<!-- СКВОЗНОЙ ФИКСИРОВАННЫЙ БЛОК РСЯ FLOOR AD -->
+<script>
+window.yaContextCb.push(() => {
+    Ya.Context.AdvManager.render({
+        "blockId": "R-A-19181219-6",
+        "type": "floorAd",
+        "platform": "touch"
+    })
+})
+</script>
+<script>
+window.yaContextCb.push(() => {
+    Ya.Context.AdvManager.render({
+        "blockId": "R-A-19181219-7",
+        "type": "floorAd",
+        "platform": "desktop"
+    })
+})
+</script>
+
+</body>
+</html>
