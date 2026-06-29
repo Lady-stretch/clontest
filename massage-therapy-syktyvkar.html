@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <script>
+        // По умолчанию для инфо-страниц ставим чистую светлую эко-тему, сохраняем выбор пользователя
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+
+    <script type="text/javascript">
+    // --- Yandex.Metrika counter ---
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108177329', 'ym');
+        ym(108177329, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+
+        // --- Top.Mail.Ru counter ---
+        var _tmr = window._tmr || (window._tmr = []);
+        _tmr.push({id: "3755240", type: "pageView", start: (new Date()).getTime()});
+        (function (d, w, id) {
+            if (d.getElementById(id)) return;
+            var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
+            ts.src = "https://top-fwz1.mail.ru/js/code.js";
+            var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
+            if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
+        })(document, window, "tmr-code");
+    </script>
+    <noscript>
+        <div>
+            <img src="https://mc.yandex.ru/watch/108177329" style="position:absolute; left:-9999px;" alt="" />
+            <img src="https://top-fwz1.mail.ru/counter?id=3755240;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" />
+        </div>
+    </noscript>
+
+    <script>
+        // Глобальная логика перехвата ботов для SEO-превью через Яндекс Функцию
+        window.addEventListener('DOMContentLoaded', () => {
+            const isBot = /YandexBot|YandexAccessibilityBot|YandexMobileBot|Googlebot/i.test(navigator.userAgent);
+            if (isBot) {
+                fetch('https://functions.yandexcloud.net/d4ecn5ag33dcdd2deivd?bot=true&url=' + encodeURIComponent(window.location.href))
+                .then(res => res.json())
+                .then(data => console.log("SEO Preview Matrix Synced"))
+                .catch(e => console.log("SEO preview pass"));
+            }
+        });
+    </script>
+    
+    <!-- Подключение рекламной системы Яндекса (РСЯ) -->
+    <script>window.yaContextCb=window.yaContextCb||[]</script>
+    <script src="https://yandex.ru/ads/system/context.js" async></script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- ГЕО-ЗАВИСИМАЯ СЕО ОПТИМИЗАЦИЯ ПОД ТРАФИК МАССАЖА В СЫКТЫВКАРЕ -->
+    <title>Массаж спины в Сыктывкаре | Профессиональное снятие болей и МФР РЕСУРС</title>
+    <meta name="description" content="Ищете массаж спины, шеи или ног в Сыктывкаре? Узнайте, почему массаж не зафиксирует результат при сколиозе без активации мышечного корсета. Пройдите экспресс-тест триггерных точек. Альтернатива курсам массажа: МФР и Пилатес Ольги Мартыновой на Коммунистической.">
+    <meta name="keywords" content="массаж спины сыктывкар, массаж шеи цена, мануальный терапевт коми, болит поясница сколиоз, студия ресурс сыктывкар, миофасциальный релиз мфр, фитнес здоровая спина, аэростретчинг в гамаках">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://resurs-stretch.ru/massage-therapy-syktyvkar.html">
+
+    <!-- OPEN GRAPH ДЛЯ СОЦСЕТЕЙ -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Эффективен ли массаж спины при сколиозе и зажимах? Тест-анализ в Сыктывкаре">
+    <meta property="og:description" content="Пройдите интерактивный аудит триггерных зон тела. Узнайте, как МФР-роллы и умный Пилатес заменяют дорогостоящие сеансы массажа в студии РЕСУРС.">
+    <meta property="og:url" content="https://resurs-stretch.ru/massage-therapy-syktyvkar.html">
+    <meta property="og:image" content="https://resurs-stretch.ru/logo_header_final.png">
+    <meta property="og:site_name" content="РЕСУРС">
+    <meta property="og:locale" content="ru_RU">
+
+    <link rel="icon" type="image/png" href="logo_header_final.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* CSS ПЕРЕМЕННЫЕ С ЖЕСТКИМ КУРИРОВАНИЕМ МАЛАХИТОВОГО ПРЕМИУМ-СТИЛЯ */
+        :root {
+            --bg-deep: #F8F9F6; 
+            --glass-bg: rgba(255, 255, 255, 0.9); 
+            --glass-border: 1px solid rgba(43, 46, 42, 0.08); 
+            --accent-gold: #B38639; 
+            --accent-green: #143D16; /* Глубокий малахитовый/хвойный */
+            --accent-light-green: #1E4620; 
+            --accent-berry: #C2185B; 
+            --text-main: #2B2E2A; 
+            --text-dim: rgba(43, 46, 42, 0.7);
+            --elem-bg: rgba(20, 61, 22, 0.04);
+            --elem-border: rgba(43, 46, 42, 0.1);
+            --font-main: 'Manrope', sans-serif;
+            --font-serif: 'Cormorant Garamond', serif;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="dark"] {
+            --bg-deep: #060C07; /* Глубокий благородный темный эко-фон */
+            --glass-bg: rgba(255, 255, 255, 0.03); 
+            --glass-border: 1px solid rgba(255, 255, 255, 0.08); 
+            --accent-gold: #C5A059; 
+            --accent-green: #3B7A3E;
+            --accent-light-green: #4CAF50;
+            --accent-berry: #E91E63;
+            --text-main: #F4F4F9;
+            --text-dim: rgba(244, 244, 249, 0.6);
+            --elem-bg: rgba(255, 255, 255, 0.03);
+            --elem-border: rgba(255, 255, 255, 0.12);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
+        html { scroll-behavior: smooth; }
+        body { 
+            background: var(--bg-deep); 
+            color: var(--text-main);
+            font-family: var(--font-main); 
+            line-height: 1.6;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.025'/%3E%3C/svg%3E");
+            transition: background-color 0.4s ease, color 0.4s ease;
+            -webkit-font-smoothing: antialiased;
+            padding-bottom: 60px;
+        }
+
+        h1, h2, h3, .serif { font-family: var(--font-serif); font-weight: 600; letter-spacing: 0.5px; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+
+        header {
+            position: fixed; top: 0; width: 100%; padding: 20px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 2000; background: transparent; transition: var(--transition);
+        }
+        header.scrolled { 
+            background: var(--glass-bg) !important; 
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            padding: 12px 5% !important; border-bottom: var(--glass-border);
+        }
+        .brand-name { font-family: var(--font-serif); font-size: 22px; letter-spacing: 8px; text-transform: uppercase; font-weight: 600; }
+        
+        #themeToggle {
+            padding: 0 15px; height: 35px; font-size: 10px; font-weight: 600; letter-spacing: 2px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 8px; border: 1px solid var(--elem-border); background: var(--elem-bg);
+            cursor: pointer; transition: var(--transition); color: var(--text-main); text-transform: uppercase;
+        }
+
+        .main-layout { max-width: 1200px; margin: 100px auto 60px; padding: 0 20px; }
+
+        .tabs-nav { display: flex; gap: 10px; margin-bottom: 30px; border-bottom: var(--glass-border); padding-bottom: 15px; overflow-x: auto; scrollbar-width: none; }
+        .tabs-nav::-webkit-scrollbar { display: none; }
+        .tab-btn {
+            padding: 12px 24px; border: 1px solid var(--elem-border); background: var(--glass-bg);
+            color: var(--text-dim); border-radius: 12px; cursor: pointer; font-size: 14px; font-weight: 500;
+            white-space: nowrap; transition: var(--transition);
+        }
+        .tab-btn.active { background: var(--accent-green); color: #FFF; border-color: var(--accent-green); box-shadow: 0 8px 20px rgba(20,61,22,0.25); }
+
+        .tab-content { display: none; animation: fadeIn 0.5s ease; }
+        .tab-content.active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .bento-card { background: var(--glass-bg); border: var(--glass-border); border-radius: 24px; padding: 30px; position: relative; overflow: hidden; transition: var(--transition); }
+        .bento-card:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(0,0,0,0.03); }
+        
+        .span-2 { grid-column: span 2; }
+        .span-3 { grid-column: span 3; }
+
+        /* ВЫСОКООПТИМИЗИРОВАННЫЙ КАНВА-КОНТЕЙНЕР ДЛЯ ЛЕГКИХ ИИ-ФОТО В ФОРМАТЕ WEBP */
+        .bento-ai-photo {
+            min-height: 340px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 24px;
+            border: var(--glass-border);
+            transition: var(--transition);
+        }
+
+        .calc-group { margin-bottom: 25px; }
+        .calc-label { font-size: 15px; font-weight: 600; margin-bottom: 12px; display: block; color: var(--text-main); }
+        
+        .radio-box-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+        .radio-tile {
+            border: 1px solid var(--elem-border); background: var(--elem-bg); padding: 16px;
+            border-radius: 12px; cursor: pointer; display: flex; flex-direction: column; gap: 4px;
+            position: relative; transition: var(--transition);
+        }
+        .radio-tile input { position: absolute; top: 16px; right: 16px; accent-color: var(--accent-green); }
+        .radio-tile-title { font-size: 14px; font-weight: 700; color: var(--text-main); }
+        .radio-tile-desc { font-size: 12px; color: var(--text-dim); line-height: 1.4; }
+        .radio-tile.selected { border-color: var(--accent-green); background: rgba(20,61,22,0.06); }
+
+        .result-score-box { text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(135deg, var(--elem-bg), transparent); padding: 40px 20px; }
+        .score-number { font-size: 44px; font-weight: 800; color: var(--accent-berry); font-family: var(--font-serif); }
+        .score-status { font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-top: 12px; }
+
+        .btn-marketing {
+            display: inline-flex; align-items: center; justify-content: center; width: 100%;
+            padding: 22px 30px; background: var(--accent-berry); color: #FFF; border: none;
+            border-radius: 16px; font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: var(--transition);
+            box-shadow: 0 10px 25px rgba(194,24,91,0.25);
+        }
+        .btn-marketing:hover { transform: translateY(-2px); box-shadow: 0 15px 35px rgba(194,24,91,0.4); }
+        .btn-marketing.btn-malachite {
+            background: var(--accent-green) !important;
+            box-shadow: 0 10px 25px rgba(20,61,22,0.3) !important;
+        }
+
+        .recipe-badge {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 6px 18px; background: var(--elem-bg); border: 2px solid var(--accent-green); color: var(--accent-green);
+            font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; border-radius: 30px; margin-bottom: 15px;
+        }
+
+        .rsya-bento-frame {
+            background: var(--glass-bg); border: var(--glass-border); border-radius: 24px;
+            padding: 15px; display: flex; justify-content: center; align-items: center; min-height: 280px; overflow: hidden;
+        }
+
+        .share-section { margin-top: 50px; background: linear-gradient(135deg, rgba(20, 61, 22, 0.06), rgba(179, 134, 57, 0.06)); border: 2px solid var(--accent-green); border-radius: 28px; padding: 40px 30px; text-align: center; }
+        .btn-share {
+            display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 18px 40px;
+            background: linear-gradient(135deg, var(--accent-green), #0a240b) !important; border: none; border-radius: 16px;
+            font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: var(--transition); color: #FFF;
+            width: 100%; max-width: 400px;
+        }
+
+        footer { margin-top: 80px; padding: 60px 0 40px; border-top: var(--glass-border); text-align: center; }
+        .footer-text-sub { font-size: 11px; color: var(--text-dim); max-width: 900px; margin: 0 auto; }
+
+        @media (max-width: 968px) {
+            .bento-grid { grid-template-columns: 1fr; }
+            .span-2, .span-3 { grid-column: span 1; }
+            .main-layout { margin-top: 90px; }
+        }
+    </style>
+</head>
+<body>
+
+<header id="header">
+    <div class="brand-name">РЕСУРС</div>
+    <div>
+        <button id="themeToggle" onclick="toggleTheme()">ТЕНЬ</button>
+    </div>
+</header>
+
+<main class="main-layout">
+    
+    <section style="text-align: center; max-width: 800px; margin: 0 auto 40px;">
+        <span class="recipe-badge">Анатомический СЕО-обзор</span>
+        <h1 style="font-size: clamp(24px, 4vw, 42px); line-height: 1.2; margin-bottom: 15px;">
+            Эффективен ли массаж спины при сколиозе и зажимах в Сыктывкаре?
+        </h1>
+        <p style="font-size: 15px; color: var(--text-dim); line-height: 1.7;">
+            Многие годами ходят на массаж шеи, ног и поясницы, но боль возвращается уже на следующий день. Пройдите интерактивный экспресс-аудит триггерных зон, чтобы понять реальную причину спазмов в Сыктывкаре. Узнайте, как глубокий самомассаж МФР и умный Пилатес Ольги Мартыновой закрепляют результат рук массажиста навсегда.
+        </p>
+    </section>
+
+    <nav class="tabs-nav" aria-label="Навигация разделов">
+        <button class="tab-btn active" onclick="switchTab(event, 'tab-calc')">🎯 Тест-карта мышечных триггеров</button>
+        <button class="tab-btn" onclick="switchTab(event, 'tab-facts')">🔬 Биомеханика: Массаж VS Мышечный корсет</button>
+        <button class="tab-btn" onclick="switchTab(event, 'tab-recipes')">🌿 Программа глубокой альтернативы массажу</button>
+    </nav>
+
+    <!-- ТАБ 1: ИНТЕРАКТИВНЫЙ КАЛЬКУЛЯТОР-ТРИГГЕР -->
+    <div id="tab-calc" class="tab-content active">
+        <div class="bento-grid">
+            
+            <div class="bento-card span-2">
+                <h2 class="serif" style="font-size: 24px; margin-bottom: 25px;">Локализация болевых паттернов и зажатых фасций</h2>
+                
+                <div class="calc-group">
+                    <label class="calc-label">1. В какой зоне вы ощущаете самую сильную, ноющую или сковывающую боль?</label>
+                    <div class="radio-box-group">
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="trigger_zone" value="spine" checked>
+                            <span class="radio-tile-title">Поясница и крестец</span>
+                            <span class="radio-tile-desc">Тяжело долго стоять, спина ноет после рабочего дня, хочется прохрустеть.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="trigger_zone" value="neck">
+                            <span class="radio-tile-title">Шея и воротниковая зона</span>
+                            <span class="radio-tile-desc">Каменные плечи, постоянный зажим у основания черепа, к вечеру болит голова.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="trigger_zone" value="scoliosis">
+                            <span class="radio-tile-title">Лопатка (Асимметрия / Сколиоз)</span>
+                            <span class="radio-tile-desc">Точечная острая боль под одной лопаткой, одно плечо визуально выше другого.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="calc-group">
+                    <label class="calc-label">2. Как часто вы проходите курсы классического или мануального массажа?</label>
+                    <div class="radio-box-group">
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="massage_history" value="regular_temporary" checked>
+                            <span class="radio-tile-title">Регулярно, но облегчение временное</span>
+                            <span class="radio-tile-desc">Прохожу курс из 10 сеансов, но через 2-3 недели все зажимы возвращаются обратно.</span>
+                        </label>
+                        <label class="radio-tile" onclick="selectTile(this)">
+                            <input type="radio" name="massage_history" value="no_budget">
+                            <span class="radio-tile-title">Редко (Дорого / Нет времени)</span>
+                            <span class="radio-tile-desc">Курсы массажа бьют по семейному бюджету, тяжело найти хорошего мастера.</span>
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- БЕНТО-РЕЗУЛЬТАТ С БИОХИМИЧЕСКИМ ОТКЛИКОМ -->
+            <div class="bento-card result-score-box" style="border-top: 4px solid var(--accent-gold);">
+                <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; color: var(--text-dim); margin-bottom: 10px;">Вердикт биомеханики:</div>
+                <div id="calc-result-title" class="score-number">Следствие сколиоза</div>
+                <div id="calc-status" class="score-status" style="color: var(--accent-gold);">Иллюзия расслабления</div>
+                <p id="calc-text" style="font-size: 13px; opacity: 0.8; margin-top: 15px; line-height: 1.5; text-align: center;">
+                    Анализ связок...
+                </p>
+            </div>
+
+            <!-- ИНТЕГРИРОВАННАЯ КАРТИНКА ИЗ НЕЙРОСЕТИ (ПРОМТ 1) -->
+            <div class="bento-ai-photo" id="ai-photo-slot" style="background-image: url('back-anatomy.webp');"></div>
+
+            <!-- ТАБ 1 / РЕКЛАМНЫЙ БЛОК РСЯ ШАХМАТНОГО РЯДА -->
+            <div class="rsya-bento-frame span-2">
+                <div id="yandex_rtb_massage_1"></div>
+                <script>
+                window.yaContextCb.push(() => {
+                    Ya.Context.AdvManager.render({
+                        "blockId": "R-A-19181219-20",
+                        "renderTo": "yandex_rtb_massage_1"
+                    })
+                })
+                </script>
+            </div>
+
+            <!-- МАРКЕТИНГОВЫЙ БЛОК ДЛЯ МАССАЖНОЙ АУДИТОРИИ -->
+            <div class="bento-card span-3" style="background: var(--elem-bg); text-align: center; padding: 40px 30px;">
+                <h3 class="serif" style="font-size: 26px; margin-bottom: 15px;">Перестаньте тратить деньги на временные «таблетки»</h3>
+                <p style="font-size: 14px; max-width: 600px; margin: 0 auto 25px; color: var(--text-dim);">
+                    Массаж незаменим при острых спазмах, но он не способен удержать ваш позвоночник. Студия «РЕСУРС» на Коммунистической 77/2 предлагает умную альтернативу: мы учим ваши мышцы работать правильно, снимая нагрузку с суставов и дисков навсегда.
+                </p>
+                <div style="max-width: 450px; margin: 0 auto;">
+                    <a href="https://resurs-stretch.ru/club.html" class="btn-marketing btn-malachite">Пройти диагностику и тест-драйв</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ТАБ 2: 10 НАУЧНЫХ ФАКТОВ ПРО МАССАЖ И МЫШЦЫ -->
+    <div id="tab-facts" class="tab-content">
+        <div class="bento-grid">
+            
+            <div class="bento-card">
+                <div class="fact-num">01</div>
+                <h3 class="fact-title">Массаж не меняет длину мышц</h3>
+                <p class="fact-desc">Руки массажиста расслабляют мышечное брюшко, но если кости таза перекошены, мышцы мгновенно спазмируются обратно, чтобы спасти тело от падения.</p>
+            </div>
+
+            <!-- ТАБ 2 / РЕКЛАМНЫЙ БЛОК РСЯ №1 -->
+            <div class="rsya-bento-frame">
+                <div id="yandex_rtb_massage_2"></div>
+                <script>
+                window.yaContextCb.push(() => {
+                    Ya.Context.AdvManager.render({
+                        "blockId": "R-A-19181219-20",
+                        "renderTo": "yandex_rtb_massage_2"
+                    })
+                })
+                </script>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">02</div>
+                <h3 class="fact-title">Суть боли при сколиозе</h3>
+                <p class="fact-desc">При сколиозе с одной стороны позвоночника мышцы пережаты, а с другой — перерастянуты и слабы. Расслаблять слабые мышцы массажем — критическая ошибка, их нужно укреплять Пилатесом.</p>
+            </div>
+
+            <!-- ИНТЕГРИРОВАННАЯ КАРТИНКА ИЗ НЕЙРОСЕТИ (ПРОМТ 2) -->
+            <div class="bento-ai-photo" style="background-image: url('mfr-practice.webp');"></div>
+
+            <div class="bento-card">
+                <div class="fact-num">03</div>
+                <h3 class="fact-title">Экономика: МФР против спа-салонов</h3>
+                <p class="fact-desc">Курс качественного массажа в Сыктывкаре стоит от 15 000 ₽. Один абонемент на МФР дает вам безлимитный доступ к самомассажу специальными роллами под контролем тренера.</p>
+            </div>
+
+            <div class="bento-card">
+                <div class="fact-num">04</div>
+                <h3 class="fact-title">Что такое триггерная точка</h3>
+                <p class="fact-desc">Это микро-судорога мышечного волокна, куда не поступает кислород. Раскатывание её роллом МФР выжимает застойную кровь и запускает глубокое обновление фасций.</p>
+            </div>
+
+            <!-- ТАБ 2 / РЕКЛАМНЫЙ БЛОК РСЯ №2 (ЛЕНТА ФИД) -->
+            <div class="rsya-bento-frame span-3">
+                <div id="yandex_rtb_massage_3" style="width: 100%;"></div>
+                <script>
+                window.yaContextCb.push(() => {
+                    Ya.Context.AdvManager.render({
+                        "blockId": "R-A-19181219-22",
+                        "renderTo": "yandex_rtb_massage_3",
+                        "type": "feed"
+                    })
+                })
+                </script>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ТАБ 3: ПРОГРАММА АЛЬТЕРНАТИВЫ -->
+    <div id="tab-recipes" class="tab-content">
+        <div class="bento-grid">
+            
+            <div class="bento-card span-2">
+                <span class="recipe-badge">Шаг 01</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px;">Миофасциальный Релиз (МФР) — Глубокий самомассаж</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    Используя профессиональные роллы и спаренные мячи, вы под давлением собственного веса послойно проминаете спину, шею и триггеры ног. Ольга Мартынова подтверждает: МФР снимает жесткость фасций и связок не хуже мануального терапевта, освобождая зажатые сосуды и нервные окончания.
+                </p>
+            </div>
+
+            <!-- ИНТЕГРИРОВАННАЯ КАРТИНКА ИЗ НЕЙРОСЕТИ (ПРОМТ 3) -->
+            <div class="bento-ai-photo" style="background-image: url('hammock-decompression.webp');"></div>
+
+            <!-- ТАБ 3 / РЕКЛАМНЫЙ БЛОК РСЯ №1 -->
+            <div class="rsya-bento-frame">
+                <div id="yandex_rtb_massage_4"></div>
+                <script>
+                window.yaContextCb.push(() => {
+                    Ya.Context.AdvManager.render({
+                        "blockId": "R-A-19181219-20",
+                        "renderTo": "yandex_rtb_massage_4"
+                    })
+                })
+                </script>
+            </div>
+
+            <div class="bento-card span-2">
+                <span class="recipe-badge">Шаг 02</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px;">Умный Пилатес 3D и Здоровая Спина</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    После того как МФР убрал спазм, необходимо включить «спящие» мышцы-стабилизаторы вдоль позвоночника. Мягкие деликатные 50-минутные тренировки Пилатеса выстраивают королевскую осанку, центрируют таз и создают естественный корсет, который не позволит зажимам вернуться.
+                </p>
+            </div>
+
+            <div class="bento-card">
+                <span class="recipe-badge">Шаг 03</span>
+                <h3 class="serif" style="font-size: 22px; margin-bottom: 12px;">Аэростретчинг — Декомпрессия позвонков</h3>
+                <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
+                    Мягкое вытяжение под силой собственного веса в шелковых гамаках. Перевернутые позы на Аэростретчинге бережно увеличивают расстояние между позвонками, снимая компрессию с межпозвоночных дисков в пояснице и шее, убирая защемления без резких мануальных вправлений.
+                </p>
+            </div>
+
+            <!-- ТАБ 3 / РЕКЛАМНЫЙ БЛОК РСЯ №2 (ЛЕНТА ФИД) -->
+            <div class="rsya-bento-frame span-2">
+                <div id="yandex_rtb_massage_5" style="width: 100%;"></div>
+                <script>
+                window.yaContextCb.push(() => {
+                    Ya.Context.AdvManager.render({
+                        "blockId": "R-A-19181219-22",
+                        "renderTo": "yandex_rtb_lazy_5",
+                        "type": "feed"
+                    })
+                })
+                </script>
+            </div>
+
+            <!-- ЭКСПЕРТНОЕ ПОЯСНЕНИЕ ОТ ОЛЬГИ МАРТЫНОВОЙ -->
+            <div class="bento-card span-3" style="border-left: 4px solid var(--accent-gold);">
+                <span class="recipe-badge" style="background: var(--accent-light-green); color: #FFF; border-color: var(--accent-light-green);">Профессиональный взгляд</span>
+                <h3 class="serif" style="font-size: 24px; margin-bottom: 15px;">«Массаж — это скорая помощь, но только движение лечит...»</h3>
+                <p style="font-size: 15px; line-height: 1.7; color: var(--text-main);">
+                    «Дорогие мои, как дипломированный специалист по физической культуре и спорту с высшим образованием, я регулярно вижу одну и ту же картину: женщина тратит огромные деньги на массажистов, но возвращается к своему сидячему стулу, и через месяц её снова скручивает. Почему? Массаж не может накачать ваши ослабленные мышцы при сколиозе или гиперлордозе. Мастер расслабил зажим — но корсета нет. Моя система в студии РЕСУРС на Коммунистической 77/2 построена на комплексном подходе: сначала мы снимаем боль через роллы МФР, а затем мягко выстраиваем архитектуру вашего тела через Пилатес и гамаки. Вы перестанете зависеть от сеансов массажа и вернете спине истинное здоровье».
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- СЕКЦsecondary ВИРУСНОГО ШЕРИНГА -->
+    <section class="share-section">
+        <h3 class="serif" style="font-size: 22px; margin-bottom: 12px;">🔥 Поделиться анализом с близкими</h3>
+        <p style="font-size: 14px; color: var(--text-dim); margin-bottom: 25px;">Отправьте эту страницу подруге, мужу или коллеге, которые постоянно жалуются на боли в пояснице, клинящую шею и регулярно ходят на массаж без долгосрочного эффекта.</p>
+        <button class="btn-share" onclick="sharePage()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            <span id="share-btn-text">Отправить ссылку</span>
+        </button>
+    </section>
+
+</main>
+
+<footer>
+    <div class="footer-container">
+        <p class="footer-text-main">© 2026 РЕСУРС | Экосистема движения и восстановления. Сыктывкар, ул. Коммунистическая 77/2.</p>
+        <p class="footer-text-sub">Интерактивный триггер-анализ носит скрининговый характер. При наличии острых межпозвоночных грыж в стадии обострения, секвестрации дисков или выраженных патологий позвоночника перед посещением занятий проконсультируйтесь со специалистом.</p>
+    </div>
+</footer>
+
+<script>
+    function toggleTheme() {
+        const html = document.documentElement;
+        const currentTheme = html.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        document.getElementById('themeToggle').innerText = newTheme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        const theme = document.documentElement.getAttribute('data-theme');
+        document.getElementById('themeToggle').innerText = theme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
+        calculateTriggerStatus();
+    });
+
+    function switchTab(event, tabId) {
+        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        document.getElementById(tabId).classList.add('active');
+        event.currentTarget.classList.add('active');
+        window.scrollTo({ top: document.querySelector('.tabs-nav').offsetTop - 80, behavior: 'smooth' });
+    }
+
+    function selectTile(element) {
+        const name = element.querySelector('input').name;
+        document.querySelectorAll(`input[name="${name}"]`).forEach(input => {
+            input.parentElement.classList.remove('selected');
+        });
+        element.classList.add('selected');
+        calculateTriggerStatus();
+    }
+
+    // ИНТЕЛЛЕКТУАЛЬНЫЙ БИО-ОТКЛИК ТЕСТА С АВТОМАТИЧЕСКОЙ СМЕНОЙ НЕЙРО-ФОТО
+    function calculateTriggerStatus() {
+        const zone = document.querySelector('input[name="trigger_zone"]:checked').value;
+        const history = document.querySelector('input[name="massage_history"]:checked').value;
+        
+        const titleEl = document.getElementById('calc-result-title');
+        const statusEl = document.getElementById('calc-status');
+        const textEl = document.getElementById('calc-text');
+        const photoSlot = document.getElementById('ai-photo-slot');
+
+        if (zone === 'scoliosis') {
+            titleEl.innerText = "Искривление оси";
+            statusEl.innerText = "Паттерн Сколиоза";
+            textEl.innerText = "Точечная боль вызвана асимметрией: мышцы с одной стороны перегружены, пытаясь удержать позвоночник. Классический массаж даст лишь минутное облегчение. Необходимы бережные декомпрессионные висы на Аэростретчинге.";
+            photoSlot.style.backgroundImage = "url('hammock-decompression.webp')";
+        } else if (zone === 'neck') {
+            titleEl.innerText = "Гипертонус ШОП";
+            statusEl.innerText = "Миофасциальный блок";
+            textEl.innerText = "Спазм воротниковой зоны перекрывает нормальный приток крови к голове. Если массаж помогает ненадолго (" + (history === 'regular_temporary' ? 'как у вас' : 'редко') + "), значит, причина в слабости мышц спины. Рекомендован МФР-самомассаж и Здоровая Спина.";
+            photoSlot.style.backgroundImage = "url('mfr-practice.webp')";
+        } else {
+            titleEl.innerText = "Компрессия дисков";
+            statusEl.innerText = "Поясничный зажим";
+            textEl.innerText = "Ноющая боль в пояснице вызвана отключением ягодичных мышц из-за долгого сидения. Массаж уберет симптом, но не решит проблему. Ольга Мартынова рекомендует курс Пилатеса для создания мышечного корсета.";
+            photoSlot.style.backgroundImage = "url('back-anatomy.webp')";
+        }
+    }
+
+    async function sharePage() {
+        const shareData = {
+            title: 'Тест-анализ: Эффективен ли массаж спины при твоих зажимах?',
+            text: 'Я прошла интерактивный аудит мышечных триггеров на сайте студии РЕСУРС. Узнай, почему массаж помогает лишь временно...',
+            url: window.location.href
+        };
+        const btnText = document.getElementById('share-btn-text');
+        if (navigator.share) {
+            try { await navigator.share(shareData); } catch (err) { }
+        } else {
+            try {
+                await navigator.clipboard.writeText(window.location.href);
+                btnText.innerText = 'Ссылка скопирована!';
+                setTimeout(() => { btnText.innerText = 'Отправить ссылку'; }, 3000);
+            } catch (err) {
+                alert('Скопируйте ссылку из адресной строки вашего браузера.');
+            }
+        }
+    }
+
+    window.addEventListener('scroll', () => {
+        const header = document.getElementById('header');
+        if (window.scrollY > 30) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
+    });
+</script>
+
+<!-- СКВОЗНОЙ МОБИЛЬНЫЙ И ДЕСКТОПНЫЙ FLOOR AD -->
+<script>
+window.yaContextCb.push(() => {
+    Ya.Context.AdvManager.render({
+        "blockId": "R-A-19181219-6",
+        "type": "floorAd",
+        "platform": "touch"
+    })
+})
+</script>
+<script>
+window.yaContextCb.push(() => {
+    Ya.Context.AdvManager.render({
+        "blockId": "R-A-19181219-7",
+        "type": "floorAd",
+        "platform": "desktop"
+    })
+})
+</script>
+
+</body>
+</html>
