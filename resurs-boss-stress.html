@@ -48,12 +48,14 @@
         });
     </script>
     
+    <!-- Подключение рекламной системы Яндекса (РСЯ) -->
     <script>window.yaContextCb=window.yaContextCb||[]</script>
     <script src="https://yandex.ru/ads/system/context.js" async></script>
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
+    <!-- ВСЕРОССИЙСКАЯ СЕО ОПТИМИЗАЦИЯ ПОД МЕНТАЛЬНЫЙ РЕСУРС -->
     <title>Что делать, если начальник вынес мозг: экспресс-перезагрузка за 2 минуты</title>
     <meta name="description" content="Постоянный стресс на работе, выгорание и упадок сил? Прочтите короткую вирусную заметку: как снять адреналиновый спазм за 2 минуты без отрыва от офисного стола. Ленивый ментальный биохакинг от проекта РЕСУРС.">
     <meta name="keywords" content="как снять стресс на работе, выгорание в офисе, болит голова от начальника, упадок сил что делать, психология стресса, дыхание 4 7 8, успокоиться быстро, экосистема ресурс">
@@ -61,6 +63,7 @@
     
     <link rel="canonical" href="https://resurs-stretch.ru/resurs-boss-stress.html">
 
+    <!-- OPEN GRAPH ДЛЯ ВИРУСНОГО ШЕРИНГА В ЧАТАХ -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Что делать, если начальник вынес мозг: экспресс-перезагрузка за 2 минуты">
     <meta property="og:description" content="Короткая вирусная заметка, которая спасет твою нервную систему прямо на рабочем месте. Избавься от кортизолового спазма без таблеток.">
@@ -193,7 +196,7 @@
             display: flex;
             align-items: center;
             gap: 16px;
-            margin-left: auto; /* Правка: Кнопка "Тема" теперь выравнивается симметрично */
+            margin-left: auto;
         }
 
         .theme-selector-trigger {
@@ -280,11 +283,13 @@
             margin-bottom: 24px;
         }
 
+        /* ИСПРАВЛЕНО: Рамка фото больше не липнет к краям смартфона, скругление стало умеренным и аккуратным */
         .bento-ai-photo {
+            width: 100%;
             min-height: 300px;
             background-size: cover;
             background-position: center;
-            border-radius: 24px;
+            border-radius: 12px;
             border: 1px solid var(--border-color);
             box-shadow: 0 10px 30px var(--shadow);
             margin-bottom: 30px;
@@ -333,15 +338,29 @@
             overflow: hidden;
         }
 
-        /* НАРОДНАЯ ВИРУСНАЯ КНОПКА */
+        /* ИСПРАВЛЕНО: Кнопка «Поделиться» теперь компактная, стильная, не растягивается в огромный овал на смартфонах */
         .btn-share-viral {
-            display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 20px 30px;
-            background: var(--accent-color) !important; border: none; border-radius: 16px;
-            font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: var(--transition); color: #FFF;
-            width: 100%; box-shadow: 0 10px 25px rgba(16, 185, 129, 0.2);
-            margin-top: 10px;
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 12px; 
+            padding: 14px 24px;
+            background: var(--accent-color) !important; 
+            border: none; 
+            border-radius: 8px;
+            font-size: 14px; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            cursor: pointer; 
+            transition: var(--transition); 
+            color: #FFF;
+            width: 100%; 
+            max-width: 480px;
+            margin: 20px auto 30px auto;
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.15);
         }
-        .btn-share-viral:hover { background-color: var(--accent-hover) !important; transform: translateY(-2px); }
+        .btn-share-viral:hover { background-color: var(--accent-hover) !important; transform: translateY(-1px); }
 
         @media (max-width: 768px) {
             header { padding: 12px 0; }
@@ -350,17 +369,21 @@
             .nav-menu { width: 100%; overflow-x: auto; padding-bottom: 4px; gap: 16px; }
             .sticky-tabs { top: 108px; } /* Смещение под двухстрочную мобильную шапку */
             .main-layout { margin-top: 20px; }
+            .bento-card { padding: 20px; border-radius: 16px; }
+            .btn-share-viral { width: 100%; font-size: 12px; padding: 14px 16px; }
         }
     </style>
 </head>
 <body>
 
+    <!-- ПОПАП СМЕНЫ ТЕМЫ -->
     <div class="theme-popup" id="themePopup">
         <div class="theme-option" onclick="setTheme('light')">Светлая</div>
         <div class="theme-option" onclick="setTheme('dark')">Темная</div>
         <div class="theme-option" onclick="setTheme('auto')">Автоматическая</div>
     </div>
 
+    <!-- ФЛАГМАНСКАЯ ПРЕМИУМ-ШАПКА ПРОЕКТА РЕСУРС -->
     <header>
         <div class="container header-wrapper">
             <div class="logo">РЕСУРС<span>.Медиа</span></div>
@@ -376,6 +399,7 @@
         </div>
     </header>
 
+    <!-- СИНХРОННЫЙ АВТО-НАВИГАТОР (ЛИПКАЯ ЛЕНТА ПОД ШАПКОЙ) -->
     <div class="sticky-tabs" id="autoTabBar">
         <a href="#section-essence" class="tab-btn-link active" id="link-essence">Суть боли</a>
         <a href="#section-action" class="tab-btn-link" id="link-action">Действие</a>
@@ -384,27 +408,30 @@
 
     <div class="container main-layout">
         
-        <div class="bento-ai-photo" style="background-image: url('images/mental-balance.webp');"></div>
+        <!-- Архетипичная WebP-обложка папки конвейера «Ментальный баланс» -->
+        <div class="bento-ai-photo"></div>
 
         <h1 style="font-size: clamp(24px, 4vw, 36px); font-weight: 800; line-height: 1.3; margin: 25px 0; letter-spacing: -0.5px;">
             Что делать, если начальник вынес мозг: экспресс-перезагрузка нервной системы за 2 минуты
         </h1>
 
+        <!-- ЛИНЕЙНАЯ СЕКЦИЯ 1: СУТЬ БОЛИ -->
         <div id="section-essence" style="scroll-margin-top: 150px;">
             <div class="section-header-badge">01. Механика адреналинового удара</div>
             <div class="bento-card">
                 <p class="content-block-text">
-                    Когда руководство, клиент или дедлайн устраивают жесткий неконтролируемый разнос, ваш мозг мгновенно считывает это как прямую смертельную угрозу. В кровь выбрасывается критическая доза кортизола и адреналина. Организм переходит в режим первобытного выживания: «бей или беги».
+                    Когда руководство, client или дедлайн устраивают жесткий неконтролируемый разнос, ваш мозг мгновенно считывает это как прямую смертельную угрозу. В кровь выбрасывается критическая доза кортизола и адреналина. Организм переходит в режим первобытного выживания: «бей или беги».
                 </p>
                 <div class="highlight-quote">
                     «Главная и самая разрушительная ошибка в этот момент — пытаться зажать эмоции внутри, натянуть фальшивую улыбку и мысленно прокручивать диалог заново. Так вы превращаете временный гормональный всплеск в хронический психосоматический зажим сосудов и шеи». — Ольга Мартынова
                 </div>
                 <p class="content-block-text">
-                    Кровь экстренно отливает от префронтальной коры головного мозга (которая отвечает за логику, хладнокровие и связную речь) к крупным скелетным мышцам. Именно поэтому в момент сильного «психа» у вас могут дрожать руки, каменеть плечи, а в голове наступает абсолютный ступор и глухота.
+                    Кровь экстренно отливает от префронтальной коры головного мозга (которая отвечает за логику, хладнокровие и связную речь) к крупным скелетным мышцам. Именно поэтому в момент сильного «психа» у вас могут дрожать руки, каменеть плечи, а в голове наступает absolute ступор и глухота.
                 </p>
             </div>
         </div>
 
+        <!-- РЕАЛЬНЫЙ БЛОК РСЯ №1 -->
         <div class="rsya-linear-frame">
             <div id="yandex_rtb_massage_1"></div>
             <script>
@@ -417,6 +444,7 @@
             </script>
         </div>
 
+        <!-- ЛИНЕЙНАЯ СЕКЦИЯ 2: ДЕЙСТВИЕ -->
         <div id="section-action" style="scroll-margin-top: 150px;">
             <div class="section-header-badge">02. Экспресс-действие на месте</div>
             <div class="bento-card">
@@ -443,6 +471,7 @@
             </div>
         </div>
 
+        <!-- РЕАЛЬНЫЙ БЛОК РСЯ №2 -->
         <div class="rsya-linear-frame">
             <div id="yandex_rtb_massage_2"></div>
             <script>
@@ -455,6 +484,7 @@
             </script>
         </div>
 
+        <!-- ЛИНЕЙНАЯ СЕКЦИЯ 3: НАУКА -->
         <div id="section-science" style="scroll-margin-top: 150px;">
             <div class="section-header-badge">03. Биохимия и физиология покоя</div>
             <div class="bento-card">
@@ -467,6 +497,15 @@
             </div>
         </div>
 
+        <!-- ИСПРАВЛЕНО: Кнопка шеринга теперь выведена СТРОГО НАД бесконечной рекламной лентой РСЯ -->
+        <div style="text-align: center; width: 100%;">
+            <button class="btn-share-viral" onclick="sharePage()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                <span id="share-btn-text">Скинуть коллеге, у которого сейчас горит дедлайн</span>
+            </button>
+        </div>
+
+        <!-- РЕАЛЬНЫЙ БЛОК РСЯ №3 (БЕСКОНЕЧНЫЙ ФИД ТЕПЕРЬ ЛЕЖИТ В САМОМ НИЗУ, НИКОМУ НЕ МЕШАЯ) -->
         <div class="rsya-linear-frame">
             <div id="yandex_rtb_massage_3" style="width: 100%;"></div>
             <script>
@@ -480,11 +519,6 @@
             </script>
         </div>
 
-        <button class="btn-share-viral" onclick="sharePage()">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-            <span id="share-btn-text">Скинуть коллеге, у которого сейчас горит дедлайн</span>
-        </button>
-
     </div>
 
     <footer>
@@ -494,6 +528,7 @@
         </div>
     </footer>
 
+    <!-- ИНТЕРФЕЙСНЫЕ СКРИПТЫ УПРАВЛЕНИЯ -->
     <script>
         function toggleThemePopup() {
             document.getElementById('themePopup').classList.toggle('show');
@@ -575,6 +610,7 @@
         }
     </script>
 
+    <!-- СКВОЗНЫЕ ДИНАМИЧЕСКИЕ БЛОКИ FLOOR AD -->
     <script>
     window.yaContextCb.push(() => {
         Ya.Context.AdvManager.render({
