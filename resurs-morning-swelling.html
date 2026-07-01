@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <script>
+        // По умолчанию для инфо-страниц ставим чистую светлую эко-тему, сохраняем выбор пользователя
+        const savedTheme = localStorage.getItem('user-theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+
+    <script type="text/javascript">
+    // --- Yandex.Metrika counter ---
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108177329', 'ym');
+        ym(108177329, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+
+        // --- Top.Mail.Ru counter ---
+        var _tmr = window._tmr || (window._tmr = []);
+        _tmr.push({id: "3755240", type: "pageView", start: (new Date()).getTime()});
+        (function (d, w, id) {
+            if (d.getElementById(id)) return;
+            var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
+            ts.src = "https://top-fwz1.mail.ru/js/code.js";
+            var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
+            if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
+        })(document, window, "tmr-code");
+    </script>
+    <noscript>
+        <div>
+            <img src="https://mc.yandex.ru/watch/108177329" style="position:absolute; left:-9999px;" alt="" />
+            <img src="https://top-fwz1.mail.ru/counter?id=3755240;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" />
+        </div>
+    </noscript>
+
+    <script>
+        // Глобальная логика перехвата ботов для SEO-превью через Яндекс Функцию
+        window.addEventListener('DOMContentLoaded', () => {
+            const isBot = /YandexBot|YandexAccessibilityBot|YandexMobileBot|Googlebot/i.test(navigator.userAgent);
+            if (isBot) {
+                fetch('https://functions.yandexcloud.net/d4ecn5ag33dcdd2deivd?bot=true&url=' + encodeURIComponent(window.location.href))
+                .then(res => res.json())
+                .then(data => console.log("SEO Preview Matrix Synced"))
+                .catch(e => console.log("SEO preview pass"));
+            }
+        });
+    </script>
+    
+    <script>window.yaContextCb=window.yaContextCb||[]</script>
+    <script src="https://yandex.ru/ads/system/context.js" async></script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Как проснуться без отеков и мешков под глазами: утренний лимфодренаж за 90 секунд</title>
+    <meta name="description" content="Постоянные отеки лица по утрам и тяжесть в теле? Короткая заметка о том, как запустить лимфатическую систему без дорогих патчей и косметики.">
+    <meta name="keywords" content="отеки лица по утрам, как убрать мешки под глазами, лимфодренажные прыжки, биохакинг отеков">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://resurs-stretch.ru/resurs-morning-swelling.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Как проснуться со свежим лицом?">
+    <meta property="og:description" content="Простая техника лимфатического сброса, которая уберет воду с лица быстрее любых патчей.">
+    <meta property="og:url" content="https://resurs-stretch.ru/resurs-morning-swelling.html">
+    <meta property="og:image" content="https://resurs-stretch.ru/logo_header_final.png">
+    <meta property="og:site_name" content="РЕСУРС">
+    <meta property="og:locale" content="ru_RU">
+
+    <link rel="icon" type="image/png" href="logo_header_final.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* CSS ПЕРЕМЕННЫЕ МАЛАХИТОВОГО ПРЕМИУМ-СТИЛЯ ИЗ ФОРМАТА ТУРКОВА */
+        :root {
+            --bg-color: #060C07;            /* Глубокий премиальный темный эко-фон */
+            --surface-color: #111A13;       /* Благородный малахитовый плашечный */
+            --surface-hover: #19271D;
+            --accent-color: #10B981;        /* Изумрудный неон */
+            --accent-hover: #059669;
+            --accent-gold: #B38639;
+            --text-main: #F4F4F9;
+            --text-muted: #92A196;
+            --border-color: rgba(16, 185, 129, 0.12);
+            --header-bg: rgba(6, 12, 7, 0.85);
+            --shadow: rgba(0, 0, 0, 0.5);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="light"] {
+            --bg-color: #F4F6F4;            /* Чистая светлая эко-база */
+            --surface-color: #FFFFFF;
+            --surface-hover: #EAEFEA;
+            --accent-color: #143D16;        /* Хвойный глубокий в светлой теме */
+            --accent-hover: #1E4620;
+            --accent-gold: #B38639;
+            --text-main: #1D1F1D;
+            --text-muted: #6E736F;
+            --border-color: rgba(20, 61, 22, 0.15);
+            --header-bg: rgba(244, 246, 244, 0.85);
+            --shadow: rgba(0, 0, 0, 0.06);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Manrope', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding-bottom: 80px; /* Защитный отступ под Floor Ad */
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        h1, h2, h3, .serif {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+        }
+
+        /* КЛАССИЧЕСКАЯ ИНТЕРФЕЙСНАЯ ШАПКА САЙТА (ИЗ КОДА ТУРКОВА) */
+        header {
+            position: sticky;
+            top: 0;
+            background: var(--header-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            padding: 16px 0;
+        }
+
+        .header-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 20px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 13px;
+            white-space: nowrap;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-menu a:hover {
+            color: var(--accent-color);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-left: auto;
+        }
+
+        .theme-selector-trigger {
+            font-weight: 800;
+            font-size: 11px;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            text-transform: uppercase;
+            padding: 6px 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        /* ПОДВИЖНЫЙ ВТОРОЙ УРОВЕНЬ НАВИГАЦИИ (УМНЫЕ АВТО-ТАБЫ) */
+        .sticky-tabs {
+            position: sticky;
+            top: 61px; /* Строго под основной шапкой */
+            background-color: var(--bg-color);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 999;
+            display: flex;
+            width: 100%;
+        }
+
+        .tab-btn-link {
+            flex: 1;
+            text-align: center;
+            padding: 12px 5px;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 3px solid transparent;
+            transition: var(--transition);
+        }
+
+        .tab-btn-link.active {
+            color: var(--accent-color);
+            border-bottom-color: var(--accent-color);
+            background-color: var(--elem-bg);
+        }
+
+        /* ПОПАП ВЫБОРА ЦВЕТОВОЙ СХЕМЫ */
+        .theme-popup {
+            position: fixed;
+            top: 55px;
+            right: 145px;
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 6px 0;
+            box-shadow: 0 10px 30px var(--shadow);
+            display: none;
+            min-width: 150px;
+            z-index: 2100;
+        }
+
+        .theme-popup.show { display: block; }
+
+        .theme-option {
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .theme-option:hover {
+            background-color: var(--surface-hover);
+            color: var(--accent-color);
+        }
+
+        /* СЕТКА И БЕНТО-КАРТОЧКИ КОНТЕНТА */
+        .main-layout {
+            padding: 40px 0;
+        }
+
+        .bento-card {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            padding: 32px;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px var(--shadow);
+            margin-bottom: 24px;
+        }
+
+        .bento-ai-photo {
+            width: 100%;
+            min-height: 300px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px var(--shadow);
+            margin-bottom: 30px;
+        }
+
+        .section-header-badge {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 6px 18px; background: var(--surface-color); border: 2px solid var(--accent-color); color: var(--accent-color);
+            font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; border-radius: 30px; margin-bottom: 15px;
+        }
+
+        .content-block-text {
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+
+        .highlight-quote {
+            border-left: 4px solid var(--accent-gold);
+            padding-left: 15px;
+            font-style: italic;
+            color: var(--text-muted);
+            margin: 20px 0;
+        }
+
+        .action-box-pajama {
+            background: linear-gradient(135deg, var(--border-color), transparent);
+            border: 2px dashed var(--accent-color);
+            border-radius: 20px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        /* КОНТЕЙНЕРЫ ДЛЯ КОДОВ РСЯ */
+        .rsya-linear-frame {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 20px;
+            margin: 25px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 200px;
+            overflow: hidden;
+        }
+
+        /* НАРОДНАЯ ВИРУСНАЯ КНОПКА */
+        .btn-share-viral {
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 12px; 
+            padding: 14px 24px;
+            background: var(--accent-color) !important; 
+            border: none; 
+            border-radius: 8px;
+            font-size: 14px; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            cursor: pointer; 
+            transition: var(--transition); 
+            color: #FFF;
+            width: 100%; 
+            max-width: 480px;
+            margin: 20px auto 30px auto;
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.15);
+        }
+        .btn-share-viral:hover { background-color: var(--accent-hover) !important; transform: translateY(-1px); }
+
+        @media (max-width: 768px) {
+            header { padding: 12px 0; }
+            .header-wrapper { flex-direction: column; align-items: flex-start; gap: 12px; }
+            .nav-right { width: 100%; justify-content: space-between; }
+            .nav-menu { width: 100%; overflow-x: auto; padding-bottom: 4px; gap: 16px; }
+            .sticky-tabs { top: 108px; } /* Смещение под двухстрочную мобильную шапку */
+            .main-layout { margin-top: 20px; }
+            .bento-card { padding: 20px; border-radius: 16px; }
+            .btn-share-viral { width: 100%; font-size: 12px; padding: 14px 16px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="theme-popup" id="themePopup">
+        <div class="theme-option" onclick="setTheme('light')">Светлая</div>
+        <div class="theme-option" onclick="setTheme('dark')">Темная</div>
+        <div class="theme-option" onclick="setTheme('auto')">Автоматическая</div>
+    </div>
+
+    <header>
+        <div class="container header-wrapper">
+            <div class="logo">РЕСУРС<span>.Медиа</span></div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="#section-essence">Суть зажима</a></li>
+                <li><a href="#section-action">Практика</a></li>
+                <li><a href="#section-science">Биохимия</a></li>
+            </ul>
+            <div class="nav-right">
+                <div class="theme-selector-trigger" onclick="toggleThemePopup()">Тема</div>
+            </div>
+        </div>
+    </header>
+
+    <div class="sticky-tabs" id="autoTabBar">
+        <a href="#section-essence" class="tab-btn-link active" id="link-essence">Суть боли</a>
+        <a href="#section-action" class="tab-btn-link" id="link-action">Действие</a>
+        <a href="#section-science" class="tab-btn-link" id="link-science">Наука</a>
+    </div>
+
+    <div class="container main-layout">
+        
+        <div class="bento-ai-photo" style="background-image: url('images/clean-food.webp');"></div>
+
+        <h1 style="font-size: clamp(24px, 4vw, 36px); font-weight: 800; line-height: 1.3; margin: 25px 0; letter-spacing: -0.5px;">
+            Отеки лица и застой лимфы по утрам: японский метод экспресс-слива лишней воды за 90 секунд
+        </h1>
+
+        <div id="section-essence" style="scroll-margin-top: 150px;">
+            <div class="section-header-badge">01. Почему застаивается вода</div>
+            <div class="bento-card">
+                <p class='content-block-text'>Утренняя пастозность и «помятое» лицо — это не всегда проблема почек или лишнего стакана воды на ночь. Лимфатическая система не имеет собственного насоса (каким для крови является сердце). Её движение обеспечивается исключительно сокращением окружающих скелетных мышц.</p><div class='highlight-quote'>«Когда вы спите неподвижно, лимфа останавливается. Если у вас к тому же зажаты мышцы шеи и грудного протока, жидкость просто физически запирается в тканях лица, создавая эффект сильного отека». — Ольга Мартынова</div>
+            </div>
+        </div>
+
+        <div class="rsya-linear-frame">
+            <div id="yandex_rtb_massage_1"></div>
+            <script>
+            window.yaContextCb.push(() => {
+                Ya.Context.AdvManager.render({
+                    "blockId": "R-A-19181219-20",
+                    "renderTo": "yandex_rtb_massage_1"
+                })
+            })
+            </script>
+        </div>
+
+        <div id="section-action" style="scroll-margin-top: 150px;">
+            <div class="section-header-badge">02. Капиллярная вибрация</div>
+            <div class="bento-card">
+                <p class='content-block-text'>Чтобы мгновенно «открыть шлюзы» и слить лишнюю межклеточную жидкость, выполните простое упражнение сразу после пробуждения прямо в постели.</p><div class='action-box-pajama'><h3 style='font-size: 18px; font-weight: 800; margin-bottom: 10px; font-family: "Manrope", sans-serif;'>🛌 Техника «Тараканчик» (Метод Кацудзо Ниши)</h3><p class='content-block-text' style='font-size: 15px; margin-bottom: 5px;'>1. Лежа на спине, поднимите руки и ноги вертикально вверх под углом 90 градусов к телу.<br>2. Расслабьте стопы и кисти.<br>3. В течение 60 секунд делайте мелкие, частые, вибрирующие потряхивания руками и ногами одновременно.<br>4. Опустите конечности и сделайте глубокий выдох.</p><p style='font-size: 13px; font-weight: 800; color: var(--accent-color); margin-top: 10px; text-transform: uppercase;'>Это создает мощный гидравлический удар, проталкивающий застоявшуюся воду обратно в русло.</p></div>
+            </div>
+        </div>
+
+        <div class="rsya-linear-frame">
+            <div id="yandex_rtb_massage_2"></div>
+            <script>
+            window.yaContextCb.push(() => {
+                Ya.Context.AdvManager.render({
+                    "blockId": "R-A-19181219-20",
+                    "renderTo": "yandex_rtb_massage_2"
+                })
+            })
+            </script>
+        </div>
+
+        <div id="section-science" style="scroll-margin-top: 150px;">
+            <div class="section-header-badge">03. Физиология лимфотока</div>
+            <div class="bento-card">
+                <p class='content-block-text'>Вибрация на уровне микрокапилляров принудительно раскрывает лимфатические клапаны. Скорость оттока жидкости из тканей лица к венозным синусам увеличивается в 4 раза. Отек уходит естественным путем в течение 10–15 минут, возвращая четкие контуры скул без массажных роликов.</p>
+            </div>
+        </div>
+
+        <div style="text-align: center; width: 100%;">
+            <button class="btn-share-viral" onclick="sharePage()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                <span>Отправить подруге, которая борется с утренними отеками</span>
+            </button>
+        </div>
+
+        <div class="rsya-linear-frame">
+            <div id="yandex_rtb_massage_3" style="width: 100%;"></div>
+            <script>
+            window.yaContextCb.push(() => {
+                Ya.Context.AdvManager.render({
+                    "blockId": "R-A-19181219-22",
+                    "renderTo": "yandex_rtb_massage_3",
+                    "type": "feed"
+                })
+            })
+            </script>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="container">
+            <p style="font-size: 13px; margin-bottom: 8px; font-weight: 600;">© 2026 РЕСУРС | Народный интерактивный журнал о восстановлении человека.</p>
+            <p style="font-size: 11px; color: var(--text-muted);">Короткие заметки по биохакингу носят информационный характер. При наличии серьезных клинических тревожных расстройств или затяжных депрессивных состояний обязательно проконсультируйтесь со специалистом.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleThemePopup() {
+            document.getElementById('themePopup').classList.toggle('show');
+        }
+
+        window.addEventListener('click', function(e) {
+            if (!document.querySelector('.theme-selector-trigger').contains(e.target) && !document.getElementById('themePopup').contains(e.target)) {
+                document.getElementById('themePopup').classList.remove('show');
+            }
+        });
+
+        function setTheme(theme) {
+            const root = document.documentElement;
+            localStorage.setItem('user-theme', theme);
+            document.getElementById('themePopup').classList.remove('show');
+
+            if (theme === 'auto') {
+                applyAutoTheme();
+            } else {
+                root.setAttribute('data-theme', theme);
+            }
+        }
+
+        function applyAutoTheme() {
+            const root = document.documentElement;
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+                root.setAttribute('data-theme', 'light');
+            } else {
+                root.removeAttribute('data-theme');
+            }
+        }
+
+        // СКРИПТ АВТОМАТИЧЕСКОЙ ПОДСВЕТКИ ТАБОВ ПРИ СКРОЛЛЕ
+        const sections = document.querySelectorAll('#section-essence, #section-action, #section-science');
+        const tabLinks = document.querySelectorAll('.tab-btn-link');
+
+        window.addEventListener('scroll', () => {
+            let activeId = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const offsetBuffer = window.innerWidth <= 768 ? 160 : 120;
+                if (window.pageYOffset >= (sectionTop - offsetBuffer)) {
+                    activeId = section.getAttribute('id');
+                }
+            });
+
+            tabLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${activeId}`) {
+                    link.classList.add('active');
+                }
+            });
+            
+            if (window.pageYOffset < 100) {
+                tabLinks.forEach(link => link.classList.remove('active'));
+                document.getElementById('link-essence').classList.add('active');
+            }
+        });
+
+        async function sharePage() {
+            const shareData = {
+                title: 'Как проснуться со свежим лицом?',
+                text: 'Простая техника лимфатического сброса, которая уберет воду с лица быстрее любых патчей.',
+                url: window.location.href
+            };
+            const btnText = document.querySelector('.btn-share-viral span');
+            if (navigator.share) {
+                try { await navigator.share(shareData); } catch (err) { }
+            } else {
+                try {
+                    await navigator.clipboard.writeText(window.location.href);
+                    const oldText = btnText.innerText;
+                    btnText.innerText = 'Ссылка скопирована!';
+                    setTimeout(() => { btnText.innerText = oldText; }, 3000);
+                } catch (err) {
+                    alert('Скопируйте ссылку из адресной строки вашего браузера.');
+                }
+            }
+        }
+    </script>
+
+    <script>
+    window.yaContextCb.push(() => {
+        Ya.Context.AdvManager.render({
+            "blockId": "R-A-19181219-6",
+            "type": "floorAd",
+            "platform": "touch"
+        })
+    })
+    </script>
+    <script>
+    window.yaContextCb.push(() => {
+        Ya.Context.AdvManager.render({
+            "blockId": "R-A-19181219-7",
+            "type": "floorAd",
+            "platform": "desktop"
+        })
+    })
+    </script>
+
+</body>
+</html>
