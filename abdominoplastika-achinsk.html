@@ -1,68 +1,21 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <script>
-        // Инициализация темы при загрузке (фиксируем дорогую фиолетовую тему)
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        document.documentElement.setAttribute('data-theme', savedTheme);
-    </script>
-
-    <script type="text/javascript">
-    // --- Yandex.Metrika counter ---
-        (function(m,e,t,r,i,k,a){
-            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();
-            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108177329', 'ym');
-        ym(108177329, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
-
-        // --- Top.Mail.Ru counter ---
-        var _tmr = window._tmr || (window._tmr = []);
-        _tmr.push({id: "3755240", type: "pageView", start: (new Date()).getTime()});
-        (function (d, w, id) {
-            if (d.getElementById(id)) return;
-            var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
-            ts.src = "https://top-fwz1.mail.ru/js/code.js";
-            var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
-            if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
-        })(document, window, "tmr-code");
-    </script>
-    <noscript>
-        <div>
-            <img src="https://mc.yandex.ru/watch/108177329" style="position:absolute; left:-9999px;" alt="" />
-            <img src="https://top-fwz1.mail.ru/counter?id=3755240;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" />
-        </div>
-    </noscript>
-
-    <script>
-        // Глобальная логика перехвата ботов для SEO-превью через Яндекс Функцию
-        window.addEventListener('DOMContentLoaded', () => {
-            const isBot = /YandexBot|YandexAccessibilityBot|YandexMobileBot|Googlebot/i.test(navigator.userAgent);
-            if (isBot) {
-                fetch('https://functions.yandexcloud.net/d4ecn5ag33dcdd2deivd?bot=true&url=' + encodeURIComponent(window.location.href))
-                .then(res => res.json())
-                .then(data => console.log("SEO Preview Matrix Synced"))
-                .catch(e => console.log("SEO preview pass"));
-            }
-        });
-    </script>
-    
-    <!-- Подключение рекламной системы Яндекса (РСЯ) -->
-    <script>window.yaContextCb=window.yaContextCb||[]</script>
-    <script src="https://yandex.ru/ads/system/context.js" async></script>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- ДИНАМИЧЕСКАЯ СЕО ПРОШИВКА КОНВЕЙЕРА -->
+    <script>
+        // Инициализация темы при загрузке (до отрисовки body во избежание мерцания)
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+    
     <title>Абдоминопластика живота в Ачинске | Цена, отзывы, alternative | РЕСУРС</title>
     <meta name="description" content="Честный анализ абдоминопластики живота в Ачинске. Когда operation действительно необходима, а когда диастаз и фартук кожи убираются без ножа Пилатесом Ольги Мартыновой.">
-    <meta name="keywords" content="абдоминопластика achinsk цена, пластика живота в Ачинске отзывы, подтяжка кожи живота achinsk, убрать фартук живота achinsk">
+    <meta name="keywords" content="абдоминопластика achinsk цена, plastic живота в Ачинске отзывы, подтяжка кожи живота achinsk, убрать фартук живота achinsk">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://resurs-stretch.ru/abdominoplastika-achinsk.html">
 
-    <!-- OPEN GRAPH -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Пластика живота или умное восстановление? Скрининг кора в Ачинске">
     <meta property="og:description" content="Не спешите ложиться под нож хирурга в Ачинске. Сдайте интерактивный bento-тест контроля тонуса мышц и разверните текст-гайд Ольги Мартыновой.">
@@ -71,12 +24,11 @@
     <meta property="og:site_name" content="РЕСУРС">
     <meta property="og:locale" content="ru_RU">
 
-    <!-- MICRODATA SCHEMA.ORG -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Product",
-      "name": "Анатомическая онлайн-программа восстановления кора РЕСУРС Ачинске",
+      "name": "Анатомическая онлайн-программа восстановления кора РЕСУРС в Ачинске",
       "image": "https://resurs-stretch.ru/logo_header_final.png",
       "description": "Экосистема безоперационного восстановления тонуса живота, тазового дна и утягивания белой линии после родов в Ачинске.",
       "brand": {
@@ -87,8 +39,8 @@
         "@type": "AggregateOffer",
         "priceCurrency": "RUB",
         "lowPrice": "300",
-        "highPrice": "1600",
-        "offerCount": "1",
+        "highPrice": "15000",
+        "offerCount": "5",
         "offers": [
           {
             "@type": "Offer",
@@ -253,6 +205,14 @@
         }
         .btn-marketing.btn-online-gold:hover { box-shadow: 0 15px 35px rgba(179,134,57,0.5) !important; }
 
+        /* Стили для кнопки связи в ВК */
+        .btn-marketing.btn-vk-purple {
+            background: linear-gradient(135deg, #5957b4, #2A0835) !important;
+            box-shadow: 0 10px 25px rgba(89, 87, 180, 0.3) !important;
+            margin-top: 15px;
+        }
+        .btn-marketing.btn-vk-purple:hover { box-shadow: 0 15px 35px rgba(89, 87, 180, 0.5) !important; }
+
         .btn-reset {
             background: transparent; border: 1px dashed var(--text-dim); color: var(--text-dim);
             padding: 10px 20px; border-radius: 10px; font-size: 12px; font-weight: 600;
@@ -335,12 +295,11 @@
 </head>
 <body>
 
-<!-- АБСОЛЮТНЫЕ БОЕВЫЕ ССЫЛКИ ДЛЯ КНОПОК ПЛАТФОРМЫ -->
 <header id="header">
     <div class="brand-name">РЕСУРС | АНАТОМИЯ</div>
     <div class="header-controls">
         <a href="https://resurs-stretch.ru/journal.html" class="btn-journal-nav">ЖУРНАЛ</a>
-        <button id="themeToggle" onclick="toggleTheme()">ТЕНЬ</button>
+        <button id="themeToggle" onclick="toggleTheme()" aria-label="Включить светлую тему">ТЕНЬ</button>
     </div>
 </header>
 
@@ -358,7 +317,6 @@
     <div class="tab-content active">
         <div class="bento-grid">
             
-            <!-- ЛОГИЧЕСКИЙ БЛОК АУДИТА КОРА -->
             <div class="bento-card span-2">
                 <div>
                     <h2 class="serif" style="font-size: 24px; margin-bottom: 25px; color: var(--text-main);">Аудит состояния белой линии живота и глубинных стабилизаторов</h2>
@@ -405,7 +363,6 @@
                         </div>
                     </div>
 
-                    <!-- ИСПРАВЛЕННЫЙ И СИНХРОНИЗИРОВАННЫЙ ПОЛЗУНОК -->
                     <div class="calc-group">
                         <label class="calc-label">3. Оцените уровень статического зажима спины во время сидячей работы за компьютером:</label>
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
@@ -421,42 +378,36 @@
                 </div>
             </div>
 
-            <!-- ДИНАМИЧЕСКИЙ ВЕРДИКТ -->
             <div class="bento-card result-score-box">
-                <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; color: var(--text-dim); margin-bottom: 10px;">Клинический вердикт кора:</div>
-                <div id="calc-result-title" class="score-number" style="font-size: 24px; margin: 15px 0;">Показана консультация хирурга</div>
-                <div id="calc-status" class="score-status" style="color: var(--accent-berry);">Режим: Радикальная пластика + Реабилитация</div>
-                <p id="calc-text" style="font-size: 13px; opacity: 0.8; margin-top: 15px; line-height: 1.5; text-align: center;">
-                    Расчет...
-                </p>
-            </div>
-
-            <!-- ШАХМАТНЫЙ ИНТЕГРАЦИОННЫЙ БЛОК РСЯ №1 -->
-            <div class="bento-rsya-box">
-                <div style="width: 100%; text-align: center; height: 100%;">
-                    <div id="yandex_rtb_tab1_placement"></div>
-                    <script>
-                    window.yaContextCb.push(() => {
-                        Ya.Context.AdvManager.render({
-                            "blockId": "R-A-19181219-23",
-                            "renderTo": "yandex_rtb_tab1_placement"
-                        })
-                    })
-                    </script>
+                <div>
+                    <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; color: var(--text-dim); margin-bottom: 10px;">Клинический вердикт кора:</div>
+                    <div id="calc-result-title" class="score-number" style="font-size: 24px; margin: 15px 0;">Показана консультация хирурга</div>
+                    <div id="calc-status" class="score-status" style="color: var(--accent-berry);">Режим: Радикальная пластика + Реабилитация</div>
+                    <p id="calc-text" style="font-size: 13px; opacity: 0.8; margin-top: 15px; line-height: 1.5; text-align: center;">
+                        Расчет...
+                    </p>
+                </div>
+                
+                <div style="width: 100%; margin-top: 20px;">
+                    <a id="vk-link-btn" href="https://vk.com/im?sel=-221142875" target="_blank" class="btn-marketing btn-vk-purple" style="font-size: 12px; padding: 15px;">Отправить результат Ольге в ВК</a>
                 </div>
             </div>
 
-            <!-- АНАТОМИЧЕСКИЙ ЭКСПЕРТНЫЙ РАЗБОР -->
+            <div class="bento-rsya-box">
+                <div style="width: 100%; text-align: center; height: 100%;">
+                    <div id="yandex_rtb_tab1_placement"></div>
+                </div>
+            </div>
+
             <div class="bento-card span-2" style="border-left: 4px solid var(--accent-gold);">
                 <div style="display: flex; flex-direction: column; justify-content: center; height: 100%;">
                     <h3 class="serif" style="font-size: 22px; margin-bottom: 10px;">Вся правда об абдоминопластике в Ачинске: Кожа против глубокой биомеханики</h3>
                     <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
-                        Когда женщина решается на абдоминопластику в Ачинске, она платит огромную цену за эстетический лоскут кожи: долгий наркоз, тяжелейшая реабилитация, шрамы от бедра до бедра и риски сером. Хирург натягивает кожу снаружи и может ушить разошедшиеся прямые мышцы. Но он не способен залезть внутрь нервной системы и «включить» мертвую поперечную мышцу живота и дыхательную диафрагму! Если таз завален вперед, а поясница зажата статической гиподинамией в офисах города, то даже после операции внутренние органы продолжaт давить на брюшную стенку, выдавливая живот «домиком» и перегружая швы. Эксперты платформы РЕСУРС настаивают: хирургия обязательна только тогда, когда есть огромный дефект тканей 3-4 степени или пупочная грыжа. В остальных 80% случаев дряблость, расхождение 1-2 степени и выпирающий низ живота убираются ювелирной нейроцентрической активацией кора и латеральным дыханием без единого разреза напрямую из дома.
+                        Когда женщина решается на абдоминопластику в Ачинске, она платит огромную цену за эстетический лоскут кожи: долгий наркоз, тяжелейшая реабилитация, шрамы от бедра до бедра и риски сером. Хирург натягивает кожу снаружи и может ушить разошедшиеся прямые мышцы. Но он не способен залезть внутрь нервной системы и «включить» мертвую поперечную мышцу живота и дыхательную диафрагму! Если таз завален вперед, а поясница зажата статической гиподинамией в офисах города, то даже после операции внутренние органы продолжат давить на брюшную стенку, выдавливая живот «домиком» и перегружая швы. Эксперты платформы РЕСУРС настаивают: хирургия обязательна только тогда, когда есть огромный дефект тканей 3-4 степени или пупочная грыжа. В остальных 80% случаев дряблость, расхождение 1-2 степени и выпирающий низ живота убираются ювелирной нейроцентрической активацией кора и латеральным дыханием без единого разреза напрямую из дома.
                     </p>
                 </div>
             </div>
 
-            <!-- ИНТЕРАКТИВНЫЙ БЕНТО ТЕКСТ-ГАЙД ОЛЬГИ МАРТЫНОВОЙ -->
             <div class="bento-card span-3" style="border-top: 3px solid var(--accent-green); background: var(--glass-bg);">
                 <div>
                     <span class="recipe-badge" style="background: var(--accent-gold) !important; color: #FFF !important;">Самодиагностика</span>
@@ -485,16 +436,15 @@
                 </div>
             </div>
 
-            <!-- МАНИФЕСТ ОЛЬГИ МАРТЫНОВОЙ -->
             <div class="bento-card span-3" style="background: var(--glass-bg); border: 2px solid var(--accent-green);">
                 <div>
                     <span class="recipe-badge">Вдохновение от Ольги Мартыновой</span>
                     <h3 class="serif" style="font-size: 26px; margin-bottom: 15px; color: var(--text-main);">«Хирургия меняет форму кожи, но только умное движение меняет функцию...»</h3>
                     <p style="font-size: 15px; line-height: 1.7; color: var(--text-main); margin-bottom: 25px;">
-                        «Мои прекрасные девочки! Пожалуйста, не спешите ложиться на операционный стол клиник эстетической хирургии Ачинске от отчаяния! Абдоминопластика — это тяжелейшая травма для организма, огромный рубец и долгие месяцы скованности. Операция убирает следствие, но полностью игнорирует причину. Торчащий низ живота, вываливающийся "домик" при нагрузке и ноющая поясница — это крик вашего тела о слабости глубокой системы стабилизации и потере соосности суставов. Как специалист с высшим физкультурным образованием, я уверяю вас: ваше тело способно на колоссальное восстановление без ножа! В нашем онлайн-клубе мы возвращаем кости таза в идеальную нейтраль, разгружаем крестец и через мягкие дыхательные практики возвращаем тонус поперечной мышце живота, создавая глубокую утяжку силуэта изнутри. Вы проснетесь легкой, собранной, с красивой тонкой талией и здоровой летящей осанкой. Подарите своему телу шанс вернуть свой естественный РЕСУРС вдумчиво!»
+                        «Мои прекрасные девочки! Пожалуйста, не спешите ложиться на операционный стол клиник эстетической хирургии Ачинска от отчаяния! Абдоминопластика — это тяжелейшая травма для организма, огромный рубец и долгие месяцы скованности. Операция убирает следствие, но полностью игнорирует причину. Торчащий низ живота, вываливающийся "домик" при нагрузке и ноющая поясница — это крик вашего тела о слабости глубокой системы стабилизации и потере соосности суставов. Как специалист с высшим физкультурным образованием, я уверяю вас: ваше тело способно на колоссальное восстановление без ножа! В нашем онлайн-клубе мы возвращаем кости таза в идеальную нейтраль, разгружаем крестец и через мягкие дыхательные практики возвращаем тонус поперечной мышце живота, создавая глубокую утяжку силуэта изнутри. Вы проснетесь легкой, собранной, с красивой тонкой талией и здоровой летящей осанкой. Подарите своему телу шанс вернуть свой естественный РЕСУРС вдумчиво!»
                     </p>
                 </div>
-                <div style="max-width: 450px; margin: 0 auto;">
+                <div style="max-width: 450px; margin: 0 auto; width: 100%;">
                     <a href="https://resurs-stretch.ru/club.html" class="btn-marketing btn-online-gold">Получить доступ к онлайн-клубу: тест-драйв за 300₽</a>
                 </div>
             </div>
@@ -502,7 +452,6 @@
         </div>
     </div>
 
-    <!-- ЭКСПЕРТНО-МАРКЕТИНГОВЫЙ БЕНТО-БЛОК ДЛЯ ЖУРНАЛА -->
     <section class="bento-grid" style="margin-top: 20px;">
         <div class="bento-card span-3" style="background: var(--journal-card-bg) !important; border-top: 3px solid var(--accent-green); box-shadow: 0 10px 30px rgba(142, 36, 170, 0.05);">
             <div style="display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: start; margin-bottom: 20px;">
@@ -517,27 +466,16 @@
                     <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5z"/><path d="M6 6h10M6 10h10"/></svg>
                 </div>
             </div>
-            <div style="max-width: 450px; margin: 10px auto 0;">
-                <a href="https://resurs-stretch.ru/journal.html" class="btn-marketing btn-online-green">Перейти в журнал: изменить привычки и жизнь</a>
+            <div style="max-width: 450px; margin: 10px auto 0; width: 100%;">
+                <a href="https://resurs-stretch.ru/journal.html" class="btn-marketing" style="background: var(--accent-green);">Перейти в журнал: изменить привычки и жизнь</a>
             </div>
         </div>
     </section>
 
-    <!-- РЕКОМЕНДАТЕЛЬНАЯ ЛЕНТА РСЯ FEED -->
     <section class="feed-container">
         <div id="yandex_rtb_R-A-19181219-22"></div>
-        <script>
-        window.yaContextCb.push(() => {
-            Ya.Context.AdvManager.render({
-                "blockId": "R-A-19181219-22",
-                "renderTo": "yandex_rtb_R-A-19181219-22",
-                "type": "feed"
-            })
-        })
-        </script>
     </section>
 
-    <!-- КНОПКА ШЕРИНГА -->
     <section class="share-section">
         <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">🔥 Отправить этот честный разбор подругам</h3>
         <p style="font-size: 14px; color: var(--text-dim); margin-bottom: 25px;">Поделитесь этой страницей с подругами или коллегами в Ачинске, которые задумываются об абдоминопластике, страдают от диастаза или безуспешно пытаются убрать низ живота обычными диетами.</p>
@@ -549,7 +487,6 @@
 
 </main>
 
-<!-- ОТЛАДОЧНЫЙ ИДЕАЛЬНЫЙ ПОДВАЛ ПО КОНТУРУ СЕТКИ -->
 <footer>
     <div class="footer-container">
         <p class="footer-text-main">© 2026 РЕСУРС | Интерактивная онлайн-платформа здоровья и умного движения.</p>
@@ -558,6 +495,13 @@
 </footer>
 
 <script>
+    // Глобальная инициализация РСЯ очередей
+    window.yaContextCb = window.yaContextCb || [];
+</script>
+<script src="https://yandex.ru/ads/system/context.js" async></script>
+
+<script>
+    // --- Исполняемые функции интерфейса ---
     function toggleTheme() {
         const html = document.documentElement;
         const currentTheme = html.getAttribute('data-theme');
@@ -565,7 +509,10 @@
         
         html.setAttribute('data-theme', newTheme);
         localStorage.setItem('theme', newTheme);
-        document.getElementById('themeToggle').innerText = newTheme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
+        
+        const btn = document.getElementById('themeToggle');
+        btn.innerText = newTheme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
+        btn.setAttribute('aria-label', newTheme === 'dark' ? 'Включить светлую тему' : 'Включить тёмную тему');
     }
 
     window.addEventListener('DOMContentLoaded', () => {
@@ -574,6 +521,26 @@
         
         restoreCalculatorData();
         calculateWeightIndex();
+        
+        // Ленивая инициализация РСЯ блоков после загрузки DOM
+        window.yaContextCb.push(() => {
+            if(document.getElementById('yandex_rtb_tab1_placement')) {
+                Ya.Context.AdvManager.render({
+                    "blockId": "R-A-19181219-23",
+                    "renderTo": "yandex_rtb_tab1_placement"
+                });
+            }
+            if(document.getElementById('yandex_rtb_R-A-19181219-22')) {
+                Ya.Context.AdvManager.render({
+                    "blockId": "R-A-19181219-22",
+                    "renderTo": "yandex_rtb_R-A-19181219-22",
+                    "type": "feed"
+                });
+            }
+            // Сквозной Floor Ad реклама
+            Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-6", "type": "floorAd", "platform": "touch" });
+            Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-7", "type": "floorAd", "platform": "desktop" });
+        });
     });
 
     function switchGuideStep(event, stepId) {
@@ -591,13 +558,19 @@
             input.parentElement.classList.remove('selected');
         });
         element.classList.add('selected');
+        element.querySelector('input').checked = true;
         
         calculateWeightIndex();
     }
 
     function calculateWeightIndex() {
-        const belly = document.querySelector('input[name="belly_state"]:checked').value;
-        const diastasis = document.querySelector('input[name="diastasis_degree"]:checked').value;
+        const bellyInput = document.querySelector('input[name="belly_state"]:checked');
+        const diastasisInput = document.querySelector('input[name="diastasis_degree"]:checked');
+        
+        if(!bellyInput || !diastasisInput) return;
+        
+        const belly = bellyInput.value;
+        const diastasis = diastasisInput.value;
         const sitHours = parseInt(document.getElementById('sit_slider').value);
 
         const sitLabels = ['Идеальная нейтраль', 'Небольшой наклон', 'Умеренная сутулость', 'Сильно сутулюсь за столом'];
@@ -620,31 +593,32 @@
             titleEl.innerText = "Биомеханический спад глубокого кора";
             statusEl.innerText = "Режим: Умный Пилатес & Нейтраль таза";
             statusEl.style.color = "var(--accent-gold)";
-            bodyText = "У вас нет показаний к операции. Живот вываливается из-за расслабления поперечной мышцы и переднего перекоса таза сидячим положением (" + sitLabels[sitHours] + "). Ольга Мартынова рекомендует Пилатес 3D для возвращения органов в анатомическую нейтраль.";
+            bodyText = "У вас нет прямых показаний к операции. Живот вываливается из-за расслабления поперечной мышцы и переднего перекоса таза сидячим положением (" + sitLabels[sitHours] + "). Ольга Мартынова рекомендует Пилатес 3D для возвращения органов в анатомическую нейтраль.";
             diagnosticResult = "Безоперационный гипотонус кора (Статика: " + sitLabels[sitHours] + ")";
         } else {
             titleEl.innerText = "Адаптивный тонус стабилизаторов";
             statusEl.innerText = "Режим: Силовой Пилатес & Боди Скальп";
             statusEl.style.color = "var(--accent-berry)";
-            bodyText = "Великолепный тонус соединительной ткани! Фасции упругие, расхождения мышц нет. Живот собран. Вы полностью готовы к регулярному Пилатесу, функциональному тренингу для поддержания идеального силуэта.";
+            bodyText = "Великолепный тонус соединительной ткани! Фасции упругие, расхождения мышц нет. Живот собран. Вы полностью готовы к регулярному Пилатесу и интенсивному функциональному тренингу.";
             diagnosticResult = "Глубокий корсет в норме нейтрали (Статика: " + sitLabels[sitHours] + ")";
         }
 
         textEl.innerText = bodyText;
 
         const scoreBox = document.querySelector('.result-score-box');
-        scoreBox.style.transform = 'scale(1.02)';
-        setTimeout(() => { scoreBox.style.transform = 'scale(1)'; }, 150);
+        if(scoreBox) {
+            scoreBox.style.transform = 'scale(1.02)';
+            setTimeout(() => { scoreBox.style.transform = 'scale(1)'; }, 150);
+        }
 
+        // Автоматическая генерация бесшовной сквозной ссылки ВК с передачей цены (300 р)
         const baseVkUrl = "https://vk.com/im?sel=-221142875";
-        const messageText = "Вера, здравствуйте! Я изучила экспертный разбор абдоминопластики. Прошла интерактивный аудит живота в Ачинске. Мой маркер здоровья: " + diagnosticResult + ". Запишите меня на тест-драйв за 990 рублей.";
+        const messageText = "Здравствуйте! Я изучила экспертный разбор абдоминопластики. Прошла интерактивный аудит живота в Ачинске. Мой маркер здоровья: " + diagnosticResult + ". Запишите меня на тест-драйв за 300 рублей.";
         const encodedMessage = encodeURIComponent(messageText);
         const finalVkLink = baseVkUrl + "&message=" + encodedMessage;
 
         const vkBtn = document.getElementById('vk-link-btn');
-        const vkRecipe = document.getElementById('vk-link-recipe');
         if (vkBtn) vkBtn.setAttribute('href', finalVkLink);
-        if (vkRecipe) vkRecipe.setAttribute('href', finalVkLink);
 
         const calcData = { belly, diastasis, sitHours };
         localStorage.setItem('abdomino_data', JSON.stringify(calcData));
@@ -677,7 +651,8 @@
         }
 
         document.querySelectorAll('.radio-tile').forEach(tile => {
-            if (tile.querySelector('input').checked) tile.classList.add('selected');
+            const input = tile.querySelector('input');
+            if (input && input.checked) tile.classList.add('selected');
         });
     }
 
@@ -702,25 +677,45 @@
     }
 </script>
 
-<!-- СКВОЗНЫЕ РЕКЛАМНЫЕ КАНАЛЫ РСЯ FLOOR AD -->
 <script>
-window.yaContextCb.push(() => {
-    Ya.Context.AdvManager.render({
-        "blockId": "R-A-19181219-6",
-        "type": "floorAd",
-        "platform": "touch"
-    })
-})
+    window.addEventListener('DOMContentLoaded', () => {
+        const isBot = /YandexBot|YandexAccessibilityBot|YandexMobileBot|Googlebot/i.test(navigator.userAgent);
+        if (isBot) {
+            fetch('https://functions.yandexcloud.net/d4ecn5ag33dcdd2deivd?bot=true&url=' + encodeURIComponent(window.location.href))
+            .then(res => res.json())
+            .then(data => console.log("SEO Preview Matrix Synced"))
+            .catch(e => console.log("SEO preview pass"));
+        }
+    });
 </script>
-<script>
-window.yaContextCb.push(() => {
-    Ya.Context.AdvManager.render({
-        "blockId": "R-A-19181219-7",
-        "type": "floorAd",
-        "platform": "desktop"
-    })
-})
+
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108177329', 'ym');
+    ym(108177329, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
 </script>
+<noscript>
+    <div><img src="https://mc.yandex.ru/watch/108177329" style="position:absolute; left:-9999px;" alt="" /></div>
+</noscript>
+
+<script type="text/javascript">
+    var _tmr = window._tmr || (window._tmr = []);
+    _tmr.push({id: "3755240", type: "pageView", start: (new Date()).getTime()});
+    (function (d, w, id) {
+        if (d.getElementById(id)) return;
+        var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
+        ts.src = "https://top-fwz1.mail.ru/js/code.js";
+        var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
+        if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
+    })(document, window, "tmr-code");
+</script>
+<noscript>
+    <div><img src="https://top-fwz1.mail.ru/counter?id=3755240;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" /></div>
+</noscript>
 
 </body>
 </html>
