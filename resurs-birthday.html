@@ -29,8 +29,11 @@
         })(document, window, "tmr-code");
     </script>
     <noscript>
-
-    <script>
+        <div>
+            <img src="https://mc.yandex.ru/watch/108177329" style="position:absolute; left:-9999px;" alt="" />
+            <img src="https://top-fwz1.mail.ru/counter?id=3755240;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" />
+        </div>
+    </noscript> <script>
         // Глобальная логика перехвата ботов для SEO-превью через Яндекс Функцию
         window.addEventListener('DOMContentLoaded', () => {
             const isBot = /YandexBot|YandexAccessibilityBot|YandexMobileBot|Googlebot/i.test(navigator.userAgent);
@@ -43,21 +46,18 @@
         });
     </script>
     
-    <!-- Подключение рекламной системы Яндекса (РСЯ) -->
     <script>window.yaContextCb=window.yaContextCb||[]</script>
     <script src="https://yandex.ru/ads/system/context.js" async></script>
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- ЧИСТОЕ ГЕО-ЗАВИСИМОЕ СЕО ПОД ДЕНЬ РОЖДЕНИЯ И СКИДКИ -->
     <title>Скидки в день рождения в Сыктывкаре | Подарки именинникам в студии РЕСУРС</title>
     <meta name="description" content="Акции и скидки до 3000 рублей на абонементы в честь дня рождения в Сыктывкаре. Получите +2 тренировки в подарок и зафиксируйте праздничную цену в студии умного движения РЕСУРС на Коммунистической.">
     <meta name="keywords" content="скидки день рождения сыктывкар, подарки именинникам коми, акции фитнес сыктывкар абонемент, студия ресурс растяжка сыктывкар, подарочный сертификат фитнес, здоровая спина пилатес коммунистическая">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://resurs-stretch.ru/resurs-birthday.html">
 
-    <!-- OPEN GRAPH ДЛЯ СОЦСЕТЕЙ И МЕССЕНДЖЕРОВ -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Праздничный скрининг РЕСУРС: Заберите ваш подарок к Дню Рождения!">
     <meta property="og:description" content="Дарим до 3000 рублей скидки на абонементы и +2 занятия в подарок. Рассчитайте ваш индекс суставной молодости на новый личный год.">
@@ -119,7 +119,7 @@
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
             transition: background-color 0.4s ease, color 0.4s ease;
             -webkit-font-smoothing: antialiased;
-            padding-bottom: 60px;
+            padding-bottom: 80px;
         }
 
         h1, h2, h3, .serif { font-family: var(--font-serif); font-weight: 600; letter-spacing: 0.5px; }
@@ -138,13 +138,24 @@
         }
         .brand-name { font-family: var(--font-serif); font-size: 22px; letter-spacing: 8px; text-transform: uppercase; font-weight: 600; }
         
-        #themeToggle {
-            padding: 0 15px; height: 35px; font-size: 10px; font-weight: 600; letter-spacing: 2px;
-            display: flex; align-items: center; justify-content: center;
+        /* Стили под выпадающее меню выбора тем */
+        .theme-popup {
+            position: fixed; top: 65px; right: 5%;
+            background-color: var(--nav-bg); border: var(--glass-border); border-radius: 12px;
+            padding: 8px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: none; min-width: 160px; z-index: 3000; backdrop-filter: blur(20px);
+        }
+        .theme-popup.show { display: block; }
+        .theme-option { padding: 10px 20px; font-size: 12px; font-weight: 600; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; color: var(--text-main); }
+        .theme-option:hover { background-color: var(--elem-bg); color: var(--accent-gold); }
+
+        .theme-selector-trigger {
+            padding: 0 15px; height: 35px; font-size: 10px; font-weight: 800; letter-spacing: 2px;
+            display: inline-flex; align-items: center; justify-content: center;
             border-radius: 8px; border: 1px solid var(--elem-border); background: var(--elem-bg);
             cursor: pointer; transition: var(--transition); color: var(--text-main); text-transform: uppercase;
         }
-        #themeToggle:hover { border-color: var(--accent-gold); transform: translateY(-2px); }
+        .theme-selector-trigger:hover { border-color: var(--accent-gold); transform: translateY(-2px); }
 
         /* MAIN CONTAINER */
         .main-layout { max-width: 1200px; margin: 100px auto 60px; padding: 0 20px; }
@@ -310,10 +321,16 @@
 </head>
 <body>
 
+<div class="theme-popup" id="themePopup">
+    <div class="theme-option" onclick="setTheme('light')">Светлая</div>
+    <div class="theme-option" onclick="setTheme('dark')">Темная</div>
+    <div class="theme-option" onclick="setTheme('auto')">Автоматическая</div>
+</div>
+
 <header id="header">
     <div class="brand-name">РЕСУРС</div>
     <div>
-        <button id="themeToggle" onclick="toggleTheme()">ТЕНЬ</button>
+        <button id="themeToggle" class="theme-selector-trigger" onclick="toggleThemePopup()">Тема</button>
     </div>
 </header>
 
@@ -334,7 +351,6 @@
         <button class="tab-btn" onclick="switchTab(event, 'tab-recipes')">🌿 4 правила заботы Ольги Мартыновой</button>
     </nav>
 
-    <!-- ТАБ 1: ИНТЕРАКТИВНЫЙ БЕНТО-КАЛЬКУЛЯТОР -->
     <div id="tab-calc" class="tab-content active">
         <div class="bento-grid">
             
@@ -410,7 +426,6 @@
                 </div>
             </div>
 
-            <!-- Результат праздничного расчета -->
             <div class="bento-card result-score-box">
                 <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; color: var(--text-dim); margin-bottom: 10px;">Ваш праздничный бонус утвержден:</div>
                 <div id="calc-result-title" class="score-number" style="font-size: 32px; margin: 15px 0;">Скидка 3000 рублей</div>
@@ -420,7 +435,6 @@
                 </p>
             </div>
 
-            <!-- Интерактивная витрина праздничных цен абонементов -->
             <div class="bento-card span-3">
                 <h3 class="serif" style="text-align: center; font-size: 24px; margin-bottom: 10px;">Ваша персональная праздничная витрина абонементов РЕСУРС</h3>
                 <p style="text-align: center; font-size: 14px; color: var(--text-dim); max-width: 700px; margin: 0 auto 20px;">
@@ -459,7 +473,6 @@
                 </div>
             </div>
 
-            <!-- МАРКЕТИНГОВАЯ КНОПКА (СТРОГО КРАСНАЯ ДЕПЛИНК К ВЕРЕ В ВК) -->
             <div class="bento-card span-3" style="background: var(--elem-bg); text-align: center; padding: 40px 30px;">
                 <span class="recipe-badge" style="background: var(--accent-gold) !important;">Оформить подарок в Сыктывкаре</span>
                 <h3 class="serif" style="font-size: 26px; margin-bottom: 15px;">Активируйте ваши праздничные условия у Веры в ВК</h3>
@@ -474,7 +487,6 @@
         </div>
     </div>
 
-    <!-- ТАБ 2: 10 НАУЧНЫХ ФАКТОВ ОБ ИСТИННОЙ ЗАДАЧЕ ФИТНЕСА -->
     <div id="tab-facts" class="tab-content">
         <div class="bento-grid">
             
@@ -500,7 +512,7 @@
             <div class="bento-card">
                 <div class="fact-num">03</div>
                 <h3 class="fact-title">Психосоматический мышечный зажим</h3>
-                <p class="fact-desc">При высокой ответственности и умственной нагрузке плечи рефлекторно подтягиваются к ушам, намертво зажимая шею и вызывая головные боли.</p>
+                <p class="fact-desc">При высокой ответственности и умственной нагрузке плечи рефлекторно подтягиваются к ушам, намертво зажимя шею и вызывая головные боли.</p>
             </div>
 
             <div class="bento-card">
@@ -548,7 +560,6 @@
         </div>
     </div>
 
-    <!-- ТАБ 3: ЧЕТКО 4 ЗОЛОТЫХ ПРАВИЛА ЗАБОТЫ -->
     <div id="tab-recipes" class="tab-content">
         <div class="bento-grid">
             
@@ -584,12 +595,11 @@
                 </p>
             </div>
 
-            <!-- ИСПРАВЛЕНО: ЯРКАЯ ЗЕЛЕНАЯ ПЛАТФОРМА И ЗЕЛЕНАЯ КНОПКА ЗАПИСИ С УНИВЕРСАЛЬНЫМ ШАБЛОНОМ ДЛЯ ВЕРЫ -->
             <div class="bento-card span-3" style="background: linear-gradient(135deg, rgba(76,175,80,0.12), transparent); border: 2px solid var(--accent-green);">
                 <span class="recipe-badge">Вдохновение от Ольги Мартыновой</span>
                 <h3 class="serif" style="font-size: 26px; margin-bottom: 15px; color: var(--text-main);">«Ваш новый личный год — это время вернуть телу легкость, грацию и силы...»</h3>
                 <p style="font-size: 15px; line-height: 1.7; color: var(--text-main); margin-bottom: 25px;">
-                    «Мои прекрасные, дорогие именинницы! Я от всего сердца поздравляю вас с Днем рождения! Этот праздник — ваш личный Новый год, идеальный момент, чтобы сбросить накопленный груз офисной статики, усталости и стресса. Пожалуйста, сделайте себе самый главный подарок — начните заботиться о своем здоровье вдумчиво и бережно. Забудьте про изнуряющие тренировки на износ, от которых ломит суставы! Вашему организму нужен не дефицит калорий, а возвращение природной оси. Мы в студии "РЕСУРС" на Коммунистической приготовили для вас особенный подарок: максимальные праздничные скидки на абонементы и +2 дополнительные тренировки. В наших тихих, камерных группах под контролем чутких тренеров мы бережно расправим зажатые фасции, уберем ноющую тяжесть из поясницы и шеи, запустим лимфоток и вернем вам кошачью грацию и море чистой энергии. Начните свой год с легкости, вы заслуживаете этого!»
+                    «Мои прекрасные, дорогие именинницы! Я от всего сердца поздравляем вас с Днем рождения! Этот праздник — ваш личный Новый год, идеальный момент, чтобы сбросить накопленный груз офисной статики, усталости и стресса. Пожалуйста, сделайте себе самый главный подарок — начните заботиться о своем здоровье вдумчиво и бережно. Забудьте про изнуняющие тренировки на износ, от которых ломает суставы! Вашему организму нужен не дефицит калорий, а возвращение природной оси. Мы в студии "РЕСУРС" на Коммунистической приготовили для вас особенный подарок: максимальные праздничные скидки на абонементы и +2 дополнительные тренировки. В наших тихих, камерных группах под контролем чутких тренеров мы бережно расправим зажатые фасции, уберем ноющую тяжесть из поясницы и шеи, запустим лимфоток и вернем вам кошачью грацию и море чистой энергии. Начните свой год с легкости, вы заслуживаете этого!»
                 </p>
                 <div style="max-width: 450px;">
                     <a id="vk-link-recipe" href="vk://im?sel=-221142875" class="btn-marketing btn-green-rule">Зафиксировать праздничный подарок</a>
@@ -599,7 +609,6 @@
         </div>
     </div>
 
-    <!-- УЛЬТРА-ЯРКАЯ КНОПКА ШЕРИНГА -->
     <section class="share-section">
         <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">🔥 Подарить праздничный скрининг знакомой имениннице!</h3>
         <p style="font-size: 14px; color: var(--text-dim); margin-bottom: 25px;">Поделитесь этой страницей с подругами, близкими или коллегами, у которых скоро День рождения, чтобы они могли бесплатно пройти тест и забрать свои праздничные бонусы.</p>
@@ -619,22 +628,57 @@
 </footer>
 
 <script>
-    function toggleTheme() {
-        const html = document.documentElement;
-        const currentTheme = html.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        
-        html.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-        document.getElementById('themeToggle').innerText = newTheme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
+    // --- ПЕКЛЮЧЕНИЕ ТЕМЫ ЧЕРЕЗ ПРЕМИУМ ПОПАП ---
+    function toggleThemePopup() {
+        document.getElementById('themePopup').classList.toggle('show');
+    }
+
+    window.addEventListener('click', function(e) {
+        if (!document.querySelector('.theme-selector-trigger').contains(e.target) && !document.getElementById('themePopup').contains(e.target)) {
+            if (document.getElementById('themePopup')) {
+                document.getElementById('themePopup').classList.remove('show');
+            }
+        }
+    });
+
+    function setTheme(theme) {
+        const root = document.documentElement;
+        localStorage.setItem('theme', theme);
+        document.getElementById('themePopup').classList.remove('show');
+
+        if (theme === 'auto') {
+            applyAutoTheme();
+        } else {
+            root.setAttribute('data-theme', theme);
+        }
+        calculateBirthdayIndex();
+    }
+
+    function applyAutoTheme() {
+        const root = document.documentElement;
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+            root.setAttribute('data-theme', 'light');
+        } else {
+            root.setAttribute('data-theme', 'dark');
+        }
     }
 
     window.addEventListener('DOMContentLoaded', () => {
-        const theme = document.documentElement.getAttribute('data-theme');
-        document.getElementById('themeToggle').innerText = theme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        if (currentTheme === 'auto') {
+            applyAutoTheme();
+        } else {
+            document.documentElement.setAttribute('data-theme', currentTheme);
+        }
         
         restoreCalculatorData();
         calculateBirthdayIndex();
+    });
+
+    window.addEventListener('scroll', () => {
+        const header = document.getElementById('header');
+        if (window.scrollY > 30) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
     });
 
     function switchTab(event, tabId) {
@@ -653,43 +697,44 @@
             input.parentElement.classList.remove('selected');
         });
         element.classList.add('selected');
+        element.querySelector('input').checked = true;
         
         calculateBirthdayIndex();
     }
 
-    // ИНТЕЛЛЕКТУАЛЬНАЯ ЛОГИКА КАЛЬКУЛЯТОРА С ВЗАИМОСВЯЗАННЫМ ОТКЛИКОМ СЛАЙДЕРА И КАРТОЧЕК
     function calculateBirthdayIndex() {
-        const month = document.getElementById('birth_month').value;
-        const goal = document.querySelector('input[name="birthday_goal"]:checked').value;
-        const fatigue = document.querySelector('input[name="weekly_fatigue"]:checked').value;
+        const monthSelect = document.getElementById('birth_month');
+        const goalSelect = document.querySelector('input[name="birthday_goal"]:checked');
+        const fatigueSelect = document.querySelector('input[name="weekly_fatigue"]:checked');
+
+        if (!monthSelect || !goalSelect || !fatigueSelect) return;
+
+        const month = monthSelect.value;
+        const goal = goalSelect.value;
+        const fatigue = fatigueSelect.value;
         const monthsIndex = parseInt(document.getElementById('months_slider').value);
 
         const breakLabels = ['До 3 месяцев статики', 'От 3 до 6 месяцев', 'От 6 до 12 месяцев', 'Более 1 года застоя'];
         document.getElementById('range-months-val').innerText = breakLabels[monthsIndex];
 
-        // Живой отклик: в зависимости от стажа застоя визуально подсвечиваем разные ценовые карточки в витрине
         document.querySelectorAll('.price-card').forEach(card => card.classList.remove('active-bonus'));
         
         let giftAmount = "";
         let diagnosticResult = "";
 
         if (monthsIndex === 3 || fatigue === 'neck_pain') {
-            // Большой стаж застоя или каменная шея — рекомендуем крупные абонементы, подсвечиваем пакет 32 занятия
             document.getElementById('card-p32').classList.add('active-bonus');
             giftAmount = "Скидка 2000 рублей";
             diagnosticResult = "Фасциальный зажим шеи и статика (Стаж: " + breakLabels[monthsIndex] + ")";
         } else if (goal === 'body_sculpt' || monthsIndex === 2) {
-            // Цель моделирования рельефа — подсвечиваем пакет 16 занятий
             document.getElementById('card-p16').classList.add('active-bonus');
             giftAmount = "Скидка 1500 рублей";
             diagnosticResult = "Застой лимфотока боков (Стаж: " + breakLabels[monthsIndex] + ")";
         } else if (monthsIndex === 0) {
-            // Минимальный застой — подсвечиваем стартовый пакет 8 занятий
             document.getElementById('card-p8').classList.add('active-bonus');
             giftAmount = "Скидка 1000 рублей";
             diagnosticResult = "Начальная суставная адаптация кора (Стаж: " + breakLabels[monthsIndex] + ")";
         } else {
-            // Максимальный застой — подсвечиваем пакет 64 занятия
             document.getElementById('card-p64').classList.add('active-bonus');
             giftAmount = "Скидка 3000 рублей";
             diagnosticResult = "Глубокая атрофия мышечного корсета (Стаж: " + breakLabels[monthsIndex] + ")";
@@ -698,22 +743,23 @@
         const titleEl = document.getElementById('calc-result-title');
         const textEl = document.getElementById('calc-text');
 
-        titleEl.innerText = giftAmount;
-        textEl.innerText = "Уважаемая именинница! На основе ваших маркеров (Цель: " + document.querySelector('input[name="birthday_goal"]:checked').parentElement.querySelector('.radio-tile-title').innerText + ") система зафиксировала за вашим профилем максимальные праздничные условия. Карта начисления бонусов передана ИИ-помощнику Вере.";
+        if (titleEl && textEl) {
+            titleEl.innerText = giftAmount;
+            textEl.innerText = "Уважаемая именинница! На основе ваших маркеров (Цель: " + goalSelect.parentElement.querySelector('.radio-tile-title').innerText + ") система зафиксировала за вашим профилем максимальные праздничные условия. Карта начисления бонусов передана ИИ-помощнику Вере.";
+        }
 
-        // Плавная микро-анимация блока результатов
         const scoreBox = document.querySelector('.result-score-box');
-        scoreBox.style.transform = 'scale(1.02)';
-        setTimeout(() => { scoreBox.style.transform = 'scale(1)'; }, 150);
+        if (scoreBox) {
+            scoreBox.style.transform = 'scale(1.02)';
+            setTimeout(() => { scoreBox.style.transform = 'scale(1)'; }, 150);
+        }
 
-        // УНИВЕРСАЛЬНЫЙ ДЕПЛИНК ШАБЛОН ДЛЯ ВЕРЫ В ВК (БЕЗ ЖЕСТКОЙ КОНКРЕТИКИ ПРОФЕССИЙ)
         const baseVkUrl = "https://vk.com/im?sel=-221142875";
         const messageText = "Вера, здравствуйте! У меня сидячая работа, я прошла тест на компьютерную сутулость. У меня кажется сильно зажат грудной отдел. Ольга Мартынова рекомендовала мне режим разгрузки спины и шеи. Запишите меня на тест-драйв - 3 тренировки за 990 руб. Мой праздничный маркер здоровья к Дню Рождения: " + diagnosticResult + " Утвержденный бонус: " + giftAmount + " и +2 занятия в подарок!";
         
         const encodedMessage = encodeURIComponent(messageText);
         const finalVkLink = baseVkUrl + "&message=" + encodedMessage;
 
-        // Обновляем ссылки в кнопках на лету
         document.getElementById('vk-link-btn').setAttribute('href', finalVkLink);
         document.getElementById('vk-link-recipe').setAttribute('href', finalVkLink);
 
@@ -745,7 +791,7 @@
                 document.querySelectorAll(`input[name="weekly_fatigue"]`).forEach(i => { if(i.value === data.fatigue) i.checked = true; });
                 document.getElementById('months_slider').value = data.monthsIndex;
             } catch (e) {
-                console.log("Storage backup sync error birthday pass");
+                print("Storage backup sync error birthday pass");
             }
         }
 
@@ -762,7 +808,7 @@
         };
         const btnText = document.getElementById('share-btn-text');
         if (navigator.share) {
-            try { await navigator.share(shareData); } catch (err) { console.log('Share canceled'); }
+            try { await navigator.share(shareData); } catch (err) { }
         } else {
             try {
                 await navigator.clipboard.writeText(window.location.href);
@@ -773,15 +819,8 @@
             }
         }
     }
-
-    window.addEventListener('scroll', () => {
-        const header = document.getElementById('header');
-        if (window.scrollY > 30) header.classList.add('scrolled');
-        else header.classList.remove('scrolled');
-    });
 </script>
 
-    <!-- РЕНДЕР КАНАЛОВ РСЯ FLOOR AD -->
 <script>
 window.yaContextCb.push(() => {
     Ya.Context.AdvManager.render({
