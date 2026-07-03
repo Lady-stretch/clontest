@@ -29,8 +29,11 @@
         })(document, window, "tmr-code");
     </script>
     <noscript>
-
-    <script>
+        <div>
+            <img src="https://mc.yandex.ru/watch/108177329" style="position:absolute; left:-9999px;" alt="" />
+            <img src="https://top-fwz1.mail.ru/counter?id=3755240;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" />
+        </div>
+    </noscript> <script>
         // Глобальная логика перехвата ботов для SEO-превью через Яндекс Функцию
         window.addEventListener('DOMContentLoaded', () => {
             const isBot = /YandexBot|YandexAccessibilityBot|YandexMobileBot|Googlebot/i.test(navigator.userAgent);
@@ -51,7 +54,7 @@
     
     <title>Как убрать зажимы в шее и избавиться от головной боли напряжения</title>
     <meta name="description" content="Научно обоснованное руководство: как убрать триггерные точки подзатылочных мышц, восстановить кровоток шейных артерий и полностью избавиться от головной боли напряжения. 4 деликатных анатомических совета от Ольги Мартыновой.">
-    <meta name="keywords" content="зажимы в шее как убрать, избавиться от головной боли напряжения, спазм трапециевидных мышц, подзатылочные мышцы триггеры, миофасциальный релиз шеи, пилатес для шейного отдела, здоровая спина сыктывкар ресурс">
+    <meta name="keywords" content="зажимы in шее как убрать, избавиться от головной боли напряжения, спазм трапециевидных мышц, подзатылочные мышцы триггеры, миофасциальный релиз шеи, пилатес для шейного отдела, здоровая спина сыктывкар ресурс">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://resurs-stretch.ru/resurs-headache-relief.html">
 
@@ -116,7 +119,7 @@
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
             transition: background-color 0.4s ease, color 0.4s ease;
             -webkit-font-smoothing: antialiased;
-            padding-bottom: 60px;
+            padding-bottom: 80px;
         }
 
         h1, h2, h3, .serif { font-family: var(--font-serif); font-weight: 600; letter-spacing: 0.5px; }
@@ -135,13 +138,24 @@
         }
         .brand-name { font-family: var(--font-serif); font-size: 22px; letter-spacing: 8px; text-transform: uppercase; font-weight: 600; }
         
-        #themeToggle {
-            padding: 0 15px; height: 35px; font-size: 10px; font-weight: 600; letter-spacing: 2px;
-            display: flex; align-items: center; justify-content: center;
+        /* Стили под выпадающее меню выбора тем */
+        .theme-popup {
+            position: fixed; top: 65px; right: 5%;
+            background-color: var(--nav-bg); border: var(--glass-border); border-radius: 12px;
+            padding: 8px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: none; min-width: 160px; z-index: 3000; backdrop-filter: blur(20px);
+        }
+        .theme-popup.show { display: block; }
+        .theme-option { padding: 10px 20px; font-size: 12px; font-weight: 600; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; color: var(--text-main); }
+        .theme-option:hover { background-color: var(--elem-bg); color: var(--accent-gold); }
+
+        .theme-selector-trigger {
+            padding: 0 15px; height: 35px; font-size: 10px; font-weight: 800; letter-spacing: 2px;
+            display: inline-flex; align-items: center; justify-content: center;
             border-radius: 8px; border: 1px solid var(--elem-border); background: var(--elem-bg);
             cursor: pointer; transition: var(--transition); color: var(--text-main); text-transform: uppercase;
         }
-        #themeToggle:hover { border-color: var(--accent-gold); transform: translateY(-2px); }
+        .theme-selector-trigger:hover { border-color: var(--accent-gold); transform: translateY(-2px); }
 
         /* MAIN CONTAINER */
         .main-layout { max-width: 1200px; margin: 100px auto 60px; padding: 0 20px; }
@@ -288,10 +302,16 @@
 </head>
 <body>
 
+<div class="theme-popup" id="themePopup">
+    <div class="theme-option" onclick="setTheme('light')">Светлая</div>
+    <div class="theme-option" onclick="setTheme('dark')">Темная</div>
+    <div class="theme-option" onclick="setTheme('auto')">Автоматическая</div>
+</div>
+
 <header id="header">
     <div class="brand-name">РЕСУРС</div>
     <div>
-        <button id="themeToggle" onclick="toggleTheme()">ТЕНЬ</button>
+        <button id="themeToggle" class="theme-selector-trigger" onclick="toggleThemePopup()">Тема</button>
     </div>
 </header>
 
@@ -404,7 +424,7 @@
                     <div>
                         <h3 class="serif" style="font-size: 22px; margin-bottom: 10px;">Истинная биомеханика: Почему упражнения из интернета блокируют шею еще сильнее</h3>
                         <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
-                            Когда человек ищет спасение от боли в шее, федеральные порталы выдают стандартные комплексы: интенсивные вращения головой по кругу или жесткие наклоны через силу. В эту секунду мышцы уходят в еще более глубокий защитный спазм! Подзатылочные мышцы зажимаются рефлекторно, когда грудная клетка сутулится, а таз завален назад. Мозг пытается удержать линию взгляда ровно и принудительно спазмирует короткие разгибатели головы, сжимая позвоночные артерии. Крутить шеей в этот момент — значит травмировать межпозвоночные диски. Чтобы полностью избавиться от головной боли напряжения, нужно восстановить соосность всего тела. Мягкая методика студии «РЕСУРС» устраняет корень проблемы: деликатные техники миофасциального релиза (МФР) расслабляют триггерные точки затылка, а Пилатес 3D раскрывает груную клетку и возвращает таз в нейтраль, навсегда снимая избыточную нагрузку с шейного отдела.
+                            Когда женщина чувствует скованность тела, она часто совершает ошибку: пытается силой преодолеть зажимы в тяжелом зале, доводя здоровье до критического напряжения и полного истощения. Вы думаете, что обязаны тренироваться на износ через надрыв и острую мышечную боль. Но ваше тело из-за сидячей статики уже находится в режиме глухой защиты! Хроническая усталость и нежелание идти в зал — это не дефицит воли, а мудрый барьер мозга, спасающий уязвимые ткани от травм. Тяжелая пахота поверх зажатых мышц лишь поднимет гормон кортизол, заблокирует обмен веществ и оставит вашу спину в состоянии постоянного спазма. Ресурсный легкий фитнес в студии «РЕСУРС» работает принципиально иначе. Мы не забираем у вас силы. Через деликатный МФР-самомассаж роллами и дыхательные фиксации Пилатеса мы принудительно переключаем нервную систему в режим восстановления. Уровень кортизола падает, спазм с затылка и лопаток уходит, возвращая суставам естественную смазку, а вам — чистую, мощную энергию без боли и насилия на Коммунистической 77/2.
                         </p>
                     </div>
                     <div style="background: var(--elem-bg); padding: 15px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
@@ -531,7 +551,7 @@
                 <span class="recipe-badge">Совет 04</span>
                 <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">Восстанавливайте мобильность грудного отдела позвоночника</h3>
                 <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
-                    Шея страдает только потому, что грудной отдел позвоночника заблокирован многочасовым сидением. Пока лопатки и ребра не двигаются 3D-формате, шея будет перегружаться ежедневно. Ольга Мартынова настаивает: завершайте день мягкими разгибаниями грудного отдела на валике или ролле. Это мгновенно вернет шейным позвонкам их природную ось движения, полностью снимет каменную тяжесть с плеч, уберет головную боль напряжения и подарит вашей голове абсолютную ясность и легкость.
+                    Шея страдает только потому, что грудной отдел позвоночника заблокирован многочасовым сидением. Пока лопатки и ребра не двигаются в 3D-формате, шея будет перегружаться ежедневно. Ольга Мартынова настаивает: завершайте день мягкими разгибаниями грудного отдела на валике или ролле. Это мгновенно вернет шейным позвонкам их природную ось движения, полностью снимет каменную тяжесть с плеч, уберет головную боль напряжения и вернет вам абсолютную ясность и легкость.
                 </p>
             </div>
 
@@ -569,22 +589,57 @@
 </footer>
 
 <script>
-    function toggleTheme() {
-        const html = document.documentElement;
-        const currentTheme = html.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        
-        html.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-        document.getElementById('themeToggle').innerText = newTheme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
+    // --- ПЕРЕКЛЮЧЕНИЕ ТЕМЫ ЧЕРЕЗ ПРЕМИУМ ПОПАП ---
+    function toggleThemePopup() {
+        document.getElementById('themePopup').classList.toggle('show');
+    }
+
+    window.addEventListener('click', function(e) {
+        if (!document.querySelector('.theme-selector-trigger').contains(e.target) && !document.getElementById('themePopup').contains(e.target)) {
+            if (document.getElementById('themePopup')) {
+                document.getElementById('themePopup').classList.remove('show');
+            }
+        }
+    });
+
+    function setTheme(theme) {
+        const root = document.documentElement;
+        localStorage.setItem('theme', theme);
+        document.getElementById('themePopup').classList.remove('show');
+
+        if (theme === 'auto') {
+            applyAutoTheme();
+        } else {
+            root.setAttribute('data-theme', theme);
+        }
+        calculateNeckIndex();
+    }
+
+    function applyAutoTheme() {
+        const root = document.documentElement;
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+            root.setAttribute('data-theme', 'light');
+        } else {
+            root.setAttribute('data-theme', 'dark');
+        }
     }
 
     window.addEventListener('DOMContentLoaded', () => {
-        const theme = document.documentElement.getAttribute('data-theme');
-        document.getElementById('themeToggle').innerText = theme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        if (currentTheme === 'auto') {
+            applyAutoTheme();
+        } else {
+            document.documentElement.setAttribute('data-theme', currentTheme);
+        }
         
         restoreCalculatorData();
         calculateNeckIndex();
+    });
+
+    window.addEventListener('scroll', () => {
+        const header = document.getElementById('header');
+        if (window.scrollY > 30) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
     });
 
     function switchTab(event, tabId) {
@@ -603,22 +658,26 @@
             input.parentElement.classList.remove('selected');
         });
         element.classList.add('selected');
+        element.querySelector('input').checked = true;
         
         calculateNeckIndex();
     }
 
-    // ИНТЕЛЛЕКТУАЛЬНАЯ ЛОГИКА КАЛЬКУЛЯТОРА С ВЗАИМОСВЯЗАННЫМ ОТКЛИКОМ ПОЛЗУНКА
     function calculateNeckIndex() {
-        const headache = document.querySelector('input[name="headache_type"]:checked').value;
-        let mobility = document.querySelector('input[name="neck_mobility"]:checked').value;
-        const fog = document.querySelector('input[name="brain_fog"]:checked').value;
+        const headacheSelect = document.querySelector('input[name="headache_type"]:checked');
+        const mobilitySelect = document.querySelector('input[name="neck_mobility"]:checked');
+        const fogSelect = document.querySelector('input[name="brain_fog"]:checked');
+
+        if (!headacheSelect || !mobilitySelect || !fogSelect) return;
+
+        const headache = headacheSelect.value;
+        let mobility = mobilitySelect.value;
+        const fog = fogSelect.value;
         const sitHours = parseInt(document.getElementById('sit_slider').value);
 
         const sitLabels = ['До 2 часов статики', 'От 2 до 4 часов', 'От 4 до 6 часов', 'Более 6 часов за столом'];
         document.getElementById('range-sit-val').innerText = sitLabels[sitHours];
 
-        //  ВЗАИМОСВЯЗАННЫЙ ОТКЛИК ПОЛЗУНКА НА КАРТОЧКИ:
-        // Если ползунок уходит на максимум статики — автоматически подсвечиваем острую тянущую боль
         if (sitHours === 3 && mobility === 'free_flow') {
             document.querySelectorAll('input[name="neck_mobility"]').forEach(input => {
                 if (input.value === 'heavy_stiff') {
@@ -638,7 +697,6 @@
         let bodyText = "";
         let diagnosticResult = "";
 
-        // Дерево решений подбора траектории разгрузки шеи
         if (headache === 'neck_tension' || mobility === 'heavy_stiff' || sitHours === 3) {
             titleEl.innerText = "Компрессия позвоночных артерий";
             statusEl.innerText = "Режим: Декомпрессия & МФР затылка";
@@ -649,7 +707,7 @@
             titleEl.innerText = "Лимфо-венозный застой трапеций";
             statusEl.innerText = "Режим: Раскрытие грудного отдела";
             statusEl.style.color = "var(--accent-gold)";
-            bodyText = "Спазм крупных мышц плечевого пояса нарушает обратный отток жидкости от черепа (" + sitLabels[sitHours] + "). Рекомендованы 3D-разгибания грудного отдела позвоночника и Аэростретчингу в гамаках для выстраивания природной оси.";
+            bodyText = "Спазм крупных мышц плечевого пояса нарушает обратный отток жидкости от черепа (" + sitLabels[sitHours] + "). Рекомендованы 3D-разгибания грудного отдела позвоночника и Аэростретчинг в гамаках для выстраивания природной оси.";
             diagnosticResult = "Венозный застой шейно-плечевого пояса (Статика: " + sitLabels[sitHours] + ")";
         } else {
             titleEl.innerText = "Стабильный адаптивный тонус шеи";
@@ -659,19 +717,22 @@
             diagnosticResult = "Тонус шейного отдела прошел скрининг (Статика: " + sitLabels[sitHours] + ")";
         }
 
-        textEl.innerText = bodyText;
+        if (titleEl && textEl) {
+            textEl.innerText = bodyText;
+        }
 
         const scoreBox = document.querySelector('.result-score-box');
-        scoreBox.style.transform = 'scale(1.02)';
-        setTimeout(() => { scoreBox.style.transform = 'scale(1)'; }, 150);
+        if (scoreBox) {
+            scoreBox.style.transform = 'scale(1.02)';
+            setTimeout(() => { scoreBox.style.transform = 'scale(1)'; }, 150);
+        }
 
         const baseVkUrl = "https://vk.com/im?sel=-221142875";
-        const messageText = "Вера, здравствуйте! У меня сидячая работа, я прошла тест на компьютерную сутулость. У меня кажется сильно зажат грудного отдел. Ольга Мартынова рекомендовала мне режим разгрузки спины и шеи. Запишите меня на тест-драйв - 3 тренировки за 990 руб. Мой маркер здоровья: " + diagnosticResult;
+        const messageText = "Вера, здравствуйте! У меня сидячая работа, я прошла тест на компьютерную сутулость. У меня кажется сильно зажат грудной отдел. Ольга Мартынова рекомендовала мне режим разгрузки спины и шеи. Запишите меня на тест-драйв - 3 тренировки за 990 руб. Мой маркер здоровья: " + diagnosticResult;
         
         const encodedMessage = encodeURIComponent(messageText);
         const finalVkLink = baseVkUrl + "&message=" + encodedMessage;
 
-        // Позиция бага была здесь: селекторы перезаписывали ссылки на всех кнопках подряд
         document.getElementById('vk-link-btn').setAttribute('href', finalVkLink);
         document.getElementById('vk-link-recipe').setAttribute('href', finalVkLink);
 
@@ -732,15 +793,9 @@
             }
         }
     }
-
-    window.addEventListener('scroll', () => {
-        const header = document.getElementById('header');
-        if (window.scrollY > 30) header.classList.add('scrolled');
-        else header.classList.remove('scrolled');
-    });
 </script>
 
-    <script>
+<script>
 window.yaContextCb.push(() => {
     Ya.Context.AdvManager.render({
         "blockId": "R-A-19181219-6",
