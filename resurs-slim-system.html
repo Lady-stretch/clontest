@@ -29,8 +29,11 @@
         })(document, window, "tmr-code");
     </script>
     <noscript>
-
-    <script>
+        <div>
+            <img src="https://mc.yandex.ru/watch/108177329" style="position:absolute; left:-9999px;" alt="" />
+            <img src="https://top-fwz1.mail.ru/counter?id=3755240;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" />
+        </div>
+    </noscript> <script>
         // Глобальная логика перехвата ботов для SEO-превью через Яндекс Функцию
         window.addEventListener('DOMContentLoaded', () => {
             const isBot = /YandexBot|YandexAccessibilityBot|YandexMobileBot|Googlebot/i.test(navigator.userAgent);
@@ -62,6 +65,19 @@
     <meta property="og:image" content="https://resurs-stretch.ru/logo_header_final.png">
     <meta property="og:site_name" content="РЕСУРС">
     <meta property="og:locale" content="ru_RU">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Как убрать живот и восстановить тонус глубоких мышц кора",
+      "description": "Анатомический разбор причин вываливания живота и пошаговый интерактивный скрининг глубоких мышц стабилизаторов осей кора от Ольги Мартыновой.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Студия фитнеса и движения РЕСУРС"
+      }
+    }
+    </script>
 
     <link rel="icon" type="image/png" href="logo_header_final.png">
     
@@ -104,7 +120,7 @@
             --elem-bg: rgba(255, 255, 255, 0.04);
             --elem-border: rgba(255, 255, 255, 0.15);
             --nav-bg: rgba(8, 8, 20, 0.95);
-            }
+        }
 
         * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
         html { scroll-behavior: smooth; }
@@ -116,7 +132,7 @@
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
             transition: background-color 0.4s ease, color 0.4s ease;
             -webkit-font-smoothing: antialiased;
-            padding-bottom: 60px;
+            padding-bottom: 80px;
         }
 
         h1, h2, h3, .serif { font-family: var(--font-serif); font-weight: 600; letter-spacing: 0.5px; }
@@ -135,13 +151,24 @@
         }
         .brand-name { font-family: var(--font-serif); font-size: 22px; letter-spacing: 8px; text-transform: uppercase; font-weight: 600; }
         
-        #themeToggle {
-            padding: 0 15px; height: 35px; font-size: 10px; font-weight: 600; letter-spacing: 2px;
-            display: flex; align-items: center; justify-content: center;
+        /* Меню выбора цветовой схемы */
+        .theme-popup {
+            position: fixed; top: 65px; right: 5%;
+            background-color: var(--nav-bg); border: var(--glass-border); border-radius: 12px;
+            padding: 8px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: none; min-width: 160px; z-index: 3000; backdrop-filter: blur(20px);
+        }
+        .theme-popup.show { display: block; }
+        .theme-option { padding: 10px 20px; font-size: 12px; font-weight: 600; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; color: var(--text-main); }
+        .theme-option:hover { background-color: var(--elem-bg); color: var(--accent-gold); }
+
+        .theme-selector-trigger {
+            padding: 0 15px; height: 35px; font-size: 10px; font-weight: 800; letter-spacing: 2px;
+            display: inline-flex; align-items: center; justify-content: center;
             border-radius: 8px; border: 1px solid var(--elem-border); background: var(--elem-bg);
             cursor: pointer; transition: var(--transition); color: var(--text-main); text-transform: uppercase;
         }
-        #themeToggle:hover { border-color: var(--accent-gold); transform: translateY(-2px); }
+        .theme-selector-trigger:hover { border-color: var(--accent-gold); transform: translateY(-2px); }
 
         /* MAIN CONTAINER */
         .main-layout { max-width: 1200px; margin: 100px auto 60px; padding: 0 20px; }
@@ -288,10 +315,16 @@
 </head>
 <body>
 
+<div class="theme-popup" id="themePopup">
+    <div class="theme-option" onclick="setTheme('light')">Светлая</div>
+    <div class="theme-option" onclick="setTheme('dark')">Темная</div>
+    <div class="theme-option" onclick="setTheme('auto')">Автоматическая</div>
+</div>
+
 <header id="header">
     <div class="brand-name">РЕСУРС</div>
     <div>
-        <button id="themeToggle" onclick="toggleTheme()">ТЕНЬ</button>
+        <button id="themeToggle" class="theme-selector-trigger" onclick="toggleThemePopup()">Тема</button>
     </div>
 </header>
 
@@ -377,7 +410,7 @@
                 </div>
 
                 <div class="calc-group">
-                    <label class="calc-label">4. Оцените вашу повседневную привычку сидеть за рабочим столом (сутулость, наклон вперед, положение нога на ногу):</label>
+                    <label class="calc-label">4. Укажите, сколько часов в день вы проводите в статичном положении (экран смартфона, монитор, документы):</label>
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
                         <span style="font-size: 13px; color: var(--text-dim);">Индекс статического зажима кора:</span>
                         <span id="range-sit-val" class="range-val" style="color: var(--accent-green);">Сильно сутулюсь за столом</span>
@@ -404,7 +437,7 @@
                     <div>
                         <h3 class="serif" style="font-size: 22px; margin-bottom: 10px;">Почему ваш живот вываливается вперед даже при минимальном проценте жира</h3>
                         <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
-                            Вы можете сидеть на изнуряющих диетах и делать сотни классических скручиваний на пресс, но живот все равно продолжит безвольно торчать вперед. Это происходит потому, что вываливающийся низ живота — проблема не жировая, а чисто биомеханическая! Из-за многочасового сидения за столом у вас зажимаются сгибатели бедра, утягивая таз в передний наклон. Мышцы поясницы уходят в жесткий спазм, а глубокая поперечная мышца живота полностью растягивается и выключается из работы. Дополнительно зажимается дыхательная диафрагма, которая при каждом вдохе начинает принудительно давить на внутренние органы сверху вниз, выдавливая их наружу. Качая пресс обычным образом, вы только усугубляете этот деструктивный паттерн, повышая внутрибрюшное давление. В студии «РЕСУРС» мы решаем эту задачу через восстановление осей тела. С помощью умного Пилатеса мы возвращаем кости таза в анатомическую нейтраль, снимаем спазм с поясницы и бережно активируем поперечную мышцу живота. Живот уходит нативно, талия становится узкой, а осанка приобретает кошачью грацию без прыжков и изнурения.
+                            Вы можете сидеть на изнуряющих диетах и делать сотни классических скручиваний на пресс, но живот все равно продолжит безвольно торчать вперед. Это происходит потому, что вываливающийся низ живота — проблема не жировая, а чисто биомеханическая! Из-за многочасового сидения за столом у вас зажимаются сгибатели бедра, утягивая таз в передний наклон. Мышцы поясницы уходят в жесткий спазм, а глубокая поперечная мышца живота полностью растягивается и выключается из работы. Дополнительно зажимается дыхательная диафрагма, которая при каждом вдохе начинает принудительно давить на внутренние органы сверху вниз, выдавливая их наружу. Качая пресс обычным образом, вы только усугубляете этот деструктивный паттерн, повышая внутрибрюшное давление. В студии «РЕСУРС» мы решаем эту задачу через восстановление осей тела. Через деликатную поперечную фиксацию Пилатеса мы возвращаем кости таза в анатомическую нейтраль, снимаем спазм с поясницы и бережно активируем поперечную мышцу живота. Живот уходит нативно, талия становится узкой, а осанка приобретает кошачью грацию без прыжков и изнурения.
                         </p>
                     </div>
                     <div style="background: var(--elem-bg); padding: 15px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
@@ -416,11 +449,11 @@
             <div class="bento-card span-3" style="background: var(--elem-bg); padding: 40px 30px;">
                 <h3 class="serif" style="font-size: 24px; margin-bottom: 10px; text-align: center;">Выберите ваш формат активации глубоких мышц кора</h3>
                 <p style="font-size: 14px; color: var(--text-dim); text-align: center; max-width: 700px; margin: 0 auto 25px;">
-                    Восстановите соосность суставов и верните животу природный тонус. Если вы находитесь в Сыктывкаре — записывайтесь на очный тест-драйв в наши залы на Коммунистической. Если вы хотите заниматься из дома — активируйте доступ к онлайн-платформе.
+                    Восстановите соосность суставов и верните животу природный тонус. Если вы находитесь в Сыктывкаре — записывайтесь на очный тест-драйв в наши залы. Если вы хотите заниматься из дома — активируйте доступ к онлайн-платформе.
                 </p>
                 <div class="dual-buttons-container">
                     <a id="vk-link-btn" href="vk://im?sel=-221142875" class="btn-marketing">Офлайн: Тест-драйв в Сыктывкаре (3 занятия за 990₽)</a>
-                    <a href="club.html" class="btn-marketing btn-online-gold">Онлайн: Тест-драйв за 300₽ (на 3 дня) / далее от 1600₽/мес</a>
+                    <a href="club.html" class="btn-marketing btn-online-gold">Online: Тест-драйв за 300₽ (на 3 дня) / далее от 1600₽/мес</a>
                 </div>
             </div>
 
@@ -531,7 +564,7 @@
                 <span class="recipe-badge">Правило 04</span>
                 <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">Восстанавливайте соосность грудной клетки и костей таза</h3>
                 <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
-                    Ваш живот будет вываливаться до тех пор, пока грудная клетка смещена назад относительно линии таза. Ольга Мартынова настаивает: выстраивайте body так, чтобы нижние ребра находились строго над подвздошными костями, как два ровных цилиндра. Это мгновенно распределит нагрузку, включит поперечную мышцу живота в автоматический режим удержания осанки, полностью разгрузит ноющую поясницу и вернет вашему животу идеальную, природную плоскость и эстетическую привлекательность.
+                    Ваш живот будет вываливаться до тех пор, пока грудная клетка смещена назад относительно линии таза. Ольга Мартынова настаивает: выстраивайте тело так, чтобы нижние ребра находились строго над подвздошными костями, как два ровных цилиндра. Это мгновенно распределит нагрузку, включит поперечную мышцу живота в автоматический режим удержания осанки, полностью разгрузит ноющую поясницу и вернет вашему животу идеальную плоскость и тонус.
                 </p>
             </div>
 
@@ -569,22 +602,57 @@
 </footer>
 
 <script>
-    function toggleTheme() {
-        const html = document.documentElement;
-        const currentTheme = html.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        
-        html.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-        document.getElementById('themeToggle').innerText = newTheme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
+    // --- ПЕРЕКЛЮЧЕНИЕ ТЕМЫ ЧЕРЕЗ ПРЕМИУМ ПОПАП ---
+    function toggleThemePopup() {
+        document.getElementById('themePopup').classList.toggle('show');
+    }
+
+    window.addEventListener('click', function(e) {
+        if (!document.querySelector('.theme-selector-trigger').contains(e.target) && !document.getElementById('themePopup').contains(e.target)) {
+            if (document.getElementById('themePopup')) {
+                document.getElementById('themePopup').classList.remove('show');
+            }
+        }
+    });
+
+    function setTheme(theme) {
+        const root = document.documentElement;
+        localStorage.setItem('theme', theme);
+        document.getElementById('themePopup').classList.remove('show');
+
+        if (theme === 'auto') {
+            applyAutoTheme();
+        } else {
+            root.setAttribute('data-theme', theme);
+        }
+        calculateWeightIndex();
+    }
+
+    function applyAutoTheme() {
+        const root = document.documentElement;
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+            root.setAttribute('data-theme', 'light');
+        } else {
+            root.setAttribute('data-theme', 'dark');
+        }
     }
 
     window.addEventListener('DOMContentLoaded', () => {
-        const theme = document.documentElement.getAttribute('data-theme');
-        document.getElementById('themeToggle').innerText = theme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        if (currentTheme === 'auto') {
+            applyAutoTheme();
+        } else {
+            document.documentElement.setAttribute('data-theme', currentTheme);
+        }
         
         restoreCalculatorData();
         calculateWeightIndex();
+    });
+
+    window.addEventListener('scroll', () => {
+        const header = document.getElementById('header');
+        if (window.scrollY > 30) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
     });
 
     function switchTab(event, tabId) {
@@ -603,21 +671,26 @@
             input.parentElement.classList.remove('selected');
         });
         element.classList.add('selected');
+        element.querySelector('input').checked = true;
         
         calculateWeightIndex();
     }
 
-    // ИНТЕЛЛЕКТУАЛЬНАЯ ЛОГИКА КАЛЬКУЛЯТОРА С ВЗАИМОСВЯЗАННЫМ ОТКЛИКОМ ПОЛЗУНКА
     function calculateWeightIndex() {
-        const belly = document.querySelector('input[name="belly_type"]:checked').value;
-        const back = document.querySelector('input[name="back_state"]:checked').value;
-        let breath = document.querySelector('input[name="breath_block"]:checked').value;
+        const bellySelect = document.querySelector('input[name="belly_type"]:checked');
+        const backSelect = document.querySelector('input[name="back_state"]:checked');
+        const breathSelect = document.querySelector('input[name="breath_block"]:checked');
+
+        if (!bellySelect || !backSelect || !breathSelect) return;
+
+        const belly = bellySelect.value;
+        const back = backSelect.value;
+        let breath = breathSelect.value;
         const sitHours = parseInt(document.getElementById('sit_slider').value);
 
         const sitLabels = ['Идеальная нейтраль', 'Небольшой наклон', 'Умеренная сутулость', 'Сильно сутулюсь за столом'];
         document.getElementById('range-sit-val').innerText = sitLabels[sitHours];
 
-        //  ВЗАИМОСВЯЗАННЫЙ ОТКЛИК ПОЛЗУНКА НА КАРТОЧКИ:
         if (sitHours === 3 && breath === 'free_breath') {
             document.querySelectorAll('input[name="breath_block"]').forEach(input => {
                 if (input.value === 'diaphragm_stiff') {
@@ -637,7 +710,6 @@
         let bodyText = "";
         let diagnosticResult = "";
 
-        // Дерево решений подбора метаболической траектории
         if (belly === 'lower_belly' || back === 'heavy_lordosis' || sitHours === 3) {
             titleEl.innerText = "Передний наклон таза и слабость кора";
             statusEl.innerText = "Режим: Умный Пилатес & Нейтраль таза";
@@ -654,24 +726,26 @@
             titleEl.innerText = "Стабильный тонус мышечного центра";
             statusEl.innerText = "Режим: Силовой Пилатес & Круговая";
             statusEl.style.color = "var(--accent-green)";
-            bodyText = "Прекрасный уровень контроля глубоких стабилизаторов (" + sitLabels[sitHours] + ")! Кора удерживает нейтраль осей. Вы полностью готовы к регулярному Пилатесу, бережному функциональному тренингу и Аэростретчингу.";
+            bodyText = "Прекрасный уровень естественного мышечного баланса (" + sitLabels[sitHours] + ")! Органы зафиксированы осями. Вы полностью готовы к регулярному Пилатесу, бережному функциональному тренингу и Аэростретчингу.";
             diagnosticResult = "Глубокий мышечный корсет в норме (Статика: " + sitLabels[sitHours] + ")";
         }
 
-        textEl.innerText = bodyText;
+        if (titleEl && textEl) {
+            textEl.innerText = bodyText;
+        }
 
         const scoreBox = document.querySelector('.result-score-box');
-        scoreBox.style.transform = 'scale(1.02)';
-        setTimeout(() => { scoreBox.style.transform = 'scale(1)'; }, 150);
+        if (scoreBox) {
+            scoreBox.style.transform = 'scale(1.02)';
+            setTimeout(() => { scoreBox.style.transform = 'scale(1)'; }, 150);
+        }
 
-        // УНИВЕРСАЛЬНЫЙ ДЕПЛИНК ДЛЯ ВЕРЫ В ВК (СТРОГО ОДИН ВАРИАНТ ТЕКСТА)
         const baseVkUrl = "https://vk.com/im?sel=-221142875";
         const messageText = "Вера, здравствуйте! У меня сидячая работа, я прошла тест на компьютерную сутулость. У меня кажется сильно зажат грудной отдел. Ольга Мартынова рекомендовала мне режим разгрузки спины и шеи. Запишите меня на тест-драйв - 3 тренировки за 990 руб. Мой маркер здоровья: " + diagnosticResult;
         
         const encodedMessage = encodeURIComponent(messageText);
         const finalVkLink = baseVkUrl + "&message=" + encodedMessage;
 
-        // Обновляем ссылки в кнопках на лету
         document.getElementById('vk-link-btn').setAttribute('href', finalVkLink);
         document.getElementById('vk-link-recipe').setAttribute('href', finalVkLink);
 
@@ -715,8 +789,8 @@
 
     async function sharePage() {
         const shareData = {
-            title: 'Пройди интерактивный скрининг глубокого кора и тонуса живота!',
-            text: 'Я проверила причины вываливания живота на анатомическом тесте студии РЕСУРС. Узнай скрытые маркеры осанки!',
+            title: 'Пройди экспресс-тест уровня зажимов шеи и компрессии артерий!',
+            text: 'Я проверила свой мышечный тонус затылка на анатомическом тесте студии РЕСУРС. Узнай, почему каменеют плечи и болит голова!',
             url: window.location.href
         };
         const btnText = document.getElementById('share-btn-text');
@@ -732,15 +806,9 @@
             }
         }
     }
-
-    window.addEventListener('scroll', () => {
-        const header = document.getElementById('header');
-        if (window.scrollY > 30) header.classList.add('scrolled');
-        else header.classList.remove('scrolled');
-    });
 </script>
 
-    <script>
+<script>
 window.yaContextCb.push(() => {
     Ya.Context.AdvManager.render({
         "blockId": "R-A-19181219-6",
