@@ -2,12 +2,14 @@
 <html lang="ru">
 <head>
     <script>
+        // ИЗМЕНЕНО: Теперь по умолчанию стоит темная тема ('dark')
         const savedTheme = localStorage.getItem('theme') || 'dark';
         document.documentElement.setAttribute('data-theme', savedTheme);
         if (savedTheme === 'light') { document.documentElement.classList.add('light-theme'); }
     </script>
     
     <script type="text/javascript">
+    // --- Yandex.Metrika counter ---
     (function(m,e,t,r,i,k,a){
         m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
         m[i].l=1*new Date();
@@ -30,7 +32,7 @@
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://resurs-stretch.ru/journal.html">
 
-    <!-- ИНТЕГРАЦИЯ МИКРОРАЗМЕТКИ SCHEMA.ORG ДЛЯ ПОВЫШЕНИЯ СЕО ДО 5 БАЛЛОВ -->
+    <!-- ИНТЕГРАЦИЯ МИКРОРАЗМЕТКИ SCHEMA.ORG ДЛЯ ПОВЫШЕНИЯ СЕО ДО 5 БАЛЛОВ (АДРЕСА ОЧИЩЕНЫ) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -44,6 +46,12 @@
         "logo": {
           "@type": "ImageObject",
           "url": "https://resurs-stretch.ru/logo_header_final.png"
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Сыктывкар",
+          "addressRegion": "Республика Коми",
+          "addressCountry": "RU"
         }
       }
     }
@@ -324,6 +332,21 @@
     window.yaContextCb.push(() => {
         Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-7", "type": "floorAd", "platform": "desktop" })
     });
+    // ИСПРАВЛЕНО: Интеграция полноэкранных блоков (Fullscreen) для мобильных и десктопов
+    window.yaContextCb.push(() => {
+        Ya.Context.AdvManager.render({
+            "blockId": "R-A-19181219-24",
+            "type": "fullscreen",
+            "platform": "touch"
+        })
+    });
+    window.yaContextCb.push(() => {
+        Ya.Context.AdvManager.render({
+            "blockId": "R-A-19181219-25",
+            "type": "fullscreen",
+            "platform": "desktop"
+        })
+    });
     </script>
 
 </main>
@@ -334,7 +357,8 @@
 <footer>
     <div style="max-width: 1200px; margin: 0 auto;">
         <div style="font-family: var(--font-serif); font-size: 20px; letter-spacing: 8px; margin-bottom: 20px; text-transform: uppercase;">Ресурс</div>
-        <p style="font-size: 12px; opacity: 0.6; line-height: 1.6; margin-bottom: 30px;">Сыктывкар, ул. Советская 3 | ул. Коммунистическая 77/2<br>ИП Худяков Николай Сергеевич</p>
+        <!-- ИСПРАВЛЕНО: Полностью удалены точные адреса студий согласно ТЗ -->
+        <p style="font-size: 12px; opacity: 0.6; line-height: 1.6; margin-bottom: 30px;">г. Сыктывкар<br>ИП Худяков Николай Сергеевич</p>
         <div style="font-size: 10px; opacity: 0.4; letter-spacing: 2px; text-transform: uppercase;">© <script>document.write(new Date().getFullYear())</script> Студия растяжки и движения Ресурс. Экспертный блог.</div>
     </div>
 </footer>
