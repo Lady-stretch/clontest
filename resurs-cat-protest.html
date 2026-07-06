@@ -70,7 +70,7 @@
       "image": "https://resurs-stretch.ru/images/resurs-cat-protest.webp",
       "author": {
         "@type": "Organization",
-        "name": "РЕСУРС | Студия фитнеса, растяжки и движения",
+        "name": "РЕСУРС",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Коммунистическая 77/2",
@@ -316,6 +316,30 @@
             margin: 20px 0;
         }
 
+        /* КНОПКА ПОДЕЛИТЬСЯ ВИРУСНАЯ */
+        .btn-share-viral {
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 12px; 
+            padding: 16px 32px;
+            background: var(--accent-color) !important; 
+            border: none; 
+            border-radius: 12px;
+            font-size: 14px; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            cursor: pointer; 
+            transition: var(--transition); 
+            color: #FFF;
+            width: 100%; 
+            max-width: 480px;
+            margin: 24px auto 30px auto;
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.2);
+        }
+        .btn-share-viral:hover { background-color: var(--accent-hover) !important; transform: translateY(-1px); }
+
         /* ПОДВАЛ (FOOTER) */
         footer {
             background-color: var(--surface-color);
@@ -377,7 +401,7 @@
                 <div class="question-text">1. Куда именно животное совершает нежелательные испражнения?</div>
                 <div class="options-grid">
                     <div class="option-card" onclick="selectOption(1, 'bed')">Строго на мягкие поверхности (кровать, диван, пледы)</div>
-                    <div class="option-card" onclick="selectOption(1, 'corners')">В углы стен, на входную дверь, вертикальные стыки</div>
+                    <div class="option-card" onclick="selectOption(1, 'corners')">В углы стен, на входную дверь, vertical-стыки</div>
                     <div class="option-card" onclick="selectOption(1, 'near')">Рядом с лотком (в 10–50 сантиметрах от него)</div>
                 </div>
             </div>
@@ -443,15 +467,22 @@
             <h3 style="margin-bottom: 15px; font-size: 20px; color: var(--accent-color);">Золотой стандарт этологии: Правило «N + 1»</h3>
             <p class="content-block-text">Для стопроцентной ликвидации territorial-стресса в доме должно соблюдаться незыблемое правило: **количество лотков обязано быть равным количеству кошек плюс один дополнительный**. Если у вас живут два питомца, в пространстве обязаны стоять три независимых лотка в разных комнатах, удаленных от мест приема пищи и шумных стиральных машин.</p>
         </div>
+
+        <div style="text-align: center; width: 100%;">
+            <button class="btn-share-viral" onclick="sharePage()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                <span>Поделиться полезным тестом с друзьями-кошатниками</span>
+            </button>
+        </div>
     </div>
 
     <footer>
         <div class="container footer-grid">
             <div>
-                © 2026 РЕСУРС | Студия фитнеса, растяжки и движения. Все права защищены.
+                © 2026 РЕСУРС. Все права защищены.
             </div>
             <div class="footer-warning">
-                Заметки по биомеханике движения носят информационный характер. При наличии острых клинических болей в позвоночнике обязательно проконсультируйтесь со специалистом. Анализатор кошачьего поведения спроектирован на основе этологических исследований и не заменяет собой экстренную ветеринарную помощь при задержке мочеиспускания.
+                Анализатор кошачьего поведения спроектирован на основе этологических исследований и не заменяет собой экстренную ветеринарную помощь при задержке мочеиспускания. При наличии острых симптомов у животного обязательно обратитесь к ветеринарному специалисту.
             </div>
         </div>
     </footer>
@@ -473,7 +504,9 @@
             const currentQuestionBlock = document.getElementById(`q${questionNum}`);
             const cards = currentQuestionBlock.querySelectorAll('.option-card');
             cards.forEach(c => c.classList.remove('selected'));
-            event.target.classList.add('selected');
+            if (event && event.target) {
+                event.target.classList.add('selected');
+            }
 
             setTimeout(() => {
                 currentQuestionBlock.classList.remove('active');
@@ -505,6 +538,28 @@
 
             destText.innerHTML = htmlOutput;
             resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // СКРИПТ КНОПКИ ПОДЕЛИТЬСЯ
+        async function sharePage() {
+            const shareData = {
+                title: 'Почему кот гадит мимо лотка: тест-анализатор',
+                text: 'Узнай истинную этологическую или ветеринарную причину поведения питомца без мифов о кошачьей мести.',
+                url: window.location.href
+            };
+            const btnText = document.querySelector('.btn-share-viral span');
+            if (navigator.share) {
+                try { await navigator.share(shareData); } catch (err) { }
+            } else {
+                try {
+                    await navigator.clipboard.writeText(window.location.href);
+                    const oldText = btnText.innerText;
+                    btnText.innerText = 'Ссылка скопирована в буфер обмена!';
+                    setTimeout(() => { btnText.innerText = oldText; }, 3000);
+                } catch (err) {
+                    alert('Скопируйте ссылку из адресной строки браузера.');
+                }
+            }
         }
     </script>
 
