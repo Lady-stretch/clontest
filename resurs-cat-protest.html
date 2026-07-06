@@ -9,10 +9,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
+    <!-- ФАВИКОН С ТОЧНЫМ РАСШИРЕНИЕМ PNG -->
     <link rel="icon" href="https://resurs-stretch.ru/favicon.png" type="image/png">
     <link rel="shortcut icon" href="https://resurs-stretch.ru/favicon.png" type="image/png">
     <link rel="apple-touch-icon" href="https://resurs-stretch.ru/favicon.png">
 
+    <!-- МЕТРИКИ -->
     <script type="text/javascript">
         (function(m,e,t,r,i,k,a){
             m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -39,6 +41,7 @@
         </div>
     </noscript>
 
+    <!-- ИНДЕКСАЦИЯ И РОБОТЫ -->
     <script>
         window.addEventListener('DOMContentLoaded', () => {
             const isBot = /YandexBot|YandexAccessibilityBot|YandexMobileBot|Googlebot/i.test(navigator.userAgent);
@@ -61,6 +64,7 @@
     
     <link rel="canonical" href="https://resurs-stretch.ru/resurs-cat-protest.html">
 
+    <!-- SCHEMA.ORG ДЛЯ РОБОТОВ -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -134,17 +138,18 @@
             color: var(--text-main);
             font-family: 'Manrope', sans-serif;
             line-height: 1.6;
-            padding-top: 75px; /* Компенсация фиксированной шапки */
+            padding-top: 85px; /* Компенсация фиксированной шапки на ПК */
         }
 
+        /* ДЕСКТОПНЫЙ ИНТЕРФЕЙСНЫЙ КОНТЕЙНЕР */
         .container {
             max-width: 680px;
             width: 100%;
             margin: 0 auto;
             padding: 0 24px;
+            box-sizing: border-box;
         }
 
-        /* НАДЁЖНО ЗАКРЕПЛЕННАЯ ШАПКА-СТЕКЛО С BACKDROP-FILTER */
         header {
             position: fixed;
             top: 0;
@@ -155,7 +160,7 @@
             -webkit-backdrop-filter: blur(30px) saturate(180%);
             border-bottom: 1px solid var(--border-color);
             z-index: 9999;
-            padding: 14px 0;
+            padding: 16px 0;
         }
 
         .header-wrapper {
@@ -187,7 +192,7 @@
 
         .main-layout { padding: 40px 0; }
 
-        /* БЕНТО-АРХИТЕКТУРА */
+        /* БЕНТО-АРХИТЕКТУРА ДЛЯ ПК */
         .bento-card {
             background-color: var(--surface-color);
             border: 1px solid var(--border-color);
@@ -195,6 +200,7 @@
             border-radius: 24px;
             box-shadow: 0 12px 40px var(--shadow);
             margin-bottom: 24px;
+            box-sizing: border-box;
         }
 
         .bento-ai-photo {
@@ -207,6 +213,7 @@
             border: 1px solid var(--border-color);
             margin-bottom: 32px;
             display: block;
+            box-sizing: border-box;
         }
 
         h1 {
@@ -215,6 +222,12 @@
             font-size: clamp(24px, 4.5vw, 36px);
             line-height: 1.25;
             margin-bottom: 24px;
+        }
+
+        .content-block-text {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--text-main);
         }
 
         .quiz-title {
@@ -257,6 +270,7 @@
             font-size: 14px;
             font-weight: 600;
             transition: var(--transition);
+            box-sizing: border-box;
         }
 
         .option-card:hover {
@@ -309,7 +323,6 @@
             overflow: hidden;
         }
 
-        /* СВЯЗЬ ЭКОСИСТЕМ ДЛЯ РОБОТОВ */
         .seo-bridge-block {
             border-left: 2px solid var(--accent-color);
             padding-left: 18px;
@@ -337,10 +350,10 @@
             max-width: 480px;
             margin: 24px auto 30px auto;
             box-shadow: 0 8px 20px rgba(16, 185, 129, 0.2);
+            box-sizing: border-box;
         }
         .btn-share-viral:hover { background-color: var(--accent-hover) !important; transform: translateY(-1px); }
 
-        /* ПОДВАЛ (FOOTER) */
         footer {
             background-color: var(--surface-color);
             border-top: 1px solid var(--border-color);
@@ -363,12 +376,100 @@
             font-style: italic;
         }
 
+        /* ==========================================================================
+           ГЛУБОКАЯ МОБИЛЬНАЯ ОПТИМИЗАЦИЯ (СТРОГО ДЛЯ СМАРТФОНОВ)
+           ========================================================================== */
         @media (max-width: 768px) {
-            body { padding-top: 65px; }
-            header { padding: 12px 0; }
-            .main-layout { padding: 20px 0; }
-            .bento-card { padding: 24px 20px; border-radius: 20px; }
-            .bento-ai-photo { border-radius: 20px; margin-bottom: 24px; }
+            body { 
+                padding-top: 70px; /* Корректный защитный зазор под шапку */
+            }
+            header { 
+                padding: 12px 0; 
+                width: 100%;
+                overflow: hidden;
+            }
+            .logo {
+                font-size: 17px;
+                letter-spacing: 1.5px;
+            }
+            
+            /* Жесткие рамки полей экрана смартфона (20px воздуха слева и справа) */
+            .container { 
+                padding: 0 20px !important; 
+                width: 100% !important;
+                max-width: 100% !important;
+                box-sizing: border-box !important;
+            }
+            
+            .main-layout { 
+                padding: 15px 0; 
+                width: 100%;
+                overflow: hidden;
+            }
+            
+            /* Внутренние отступы Bento-карточек сужаются, убирая тесноту контента */
+            .bento-card { 
+                padding: 24px 16px !important; 
+                border-radius: 20px; 
+                margin-bottom: 20px; 
+                width: 100% !important;
+                box-sizing: border-box !important;
+            }
+            
+            .bento-ai-photo { 
+                border-radius: 20px; 
+                margin-bottom: 24px; 
+                width: 100% !important;
+                max-width: 100% !important;
+                box-sizing: border-box !important;
+            }
+
+            h1 {
+                font-size: 24px;
+                line-height: 1.3;
+                margin-bottom: 20px;
+                padding: 0 2px;
+            }
+
+            .content-block-text {
+                font-size: 15px;
+                line-height: 1.6;
+            }
+
+            .question-text {
+                font-size: 16px;
+                line-height: 1.35;
+                margin-bottom: 16px;
+            }
+
+            /* Мобильные кнопки вариантов: больше высота тапа, меньше размер букв */
+            .option-card {
+                padding: 18px 16px !important;
+                border-radius: 12px;
+                font-size: 13.5px;
+                line-height: 1.4;
+                width: 100% !important;
+                box-sizing: border-box !important;
+            }
+
+            .result-diagnostic {
+                padding: 16px;
+                border-radius: 0 12px 12px 0;
+            }
+
+            .btn-share-viral { 
+                width: 100% !important; 
+                max-width: 100% !important;
+                font-size: 13px; 
+                padding: 16px 20px; 
+                border-radius: 12px; 
+                box-sizing: border-box !important;
+            }
+            
+            footer {
+                padding: 30px 0;
+                margin-top: 40px;
+            }
         }
     </style>
 </head>
@@ -389,23 +490,27 @@
         <div class="bento-card">
             <p class="content-block-text" style="margin-bottom: 15px;">Когда домашний питомец внезапно начинает использовать кровать, ковер или углы комнат вместо лотка, владельцы списывают это на «месть», вредность или ревность. С точки зрения научной зоопсихологии и этологии фелинологов — у кошек полностью отсутствуют механизмы абстрактной мести. Нечистоплотность — это всегда громкий сигнал бедствия.</p>
             
+            <!-- Объяснение для роботов -->
             <div class="seo-bridge-block">
-                <p class="content-block-text" style="font-size: 13px; opacity: 0.9;"><strong>Почему эксперты движения пишут о кошках?</strong> Экосистема «РЕСУРС» исследует стресс и его влияние на живые организмы. Психосоматика, мышечные зажимы, фасциальный тонус и нейрогенные воспаления работают по одинаковым биологическим законам как у человека, так и у животных. Восстановление баланса среды и ликвидация триггеров напряжения — базовый шаг к здоровью всей семьи.</p>
+                <p class="content-block-text" style="font-size: 13px; opacity: 0.9;"><strong>Why эксперты движения пишут о кошках?</strong> Экосистема «РЕСУРС» исследует стресс и его влияние на живые организмы. Психосоматика, мышечные зажимы, фасциальный тонус и нейрогенные воспаления работают по одинаковым биологическим законам как у человека, так и у животных. Восстановление баланса среды и ликвидация триггеров напряжения — базовый шаг к здоровью всей семьи.</p>
             </div>
         </div>
 
+        <!-- ИНТЕРАКТИВНЫЙ ТЕСТ -->
         <div class="bento-card" id="quizContainer">
             <div class="quiz-title">Шаг за шагом: Локализация триггеров протеста</div>
             
+            <!-- Вопрос 1 -->
             <div class="quiz-question active" id="q1">
                 <div class="question-text">1. Куда именно животное совершает нежелательные испражнения?</div>
                 <div class="options-grid">
                     <div class="option-card" onclick="selectOption(1, 'bed')">Строго на мягкие поверхности (кровать, диван, пледы)</div>
-                    <div class="option-card" onclick="selectOption(1, 'corners')">В углы стен, на входную дверь, vertical-стыки</div>
+                    <div class="option-card" onclick="selectOption(1, 'corners')">В углы стен, на входную дверь, вертикальные стыки</div>
                     <div class="option-card" onclick="selectOption(1, 'near')">Рядом с лотком (в 10–50 сантиметрах от него)</div>
                 </div>
             </div>
 
+            <!-- Вопрос 2 -->
             <div class="quiz-question" id="q2">
                 <div class="question-text">2. Каковы особенности позы и поведения кошки в процессе?</div>
                 <div class="options-grid">
@@ -415,6 +520,7 @@
                 </div>
             </div>
 
+            <!-- Вопрос 3 -->
             <div class="quiz-question" id="q3">
                 <div class="question-text">3. Где расположен лоток и какова его геометрия?</div>
                 <div class="options-grid">
@@ -424,6 +530,7 @@
                 </div>
             </div>
 
+            <!-- РЕЗУЛЬТАТЫ -->
             <div class="results-box" id="quizResults">
                 <div class="quiz-title" style="color: var(--accent-gold);">Экспертное этологическое заключение:</div>
                 <div class="result-diagnostic" id="diagnosticText">
@@ -433,6 +540,7 @@
             </div>
         </div>
 
+        <!-- РСЯ МЕЖБЛОЧНОЕ 1 -->
         <div class="rsya-linear-frame">
             <div id="yandex_rtb_massage_1"></div>
             <script>
@@ -451,6 +559,7 @@
             <p class="content-block-text">Когда кошке больно писать, её мозг связывает лоток с источником мучений. Она идет искать максимально мягкое место (кровать владельца), чтобы ослабить тактильное давление на воспаленные рецепторы лап во время спазма.</p>
         </div>
 
+        <!-- РСЯ МЕЖБЛОЧНОЕ 2 -->
         <div class="rsya-linear-frame">
             <div id="yandex_rtb_massage_2"></div>
             <script>
@@ -468,6 +577,7 @@
             <p class="content-block-text">Для стопроцентной ликвидации territorial-стресса в доме должно соблюдаться незыблемое правило: **количество лотков обязано быть равным количеству кошек плюс один дополнительный**. Если у вас живут два питомца, в пространстве обязаны стоять три независимых лотка в разных комнатах, удаленных от мест приема пищи и шумных стиральных машин.</p>
         </div>
 
+        <!-- КНОПКА ПОДЕЛИТЬСЯ -->
         <div style="text-align: center; width: 100%;">
             <button class="btn-share-viral" onclick="sharePage()">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -476,13 +586,14 @@
         </div>
     </div>
 
+    <!-- ПОДВАЛ (FOOTER) -->
     <footer>
         <div class="container footer-grid">
             <div>
                 © 2026 РЕСУРС. Все права защищены.
             </div>
             <div class="footer-warning">
-                Анализатор кошачьего поведения спроектирован на основе этологических исследований и не заменяет собой экстренную ветеринарную помощь при задержке мочеиспускания. При наличии острых симптомов у животного обязательно обратитесь к ветеринарному специалисту.
+                Анализатор кошачьего поведения спроектирован на основе этологических исследований и не заменяет собой экстренную ветеринарную помощь при задержке мочеиспускания. При наличии острых симптомов у животного обязательно обратитесь к ветеринарному специалистом.
             </div>
         </div>
     </footer>
@@ -540,7 +651,6 @@
             resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
 
-        // СКРИПТ КНОПКИ ПОДЕЛИТЬСЯ
         async function sharePage() {
             const shareData = {
                 title: 'Почему кот гадит мимо лотка: тест-анализатор',
@@ -563,6 +673,7 @@
         }
     </script>
 
+    <!-- РСЯ FloorAd & Fullscreen -->
     <script>
     window.yaContextCb.push(() => {
         Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-6", "type": "floorAd", "platform": "touch" });
