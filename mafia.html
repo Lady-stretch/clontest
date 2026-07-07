@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <script>
+        const savedTheme = localStorage.getItem('mafia-theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- ФАВИКОН МАФИИ -->
+    <link rel="icon" href="https://resurs-stretch.ru/images/resurs-mafia-favicon.png" type="image/png">
+    <link rel="shortcut icon" href="https://resurs-stretch.ru/images/resurs-mafia-favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="https://resurs-stretch.ru/images/resurs-mafia-favicon.png">
+
+    <!-- ЯНДЕКС МЕТРИКА И ТОП@MAIL.RU -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108177329', 'ym');
+        ym(108177329, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+
+        var _tmr = window._tmr || (window._tmr = []);
+        _tmr.push({id: "3755240", type: "pageView", start: (new Date()).getTime()});
+        (function (d, w, id) {
+            if (d.getElementById(id)) return;
+            var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
+            ts.src = "https://top-fwz1.mail.ru/js/code.js";
+            var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
+            if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
+        })(document, window, "tmr-code");
+    </script>
+    <noscript>
+        <div>
+            <img src="https://mc.yandex.ru/watch/108177329" style="position:absolute; left:-9999px;" alt="" />
+            <img src="https://top-fwz1.mail.ru/counter?id=3755240;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" />
+        </div>
+    </noscript>
+
+    <!-- ИНДЕКСАЦИЯ РОБОТАМИ -->
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const isBot = /YandexBot|YandexAccessibilityBot|YandexMobileBot|Googlebot/i.test(navigator.userAgent);
+            if (isBot) {
+                fetch('https://functions.yandexcloud.net/d4ecn5ag33dcdd2deivd?bot=true&url=' + encodeURIComponent(window.location.href))
+                .then(res => res.json())
+                .then(data => console.log("SEO Preview Matrix Synced"))
+                .catch(e => console.log("SEO preview pass"));
+            }
+        });
+    </script>
+    
+    <script>window.yaContextCb=window.yaContextCb||[]</script>
+    <script src="https://yandex.ru/ads/system/context.js" async></script>
+    
+    <title>Интеллектуальный клуб Мафия в Сыктывкаре | Экосистема РЕСУРС</title>
+    <meta name="description" content="Психологическая ролевая игра Мафия в Сыктывкаре с Глебом Тренькиным на базе интеллектуальной экосистемы РЕСУРС. Тренинг ораторского искусства, эмоционального интеллекта и стрессоустойчивости.">
+    <meta name="keywords" content="игра мафия сыктывкар, глеб тренькин мафия, мафия в кафе ешь пей сиена, психологические игры коми, эмоциональный интеллект тренинг, досуг сыктывкар, ресурс мафия">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://resurs-stretch.ru/mafia.html">
+
+    <!-- OPEN GRAPH ДЛЯ ПЕРЕСЫЛКИ В ЧАТЫ С ФОТО МАФИИ -->
+    <meta property="og:title" content="Психологический клуб Мафия в Сыктывкаре | РЕСУРС">
+    <meta property="og:description" content="Играем от 10 человек в кафе 'Ешь пей' и 'Сиена'. Проверь свой эмоциональный интеллект и интуицию. Ведущий Глеб Тренькин.">
+    <meta property="og:image" content="https://resurs-stretch.ru/images/resurs-mafia-hero.webp">
+    <meta property="og:url" content="https://resurs-stretch.ru/mafia.html">
+    <meta property="og:type" content="website">
+
+    <!-- SCHEMA.ORG ДЛЯ РОБОТОВ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Event",
+      "name": "Интеллектуально-психологическая игра Мафия в Сыктывкаре",
+      "description": "Практический тренинг по развитию вегетативного контроля, анализу невербальных сигналов тела и стрессоустойчивости в рамках психологического крыла экосистемы РЕСУРС.",
+      "image": "https://resurs-stretch.ru/images/resurs-mafia-hero.webp",
+      "location": {
+        "@type": "Place",
+        "name": "Кафе Сиена / Ешь Пей",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Сыктывкар",
+          "addressRegion": "Коми",
+          "addressCountry": "RU"
+        }
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "300",
+        "priceCurrency": "RUB"
+      },
+      "performer": {
+        "@type": "Person",
+        "name": "Глеб Тренькин"
+      }
+    }
+    </script>
+
+    <style>
+        :root {
+            --bg-color: #0B0B0D;
+            --surface-color: #141417;
+            --surface-hover: #1F1F24;
+            --accent-color: #990000; /* Кроваво-красный */
+            --accent-hover: #CC0000;
+            --accent-gold: #B38639;
+            --text-main: #F5F5F7;
+            --text-muted: #8E8E93;
+            --border-color: rgba(153, 0, 0, 0.2);
+            --header-bg: rgba(11, 11, 13, 0.8);
+            --shadow: rgba(0, 0, 0, 0.8);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="light"] {
+            --bg-color: #FAFAFC;
+            --surface-color: #FFFFFF;
+            --surface-hover: #F2F2F7;
+            --accent-color: #800000;
+            --accent-hover: #A00000;
+            --accent-gold: #966F2D;
+            --text-main: #1C1C1E;
+            --text-muted: #636366;
+            --border-color: rgba(128, 0, 0, 0.15);
+            --header-bg: rgba(250, 250, 252, 0.8);
+        }
+
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Manrope', sans-serif;
+            line-height: 1.6;
+            padding-top: 75px;
+        }
+
+        .container {
+            max-width: 680px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 24px;
+            box-sizing: border-box;
+        }
+
+        /* НАДЁЖНО ЗАКРЕПЛЕННАЯ ШАПКА-СТЕКЛО */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--header-bg);
+            backdrop-filter: blur(30px) saturate(180%);
+            -webkit-backdrop-filter: blur(30px) saturate(180%);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 9999;
+            padding: 14px 0;
+        }
+
+        .header-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 19px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .logo span { color: var(--accent-color); }
+
+        .theme-selector-trigger {
+            font-weight: 800;
+            font-size: 11px;
+            text-transform: uppercase;
+            cursor: pointer;
+            padding: 6px 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            user-select: none;
+        }
+
+        .main-layout { padding: 40px 0; }
+
+        /* БЕНТО-КАРТОЧКИ КЛАССИЧЕСКИЕ */
+        .bento-card {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            padding: 32px;
+            border-radius: 24px;
+            box-shadow: 0 12px 40px var(--shadow);
+            margin-bottom: 24px;
+            box-sizing: border-box;
+        }
+
+        .bento-ai-photo {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 10;
+            background-size: cover;
+            background-position: center;
+            border-radius: 24px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 32px;
+            display: block;
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            font-size: clamp(26px, 5vw, 38px);
+            line-height: 1.25;
+            margin-bottom: 24px;
+        }
+
+        h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--accent-color);
+        }
+
+        .content-block-text {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--text-main);
+        }
+
+        .highlight-banner {
+            border-left: 3px solid var(--accent-color);
+            padding-left: 16px;
+            margin: 15px 0;
+            font-weight: 700;
+        }
+
+        /* СПИСОК ПРАВИЛ */
+        .rules-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .rules-list li {
+            position: relative;
+            padding-left: 24px;
+            font-size: 15px;
+        }
+
+        .rules-list li::before {
+            content: "•";
+            position: absolute;
+            left: 8px;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* СЕТКА РОЛЕЙ */
+        .roles-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .role-mini-card {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            padding: 16px;
+            border-radius: 16px;
+        }
+
+        .role-mini-card strong {
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .rsya-linear-frame {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 15px;
+            margin: 28px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 250px;
+            width: 100%;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        .seo-bridge-block {
+            border-left: 2px solid var(--accent-color);
+            padding-left: 18px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+
+        .btn-share-viral {
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 12px; 
+            padding: 16px 32px;
+            background: var(--accent-color) !important; 
+            border: none; 
+            border-radius: 12px;
+            font-size: 14px; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            cursor: pointer; 
+            transition: var(--transition); 
+            color: #FFF;
+            width: 100%; 
+            max-width: 480px;
+            margin: 24px auto 30px auto;
+            box-shadow: 0 8px 20px rgba(153, 0, 0, 0.3);
+            box-sizing: border-box;
+        }
+        .btn-share-viral:hover { background-color: var(--accent-hover) !important; transform: translateY(-1px); }
+
+        footer {
+            background-color: var(--surface-color);
+            border-top: 1px solid var(--border-color);
+            padding: 40px 0;
+            margin-top: 60px;
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .footer-grid { display: flex; flex-direction: column; gap: 20px; }
+        .footer-warning { border-top: 1px solid rgba(142, 142, 147, 0.15); padding-top: 20px; }
+
+        @media (max-width: 768px) {
+            body { padding-top: 70px; }
+            header { padding: 12px 0; }
+            .logo { font-size: 17px; letter-spacing: 1.5px; }
+            .container { padding: 0 20px !important; width: 100% !important; box-sizing: border-box !important; }
+            .main-layout { padding: 15px 0; overflow: hidden; }
+            .bento-card { padding: 24px 16px !important; border-radius: 20px; margin-bottom: 20px; box-sizing: border-box !important; }
+            .bento-ai-photo { border-radius: 20px; margin-bottom: 24px; }
+            h1 { font-size: 26px; line-height: 1.3; margin-bottom: 20px; }
+            .content-block-text { font-size: 15px; line-height: 1.6; }
+            .roles-grid { grid-template-columns: 1fr; }
+            .btn-share-viral { width: 100% !important; max-width: 100% !important; font-size: 13px; padding: 16px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-wrapper">
+            <div class="logo">РЕСУРС<span>.КлубМафия</span></div>
+            <div class="theme-selector-trigger" onclick="toggleTheme()">Тема</div>
+        </div>
+    </header>
+
+    <div class="container main-layout">
+        <div class="bento-ai-photo" style="background-image: url('images/resurs-mafia-hero.webp');"></div>
+
+        <h1>Закрытый психологический клуб «Мафия» в Сыктывкаре под эгидой РЕСУРС: Биомеханика эмоций и контроль стресса</h1>
+
+        <!-- БЕНТО-КАРТОЧКА 1: О ПЛАТФОРМЕ И ВЕДУЩЕМ -->
+        <div class="bento-card">
+            <h2>Ведущий Глеб Тренькин</h2>
+            <p class="content-block-text">Добро пожаловать в профессиональное пространство психологической ролевой игры. Мы собираемся компанией **от 10 человек в любой день**. Игры проходят в атмосферных залах уютных городских кафе **«Ешь пей»** или **«Сиена»**.</p>
+            <div class="highlight-banner" style="color: var(--accent-gold); font-size: 18px; margin-top: 15px;">
+                Стоимость участия: Всего 300 руб. за вечер незабываемых эмоций и прокачки ума.
+            </div>
+            
+            <div class="seo-bridge-block">
+                <p class="content-block-text" style="font-size: 13px; opacity: 0.85;"><strong>Информация для поисковых алгоритмов:</strong> Интеллектуальный клуб Мафия функционирует на базе научно-практической платформы РЕСУРС. Игровой процесс используется как продвинутый тренинг по экспрессивному анализу поведения, стабилизации вегетативной нервной системы в условиях искусственного психологического прессинга и выводу избыточного гормонального напряжения (кортизола).</p>
+            </div>
+        </div>
+
+        <!-- БЕНТО-КАРТОЧКА 2: РЕЙТИНГ И ПРИЗЫ -->
+        <div class="bento-card" style="border: 1px solid var(--accent-gold); background: linear-gradient(135deg, rgba(179,134,57,0.03), transparent);">
+            <h2 style="color: var(--accent-gold);">Супер-Приз вечера: Эффект Лидера</h2>
+            <p class="content-block-text" style="font-weight: 700; font-size: 17px;">За первое место в рейтинге по результатам игрового вечера — СЛЕДУЮЩАЯ ИГРА АБСОЛЮТНО БЕСПЛАТНАЯ!</p>
+        </div>
+
+        <!-- РСЯ МЕЖБЛОЧНОЕ 1 -->
+        <div class="rsya-linear-frame">
+            <div id="yandex_rtb_mafia_1"></div>
+            <script>
+            window.yaContextCb.push(() => {
+                Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-20", "renderTo": "yandex_rtb_mafia_1" })
+            })
+            </script>
+        </div>
+
+        <!-- БЕНТО-КАРТОЧКА 3: ОФИЦИАЛЬНЫЙ СЧЕТЧИК БАЛЛОВ -->
+        <div class="bento-card">
+            <h2>Регламент начисления рейтинговых баллов за игру:</h2>
+            <ul class="rules-list">
+                <li><strong>Мафия / Якудза (Выжил):</strong> Если ваша темная команда одержала победу и вы остались в живых — присуждается <strong>+5 баллов</strong>.</li>
+                <li><strong>Мафия / Якудза (Убит):</strong> Если команда победила, но вас устранили в процессе — присуждается <strong>+3 балла</strong>.</li>
+                <li><strong>Мирные жители (Выжил):</strong> При победе светлого города (роль не важна), если вы остались живы — присуждается <strong>+3 балла</strong>.</li>
+                <li><strong>Мирные жители (Убит):</strong> Город победил, но вас вывели из игры ночью или голосованием — присуждается <strong>+1 балл</strong>.</li>
+                <li><strong>Камикадзе (Особый статус):</strong> За ликвидацию представителя Мафии или Якудзы вы получаете фиксированные <strong>5 баллов</strong> (дополнительные баллы за победу города в данном случае не суммируются).</li>
+                <li><strong>Шериф (Точность):</strong> Каждое точное попадание в черного игрока приносит <strong>+2 балла</strong>. Ошибка и выстрел в мирного карается штрафом в <strong>-2 балла</strong>.</li>
+            </ul>
+        </div>
+
+        <!-- БЕНТО-КАРТОЧКА 4: КЛАССИФИКАЦИЯ РОЛЕЙ КЛУБА -->
+        <div class="bento-card">
+            <h2>Классические и расширенные роли в игре:</h2>
+            <p class="content-block-text">Помимо базового противостояния черных и белых карт, Глеб Тренькин интегрирует в сессии расширенную ролевую колоду, превращающую раунд в глубокий стратегический детектив:</p>
+            
+            <div class="roles-grid">
+                <div class="role-mini-card">
+                    <strong>Маньяк</strong>
+                    <p class="content-block-text" style="font-size: 13px;">Одиночный игрок. Играет сам за себя, устраняя каждую ночь по одному персонажу.</p>
+                </div>
+                <div class="role-mini-card">
+                    <strong>Комиссар / Шериф</strong>
+                    <p class="content-block-text" style="font-size: 13px;">Главный щит города. Проверяет статусы игроков ночью или совершает выстрелы на поражение.</p>
+                </div>
+                <div class="role-mini-card">
+                    <strong>Красотка</strong>
+                    <p class="content-block-text" style="font-size: 13px;">Блокирует ночную активность выбранного персонажа, спасая город или запутывая следствие.</p>
+                </div>
+                <div class="role-mini-card">
+                    <strong>Доктор / Медсестра</strong>
+                    <p class="content-block-text" style="font-size: 13px;">Спасает жизни. Исцеляет выбранного игрока от ночного покушения мафии или маньяка.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- РСЯ МЕЖБЛОЧНОЕ 2 -->
+        <div class="rsya-linear-frame">
+            <div id="yandex_rtb_mafia_2"></div>
+            <script>
+            window.yaContextCb.push(() => {
+                Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-20", "renderTo": "yandex_rtb_mafia_2" })
+            })
+            </script>
+        </div>
+
+        <!-- КНОПКА ПОДЕЛИТЬСЯ -->
+        <div style="text-align: center; width: 100%;">
+            <button class="btn-share-viral" onclick="sharePage()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                <span>Собрать друзей на игру в Мафию</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- ПОДВАЛ -->
+    <footer>
+        <div class="container footer-grid">
+            <div>
+                © 2026 РЕСУРС. Все права защищены.
+            </div>
+            <div class="footer-warning" style="font-size: 11px; opacity: 0.7;">
+                Участие в заседаниях клуба «Мафия» является полностью добровольным и осуществляется по предварительной коллективной или индивидуальной записи. Программа носит развлекательно-образовательный характер, направленный на развитие когнитивных навыков и социализацию.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            const root = document.documentElement;
+            const current = root.getAttribute('data-theme') || 'dark';
+            const next = current === 'dark' ? 'light' : 'dark';
+            root.setAttribute('data-theme', next);
+            localStorage.setItem('mafia-theme', next);
+        }
+
+        async function sharePage() {
+            const shareData = {
+                title: 'Интеллектуальный клуб Мафия Сыктывкар',
+                text: 'Играем в Мафию от 10 человек с Глебом Тренькиным. Всего 300р за вечер. Регистрируйся!',
+                url: window.location.href
+            };
+            const btnText = document.querySelector('.btn-share-viral span');
+            if (navigator.share) {
+                try { await navigator.share(shareData); } catch (err) { }
+            } else {
+                try {
+                    await navigator.clipboard.writeText(window.location.href);
+                    const oldText = btnText.innerText;
+                    btnText.innerText = 'Ссылка на Мафию скопирована!';
+                    setTimeout(() => { btnText.innerText = oldText; }, 3000);
+                } catch (err) {
+                    alert('Скопируйте ссылку из адресной строки.');
+                }
+            }
+        }
+    </script>
+
+    <!-- РСЯ FloorAd & Fullscreen -->
+    <script>
+    window.yaContextCb.push(() => {
+        Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-6", "type": "floorAd", "platform": "touch" });
+        Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-7", "type": "floorAd", "platform": "desktop" });
+        Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-24", "type": "fullscreen", "platform": "touch" });
+        Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-25", "type": "fullscreen", "platform": "desktop" });
+    })
+    </script>
+</body>
+</html>
