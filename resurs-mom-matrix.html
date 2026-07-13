@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <script>
+        const savedTheme = localStorage.getItem('user-theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- РОДНОЙ ФАВИКОН PNG -->
+    <link rel="icon" href="https://resurs-stretch.ru/favicon.png" type="image/png">
+    <link rel="shortcut icon" href="https://resurs-stretch.ru/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="https://resurs-stretch.ru/favicon.png">
+
+    <!-- МЕТРИКИ -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108177329', 'ym');
+        ym(108177329, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+
+        var _tmr = window._tmr || (window._tmr = []);
+        _tmr.push({id: "3755240", type: "pageView", start: (new Date()).getTime()});
+        (function (d, w, id) {
+            if (d.getElementById(id)) return;
+            var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
+            ts.src = "https://top-fwz1.mail.ru/js/code.js";
+            var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
+            if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
+        })(document, window, "tmr-code");
+    </script>
+    <noscript>
+        <div>
+            <img src="https://mc.yandex.ru/watch/108177329" style="position:absolute; left:-9999px;" alt="" />
+            <img src="https://top-fwz1.mail.ru/counter?id=3755240;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" />
+        </div>
+    </noscript>
+
+    <!-- ИНДЕКСАЦИЯ И РОБОТЫ -->
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const isBot = /YandexBot|YandexAccessibilityBot|YandexMobileBot|Googlebot/i.test(navigator.userAgent);
+            if (isBot) {
+                fetch('https://functions.yandexcloud.net/d4ecn5ag33dcdd2deivd?bot=true&url=' + encodeURIComponent(window.location.href))
+                .then(res => res.json())
+                .then(data => console.log("SEO Preview Matrix Synced"))
+                .catch(e => console.log("SEO preview pass"));
+            }
+        });
+    </script>
+    
+    <script>window.yaContextCb=window.yaContextCb||[]</script>
+    <script src="https://yandex.ru/ads/system/context.js" async></script>
+    
+    <title>Матрица здоровья мамы: интерактивный скрининг и калькуляторы восстановления | РЕСУРС</title>
+    <meta name="description" content="Комплексный цифровой анализатор для молодых мам Сыктывкара от экосистемы РЕСУРС. Тесты на диастаз, расчет нагрузки на спину от веса ребенка и биомеханика восстановления.">
+    <meta name="keywords" content="восстановление после родов сыктывкар, болит спина в декрете, калькулятор диастаза, после кесарева тренировки, усталость декрет коми, фитнес для мам сыктывкар, ресурс">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://resurs-stretch.ru/resurs-mom-matrix.html">
+
+    <style>
+        :root {
+            --bg-color: #060C07;
+            --surface-color: #111A13;
+            --surface-hover: #19271D;
+            --accent-color: #10B981;
+            --accent-hover: #059669;
+            --accent-gold: #B38639;
+            --text-main: #F4F4F9;
+            --text-muted: #92A196;
+            --border-color: rgba(16, 185, 129, 0.12);
+            --header-bg: rgba(6, 12, 7, 0.75);
+            --shadow: rgba(0, 0, 0, 0.6);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="light"] {
+            --bg-color: #F4F6F4;
+            --surface-color: #FFFFFF;
+            --surface-hover: #EAEFEA;
+            --accent-color: #143D16;
+            --accent-hover: #1E4620;
+            --accent-gold: #B38639;
+            --text-main: #1D1F1D;
+            --text-muted: #6E736F;
+            --border-color: rgba(20, 61, 22, 0.15);
+            --header-bg: rgba(244, 246, 244, 0.75);
+        }
+
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Manrope', sans-serif;
+            line-height: 1.6;
+            padding-top: 75px;
+        }
+
+        .container {
+            max-width: 680px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 24px;
+            box-sizing: border-box;
+        }
+
+        /* НАДЁЖНО ЗАКРЕПЛЕННАЯ ШАПКА */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--header-bg);
+            backdrop-filter: blur(30px) saturate(180%);
+            -webkit-backdrop-filter: blur(30px) saturate(180%);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 9999;
+            padding: 16px 0;
+        }
+
+        .header-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 19px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .logo span { color: var(--accent-color); }
+
+        .header-controls {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .nav-btn {
+            font-weight: 800;
+            font-size: 11px;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--text-main);
+            padding: 6px 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            user-select: none;
+            transition: var(--transition);
+        }
+        .nav-btn:hover {
+            background: var(--surface-hover);
+            border-color: var(--accent-color);
+        }
+
+        .main-layout { padding: 40px 0; }
+
+        .bento-card {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            padding: 32px;
+            border-radius: 24px;
+            box-shadow: 0 12px 40px var(--shadow);
+            margin-bottom: 24px;
+            box-sizing: border-box;
+        }
+
+        .bento-ai-photo {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 10;
+            background-size: cover;
+            background-position: center;
+            border-radius: 24px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 32px;
+            display: block;
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            font-size: clamp(24px, 4.5vw, 36px);
+            line-height: 1.25;
+            margin-bottom: 24px;
+        }
+
+        h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 22px;
+            margin-bottom: 16px;
+            color: var(--accent-color);
+        }
+
+        .content-block-text {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--text-main);
+            margin-bottom: 14px;
+        }
+
+        .input-group {
+            margin-bottom: 16px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: var(--text-muted);
+        }
+
+        .input-group select, .input-group input {
+            width: 100%;
+            padding: 14px;
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            color: var(--text-main);
+            font-size: 15px;
+            font-weight: 600;
+            outline: none;
+        }
+
+        .checkbox-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .checkbox-item input {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--accent-color);
+            margin-top: 2px;
+        }
+
+        .calc-btn {
+            width: 100%;
+            padding: 14px;
+            background: var(--accent-color);
+            color: #FFF;
+            border: none;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 12px;
+        }
+        .calc-btn:hover { opacity: 0.9; }
+
+        .result-box {
+            margin-top: 20px;
+            padding: 18px;
+            border-radius: 14px;
+            border-left: 4px solid var(--accent-gold);
+            background: rgba(179, 134, 57, 0.03);
+            display: none;
+        }
+
+        .result-box h4 {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--accent-gold);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+        }
+
+        .seo-bridge-block {
+            border-left: 2px solid var(--accent-color);
+            padding-left: 18px;
+            margin: 20px 0;
+        }
+
+        /* БЛОК СТУДИИ И ОНЛАЙН КЛУБА */
+        .cta-card {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), transparent);
+            border: 1px solid var(--accent-gold);
+            padding: 32px;
+            border-radius: 24px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .cta-btn-club {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 32px;
+            background: var(--accent-gold);
+            color: #FFF;
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 800;
+            text-transform: uppercase;
+            text-decoration: none;
+            letter-spacing: 1px;
+            box-shadow: 0 6px 15px rgba(179, 134, 57, 0.2);
+            transition: var(--transition);
+            margin-top: 10px;
+        }
+        .cta-btn-club:hover { transform: translateY(-1px); opacity: 0.95; }
+
+        .btn-share-viral {
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 12px; 
+            padding: 16px 32px;
+            background: var(--accent-color) !important; 
+            border: none; 
+            border-radius: 12px;
+            font-size: 14px; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            cursor: pointer; 
+            transition: var(--transition); 
+            color: #FFF;
+            width: 100%; 
+            max-width: 480px;
+            margin: 0 auto 30px auto;
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.2);
+        }
+        .btn-share-viral:hover { background-color: var(--accent-hover) !important; transform: translateY(-1px); }
+
+        footer {
+            background-color: var(--surface-color);
+            border-top: 1px solid var(--border-color);
+            padding: 40px 0;
+            margin-top: 60px;
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* МОБИЛЬНАЯ АДАПТИВНОСТЬ */
+        @media (max-width: 768px) {
+            body { padding-top: 70px; }
+            header { padding: 12px 0; }
+            .logo { font-size: 17px; letter-spacing: 1.5px; }
+            .container { padding: 0 20px !important; width: 100% !important; box-sizing: border-box !important; }
+            .main-layout { padding: 15px 0; overflow: hidden; }
+            .bento-card { padding: 24px 16px !important; border-radius: 20px; margin-bottom: 20px; box-sizing: border-box !important; }
+            .bento-ai-photo { border-radius: 20px; margin-bottom: 24px; }
+            h1 { font-size: 24px; line-height: 1.3; margin-bottom: 20px; }
+            h2 { font-size: 20px; }
+            .content-block-text { font-size: 15px; line-height: 1.6; }
+            .cta-card { padding: 24px 16px !important; border-radius: 20px; }
+            .cta-btn-club { width: 100%; font-size: 14px; padding: 16px 20px; }
+            .btn-share-viral { width: 100% !important; max-width: 100% !important; font-size: 13px; padding: 16px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-wrapper">
+            <div class="logo">РЕСУРС<span>.МамаЦентр</span></div>
+            <div class="header-controls">
+                <a href="index.html" class="nav-btn">Главная</a>
+                <div class="theme-selector-trigger nav-btn" onclick="toggleTheme()">Тема</div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container main-layout">
+        <div class="bento-ai-photo" style="background-image: url('images/resurs-mom-hero.webp');"></div>
+
+        <h1>Матрица здоровья молодой мамы: Комплексный интерактивный скрининг восстановления тела в декрете</h1>
+
+        <div class="bento-card">
+            <p class="content-block-text">Рождение ребенка — это фундаментальная перестройка всей биомеханики женского организма. Период декрета в Сыктывкаре часто превращается в испытание на прочность: боли в крестце, расхождение живота, тотальный недосып и отсутствие времени на себя. Попытки 'закачать' форму стандартными упражнениями из интернета без понимания законов анатомии только усугубляют скрытые дисфункции.</p>
+            
+            <div class="seo-bridge-block">
+                <p class="content-block-text" style="font-size: 13px; opacity: 0.9; font-style: italic;"><strong>Честная позиция экосистемы РЕСУРС:</strong> Наша задача — дать молодым мамам научно обоснованный, честный инструмент самодиагностики. Восстановление должно идти изнутри наружу: от глубоких мышц тазового дна и регуляции нервной системы — к внешней эстетике тела.</p>
+            </div>
+        </div>
+
+        <!-- КАЛЬКУЛЯТОР 1: ВОССТАНОВЛЕНИЕ И ДИАСТАЗ -->
+        <div class="bento-card">
+            <h2>1. Экспресс-анализатор уровня восстановления после родов</h2>
+            <p class="content-block-text" style="font-size: 14px; color: var(--text-muted);">Проверьте, к какому типу нагрузок готово ваше тело, чтобы не спровоцировать опущение органов или углубление диастаза.</p>
+            
+            <div class="input-group">
+                <label>Как проходили ваши роды?</label>
+                <select id="birthType">
+                    <option value="natural">Естественные роды</option>
+                    <option value="cesarean">Кесарево сечение</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>Сколько месяцев прошло после родов?</label>
+                <input type="number" id="monthsPassed" value="3" min="0">
+            </div>
+
+            <div class="input-group">
+                <label>Отметьте симптомы, если они есть:</label>
+                <div class="checkbox-list">
+                    <label class="checkbox-item"><input type="checkbox" id="symDiastasis"> Ощутимый «валик» или провал по белой линии живота при подъеме</label>
+                    <label class="checkbox-item"><input type="checkbox" id="symLeak"> Подтекание при чихании, кашле или прыжках</label>
+                    <label class="checkbox-item"><input type="checkbox" id="symPubic"> Боль в области лонного сочленения или крестца</label>
+                </div>
+            </div>
+
+            <button class="calc-btn" onclick="checkRecovery()">Оценить готовность тела</button>
+
+            <div class="result-box" id="recResult">
+                <h4 id="recTitle">Диагностическое заключение:</h4>
+                <p class="content-block-text" id="recText" style="font-size: 14px; margin-bottom: 0;"></p>
+            </div>
+        </div>
+
+        <!-- КАЛЬКУЛЯТОР 2: НАГРУЗКА НА СПИНУ -->
+        <div class="bento-card">
+            <h2>2. Биомеханический калькулятор нагрузки от веса ребенка</h2>
+            <p class="content-block-text" style="font-size: 14px; color: var(--text-muted);">Рассчитайте реальное давление на ваши межпозвоночные диски поясничного отдела при ежедневном ношении малыша.</p>
+            
+            <div class="input-group">
+                <label>Примерный вес вашего ребенка (кг):</label>
+                <input type="number" id="babyWeight" value="8" min="1">
+            </div>
+
+            <div class="input-group">
+                <label>Как вы чаще всего держите или берете ребенка?</label>
+                <select id="holdType">
+                    <option value="hip">На одном бедре, перекосив таз</option>
+                    <option value="arms">Впереди себя на слегка вытянутых руках</option>
+                    <option value="ergo">В эрго-рюкзаке / слинге близко к корпусу</option>
+                </select>
+            </div>
+
+            <button class="calc-btn" onclick="calculateBackLoad()">Рассчитать давление на диски</button>
+
+            <div class="result-box" id="backResult">
+                <h4 id="backTitle">Расчет осевой нагрузки:</h4>
+                <p class="content-block-text" id="backText" style="font-size: 14px; margin-bottom: 0;"></p>
+            </div>
+        </div>
+
+        <!-- КАЛЬКУЛЯТОР 3: НЕЙРОГЕННОЕ ИСТОЩЕНИЕ -->
+        <div class="bento-card">
+            <h2>3. Анализатор нейрогенного истощения нервной системы</h2>
+            <p class="content-block-text" style="font-size: 14px; color: var(--text-muted);">Оцените уровень скрытого психосоматического стресса и перегрузки коры головного мозга.</p>
+            
+            <div class="input-group">
+                <label>Отметьте состояния, с которыми сталкиваетесь регулярно:</label>
+                <div class="checkbox-list">
+                    <label class="checkbox-item"><input type="checkbox" class="stress-check"> Просыпаюсь уставшей даже после нескольких часов сна</label>
+                    <label class="checkbox-item"><input type="checkbox" class="stress-check"> Постоянно неосознанно зажимаю плечи к ушам или стискиваю зубы</label>
+                    <label class="checkbox-item"><input type="checkbox" class="stress-check"> Вспыхиваю от раздражения на мужа или близких за секунду</label>
+                    <label class="checkbox-item"><input type="checkbox" class="stress-check"> Стало трудно концентрироваться, забываю простые вещи</label>
+                </div>
+            </div>
+
+            <button class="calc-btn" onclick="checkStressLevel()">Измерить индекс стресса</button>
+
+            <div class="result-box" id="stressResult">
+                <h4 id="stressTitle">Состояние нервной системы:</h4>
+                <p class="content-block-text" id="stressText" style="font-size: 14px; margin-bottom: 0;"></p>
+            </div>
+        </div>
+
+        <!-- ПРИЗЫВ К ДЕЙСТВИЮ: ОНЛАЙН КЛУБ И СТУДИЯ -->
+        <div class="cta-card">
+            <h2 style="color: var(--accent-gold); margin-bottom: 10px;">Бережное восстановление под контролем экспертов</h2>
+            <p class="content-block-text" style="font-size: 15px;">Не пытайтесь закачивать боль жестким фитнесом. Начните осознанную реабилитацию мышц тазового дна, осанки и нервной системы вместе с Ольгой Мартыновой в нашей студии в Сыктывкаре или присоединяйтесь к закрытому клубу из любой точки мира.</p>
+            <a href="club.html" class="cta-btn-club">Перейти в Онлайн-Клуб РЕСУРС</a>
+        </div>
+
+        <!-- КНОПКА ПОДЕЛИТЬСЯ -->
+        <div style="text-align: center; width: 100%;">
+            <button class="btn-share-viral" onclick="sharePage()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                <span>Переслать полезный скрининг в чат мам</span>
+            </button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div>© 2026 РЕСУРС. Все права защищены. Программа бережного оздоровления.</div>
+            <div class="footer-warning" style="font-size: 11px; opacity: 0.65; margin-top: 15px;">
+                Интерактивное тестирование является пре-скринингом и не заменяет врачебный осмотр акушера-гинеколога или невролога. Рекомендации разработаны дипломированными специалистами по физической культуре и спорту экосистемы РЕСУРС.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            const root = document.documentElement;
+            const current = root.getAttribute('data-theme') || 'light';
+            const next = current === 'light' ? 'dark' : 'light';
+            root.setAttribute('data-theme', next);
+            localStorage.setItem('user-theme', next);
+        }
+
+        // СКРИПТ 1: ВОССТАНОВЛЕНИЕ
+        function checkRecovery() {
+            const type = document.getElementById('birthType').value;
+            const months = parseInt(document.getElementById('monthsPassed').value) || 0;
+            const diastasis = document.getElementById('symDiastasis').checked;
+            const leak = document.getElementById('symLeak').checked;
+            const pubic = document.getElementById('symPubic').checked;
+
+            let output = "";
+
+            if (months < 2) {
+                output = "<strong>Критический период реабилитации.</strong> Сейчас вам категорически противопоказаны любые стандартные физические нагрузки, фитнес, планки и бег. Органы малого таза и фасциальные структуры находятся на этапе заживления. Разрешено: только мягкое терапевтическое дыхание животом и микро-активация мышц тазового дна.";
+            } else if (diastasis || leak || pubic) {
+                output = "<strong>Обнаружены маркеры несостоятельности глубоких цепей.</strong> У вас присутствуют явные признаки дисфункции мышц тазового дна и расхождения белой линии живота. Обычные скручивания на пресс или прыжки приведут к увеличению внутрибрюшного давления и усугубят проблему. Вам необходима точечная 3D-работа над осанкой и дыханием для закрытия диастаза.";
+            } else {
+                output = "<strong>Базовое восстановление в норме.</strong> Ваше тело успешно прошло первичный этап реабилитации. Вы можете постепенно переходить к функциональным мягким тренировкам, пилатесу и стретчингу, строго избегая чрезмерных весов и ударных нагрузок.";
+            }
+
+            const box = document.getElementById('recResult');
+            document.getElementById('recText').innerHTML = output;
+            box.style.display = 'block';
+            box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // СКРИПТ 2: НАГРУЗКА НА СПИНУ
+        function calculateBackLoad() {
+            const weight = parseFloat(document.getElementById('babyWeight').value) || 0;
+            const hold = document.getElementById('holdType').value;
+
+            let dynamicLoad = weight;
+            let advice = "";
+
+            if (hold === 'hip') {
+                dynamicLoad = Math.round(weight * 3.5);
+                advice = "Ношение на одном бедре перекашивает таз и создает асимметричную компрессию L4-S1 позвонков. Это прямой путь к сколиозу, защемлению седалищного нерва и перекосу линии плеч. Меняйте стороны и старайтесь держать таз ровно.";
+            } else if (hold === 'arms') {
+                dynamicLoad = Math.round(weight * 5);
+                advice = "Удерживание веса на удалении от центра тяжести создает гигантский рычаг давления. Ваши межпозвоночные диски сейчас буквально расплющиваются под этой нагрузкой. Беря ребенка из кроватки, всегда подходите к нему вплотную и уходите в легкий присед, сохраняя спину прямой.";
+            } else {
+                dynamicLoad = Math.round(weight * 1.5);
+                advice = "Эрго-рюкзак распределяет вес максимально близко к вашему центру тяжести, снижая крутящий момент. Это наиболее безопасный способ. Главное — следите за тем, чтобы плечи не зажимали шею.";
+            }
+
+            const box = document.getElementById('backResult');
+            document.getElementById('backText').innerHTML = `При весе ребенка в <strong>${weight} кг</strong>, из-за законов рычагов биомеханики, пиковая нагрузка на вашу поясницу составляет около <strong>${dynamicLoad} кг</strong>. <br><br><sup>*Совет эксперта:</sup> ${advice}`;
+            box.style.display = 'block';
+            box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // СКРИПТ 3: СТРЕСС
+        function checkStressLevel() {
+            const checkboxes = document.querySelectorAll('.stress-check');
+            let count = 0;
+            checkboxes.forEach(c => { if (c.checked) count++; });
+
+            let output = "";
+
+            if (count === 0) {
+                output = "<strong>Индекс истощения: Минимальный.</strong> Ваша вегетативная нервная система успешно справляется с бытовыми нагрузками декрета. Баланс симпатики и парасимпатики сохранен.";
+            } else if (count <= 2) {
+                output = "<strong>Индекс истощения: Умеренный (Фаза компенсации).</strong> Нервная система находится на пороге выгорания. Зажатые плечи и челюсть — это психосоматические маркеры застрявшего в теле стресса. <br><br><i>Экстренная практика:</i> Сделайте глубокий вдох носом, задержите дыхание на 4 секунды, а затем сделайте долгий, расслабленный выдох через полуоткрытый рот со звуком 'Ха-а'. Повторите 3 раза для мгновенного торможения симпатики.";
+            } else {
+                output = "<strong>Индекс истощения: Высокий (Фаза декомпенсации).</strong> Ваше тело функционирует в режиме выживания под перманентным прессом кортизола. Забывчивость и вспышки гнева — это крик мозга о дефиците ресурса. Вам жизненно необходим соматический отдых, восстановление паттерна дыхания и расслабление шеи.";
+            }
+
+            const box = document.getElementById('stressResult');
+            document.getElementById('stressText').innerHTML = output;
+            box.style.display = 'block';
+            box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        async function sharePage() {
+            const shareData = {
+                title: 'Матрица здоровья мамы: РЕСУРС',
+                text: 'Умный интерактивный скрининг восстановления, стресса и нагрузки на спину в декрете.',
+                url: window.location.href
+            };
+            const btnText = document.querySelector('.btn-share-viral span');
+            if (navigator.share) {
+                try { await navigator.share(shareData); } catch (err) {}
+            } else {
+                try {
+                    await navigator.clipboard.writeText(window.location.href);
+                    const oldText = btnText.innerText;
+                    btnText.innerText = 'Ссылка скопирована! Отправьте в мамский чат.';
+                    setTimeout(() => { btnText.innerText = oldText; }, 3000);
+                } catch (err) {
+                    alert('Скопируйте ссылку из адресной строки.');
+                }
+            }
+        }
+    </script>
+</body>
+</html>
