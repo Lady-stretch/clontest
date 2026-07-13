@@ -9,12 +9,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <!-- РОДНОЙ ФАВИКОН PNG -->
     <link rel="icon" href="https://resurs-stretch.ru/favicon.png" type="image/png">
     <link rel="shortcut icon" href="https://resurs-stretch.ru/favicon.png" type="image/png">
     <link rel="apple-touch-icon" href="https://resurs-stretch.ru/favicon.png">
 
-    <!-- МЕТРИКИ -->
     <script type="text/javascript">
         (function(m,e,t,r,i,k,a){
             m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -41,7 +39,6 @@
         </div>
     </noscript>
 
-    <!-- ИНДЕКСАЦИЯ И РОБОТЫ -->
     <script>
         window.addEventListener('DOMContentLoaded', () => {
             const isBot = /YandexBot|YandexAccessibilityBot|YandexMobileBot|Googlebot/i.test(navigator.userAgent);
@@ -57,12 +54,18 @@
     <script>window.yaContextCb=window.yaContextCb||[]</script>
     <script src="https://yandex.ru/ads/system/context.js" async></script>
     
-    <title>Манифест осознанного движения: вся правда об осанке и фитнесе | РЕСУРС</title>
-    <meta name="description" content="Честный анатомический разбор мифов о фитнесе и похудении. Почему отсутствие лишнего веса не гарантирует здоровье спины и суставов. Экосистема РЕСУРС Сыктывкар.">
-    <meta name="keywords" content="исправить осанку сыктывкар, пилатес здоровая спина коми, мягкие тренировки для суставов, тренер по растяжке сыктывкар, почему болит шея, лимфодренаж отеки, ресурс сыктывкар">
+    <title>Манифест осознанного движения: вся правда об осанке, фитнесе и здоровье суставов | РЕСУРС</title>
+    <meta name="description" content="Честный анатомический разбор мифов об убойном фитнесе. Почему растяжка и пилатес необходимы при сколиозе, боли в суставах, усталости и отсутствии опыта. Экосистема РЕСУРС Сыктывкар.">
+    <meta name="keywords" content="исправить осанку сыктывкар, пилатес здоровая спина коми, мягкие тренировки для суставов, тренер по растяжке сыктывкар, почему болит шея, лимфодренаж отеки, тренировки без боли, ресурс сыктывкар">
     <meta name="robots" content="index, follow">
     
     <link rel="canonical" href="https://resurs-stretch.ru/smart-movement.html">
+
+    <meta property="og:title" content="Манифест осознанного движения: Вся правда об осанке и фитнесе">
+    <meta property="og:description" content="Честный разбор того, почему фитнес — это устарело, и как вернуть телу энергию через радость и мягкие тренировки.">
+    <meta property="og:image" content="https://resurs-stretch.ru/images/resurs-manifest-hero.webp">
+    <meta property="og:url" content="https://resurs-stretch.ru/smart-movement.html">
+    <meta property="og:type" content="website">
 
     <style>
         :root {
@@ -172,6 +175,18 @@
 
         .main-layout { padding: 40px 0; }
 
+        .bento-hero-photo {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 9; /* Главная обложка 16:9 */
+            background-size: cover;
+            background-position: center;
+            border-radius: 24px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 32px;
+            display: block;
+        }
+
         h1 {
             font-family: 'Cormorant Garamond', serif;
             font-weight: 600;
@@ -183,9 +198,10 @@
 
         h2 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 22px;
+            font-size: 24px;
             color: var(--accent-color);
-            margin-bottom: 12px;
+            margin-bottom: 14px;
+            line-height: 1.3;
         }
 
         .content-p {
@@ -194,10 +210,10 @@
             margin-bottom: 16px;
         }
 
-        /* ШАХМАТНАЯ СЕТКА BENTO ДЛЯ ПК (И СТЕК ДЛЯ МОБИЛЬНЫХ) */
+        /* ИСПРАВЛЕННАЯ ШАХМАТНАЯ СЕТКА (УСТОЙЧИВАЯ К ОТСУТСТВИЮ ФОТО) */
         .chess-grid {
-            display: grid;
-            grid-template-columns: 1fr;
+            display: flex;
+            flex-direction: column;
             gap: 24px;
             margin-bottom: 24px;
         }
@@ -214,21 +230,25 @@
 
         .chess-text {
             padding: 32px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .chess-photo {
             width: 100%;
             height: auto;
-            aspect-ratio: 1 / 1; /* Обязательный квадрат 1:1 */
+            aspect-ratio: 1 / 1; /* Квадратные фото блоков */
             background-size: cover;
             background-position: center;
             display: block;
         }
 
-        /* ИНТЕРАКТИВНЫЙ БЕНТО-БЛОК ЭФФЕКТОВ */
+        /* Если фото нет в разметке или скрыто, оно не ломает контейнер */
+        .chess-photo[style*="background-image: url('')"],
+        .chess-photo:not([style]) {
+            display: none;
+        }
+
         .bento-card {
             background-color: var(--surface-color);
             border: 1px solid var(--border-color);
@@ -253,9 +273,10 @@
         .timeline-step strong {
             color: var(--accent-gold);
             display: block;
-            font-size: 15px;
+            font-size: 14px;
             text-transform: uppercase;
             margin-bottom: 4px;
+            letter-spacing: 0.5px;
         }
 
         .rsya-linear-frame {
@@ -269,6 +290,8 @@
             align-items: center;
             min-height: 250px;
             width: 100%;
+            box-sizing: border-box;
+            overflow: hidden;
         }
 
         .cta-card {
@@ -333,29 +356,36 @@
             line-height: 1.7;
         }
 
-        /* СТРОГИЕ МЕДИА-ЗАПРОСЫ ДЛЯ СЕТКИ ОБЕИХ ВЕРСИЙ */
+        /* ГЛУБОКАЯ АДАПТИВНОСТЬ ДЛЯ ДЕСКТОПА */
         @media (min-width: 769px) {
             .chess-row {
                 grid-template-columns: 1fr 1fr;
             }
-            /* Переворот каждого второго элемента для шахматного порядка на ПК */
-            .chess-row:nth-child(even) .chess-text {
-                grid-column: 2;
+            .chess-text {
+                padding: 40px;
             }
-            .chess-row:nth-child(even) .chess-photo {
-                grid-column: 1;
-                grid-row: 1;
+            /* Зеркальное отображение четных рядов */
+            .chess-row:nth-child(even) {
+                direction: rtl;
+            }
+            .chess-row:nth-child(even) .chess-text {
+                direction: ltr;
             }
         }
 
+        /* МОБИЛЬНАЯ АДАПТИВНОСТЬ (СТРОГО 20px ОТ КРАЕВ) */
         @media (max-width: 768px) {
             body { padding-top: 70px; }
             header { padding: 12px 0; }
             .logo { font-size: 17px; letter-spacing: 1.5px; }
-            .container { padding: 0 20px; width: 100%; }
-            .main-layout { padding: 15px 0; }
+            .container { padding: 0 20px !important; width: 100% !important; }
+            .main-layout { padding: 15px 0; overflow: hidden; }
             .chess-text { padding: 24px 16px; }
-            .bento-card, .cta-card { padding: 24px 16px; border-radius: 20px; }
+            .bento-card, .cta-card { padding: 24px 16px !important; border-radius: 20px; }
+            .bento-hero-photo { border-radius: 20px; margin-bottom: 24px; }
+            h1 { font-size: 24px; line-height: 1.3; margin-bottom: 24px; }
+            h2 { font-size: 21px; }
+            .content-p { font-size: 15px; line-height: 1.6; }
             .cta-btn-club, .btn-share-viral { width: 100%; font-size: 14px; padding: 16px 20px; }
         }
     </style>
@@ -374,31 +404,36 @@
 
     <div class="container main-layout">
         
+        <div class="bento-hero-photo" style="background-image: url('images/resurs-manifest-hero.webp');"></div>
+
         <h1>Красивая осанка и живая спина без фитнес-фанатизма: почему отсутствие лишнего веса не гарантирует здоровье суставов</h1>
+
+        <div class="bento-card">
+            <h2>«Фитнес» — это устаревшее слово, которое пугает людей</h2>
+            <p class="content-p">Давайте говорить честно. Слово «фитнес» стало слишком закоренелым, обросшим стереотипами общим названием. У кого-то оно вызывает слепое восхищение, а у кого-то — глухой подсознательный страх. Люди боятся трудностей, боятся изнуряющего, потного труда до седьмого пота, криков тренера и боли в мышцах на следующий день.</p>
+            <p class="content-p">Из-за этого страха миллионы людей так и не узнают, насколько умное движение способно изменить их жизнь. Они закрываются в раковине, даже не представляя, что забота о теле может быть мягкой, комфортной и приносить чистую радость, а не страдания.</p>
+        </div>
 
         <div class="chess-grid">
             
-            <!-- РЯД 1: МИФ О ХУДОБЕ -->
             <div class="chess-row">
                 <div class="chess-text">
                     <h2>Миф 1: «Я худая, мне не нужно заниматься»</h2>
-                    <p class="content-p">Это самое опасное заблуждение. Отсутствие лишнего веса — это лишь генетический подарок метаболизма, но он никак не защищает суставы. Без регулярного, правильного движения наши фасции (соединительная ткань) высыхают и буквально склеиваются, как старые обои.</p>
-                    <p class="content-p">Помните честную поговорку: <i>«Худая корова — еще не газель»</i>. Без глубокого мышечного корсета и сбалансированного тонуса вся осевая нагрузка при ходьбе или сидении бьет напрямую в незащищенные межпозвоночные диски, запуская процессы преждевременного старения скелета.</p>
+                    <p class="content-p">Это скрытая ловушка. Отсутствие лишнего веса — лишь генетический подарок метаболизма, но он не имеет отношения к здоровью суставов. Без регулярного движения наши фасции (соединительная ткань) высыхают и склеиваются, как старые обои.</p>
+                    <p class="content-p">Помните честную аксиому: <i>«Худая корова — еще не газель»</i>. Без глубокого мышечного корсета и сбалансированного тонуса вся осевая нагрузка при ходьбе или сидении бьет напрямую в незащищенные межпозвоночные диски, разрушая их.</p>
                 </div>
                 <div class="chess-photo" style="background-image: url('images/resurs-manifest-1.webp');"></div>
             </div>
 
-            <!-- РЯД 2: МИФ О ШПАГАТЕ -->
             <div class="chess-row">
                 <div class="chess-text">
                     <h2>Миф 2: «Стретчинг — это просто чтобы сесть на шпагат»</h2>
-                    <p class="content-p">Многие думают, что растяжка нужна только гимнасткам для цирковых трюков. Но профессиональный стретчинг с опытным тренером в Сыктывкаре — это совершенно про другое. Это базовая гигиена тела.</p>
-                    <p class="content-p">Это про восстановление естественной анатомической длины перегруженных мышц, деликатное раскрытие грудного отдела (чтобы дышалось полной грудью), настройку паттерна шага и освобождение шеи от зажимов, которые ежедневно провоцируют головные боли напряжения у офисных сотрудников.</p>
+                    <p class="content-p">Многие думают, что растяжка нужна только для цирковых трюков. Но профессиональный стретчинг с опытным тренером в Сыктывкаре — это совершенно про другое. Это базовая гигиена тела.</p>
+                    <p class="content-p">Это навык управления своим организмом, мягкое восстановление естественной анатомической длины перегруженных мышц, деликатное раскрытие грудного отдела (чтобы дышалось легко) и выстраивание здорового паттерна шага.</p>
                 </div>
                 <div class="chess-photo" style="background-image: url('images/resurs-manifest-2.webp');"></div>
             </div>
 
-            <!-- РСЯ МЕЖБЛОЧНОЕ 1 -->
             <div class="rsya-linear-frame">
                 <div id="yandex_rtb_manifest_1"></div>
                 <script>
@@ -408,29 +443,33 @@
                 </script>
             </div>
 
-            <!-- РЯД 3: МИФ ОБ ОТСУТСТВИИ БОЛИ -->
             <div class="chess-row">
                 <div class="chess-text">
-                    <h2>Миф 3: «У меня ничего не болит, значит, всё в порядке»</h2>
-                    <p class="content-p">Наш организм — великий мастер компенсаций. Позвоночник может годами беззвучно терпеть перекос таза, скрученные вперед плечи и выдвинутую «компьютерную шею», перекладывая нагрузку на другие связки и мышцы.</p>
-                    <p class="content-p">Человек живет в иллюзии здоровья, пока компенсаторный ресурс не исчерпается полностью. Появление боли — это не первый этап проблемы, это финишная прямая, когда тело больше не может терпеть перегрузку дисков и защемление нервных окончаний.</p>
+                    <h2>Миф 3: «У меня ничего не болит, значит, я здорова»</h2>
+                    <p class="content-p">Наш организм — великий мастер компенсаций. Позвоночник может годами беззвучно терпеть сколиоз, перекос таза, скрученные плечи и выдвинутую «компьютерную шею», перекладывая нагрузку на другие связки.</p>
+                    <p class="content-p">Человек живет в иллюзии здоровья, пока компенсаторный ресурс не исчерпается полностью. Появление боли — это не первый признак проблемы, это финишная прямая, когда тело больше не может терпеть перегрузку.</p>
                 </div>
                 <div class="chess-photo" style="background-image: url('images/resurs-manifest-3.webp');"></div>
             </div>
 
-            <!-- РЯД 4: ПРАВДА О ПОХУДЕНИИ И ОТЕКАХ -->
             <div class="chess-row">
                 <div class="chess-text">
-                    <h2>Честная правда о похудении, которую от вас скрывают</h2>
-                    <p class="content-p">Давайте разделим раз и навсегда: худеют строго на кухне за счет грамотного дефицита калорий и питания. Если вам обещают экстремальное похудение только за счет 50 минут пота на коврике — вас обманывают.</p>
-                    <p class="content-p">В зал мы идем за другим: за запуском лимфатической помпы. Большинство людей путают лишний жир с банальным межклеточным застоем воды (отеками). Умные мягкие тренировки выжимают ткани как губку, сливая лишние объемы с лица, бедер и живота, возвращая телу легкость и тонус.</p>
+                    <h2>Честная правда о похудении, которую скрывают</h2>
+                    <p class="content-p">Давайте разделим раз и навсегда: худеют строго на кухне за счет дефицита калорий. В зал мы идем не сжигать кусок торта, а за качеством жизни и запуском лимфатической помпы.</p>
+                    <p class="content-p">Большинство людей путают лишний жир с банальным межклеточным застоем воды (отеками). Умные мягкие тренировки выжимают ткани как губку, убирая лишние объемы с лица, бедер и живота, возвращая телу легкость и тонус.</p>
                 </div>
                 <div class="chess-photo" style="background-image: url('images/resurs-manifest-4.webp');"></div>
             </div>
 
         </div>
 
-        <!-- РСЯ МЕЖБЛОЧНОЕ 2 -->
+        <div class="bento-card">
+            <h2>Что делать, если вы чувствуете себя «деревом»?</h2>
+            <p class="content-p">Если у вас сколиоз, если болят суставы, если вы чувствуете себя тотально уставшей, слабой или думаете, что ваше тело «деревянное» и у вас абсолютно нет спортивных навыков — <strong>это нормально</strong>. Вам не нужны рекорды.</p>
+            <p class="content-p">Можно начать двигаться совершенно не напрягаясь. Достаточно хотя бы просто дома спокойно, без нагрузки поприседать, мягко потянуться в удовольствие, вернуть суставам подвижность. А лучше — прийти к профессиональному тренеру, где вас никто никогда не станет заставлять, ругать или подгонять.</p>
+            <p class="content-p">Умные тренировки в РЕСУРСе — это пространство, где вас мотивируют, мягко укрепляют, расслабляют зажатые зоны и помогают вернуть контакт со своим телом. Мы даем чистую энергию, позитив и уверенность без боли — строго через радость и комфорт.</p>
+        </div>
+
         <div class="rsya-linear-frame">
             <div id="yandex_rtb_manifest_2"></div>
             <script>
@@ -440,13 +479,12 @@
             </script>
         </div>
 
-        <!-- ИНТЕРАКТИВНЫЙ БЛОК ХРОНОМЕТРАЖА -->
         <div class="bento-card">
-            <h2>Что на самом деле происходит за 50 минут умной тренировки в РЕСУРСе:</h2>
+            <h2>Что происходит за 50 минут умной тренировки в РЕСУРСе:</h2>
             <div class="effects-timeline">
                 <div class="timeline-step">
                     <strong>0 – 15 минута: МФР и Дыхание</strong>
-                    <p class="content-p" style="font-size: 14px; margin-bottom: 0;">Специальные роллы и мячи снимают жесткие склейки с фасций. Дыхательные практики раскрывают зажатые ребра, принудительно включая лимфоток и насыщая мозг кислородом.</p>
+                    <p class="content-p" style="font-size: 14px; margin-bottom: 0;">Специальные роллы снимают жесткие склейки с фасций. Дыхательные практики раскрывают зажатые ребра, принудительно включая лимфоток и насыщая мозг кислородом.</p>
                 </div>
                 <div class="timeline-step">
                     <strong>15 – 35 минута: Мобильность и Пилатес</strong>
@@ -459,14 +497,12 @@
             </div>
         </div>
 
-        <!-- НАВЕДЕНИЕ НА ЦЕЛЕВОЕ ДЕЙСТВИЕ -->
         <div class="cta-card">
             <h2 style="color: var(--accent-gold);">Начните осознанное управление своим телом</h2>
             <p class="content-p" style="font-size: 15px; margin-bottom: 0;">Простые упражнения и регулярные тренировки с тренером дают навыки, здоровье и гибкость, стирая многолетние последствия сидячего образа жизни. Ждем вас на Коммунистической 77/2 в Сыктывкаре или внутри нашего закрытого международного Онлайн-клуба.</p>
             <a href="club.html" class="cta-btn-club">Присоединиться к Онлайн-Клубу РЕСУРС</a>
         </div>
 
-        <!-- КНОПКА ПОДЕЛИТЬСЯ -->
         <div style="text-align: center; width: 100%;">
             <button class="btn-share-viral" onclick="sharePage()">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -516,7 +552,6 @@
         }
     </script>
 
-    <!-- РСЯ FloorAd & Fullscreen -->
     <script>
     window.yaContextCb.push(() => {
         Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-6", "type": "floorAd", "platform": "touch" });
