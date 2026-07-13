@@ -15,7 +15,7 @@
 
     <script type="text/javascript">
         (function(m,e,t,r,i,k,a){
-            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i]=m[i]||function(){(m[i].a=m[i].a[]).push(arguments)};
             m[i].l=1*new Date();
             for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
             k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
@@ -54,15 +54,15 @@
     <script>window.yaContextCb=window.yaContextCb||[]</script>
     <script src="https://yandex.ru/ads/system/context.js" async></script>
     
-    <title>Калькулятор посадок в Коми и честная инструкция: как спасти спину на грядках | РЕСУРС</title>
-    <meta name="description" content="Интерактивный расчет дат высадки рассады под климат Сыктывкара + профессиональный разбор биомеханики движений на даче. Как избежать грыж, защемлений и боли в пояснице.">
-    <meta name="keywords" content="календарь посадок сыктывкар, когда сажать капусту в коми, боль в пояснице после дачи, как правильно нагибаться на грядках, разминка для дачников, заклинило спину что делать, ресурс сыктывкар">
+    <title>Умный календарь огорода Коми + Инструкция по биомеханике | РЕСУРС</title>
+    <meta name="description" content="Интерактивный калькулятор посадки, ухода и сбора всех северных культур в Коми. Как получить богатый урожай и сохранить суставы и спину здоровыми.">
+    <meta name="keywords" content="когда сажать картофель в сыктывкаре, калькулятор посадок коми, уход за клубникой дырнос, сбор урожая северных культур, боль в спине после дачи, как правильно нагибаться на грядках, биомеханика движения, студия ресурс сыктывкар">
     <meta name="robots" content="index, follow">
     
     <link rel="canonical" href="https://resurs-stretch.ru/garden-health.html">
 
-    <meta property="og:title" content="Калькулятор посадок в Коми + Инструкция по выживанию вашей спины">
-    <meta property="og:description" content="Точные северные даты высадки капусты и томатов и секреты биомеханики, чтобы не оставить здоровье на огороде.">
+    <meta property="og:title" content="Умный календарь огорода Коми + Инструкция по биомеханике спины">
+    <meta property="og:description" content="Интерактивные расчеты для всех северных культур (от картошки до клубники). Секреты ухода, сбора урожая и защиты тела от травм.">
     <meta property="og:image" content="https://resurs-stretch.ru/images/resurs-garden-hero.webp">
     <meta property="og:url" content="https://resurs-stretch.ru/garden-health.html">
     <meta property="og:type" content="website">
@@ -72,9 +72,9 @@
             --bg-color: #0B0F12;
             --surface-color: #141B1F;
             --surface-hover: #1D262C;
-            --accent-color: #10B981; /* Зеленый дачный акцент */
+            --accent-color: #10B981;
             --accent-hover: #059669;
-            --accent-orange: #F59E0B; /* Сигнальный оранжевый для предупреждений */
+            --accent-orange: #F59E0B;
             --text-main: #F4F6F7;
             --text-muted: #94A3B8;
             --border-color: rgba(16, 185, 129, 0.15);
@@ -120,7 +120,6 @@
             width: 100%;
             margin: 0 auto;
             padding: 0 24px;
-            box-sizing: border-box;
         }
 
         header {
@@ -172,7 +171,6 @@
             border-radius: 24px;
             box-shadow: 0 12px 40px var(--shadow);
             margin-bottom: 24px;
-            box-sizing: border-box;
         }
 
         .bento-ai-photo {
@@ -202,6 +200,13 @@
             color: var(--accent-color);
         }
 
+        h3 {
+            font-size: 17px;
+            margin: 18px 0 10px 0;
+            color: var(--text-main);
+            font-weight: 700;
+        }
+
         p {
             margin-bottom: 16px;
             font-size: 16px;
@@ -219,16 +224,6 @@
             padding-top: 12px;
             padding-bottom: 12px;
             border-radius: 0 12px 12px 0;
-        }
-
-        /* ИНТЕРФЕЙС КАЛЬКУЛЯТОРА */
-        .calc-title {
-            font-size: 16px;
-            font-weight: 800;
-            margin-bottom: 20px;
-            color: var(--accent-color);
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
         .input-group {
@@ -271,41 +266,53 @@
             margin-top: 10px;
         }
 
-        .calc-btn:hover {
-            opacity: 0.9;
-        }
+        .calc-btn:hover { opacity: 0.9; }
 
         .results-box {
             margin-top: 24px;
-            padding: 20px;
-            background: rgba(16, 185, 129, 0.05);
-            border-radius: 16px;
-            border: 1px dashed var(--border-color);
+            padding: 24px;
+            background: rgba(16, 185, 129, 0.04);
+            border-radius: 20px;
+            border: 1px dashed var(--accent-color);
             display: none;
         }
 
         .results-box h4 {
-            font-size: 18px;
+            font-size: 19px;
             color: var(--accent-color);
-            margin-bottom: 12px;
+            margin-bottom: 16px;
             font-weight: 800;
+            font-family: 'Cormorant Garamond', serif;
         }
 
-        .result-line {
-            display: flex;
-            justify-content: space-between;
-            border-bottom: 1px solid rgba(156, 163, 175, 0.1);
-            padding: 10px 0;
-            font-size: 15px;
+        .result-section {
+            margin-bottom: 16px;
+            padding-bottom: 14px;
+            border-bottom: 1px dashed rgba(148, 163, 184, 0.15);
         }
-
-        .result-line:last-child {
+        .result-section:last-child {
             border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
         }
 
-        .result-value {
-            font-weight: 800;
+        .result-label {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .result-content {
+            font-size: 15px;
+            color: var(--text-main);
+        }
+
+        .result-highlight {
             color: var(--accent-orange);
+            font-weight: 700;
         }
 
         .rsya-linear-frame {
@@ -319,8 +326,6 @@
             align-items: center;
             min-height: 250px;
             width: 100%;
-            box-sizing: border-box;
-            overflow: hidden;
         }
 
         .btn-share-viral {
@@ -343,7 +348,6 @@
             max-width: 480px;
             margin: 24px auto 30px auto;
             box-shadow: 0 8px 20px rgba(16, 185, 129, 0.2);
-            box-sizing: border-box;
         }
         .btn-share-viral:hover { background-color: var(--accent-hover) !important; transform: translateY(-1px); }
 
@@ -364,14 +368,14 @@
             body { padding-top: 70px; }
             header { padding: 12px 0; }
             .logo { font-size: 17px; letter-spacing: 1.5px; }
-            .container { padding: 0 20px !important; width: 100% !important; box-sizing: border-box !important; }
-            .main-layout { padding: 15px 0; overflow: hidden; }
-            .bento-card { padding: 24px 16px !important; border-radius: 20px; margin-bottom: 20px; box-sizing: border-box !important; }
+            .container { padding: 0 20px; width: 100%; }
+            .main-layout { padding: 15px 0; }
+            .bento-card { padding: 24px 16px; border-radius: 20px; margin-bottom: 20px; }
             .bento-ai-photo { border-radius: 20px; margin-bottom: 24px; }
             h1 { font-size: 21px; line-height: 1.3; margin-bottom: 20px; }
             h2 { font-size: 20px; }
             p { font-size: 15px; }
-            .btn-share-viral { width: 100% !important; max-width: 100% !important; font-size: 13px; padding: 16px 20px; }
+            .btn-share-viral { width: 100%; max-width: 100%; font-size: 13px; padding: 16px 20px; }
         }
     </style>
 </head>
@@ -379,7 +383,7 @@
 
     <header>
         <div class="container header-wrapper">
-            <div class="logo">РЕСУРС<span>.БиомеханикаСада</span></div>
+            <div class="logo">РЕСУРС<span>.АгроБиомеханика</span></div>
             <div class="theme-selector-trigger" onclick="toggleTheme()">Тема</div>
         </div>
     </header>
@@ -387,16 +391,16 @@
     <div class="container main-layout">
         <div class="bento-ai-photo" style="background-image: url('images/resurs-garden-hero.webp');"></div>
 
-        <h1>Урожай без грыжи: Калькулятор высадки в Коми и честная инструкция по выживанию вашей спины</h1>
+        <h1>Северный сад без травм и грыж: Интерактивный калькулятор посадок, ухода и защиты тела в Коми</h1>
 
         <div class="bento-card">
-            <h2>Скрытая угроза: почему огород калечит межпозвоночные диски?</h2>
-            <p>Каждую весну и лето тысячи сыктывкарцев устремляются на дачи в Эжву, Дырнос и Максаковку. И уже через неделю отделения неврологии переполнены людьми с острой болью. Причина проста: <strong>многочасовая статическая работа в наклоне с круглой спиной</strong>.</p>
+            <h2>Почему северный огород калечит тело? Разбор биомеханики</h2>
+            <p>Короткое, стремительное лето в Республике Коми заставляет дачников Сыктывкара работать на износ. Пытаясь уложиться в узкие агрономические сроки в Дырносе, Максаковке или Эжве, люди проводят на грядках часы в статических, неестественных позах. Это главная причина весенне-летнего всплеска грыж и радикулита.</p>
             
-            <p>Когда вы часами стоите «буквой Г» над грядкой, межпозвоночные диски поясничного отдела испытывают колоссальное неравномерное давление. Передний край позвонков сжимается, выдавливая диск назад — прямо в сторону спинномозговых нервов. Так рождаются протрузии и грыжи.</p>
+            <p><strong>What happens to the spine?</strong> При длительном наклоне с круглой спиной («буквой Г») мышцы спины растягиваются и выключаются из работы. Вся колоссальная нагрузка переносится на межпозвоночные диски поясничного отдела и связки. Передние края позвонков сдавливают диски, выталкивая их назад. Без предварительного разогрева мышщ это гарантированно ведет к микронадрывам, протрузиям, а в худшем случае — к защемлению нерва и острой боли.</p>
             
             <div class="warning-box">
-                <p style="margin-bottom: 0; font-size: 15px; font-style: italic;"><strong>Чем чреваты «холодные» мышцы:</strong> Приезжая из города, люди сразу хватаются за лопаты и ведра. Неразогретые, жесткие мышцы спины и задней поверхности бедра не способны амортизировать нагрузку. В результате всю тяжесть на себя берут связки позвоночника и глубокие мышцы-стабилизаторы. Происходит их мощнейший спазм — спину «заклинивает» так, что человек не может разогнуться.</p>
+                <p style="margin-bottom: 0; font-size: 15px; font-style: italic;"><strong>Важно помнить перед выходом на грядки:</strong> Холодные, жесткие мышцы после зимы не эластичны. Обязательно уделите 5 минут суставной разминке (круговые вращения тазом, мягкие приседания, потягивания), чтобы запустить выработку межсуставной жидкости и разогреть мышечные волокна.</p>
             </div>
         </div>
 
@@ -410,54 +414,75 @@
         </div>
 
         <div class="bento-card" style="border: 1px solid var(--accent-color);">
-            <div class="calc-title">🌱 Адаптивный северный калькулятор высадки</div>
-            <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 20px;">Учитывая особенности сурового климата Республики Коми и угрозу возвратных заморозков, выберите культуру, чтобы рассчитать безопасные даты.</p>
+            <h2>🌱 Полный агрономический калькулятор Коми</h2>
+            <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 20px;">Выберите интересующую вас культуру. Наша база содержит полные инструкции по срокам посадки в Сыктывкаре, правильному уходу для максимального урожая, критериям сбора и технике безопасности для ваших суставов.</p>
             
             <div class="input-group">
-                <label>Что планируете высаживать в грунт?</label>
-                <select id="gardenCulture">
-                    <option value="cabbage_early">Ранняя капуста (рассада)</option>
-                    <option value="cabbage_late">Поздняя капуста (рассада)</option>
-                    <option value="tomato_greenhouse">Томаты (в теплицу)</option>
-                    <option value="tomato_open">Томаты (в открытый грунт)</option>
-                    <option value="cucumbers">Огурцы (под пленку)</option>
+                <label>Выберите культуру для расчета:</label>
+                <select id="gardenCulture" onchange="calculateGardenDates()">
+                    <option value="">-- Нажмите для выбора культуры --</option>
+                    <optgroup label="1. Корнеплоды">
+                        <option value="potato">Картофель</option>
+                        <option value="carrot_onion">Морковь и Лук-севок</option>
+                        <option value="radish">Редис и Дайкон</option>
+                    </optgroup>
+                    <optgroup label="2. Капуста и овощи">
+                        <option value="cabbage_early">Ранняя капуста (рассада)</option>
+                        <option value="cabbage_late">Поздняя капуста (рассада)</option>
+                        <option value="tomato_greenhouse">Томаты (в теплицу)</option>
+                        <option value="tomato_open">Томаты (в открытый грунт)</option>
+                        <option value="cucumbers">Огурцы (под пленку)</option>
+                    </optgroup>
+                    <optgroup label="3. Зелень и чеснок">
+                        <option value="greens">Укроп, петрушка, салаты, щавель</option>
+                        <option value="garlic">Чеснок (озимый)</option>
+                    </optgroup>
+                    <optgroup label="4. Ягоды и кустарники">
+                        <option value="strawberry">Клубника (садовая земляника)</option>
+                        <option value="berry_bushes">Смородина, малина, крыжовник</option>
+                    </optgroup>
                 </select>
             </div>
 
-            <button class="calc-btn" onclick="calculateGardenDates()">Рассчитать идеальное время</button>
+            <button class="calc-btn" onclick="calculateGardenDates()">Рассчитать систему</button>
 
             <div class="results-box" id="gardenResults">
-                <h4>Агрономический расчет для Сыктывкара:</h4>
-                <div class="result-line">
-                    <span>Посев на рассаду дома:</span>
-                    <span class="result-value" id="resSeedDate">--</span>
+                <h4 id="resTitle">Агро-техническая карта:</h4>
+                
+                <div class="result-section">
+                    <div class="result-label">📅 Безопасные сроки посадки (Коми):</div>
+                    <div class="result-content" id="resDates">--</div>
                 </div>
-                <div class="result-line">
-                    <span>Безопасная высадка в грунт:</span>
-                    <span class="result-value" style="color: var(--accent-color);" id="resPlantDate">--</span>
+
+                <div class="result-section">
+                    <div class="result-label">🍏 Секреты ухода для богатого урожая:</div>
+                    <div class="result-content" id="resCare">--</div>
                 </div>
-                <div class="result-line" style="background: rgba(245, 158, 11, 0.08); padding: 10px 8px; border-radius: 8px;">
-                    <span>Риск возвратных заморозков:</span>
-                    <span class="result-value" id="resFrostRisk" style="font-size: 15px;">--</span>
+
+                <div class="result-section">
+                    <div class="result-label">🧺 Сбор урожая (когда и от чего зависит):</div>
+                    <div class="result-content" id="resHarvest">--</div>
+                </div>
+
+                <div class="result-section" style="background: rgba(245, 158, 11, 0.06); padding: 12px; border-radius: 10px;">
+                    <div class="result-label" style="color: var(--accent-orange);">🚨 Опасность для тела и биомеханика движения:</div>
+                    <div class="result-content" id="resBiomechanics">--</div>
                 </div>
             </div>
         </div>
 
         <div class="bento-card">
-            <h2>Честная инструкция: как пережить дачный сезон без травм</h2>
-            
-            <p><strong>Правило 1: Обязательный разогрев (суставная разминка).</strong> Перед тем как сделать первый наклон к грядке, потратьте 5 минут на подготовку тела. Сделайте мягкие круговые вращения тазом, поочередно поднимите колени к груди, выполните легкие боковые наклоны. Это запустит выработку синовиальной жидкости в суставах и сделает мышцы эластичными.</p>
-            
-            <p><strong>Правило 2: Наклоняйтесь через таз, а не через поясницу.</strong> Самая частая ошибка — сгибать позвоночник дугой. Чтобы поднять лейку или прополоть грядку, <strong>отведите таз назад, сохраняя спину ровной</strong>, и слегка согните колени. Нагрузку должны нести мощные мышцы ягодиц и бедер, а не беззащитная поясница!</p>
-            
-            <p><strong>Правило 3: Используйте дачные упоры или наколенники.</strong> Не стойте часами на прямых ногах головой вниз. Опуститесь на одно колено (подложив мягкий коврик) или сядьте на низкую скамеечку. Меняйте положение тела каждые 15–20 минут. Сделали грядку — встаньте, потянитесь руками вверх, походите, дайте дискам восстановить форму.</p>
+            <h2>Три золотых правила выживания на даче от студии РЕСУРС</h2>
+            <p><strong>1. Наклон только через таз, а не спиной.</strong> Представьте, что ваши тазобедренные суставы — это дверные петли. Отводите таз назад, сохраняя спину ровной и слегка сгибая колени. Всю нагрузку должны забирать сильные мышцы ягодиц и ног, а не хрупкие диски поясницы.</p>
+            <p><strong>2. Меняйте позу каждые 15 минут.</strong> Застой лимфы и крови в неподвижных суставах — злейший враг. Поставили таймер, поработали 15 минут — встаньте, походите по участку, потянитесь руками к небу, сделайте пару мягких поворотов корпуса.</p>
+            <p><strong>3. Пользуйтесь упорами.</strong> Прополка моркови или клубники на корточках убивает колени и зажимает подколенные лимфоузлы (отсюда сильные отеки ног к вечеру). Садитесь на низкую скамейку или подкладывайте под колени специальный мягкий коврик.</p>
         </div>
 
         <div class="rsya-linear-frame">
             <div id="yandex_rtb_garden_2"></div>
             <script>
             window.yaContextCb.push(() => {
-                Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-20", "renderTo": "yandex_rtb_garden_2" })
+                Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-21", "renderTo": "yandex_rtb_garden_2" })
             })
             </script>
         </div>
@@ -465,7 +490,7 @@
         <div style="text-align: center; width: 100%;">
             <button class="btn-share-viral" onclick="shareGardenPage()">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-                <span>Отправить калькулятор и памятку в дачный чат</span>
+                <span>Переслать умный календарь в дачный чат</span>
             </button>
         </div>
     </div>
@@ -473,10 +498,10 @@
     <footer>
         <div class="container footer-grid">
             <div>
-                © 2026 Экосистема РЕСУРС. Движение, здоровье и честный контент.
+                © 2026 Экосистема РЕСУРС. Движение, автоматизация процессов и забота о людях.
             </div>
-            <div class="footer-warning" style="font-size: 11px; opacity: 0.65;">
-                Расчеты дат основаны на усредненных многолетних метеорологических наблюдениях в южной и центральной зонах Республики Коми. Анатомические рекомендации подготовлены экспертами студии движения РЕСУРС (г. Сыктывкар, ул. Коммунистическая 77/2). При возникновении острых болей незамедлительно обратитесь к врачу.
+            <div class="footer-warning">
+                Агрономические данные адаптированы под климатические пояса Сыктывкара и центральных районов Республики Коми. Инструкции по безопасности разработаны экспертами и тренерами студии движения РЕСУРС (г. Сыктывкар, ул. Коммунистическая, д. 77/2). При возникновении симптомов прострела или сильной боли откажитесь от нагрузок и обратитесь к специалисту.
             </div>
         </div>
     </footer>
@@ -492,41 +517,120 @@
 
         function calculateGardenDates() {
             const culture = document.getElementById('gardenCulture').value;
-            let seed = "";
-            let plant = "";
-            let risk = "";
+            if (!culture) {
+                document.getElementById('gardenResults').style.display = 'none';
+                return;
+            }
+
+            let title = "";
+            let dates = "";
+            let care = "";
+            let harvest = "";
+            let biomechanics = "";
 
             switch(culture) {
+                case 'potato':
+                    title = "🥔 КАРТОФЕЛЬ — Наш главный северный бронежилет";
+                    dates = "Высадка в грунт: <span class='result-highlight'>20 – 30 мая</span> (традиционный маркер — зацветание черемухи и прогрев почвы на глубине 10 см до +8°C). Рекомендуются ранние сорта: Удача, Невский, Снегирь.";
+                    care = "Окучивание сразу после всходов защитит от случайных ночных заморозков в начале июня. На севере картофель уязвим для фитофторы во второй половине лета, поэтому полив — только под корень, избегая мокрых листьев.";
+                    harvest = "Конец августа – начало сентября. Зависит от усыхания ботвы. За 10 дней до копки ботву лучше скосить, чтобы кожура окрепла. Важно выкопать до затяжных холодных дождей, чтобы клубни не сгнили.";
+                    biomechanics = "<strong>Копка под лопату и перетаскивание ведер.</strong> Огромный риск срыва спины из-за скручивания поясницы с весом. <span class='result-highlight'>Решение:</span> Не бросайте землю в сторону резким поворотом корпуса — поворачивайте всё тело на стопах. Перенося ведра, распределяйте вес поровну в две руки, не таскайте одно тяжелое ведро в одной руке (это перекашивает позвоночник).";
+                    break;
+
+                case 'carrot_onion':
+                    title = "🥕🧅 МОРКОВЬ И ЛУК-СЕВОК — Сдвоенная защита";
+                    dates = "Посев в грунт: <span class='result-highlight'>1 – 15 мая</span>, как только земля оттает и позволит сформировать грядки.";
+                    care = "Высаживайте на одну гряду чередующимися рядками (лук отпугивает морковную муху, а морковь — луковую). Луку нужен обильный полив в первой половине лета и сухая почва в июле.";
+                    harvest = "<strong>Лук:</strong> конец июля – начало августа (как только перо полегло и шейка высохла). <strong>Морковь:</strong> середина сентября (до первых сильных заморозков, так как при минусе она будет плохо храниться).";
+                    biomechanics = "<strong>Многочасовая мелкая прополка всходов.</strong> Люди застывают на корточках или стоят вниз головой, согнувшись пополам. <span class='result-highlight'>Решение:</span> На корточках зажимаются подколенные лимфоузлы, перекрывая венозный отток (риск варикоза и диких отеков ног). Обязательно садитесь на низкую скамейку или вставайте на колени на мягкий коврик, удерживая спину ровной. Каждые 15 минут делайте мягкие круговые движения плечами.";
+                    break;
+
+                case 'radish':
+                    title = "🌱 РЕДИС И ДАЙКОН — Короли полярного дня";
+                    dates = "Первый поток: <span class='result-highlight'>начало мая</span>. Второй поток: <span class='result-highlight'>после 10-15 июля</span>.";
+                    care = "Из-за избытка солнца и длинного светового дня в Коми (белые ночи) редис, посаженный в июне, моментально уходит 'в стрелку' и дубеет. Обеспечьте обильный ежедневный полив, чтобы корнеплоды не горчили.";
+                    harvest = "Через 20-30 дней после всходов. Зависит строго от диаметра корнеплода. Не передерживайте в земле — станет пустым.";
+                    biomechanics = "Постоянные частые наклоны для ручного полива из лейки. <span class='result-highlight'>Решение:</span> Не таскайте лейки на вытянутых руках перед собой. Держите вес как можно ближе к центру тяжести тела (к бедрам). Наклоняясь с лейкой, всегда немного приседайте.";
+                    break;
+
                 case 'cabbage_early':
-                    seed = "15 - 25 марта";
-                    plant = "15 - 25 мая (под временное укрытие)";
-                    risk = "Средний. Возможны заморозки до конца мая, требуется контроль ночных температур.";
+                    title = "🥬 РАННЯЯ КАПУСТА — Витаминный старт";
+                    dates = "Посев дома: 15 – 25 марта. Высадка рассады в грунт: <span class='result-highlight'>15 – 25 мая</span> (строго под плотное временное укрытие или спанбонд).";
+                    care = "Требует защиты от крестоцветной блошки в первые дни после высадки (посыпьте золой или табачной пылью). Полив обильный, каждые 2-3 дня.";
+                    harvest = "Июль – начало августа, как только сформируется плотный кочан. Ранняя капуста склонна к растрескиванию при избытке влаги, собирайте вовремя.";
+                    biomechanics = "Высадка рассады требует постоянного нахождения на четвереньках. Шея постоянно согнута под углом 60 градусов, создавая нагрузку в 27 кг на шейные позвонки. <span class='result-highlight'>Решение:</span> Не выдвигайте подбородок вперед. Каждые 3-4 посаженных куста поднимайте голову, смотрите вдаль перед собой и делайте 3 мягких наклона головы к плечам.";
                     break;
+
                 case 'cabbage_late':
-                    seed = "5 - 15 апреля";
-                    plant = "25 мая - 5 июня";
-                    risk = "Низкий. Капуста устойчива к кратковременным похолоданиям.";
+                    title = "🥦 ПОЗДНЯЯ КАПУСТА — Для зимних запасов";
+                    dates = "Посев дома: 5 – 15 апреля. Высадка рассады в грунт: <span class='result-highlight'>25 мая – 5 июня</span>.";
+                    care = "Для формирования мощных кочанов требует обильного окучивания в июле и регулярных подкормок органикой. В Коми влаголюбивая капуста отлично растет на суглинках.";
+                    harvest = "Конец сентября – октябрь. Поздняя капуста не боится легких ночных заморозков, они даже делают её слаще. Убирают, когда дневная температура падает до +2°C.";
+                    biomechanics = "Срезание и переноска тяжелых кочанов. Кочан капусты вместе со стеблем может весить до 5-7 кг. <span class='result-highlight'>Решение:</span> Приседайте за кочаном с ровной спиной, срезайте его и прижимайте к груди перед тем, как встать. Не поднимайте его на прямых ногах с круглой поясницей.";
                     break;
+
                 case 'tomato_greenhouse':
-                    seed = "10 - 20 марта";
-                    plant = "15 - 25 мая (в поликарбонатные теплицы)";
-                    risk = "Высокий при неотлаженном обогреве. Земля в теплице должна прогреться до +12°C.";
+                    title = "🍅 ТОМАТЫ В ТЕПЛИЦЕ — Тепличный эксклюзив";
+                    dates = "Посев дома: 10 – 20 марта. Высадка в поликарбонат: <span class='result-highlight'>15 – 25 мая</span>, когда земля внутри прогреется до +12°C.";
+                    care = "Обязательное пасынкование раз в неделю и подвязка. В условиях Коми критически важно проветривать теплицу утром, чтобы сбить конденсат — сырость провоцирует болезни.";
+                    harvest = "Июль – август. Зависит от степени зрелости. В Коми лучше снимать томаты в стадии 'бланжевой' (бурой) спелости на дозаривание дома — это разгрузит куст и увеличит общий урожай.";
+                    biomechanics = "<strong>Длительная работа с поднятыми вверх руками</strong> (подвязка веток, пасынкование верхних ярусов). Это намертво зажимает трапециевидную мышцу и блокирует приток крови к голове. <span class='result-highlight'>Решение:</span> Используйте подставку или скамеечку, чтобы не тянуться вверх на носочках. Не задирайте голову назад — держите взгляд прямо.";
                     break;
+
                 case 'tomato_open':
-                    seed = "25 марта - 5 апреля";
-                    plant = "10 - 15 июня (строго после ухода заморозков)";
-                    risk = "Экстремальный. В Коми заморозки на почве бывают до 10 июня. Не спешите!";
+                    title = "🍅 ТОМАТЫ В ОТКРЫТОМ ГРУНТЕ — Рискованное земледелие";
+                    dates = "Посев дома: 25 марта – 5 апреля. Высадка в грунт: <span class='result-highlight'>10 – 15 июня</span> (только после полного ухода угрозы заморозков).";
+                    care = "Формирование строго в 1-2 стебля, удаление всех нижних листьев до первой кисти для лучшего проветривания на уровне почвы.";
+                    harvest = "Август. Снимать плоды нужно строго до наступления холодных ночных туманов (обычно до 10-15 августа), иначе весь урожай почернеет от фитофтороза прямо на кустах.";
+                    biomechanics = "Экстренное укрывание грядок пленкой при резком ночном похолодании — спешка провоцирует резкие движения и спазмы. <span class='result-highlight'>Решение:</span> Двигайтесь плавно, фиксируйте дуги и прижимайте камни/доски за счет силы ног, уходя в глубокий присед.";
                     break;
+
                 case 'cucumbers':
-                    seed = "20 - 30 апреля (на рассаду)";
-                    plant = "5 - 12 июня";
-                    risk = "Критический. Огурцы полностью гибнут при 0°C. Высадка только в прогретую почву под двойную пленку.";
+                    title = "🥒 ОГУРЦЫ ПОД ПЛЕНКОЙ — Северные хрустящие";
+                    dates = "Посев на рассаду: 20 – 30 апреля. Высадка на грядку: <span class='result-highlight'>5 – 12 июня</span> (под двойное пленочное укрытие).";
+                    care = "Огурцы обожают тепло и горячую воду. Полив только теплой, нагретой на солнце водой (+22°C... +25°C) в вечернее время. При поливе холодной водой корни отмирают.";
+                    harvest = "Июнь – август. Сбор каждые 2 дня. Регулярный сбор стимулирует лавинообразное появление новых завязей.";
+                    biomechanics = "Сбор плодов внутри низких парников требует скручивания позвоночника в три погибели. <span class='result-highlight'>Решение:</span> Открывайте парник полностью с одной стороны, подходите вплотную и собирайте урожай, опираясь свободной рукой на колено или бортик грядки, чтобы разгрузить поясницу.";
+                    break;
+
+                case 'greens':
+                    title = "🥬 ЗЕЛЕНЬ И ПРЯНОСТИ — Бешеные темпы белых ночей";
+                    dates = "Посев в грунт: <span class='result-highlight'>с начала мая</span> (как только сойдет снег) конвейером каждые 2 недели до конца июля.";
+                    care = "Не требуют сложного ухода, кроме прореживания и обильного полива. Белые ночи дают массе расти со свистом, укроп и салаты дают по 3 урожая за сезон.";
+                    harvest = "По мере нарастания зеленой массы. Салаты срезают до начала формирования стрелки, укроп — до цветения зонтиков.";
+                    biomechanics = "Частый срез зелени ножницами на уровне земли вызывает сильное перенапряжение кисти и постоянный наклон корпуса. <span class='result-highlight'>Решение:</span> Опускайтесь на колени на коврик, держите спину ровно, работайте перед собой.";
+                    break;
+
+                case 'garlic':
+                    title = "🧄 ОЗИМЫЙ ЧЕСНОК — Подснежный атлет";
+                    dates = "Посадка зубчиков в грунт: <span class='result-highlight'>20 – 30 сентября</span> (за 3 недели до постоянных заморозков, чтобы успел укорениться, но не пророс).";
+                    care = "Весной, как только сойдет снег, аккуратно разрыхлите почву. В июне обязательно выламывайте появляющиеся стрелки, иначе головки вырастут мелкими.";
+                    harvest = "Конец июля – начало августа. Главный признак — нижние листья желтеют, а контрольная стрелка распрямляется и лопается. Не передерживайте, иначе головка рассыпется на зубчики и не будет храниться.";
+                    biomechanics = "Посадка осенью в холодную погоду. Холод + нагрузка = моментальный мышечный спазм. <span class='result-highlight'>Решение:</span> Одевайтесь тепло, особенно берегите поясницу. Сделайте легкую разминку прямо на улице перед посадкой.";
+                    break;
+
+                case 'strawberry':
+                    title = "🍓 КЛУБНИКА (ЗЕМЛЯНИКА) — Дачная королева";
+                    dates = "Посадка новых кустов: <span class='result-highlight'>май</span> или <span class='result-highlight'>август</span>.";
+                    care = "Критически важно укрыть грядки нетканым материалом во время цветения в начале июня, если синоптики Коми обещают возвратные заморозков — иначе серединка цветка почернеет и ягоды не будет. Требует регулярного удаления усов.";
+                    harvest = "Конец июня – июль. Сбор по мере созревания. Спелая ягода должна быть полностью окрашена. Собирайте утром, после высыхания росы — так она дольше хранится.";
+                    biomechanics = "<strong>Бесконечное ручное удаление усов и прополка кустов.</strong> Статическое напряжение мышц задней поверхности бедра и спины. <span class='result-highlight'>Решение:</span> Каждые 15 минут выпрямляйтесь полностью, делайте 3-5 глубоких приседаний и поочередно подтягивайте колено к животу, чтобы снять спазм с ягодичных мышц.";
+                    break;
+
+                case 'berry_bushes':
+                    title = "🍒 ЯГОДНЫЕ КУСТАРНИКИ — Неприхотливая гордость";
+                    dates = "Посадка и обрезка: <span class='result-highlight'>ранняя весна</span> (до распускания почек) или <span class='result-highlight'>сентябрь</span>.";
+                    care = "Ежегодная санитарная обрезка старых ветвей (старше 4-5 лет) внутри куста. Мульчирование приствольного круга скошенной травой сохранит влагу.";
+                    harvest = "Июль – август. Смородину собирают кистями, малину — аккуратно снимая с плодоножки. Сбор зависит от равномерного окрашивания ягод в кусте.";
+                    biomechanics = "<strong>Долгое удержание рук на весу при сборе ягод.</strong> Плечи приподняты, трапеция зажата, нарушается кровоснабжение головного мозга (отсюда головная боль и усталость к вечеру). <span class='result-highlight'>Решение:</span> Подвешивайте емкость для ягод на шею или пояс, чтобы освободить обе руки. Не поднимайте локти высоко, расслабляйте плечи опускайте их вниз.";
                     break;
             }
 
-            document.getElementById('resSeedDate').innerText = seed;
-            document.getElementById('resPlantDate').innerText = plant;
-            document.getElementById('resFrostRisk').innerText = risk;
+            document.getElementById('resTitle').innerHTML = title;
+            document.getElementById('resDates').innerHTML = dates;
+            document.getElementById('resCare').innerHTML = care;
+            document.getElementById('resHarvest').innerHTML = harvest;
+            document.getElementById('resBiomechanics').innerHTML = biomechanics;
 
             document.getElementById('gardenResults').style.display = 'block';
             document.getElementById('gardenResults').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -534,8 +638,8 @@
 
         async function shareGardenPage() {
             const shareData = {
-                title: 'Калькулятор посадок в Коми + Здоровая Спина',
-                text: 'Узнай точные даты высадки рассады в Сыктывкаре и как не сорвать поясницу на грядках.',
+                title: 'Полный агро-календарь Коми + Биомеханика РЕСУРС',
+                text: 'Все культуры Коми: расчет дат, секреты ухода, сбора урожая и защита спины от травм.',
                 url: window.location.href
             };
             const btnText = document.querySelector('.btn-share-viral span');
@@ -545,10 +649,10 @@
                 try {
                     await navigator.clipboard.writeText(window.location.href);
                     const oldText = btnText.innerText;
-                    btnText.innerText = 'Ссылка скопирована! Отправьте в Viber или WhatsApp дачникам.';
+                    btnText.innerText = 'Ссылка скопирована! Отправьте её в дачный Viber или WhatsApp чат.';
                     setTimeout(() => { btnText.innerText = oldText; }, 3000);
                 } catch (err) {
-                    alert('Скопируйте ссылку из адресной строки.');
+                    alert('Скопируйте ссылку из адресной строки вашего браузера.');
                 }
             }
         }
