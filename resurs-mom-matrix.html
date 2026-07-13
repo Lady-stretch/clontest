@@ -121,7 +121,6 @@
             box-sizing: border-box;
         }
 
-        /* НАДЁЖНО ЗАКРЕПЛЕННАЯ ШАПКА */
         header {
             position: fixed;
             top: 0;
@@ -307,7 +306,21 @@
             margin: 20px 0;
         }
 
-        /* БЛОК СТУДИИ И ОНЛАЙН КЛУБА */
+        .rsya-linear-frame {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 15px;
+            margin: 28px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 250px;
+            width: 100%;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
         .cta-card {
             background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), transparent);
             border: 1px solid var(--accent-gold);
@@ -370,7 +383,6 @@
             line-height: 1.7;
         }
 
-        /* МОБИЛЬНАЯ АДАПТИВНОСТЬ */
         @media (max-width: 768px) {
             body { padding-top: 70px; }
             header { padding: 12px 0; }
@@ -416,7 +428,7 @@
         <!-- КАЛЬКУЛЯТОР 1: ВОССТАНОВЛЕНИЕ И ДИАСТАЗ -->
         <div class="bento-card">
             <h2>1. Экспресс-анализатор уровня восстановления после родов</h2>
-            <p class="content-block-text" style="font-size: 14px; color: var(--text-muted);">Проверьте, к какому типу нагрузок готово ваше тело, чтобы не спровоцировать опущение органов или углубление диастаза.</p>
+            <p class="content-block-text" style="font-size: 14px; color: var(--text-muted);">Проверьте, к какому типу нагрузок готово ваше тело, чтобы не спровоцировать опущение органов или усугубление диастаза.</p>
             
             <div class="input-group">
                 <label>Как проходили ваши роды?</label>
@@ -448,6 +460,16 @@
             </div>
         </div>
 
+        <!-- РСЯ МЕЖБЛОЧНОЕ 1 -->
+        <div class="rsya-linear-frame">
+            <div id="yandex_rtb_mom_1"></div>
+            <script>
+            window.yaContextCb.push(() => {
+                Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-20", "renderTo": "yandex_rtb_mom_1" })
+            })
+            </script>
+        </div>
+
         <!-- КАЛЬКУЛЯТОР 2: НАГРУЗКА НА СПИНУ -->
         <div class="bento-card">
             <h2>2. Биомеханический калькулятор нагрузки от веса ребенка</h2>
@@ -473,6 +495,16 @@
                 <h4 id="backTitle">Расчет осевой нагрузки:</h4>
                 <p class="content-block-text" id="backText" style="font-size: 14px; margin-bottom: 0;"></p>
             </div>
+        </div>
+
+        <!-- РСЯ МЕЖБЛОЧНОЕ 2 -->
+        <div class="rsya-linear-frame">
+            <div id="yandex_rtb_mom_2"></div>
+            <script>
+            window.yaContextCb.push(() => {
+                Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-21", "renderTo": "yandex_rtb_mom_2" })
+            })
+            </script>
         </div>
 
         <!-- КАЛЬКУЛЯТОР 3: НЕЙРОГЕННОЕ ИСТОЩЕНИЕ -->
@@ -532,7 +564,6 @@
             localStorage.setItem('user-theme', next);
         }
 
-        // СКРИПТ 1: ВОССТАНОВЛЕНИЕ
         function checkRecovery() {
             const type = document.getElementById('birthType').value;
             const months = parseInt(document.getElementById('monthsPassed').value) || 0;
@@ -556,7 +587,6 @@
             box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
 
-        // СКРИПТ 2: НАГРУЗКА НА СПИНУ
         function calculateBackLoad() {
             const weight = parseFloat(document.getElementById('babyWeight').value) || 0;
             const hold = document.getElementById('holdType').value;
@@ -581,7 +611,6 @@
             box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
 
-        // СКРИПТ 3: СТРЕСС
         function checkStressLevel() {
             const checkboxes = document.querySelectorAll('.stress-check');
             let count = 0;
@@ -623,6 +652,16 @@
                 }
             }
         }
+    </script>
+
+    <!-- РСЯ FloorAd & Fullscreen -->
+    <script>
+    window.yaContextCb.push(() => {
+        Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-6", "type": "floorAd", "platform": "touch" });
+        Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-7", "type": "floorAd", "platform": "desktop" });
+        Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-24", "type": "fullscreen", "platform": "touch" });
+        Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-25", "type": "fullscreen", "platform": "desktop" });
+    })
     </script>
 </body>
 </html>
