@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <script>
+        const savedTheme = localStorage.getItem('user-theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="icon" href="https://resurs-stretch.ru/favicon.png" type="image/png">
+    <link rel="shortcut icon" href="https://resurs-stretch.ru/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="https://resurs-stretch.ru/favicon.png">
+
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108177329', 'ym');
+        ym(108177329, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+
+        var _tmr = window._tmr || (window._tmr = []);
+        _tmr.push({id: "3755240", type: "pageView", start: (new Date()).getTime()});
+        (function (d, w, id) {
+            if (d.getElementById(id)) return;
+            var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
+            ts.src = "https://top-fwz1.mail.ru/js/code.js";
+            var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
+            if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
+        })(document, window, "tmr-code");
+    </script>
+    <noscript>
+        <div>
+            <img src="https://mc.yandex.ru/watch/108177329" style="position:absolute; left:-9999px;" alt="" />
+            <img src="https://top-fwz1.mail.ru/counter?id=3755240;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" />
+        </div>
+    </noscript>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const isBot = /YandexBot|YandexAccessibilityBot|YandexMobileBot|Googlebot/i.test(navigator.userAgent);
+            if (isBot) {
+                fetch('https://functions.yandexcloud.net/d4ecn5ag33dcdd2deivd?bot=true&url=' + encodeURIComponent(window.location.href))
+                .then(res => res.json())
+                .then(data => console.log("SEO Preview Matrix Synced"))
+                .catch(e => console.log("SEO preview pass"));
+            }
+        });
+    </script>
+    
+    <script>window.yaContextCb=window.yaContextCb||[]</script>
+    <script src="https://yandex.ru/ads/system/context.js" async></script>
+    
+    <title>Калькулятор посадок в Коми и честная инструкция: как спасти спину на грядках | РЕСУРС</title>
+    <meta name="description" content="Интерактивный расчет дат высадки рассады под климат Сыктывкара + профессиональный разбор биомеханики движений на даче. Как избежать грыж, защемлений и боли в пояснице.">
+    <meta name="keywords" content="календарь посадок сыктывкар, когда сажать капусту в коми, боль в пояснице после дачи, как правильно нагибаться на грядках, разминка для дачников, заклинило спину что делать, ресурс сыктывкар">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://resurs-stretch.ru/garden-health.html">
+
+    <meta property="og:title" content="Калькулятор посадок в Коми + Инструкция по выживанию вашей спины">
+    <meta property="og:description" content="Точные северные даты высадки капусты и томатов и секреты биомеханики, чтобы не оставить здоровье на огороде.">
+    <meta property="og:image" content="https://resurs-stretch.ru/images/resurs-garden-hero.webp">
+    <meta property="og:url" content="https://resurs-stretch.ru/garden-health.html">
+    <meta property="og:type" content="website">
+
+    <style>
+        :root {
+            --bg-color: #0B0F12;
+            --surface-color: #141B1F;
+            --surface-hover: #1D262C;
+            --accent-color: #10B981; /* Зеленый дачный акцент */
+            --accent-hover: #059669;
+            --accent-orange: #F59E0B; /* Сигнальный оранжевый для предупреждений */
+            --text-main: #F4F6F7;
+            --text-muted: #94A3B8;
+            --border-color: rgba(16, 185, 129, 0.15);
+            --header-bg: rgba(11, 15, 18, 0.8);
+            --shadow: rgba(0, 0, 0, 0.6);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="light"] {
+            --bg-color: #F4F7F5;
+            --surface-color: #FFFFFF;
+            --surface-hover: #E2E8F0;
+            --accent-color: #065F46;
+            --accent-hover: #044E39;
+            --accent-orange: #C2410C;
+            --text-main: #0F172A;
+            --text-muted: #475569;
+            --border-color: rgba(6, 95, 70, 0.15);
+            --header-bg: rgba(244, 247, 245, 0.8);
+        }
+
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Manrope', sans-serif;
+            line-height: 1.7;
+            padding-top: 75px;
+        }
+
+        .container {
+            max-width: 680px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 24px;
+            box-sizing: border-box;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--header-bg);
+            backdrop-filter: blur(30px) saturate(180%);
+            -webkit-backdrop-filter: blur(30px) saturate(180%);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 9999;
+            padding: 16px 0;
+        }
+
+        .header-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 19px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .logo span { color: var(--accent-orange); }
+
+        .theme-selector-trigger {
+            font-weight: 800;
+            font-size: 11px;
+            text-transform: uppercase;
+            cursor: pointer;
+            padding: 6px 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            user-select: none;
+        }
+
+        .main-layout { padding: 40px 0; }
+
+        .bento-card {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            padding: 32px;
+            border-radius: 24px;
+            box-shadow: 0 12px 40px var(--shadow);
+            margin-bottom: 24px;
+            box-sizing: border-box;
+        }
+
+        .bento-ai-photo {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 10;
+            background-size: cover;
+            background-position: center;
+            border-radius: 24px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 32px;
+            display: block;
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            font-size: clamp(23px, 4.5vw, 34px);
+            line-height: 1.25;
+            margin-bottom: 24px;
+        }
+
+        h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+            margin-bottom: 16px;
+            color: var(--accent-color);
+        }
+
+        p {
+            margin-bottom: 16px;
+            font-size: 16px;
+        }
+
+        strong {
+            color: var(--text-main);
+        }
+
+        .warning-box {
+            border-left: 3px solid var(--accent-orange);
+            padding-left: 18px;
+            margin: 20px 0;
+            background: rgba(245, 158, 11, 0.03);
+            padding-top: 12px;
+            padding-bottom: 12px;
+            border-radius: 0 12px 12px 0;
+        }
+
+        /* ИНТЕРФЕЙС КАЛЬКУЛЯТОРА */
+        .calc-title {
+            font-size: 16px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .input-group {
+            margin-bottom: 18px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-muted);
+        }
+
+        .input-group select {
+            width: 100%;
+            padding: 14px 18px;
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            color: var(--text-main);
+            font-size: 16px;
+            font-weight: 600;
+            outline: none;
+        }
+
+        .calc-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--accent-color);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 10px;
+        }
+
+        .calc-btn:hover {
+            opacity: 0.9;
+        }
+
+        .results-box {
+            margin-top: 24px;
+            padding: 20px;
+            background: rgba(16, 185, 129, 0.05);
+            border-radius: 16px;
+            border: 1px dashed var(--border-color);
+            display: none;
+        }
+
+        .results-box h4 {
+            font-size: 18px;
+            color: var(--accent-color);
+            margin-bottom: 12px;
+            font-weight: 800;
+        }
+
+        .result-line {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(156, 163, 175, 0.1);
+            padding: 10px 0;
+            font-size: 15px;
+        }
+
+        .result-line:last-child {
+            border-bottom: none;
+        }
+
+        .result-value {
+            font-weight: 800;
+            color: var(--accent-orange);
+        }
+
+        .rsya-linear-frame {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 15px;
+            margin: 28px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 250px;
+            width: 100%;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        .btn-share-viral {
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 12px; 
+            padding: 16px 32px;
+            background: var(--accent-color) !important; 
+            border: none; 
+            border-radius: 12px;
+            font-size: 14px; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            cursor: pointer; 
+            transition: var(--transition); 
+            color: #FFF;
+            width: 100%; 
+            max-width: 480px;
+            margin: 24px auto 30px auto;
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.2);
+            box-sizing: border-box;
+        }
+        .btn-share-viral:hover { background-color: var(--accent-hover) !important; transform: translateY(-1px); }
+
+        footer {
+            background-color: var(--surface-color);
+            border-top: 1px solid var(--border-color);
+            padding: 40px 0;
+            margin-top: 60px;
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .footer-grid { display: flex; flex-direction: column; gap: 20px; }
+        .footer-warning { border-top: 1px solid rgba(156, 163, 175, 0.15); padding-top: 20px; }
+
+        @media (max-width: 768px) {
+            body { padding-top: 70px; }
+            header { padding: 12px 0; }
+            .logo { font-size: 17px; letter-spacing: 1.5px; }
+            .container { padding: 0 20px !important; width: 100% !important; box-sizing: border-box !important; }
+            .main-layout { padding: 15px 0; overflow: hidden; }
+            .bento-card { padding: 24px 16px !important; border-radius: 20px; margin-bottom: 20px; box-sizing: border-box !important; }
+            .bento-ai-photo { border-radius: 20px; margin-bottom: 24px; }
+            h1 { font-size: 21px; line-height: 1.3; margin-bottom: 20px; }
+            h2 { font-size: 20px; }
+            p { font-size: 15px; }
+            .btn-share-viral { width: 100% !important; max-width: 100% !important; font-size: 13px; padding: 16px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-wrapper">
+            <div class="logo">РЕСУРС<span>.БиомеханикаСада</span></div>
+            <div class="theme-selector-trigger" onclick="toggleTheme()">Тема</div>
+        </div>
+    </header>
+
+    <div class="container main-layout">
+        <div class="bento-ai-photo" style="background-image: url('images/resurs-garden-hero.webp');"></div>
+
+        <h1>Урожай без грыжи: Калькулятор высадки в Коми и честная инструкция по выживанию вашей спины</h1>
+
+        <div class="bento-card">
+            <h2>Скрытая угроза: почему огород калечит межпозвоночные диски?</h2>
+            <p>Каждую весну и лето тысячи сыктывкарцев устремляются на дачи в Эжву, Дырнос и Максаковку. И уже через неделю отделения неврологии переполнены людьми с острой болью. Причина проста: <strong>многочасовая статическая работа в наклоне с круглой спиной</strong>.</p>
+            
+            <p>Когда вы часами стоите «буквой Г» над грядкой, межпозвоночные диски поясничного отдела испытывают колоссальное неравномерное давление. Передний край позвонков сжимается, выдавливая диск назад — прямо в сторону спинномозговых нервов. Так рождаются протрузии и грыжи.</p>
+            
+            <div class="warning-box">
+                <p style="margin-bottom: 0; font-size: 15px; font-style: italic;"><strong>Чем чреваты «холодные» мышцы:</strong> Приезжая из города, люди сразу хватаются за лопаты и ведра. Неразогретые, жесткие мышцы спины и задней поверхности бедра не способны амортизировать нагрузку. В результате всю тяжесть на себя берут связки позвоночника и глубокие мышцы-стабилизаторы. Происходит их мощнейший спазм — спину «заклинивает» так, что человек не может разогнуться.</p>
+            </div>
+        </div>
+
+        <div class="rsya-linear-frame">
+            <div id="yandex_rtb_garden_1"></div>
+            <script>
+            window.yaContextCb.push(() => {
+                Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-20", "renderTo": "yandex_rtb_garden_1" })
+            })
+            </script>
+        </div>
+
+        <div class="bento-card" style="border: 1px solid var(--accent-color);">
+            <div class="calc-title">🌱 Адаптивный северный калькулятор высадки</div>
+            <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 20px;">Учитывая особенности сурового климата Республики Коми и угрозу возвратных заморозков, выберите культуру, чтобы рассчитать безопасные даты.</p>
+            
+            <div class="input-group">
+                <label>Что планируете высаживать в грунт?</label>
+                <select id="gardenCulture">
+                    <option value="cabbage_early">Ранняя капуста (рассада)</option>
+                    <option value="cabbage_late">Поздняя капуста (рассада)</option>
+                    <option value="tomato_greenhouse">Томаты (в теплицу)</option>
+                    <option value="tomato_open">Томаты (в открытый грунт)</option>
+                    <option value="cucumbers">Огурцы (под пленку)</option>
+                </select>
+            </div>
+
+            <button class="calc-btn" onclick="calculateGardenDates()">Рассчитать идеальное время</button>
+
+            <div class="results-box" id="gardenResults">
+                <h4>Агрономический расчет для Сыктывкара:</h4>
+                <div class="result-line">
+                    <span>Посев на рассаду дома:</span>
+                    <span class="result-value" id="resSeedDate">--</span>
+                </div>
+                <div class="result-line">
+                    <span>Безопасная высадка в грунт:</span>
+                    <span class="result-value" style="color: var(--accent-color);" id="resPlantDate">--</span>
+                </div>
+                <div class="result-line" style="background: rgba(245, 158, 11, 0.08); padding: 10px 8px; border-radius: 8px;">
+                    <span>Риск возвратных заморозков:</span>
+                    <span class="result-value" id="resFrostRisk" style="font-size: 15px;">--</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="bento-card">
+            <h2>Честная инструкция: как пережить дачный сезон без травм</h2>
+            
+            <p><strong>Правило 1: Обязательный разогрев (суставная разминка).</strong> Перед тем как сделать первый наклон к грядке, потратьте 5 минут на подготовку тела. Сделайте мягкие круговые вращения тазом, поочередно поднимите колени к груди, выполните легкие боковые наклоны. Это запустит выработку синовиальной жидкости в суставах и сделает мышцы эластичными.</p>
+            
+            <p><strong>Правило 2: Наклоняйтесь через таз, а не через поясницу.</strong> Самая частая ошибка — сгибать позвоночник дугой. Чтобы поднять лейку или прополоть грядку, <strong>отведите таз назад, сохраняя спину ровной</strong>, и слегка согните колени. Нагрузку должны нести мощные мышцы ягодиц и бедер, а не беззащитная поясница!</p>
+            
+            <p><strong>Правило 3: Используйте дачные упоры или наколенники.</strong> Не стойте часами на прямых ногах головой вниз. Опуститесь на одно колено (подложив мягкий коврик) или сядьте на низкую скамеечку. Меняйте положение тела каждые 15–20 минут. Сделали грядку — встаньте, потянитесь руками вверх, походите, дайте дискам восстановить форму.</p>
+        </div>
+
+        <div class="rsya-linear-frame">
+            <div id="yandex_rtb_garden_2"></div>
+            <script>
+            window.yaContextCb.push(() => {
+                Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-20", "renderTo": "yandex_rtb_garden_2" })
+            })
+            </script>
+        </div>
+
+        <div style="text-align: center; width: 100%;">
+            <button class="btn-share-viral" onclick="shareGardenPage()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                <span>Отправить калькулятор и памятку в дачный чат</span>
+            </button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container footer-grid">
+            <div>
+                © 2026 Экосистема РЕСУРС. Движение, здоровье и честный контент.
+            </div>
+            <div class="footer-warning" style="font-size: 11px; opacity: 0.65;">
+                Расчеты дат основаны на усредненных многолетних метеорологических наблюдениях в южной и центральной зонах Республики Коми. Анатомические рекомендации подготовлены экспертами студии движения РЕСУРС (г. Сыктывкар, ул. Коммунистическая 77/2). При возникновении острых болей незамедлительно обратитесь к врачу.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            const root = document.documentElement;
+            const current = root.getAttribute('data-theme') || 'dark';
+            const next = current === 'dark' ? 'light' : 'dark';
+            root.setAttribute('data-theme', next);
+            localStorage.setItem('user-theme', next);
+        }
+
+        function calculateGardenDates() {
+            const culture = document.getElementById('gardenCulture').value;
+            let seed = "";
+            let plant = "";
+            let risk = "";
+
+            switch(culture) {
+                case 'cabbage_early':
+                    seed = "15 - 25 марта";
+                    plant = "15 - 25 мая (под временное укрытие)";
+                    risk = "Средний. Возможны заморозки до конца мая, требуется контроль ночных температур.";
+                    break;
+                case 'cabbage_late':
+                    seed = "5 - 15 апреля";
+                    plant = "25 мая - 5 июня";
+                    risk = "Низкий. Капуста устойчива к кратковременным похолоданиям.";
+                    break;
+                case 'tomato_greenhouse':
+                    seed = "10 - 20 марта";
+                    plant = "15 - 25 мая (в поликарбонатные теплицы)";
+                    risk = "Высокий при неотлаженном обогреве. Земля в теплице должна прогреться до +12°C.";
+                    break;
+                case 'tomato_open':
+                    seed = "25 марта - 5 апреля";
+                    plant = "10 - 15 июня (строго после ухода заморозков)";
+                    risk = "Экстремальный. В Коми заморозки на почве бывают до 10 июня. Не спешите!";
+                    break;
+                case 'cucumbers':
+                    seed = "20 - 30 апреля (на рассаду)";
+                    plant = "5 - 12 июня";
+                    risk = "Критический. Огурцы полностью гибнут при 0°C. Высадка только в прогретую почву под двойную пленку.";
+                    break;
+            }
+
+            document.getElementById('resSeedDate').innerText = seed;
+            document.getElementById('resPlantDate').innerText = plant;
+            document.getElementById('resFrostRisk').innerText = risk;
+
+            document.getElementById('gardenResults').style.display = 'block';
+            document.getElementById('gardenResults').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        async function shareGardenPage() {
+            const shareData = {
+                title: 'Калькулятор посадок в Коми + Здоровая Спина',
+                text: 'Узнай точные даты высадки рассады в Сыктывкаре и как не сорвать поясницу на грядках.',
+                url: window.location.href
+            };
+            const btnText = document.querySelector('.btn-share-viral span');
+            if (navigator.share) {
+                try { await navigator.share(shareData); } catch (err) {}
+            } else {
+                try {
+                    await navigator.clipboard.writeText(window.location.href);
+                    const oldText = btnText.innerText;
+                    btnText.innerText = 'Ссылка скопирована! Отправьте в Viber или WhatsApp дачникам.';
+                    setTimeout(() => { btnText.innerText = oldText; }, 3000);
+                } catch (err) {
+                    alert('Скопируйте ссылку из адресной строки.');
+                }
+            }
+        }
+    </script>
+
+    <script>
+    window.yaContextCb.push(() => {
+        Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-6", "type": "floorAd", "platform": "touch" });
+        Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-7", "type": "floorAd", "platform": "desktop" });
+        Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-24", "type": "fullscreen", "platform": "touch" });
+        Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-25", "type": "fullscreen", "platform": "desktop" });
+    })
+    </script>
+</body>
+</html>
