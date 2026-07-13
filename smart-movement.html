@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <script>
+        const savedTheme = localStorage.getItem('user-theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- РОДНОЙ ФАВИКОН PNG -->
+    <link rel="icon" href="https://resurs-stretch.ru/favicon.png" type="image/png">
+    <link rel="shortcut icon" href="https://resurs-stretch.ru/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="https://resurs-stretch.ru/favicon.png">
+
+    <!-- МЕТРИКИ -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108177329', 'ym');
+        ym(108177329, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+
+        var _tmr = window._tmr || (window._tmr = []);
+        _tmr.push({id: "3755240", type: "pageView", start: (new Date()).getTime()});
+        (function (d, w, id) {
+            if (d.getElementById(id)) return;
+            var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
+            ts.src = "https://top-fwz1.mail.ru/js/code.js";
+            var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
+            if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
+        })(document, window, "tmr-code");
+    </script>
+    <noscript>
+        <div>
+            <img src="https://mc.yandex.ru/watch/108177329" style="position:absolute; left:-9999px;" alt="" />
+            <img src="https://top-fwz1.mail.ru/counter?id=3755240;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" />
+        </div>
+    </noscript>
+
+    <!-- ИНДЕКСАЦИЯ И РОБОТЫ -->
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const isBot = /YandexBot|YandexAccessibilityBot|YandexMobileBot|Googlebot/i.test(navigator.userAgent);
+            if (isBot) {
+                fetch('https://functions.yandexcloud.net/d4ecn5ag33dcdd2deivd?bot=true&url=' + encodeURIComponent(window.location.href))
+                .then(res => res.json())
+                .then(data => console.log("SEO Preview Matrix Synced"))
+                .catch(e => console.log("SEO preview pass"));
+            }
+        });
+    </script>
+    
+    <script>window.yaContextCb=window.yaContextCb||[]</script>
+    <script src="https://yandex.ru/ads/system/context.js" async></script>
+    
+    <title>Манифест осознанного движения: вся правда об осанке и фитнесе | РЕСУРС</title>
+    <meta name="description" content="Честный анатомический разбор мифов о фитнесе и похудении. Почему отсутствие лишнего веса не гарантирует здоровье спины и суставов. Экосистема РЕСУРС Сыктывкар.">
+    <meta name="keywords" content="исправить осанку сыктывкар, пилатес здоровая спина коми, мягкие тренировки для суставов, тренер по растяжке сыктывкар, почему болит шея, лимфодренаж отеки, ресурс сыктывкар">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://resurs-stretch.ru/smart-movement.html">
+
+    <style>
+        :root {
+            --bg-color: #060C07;
+            --surface-color: #111A13;
+            --surface-hover: #19271D;
+            --accent-color: #10B981;
+            --accent-hover: #059669;
+            --accent-gold: #B38639;
+            --text-main: #F4F4F9;
+            --text-muted: #92A196;
+            --border-color: rgba(16, 185, 129, 0.12);
+            --header-bg: rgba(6, 12, 7, 0.75);
+            --shadow: rgba(0, 0, 0, 0.6);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="light"] {
+            --bg-color: #F4F6F4;
+            --surface-color: #FFFFFF;
+            --surface-hover: #EAEFEA;
+            --accent-color: #143D16;
+            --accent-hover: #1E4620;
+            --accent-gold: #B38639;
+            --text-main: #1D1F1D;
+            --text-muted: #6E736F;
+            --border-color: rgba(20, 61, 22, 0.15);
+            --header-bg: rgba(244, 246, 244, 0.75);
+        }
+
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Manrope', sans-serif;
+            line-height: 1.7;
+            padding-top: 75px;
+        }
+
+        .container {
+            max-width: 720px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--header-bg);
+            backdrop-filter: blur(30px) saturate(180%);
+            -webkit-backdrop-filter: blur(30px) saturate(180%);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 9999;
+            padding: 16px 0;
+        }
+
+        .header-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 19px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            font-family: 'Cormorant Garamond', serif;
+        }
+        .logo span { color: var(--accent-color); }
+
+        .header-controls {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .nav-btn {
+            font-weight: 800;
+            font-size: 11px;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--text-main);
+            padding: 6px 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            user-select: none;
+            transition: var(--transition);
+        }
+        .nav-btn:hover {
+            background: var(--surface-hover);
+            border-color: var(--accent-color);
+        }
+
+        .main-layout { padding: 40px 0; }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            font-size: clamp(24px, 4.5vw, 36px);
+            line-height: 1.25;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 22px;
+            color: var(--accent-color);
+            margin-bottom: 12px;
+        }
+
+        .content-p {
+            font-size: 16px;
+            color: var(--text-main);
+            margin-bottom: 16px;
+        }
+
+        /* ШАХМАТНАЯ СЕТКА BENTO ДЛЯ ПК (И СТЕК ДЛЯ МОБИЛЬНЫХ) */
+        .chess-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .chess-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 12px 40px var(--shadow);
+        }
+
+        .chess-text {
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .chess-photo {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1 / 1; /* Обязательный квадрат 1:1 */
+            background-size: cover;
+            background-position: center;
+            display: block;
+        }
+
+        /* ИНТЕРАКТИВНЫЙ БЕНТО-БЛОК ЭФФЕКТОВ */
+        .bento-card {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            padding: 32px;
+            border-radius: 24px;
+            box-shadow: 0 12px 40px var(--shadow);
+            margin-bottom: 24px;
+        }
+
+        .effects-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .timeline-step {
+            border-left: 3px solid var(--accent-gold);
+            padding-left: 16px;
+        }
+
+        .timeline-step strong {
+            color: var(--accent-gold);
+            display: block;
+            font-size: 15px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .rsya-linear-frame {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 15px;
+            margin: 28px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 250px;
+            width: 100%;
+        }
+
+        .cta-card {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), transparent);
+            border: 1px solid var(--accent-gold);
+            padding: 32px;
+            border-radius: 24px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .cta-btn-club {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 32px;
+            background: var(--accent-gold);
+            color: #FFF;
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 800;
+            text-transform: uppercase;
+            text-decoration: none;
+            letter-spacing: 1px;
+            box-shadow: 0 6px 15px rgba(179, 134, 57, 0.2);
+            transition: var(--transition);
+            margin-top: 14px;
+        }
+        .cta-btn-club:hover { transform: translateY(-1px); opacity: 0.95; }
+
+        .btn-share-viral {
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 12px; 
+            padding: 16px 32px;
+            background: var(--accent-color) !important; 
+            border: none; 
+            border-radius: 12px;
+            font-size: 14px; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            cursor: pointer; 
+            transition: var(--transition); 
+            color: #FFF;
+            width: 100%; 
+            max-width: 480px;
+            margin: 0 auto 30px auto;
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.2);
+        }
+        .btn-share-viral:hover { background-color: var(--accent-hover) !important; transform: translateY(-1px); }
+
+        footer {
+            background-color: var(--surface-color);
+            border-top: 1px solid var(--border-color);
+            padding: 40px 0;
+            margin-top: 60px;
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* СТРОГИЕ МЕДИА-ЗАПРОСЫ ДЛЯ СЕТКИ ОБЕИХ ВЕРСИЙ */
+        @media (min-width: 769px) {
+            .chess-row {
+                grid-template-columns: 1fr 1fr;
+            }
+            /* Переворот каждого второго элемента для шахматного порядка на ПК */
+            .chess-row:nth-child(even) .chess-text {
+                grid-column: 2;
+            }
+            .chess-row:nth-child(even) .chess-photo {
+                grid-column: 1;
+                grid-row: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body { padding-top: 70px; }
+            header { padding: 12px 0; }
+            .logo { font-size: 17px; letter-spacing: 1.5px; }
+            .container { padding: 0 20px; width: 100%; }
+            .main-layout { padding: 15px 0; }
+            .chess-text { padding: 24px 16px; }
+            .bento-card, .cta-card { padding: 24px 16px; border-radius: 20px; }
+            .cta-btn-club, .btn-share-viral { width: 100%; font-size: 14px; padding: 16px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-wrapper">
+            <div class="logo">РЕСУРС<span>.Манифест</span></div>
+            <div class="header-controls">
+                <a href="index.html" class="nav-btn">Главная</a>
+                <div class="theme-selector-trigger nav-btn" onclick="toggleTheme()">Тема</div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container main-layout">
+        
+        <h1>Красивая осанка и живая спина без фитнес-фанатизма: почему отсутствие лишнего веса не гарантирует здоровье суставов</h1>
+
+        <div class="chess-grid">
+            
+            <!-- РЯД 1: МИФ О ХУДОБЕ -->
+            <div class="chess-row">
+                <div class="chess-text">
+                    <h2>Миф 1: «Я худая, мне не нужно заниматься»</h2>
+                    <p class="content-p">Это самое опасное заблуждение. Отсутствие лишнего веса — это лишь генетический подарок метаболизма, но он никак не защищает суставы. Без регулярного, правильного движения наши фасции (соединительная ткань) высыхают и буквально склеиваются, как старые обои.</p>
+                    <p class="content-p">Помните честную поговорку: <i>«Худая корова — еще не газель»</i>. Без глубокого мышечного корсета и сбалансированного тонуса вся осевая нагрузка при ходьбе или сидении бьет напрямую в незащищенные межпозвоночные диски, запуская процессы преждевременного старения скелета.</p>
+                </div>
+                <div class="chess-photo" style="background-image: url('images/resurs-manifest-1.webp');"></div>
+            </div>
+
+            <!-- РЯД 2: МИФ О ШПАГАТЕ -->
+            <div class="chess-row">
+                <div class="chess-text">
+                    <h2>Миф 2: «Стретчинг — это просто чтобы сесть на шпагат»</h2>
+                    <p class="content-p">Многие думают, что растяжка нужна только гимнасткам для цирковых трюков. Но профессиональный стретчинг с опытным тренером в Сыктывкаре — это совершенно про другое. Это базовая гигиена тела.</p>
+                    <p class="content-p">Это про восстановление естественной анатомической длины перегруженных мышц, деликатное раскрытие грудного отдела (чтобы дышалось полной грудью), настройку паттерна шага и освобождение шеи от зажимов, которые ежедневно провоцируют головные боли напряжения у офисных сотрудников.</p>
+                </div>
+                <div class="chess-photo" style="background-image: url('images/resurs-manifest-2.webp');"></div>
+            </div>
+
+            <!-- РСЯ МЕЖБЛОЧНОЕ 1 -->
+            <div class="rsya-linear-frame">
+                <div id="yandex_rtb_manifest_1"></div>
+                <script>
+                window.yaContextCb.push(() => {
+                    Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-20", "renderTo": "yandex_rtb_manifest_1" })
+                })
+                </script>
+            </div>
+
+            <!-- РЯД 3: МИФ ОБ ОТСУТСТВИИ БОЛИ -->
+            <div class="chess-row">
+                <div class="chess-text">
+                    <h2>Миф 3: «У меня ничего не болит, значит, всё в порядке»</h2>
+                    <p class="content-p">Наш организм — великий мастер компенсаций. Позвоночник может годами беззвучно терпеть перекос таза, скрученные вперед плечи и выдвинутую «компьютерную шею», перекладывая нагрузку на другие связки и мышцы.</p>
+                    <p class="content-p">Человек живет в иллюзии здоровья, пока компенсаторный ресурс не исчерпается полностью. Появление боли — это не первый этап проблемы, это финишная прямая, когда тело больше не может терпеть перегрузку дисков и защемление нервных окончаний.</p>
+                </div>
+                <div class="chess-photo" style="background-image: url('images/resurs-manifest-3.webp');"></div>
+            </div>
+
+            <!-- РЯД 4: ПРАВДА О ПОХУДЕНИИ И ОТЕКАХ -->
+            <div class="chess-row">
+                <div class="chess-text">
+                    <h2>Честная правда о похудении, которую от вас скрывают</h2>
+                    <p class="content-p">Давайте разделим раз и навсегда: худеют строго на кухне за счет грамотного дефицита калорий и питания. Если вам обещают экстремальное похудение только за счет 50 минут пота на коврике — вас обманывают.</p>
+                    <p class="content-p">В зал мы идем за другим: за запуском лимфатической помпы. Большинство людей путают лишний жир с банальным межклеточным застоем воды (отеками). Умные мягкие тренировки выжимают ткани как губку, сливая лишние объемы с лица, бедер и живота, возвращая телу легкость и тонус.</p>
+                </div>
+                <div class="chess-photo" style="background-image: url('images/resurs-manifest-4.webp');"></div>
+            </div>
+
+        </div>
+
+        <!-- РСЯ МЕЖБЛОЧНОЕ 2 -->
+        <div class="rsya-linear-frame">
+            <div id="yandex_rtb_manifest_2"></div>
+            <script>
+            window.yaContextCb.push(() => {
+                Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-21", "renderTo": "yandex_rtb_manifest_2" })
+                })
+            </script>
+        </div>
+
+        <!-- ИНТЕРАКТИВНЫЙ БЛОК ХРОНОМЕТРАЖА -->
+        <div class="bento-card">
+            <h2>Что на самом деле происходит за 50 минут умной тренировки в РЕСУРСе:</h2>
+            <div class="effects-timeline">
+                <div class="timeline-step">
+                    <strong>0 – 15 минута: МФР и Дыхание</strong>
+                    <p class="content-p" style="font-size: 14px; margin-bottom: 0;">Специальные роллы и мячи снимают жесткие склейки с фасций. Дыхательные практики раскрывают зажатые ребра, принудительно включая лимфоток и насыщая мозг кислородом.</p>
+                </div>
+                <div class="timeline-step">
+                    <strong>15 – 35 минута: Мобильность и Пилатес</strong>
+                    <p class="content-p" style="font-size: 14px; margin-bottom: 0;">Суставы бережно возвращаются в свои естественные оси вращения. Запускается выработка синовиальной жидкости — суставы получают смазку и перестают сохнуть.</p>
+                </div>
+                <div class="timeline-step">
+                    <strong>35 – 50 минута: Умный стретчинг</strong>
+                    <p class="content-p" style="font-size: 14px; margin-bottom: 0;">Мышцы возвращаются к своей здоровой анатомической длине. Освобождаются зажатые сосуды шеи и поясницы. Уходит утренний «песок» и скованность, возвращается легкий вайб свободы движений.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- НАВЕДЕНИЕ НА ЦЕЛЕВОЕ ДЕЙСТВИЕ -->
+        <div class="cta-card">
+            <h2 style="color: var(--accent-gold);">Начните осознанное управление своим телом</h2>
+            <p class="content-p" style="font-size: 15px; margin-bottom: 0;">Простые упражнения и регулярные тренировки с тренером дают навыки, здоровье и гибкость, стирая многолетние последствия сидячего образа жизни. Ждем вас на Коммунистической 77/2 в Сыктывкаре или внутри нашего закрытого международного Онлайн-клуба.</p>
+            <a href="club.html" class="cta-btn-club">Присоединиться к Онлайн-Клубу РЕСУРС</a>
+        </div>
+
+        <!-- КНОПКА ПОДЕЛИТЬСЯ -->
+        <div style="text-align: center; width: 100%;">
+            <button class="btn-share-viral" onclick="sharePage()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                <span>Поделиться манифестом здоровья с близкими</span>
+            </button>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="container">
+            <div>© 2026 Экосистема РЕСУРС. Честная анатомия, гибкость и долголетие.</div>
+            <div class="footer-warning" style="font-size: 11px; opacity: 0.65; margin-top: 15px; font-style: italic;">
+                Все материалы манифеста основаны на законах миофасциального релиза и физиологии движения. Программа тренировок в студии РЕСУРС и онлайн-клубе разработана дипломированными специалистами по физической культуре и спорту высшей квалификации.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            const root = document.documentElement;
+            const current = root.getAttribute('data-theme') || 'dark';
+            const next = current === 'dark' ? 'light' : 'dark';
+            root.setAttribute('data-theme', next);
+            localStorage.setItem('user-theme', next);
+        }
+
+        async function sharePage() {
+            const shareData = {
+                title: 'Манифест осознанного движения: РЕСУРС',
+                text: 'Честный разбор мифов о фитнесе, осанке и похудении. Почему отсутствие лишнего веса не гарантирует здоровье.',
+                url: window.location.href
+            };
+            const btnText = document.querySelector('.btn-share-viral span');
+            if (navigator.share) {
+                try { await navigator.share(shareData); } catch (err) {}
+            } else {
+                try {
+                    await navigator.clipboard.writeText(window.location.href);
+                    const oldText = btnText.innerText;
+                    btnText.innerText = 'Ссылка скопирована! Отправляйте друзьям.';
+                    setTimeout(() => { btnText.innerText = oldText; }, 3000);
+                } catch (err) {
+                    alert('Скопируйте ссылку из адресной строки браузера.');
+                }
+            }
+        }
+    </script>
+
+    <!-- РСЯ FloorAd & Fullscreen -->
+    <script>
+    window.yaContextCb.push(() => {
+        Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-6", "type": "floorAd", "platform": "touch" });
+        Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-7", "type": "floorAd", "platform": "desktop" });
+        Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-24", "type": "fullscreen", "platform": "touch" });
+        Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-25", "type": "fullscreen", "platform": "desktop" });
+    })
+    </script>
+</body>
+</html>
