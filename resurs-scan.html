@@ -324,7 +324,7 @@
 
         <div class="live-photo-instruction-bar">
             <div class="icon-badge">!</div>
-            <div class="text-instruction" id="livePoseInstruction">Как сделать фото: Разрешите доступ к камере. Встаньте строго боком (в профиль) на расстоянии 2.5 метров. Впишите контуры шеи в полупрозрачный зеленый трафарет на экране.</div>
+            <div class="text-instruction" id="livePoseInstruction">Как сделать фото: Разрешите доступ к камере. Встаньте строго боком (в профиль) на расстоянии 2.5 метров. Впишите контуры тела в полупрозрачный зеленый силуэт на экране.</div>
         </div>
 
         <div class="workspace-grid">
@@ -420,7 +420,7 @@
             neck: {
                 title: "Тест «Компьютерная шея» (Профиль)",
                 desc: "Этот модуль высчитывает горизонтальное смещение мочки уха относительно плечевого пояса. В норме при вписывании в анатомический контур масштаб кадра составляет 1px = 1мм (0.1 см). Завал головы вперед перегружает трапецию, сдавливая сосуды шеи.",
-                poseInstruction: "Как сделать фото: Встаньте строго боком (в профиль) на расстоянии 2.5 метров от камеры. Совместите шею и контур головы с зеленым шаблоном. Нажмите кнопку фиксации.",
+                poseInstruction: "Как сделать фото: Встаньте строго боком (в профиль) на расстоянии 2.5 метров от камеры. Совместите тело с зеленым силуэтом. Нажмите кнопку фиксации.",
                 instruction: "Шаг 1: Кликните строго на центр мочки уха зафиксированного кадра",
                 pointsCount: 2,
                 labels: ["Мочка уха", "Кость плеча"]
@@ -518,7 +518,6 @@
         function freezeSnapshot() {
             isFrozen = true;
             
-            // Создаем скрытый холст-слепок для жесткого сохранения текущего кадра
             frozenBufferCanvas = document.createElement('canvas');
             frozenBufferCanvas.width = canvas.width;
             frozenBufferCanvas.height = canvas.height;
@@ -549,40 +548,47 @@
             startLiveCameraFeed();
         }
 
-        // ОТРИСОВКА ОПТИМАЛЬНОГО И ИСПРАВЛЕННОГО ТРАФАРЕТА
+        // ОТРИСОВКА КРАСИВЫХ И ПОНЯТНЫХ СИЛУЭТОВ И МАСОК (3px, ВЫСОКИЙ КОНТРАСТ)
         function drawBioReticle() {
             ctx.save();
             
             if (currentTest === 'neck') {
-                // Идеальная вертикальная ось отвеса (Plumb Line) по канонам постурального анализа
-                ctx.strokeStyle = "#FF3333"; // Яркая красная контрастная ось
-                ctx.lineWidth = 3;
-                ctx.setLineDash([10, 5]);
-                ctx.beginPath();
-                ctx.moveTo(canvas.width * 0.5, 0); 
-                ctx.lineTo(canvas.width * 0.5, canvas.height);
-                ctx.stroke();
-
-                // Калибровочная сетка для вписывания силуэта
-                ctx.strokeStyle = "#00FF87"; // Неоновый изумрудный
+                // Идеальная вертикальная ось отвеса (Plumb Line) по всему экрану
+                ctx.strokeStyle = "rgba(255, 51, 51, 0.6)"; // Четкая красная нить
                 ctx.lineWidth = 2.5;
-                ctx.setLineDash([]);
-                
-                // Зона позиционирования уха и шеи
-                ctx.fillStyle = "rgba(0, 255, 135, 0.04)";
+                ctx.setLineDash([8, 4]);
                 ctx.beginPath();
-                ctx.arc(canvas.width * 0.5, canvas.height * 0.35, 65, 0, 2 * Math.PI); // Шаблон головы
+                ctx.moveTo(canvas.width * 0.45, 0); 
+                ctx.lineTo(canvas.width * 0.45, canvas.height);
                 ctx.stroke();
-                ctx.fill();
 
+                // Изумрудный анатомический силуэт человека боком во весь рост
+                ctx.strokeStyle = "#00FF87"; 
+                ctx.lineWidth = 3;
+                ctx.setLineDash([]);
+                ctx.fillStyle = "rgba(0, 255, 135, 0.03)";
+                
                 ctx.beginPath();
-                ctx.moveTo(canvas.width * 0.45, canvas.height * 0.45);
-                ctx.lineTo(canvas.width * 0.48, canvas.height * 0.7); // Линия шеи и плеча
-                ctx.lineTo(canvas.width * 0.2, canvas.height * 0.75);
+                // Контур головы и лица в профиль
+                ctx.arc(canvas.width * 0.45, canvas.height * 0.22, 40, 1.1 * Math.PI, 1.8 * Math.PI, false);
+                ctx.quadraticCurveTo(canvas.width * 0.58, canvas.height * 0.23, canvas.width * 0.55, canvas.height * 0.29); // нос и подбородок
+                ctx.lineTo(canvas.width * 0.48, canvas.height * 0.33); // челюсть
+                // Шея и спина
+                ctx.lineTo(canvas.width * 0.49, canvas.height * 0.42); // передняя линия шеи
+                ctx.lineTo(canvas.width * 0.52, canvas.height * 0.6);  // грудная клетка
+                ctx.lineTo(canvas.width * 0.50, canvas.height * 0.85); // бедро спереди
+                ctx.lineTo(canvas.width * 0.45, canvas.height * 0.98); // стопа спереди
+                ctx.lineTo(canvas.width * 0.35, canvas.height * 0.98); // пятка
+                ctx.lineTo(canvas.width * 0.38, canvas.height * 0.85); // голень сзади
+                ctx.lineTo(canvas.width * 0.36, canvas.height * 0.6);  // поясница сзади
+                ctx.lineTo(canvas.width * 0.34, canvas.height * 0.42); // лопатки
+                ctx.quadraticCurveTo(canvas.width * 0.35, canvas.height * 0.3, canvas.width * 0.38, canvas.height * 0.25); // затылок
+                ctx.closePath();
+                ctx.fill();
                 ctx.stroke();
 
             } else if (currentTest === 'pelvis') {
-                ctx.strokeStyle = "#FFD700"; // Насыщенный золотой
+                ctx.strokeStyle = "#FFD700"; // Насыщенный золотой силуэт анфас
                 ctx.lineWidth = 3;
                 ctx.setLineDash([6, 6]);
                 ctx.beginPath();
@@ -642,11 +648,7 @@
             if (!isFrozen || !frozenBufferCanvas) return;
             
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            // Отрисовываем жестко сохраненный стоп-кадр из буфера
             ctx.drawImage(frozenBufferCanvas, 0, 0, canvas.width, canvas.height);
-            
-            // Отрисовываем маску поверх сохраненного кадра
             drawBioReticle();
 
             // Рисуем маркеры суставов
