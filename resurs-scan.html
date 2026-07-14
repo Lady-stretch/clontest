@@ -194,7 +194,7 @@
             touch-action: none;
         }
 
-        #diagnosticCanvas { width: 100%; height: 100%; display: block; }
+        #diagnosticCanvas { width: 100%; height: 100%; display: block; cursor: crosshair; }
 
         /* СКРЫТЫЙ СТРИМ-ТЕГ ДЛЯ ВЕБ-КАМЕРЫ */
         #hiddenVideoFeed { display: none; }
@@ -224,6 +224,8 @@
             text-transform: uppercase; letter-spacing: 0.5px; transition: var(--transition);
         }
         .popup-trigger-btn:hover { border-color: var(--accent-gold); color: var(--accent-gold); }
+
+        .hidden-file-input { display: none; }
 
         .verdict-box {
             border-left: 4px solid var(--accent-gold); padding-left: 20px; margin: 20px 0;
@@ -454,13 +456,13 @@
         let isFrozen = false; // Состояние фиксации кадра
         let draggedPointIndex = -1;
         let streamInstance = null;
+        let frozenBufferCanvas = null; // Буфер для Offscreen кэширования кадра
 
         const canvas = document.getElementById('diagnosticCanvas');
         const ctx = canvas.getContext('2d');
         const video = document.getElementById('hiddenVideoFeed');
         const modal = document.getElementById('instructionModal');
 
-        // Установка стандартных размеров холста
         canvas.width = 450;
         canvas.height = 600;
 
@@ -471,6 +473,7 @@
         async function startLiveCameraFeed() {
             isFrozen = false;
             points = [];
+            frozenBufferCanvas = null;
             document.getElementById('diagnosticVerdict').style.display = 'none';
             document.getElementById('resetCameraBtn').style.display = 'none';
             document.getElementById('captureSnapshotBtn').style.display = 'block';
@@ -481,7 +484,6 @@
             }
 
             try {
-                // Запрашиваем заднюю камеру смартфона по умолчанию (для точности дистанции)
                 streamInstance = await navigator.mediaDevices.getUserMedia({
                     video: { facingMode: "environment", width: 640, height: 480 },
                     audio: false
@@ -489,7 +491,6 @@
                 video.srcObject = streamInstance;
                 renderLiveStreamLoop();
             } catch (err) {
-                // Если задняя камера недоступна — включаем любую доступную (фронталку)
                 try {
                     streamInstance = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
                     video.srcObject = streamInstance;
@@ -502,25 +503,29 @@
 
         // БЕСКОНЕЧНЫЙ ЦИКЛ РЕНДЕРА СТРИМА КАМЕРЫ НА ХОЛСТ
         function renderLiveStreamLoop() {
-            if (isFrozen) return; // Останавливаем цикл отрисовки потока при фиксации кадра
+            if (isFrozen) return;
             
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            // Рисуем текущий кадр из тега video на canvas с сохранением пропорций
             ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-            
-            // Накладываем полупрозрачный анатомический шаблон-трафарет поверх живого видео
             drawBioReticle();
 
             requestAnimationFrame(renderLiveStreamLoop);
         }
 
-        // ЗАМОРОЗКА СНИМКА (КНОПКА ФИКСАЦИИ)
+        // ЖЕЛЕЗНАЯ ФИКСАЦИЯ СНИМКА В КЭШ-БУФЕР ПОД РАЗМЕТКУ
         function freezeSnapshot() {
             isFrozen = true;
+            
+            // Создаем скрытый холст-слепок для жесткого сохранения текущего кадра
+            frozenBufferCanvas = document.createElement('canvas');
+            frozenBufferCanvas.width = canvas.width;
+            frozenBufferCanvas.height = canvas.height;
+            const bufferCtx = frozenBufferCanvas.getContext('2d');
+            bufferCtx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
             document.getElementById('captureSnapshotBtn').style.display = 'none';
             document.getElementById('resetCameraBtn').style.display = 'block';
-            document.getElementById('canvasInstruction').innerText = "Снимок зафиксирован. Теперь расставьте маркеры кликами по телу.";
+            document.getElementById('canvasInstruction').innerText = "Снимок зафиксирован. Расставьте маркеры суставов кликами.";
             redrawCanvas();
         }
 
@@ -536,20 +541,20 @@
             startLiveCameraFeed();
         }
 
-        // ОТРИСОВКА МАСОК И ТРАФАРЕТОВ
+        // ОТРИСОВКА ЯРКИХ НЕОНОВЫХ МАСОК И ТРАФАРЕТОВ (3px, МАКСИМАЛЬНЫЙ КОНТРАСТ)
         function drawBioReticle() {
             ctx.save();
             
             if (currentTest === 'neck') {
-                ctx.strokeStyle = "rgba(16, 185, 129, 0.4)";
-                ctx.lineWidth = 2.5;
-                ctx.setLineDash([6, 4]);
+                ctx.strokeStyle = "#00FF87"; // Неоновый зеленый
+                ctx.lineWidth = 3;
+                ctx.setLineDash([8, 4]);
                 ctx.beginPath();
                 ctx.moveTo(canvas.width * 0.45, 0); ctx.lineTo(canvas.width * 0.45, canvas.height);
                 ctx.stroke();
 
                 ctx.setLineDash([]);
-                ctx.fillStyle = "rgba(16, 185, 129, 0.05)";
+                ctx.fillStyle = "rgba(0, 255, 135, 0.05)";
                 ctx.beginPath();
                 ctx.arc(canvas.width * 0.5, canvas.height * 0.35, 75, 1.2 * Math.PI, 1.9 * Math.PI, false);
                 ctx.quadraticCurveTo(canvas.width * 0.72, canvas.height * 0.38, canvas.width * 0.68, canvas.height * 0.48);
@@ -562,16 +567,16 @@
                 ctx.stroke();
 
             } else if (currentTest === 'pelvis') {
-                ctx.strokeStyle = "rgba(179, 134, 57, 0.4)";
-                ctx.lineWidth = 2;
-                ctx.setLineDash([5, 5]);
+                ctx.strokeStyle = "#FFD700"; // Насыщенный золотой
+                ctx.lineWidth = 3;
+                ctx.setLineDash([6, 6]);
                 ctx.beginPath();
                 ctx.moveTo(canvas.width / 2, 0); ctx.lineTo(canvas.width / 2, canvas.height);
                 ctx.moveTo(0, canvas.height * 0.65); ctx.lineTo(canvas.width, canvas.height * 0.65);
                 ctx.stroke();
 
                 ctx.setLineDash([]);
-                ctx.fillStyle = "rgba(179, 134, 57, 0.05)";
+                ctx.fillStyle = "rgba(255, 215, 0, 0.05)";
                 ctx.beginPath();
                 ctx.moveTo(canvas.width * 0.25, canvas.height * 0.4);
                 ctx.quadraticCurveTo(canvas.width * 0.5, canvas.height * 0.42, canvas.width * 0.75, canvas.height * 0.4);
@@ -584,32 +589,31 @@
                 ctx.stroke();
 
             } else if (currentTest === 'joints') {
-                // Трафарет-ориентир для глубокого приседа в профиль
-                ctx.strokeStyle = "rgba(245, 158, 11, 0.4)";
-                ctx.lineWidth = 2;
+                ctx.strokeStyle = "#FF5500"; // Контрастный оранжевый под присед
+                ctx.lineWidth = 3;
                 ctx.setLineDash([4, 4]);
                 ctx.beginPath();
-                ctx.arc(canvas.width / 2, canvas.height * 0.4, 40, 0, 2 * Math.PI); // условный контур корпуса
+                ctx.arc(canvas.width / 2, canvas.height * 0.4, 40, 0, 2 * Math.PI);
                 ctx.stroke();
                 
                 ctx.setLineDash([]);
                 ctx.beginPath();
-                ctx.moveTo(canvas.width * 0.5, canvas.height * 0.4);   // Плечо
-                ctx.lineTo(canvas.width * 0.45, canvas.height * 0.65); // Сложенный таз приседа
-                ctx.lineTo(canvas.width * 0.68, canvas.height * 0.7);  // Выдвинутое колено
+                ctx.moveTo(canvas.width * 0.5, canvas.height * 0.4);
+                ctx.lineTo(canvas.width * 0.45, canvas.height * 0.65);
+                ctx.lineTo(canvas.width * 0.68, canvas.height * 0.7);
                 ctx.stroke();
 
             } else if (currentTest === 'lymph') {
-                ctx.strokeStyle = "rgba(16, 185, 129, 0.5)";
-                ctx.lineWidth = 2.5;
-                ctx.setLineDash([4, 2]);
+                ctx.strokeStyle = "#00FF87";
+                ctx.lineWidth = 3;
+                ctx.setLineDash([6, 3]);
                 ctx.beginPath();
                 ctx.moveTo(canvas.width / 2, 0); ctx.lineTo(canvas.width / 2, canvas.height);
                 ctx.moveTo(0, canvas.height * 0.42); ctx.lineTo(canvas.width, canvas.height * 0.42);
                 ctx.stroke();
 
                 ctx.setLineDash([]);
-                ctx.fillStyle = "rgba(16, 185, 129, 0.04)";
+                ctx.fillStyle = "rgba(0, 255, 135, 0.04)";
                 ctx.beginPath();
                 ctx.ellipse(canvas.width / 2, canvas.height * 0.45, 105, 145, 0, 0, 2 * Math.PI);
                 ctx.fill();
@@ -620,13 +624,17 @@
         }
 
         function redrawCanvas() {
-            if (!isFrozen) return;
+            if (!isFrozen || !frozenBufferCanvas) return;
             
-            // Перерисовываем статичный зафиксированный кадр веб-камеры
-            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Отрисовываем жестко сохраненный стоп-кадр из буфера
+            ctx.drawImage(frozenBufferCanvas, 0, 0, canvas.width, canvas.height);
+            
+            // Отрисовываем маску
             drawBioReticle();
 
-            // Рисуем маркеры и неоновые линии
+            // Рисуем маркеры суставов
             points.forEach((pt, index) => {
                 ctx.beginPath();
                 ctx.arc(pt.x, pt.y, 8, 0, 2 * Math.PI);
@@ -676,52 +684,6 @@
             }
         }
 
-        function getCanvasCoords(e) {
-            const rect = canvas.getBoundingClientRect();
-            let clientX = e.clientX;
-            let clientY = e.clientY;
-            if (e.touches && e.touches.length > 0) {
-                clientX = e.touches[0].clientX;
-                clientY = e.touches[0].clientY;
-            }
-            return {
-                x: ((clientX - rect.left) / rect.width) * canvas.width,
-                y: ((clientY - rect.top) / rect.height) * canvas.height
-            };
-        }
-
-        function handleStart(coords) {
-            if (!isFrozen) return; // Маркеры можно ставить ТОЛЬКО после фиксации снимка
-
-            for (let i = 0; i < points.length; i++) {
-                let dist = Math.sqrt(Math.pow(points[i].x - coords.x, 2) + Math.pow(points[i].y - coords.y, 2));
-                if (dist < 26) {
-                    draggedPointIndex = i;
-                    return;
-                }
-            }
-
-            const config = testConfigs[currentTest];
-            if (points.length < config.pointsCount) {
-                points.push({x: coords.x, y: coords.y});
-                redrawCanvas();
-
-                if (points.length < config.pointsCount) {
-                    document.getElementById('canvasInstruction').innerText = `Шаг ${points.length + 1}: Кликните на ${config.labels[points.length]}`;
-                } else {
-                    document.getElementById('canvasInstruction').innerText = "Готово! Вы можете плавно перемещать маркеры пальцем.";
-                    processDiagnostics();
-                }
-            }
-        }
-
-        function handleMove(coords) {
-            if (draggedPointIndex === -1) return;
-            points[draggedPointIndex] = { x: coords.x, y: coords.y };
-            redrawCanvas();
-            processDiagnostics();
-        }
-
         canvas.addEventListener('mousedown', function(e) { handleStart(getCanvasCoords(e)); });
         canvas.addEventListener('mousemove', function(e) { handleMove(getCanvasCoords(e)); });
         window.addEventListener('mouseup', function() { draggedPointIndex = -1; });
@@ -736,7 +698,6 @@
         }, { passive: false });
         canvas.addEventListener('touchend', function() { draggedPointIndex = -1; });
 
-        // ЧЕСТНАЯ МОДИФИЦИРОВАННАЯ МАТЕМАТИКА АНАЛИЗА
         function processDiagnostics() {
             if (points.length < 2) return;
             let verdict = "";
@@ -746,7 +707,7 @@
                 const cmOffset = Math.round(dx * 0.1 * 10) / 10;
                 const loadKg = 5 + (cmOffset * 2.4);
 
-                verdict = `Выдвижение головы вперед по горизонтальной оси составляет примерно <strong>${cmOffset} см</strong>. Опираясь на законы рычагов биомеханики, мышцы вашей шеи и верхнего плечевого пояса вынуждены удерживать статическую нагрузку в <strong>${Math.round(loadKg)} кг</strong>! Это пережимает артерии и провоцирует головные боли. Ждем вас на Коммунистической 77/2 для мягкого релиза подкоротких разгибателей.`;
+                verdict = `Выдвижение головы вперед по horizontal-оси составляет примерно <strong>${cmOffset} см</strong>. Опираясь на законы рычагов биомеханики, мышцы вашей шеи и верхнего плечевого пояса вынуждены удерживать статическую нагрузку в <strong>${Math.round(loadKg)} кг</strong>! Это пережимает артерии и провоцирует головные боли. Ждем вас на Коммунистической 77/2 для мягкого релиза подкоротких разгибателей.`;
 
             } else if (currentTest === 'pelvis') {
                 const dy = points[1].y - points[0].y;
@@ -761,7 +722,6 @@
                 }
 
             } else if (currentTest === 'joints') {
-                // ИСПРАВЛЕННАЯ ЛОГИКА ГОНИОМЕТРА ДЛЯ ПРИСЕДА/НАКЛОНА ТРЕНЕРА
                 const a = Math.pow(points[1].x-points[0].x,2) + Math.pow(points[1].y-points[0].y,2);
                 const b = Math.pow(points[1].x-points[2].x,2) + Math.pow(points[1].y-points[2].y,2);
                 const c = Math.pow(points[2].x-points[0].x,2) + Math.pow(points[2].y-points[0].y,2);
@@ -769,7 +729,6 @@
                 let angle = Math.round(Math.acos((a+b-c)/Math.sqrt(4*a*b)) * (180/getPi()));
                 if (isNaN(angle)) angle = 90;
 
-                // Инвертируем вывод: чем меньше угол, тем глубже и круче присед/наклон (высокая гибкость фасций)
                 if (angle <= 95) {
                     verdict = `Угол сгибания тазобедренной цепи составляет всего <strong>${angle}°</strong>. Это показатель **феноменальной, эталонной мобильности суставов и абсолютной эластичности миофасциальных слоев**! Ваши ткани идеально скользят, полностью разгружая крестцовый отдел. Великолепная форма!`;
                 } else if (angle > 95 && angle <= 135) {
