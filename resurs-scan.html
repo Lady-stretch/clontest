@@ -149,12 +149,12 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 12px;
-            margin-bottom: 32px;
+            margin-bottom: 24px;
         }
 
         .scan-tab {
-            background-color: var(--surface-color); border: 1px solid var(--border-color); padding: 20px; border-radius: 16px;
-            cursor: pointer; text-align: center; font-weight: 700; font-size: 14px; transition: var(--transition); box-shadow: 0 4px 15px var(--shadow);
+            background-color: var(--surface-color); border: 1px solid var(--border-color); padding: 16px; border-radius: 16px;
+            cursor: pointer; text-align: center; font-weight: 700; font-size: 13px; transition: var(--transition); box-shadow: 0 4px 15px var(--shadow);
         }
         .scan-tab:hover { border-color: var(--accent-color); background-color: var(--surface-hover); }
         .scan-tab.active {
@@ -162,6 +162,36 @@
             background: rgba(179, 134, 57, 0.08);
             color: var(--text-main);
             box-shadow: 0 0 15px rgba(179, 134, 57, 0.15);
+        }
+
+        /* БЛОК ИНСТРУКЦИИ КАК ВСТАТЬ (ПЕРЕД ГЛАЗАМИ) */
+        .live-photo-instruction-bar {
+            background: rgba(179, 134, 57, 0.08);
+            border: 1px solid var(--accent-gold);
+            border-radius: 16px;
+            padding: 14px 20px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .live-photo-instruction-bar .icon-badge {
+            background: var(--accent-gold);
+            color: #FFF;
+            font-weight: 900;
+            font-size: 18px;
+            width: 36px;
+            height: 36px;
+            min-width: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .live-photo-instruction-bar .text-instruction {
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 1.4;
         }
 
         /* ДВУХКОЛОННЫЙ ДЕСКТОПНЫЙ ИНТЕРФЕЙС ТЕСТА */
@@ -173,16 +203,18 @@
             width: 100%; max-width: 450px; aspect-ratio: 3 / 4; margin: 0 auto;
             background: #000; border-radius: 20px; border: 2px solid var(--border-color);
             position: relative; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.7);
+            touch-action: none;
         }
 
-        #diagnosticCanvas { width: 100%; height: 100%; display: block; }
+        #diagnosticCanvas { width: 100%; height: 100%; display: block; cursor: crosshair; }
 
-        /* ВЫСОКОКОНТРАСТНАЯ ПАНЕЛЬ НА ХОЛСТЕ — ЧЕРНЫМ ПО БЕЛОМУ */
+        /* МАКСИМАЛЬНО КОНТРАСТНАЯ ИНФОРМАЦИОННАЯ ПАНЕЛЬ НА ХОЛСТЕ — ЧЕРНЫМ ПО БЕЛОМУ */
         .canvas-overlay-instruction {
             position: absolute; bottom: 16px; left: 16px; right: 16px;
             background: #FFFFFF !important; color: #000000 !important;
-            padding: 14px; border-radius: 12px; font-size: 14px; text-align: center;
+            padding: 12px; border-radius: 12px; font-size: 13px; text-align: center;
             border: 2px solid var(--accent-gold); font-weight: 800; box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            z-index: 10;
         }
 
         .upload-controls { display: flex; flex-direction: column; align-items: center; gap: 12px; margin-top: 16px; }
@@ -190,7 +222,7 @@
         .file-input-label {
             padding: 14px 28px; background: var(--accent-color); color: #FFF; border: 1px solid var(--border-color);
             border-radius: 12px; font-size: 15px; font-weight: 800; cursor: pointer; transition: var(--transition);
-            text-transform: uppercase; letter-spacing: 0.5px;
+            text-transform: uppercase; letter-spacing: 0.5px; text-align: center; width: 100%; max-width: 380px;
         }
         .file-input-label:hover { background: var(--accent-hover); }
 
@@ -261,10 +293,12 @@
             body { padding-top: 70px; }
             header { padding: 12px 0; }
             .logo { font-size: 17px; letter-spacing: 1.5px; }
-            .container { padding: 0 20px !important; width: 100% !important; }
+            .container { padding: 0 16px !important; width: 100% !important; }
             .main-layout { padding: 15px 0; }
-            .bento-card { padding: 24px 16px; border-radius: 20px; }
-            h1 { font-size: 24px; line-height: 1.3; }
+            .bento-card { padding: 20px 14px; border-radius: 20px; }
+            h1 { font-size: 22px; line-height: 1.3; }
+            .live-photo-instruction-bar { padding: 10px 14px; gap: 10px; }
+            .live-photo-instruction-bar .text-instruction { font-size: 13px; }
         }
     </style>
 </head>
@@ -291,6 +325,11 @@
             <div class="scan-tab" id="tab-lymph" onclick="switchTest('lymph')">🌊 4. Лимфатический трекер<br><small>Анализ отечности лица</small></div>
         </div>
 
+        <div class="live-photo-instruction-bar">
+            <div class="icon-badge">!</div>
+            <div class="text-instruction" id="livePoseInstruction">Как сделать фото: Встаньте строго боком (в профиль) на расстоянии 2.5 метров от камеры. Руки опущены вдоль тела, смотрите прямо перед собой. Направьте камеру на уровень шеи.</div>
+        </div>
+
         <div class="workspace-grid">
             
             <div class="bento-card" style="text-align: center;">
@@ -302,7 +341,7 @@
                 <div class="upload-controls">
                     <label for="imageUploader" class="file-input-label">📸 Загрузить фото / Сделать снимок</label>
                     <input type="file" id="imageUploader" class="hidden-file-input" accept="image/*">
-                    <button class="popup-trigger-btn" onclick="openModal()">📋 Инструкция точной калибровки</button>
+                    <button class="popup-trigger-btn" onclick="openModal()">📋 Полный регламент калибровки</button>
                 </div>
             </div>
 
@@ -362,11 +401,12 @@
 
     <div class="modal-overlay" id="instructionModal">
         <div class="modal-window">
-            <h2>Честный регламент биометрической калибровки:</h2>
+            <h2>Регламент точной биометрической калибровки:</h2>
             <ol>
                 <li><strong>Фиксация масштаба:</strong> Отойдите на <strong>2.5 – 3 метра</strong> от камеры смартфона и приближайте или удаляйте телефон, пока контур вашего тела или лица ровно не впишется в границы наложенного на экран полупрозрачного шаблона. Это задаст точный неизменяемый масштаб пикселей.</li>
                 <li><strong>Уровень горизонта:</strong> Телефон должен стоять строго вертикально на уровне груди или пояса (не держите в руках при съёмке).</li>
                 <li><strong>Форма одежды:</strong> Наденьте облегающую спортивную одежду, иначе оверсайз вещи полностью скроют реальное положение суставов.</li>
+                <li><strong>Процесс разметки:</strong> После загрузки снимка просто кликайте по холсту, выставляя маркеры по текстовым подсказкам на экране.</li>
             </ol>
             <button class="close-modal-btn" onclick="closeModal()">Понятно, начать калибровку</button>
         </div>
@@ -374,7 +414,7 @@
 
     <footer>
         <div class="container">
-            <div>© 2026 Экосистема РЕСУРС. Автоматизированная диагностика. г. Сыктывкар, ул. Коммунистическая 67.</div>
+            <div>© 2026 Экосистема РЕСУРС. Автоматизированная диагностика. г. Сыктывкар, ул. Коммунистическая 77/2.</div>
         </div>
     </footer>
 
@@ -383,6 +423,7 @@
             neck: {
                 title: "Тест «Компьютерная шея» (Профиль)",
                 desc: "Этот модуль высчитывает горизонтальное смещение мочки уха относительно плечевого пояса. В норме при вписывании в анатомический контур масштаб кадра составляет 1px = 1мм (0.1 см). Завал головы вперед перегружает трапецию, сдавливая сосуды шеи.",
+                poseInstruction: "Как сделать фото: Встаньте строго боком (в профиль) на расстоянии 2.5 метров от камеры. Руки опущены вдоль тела, смотрите прямо перед собой. Направьте объектив на уровень шеи.",
                 instruction: "Шаг 1: Кликните строго на центр мочки уха",
                 pointsCount: 2,
                 labels: ["Мочка уха", "Кость плеча"]
@@ -390,21 +431,24 @@
             pelvis: {
                 title: "Скрининг перекоса осей таза (Анфас/Спина)",
                 desc: "Оценка параллельности подвздошных костей относительно горизонтальной линии. Позволяет зафиксировать скрытые компенсации сколиоза и асимметрию длины ног.",
-                instruction: "Шаг 1: Кликните на левую косточку таза",
+                poseInstruction: "Как сделать фото: Встаньте лицом (или спиной) к камере. Ноги на ширине плеч, вес распределен равномерно на обе стопы. Камера установлена строго на уровне вашего пояса.",
+                instruction: "Шаг 1: Кликните на левую выступающую косточку таза",
                 pointsCount: 2,
                 labels: ["Левая кость таза", "Правая кость таза"]
             },
             joints: {
                 title: "Гониометр: Подвижность суставов (Профиль)",
                 desc: "Математический замер угла сгибания и мобильности суставных цепей по 3 ключевым точкам. Показывает уровень зажатости глубоких фасций.",
-                instruction: "Шаг 1: Кликните на плечевой сустав",
+                poseInstruction: "Как сделать фото: Сделайте глубокий присед или боковой наклон (в зависимости от сустава, который хотите замерить) строго боком к камере на расстоянии 3 метров.",
+                instruction: "Шаг 1: Кликните на центр плечевого сустава",
                 pointsCount: 3,
                 labels: ["Плечо", "Тазобедренный сустав", "Колено"]
             },
             lymph: {
                 title: "Лимфатический трекер отечности лица",
                 desc: "Сравнительный анализ утренней симметрии овала лица. Помогает наглядно оценить динамику запуска лимфооттока после миофасциального релиза и работы с шеей.",
-                instruction: "Шаг 1: Кликните на левый край челюсти",
+                poseInstruction: "Как сделать фото: Сделайте селфи или портретный снимок крупным планом. Смотрите ровно в объектив без улыбки и наклонов головы. Лицо должно быть хорошо освещено.",
+                instruction: "Шаг 1: Кликните на левый край нижней челюсти (под ухом)",
                 pointsCount: 2,
                 labels: ["Левый угол челюсти", "Правый угол челюсти"]
             }
@@ -420,6 +464,10 @@
         const uploader = document.getElementById('imageUploader');
         const modal = document.getElementById('instructionModal');
 
+        // Инициализация размеров под пропорции контейнера
+        canvas.width = 450;
+        canvas.height = 600;
+
         function openModal() { modal.classList.add('open'); }
         function closeModal() { modal.classList.remove('open'); }
 
@@ -432,6 +480,7 @@
             
             document.getElementById('testTitle').innerText = testConfigs[testKey].title;
             document.getElementById('testDescription').innerText = testConfigs[testKey].desc;
+            document.getElementById('livePoseInstruction').innerText = testConfigs[testKey].poseInstruction;
             document.getElementById('canvasInstruction').innerText = testConfigs[testKey].instruction;
             document.getElementById('diagnosticVerdict').style.display = 'none';
 
@@ -452,8 +501,6 @@
             reader.onload = function(event) {
                 uploadedImage = new Image();
                 uploadedImage.onload = function() {
-                    canvas.width = 450;
-                    canvas.height = 600;
                     points = [];
                     document.getElementById('diagnosticVerdict').style.display = 'none';
                     redrawCanvas();
@@ -464,27 +511,106 @@
             reader.readAsDataURL(file);
         });
 
-        // ОТРИСОВКА АНАТОМИЧЕСКОГО БИОМЕТРИЧЕСКОГО КОНТУРА
+        // ОТРИСОВКА АНАТОМИЧЕСКИХ РАЗМЕТОК-ОРИЕНТИРОВ (МАСОК СИЛУЭТА) НА ХОЛСТЕ
         function drawBioReticle() {
-            ctx.strokeStyle = "rgba(16, 185, 129, 0.35)";
-            ctx.lineWidth = 1.5;
+            ctx.save();
+            
+            if (currentTest === 'neck') {
+                // Маска силуэта головы и шеи в профиль
+                ctx.strokeStyle = "rgba(16, 185, 129, 0.25)";
+                ctx.lineWidth = 2;
+                ctx.setLineDash([6, 4]);
+                
+                // Сетка выравнивания
+                ctx.beginPath();
+                ctx.moveTo(canvas.width * 0.45, 0); ctx.lineTo(canvas.width * 0.45, canvas.height);
+                ctx.stroke();
 
-            // Центральные оси горизонта и вертикали
-            ctx.beginPath();
-            ctx.moveTo(canvas.width / 2, 0); ctx.lineTo(canvas.width / 2, canvas.height);
-            ctx.moveTo(0, canvas.height / 2); ctx.lineTo(canvas.width, canvas.height / 2);
-            ctx.stroke();
+                // Эскизный контур профиля головы
+                ctx.setLineDash([]);
+                ctx.fillStyle = "rgba(16, 185, 129, 0.03)";
+                ctx.beginPath();
+                ctx.arc(canvas.width * 0.5, canvas.height * 0.35, 75, 1.2 * Math.PI, 1.9 * Math.PI, false);
+                ctx.quadraticCurveTo(canvas.width * 0.72, canvas.height * 0.38, canvas.width * 0.68, canvas.height * 0.48); // нос/подбородок
+                ctx.lineTo(canvas.width * 0.52, canvas.height * 0.55); // шея спереди
+                ctx.lineTo(canvas.width * 0.55, canvas.height * 0.75); // грудь
+                ctx.lineTo(canvas.width * 0.25, canvas.height * 0.75); // спина
+                ctx.quadraticCurveTo(canvas.width * 0.32, canvas.height * 0.52, canvas.width * 0.38, canvas.height * 0.45); // затылок
+                ctx.closePath();
+                ctx.fill();
+                ctx.stroke();
 
-            // Круглый или овальный шаблон-ориентир в зависимости от выбранного теста
-            ctx.beginPath();
-            if (currentTest === 'lymph') {
-                // Овал под контуры лица
-                ctx.ellipse(canvas.width / 2, canvas.height / 2 - 30, 90, 130, 0, 0, 2 * Math.PI);
-            } else {
-                // Сетка-шаблон под пропорции тела во весь рост / по пояс
-                ctx.arc(canvas.width / 2, canvas.height / 2, 140, 0, 2 * Math.PI);
+            } else if (currentTest === 'pelvis') {
+                // Маска силуэта корпуса анфас для контроля таза
+                ctx.strokeStyle = "rgba(179, 134, 57, 0.25)";
+                ctx.lineWidth = 1.5;
+                ctx.setLineDash([5, 5]);
+                
+                // Центральная ось позвоночника
+                ctx.beginPath();
+                ctx.moveTo(canvas.width / 2, 0); ctx.lineTo(canvas.width / 2, canvas.height);
+                // Линия горизонта таза
+                ctx.moveTo(0, canvas.height * 0.65); ctx.lineTo(canvas.width, canvas.height * 0.65);
+                ctx.stroke();
+
+                // Контур тазовых костей
+                ctx.setLineDash([]);
+                ctx.fillStyle = "rgba(179, 134, 57, 0.03)";
+                ctx.beginPath();
+                ctx.moveTo(canvas.width * 0.25, canvas.height * 0.4);
+                ctx.quadraticCurveTo(canvas.width * 0.5, canvas.height * 0.42, canvas.width * 0.75, canvas.height * 0.4); // талия
+                ctx.lineTo(canvas.width * 0.8, canvas.height * 0.65); // правое бедро
+                ctx.lineTo(canvas.width * 0.65, canvas.height * 0.9);
+                ctx.lineTo(canvas.width * 0.35, canvas.height * 0.9);
+                ctx.lineTo(canvas.width * 0.2, canvas.height * 0.65); // левое бедро
+                ctx.closePath();
+                ctx.fill();
+                ctx.stroke();
+
+            } else if (currentTest === 'joints') {
+                // Гониометр: круговая шкала углов
+                ctx.strokeStyle = "rgba(16, 185, 129, 0.2)";
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.arc(canvas.width / 2, canvas.height / 2, 120, 0, 2 * Math.PI);
+                ctx.arc(canvas.width / 2, canvas.height / 2, 60, 0, 2 * Math.PI);
+                ctx.stroke();
+
+                ctx.setLineDash([4, 4]);
+                ctx.beginPath();
+                ctx.moveTo(canvas.width / 2, 0); ctx.lineTo(canvas.width / 2, canvas.height);
+                ctx.moveTo(0, canvas.height / 2); ctx.lineTo(canvas.width, canvas.height / 2);
+                ctx.stroke();
+
+            } else if (currentTest === 'lymph') {
+                // Анатомическая селфи-маска овала лица (как в бьюти-камерах)
+                ctx.strokeStyle = "rgba(16, 185, 129, 0.4)";
+                ctx.lineWidth = 2;
+                ctx.setLineDash([4, 2]);
+
+                // Симметричные оси
+                ctx.beginPath();
+                ctx.moveTo(canvas.width / 2, 0); ctx.lineTo(canvas.width / 2, canvas.height); // Вертикаль носа
+                ctx.moveTo(0, canvas.height * 0.42); ctx.lineTo(canvas.width, canvas.height * 0.42); // Линия глаз
+                ctx.stroke();
+
+                // Овал
+                ctx.setLineDash([]);
+                ctx.fillStyle = "rgba(16, 185, 129, 0.02)";
+                ctx.beginPath();
+                ctx.ellipse(canvas.width / 2, canvas.height * 0.45, 105, 145, 0, 0, 2 * Math.PI);
+                ctx.fill();
+                ctx.stroke();
+                
+                // Вспомогательные дуги губ и бровей
+                ctx.strokeStyle = "rgba(16, 185, 129, 0.2)";
+                ctx.beginPath();
+                ctx.arc(canvas.width / 2, canvas.height * 0.32, 40, 0.2 * Math.PI, 0.8 * Math.PI);
+                ctx.arc(canvas.width / 2, canvas.height * 0.52, 30, 0.2 * Math.PI, 0.8 * Math.PI);
+                ctx.stroke();
             }
-            ctx.stroke();
+
+            ctx.restore();
         }
 
         function redrawCanvas() {
@@ -497,10 +623,10 @@
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
             }
 
-            // Накладываем измерительную рамку
+            // Наложение маски поверх фото (или пустой подложки) для ориентирования
             drawBioReticle();
 
-            // Отрисовка маркеров
+            // Отрисовка установленных пользователем точек
             points.forEach((pt, index) => {
                 ctx.beginPath();
                 ctx.arc(pt.x, pt.y, 8, 0, 2 * Math.PI);
@@ -510,11 +636,21 @@
                 ctx.lineWidth = 2.5;
                 ctx.stroke();
                 
-                ctx.fillStyle = "#FFF";
+                // Текст надписей меток с контрастной подложкой
+                ctx.save();
                 ctx.font = "bold 12px Manrope";
-                ctx.fillText(`${index + 1}. ${testConfigs[currentTest].labels[index]}`, pt.x + 12, pt.y - 12);
+                const labelText = `${index + 1}. ${testConfigs[currentTest].labels[index]}`;
+                const textWidth = ctx.measureText(labelText).width;
+                
+                ctx.fillStyle = "rgba(0,0,0,0.75)";
+                ctx.fillRect(pt.x + 10, pt.y - 24, textWidth + 8, 18);
+                
+                ctx.fillStyle = "#FFF";
+                ctx.fillText(labelText, pt.x + 14, pt.y - 11);
+                ctx.restore();
             });
 
+            // Расчетные биомеханические соединительные линии
             if (points.length >= 2) {
                 ctx.beginPath();
                 ctx.moveTo(points[0].x, points[0].y);
@@ -527,7 +663,7 @@
                     ctx.beginPath();
                     ctx.moveTo(points[0].x, points[0].y);
                     ctx.lineTo(points[1].x, points[0].y);
-                    ctx.strokeStyle = "rgba(239, 68, 68, 0.6)";
+                    ctx.strokeStyle = "rgba(239, 68, 68, 0.7)";
                     ctx.lineWidth = 2;
                     ctx.setLineDash([4, 4]);
                     ctx.stroke();
@@ -544,85 +680,92 @@
             }
         }
 
-        // КООРДИНАТЫ И ТАЧИ
+        // АДАПТИВНЫЙ РАСЧЕТ КООРДИНАТ КЛИКА С УЧЕТОМ СЖАТИЯ ХОЛСТА НА МОБИЛЬНЫХ
         function getCanvasCoords(e) {
             const rect = canvas.getBoundingClientRect();
-            let clientX = e.clientX || (e.touches && e.touches[0].clientX);
-            let clientY = e.clientY || (e.touches && e.touches[0].clientY);
+            let clientX = e.clientX;
+            let clientY = e.clientY;
+            
+            if (e.touches && e.touches.length > 0) {
+                clientX = e.touches[0].clientX;
+                clientY = e.touches[0].clientY;
+            }
+            
             return {
                 x: ((clientX - rect.left) / rect.width) * canvas.width,
                 y: ((clientY - rect.top) / rect.height) * canvas.height
             };
         }
 
-        canvas.addEventListener('mousedown', function(e) {
+        // КЛИК И ЗАХВАТ МАРКЕРОВ
+        function handleStart(coords) {
             if (!uploadedImage) return;
-            const coords = getCanvasCoords(e);
 
-            // Проверяем захват точки для перетаскивания
+            // Проверка: попал ли пользователь в уже существующую точку для перетаскивания
             for (let i = 0; i < points.length; i++) {
                 let dist = Math.sqrt(Math.pow(points[i].x - coords.x, 2) + Math.pow(points[i].y - coords.y, 2));
-                if (dist < 16) {
+                // Радиус захвата на мобильном увеличен для удобства пальцев
+                if (dist < 26) {
                     draggedPointIndex = i;
                     return;
                 }
             }
 
-            // Установка новых точек
+            // Если не попал в точку, ставим новую (если лимит не исчерпан)
             const config = testConfigs[currentTest];
             if (points.length < config.pointsCount) {
                 points.push({x: coords.x, y: coords.y});
                 redrawCanvas();
 
                 if (points.length < config.pointsCount) {
-                    document.getElementById('canvasInstruction').innerText = `Шаг 2: Кликните на ${config.labels[points.length]}`;
+                    document.getElementById('canvasInstruction').innerText = `Шаг ${points.length + 1}: Кликните на ${config.labels[points.length]}`;
                 } else {
                     document.getElementById('canvasInstruction').innerText = "Готово! Вы можете плавно перемещать маркеры пальцем.";
                     processDiagnostics();
                 }
             }
-        });
+        }
 
-        canvas.addEventListener('mousemove', function(e) {
+        function handleMove(coords) {
             if (draggedPointIndex === -1) return;
-            const coords = getCanvasCoords(e);
             points[draggedPointIndex] = { x: coords.x, y: coords.y };
             redrawCanvas();
             processDiagnostics();
-        });
+        }
 
+        // ДЕСКТОПНЫЕ СОБЫТИЯ МЫШИ
+        canvas.addEventListener('mousedown', function(e) {
+            handleStart(getCanvasCoords(e));
+        });
+        canvas.addEventListener('mousemove', function(e) {
+            handleMove(getCanvasCoords(e));
+        });
         window.addEventListener('mouseup', function() { draggedPointIndex = -1; });
 
-        // Тач-адаптация для мобильных устройств
+        // МОБИЛЬНЫЕ СОБЫТИЯ ТАЧ-ПАДОВ (БЕЗ СМЕЩЕНИЙ И ПРЫЖКОВ СТРАНИЦЫ)
         canvas.addEventListener('touchstart', function(e) {
-            if (!uploadedImage) return;
-            const coords = getCanvasCoords(e);
-            for (let i = 0; i < points.length; i++) {
-                let dist = Math.sqrt(Math.pow(points[i].x - coords.x, 2) + Math.pow(points[i].y - coords.y, 2));
-                if (dist < 22) { draggedPointIndex = i; e.preventDefault(); return; }
-            }
-        });
+            if(e.cancelable) e.preventDefault();
+            handleStart(getCanvasCoords(e));
+        }, { passive: false });
+        
         canvas.addEventListener('touchmove', function(e) {
-            if (draggedPointIndex === -1) return;
-            const coords = getCanvasCoords(e);
-            points[draggedPointIndex] = { x: coords.x, y: coords.y };
-            redrawCanvas();
-            processDiagnostics();
-            e.preventDefault();
-        });
+            if(e.cancelable) e.preventDefault();
+            handleMove(getCanvasCoords(e));
+        }, { passive: false });
+        
         canvas.addEventListener('touchend', function() { draggedPointIndex = -1; });
 
-        // МАТЕМАТИКА И ВЕРДИКТЫ ОЛЬГИ
+        // МАТЕМАТИЧЕСКАЯ ОБРАБОТКА И ВЫВОД ВЕРДИКТОВ ОЛЬГИ
         function processDiagnostics() {
             if (points.length < 2) return;
             let verdict = "";
 
             if (currentTest === 'neck') {
                 const dx = Math.abs(points[1].x - points[0].x);
-                const cmOffset = Math.round(dx * 0.1 * 10) / 10; // 1px = 1mm
+                const cmOffset = Math.round(dx * 0.1 * 10) / 10;
                 const loadKg = 5 + (cmOffset * 2.4);
 
-                verdict = `Выдвижение головы вперед по горизонтальной оси составляет примерно <strong>${cmOffset} см</strong>. Опираясь на законы рычагов биомеханики, мышцы вашей шеи и верхнего плечевого пояса вынуждены удерживать статическую нагрузку в <strong>${Math.round(loadKg)} кг</strong>! Это пережимает артерии и провоцирует головные боли. Ждем вас на Коммунистической 67 для мягкого релиза подкоротких разгибателей.`;
+                verdict = `Выдвижение головы вперед по горизонтальной оси составляет примерно <strong>${cmOffset} см</strong>. Опираясь на законы рычагов биомеханики, мышцы вашей шеи и верхнего плечевого пояса вынуждены удерживать статическую нагрузку в <strong>${Math.round(loadKg)} кг</strong>! Это пережимает артерии и провоцирует головные боли. Ждем вас на Коммунистической 77/2 для мягкого релиза подкоротких разгибателей.`;
 
             } else if (currentTest === 'pelvis') {
                 const dy = points[1].y - points[0].y;
@@ -640,9 +783,8 @@
                 const a = Math.pow(points[1].x-points[0].x,2) + Math.pow(points[1].y-points[0].y,2);
                 const b = Math.pow(points[1].x-points[2].x,2) + Math.pow(points[1].y-points[2].y,2);
                 const c = Math.pow(points[2].x-points[0].x,2) + Math.pow(points[2].y-points[0].y,2);
-                let angle = Math.round(Math.acos((a+b-c)/Math.sqrt(4*a*b)) * (180/PI_CONSTANT));
-                function getPi() { return Math.PI; }
-                angle = Math.round(Math.acos((a+b-c)/Math.sqrt(4*a*b)) * (180/getPi()));
+                const getPi = () => Math.PI;
+                let angle = Math.round(Math.acos((a+b-c)/Math.sqrt(4*a*b)) * (180/getPi()));
                 if (isNaN(angle)) angle = 145;
 
                 verdict = `Амплитуда раскрытия суставной цепи составляет <strong>${angle}°</strong> при норме в 180°. Сустав заблокирован высохшими и склеенными фасциальными слоями. Нагружать тело тяжелым фитнесом сейчас опасно — начните с суставной мобилизации и пилатеса в РЕСУРСе.`;
@@ -695,6 +837,15 @@
 
         window.addEventListener('DOMContentLoaded', openModal);
         switchTest('neck');
+    </script>
+
+    <script>
+    window.yaContextCb.push(() => {
+        Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-6", "type": "floorAd", "platform": "touch" });
+        Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-7", "type": "floorAd", "platform": "desktop" });
+        Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-24", "type": "fullscreen", "platform": "touch" });
+        Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-25", "type": "fullscreen", "platform": "desktop" });
+    })
     </script>
 </body>
 </html>
