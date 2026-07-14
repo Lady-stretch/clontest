@@ -391,7 +391,7 @@
         <div style="text-align: center; width: 100%;">
             <button class="btn-share-viral" onclick="shareScannerLink()">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-                <span>Вызвать близких на проверку биомеханики тела</span>
+                <span>Поделиться результатами сканирования с близкими</span>
             </button>
         </div>
 
@@ -454,6 +454,7 @@
         let currentTest = 'neck';
         let points = [];
         let isFrozen = false; // Состояние фиксации кадра
+        let canPlacePoints = false; // Маркер активации обработчика кликов
         let draggedPointIndex = -1;
         let streamInstance = null;
         let frozenBufferCanvas = null; // Буфер для Offscreen кэширования кадра
@@ -472,6 +473,7 @@
         // ПОДКЛЮЧЕНИЕ ПОТОКОВОГО ВИДЕО С ВЕБ-КАМЕРЫ
         async function startLiveCameraFeed() {
             isFrozen = false;
+            canPlacePoints = false;
             points = [];
             frozenBufferCanvas = null;
             document.getElementById('diagnosticVerdict').style.display = 'none';
@@ -526,7 +528,13 @@
             document.getElementById('captureSnapshotBtn').style.display = 'none';
             document.getElementById('resetCameraBtn').style.display = 'block';
             document.getElementById('canvasInstruction').innerText = "Снимок зафиксирован. Расставьте маркеры суставов кликами.";
+            
             redrawCanvas();
+
+            // Изолируем клик фиксации кнопки от первого тапа по холсту
+            setTimeout(() => {
+                canPlacePoints = true;
+            }, 100);
         }
 
         function switchTest(testKey) {
@@ -541,29 +549,36 @@
             startLiveCameraFeed();
         }
 
-        // ОТРИСОВКА ЯРКИХ НЕОНОВЫХ МАСОК И ТРАФАРЕТОВ (3px, МАКСИМАЛЬНЫЙ КОНТРАСТ)
+        // ОТРИСОВКА ОПТИМАЛЬНОГО И ИСПРАВЛЕННОГО ТРАФАРЕТА
         function drawBioReticle() {
             ctx.save();
             
             if (currentTest === 'neck') {
-                ctx.strokeStyle = "#00FF87"; // Неоновый зеленый
+                // Идеальная вертикальная ось отвеса (Plumb Line) по канонам постурального анализа
+                ctx.strokeStyle = "#FF3333"; // Яркая красная контрастная ось
                 ctx.lineWidth = 3;
-                ctx.setLineDash([8, 4]);
+                ctx.setLineDash([10, 5]);
                 ctx.beginPath();
-                ctx.moveTo(canvas.width * 0.45, 0); ctx.lineTo(canvas.width * 0.45, canvas.height);
+                ctx.moveTo(canvas.width * 0.5, 0); 
+                ctx.lineTo(canvas.width * 0.5, canvas.height);
                 ctx.stroke();
 
+                // Калибровочная сетка для вписывания силуэта
+                ctx.strokeStyle = "#00FF87"; // Неоновый изумрудный
+                ctx.lineWidth = 2.5;
                 ctx.setLineDash([]);
-                ctx.fillStyle = "rgba(0, 255, 135, 0.05)";
+                
+                // Зона позиционирования уха и шеи
+                ctx.fillStyle = "rgba(0, 255, 135, 0.04)";
                 ctx.beginPath();
-                ctx.arc(canvas.width * 0.5, canvas.height * 0.35, 75, 1.2 * Math.PI, 1.9 * Math.PI, false);
-                ctx.quadraticCurveTo(canvas.width * 0.72, canvas.height * 0.38, canvas.width * 0.68, canvas.height * 0.48);
-                ctx.lineTo(canvas.width * 0.52, canvas.height * 0.55);
-                ctx.lineTo(canvas.width * 0.55, canvas.height * 0.75);
-                ctx.lineTo(canvas.width * 0.25, canvas.height * 0.75);
-                ctx.quadraticCurveTo(canvas.width * 0.32, canvas.height * 0.52, canvas.width * 0.38, canvas.height * 0.45);
-                ctx.closePath();
+                ctx.arc(canvas.width * 0.5, canvas.height * 0.35, 65, 0, 2 * Math.PI); // Шаблон головы
+                ctx.stroke();
                 ctx.fill();
+
+                ctx.beginPath();
+                ctx.moveTo(canvas.width * 0.45, canvas.height * 0.45);
+                ctx.lineTo(canvas.width * 0.48, canvas.height * 0.7); // Линия шеи и плеча
+                ctx.lineTo(canvas.width * 0.2, canvas.height * 0.75);
                 ctx.stroke();
 
             } else if (currentTest === 'pelvis') {
@@ -631,7 +646,7 @@
             // Отрисовываем жестко сохраненный стоп-кадр из буфера
             ctx.drawImage(frozenBufferCanvas, 0, 0, canvas.width, canvas.height);
             
-            // Отрисовываем маску
+            // Отрисовываем маску поверх сохраненного кадра
             drawBioReticle();
 
             // Рисуем маркеры суставов
@@ -684,6 +699,52 @@
             }
         }
 
+        function getCanvasCoords(e) {
+            const rect = canvas.getBoundingClientRect();
+            let clientX = e.clientX;
+            let clientY = e.clientY;
+            if (e.touches && e.touches.length > 0) {
+                clientX = e.touches[0].clientX;
+                clientY = e.touches[0].clientY;
+            }
+            return {
+                x: ((clientX - rect.left) / rect.width) * canvas.width,
+                y: ((clientY - rect.top) / rect.height) * canvas.height
+            };
+        }
+
+        function handleStart(coords) {
+            if (!isFrozen || !canPlacePoints) return; 
+
+            for (let i = 0; i < points.length; i++) {
+                let dist = Math.sqrt(Math.pow(points[i].x - coords.x, 2) + Math.pow(points[i].y - coords.y, 2));
+                if (dist < 26) {
+                    draggedPointIndex = i;
+                    return;
+                }
+            }
+
+            const config = testConfigs[currentTest];
+            if (points.length < config.pointsCount) {
+                points.push({x: coords.x, y: coords.y});
+                redrawCanvas();
+
+                if (points.length < config.pointsCount) {
+                    document.getElementById('canvasInstruction').innerText = `Шаг ${points.length + 1}: Кликните на ${config.labels[points.length]}`;
+                } else {
+                    document.getElementById('canvasInstruction').innerText = "Готово! Вы можете плавно перемещать маркеры пальцем.";
+                    processDiagnostics();
+                }
+            }
+        }
+
+        function handleMove(coords) {
+            if (draggedPointIndex === -1) return;
+            points[draggedPointIndex] = { x: coords.x, y: coords.y };
+            redrawCanvas();
+            processDiagnostics();
+        }
+
         canvas.addEventListener('mousedown', function(e) { handleStart(getCanvasCoords(e)); });
         canvas.addEventListener('mousemove', function(e) { handleMove(getCanvasCoords(e)); });
         window.addEventListener('mouseup', function() { draggedPointIndex = -1; });
@@ -707,7 +768,7 @@
                 const cmOffset = Math.round(dx * 0.1 * 10) / 10;
                 const loadKg = 5 + (cmOffset * 2.4);
 
-                verdict = `Выдвижение головы вперед по horizontal-оси составляет примерно <strong>${cmOffset} см</strong>. Опираясь на законы рычагов биомеханики, мышцы вашей шеи и верхнего плечевого пояса вынуждены удерживать статическую нагрузку в <strong>${Math.round(loadKg)} кг</strong>! Это пережимает артерии и провоцирует головные боли. Ждем вас на Коммунистической 77/2 для мягкого релиза подкоротких разгибателей.`;
+                verdict = `Выдвижение головы вперед по горизонтальной оси составляет примерно <strong>${cmOffset} см</strong>. Опираясь на законы рычагов биомеханики, мышцы вашей шеи и верхнего плечевого пояса вынуждены удерживать статическую нагрузку в <strong>${Math.round(loadKg)} кг</strong>! Это пережимает артерии и провоцирует головные боли. Ждем вас на Коммунистической 77/2 для мягкого релиза подкоротких разгибателей.`;
 
             } else if (currentTest === 'pelvis') {
                 const dy = points[1].y - points[0].y;
