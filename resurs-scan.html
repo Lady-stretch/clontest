@@ -164,7 +164,7 @@
             box-shadow: 0 0 15px rgba(179, 134, 57, 0.15);
         }
 
-        /* БЛОК ПОШАГОВОЙ ИНСТРУКЦИИ ПЕРЕД ГЛАЗАМИ */
+        /* БЛОК ИНСТРУКЦИИ КАК ВСТАТЬ */
         .live-photo-instruction-bar {
             background: rgba(179, 134, 57, 0.08);
             border: 1px solid var(--accent-gold);
@@ -319,7 +319,7 @@
             <div class="scan-tab active" id="tab-neck" onclick="switchTest('neck')">📐 1. Тест «Компьютерная шея»<br><small>Анализ завала головы</small></div>
             <div class="scan-tab" id="tab-pelvis" onclick="switchTest('pelvis')">⚖️ 2. Контроль перекоса таза<br><small>Скрининг осей сколиоза</small></div>
             <div class="scan-tab" id="tab-joints" onclick="switchTest('joints')">🔄 3. Гониометр приседа/наклона<br><small>Замер углов мобильности</small></div>
-            <div class="scan-tab" id="tab-lymph" onclick="switchTest('lymph')">🌊 4. Лимфатический трекер<br><small>Анализ отечности лица</small></div>
+            <div class="scan-tab" id="tab-lymph" onclick="switchTest('lymph')">🌊 4. Лимфатический трекер<br><small>Анализ асимметрии лица</small></div>
         </div>
 
         <div class="live-photo-instruction-bar">
@@ -355,7 +355,7 @@
                 </div>
 
                 <p class="content-p" style="font-size: 13px; color: var(--text-muted); font-style: italic; border-top: 1px dashed var(--border-color); padding-top: 15px; margin-top: 15px;">
-                    *Забота о точности: После фиксации кадра вы можете захватить точки маркеров пальцем или мышкой прямо на фотографии и плавно передвинуть их для ювелирной доработки. Скрипт мгновенно пересчитает геометрию.
+                    *Забота о точности: После фиксации кадра зажмите маркер пальцем или мышкой — в левом верхнем углу всплывёт увеличительная лупа. Плавно наведите перекрестие на сустав для ювелирной точности.
                 </p>
             </div>
 
@@ -405,7 +405,7 @@
             <ol>
                 <li><strong>Позиционирование:</strong> Перед съёмкой внимательно изучите текстовую подсказку в верхней части экрана — она детально описывает, как расположить телефон и какую позу принять для конкретного теста.</li>
                 <li><strong>Горизонт:</strong> Смартфон должен стоять жестко и вертикально на уровне груди или пояса (не держите в руках при съёмке, чтобы оси не плавали).</li>
-                <li><strong>Фиксация:</strong> Нажмите кнопку «Зафиксировать снимок», после чего расставьте маркеры суставов кликами. Точки можно плавно перетаскивать пальцем.</li>
+                <li><strong>Фиксация:</strong> Нажмите кнопку «Зафиксировать снимок», после чего расставьте маркеры суставов кликами. Зажмите любую точку, чтобы активировать увеличительную лупу для точного наведения.</li>
             </ol>
             <button class="close-modal-btn" onclick="closeModal()">Понятно, включить сканер</button>
         </div>
@@ -421,7 +421,7 @@
         const testConfigs = {
             neck: {
                 title: "Тест «Компьютерная шея» (Профиль)",
-                desc: "Этот модуль высчитывает горизонтальное смещение мочки уха относительно плечевого пояса. В норме масштаб кадра составляет 1px = 1мм (0.1 см). Завал головы вперед перегружает трапецию, сдавливая сосуды шеи.",
+                desc: "Этот модуль высчитывает горизонтальное смещение мочки уха относительно вертикальной оси плечевого сустава. Масштаб кадра: 1px = 1мм. Завал головы вперед перегружает трапецию, сдавливая затылочные артерии.",
                 poseInstruction: "<strong>Как подготовить кадр:</strong> Разрешите доступ к камере. Поставьте смартфон строго вертикально на уровне груди на расстоянии <strong>2.5 метров</strong> от себя. Встаньте ровно правым боком к объективу, руки опущены, взгляд направлен прямо перед собой. Нажмите кнопку фиксации снимка.",
                 instruction: "Шаг 1: Кликните строго на центр мочки уха зафиксированного кадра",
                 pointsCount: 2,
@@ -430,36 +430,38 @@
             pelvis: {
                 title: "Скрининг перекоса осей таза (Анфас/Спина)",
                 desc: "Оценка параллельности подвздошных костей относительно горизонтальной линии. Позволяет зафиксировать скрытые компенсации сколиоза и асимметрию длины ног.",
-                poseInstruction: "<strong>Как подготовить кадр:</strong> Поставьте телефон строго вертикально на уровне вашего пояса на расстоянии <strong>2.5–3 метров</strong>. Встаньте лицом к объективу, стопы параллельны на ширине плеч, вес тела распределен равномерно. Сделайте фиксацию.",
+                poseInstruction: "<strong>Как подготовить кадр:</strong> Поставьте телефон строго вертикально на уровне вашего пояса на расстоянии <strong>2.5–3 метров</strong>. Встаньте лицом к объектину, стопы параллельны на ширине плеч, вес тела распределен равномерно. Сделайте фиксацию.",
                 instruction: "Шаг 1: Кликните на левую выступающую косточку таза",
                 pointsCount: 2,
                 labels: ["Левая кость таза", "Правая кость таза"]
             },
             joints: {
                 title: "Гониометр: Подвижность суставов приседа и наклона",
-                desc: "Замеряет угол сгибания в тазобедренном суставе в момент максимальной амплитуды. У профессионального тренера сустав складывается глубоко (угол уменьшается), демонстрируя великолепную эластичность фасций.",
-                poseInstruction: "<strong>Как подготовить кадр:</strong> Отодвиньте телефон на <strong>3 метра</strong>, высота — уровень пояса. Встаньте строго боком (в профиль) к камере. Сделайте ваш максимальный глубокий присед или наклон вперед, удерживайте позу и нажмите фиксацию.",
+                desc: "Замеряет внутренний угол сгибания в тазобедренном суставе в момент максимальной амплитуды. У профессионального техничного тренера сустав складывается глубоко (угол уменьшается), демонстрируя эластичность фасций.",
+                poseInstruction: "<strong>Как подготовить кадр:</strong> Отодвиньте телефон на <strong>3 метра</strong>, высота — уровень пояса. Встаньте строго боком к камере. Сделайте ваш максимальный глубокий присед (удерживая спину прямой!) или наклон вперед, замрите и нажмите фиксацию.",
                 instruction: "Шаг 1: Кликните на центр плечевого сустава",
                 pointsCount: 3,
-                labels: ["Плечо", "Тазобедренный сустав", "Колено"]
+                labels: ["Плечевой сустав", "Тазобедренный сустав", "Колено"]
             },
             lymph: {
-                title: "Лимфатический трекер отечности лица",
-                desc: "Сравнительный анализ утренней симметрии овала лица. Помогает наглядно оценить динамику запуска лимфооттока после миофасциального релиза и работы с шеей.",
-                poseInstruction: "<strong>Как подготовить кадр:</strong> Держите телефон ровно на уровне глаз (или закрепите на штативе) на расстоянии вытянутой руки. Смотрите прямо в объектив без наклонов головы и улыбки. Сделайте фиксацию.",
-                instruction: "Шаг 1: Кликните на левый край нижней челюсти (под ухом)",
-                pointsCount: 2,
-                labels: ["Левый угол челюсти", "Правый угол челюсти"]
+                title: "Лимфатический трекер асимметрии лица",
+                desc: "Сравнительный биометрический анализ утренней симметрии овала лица. Вычисляет процентное отклонение левой и правой сторон челюсти относительно центральной оси носа.",
+                poseInstruction: "<strong>Как подготовить кадр:</strong> Держите телефон ровно на уровне глаз на расстоянии вытянутой руки. Смотрите прямо в объектив без наклонов головы и улыбки. Сделайте фиксацию кадра.",
+                instruction: "Шаг 1: Кликните строго на кончик носа (центральный вектор симметрии)",
+                pointsCount: 3,
+                labels: ["Кончик носа (Центр)", "Левый угол челюсти", "Правый угол челюсти"]
             }
         };
 
         let currentTest = 'neck';
         let points = [];
-        let isFrozen = false; // Состояние фиксации кадра
-        let canPlacePoints = false; // Маркер активации обработчика кликов
+        let isFrozen = false; 
+        let canPlacePoints = false; 
         let draggedPointIndex = -1;
         let streamInstance = null;
-        let frozenBufferCanvas = null; // Буфер для Offscreen кэширования кадра
+        let frozenBufferCanvas = null; 
+        let isDragging = false;
+        let currentMousePos = { x: 0, y: 0 };
 
         const canvas = document.getElementById('diagnosticCanvas');
         const ctx = canvas.getContext('2d');
@@ -472,7 +474,6 @@
         function openModal() { modal.classList.add('open'); }
         function closeModal() { modal.classList.remove('open'); startLiveCameraFeed(); }
 
-        // ПОДКЛЮЧЕНИЕ ПОТОКОВОГО ВИДЕО С ВЕБ-КАМЕРЫ
         async function startLiveCameraFeed() {
             isFrozen = false;
             canPlacePoints = false;
@@ -505,21 +506,16 @@
             }
         }
 
-        // БЕСКОНЕЧНЫЙ ЦИКЛ РЕНДЕРА СТРИМА КАМЕРЫ НА ХОЛСТ
         function renderLiveStreamLoop() {
             if (isFrozen) return;
-            
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
             drawBioReticle();
-
             requestAnimationFrame(renderLiveStreamLoop);
         }
 
-        // ЖЕЛЕЗНАЯ ФИКСАЦИЯ СНИМКА В КЭШ-БУФЕР ПОД РАЗМЕТКУ
         function freezeSnapshot() {
             isFrozen = true;
-            
             frozenBufferCanvas = document.createElement('canvas');
             frozenBufferCanvas.width = canvas.width;
             frozenBufferCanvas.height = canvas.height;
@@ -531,11 +527,7 @@
             document.getElementById('canvasInstruction').innerText = "Снимок зафиксирован. Расставьте маркеры суставов кликами.";
             
             redrawCanvas();
-
-            // Изолируем клик фиксации кнопки от первого тапа по холсту
-            setTimeout(() => {
-                canPlacePoints = true;
-            }, 100);
+            setTimeout(() => { canPlacePoints = true; }, 100);
         }
 
         function switchTest(testKey) {
@@ -550,81 +542,59 @@
             startLiveCameraFeed();
         }
 
-        // СТРОГАЯ ОТРИСОВКА ИЗМЕРИТЕЛЬНЫХ ОСЕЙ И ЛИНИЙ ОТВЕСА (БЕЗ ФАЛЬШИВЫХ СИЛУЭТОВ)
         function drawBioReticle() {
             ctx.save();
-            
-            if (currentTest === 'neck') {
-                // Идеальная вертикальная ось отвеса (Plumb Line) по центру кадра
-                ctx.strokeStyle = "rgba(255, 51, 51, 0.75)"; // Яркая красная нить
-                ctx.lineWidth = 3;
-                ctx.setLineDash([10, 5]);
-                ctx.beginPath();
-                ctx.moveTo(canvas.width * 0.45, 0); 
-                ctx.lineTo(canvas.width * 0.45, canvas.height);
-                ctx.stroke();
-
-            } else if (currentTest === 'pelvis') {
-                // Строгое перекрестие осей для контроля симметрии таза
-                ctx.strokeStyle = "rgba(255, 215, 0, 0.6)"; // Четкое золото
+            if (currentTest === 'pelvis') {
+                ctx.strokeStyle = "rgba(255, 215, 0, 0.5)"; 
                 ctx.lineWidth = 2.5;
                 ctx.setLineDash([6, 6]);
                 ctx.beginPath();
                 ctx.moveTo(canvas.width / 2, 0); ctx.lineTo(canvas.width / 2, canvas.height);
                 ctx.moveTo(0, canvas.height * 0.65); ctx.lineTo(canvas.width, canvas.height * 0.65);
                 ctx.stroke();
-
-            } else if (currentTest === 'joints') {
-                // Гониометр: сетка осей для визуального замера углов складывания конечностей
-                ctx.strokeStyle = "rgba(245, 158, 11, 0.5)"; // Оранжевая ось
-                ctx.lineWidth = 2;
-                ctx.setLineDash([4, 4]);
-                ctx.beginPath();
-                ctx.moveTo(canvas.width / 2, 0); ctx.lineTo(canvas.width / 2, canvas.height);
-                ctx.moveTo(0, canvas.height * 0.6); ctx.lineTo(canvas.width, canvas.height * 0.6);
-                ctx.stroke();
-
-            } else if (currentTest === 'lymph') {
-                // Лимфатический тест: строгое осевое деление лица на левую и правую половины
-                ctx.strokeStyle = "rgba(16, 185, 129, 0.6)"; // Изумрудная центральная линия
+            } else if (currentTest === 'lymph' && !isFrozen) {
+                ctx.strokeStyle = "rgba(16, 185, 129, 0.5)"; 
                 ctx.lineWidth = 2.5;
                 ctx.setLineDash([8, 4]);
                 ctx.beginPath();
                 ctx.moveTo(canvas.width / 2, 0); ctx.lineTo(canvas.width / 2, canvas.height);
                 ctx.stroke();
             }
-
             ctx.restore();
         }
 
+        // КОРРЕКТНАЯ ОТРИСОВКА ХОЛСТА И ЭКРАННОЙ ЛУПЫ (ZOOM LENS)
         function redrawCanvas() {
             if (!isFrozen || !frozenBufferCanvas) return;
             
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.drawImage(frozenBufferCanvas, 0, 0, canvas.width, canvas.height);
-            drawBioReticle();
 
-            // Рисуем маркеры суставов
-            points.forEach((pt, index) => {
+            // Динамические оси, привязанные к точкам пользователя
+            ctx.save();
+            if (currentTest === 'neck' && points.length >= 2) {
+                // Идеальный отвес строится СТРОГО вертикально через точку Плеча (Точка №2)
+                ctx.strokeStyle = "rgba(255, 51, 51, 0.85)"; 
+                ctx.lineWidth = 3;
+                ctx.setLineDash([10, 5]);
                 ctx.beginPath();
-                ctx.arc(pt.x, pt.y, 8, 0, 2 * Math.PI);
-                ctx.fillStyle = "#B38639";
-                ctx.fill();
-                ctx.strokeStyle = "#FFF";
-                ctx.lineWidth = 2.5;
+                ctx.moveTo(points[1].x, 0); 
+                ctx.lineTo(points[1].x, canvas.height);
                 ctx.stroke();
-                
-                ctx.save();
-                ctx.font = "bold 12px Manrope";
-                const labelText = `${index + 1}. ${testConfigs[currentTest].labels[index]}`;
-                const textWidth = ctx.measureText(labelText).width;
-                ctx.fillStyle = "rgba(0,0,0,0.75)";
-                ctx.fillRect(pt.x + 10, pt.y - 24, textWidth + 8, 18);
-                ctx.fillStyle = "#FFF";
-                ctx.fillText(labelText, pt.x + 14, pt.y - 11);
-                ctx.restore();
-            });
+            }
+            if (currentTest === 'lymph' && points.length >= 1) {
+                // Измерительный вектор симметрии строится через кончик носа (Точка №1)
+                ctx.strokeStyle = "rgba(16, 185, 129, 0.75)";
+                ctx.lineWidth = 2.5;
+                ctx.setLineDash([8, 4]);
+                ctx.beginPath();
+                ctx.moveTo(points[0].x, 0);
+                ctx.lineTo(points[0].x, canvas.height);
+                ctx.stroke();
+            }
+            ctx.restore();
 
+            // Отрисовка линий связей суставов
             if (points.length >= 2) {
                 ctx.beginPath();
                 ctx.moveTo(points[0].x, points[0].y);
@@ -652,6 +622,67 @@
                 ctx.lineWidth = 3.5;
                 ctx.stroke();
             }
+
+            // Отрисовка маркеров
+            points.forEach((pt, index) => {
+                ctx.beginPath();
+                ctx.arc(pt.x, pt.y, 8, 0, 2 * Math.PI);
+                ctx.fillStyle = "#B38639";
+                ctx.fill();
+                ctx.strokeStyle = "#FFF";
+                ctx.lineWidth = 2.5;
+                ctx.stroke();
+                
+                ctx.save();
+                ctx.font = "bold 12px Manrope";
+                const labelText = `${index + 1}. ${testConfigs[currentTest].labels[index]}`;
+                const textWidth = ctx.measureText(labelText).width;
+                ctx.fillStyle = "rgba(0,0,0,0.75)";
+                ctx.fillRect(pt.x + 10, pt.y - 24, textWidth + 8, 18);
+                ctx.fillStyle = "#FFF";
+                ctx.fillText(labelText, pt.x + 14, pt.y - 11);
+                ctx.restore();
+            });
+
+            // ОТРИСОВКА ЭКРАННОЙ ЛУПЫ ПРИ ПЕРЕТАСКИВАНИИ/ЗАЖАТИИ ТОЧКИ
+            if (isDragging && currentMousePos) {
+                ctx.save();
+                const lensRadius = 55; // Диаметр лупы
+                const lensX = 70;      // Фиксированное положение в левом верхнем углу холста
+                const lensY = 70;
+                const zoomFactor = 2.5; // Коэффициент увеличения
+
+                // Контур лупы
+                ctx.beginPath();
+                ctx.arc(lensX, lensY, lensRadius, 0, 2 * Math.PI);
+                ctx.lineWidth = 4;
+                ctx.strokeStyle = "#B38639";
+                ctx.stroke();
+                ctx.clip(); // Обрезаем холст под окружность лупы
+
+                // Прорисовываем увеличенную область вокруг курсора внутри лупы
+                ctx.drawImage(
+                    frozenBufferCanvas,
+                    currentMousePos.x - lensRadius / zoomFactor,
+                    currentMousePos.y - lensRadius / zoomFactor,
+                    (lensRadius * 2) / zoomFactor,
+                    (lensRadius * 2) / zoomFactor,
+                    lensX - lensRadius,
+                    lensY - lensRadius,
+                    lensRadius * 2,
+                    lensRadius * 2
+                );
+
+                // Перекрестие визира внутри лупы для снайперской точности
+                ctx.strokeStyle = "rgba(255, 51, 51, 0.8)";
+                ctx.lineWidth = 1.5;
+                ctx.beginPath();
+                ctx.moveTo(lensX - lensRadius, lensY); ctx.lineTo(lensX + lensRadius, lensY);
+                ctx.moveTo(lensX, lensY - lensRadius); ctx.lineTo(lensX, lensY + lensRadius);
+                ctx.stroke();
+
+                ctx.restore();
+            }
         }
 
         function getCanvasCoords(e) {
@@ -671,10 +702,14 @@
         function handleStart(coords) {
             if (!isFrozen || !canPlacePoints) return; 
 
+            // Проверяем захват точки
             for (let i = 0; i < points.length; i++) {
                 let dist = Math.sqrt(Math.pow(points[i].x - coords.x, 2) + Math.pow(points[i].y - coords.y, 2));
                 if (dist < 26) {
                     draggedPointIndex = i;
+                    isDragging = true;
+                    currentMousePos = coords;
+                    redrawCanvas();
                     return;
                 }
             }
@@ -682,12 +717,20 @@
             const config = testConfigs[currentTest];
             if (points.length < config.pointsCount) {
                 points.push({x: coords.x, y: coords.y});
+                if(points.length === 1) {
+                    isDragging = true; 
+                    draggedPointIndex = 0;
+                    currentMousePos = coords;
+                }
                 redrawCanvas();
 
                 if (points.length < config.pointsCount) {
                     document.getElementById('canvasInstruction').innerText = `Шаг ${points.length + 1}: Кликните на ${config.labels[points.length]}`;
                 } else {
                     document.getElementById('canvasInstruction').innerText = "Готово! Вы можете плавно перемещать маркеры пальцем.";
+                    isDragging = false;
+                    draggedPointIndex = -1;
+                    redrawCanvas();
                     processDiagnostics();
                 }
             }
@@ -695,14 +738,25 @@
 
         function handleMove(coords) {
             if (draggedPointIndex === -1) return;
+            currentMousePos = coords;
             points[draggedPointIndex] = { x: coords.x, y: coords.y };
             redrawCanvas();
-            processDiagnostics();
+            if(points.length === testConfigs[currentTest].pointsCount) {
+                processDiagnostics();
+            }
+        }
+
+        function handleEnd() {
+            if(isDragging) {
+                isDragging = false;
+                draggedPointIndex = -1;
+                redrawCanvas();
+            }
         }
 
         canvas.addEventListener('mousedown', function(e) { handleStart(getCanvasCoords(e)); });
         canvas.addEventListener('mousemove', function(e) { handleMove(getCanvasCoords(e)); });
-        window.addEventListener('mouseup', function() { draggedPointIndex = -1; });
+        window.addEventListener('mouseup', handleEnd);
 
         canvas.addEventListener('touchstart', function(e) {
             if(e.cancelable) e.preventDefault();
@@ -712,18 +766,24 @@
             if(e.cancelable) e.preventDefault();
             handleMove(getCanvasCoords(e));
         }, { passive: false });
-        canvas.addEventListener('touchend', function() { draggedPointIndex = -1; });
+        canvas.addEventListener('touchend', handleEnd);
 
+        // ИСПРАВЛЕННАЯ СТРОГАЯ МАТЕМАТИКА ПОСТУРАЛЬНОГО АНАЛИЗА
         function processDiagnostics() {
-            if (points.length < 2) return;
+            if (points.length < testConfigs[currentTest].pointsCount) return;
             let verdict = "";
 
             if (currentTest === 'neck') {
-                const dx = Math.abs(points[1].x - points[0].x);
+                // Линия отвеса теперь строится строго через плечо (Точка №2), измеряем уход уха (Точка №1) относительно неё
+                const dx = points[0].x - points[1].x; 
                 const cmOffset = Math.round(dx * 0.1 * 10) / 10;
                 const loadKg = 5 + (cmOffset * 2.4);
 
-                verdict = `Выдвижение головы вперед по горизонтальной оси составляет примерно <strong>${cmOffset} см</strong>. Опираясь на законы рычагов биомеханики, мышцы вашей шеи и верхнего плечевого пояса вынуждены удерживать статическую нагрузку в <strong>${Math.round(loadKg)} кг</strong>! Это пережимает артерии и провоцирует головные боли. Ждем вас на Коммунистической 77/2 для мягкого релиза подкоротких разгибателей.`;
+                if (cmOffset > 1.5) {
+                    verdict = `Смещение оси мочки уха вперед относительно вертикальной линии плеча составляет <strong>${cmOffset} см</strong>. Из-за изменения биомеханического рычага мышцы шеи вынуждены постоянно удержвать нагрузку в <strong>${Math.round(loadKg)} кг</strong>! Это вызывает ишемию сосудов и спазмы трапеции. Ждем вас на Коммунистической 77/2 для разгрузки осей.`;
+                } else {
+                    verdict = `Положение шейного отдела в идеальном балансе. Смещение составляет ${cmOffset} см (Физиологическая норма). Статическая нагрузка на диски минимальна — 5 кг.`;
+                }
 
             } else if (currentTest === 'pelvis') {
                 const dy = points[1].y - points[0].y;
@@ -745,16 +805,27 @@
                 let angle = Math.round(Math.acos((a+b-c)/Math.sqrt(4*a*b)) * (180/getPi()));
                 if (isNaN(angle)) angle = 90;
 
-                if (angle <= 95) {
-                    verdict = `Угол сгибания тазобедренной цепи составляет всего <strong>${angle}°</strong>. Это показатель **феноменальной, эталонной мобильности суставов и абсолютной эластичности миофасциальных слоев**! Ваши ткани идеально скользят, полностью разгружая крестцовый отдел. Великолепная форма!`;
-                } else if (angle > 95 && angle <= 135) {
-                    verdict = `Амплитуда раскрытия сустава в норме: <strong>${angle}°</strong>. Хороший уровень эластичности, мышечные группы адекватно удлиняются под нагрузкой.`;
+                // СТРОГИЕ ФИТНЕС-ПОРОГИ МОБИЛЬНОСТИ ОЛЬГИ
+                if (angle <= 60) {
+                    verdict = `Угол сгибания тазобедренной цепи составляет всего <strong>${angle}°</strong>. Это показатель **экстремальной, профессиональной мобильности глубоких суставов и абсолютной эластичности миофасциальных слоев**! Ваши ткани идеально скользят, полностью разгружая крестцовый отдел.`;
+                } else if (angle > 60 && angle <= 90) {
+                    verdict = `Амплитуда сгибания сустава в пределах функциональной нормы здорового человека: <strong>${angle}°</strong>. Фасции сохраняют адекватную длину и эластичность.`;
                 } else {
-                    verdict = `Зафиксировано жесткое ограничение угла сгибания: <strong>${angle}°</strong>. Сустав заблокирован высохшими и склеенными фасциальными слоями (синдром сухого сустава). Нагружать тело тяжелыми приседаниями и силовым фитнесом сейчас опасно — начните с суставной мобилизации у Ольги.`;
+                    verdict = `Зафиксировано жесткое ограничение угла сгибания: <strong>${angle}°</strong>. Сустав заблокирован высохшими и склеенными фасциальными слоями (синдром сухого таза). Нагружать тело тяжелым силовым фитнесом сейчас опасно — начните с суставной мобилизации у Ольги в РЕСУРСе.`;
                 }
 
             } else if (currentTest === 'lymph') {
-                verdict = `Асимметрия и застой межклеточной жидкости в тканях овала лица зафиксированы. Это следствие мышечного блока шейных лимфоузлов. Ликвидировать этот отек и вернуть свежесть лица можно за 3 занятия миофасциального релиза и пилатеса. Ждем вас внутри нашего закрытого Онлайн-клуба.`;
+                // ЧЕСТНЫЙ РАСЧЕТ АСИММЕТРИИ ЛИЦА ОТНОСИТЕЛЬНО ЦЕНТРАЛЬНОЙ ОСИ НОСА
+                const leftDist = Math.abs(points[1].x - points[0].x);
+                const rightDist = Math.abs(points[2].x - points[0].x);
+                const totalDist = leftDist + rightDist;
+                const asymmetryPercent = Math.round((Math.abs(leftDist - rightDist) / totalDist) * 100);
+
+                if (asymmetryPercent >= 4) {
+                    verdict = `Зафиксирована честная биометрическая асимметрия овала лица на <strong>${asymmetryPercent}%</strong> относительно центральной вертикали носа. Это свидетельствует об одностороннем спазме жевательных мышц и выраженном блоке глубоких шейных лимфоузлов, который тормозит лимфоотток. Убрать эти застойные отёки лица можно за 3 занятия МФР и пилатеса у нас на Коммунистической 77/2.`;
+                } else {
+                    verdict = `Овал лица симметричен (отклонение всего ${asymmetryPercent}% при норме до 3%). Мышечный тонус затылочной и жевательной зон сбалансирован, застойные лимфатические отёки не обнаружены.`;
+                }
             }
 
             document.getElementById('verdictText').innerHTML = verdict;
@@ -800,6 +871,7 @@
         }
 
         window.addEventListener('DOMContentLoaded', openModal);
+        switchTest('neck');
     </script>
 
     <script>
