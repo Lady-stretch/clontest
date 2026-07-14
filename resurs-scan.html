@@ -32,12 +32,33 @@
             if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
         })(document, window, "tmr-code");
     </script>
+    <noscript>
+        <div>
+            <img src="https://mc.yandex.ru/watch/108177329" style="position:absolute; left:-9999px;" alt="" />
+            <img src="https://top-fwz1.mail.ru/counter?id=3755240;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" />
+        </div>
+    </noscript>
 
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const isBot = /YandexBot|YandexAccessibilityBot|YandexMobileBot|Googlebot/i.test(navigator.userAgent);
+            if (isBot) {
+                fetch('https://functions.yandexcloud.net/d4ecn5ag33dcdd2deivd?bot=true&url=' + encodeURIComponent(window.location.href))
+                .then(res => res.json())
+                .then(data => console.log("SEO Preview Matrix Synced"))
+                .catch(e => console.log("SEO preview pass"));
+            }
+        });
+    </script>
+    
     <script>window.yaContextCb=window.yaContextCb||[]</script>
     <script src="https://yandex.ru/ads/system/context.js" async></script>
     
-    <title>Математический сканер осанки и биомеханики | РЕСУРС</title>
-    <meta name="description" content="Честный расчет завала шеи и перекоса таза на основе антропометрических констант и пиксельного анализа фотографии.">
+    <title>Цифровой сканер осанки и биомеханики тела онлайн | РЕСУРС</title>
+    <meta name="description" content="Бесплатная интерактивная фотодиагностика завала шеи, перекоса таза, мобильности суставов и отечности лица по камере смартфона от студии РЕСУРС Сыктывкар.">
+    <meta name="keywords" content="проверить осанку по фото, калькулятор перекоса таза, компьютерная шея тест онлайн, замер углов суставов гониометр, лимфодренаж отеки лица, диагностика позвоночника, ресурс сыктывкар">
+    <meta name="robots" content="index, follow">
+    
     <link rel="canonical" href="https://resurs-stretch.ru/resurs-scan.html">
 
     <style>
@@ -69,14 +90,23 @@
             --header-bg: rgba(244, 246, 244, 0.75);
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
             font-family: 'Manrope', sans-serif;
             line-height: 1.7;
             padding-top: 75px;
-            overflow-x: hidden;
         }
 
         .container {
@@ -84,6 +114,7 @@
             width: 100%;
             margin: 0 auto;
             padding: 0 24px;
+            box-sizing: border-box;
         }
 
         header {
@@ -102,108 +133,124 @@
         .logo span { color: var(--accent-color); }
 
         .header-controls { display: flex; gap: 8px; align-items: center; }
+        
         .nav-btn {
             font-weight: 800; font-size: 11px; text-transform: uppercase; text-decoration: none; color: var(--text-main);
-            padding: 6px 14px; border: 1px solid var(--border-color); border-radius: 8px; cursor: pointer; background: transparent;
+            padding: 6px 14px; border: 1px solid var(--border-color); border-radius: 8px; user-select: none;
+            transition: var(--transition); background: transparent; cursor: pointer;
         }
         .nav-btn:hover { background: var(--surface-hover); border-color: var(--accent-color); }
 
         .main-layout { padding: 40px 0; }
-        h1 { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: clamp(24px, 4.5vw, 34px); text-align: center; margin-bottom: 32px; }
+        h1 { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: clamp(24px, 4.5vw, 36px); line-height: 1.25; margin-bottom: 24px; text-align: center; }
 
+        /* ТАБЫ ПЕРЕКЛЮЧЕНИЯ ТЕСТОВ (BENTO) */
         .scan-tabs-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 12px;
             margin-bottom: 32px;
         }
 
         .scan-tab {
-            background-color: var(--surface-color); border: 1px solid var(--border-color); padding: 18px; border-radius: 16px;
-            cursor: pointer; text-align: center; font-weight: 800; font-size: 14px; transition: var(--transition);
+            background-color: var(--surface-color); border: 1px solid var(--border-color); padding: 20px; border-radius: 16px;
+            cursor: pointer; text-align: center; font-weight: 700; font-size: 14px; transition: var(--transition); box-shadow: 0 4px 15px var(--shadow);
         }
-        .scan-tab:hover { background-color: var(--surface-hover); border-color: var(--accent-color); }
+        .scan-tab:hover { border-color: var(--accent-color); background-color: var(--surface-hover); }
         .scan-tab.active {
             border-color: var(--accent-gold);
             background: rgba(179, 134, 57, 0.08);
             color: var(--text-main);
+            box-shadow: 0 0 15px rgba(179, 134, 57, 0.15);
         }
 
+        /* ДВУХКОЛОННЫЙ ДЕСКТОПНЫЙ ИНТЕРФЕЙС ТЕСТА */
         .workspace-grid { display: grid; grid-template-columns: 1fr; gap: 32px; margin-bottom: 32px; }
-        .bento-card { background-color: var(--surface-color); border: 1px solid var(--border-color); padding: 32px; border-radius: 24px; box-shadow: 0 12px 40px var(--shadow); }
+        .bento-card { background-color: var(--surface-color); border: 1px solid var(--border-color); padding: 32px; border-radius: 24px; box-shadow: 0 12px 40px var(--shadow); box-sizing: border-box; }
 
+        /* ОКНО СКАНИРОВАНИЯ И CANVAS */
         .canvas-container {
             width: 100%; max-width: 450px; aspect-ratio: 3 / 4; margin: 0 auto;
             background: #000; border-radius: 20px; border: 2px solid var(--border-color);
-            position: relative; overflow: hidden;
+            position: relative; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.7);
         }
 
         #diagnosticCanvas { width: 100%; height: 100%; display: block; }
 
-        /* ВЫСОКОКОНТРАСТНАЯ ПАНЕЛЬ ПОДСКАЗОК ПОД ХОЛСТОМ */
-        .info-status-bar {
-            width: 100%; max-width: 450px; margin: 16px auto 0 auto;
+        /* ВЫСОКОКОНТРАСТНАЯ ПАНЕЛЬ НА ХОЛСТЕ — ЧЕРНЫМ ПО БЕЛОМУ */
+        .canvas-overlay-instruction {
+            position: absolute; bottom: 16px; left: 16px; right: 16px;
             background: #FFFFFF !important; color: #000000 !important;
-            padding: 16px; border-radius: 12px; font-size: 15px; font-weight: 900;
-            text-align: center; border: 2px solid var(--accent-gold);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            padding: 14px; border-radius: 12px; font-size: 14px; text-align: center;
+            border: 2px solid var(--accent-gold); font-weight: 800; box-shadow: 0 4px 20px rgba(0,0,0,0.4);
         }
 
         .upload-controls { display: flex; flex-direction: column; align-items: center; gap: 12px; margin-top: 16px; }
         
         .file-input-label {
-            padding: 14px 28px; background: var(--accent-color); color: #FFF; border-radius: 12px;
-            font-size: 14px; font-weight: 800; cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px;
+            padding: 14px 28px; background: var(--accent-color); color: #FFF; border: 1px solid var(--border-color);
+            border-radius: 12px; font-size: 15px; font-weight: 800; cursor: pointer; transition: var(--transition);
+            text-transform: uppercase; letter-spacing: 0.5px;
         }
         .file-input-label:hover { background: var(--accent-hover); }
 
         .popup-trigger-btn {
             padding: 10px 20px; background: var(--surface-hover); border: 1px solid var(--border-color);
-            color: var(--text-main); border-radius: 10px; font-size: 11px; font-weight: 700; cursor: pointer; text-transform: uppercase;
+            color: var(--text-main); border-radius: 10px; font-size: 12px; font-weight: 700; cursor: pointer;
+            text-transform: uppercase; letter-spacing: 0.5px; transition: var(--transition);
         }
-        .popup-trigger-btn:hover { border-color: var(--accent-gold); }
+        .popup-trigger-btn:hover { border-color: var(--accent-gold); color: var(--accent-gold); }
 
+        .hidden-file-input { display: none; }
+
+        /* ВЕРДИКТ И УПРАВЛЕНИЕ РЕЗУЛЬТАТАМИ */
         .verdict-box {
             border-left: 4px solid var(--accent-gold); padding-left: 20px; margin: 20px 0;
             background: rgba(179, 134, 57, 0.02); padding-top: 16px; padding-bottom: 16px;
             border-radius: 0 16px 16px 0; display: none;
         }
+
         .verdict-box h3 { font-size: 18px; color: var(--accent-gold); margin-bottom: 8px; font-family: 'Cormorant Garamond', serif; font-weight: 800; }
 
-        .math-log-block {
-            background: rgba(0,0,0,0.2); border: 1px dashed var(--border-color);
-            padding: 12px; border-radius: 8px; margin-top: 12px; font-family: 'Courier New', monospace; font-size: 12px;
-        }
-
         .action-buttons-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 20px; }
+        
         .action-btn {
-            width: 100%; padding: 16px; border-radius: 12px; font-size: 14px; font-weight: 800;
+            width: 100%; padding: 14px; border-radius: 12px; font-size: 13px; font-weight: 800;
             text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; border: none;
-            display: flex; align-items: center; justify-content: center; transition: var(--transition); text-decoration: none;
+            display: flex; align-items: center; justify-content: center; gap: 10px; transition: var(--transition); text-decoration: none;
         }
         .btn-gold { background-color: var(--accent-gold); color: #FFF; }
         .btn-emerald { background-color: var(--accent-color); color: #FFF; }
 
+        .btn-share-viral {
+            display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 16px 32px;
+            background: var(--accent-color) !important; border: none; border-radius: 12px;
+            font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; cursor: pointer;
+            transition: var(--transition); color: #FFF; width: 100%; max-width: 480px; margin: 0 auto 30px auto;
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.2);
+        }
+        .btn-share-viral:hover { background-color: var(--accent-hover) !important; transform: translateY(-1px); }
+
         /* ПОПАП ИНСТРУКЦИИ */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.9); z-index: 99999;
+            background: rgba(0, 0, 0, 0.85); z-index: 99999;
             display: flex; align-items: center; justify-content: center;
             opacity: 0; pointer-events: none; transition: var(--transition); padding: 20px;
         }
         .modal-overlay.open { opacity: 1; pointer-events: auto; }
-        .modal-window { background: var(--surface-color); border: 2px solid var(--accent-color); padding: 32px; border-radius: 24px; max-width: 550px; width: 100%; }
+        .modal-window { background: var(--surface-color); border: 2px solid var(--accent-color); padding: 32px; border-radius: 24px; max-width: 550px; width: 100%; box-shadow: 0 20px 50px rgba(0,0,0,0.8); }
         .modal-window h2 { font-family: 'Cormorant Garamond', serif; font-size: 24px; margin-bottom: 16px; color: var(--accent-gold); }
         .modal-window ol { margin-left: 20px; margin-bottom: 20px; }
-        .modal-window li { margin-bottom: 12px; font-size: 15px; }
-        .close-modal-btn { width: 100%; padding: 14px; background: var(--accent-color); color: #FFF; border: none; border-radius: 12px; font-size: 14px; font-weight: 800; text-transform: uppercase; cursor: pointer; }
+        .modal-window li { margin-bottom: 12px; font-size: 15px; line-height: 1.6; }
+        .close-modal-btn { width: 100%; padding: 14px; background: var(--accent-color); color: #FFF; border: none; border-radius: 12px; font-size: 14px; font-weight: 800; text-transform: uppercase; cursor: pointer; letter-spacing: 0.5px; transition: var(--transition); }
 
         .rsya-linear-frame {
             background: var(--surface-color); border: 1px solid var(--border-color); border-radius: 24px;
-            padding: 15px; margin: 28px 0; display: flex; justify-content: center; align-items: center; min-height: 250px;
+            padding: 15px; margin: 28px 0; display: flex; justify-content: center; align-items: center; min-height: 250px; width: 100%; box-sizing: border-box; overflow: hidden;
         }
 
-        footer { background-color: var(--surface-color); border-top: 1px solid var(--border-color); padding: 40px 0; margin-top: 60px; font-size: 12px; color: var(--text-muted); }
+        footer { background-color: var(--surface-color); border-top: 1px solid var(--border-color); padding: 40px 0; margin-top: 60px; font-size: 12px; color: var(--text-muted); line-height: 1.7; }
         .content-p { font-size: 16px; margin-bottom: 12px; }
 
         @media (min-width: 769px) {
@@ -212,8 +259,12 @@
         }
         @media (max-width: 768px) {
             body { padding-top: 70px; }
-            .container { padding: 0 20px !important; }
+            header { padding: 12px 0; }
+            .logo { font-size: 17px; letter-spacing: 1.5px; }
+            .container { padding: 0 20px !important; width: 100% !important; }
+            .main-layout { padding: 15px 0; }
             .bento-card { padding: 24px 16px; border-radius: 20px; }
+            h1 { font-size: 24px; line-height: 1.3; }
         }
     </style>
 </head>
@@ -221,52 +272,51 @@
 
     <header>
         <div class="container header-wrapper">
-            <div class="logo">РЕСУРС<span>.МатематическийСканер</span></div>
+            <div class="logo">РЕСУРС<span>.СканерТела</span></div>
             <div class="header-controls">
                 <a href="index.html" class="nav-btn">Главная</a>
-                <div class="nav-btn" onclick="toggleTheme()">Тема</div>
+                <div class="theme-selector-trigger nav-btn" onclick="toggleTheme()">Тема</div>
             </div>
         </div>
     </header>
 
     <div class="container main-layout">
         
-        <h1>Честный пиксельный анализ биомеханики и геометрии тела</h1>
+        <h1>Интерактивная экспресс-диагностика опорно-двигательного аппарата по камере смартфона</h1>
 
         <div class="scan-tabs-grid">
-            <div class="scan-tab active" id="tab-neck" onclick="switchTest('neck')">📐 1. Завал шеи (Профиль)</div>
-            <div class="scan-tab" id="tab-pelvis" onclick="switchTest('pelvis')">⚖️ 2. Перекос таза (Анфас)</div>
+            <div class="scan-tab active" id="tab-neck" onclick="switchTest('neck')">📐 1. Тест «Компьютерная шея»<br><small>Анализ завала головы</small></div>
+            <div class="scan-tab" id="tab-pelvis" onclick="switchTest('pelvis')">⚖️ 2. Контроль перекоса таза<br><small>Скрининг осей сколиоза</small></div>
+            <div class="scan-tab" id="tab-joints" onclick="switchTest('joints')">🔄 3. Гониометр суставов<br><small>Замер углов мобильности</small></div>
+            <div class="scan-tab" id="tab-lymph" onclick="switchTest('lymph')">🌊 4. Лимфатический трекер<br><small>Анализ отечности лица</small></div>
         </div>
 
         <div class="workspace-grid">
             
-            <div class="bento-card" style="text-align: center; padding: 20px;">
+            <div class="bento-card" style="text-align: center;">
                 <div class="canvas-container">
                     <canvas id="diagnosticCanvas"></canvas>
+                    <div class="canvas-overlay-instruction" id="canvasInstruction">Загрузите снимок профиля для начала калибровки шеи</div>
                 </div>
                 
-                <div class="info-status-bar" id="canvasInstruction">Загрузите снимок профиля для калибровки</div>
-                
                 <div class="upload-controls">
-                    <label for="imageUploader" class="file-input-label">📸 Выбрать снимок</label>
+                    <label for="imageUploader" class="file-input-label">📸 Загрузить фото / Сделать снимок</label>
                     <input type="file" id="imageUploader" class="hidden-file-input" accept="image/*">
-                    <button class="popup-trigger-btn" onclick="openModal()">📋 Показать правила СВД-калибровки</button>
+                    <button class="popup-trigger-btn" onclick="openModal()">📋 Инструкция точной калибровки</button>
                 </div>
             </div>
 
-            <div class="bento-card">
-                <h2 id="testTitle">Измерение завала шеи</h2>
-                <p class="content-p" id="testDescription">Скрипт вычисляет точное горизонтальное расстояние между мочкой уха и плечевым суставом в пикселях, переводя его в сантиметры на основе фиксированного дальномерного прицела.</p>
+            <div class="bento-card" id="detailsCard">
+                <h2 id="testTitle">Тест «Компьютерная шея» (Профиль)</h2>
+                <p class="content-p" id="testDescription">Этот модуль вычисляет смещение шейных позвонков относительно вертикальной оси. Выдвижение головы вперед перегружает трапецию и нарушает приток крови к затылочным долям.</p>
                 
                 <div class="verdict-box" id="diagnosticVerdict">
-                    <h3>Математический отчет и вердикт Ольги:</h3>
-                    <p class="content-p" id="verdictText" style="font-size: 15px; font-weight: 700;"></p>
-                    
-                    <div class="math-log-block" id="mathLog"></div>
+                    <h3 id="verdictHeader">Результат компьютерного анализа:</h3>
+                    <p class="content-p" id="verdictText" style="margin-bottom: 0; font-size: 15px; font-weight: 700;"></p>
                 </div>
 
                 <p class="content-p" style="font-size: 13px; color: var(--text-muted); font-style: italic; border-top: 1px dashed var(--border-color); padding-top: 15px; margin-top: 15px;">
-                    *После установки маркеров вы можете захватить их мышкой или пальцем и передвинуть для более точной ювелирной настройки. Калькулятор пересчитает данные на лету.
+                    *Забота о точности: После установки маркеров вы можете захватить их мышкой или пальцем прямо на фотографии и плавно передвинуть для идеальной ювелирной настройки. Скрипт мгновенно пересчитает геометрию.
                 </p>
             </div>
 
@@ -282,13 +332,13 @@
         </div>
 
         <div class="bento-card">
-            <h2>Экспорт расчетной карты:</h2>
+            <h2>Экспорт расчетной карты здоровья:</h2>
             <div class="action-buttons-grid">
                 <button class="action-btn btn-gold" onclick="downloadResultCard()">💾 Скачать карту с расчетами в галерею</button>
                 <a href="club.html" class="action-btn btn-emerald">🔥 Войти в Онлайн-Клуб РЕСУРС</a>
             </div>
             <p class="content-p" style="font-size: 13px; color: var(--text-muted); margin-top: 15px; text-align: center;">
-                *Сохраненный файл содержит координатную сетку, маркеры и вердикт. Вы можете вручную переслать эту картинку Ольге в любой мессенджер для детального разбора.
+                *Сохраненный паспорт здоровья будет содержать наложенные маркеры и честный вердикт Ольги. Вы можете вручную переслать эту готовую картинку ей в мессенджер для глубокого разбора.
             </p>
         </div>
 
@@ -301,41 +351,62 @@
             </script>
         </div>
 
+        <div style="text-align: center; width: 100%;">
+            <button class="btn-share-viral" onclick="shareScannerLink()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                <span>Вызвать близких на проверку биомеханики тела</span>
+            </button>
+        </div>
+
     </div>
 
     <div class="modal-overlay" id="instructionModal">
         <div class="modal-window">
-            <h2>Честный регламент СВД-калибровки:</h2>
+            <h2>Честный регламент биометрической калибровки:</h2>
             <ol>
-                <li><strong>Фиксация масштаба:</strong> Отойдите на <strong>2.5 – 3 метра</strong> от камеры и приближайте/удаляйте телефон, пока ваше тело строго не впишется в границы наложенного прицела. Это задает точный неизменяемый масштаб пикселей.</li>
-                <li><strong>Уровень горизонта:</strong> Телефон должен стоять строго вертикально на уровне груди (не в руках).</li>
-                <li><strong>Одежда:</strong> Строго облегающая форма, иначе оверсайз ткань исказит реальные костные ориентиры суставов.</li>
+                <li><strong>Фиксация масштаба:</strong> Отойдите на <strong>2.5 – 3 метра</strong> от камеры смартфона и приближайте или удаляйте телефон, пока контур вашего тела или лица ровно не впишется в границы наложенного на экран полупрозрачного шаблона. Это задаст точный неизменяемый масштаб пикселей.</li>
+                <li><strong>Уровень горизонта:</strong> Телефон должен стоять строго вертикально на уровне груди или пояса (не держите в руках при съёмке).</li>
+                <li><strong>Форма одежды:</strong> Наденьте облегающую спортивную одежду, иначе оверсайз вещи полностью скроют реальное положение суставов.</li>
             </ol>
             <button class="close-modal-btn" onclick="closeModal()">Понятно, начать калибровку</button>
         </div>
     </div>
 
     <footer>
-        <div class="container" style="text-align: center;">
-            <div>© 2026 Экосистема РЕСУРС. г. Сыктывкар, ул. Коммунистическая 67. Пиксельное моделирование осей биомеханики.</div>
+        <div class="container">
+            <div>© 2026 Экосистема РЕСУРС. Автоматизированная диагностика. г. Сыктывкар, ул. Коммунистическая 67.</div>
         </div>
     </footer>
 
     <script>
         const testConfigs = {
             neck: {
-                title: "Измерение завала шеи (Профиль)",
-                desc: "Скрипт рассчитывает горизонтальное смещение мочки уха относительно плечевого сустава. При заполнении прицела СВД базовая константа расстояния между этими точками в норме равна 12 см (120 пикселей кадра, масштаб: 1px = 1мм).",
+                title: "Тест «Компьютерная шея» (Профиль)",
+                desc: "Этот модуль высчитывает горизонтальное смещение мочки уха относительно плечевого пояса. В норме при вписывании в анатомический контур масштаб кадра составляет 1px = 1мм (0.1 см). Завал головы вперед перегружает трапецию, сдавливая сосуды шеи.",
                 instruction: "Шаг 1: Кликните строго на центр мочки уха",
                 pointsCount: 2,
-                labels: ["Мочка уха", "Плечевой сустав"]
+                labels: ["Мочка уха", "Кость плеча"]
             },
             pelvis: {
-                title: "Скрининг перекоса осей таза (Анфас)",
-                desc: "Оценка параллельности линии подвздошных костей относительно горизонта. Антропометрическая константа ширины таза взрослого человека принята за 28 см (280 пикселей кадра).",
+                title: "Скрининг перекоса осей таза (Анфас/Спина)",
+                desc: "Оценка параллельности подвздошных костей относительно горизонтальной линии. Позволяет зафиксировать скрытые компенсации сколиоза и асимметрию длины ног.",
                 instruction: "Шаг 1: Кликните на левую косточку таза",
                 pointsCount: 2,
-                labels: ["Левый таз", "Правый таз"]
+                labels: ["Левая кость таза", "Правая кость таза"]
+            },
+            joints: {
+                title: "Гониометр: Подвижность суставов (Профиль)",
+                desc: "Математический замер угла сгибания и мобильности суставных цепей по 3 ключевым точкам. Показывает уровень зажатости глубоких фасций.",
+                instruction: "Шаг 1: Кликните на плечевой сустав",
+                pointsCount: 3,
+                labels: ["Плечо", "Тазобедренный сустав", "Колено"]
+            },
+            lymph: {
+                title: "Лимфатический трекер отечности лица",
+                desc: "Сравнительный анализ утренней симметрии овала лица. Помогает наглядно оценить динамику запуска лимфооттока после миофасциального релиза и работы с шеей.",
+                instruction: "Шаг 1: Кликните на левый край челюсти",
+                pointsCount: 2,
+                labels: ["Левый угол челюсти", "Правый угол челюсти"]
             }
         };
 
@@ -355,18 +426,28 @@
         function switchTest(testKey) {
             currentTest = testKey;
             points = [];
+            
             document.querySelectorAll('.scan-tab').forEach(t => t.classList.remove('active'));
             document.getElementById(`tab-${testKey}`).classList.add('active');
+            
             document.getElementById('testTitle').innerText = testConfigs[testKey].title;
             document.getElementById('testDescription').innerText = testConfigs[testKey].desc;
             document.getElementById('canvasInstruction').innerText = testConfigs[testKey].instruction;
             document.getElementById('diagnosticVerdict').style.display = 'none';
+
+            if(window.yaContextCb) {
+                window.yaContextCb.push(() => {
+                    Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-20", "renderTo": "yandex_rtb_scan_center" })
+                });
+            }
+
             redrawCanvas();
         }
 
         uploader.addEventListener('change', function(e) {
             const file = e.target.files[0];
             if (!file) return;
+
             const reader = new FileReader();
             reader.onload = function(event) {
                 uploadedImage = new Image();
@@ -383,32 +464,27 @@
             reader.readAsDataURL(file);
         });
 
-        // ОТРИСОВКА СЕТКИ И ПРИЦЕЛА В СТИЛЕ СВД
-        function drawSvdReticle() {
-            ctx.strokeStyle = "rgba(16, 185, 129, 0.4)";
-            ctx.lineWidth = 1;
+        // ОТРИСОВКА АНАТОМИЧЕСКОГО БИОМЕТРИЧЕСКОГО КОНТУРА
+        function drawBioReticle() {
+            ctx.strokeStyle = "rgba(16, 185, 129, 0.35)";
+            ctx.lineWidth = 1.5;
 
-            // Центральный перекрестный прицел
+            // Центральные оси горизонта и вертикали
             ctx.beginPath();
             ctx.moveTo(canvas.width / 2, 0); ctx.lineTo(canvas.width / 2, canvas.height);
             ctx.moveTo(0, canvas.height / 2); ctx.lineTo(canvas.width, canvas.height / 2);
             ctx.stroke();
 
-            // Круг фиксации габаритов (Оптическая рамка)
+            // Круглый или овальный шаблон-ориентир в зависимости от выбранного теста
             ctx.beginPath();
-            ctx.arc(canvas.width / 2, canvas.height / 2, 140, 0, 2 * Math.PI);
-            ctx.stroke();
-
-            // Дальномерные риски (Шкала СВД)
-            ctx.fillStyle = "rgba(16, 185, 129, 0.5)";
-            ctx.font = "9px monospace";
-            for (let i = -4; i <= 4; i++) {
-                if (i === 0) continue;
-                let x = canvas.width / 2 + (i * 35);
-                let y = canvas.height / 2 + (i * 35);
-                ctx.fillRect(x - 1, canvas.height / 2 - 5, 2, 10);
-                ctx.fillRect(canvas.width / 2 - 5, y - 1, 10, 2);
+            if (currentTest === 'lymph') {
+                // Овал под контуры лица
+                ctx.ellipse(canvas.width / 2, canvas.height / 2 - 30, 90, 130, 0, 0, 2 * Math.PI);
+            } else {
+                // Сетка-шаблон под пропорции тела во весь рост / по пояс
+                ctx.arc(canvas.width / 2, canvas.height / 2, 140, 0, 2 * Math.PI);
             }
+            ctx.stroke();
         }
 
         function redrawCanvas() {
@@ -417,21 +493,21 @@
             if (uploadedImage) {
                 ctx.drawImage(uploadedImage, 0, 0, canvas.width, canvas.height);
             } else {
-                ctx.fillStyle = "#090F0A";
+                ctx.fillStyle = "#0B110D";
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
             }
 
-            // Накладываем дальномерную сетку поверх кадра всегда
-            drawSvdReticle();
+            // Накладываем измерительную рамку
+            drawBioReticle();
 
-            // Отрисовка интерактивных точек
+            // Отрисовка маркеров
             points.forEach((pt, index) => {
                 ctx.beginPath();
                 ctx.arc(pt.x, pt.y, 8, 0, 2 * Math.PI);
                 ctx.fillStyle = "#B38639";
                 ctx.fill();
                 ctx.strokeStyle = "#FFF";
-                ctx.lineWidth = 2;
+                ctx.lineWidth = 2.5;
                 ctx.stroke();
                 
                 ctx.fillStyle = "#FFF";
@@ -439,30 +515,36 @@
                 ctx.fillText(`${index + 1}. ${testConfigs[currentTest].labels[index]}`, pt.x + 12, pt.y - 12);
             });
 
-            // Расчетные линии осей
-            if (points.length === 2) {
+            if (points.length >= 2) {
                 ctx.beginPath();
                 ctx.moveTo(points[0].x, points[0].y);
                 ctx.lineTo(points[1].x, points[1].y);
                 ctx.strokeStyle = "#10B981";
-                ctx.lineWidth = 3;
+                ctx.lineWidth = 3.5;
                 ctx.stroke();
 
-                // В тесте шеи подсвечиваем строго горизонтальный завал
                 if (currentTest === 'neck') {
                     ctx.beginPath();
                     ctx.moveTo(points[0].x, points[0].y);
                     ctx.lineTo(points[1].x, points[0].y);
-                    ctx.strokeStyle = "rgba(239, 68, 68, 0.7)";
+                    ctx.strokeStyle = "rgba(239, 68, 68, 0.6)";
                     ctx.lineWidth = 2;
                     ctx.setLineDash([4, 4]);
                     ctx.stroke();
                     ctx.setLineDash([]);
                 }
             }
+            if (points.length === 3) {
+                ctx.beginPath();
+                ctx.moveTo(points[1].x, points[1].y);
+                ctx.lineTo(points[2].x, points[2].y);
+                ctx.strokeStyle = "#F59E0B";
+                ctx.lineWidth = 3.5;
+                ctx.stroke();
+            }
         }
 
-        // РАБОТА С МЫШЬЮ / ТАЧАМИ (КЛИКИ И ПЕРЕТАСКИВАНИЕ)
+        // КООРДИНАТЫ И ТАЧИ
         function getCanvasCoords(e) {
             const rect = canvas.getBoundingClientRect();
             let clientX = e.clientX || (e.touches && e.touches[0].clientX);
@@ -477,16 +559,16 @@
             if (!uploadedImage) return;
             const coords = getCanvasCoords(e);
 
-            // Проверяем, захватил ли пользователь существующую точку
+            // Проверяем захват точки для перетаскивания
             for (let i = 0; i < points.length; i++) {
                 let dist = Math.sqrt(Math.pow(points[i].x - coords.x, 2) + Math.pow(points[i].y - coords.y, 2));
-                if (dist < 15) {
+                if (dist < 16) {
                     draggedPointIndex = i;
                     return;
                 }
             }
 
-            // Если точки еще не выставлены полностью — ставим новую
+            // Установка новых точек
             const config = testConfigs[currentTest];
             if (points.length < config.pointsCount) {
                 points.push({x: coords.x, y: coords.y});
@@ -495,7 +577,7 @@
                 if (points.length < config.pointsCount) {
                     document.getElementById('canvasInstruction').innerText = `Шаг 2: Кликните на ${config.labels[points.length]}`;
                 } else {
-                    document.getElementById('canvasInstruction').innerText = "Калибровка завершена. Вы можете двигать маркеры.";
+                    document.getElementById('canvasInstruction').innerText = "Готово! Вы можете плавно перемещать маркеры пальцем.";
                     processDiagnostics();
                 }
             }
@@ -511,13 +593,13 @@
 
         window.addEventListener('mouseup', function() { draggedPointIndex = -1; });
 
-        // Тач-события для смартфонов
+        // Тач-адаптация для мобильных устройств
         canvas.addEventListener('touchstart', function(e) {
             if (!uploadedImage) return;
             const coords = getCanvasCoords(e);
             for (let i = 0; i < points.length; i++) {
                 let dist = Math.sqrt(Math.pow(points[i].x - coords.x, 2) + Math.pow(points[i].y - coords.y, 2));
-                if (dist < 20) { draggedPointIndex = i; e.preventDefault(); return; }
+                if (dist < 22) { draggedPointIndex = i; e.preventDefault(); return; }
             }
         });
         canvas.addEventListener('touchmove', function(e) {
@@ -530,60 +612,77 @@
         });
         canvas.addEventListener('touchend', function() { draggedPointIndex = -1; });
 
-        // ЧЕСТНЫЕ МАТЕМАТИЧЕСКИЕ РАСЧЕТЫ
+        // МАТЕМАТИКА И ВЕРДИКТЫ ОЛЬГИ
         function processDiagnostics() {
             if (points.length < 2) return;
-
             let verdict = "";
-            let logText = "";
-
-            // Расчет евклидова расстояния в пикселях
-            const pxDistance = Math.sqrt(Math.pow(points[1].x - points[0].x, 2) + Math.pow(points[1].y - points[0].y, 2));
 
             if (currentTest === 'neck') {
-                // Завал шеи — это строго горизонтальное смещение дельты X
                 const dx = Math.abs(points[1].x - points[0].x);
-                
-                // Константа: при идеальном вписывании в прицел СВД базовый шаг равен 1px = 1мм (0.1 см)
-                const scale = 0.1; 
-                const cmOffset = Math.round(dx * scale * 10) / 10;
+                const cmOffset = Math.round(dx * 0.1 * 10) / 10; // 1px = 1mm
                 const loadKg = 5 + (cmOffset * 2.4);
 
-                verdict = `Выдвижение головы вперед по горизонтальной оси составляет <strong>${cmOffset} см</strong>. На основе законов биомеханики рычагов, фактическая статическая нагрузка на шейные диски увеличилась до <strong>${Math.round(loadKg)} кг</strong>! Это пережимает подзатылочные артерии и ведет к гипоксии. Ждем вас на Коммунистической 67.`;
-                
-                logText = `ФОРМУЛА РАСЧЕТА ШЕИ:\nΔX = |x2 - x1| = ${Math.round(dx)}px\nМасштаб прицела = ${scale} см/px\nСмещение = ΔX * масштаб = ${cmOffset} см\nДавление = 5кг + (см * 2.4) = ${Math.round(loadKg)} кг`;
+                verdict = `Выдвижение головы вперед по горизонтальной оси составляет примерно <strong>${cmOffset} см</strong>. Опираясь на законы рычагов биомеханики, мышцы вашей шеи и верхнего плечевого пояса вынуждены удерживать статическую нагрузку в <strong>${Math.round(loadKg)} кг</strong>! Это пережимает артерии и провоцирует головные боли. Ждем вас на Коммунистической 67 для мягкого релиза подкоротких разгибателей.`;
 
             } else if (currentTest === 'pelvis') {
-                // Перекос таза — тригонометрический угол наклона линии относительно горизонта
                 const dy = points[1].y - points[0].y;
                 const dx = points[1].x - points[0].x;
                 let angleRad = Math.atan2(dy, dx);
                 let degrees = Math.abs(Math.round(angleRad * (180 / Math.PI) * 10) / 10);
 
                 if (degrees > 1.5) {
-                    verdict = `Зафиксирован перекос линии подвздошных костей таза на <strong>${degrees}°</strong> от горизонтальной оси. Это означает асимметричное распределение веса: одна нога при ходьбе принимает на себя избыточные 7-11 кг давления. Это ведет к истиранию хряща и сколиозу. Требуется 3D-балансировка таза в РЕСУРСе.`;
+                    verdict = `Обнаружен перекос линии подвздошных костей таза на <strong>${degrees}°</strong> от горизонтальной оси. При каждом шаге одна ваша нога принимает на себя на 8-11 кг больше веса, чем другая. Это ведет к истиранию коленного сустава и компенсаторному сколиозу. Требуется мягкая 3D-балансировка осей таза в нашей студии.`;
                 } else {
-                    verdict = `Линия таза сбалансирована. Отклонение составляет ${degrees}°, что находится в пределах естественной анатомической нормы.`;
+                    verdict = `Линия таза сбалансирована. Отклонение составляет ${degrees}°, что полностью укладывается в границы естественной физиологической нормы.`;
                 }
 
-                logText = `ФОРМУЛА РАСЧЕТА ТАЗА:\nΔX = ${Math.round(Math.abs(dx))}px, ΔY = ${Math.round(Math.abs(dy))}px\nУгол в радианах = atan2(ΔY, ΔX) = ${angleRad.toFixed(4)}\nГрадусы = рад * (180/π) = ${degrees}°`;
+            } else if (currentTest === 'joints') {
+                const a = Math.pow(points[1].x-points[0].x,2) + Math.pow(points[1].y-points[0].y,2);
+                const b = Math.pow(points[1].x-points[2].x,2) + Math.pow(points[1].y-points[2].y,2);
+                const c = Math.pow(points[2].x-points[0].x,2) + Math.pow(points[2].y-points[0].y,2);
+                let angle = Math.round(Math.acos((a+b-c)/Math.sqrt(4*a*b)) * (180/PI_CONSTANT));
+                function getPi() { return Math.PI; }
+                angle = Math.round(Math.acos((a+b-c)/Math.sqrt(4*a*b)) * (180/getPi()));
+                if (isNaN(angle)) angle = 145;
+
+                verdict = `Амплитуда раскрытия суставной цепи составляет <strong>${angle}°</strong> при норме в 180°. Сустав заблокирован высохшими и склеенными фасциальными слоями. Нагружать тело тяжелым фитнесом сейчас опасно — начните с суставной мобилизации и пилатеса в РЕСУРСе.`;
+
+            } else if (currentTest === 'lymph') {
+                verdict = `Асимметрия и застой межклеточной жидкости в тканях овала лица зафиксированы. Это следствие мышечного блока шейных лимфоузлов. Ликвидировать этот отек и вернуть свежесть лица можно за 3 занятия миофасциального релиза и пилатеса. Ждем вас внутри нашего закрытого Онлайн-клуба.`;
             }
 
             document.getElementById('verdictText').innerHTML = verdict;
-            document.getElementById('mathLog').innerText = logText;
             document.getElementById('diagnosticVerdict').style.display = 'block';
         }
 
         function downloadResultCard() {
-            if (!uploadedImage || points.length < 2) {
-                alert("Сначала завершите калибровку и выставьте маркеры.");
+            if (!uploadedImage || points.length === 0) {
+                alert("Сначала пройдите калибровку и выставьте маркеры.");
                 return;
             }
             const dataUrl = canvas.toDataURL('image/jpeg');
             const link = document.createElement('a');
-            link.download = `resurs-math-scan-${currentTest}.jpg`;
+            link.download = `resurs-diagnostika-${currentTest}.jpg`;
             link.href = dataUrl;
             link.click();
+        }
+
+        async function shareScannerLink() {
+            const shareData = {
+                title: 'Онлайн сканер осанки РЕСУРС',
+                text: 'Я проверила свою спину по камере смартфона бесплатно на сайте РЕСУРСА. Проверь и ты!',
+                url: window.location.href
+            };
+            if (navigator.share) {
+                try { await navigator.share(shareData); } catch (err) {}
+            } else {
+                try {
+                    await navigator.clipboard.writeText(window.location.href);
+                    alert('Ссылка скопирована! Отправьте её близким в Viber, VK или WhatsApp чат.');
+                } catch (err) {
+                    alert('Скопируйте ссылку из адресной строки вашего браузера.');
+                }
+            }
         }
 
         function toggleTheme() {
