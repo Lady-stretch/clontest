@@ -18,17 +18,26 @@
     </script>
     <noscript><div><img src="https://mc.yandex.ru/watch/108177329" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     
-    <!-- ПОДКЛЮЧЕНИЕ СИСТЕМЫ ЯНДЕКС РЕКЛАМЫ (РСЯ) -->
+    <!-- ПОДКЛЮЧЕНИЕ СИСТЕМЫ ЯНДЕКС РЕКЛАМЫ (РСЯ) С ПОЛНОЭКРАННЫМ БЛОКОМ НА ВХОДЕ -->
     <script>window.yaContextCb=window.yaContextCb||[]</script>
     <script src="https://yandex.ru/ads/system/context.js" async></script>
+    <script>
+        // ВЫЗОВ ПОЛНОЭКРАННОЙ РЕКЛАМЫ И FLOORAD НА ВХОДЕ В ПРИЛОЖЕНИЕ
+        window.yaContextCb.push(() => {
+            Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-24", "type": "fullscreen", "platform": "touch" });
+            Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-25", "type": "fullscreen", "platform": "desktop" });
+            Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-6", "type": "floorAd", "platform": "touch" });
+            Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-7", "type": "floorAd", "platform": "desktop" });
+        });
+    </script>
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    <!-- ПРОФЕССИОНАЛЬНОЕ СЕО ПО ЗАПРОСАМ: ЗДОРОВЬЕ, ЗДОРОВАЯ СПИНА, ОСАНКА -->
-    <title>Здоровая спина и красивая осанка | РЕСУРС Сыктывкар</title>
-    <meta name="description" content="Умный калькулятор здоровья от студии РЕСУРС в Сыктывкаре. Проверьте индекс массы тела (ИМТ), норму калорий и получите персональный подбор тренировок для здоровой спины, гибкости и исправления осанки.">
-    <meta name="keywords" content="здоровая спина сыктывкар, исправление осанки, женское здоровье, фитнес калькулятор, растяжка, студия ресурс сыктывкар, пилатес, мфр массаж">
+    <!-- ПРОФЕССИОНАЛЬНОЕ СЕО ПО ЗАПРОСАМ: ЗДОРОВЬЕ, ЗДОРОВАЯ СПИНА, ОСАНКА, ПОХУДЕНИЕ -->
+    <title>Эволюция тела и здоровой спины онлайн | Дневник калорий и осанки РЕСУРС Сыктывкар</title>
+    <meta name="description" content="Бесплатный интерактивный дневник здоровья, расчета калорий, водного баланса и ИМТ. Персональный подбор тренировок для спины, похудения и омоложения от студии РЕСУРС в Сыктывкаре.">
+    <meta name="keywords" content="здоровая спина сыктывкар, дневник похудения онлайн, калькулятор имт и калорий, растяжка, студия ресурс сыктывкар, пилатес, мфр массаж, фазы женского цикла фитнес, экспорт прогресса в excel">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://resurs-stretch.ru/evolution.html">
 
@@ -109,9 +118,9 @@
         .bento-card:hover { border-color: var(--accent-emerald); }
 
         .btn { 
-            display: inline-flex; align-items: center; justify-content: center; padding: 16px 20px; 
+            display: inline-flex; align-items: center; justify-content: center; padding: 14px 18px; 
             border: 1px solid var(--accent-gold); color: var(--accent-gold); text-transform: uppercase; 
-            font-size: 11px; letter-spacing: 3px; background: rgba(197, 160, 89, 0.05); cursor: pointer; 
+            font-size: 11px; letter-spacing: 2px; background: rgba(197, 160, 89, 0.05); cursor: pointer; 
             transition: var(--transition); border-radius: 12px; font-weight: 700; width: 100%; text-align: center; 
         }
         .btn:hover { background: var(--accent-gold); color: #000; box-shadow: 0 8px 25px rgba(197, 160, 89, 0.3); transform: translateY(-2px); }
@@ -181,10 +190,24 @@
         .chart-value-text { fill: var(--text-main); font-size: 10px; font-family: var(--font-main); font-weight: 800; text-anchor: middle; opacity: 0.9; }
         .chart-dates { display: flex; justify-content: space-between; margin-top: 10px; font-size: 9px; color: var(--text-dim); letter-spacing: 1px; }
 
+        /* СТИЛИ ФОТО И БЛОКА ЭКСПОРТА */
+        .user-photo-upload-box { margin-top: 20px; border: 2px dashed var(--border-color); border-radius: 16px; padding: 15px; text-align: center; background: var(--surface-hover); cursor: pointer; transition: var(--transition); }
+        .user-photo-upload-box:hover { border-color: var(--accent-emerald); }
+        .user-photo-preview { width: 100%; max-height: 180px; object-fit: cover; border-radius: 12px; display: none; margin-top: 10px; }
+
+        .export-actions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
+
         .input-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; width: 100%; min-width: 0; }
         .input-group label { font-size: 9px; text-transform: uppercase; letter-spacing: 2px; color: var(--text-dim); font-weight: 700; }
         .input-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; width: 100%; min-width: 0; }
-        .num-input { -webkit-appearance: none; appearance: none; width: 100%; min-width: 0; background: var(--surface-hover); border: 1px solid var(--border-color); border-radius: 12px; padding: 14px 4px; color: var(--text-main); font-size: 17px; text-align: center; font-family: var(--font-main); font-weight: 700; transition: 0.3s; }
+        
+        .num-input { 
+            -webkit-appearance: none; appearance: none; width: 100%; min-width: 0; 
+            background: var(--surface-hover); border: 1px solid var(--border-color); 
+            border-radius: 12px; padding: 14px 4px; color: var(--text-main); 
+            font-size: 17px; text-align: center; font-family: var(--font-main); 
+            font-weight: 700; transition: 0.3s; 
+        }
         .num-input:focus { border-color: var(--accent-emerald); background: rgba(16, 185, 129, 0.05); }
 
         .cycle-tabs { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 5px; margin-bottom: 15px; width: 100%; -webkit-overflow-scrolling: touch; }
@@ -222,13 +245,17 @@
         .train-info h4 { font-family: var(--font-serif); font-size: 22px; color: var(--text-main); margin-bottom: 4px; }
         .train-info p { font-size: 9px; color: var(--accent-emerald); font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* ОТКРЫТЫЙ СЕО БЛОК */
+        /* ОТКРЫТЫЙ СЕО БЕНТО-БЛОК */
         .seo-editorial-bento { background: var(--surface-color); border: 1px solid var(--border-color); border-radius: 24px; padding: 32px; margin-top: 10px; }
-        .seo-editorial-bento h2 { font-family: var(--font-serif); font-size: 24px; color: var(--accent-gold); margin-bottom: 12px; }
-        .seo-editorial-bento p { font-size: 14px; color: var(--text-dim); line-height: 1.6; }
+        .seo-editorial-bento h2 { font-family: var(--font-serif); font-size: 26px; color: var(--accent-gold); margin-bottom: 14px; }
+        .seo-editorial-bento h3 { font-size: 16px; color: var(--accent-emerald); margin-top: 18px; margin-bottom: 8px; font-weight: 800; }
+        .seo-editorial-bento p { font-size: 14px; color: var(--text-dim); line-height: 1.6; text-align: justify; margin-bottom: 12px; }
 
         .modal { display: none; position: fixed; inset: 0; z-index: 3000; background: rgba(5, 5, 12, 0.95); backdrop-filter: blur(10px); align-items: center; justify-content: center; padding: 20px; }
         .modal-content { width: 100%; max-width: 450px; position: relative; }
+
+        /* СКРЫТЫЙ CANVAS ДЛЯ СБОРКИ ПАСПОРТА С ФОТО */
+        #passportCanvas { display: none; }
 
         @media (min-width: 992px) {
             .app-bento-grid { grid-template-columns: 380px 1fr; align-items: start; }
@@ -255,6 +282,7 @@
             .stat-item b { font-size: 1.1rem; }
             .water-widget { padding: 14px; gap: 12px; flex-wrap: nowrap; }
             .train-info h4 { font-size: 18px; }
+            .export-actions-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -277,14 +305,14 @@
             Добро пожаловать в ваш цифровой дневник состояния. <br>
             <span class="step-num">1.</span> Укажите параметры и фазу цикла, чтобы узнать норму калорий, воды и режим работы тела.<br>
             <span class="step-num">2.</span> Система проанализирует данные и подберет практику на сегодня.<br>
-            <span class="step-num">3.</span> Отмечайте каждую тренировку! Наблюдайте, как растет ваш ресурс, либидо и строится график эволюции.
+            <span class="step-num">3.</span> Отмечайте каждую тренировку! Загрузите своё фото и скачивайте отчеты в Excel или карту в галерею.
         </p>
     </div>
 
     <!-- ОСНОВНАЯ СЕТКА BENTO GRID -->
     <div class="app-bento-grid">
         
-        <!-- ЛЕВАЯ КОЛОНКА: ПРОФИЛЬ И СТАТИСТИКА -->
+        <!-- ЛЕВАЯ КОЛОНКА: ПРОФИЛЬ, ФОТО И ЭКСПОРТ -->
         <div class="profile-panel">
             <div class="bento-card" style="text-align: center;">
                 <span class="section-label">Твоя эволюция</span>
@@ -293,6 +321,23 @@
                 
                 <p id="lvl-count" style="font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 2px;">Всего тренировок: 0</p>
                 <div class="weekly-count" id="weekly-count">На этой неделе: 0</div>
+
+                <!-- БЛОК ЗАГРУЗКИ СВОЕГО ФОТО -->
+                <div class="user-photo-upload-box" onclick="document.getElementById('userPhotoInput').click()">
+                    <span style="font-size: 11px; color: var(--accent-emerald); font-weight: 800; text-transform: uppercase; letter-spacing: 1px;">📸 Загрузить фото прогресса</span>
+                    <input type="file" id="userPhotoInput" accept="image/*" style="display:none;" onchange="handleUserPhotoUpload(event)">
+                    <img id="userPhotoPreview" class="user-photo-preview" alt="Фото прогресса">
+                </div>
+
+                <!-- КНОПКИ ЭКСПОРТА И ПОДЕЛИТЬСЯ -->
+                <div class="export-actions-grid">
+                    <button class="btn btn-emerald" onclick="downloadPassportImage()">📸 Карта с фото</button>
+                    <button class="btn" onclick="exportToExcelCSV()">📊 В Excel / МойОфис</button>
+                </div>
+                
+                <button class="btn" style="margin-top: 10px; border-color: var(--accent-emerald); color: var(--accent-emerald);" onclick="shareEvolutionLink()">
+                    🔗 Поделиться прогрессом
+                </button>
 
                 <div class="motivation-box">
                     <h4 class="serif">Ценность твоих усилий</h4>
@@ -347,10 +392,20 @@
                     </div>
                 </div>
 
+                <!-- ВНЕДРЕН ЭФФЕКТ ONFOCUS="THIS.SELECT()" ДЛЯ МГНОВЕННОГО ВВОДА НА СМАРТФОНЕ -->
                 <div class="input-row">
-                    <div class="input-group"><label>Вес (кг)</label><input type="number" id="w-val" class="num-input" value="62" onchange="calculate(true)"></div>
-                    <div class="input-group"><label>Рост (см)</label><input type="number" id="h-val" class="num-input" value="168" oninput="calculate(false)"></div>
-                    <div class="input-group"><label>Возраст</label><input type="number" id="a-val" class="num-input" value="30" oninput="calculate(false)"></div>
+                    <div class="input-group">
+                        <label>Вес (кг)</label>
+                        <input type="number" id="w-val" class="num-input" value="62" onfocus="this.select()" onchange="calculate(true)">
+                    </div>
+                    <div class="input-group">
+                        <label>Рост (см)</label>
+                        <input type="number" id="h-val" class="num-input" value="168" onfocus="this.select()" oninput="calculate(false)">
+                    </div>
+                    <div class="input-group">
+                        <label>Возраст</label>
+                        <input type="number" id="a-val" class="num-input" value="30" onfocus="this.select()" oninput="calculate(false)">
+                    </div>
                 </div>
 
                 <div class="bio-stats">
@@ -430,8 +485,10 @@
 
     <!-- ОТКРЫТЫЙ СЕО БЕНТО-БЛОК ДЛЯ ИНДЕКСАЦИИ РОБОТАМИ ЯНДЕКСА И GOOGLE -->
     <div class="seo-editorial-bento">
-        <h2>Программа восстановления осанки и укрепления спины в Сыктывкаре</h2>
-        <p>Студия умного движения РЕСУРС предлагает комплексный подход к оздоровлению опорно-двигательного аппарата. Наши ключевые направления: пилатес, миофасциальный релиз (МФР), стретчинг и йога. Избавляем от болей в шее и пояснице, улучшаем гибкость суставов, запускаем лимфодренаж и устраняем застойные отеки без изнурительных нагрузок под руководствами экспертов в Сыктывкаре.</p>
+        <h2>Программа восстановления осанки, здоровой спины и омоложения в Сыктывкаре</h2>
+        <p>Студия умного движения РЕСУРС предлагает экспертную систему оздоровления опорно-двигательного аппарата. Наши базовые дисциплины: пилатес, миофасциальный релиз (МФР), аэростретчинг, йога и здоровая спина. Мы помогаем полностью избавиться от болей в пояснице и загривке, восстановить подвижность тазобедренных суставов, нормализовать гормональный фон и вернуть тонус глубоким мышцам без изнурительных силовых нагрузок.</p>
+        <h3>Адаптация физической активности под женский гормональный цикл</h3>
+        <p>Каждая фаза женского цикла требует особого биомеханического подхода. В менструальную фазу мы делаем акцент на декомпрессию позвоночника и мягкий релиз тазового дна, во время подъема эстрогена — включаем формирование мышечного корсета, а в период ПМС — задействуем лимфодренажные техники МФР для снятия застойных отеков. Приходите на тренировки в студию РЕСУРС по адресу: г. Сыктывкар, ул. Коммунистическая 67.</p>
     </div>
 
 </div>
@@ -444,6 +501,8 @@
         <button class="btn btn-emerald" onclick="confirmWorkout()">Я выполнила практику</button>
     </div>
 </div>
+
+<canvas id="passportCanvas" width="600" height="800"></canvas>
 
 <footer>
     <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
@@ -458,7 +517,8 @@
         weight: 62, height: 168, age: 30, cycle: 1, resource: 'norm', level: 0,
         history: [], 
         workouts: [], 
-        waterDrunk: 0, lastWaterDate: ""
+        waterDrunk: 0, lastWaterDate: "",
+        userPhotoDataUrl: ""
     };
 
     const trainingLibrary = {
@@ -507,12 +567,6 @@
             const header = document.getElementById('header');
             header.classList.toggle('scrolled', window.scrollY > 50);
         });
-
-        window.yaContextCb.push(() => {
-            Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-5", "type": "floorAd", "platform": "touch" });
-            Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-6", "type": "floorAd", "platform": "touch" });
-            Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-7", "type": "floorAd", "platform": "desktop" });
-        });
     };
 
     function toggleTheme() {
@@ -521,6 +575,131 @@
         const next = current === 'dark' ? 'light' : 'dark';
         root.setAttribute('data-theme', next);
         localStorage.setItem('user-theme', next);
+    }
+
+    // ОБРАБОТКА ЗАГРУЗКИ ПОЛЬЗОВАТЕЛЬСКОГО ФОТО ПРОГРЕССА
+    function handleUserPhotoUpload(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(evt) {
+                state.userPhotoDataUrl = evt.target.result;
+                const imgEl = document.getElementById('userPhotoPreview');
+                imgEl.src = state.userPhotoDataUrl;
+                imgEl.style.display = 'block';
+                save();
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+
+    // ЭКСПОРТ ИСТОРИИ ЗАМЕРОВ В EXCEL / МОЙОФИС (CSV)
+    function exportToExcelCSV() {
+        if (state.history.length === 0) {
+            alert("История измерений пуста.");
+            return;
+        }
+
+        let csvContent = "\uFEFFДата;Вес (кг);ИМТ;Выпито воды (л);Всего тренировок\n";
+        
+        state.history.forEach(item => {
+            const dateStr = formatDate(item.ts);
+            const bmi = (item.w / ((state.height / 100) ** 2)).toFixed(1);
+            csvContent += `${dateStr};${item.w};${bmi};${state.waterDrunk};${state.workouts.length}\n`;
+        });
+
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement("a");
+        const url = URL.createObjectURL(blob);
+        link.setAttribute("href", url);
+        link.setAttribute("download", `resurs-evolution-export-${new Date().toISOString().slice(0,10)}.csv`);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
+    // СБОРКА И СКАЧИВАНИЕ ПАСПОРТА ЭВОЛЮЦИИ С ФОТО НА СМАРТФОНЕ
+    function downloadPassportImage() {
+        const canvas = document.getElementById('passportCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Заливка фона
+        ctx.fillStyle = "#060C07";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Золотая рамка
+        ctx.strokeStyle = "#C5A059";
+        ctx.lineWidth = 6;
+        ctx.strokeRect(15, 15, canvas.width - 30, canvas.height - 30);
+
+        // Заголовок
+        ctx.fillStyle = "#C5A059";
+        ctx.font = "bold 28px Cormorant Garamond";
+        ctx.textAlign = "center";
+        ctx.fillText("РЕСУРС • ПАСПОРТ ЭВОЛЮЦИИ ТЕЛА", canvas.width / 2, 60);
+
+        // Если есть загруженное фото
+        if (state.userPhotoDataUrl) {
+            const img = new Image();
+            img.onload = function() {
+                ctx.drawImage(img, 50, 90, 500, 320);
+                drawPassportTextDetails(ctx, canvas);
+            };
+            img.src = state.userPhotoDataUrl;
+        } else {
+            // Имитация фото-заглушки
+            ctx.fillStyle = "#111A13";
+            ctx.fillRect(50, 90, 500, 320);
+            ctx.fillStyle = "#92A196";
+            ctx.font = "18px Manrope";
+            ctx.fillText("Фото прогресса не загружено", canvas.width / 2, 250);
+            drawPassportTextDetails(ctx, canvas);
+        }
+    }
+
+    function drawPassportTextDetails(ctx, canvas) {
+        ctx.fillStyle = "#FFF";
+        ctx.font = "bold 24px Manrope";
+        ctx.textAlign = "left";
+        
+        let totalSessions = state.workouts.length;
+        let currentLevel = levels[0];
+        for(let i=0; i<levels.length; i++) { if(totalSessions >= levels[i].n) currentLevel = levels[i]; }
+
+        ctx.fillText(`Уровень: ${currentLevel.icon} ${currentLevel.name}`, 50, 460);
+        ctx.fillText(`Выполнено практик: ${totalSessions}`, 50, 500);
+        ctx.fillText(`Текущий вес: ${state.weight} кг (ИМТ: ${(state.weight / ((state.height / 100) ** 2)).toFixed(1)})`, 50, 540);
+        ctx.fillText(`Выпито воды сегодня: ${state.waterDrunk} л`, 50, 580);
+
+        ctx.fillStyle = "#10B981";
+        ctx.font = "italic 16px Manrope";
+        ctx.fillText("г. Сыктывкар, ул. Коммунистическая 67 • resurs-stretch.ru", 50, 720);
+
+        // Скачивание готовой картинки
+        const dataUrl = canvas.toDataURL('image/jpeg');
+        const link = document.createElement('a');
+        link.download = `resurs-passport-evolution.jpg`;
+        link.href = dataUrl;
+        link.click();
+    }
+
+    // НАТИВНЫЙ ШАРИНГ В СОЦСЕТИ / МЕССЕНДЖЕРЫ
+    async function shareEvolutionLink() {
+        const shareData = {
+            title: 'Эволюция тела в РЕСУРС',
+            text: `Мой прогресс в студии РЕСУРС: уже ${state.workouts.length} тренировок! Присоединяйся к тренировкам за здоровой спиной и красотой!`,
+            url: window.location.href
+        };
+        if (navigator.share) {
+            try { await navigator.share(shareData); } catch (err) {}
+        } else {
+            try {
+                await navigator.clipboard.writeText(window.location.href);
+                alert('Ссылка скопирована! Отправьте её близким в Viber, VK или WhatsApp чат.');
+            } catch (err) {
+                alert('Скопируйте ссылку из адресной строки вашего браузера.');
+            }
+        }
     }
 
     function checkDailyWaterReset() {
@@ -777,6 +956,12 @@
             document.getElementById('h-val').value = state.height;
             document.getElementById('a-val').value = state.age;
             
+            if (state.userPhotoDataUrl) {
+                const imgEl = document.getElementById('userPhotoPreview');
+                imgEl.src = state.userPhotoDataUrl;
+                imgEl.style.display = 'block';
+            }
+
             document.querySelectorAll('.cycle-tab').forEach((btn, idx) => {
                 if(idx === state.cycle - 1) btn.classList.add('active');
                 else btn.classList.remove('active');
@@ -786,7 +971,7 @@
     }
 
     function resetData() {
-        if(confirm("Полностью обнулить эволюцию, воду и график?")) { 
+        if(confirm("Полностью обнулить эволюцию, фото, воду и график?")) { 
             localStorage.removeItem('resurs_body_evolution_v6'); 
             location.reload(); 
         }
