@@ -33,6 +33,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     
+    <!-- ПРОФЕССИОНАЛЬНОЕ СЕО ПО ЗАПРОСАМ: ЗДОРОВЬЕ, ЗДОРОВАЯ СПИНА, ОСАНКА, ПОХУДЕНИЕ -->
     <title>Эволюция тела и здоровой спины онлайн | Дневник калорий и осанки РЕСУРС Сыктывкар</title>
     <meta name="description" content="Бесплатный интерактивный дневник здоровья, расчета калорий, водного баланса и ИМТ. Персональный подбор тренировок для спины, похудения и омоложения от студии РЕСУРС в Сыктывкаре.">
     <meta name="keywords" content="здоровая спина сыктывкар, дневник похудения онлайн, калькулятор имт и калорий, растяжка, студия ресурс сыктывкар, пилатес, мфр массаж, фазы женского цикла фитнес, экспорт прогресса в excel">
@@ -83,12 +84,12 @@
             --shadow: rgba(0, 0, 0, 0.08);
         }
 
-        * { box-sizing: border-box !important; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
+        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
         html { scroll-behavior: smooth; }
         
         html, body { 
-            width: 100% !important; 
-            max-width: 100% !important;
+            width: 100%; 
+            max-width: 100%;
             overflow-x: hidden !important; 
             min-height: 100vh; 
             background: var(--bg-deep);
@@ -96,53 +97,56 @@
             font-family: var(--font-main); 
             line-height: 1.6;
             transition: background-color 0.4s ease, color 0.4s ease;
+            padding-bottom: 90px !important;
         }
 
         h1, h2, h3, .serif { font-family: var(--font-serif); font-weight: 400; }
         a { text-decoration: none; color: inherit; transition: var(--transition); }
 
-        /* BENTO GRID КАРТОЧКИ С ЖЕСТКИМ ОГРАНИЧЕНИЕМ ШИРИНЫ ПОД IPHONE */
         .bento-card { 
             background: var(--surface-color); 
             border: 1px solid var(--border-color); 
             border-radius: 24px; 
-            padding: 20px 16px; 
+            padding: 24px; 
             box-shadow: 0 10px 30px var(--shadow); 
             width: 100% !important; 
             max-width: 100% !important; 
             box-sizing: border-box !important;
-            overflow: hidden !important; 
+            overflow: hidden; 
             transition: var(--transition);
         }
         .bento-card:hover { border-color: var(--accent-emerald); }
 
         .btn { 
-            display: inline-flex; align-items: center; justify-content: center; padding: 12px 10px; 
+            display: inline-flex; align-items: center; justify-content: center; padding: 14px 14px; 
             border: 1px solid var(--accent-gold); color: var(--accent-gold); text-transform: uppercase; 
-            font-size: 10.5px; letter-spacing: 1px; background: rgba(197, 160, 89, 0.05); cursor: pointer; 
-            transition: var(--transition); border-radius: 12px; font-weight: 700; width: 100% !important; text-align: center; 
-            box-sizing: border-box !important; white-space: normal !important; word-break: break-word !important;
+            font-size: 11px; letter-spacing: 1.5px; background: rgba(197, 160, 89, 0.05); cursor: pointer; 
+            transition: var(--transition); border-radius: 12px; font-weight: 800; width: 100%; text-align: center; 
+            box-sizing: border-box;
         }
         .btn:hover { background: var(--accent-gold); color: #000; box-shadow: 0 8px 25px rgba(197, 160, 89, 0.3); transform: translateY(-2px); }
         
+        /* ИСПРАВЛЕНИЕ КОНТРАСТНОСТИ ТЕКСТА КНОПКИ В СВЕТЛОЙ ТЕМЕ */
         .btn-emerald {
-            border-color: var(--accent-emerald); color: var(--text-main); background: var(--accent-emerald);
+            border-color: var(--accent-emerald) !important; 
+            color: #FFFFFF !important; 
+            background: var(--accent-emerald) !important;
         }
-        .btn-emerald:hover { background: var(--accent-emerald-hover); border-color: var(--accent-emerald-hover); color: #FFF; }
+        .btn-emerald:hover { background: var(--accent-emerald-hover) !important; border-color: var(--accent-emerald-hover) !important; color: #FFFFFF !important; }
 
-        .section-label { text-align: center; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent-gold); margin-bottom: 16px; display: block; font-weight: 800; }
+        .section-label { text-align: center; font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--accent-gold); margin-bottom: 20px; display: block; font-weight: 800; }
 
         header { 
-            position: fixed; top: 0; left: 0; width: 100% !important; padding: 14px 16px; 
+            position: fixed; top: 0; left: 0; width: 100%; padding: 14px 16px; 
             display: flex; justify-content: space-between; align-items: center; 
             z-index: 2000; transition: all 0.4s ease; 
             background: var(--header-bg); 
             backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); 
             border-bottom: 1px solid var(--border-color); 
-            box-sizing: border-box !important;
+            box-sizing: border-box;
         }
         
-        .brand-name { font-family: var(--font-serif); font-size: 19px; letter-spacing: 5px; text-transform: uppercase; color: var(--accent-gold); font-weight: 600; position: absolute; left: 50%; transform: translateX(-50%); white-space: nowrap; }
+        .brand-name { font-family: var(--font-serif); font-size: 20px; letter-spacing: 6px; text-transform: uppercase; color: var(--accent-gold); font-weight: 600; position: absolute; left: 50%; transform: translateX(-50%); white-space: nowrap; }
 
         .theme-toggle-btn {
             background: transparent; border: 1px solid var(--border-color);
@@ -152,24 +156,24 @@
         }
         .theme-toggle-btn:hover { border-color: var(--accent-emerald); background: var(--surface-hover); }
 
-        .page-container { width: 100% !important; max-width: 1200px; margin: 85px auto 60px; padding: 0 12px; display: flex; flex-direction: column; gap: 16px; box-sizing: border-box !important; }
+        .page-container { width: 100%; max-width: 1200px; margin: 90px auto 30px; padding: 0 16px; display: flex; flex-direction: column; gap: 20px; box-sizing: border-box; }
         
         .onboarding-bento {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 20px;
             border-left: 4px solid var(--accent-emerald);
             border-right: 4px solid var(--accent-gold);
         }
         
         .onboarding-content { flex: 1; text-align: left; }
-        .onboarding-content h2 { font-size: 24px; color: var(--accent-gold); margin-bottom: 10px; text-align: center; }
-        .onboarding-content p { font-size: 12.5px; color: var(--text-dim); line-height: 1.5; }
+        .onboarding-content h2 { font-size: 26px; color: var(--accent-gold); margin-bottom: 12px; text-align: center; }
+        .onboarding-content p { font-size: 13px; color: var(--text-dim); line-height: 1.6; }
         .step-num { color: var(--accent-emerald); font-weight: 800; margin-right: 4px; }
 
         .vertical-photo-slot {
             width: 100%;
-            max-width: 260px;
+            max-width: 280px;
             margin: 0 auto;
             aspect-ratio: 3 / 4;
             border: 2px dashed var(--border-color);
@@ -187,104 +191,98 @@
         .vertical-photo-slot:hover { border-color: var(--accent-emerald); }
         .user-photo-preview { width: 100%; height: 100%; object-fit: cover; border-radius: 16px; display: none; position: absolute; inset: 0; }
 
-        .app-bento-grid { display: grid; grid-template-columns: 1fr; gap: 16px; width: 100% !important; box-sizing: border-box !important; }
+        .app-bento-grid { display: grid; grid-template-columns: 1fr; gap: 20px; width: 100%; box-sizing: border-box; }
 
         .level-badge { 
-            width: 85px; height: 85px; margin: 0 auto 10px; 
+            width: 90px; height: 90px; margin: 0 auto 12px; 
             background: radial-gradient(circle, rgba(16, 185, 129, 0.2) 0%, transparent 70%); 
-            display: flex; align-items: center; justify-content: center; font-size: 2.8rem; 
+            display: flex; align-items: center; justify-content: center; font-size: 3rem; 
             border-radius: 50%; position: relative; border: 1px solid var(--border-color); 
         }
-        .weekly-count { font-size: 10.5px; color: var(--accent-emerald); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-top: 6px; display: inline-block; padding: 4px 10px; background: rgba(16, 185, 129, 0.1); border-radius: 12px; border: 1px solid var(--border-color); }
+        .weekly-count { font-size: 11px; color: var(--accent-emerald); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-top: 8px; display: inline-block; padding: 4px 12px; background: rgba(16, 185, 129, 0.1); border-radius: 12px; border: 1px solid var(--border-color); }
         
-        .motivation-box { background: rgba(197, 160, 89, 0.06); border-left: 3px solid var(--accent-gold); padding: 14px; border-radius: 0 14px 14px 0; margin-top: 16px; text-align: left; }
-        .motivation-box h4 { color: var(--accent-gold); font-size: 14px; margin-bottom: 4px; font-weight: 700; }
-        .motivation-box p { font-size: 11.5px; color: var(--text-main); line-height: 1.4; font-style: italic; }
+        .motivation-box { background: rgba(197, 160, 89, 0.06); border-left: 3px solid var(--accent-gold); padding: 16px; border-radius: 0 16px 16px 0; margin-top: 18px; text-align: left; }
+        .motivation-box h4 { color: var(--accent-gold); font-size: 15px; margin-bottom: 4px; font-weight: 700; }
+        .motivation-box p { font-size: 12px; color: var(--text-main); line-height: 1.5; font-style: italic; }
 
-        .stats-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 16px; width: 100% !important; box-sizing: border-box !important; }
-        .stat-item { background: var(--surface-hover); padding: 12px 6px; border-radius: 14px; border: 1px solid var(--border-color); text-align: center; box-sizing: border-box !important; }
-        .stat-item b { font-size: 1.1rem; display: block; color: var(--text-main); margin-bottom: 2px; font-family: var(--font-serif); }
-        .stat-item span { font-size: 8.5px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.2; }
+        .stats-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 18px; width: 100%; box-sizing: border-box; }
+        .stat-item { background: var(--surface-hover); padding: 14px 8px; border-radius: 16px; border: 1px solid var(--border-color); text-align: center; box-sizing: border-box; }
+        .stat-item b { font-size: 1.2rem; display: block; color: var(--text-main); margin-bottom: 2px; font-family: var(--font-serif); }
+        .stat-item span { font-size: 9px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; line-height: 1.2; }
         .fire-text { color: var(--fire) !important; text-shadow: 0 0 12px rgba(255,85,0,0.4); }
         .gold-text { color: var(--accent-gold) !important; }
         
-        .science-note { font-size: 8.5px; color: var(--text-dim); text-align: center; margin-top: 12px; line-height: 1.4; }
+        .science-note { font-size: 9px; color: var(--text-dim); text-align: center; margin-top: 14px; line-height: 1.4; }
 
-        .real-chart-container { width: 100% !important; margin-top: 22px; position: relative; height: auto; min-height: 120px; box-sizing: border-box !important; }
-        .chart-svg { width: 100%; height: auto; max-height: 100px; overflow: visible; display: block; }
+        .real-chart-container { width: 100%; margin-top: 25px; position: relative; height: auto; min-height: 130px; }
+        .chart-svg { width: 100%; height: auto; max-height: 110px; overflow: visible; display: block; }
         .chart-grid-line { stroke: var(--border-color); stroke-width: 1; }
         .chart-path { fill: none; stroke: var(--accent-emerald); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 4px 8px rgba(16, 185, 129, 0.4)); }
         .chart-point { fill: var(--accent-gold); stroke: var(--bg-deep); stroke-width: 2; transition: 0.3s; r: 4; }
-        .chart-value-text { fill: var(--text-main); font-size: 9.5px; font-family: var(--font-main); font-weight: 800; text-anchor: middle; opacity: 0.9; }
-        .chart-dates { display: flex; justify-content: space-between; margin-top: 6px; font-size: 8.5px; color: var(--text-dim); letter-spacing: 1px; }
+        .chart-value-text { fill: var(--text-main); font-size: 10px; font-family: var(--font-main); font-weight: 800; text-anchor: middle; opacity: 0.9; }
+        .chart-dates { display: flex; justify-content: space-between; margin-top: 8px; font-size: 9px; color: var(--text-dim); letter-spacing: 1px; }
 
-        /* ИСПРАВЛЕННАЯ СЕТКА КНОПОК ДЛЯ IPHONE */
-        .export-actions-grid { display: flex; flex-direction: column; gap: 8px; margin-top: 14px; width: 100% !important; box-sizing: border-box !important; }
+        .export-actions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 15px; }
 
-        .input-group { display: flex; flex-direction: column; gap: 5px; margin-bottom: 14px; width: 100%; }
-        .input-group label { font-size: 8.5px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-dim); font-weight: 700; }
-        .input-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; width: 100% !important; box-sizing: border-box !important; }
+        .input-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 18px; width: 100%; }
+        .input-group label { font-size: 9px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-dim); font-weight: 700; }
+        .input-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; width: 100%; box-sizing: border-box; }
         
         .num-input { 
-            -webkit-appearance: none; appearance: none; width: 100% !important; 
+            -webkit-appearance: none; appearance: none; width: 100%; 
             background: var(--surface-hover); border: 1px solid var(--border-color); 
-            border-radius: 10px; padding: 10px 2px; color: var(--text-main); 
-            font-size: 15px; text-align: center; font-family: var(--font-main); 
-            font-weight: 700; transition: 0.3s; box-sizing: border-box !important;
+            border-radius: 12px; padding: 12px 2px; color: var(--text-main); 
+            font-size: 16px; text-align: center; font-family: var(--font-main); 
+            font-weight: 700; transition: 0.3s; box-sizing: border-box;
         }
         .num-input:focus { border-color: var(--accent-emerald); background: rgba(16, 185, 129, 0.05); }
 
-        .cycle-tabs { display: flex; gap: 4px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 12px; width: 100%; -webkit-overflow-scrolling: touch; }
+        .cycle-tabs { display: flex; gap: 5px; overflow-x: auto; padding-bottom: 5px; margin-bottom: 15px; width: 100%; -webkit-overflow-scrolling: touch; }
         .cycle-tabs::-webkit-scrollbar { display: none; }
-        .cycle-tab { flex: 1 0 auto; min-width: 70px; padding: 9px 6px; border-radius: 10px; border: 1px solid var(--border-color); background: var(--surface-hover); color: var(--text-dim); font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; text-align: center; transition: 0.3s; }
+        .cycle-tab { flex: 1 0 auto; min-width: 75px; padding: 10px 8px; border-radius: 10px; border: 1px solid var(--border-color); background: var(--surface-hover); color: var(--text-dim); font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; text-align: center; transition: 0.3s; }
         .cycle-tab.active { background: var(--accent-emerald); color: #FFF; border-color: var(--accent-emerald); box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3); }
 
-        .state-desc-box { border-left: 3px solid var(--accent-emerald); padding-left: 10px; margin-bottom: 16px; min-height: 36px; display: flex; align-items: center; }
-        .state-desc-text { font-size: 11.5px; color: var(--text-main); font-style: italic; line-height: 1.4; }
+        .state-desc-box { border-left: 3px solid var(--accent-emerald); padding-left: 12px; margin-bottom: 20px; min-height: 38px; display: flex; align-items: center; }
+        .state-desc-text { font-size: 12px; color: var(--text-main); font-style: italic; line-height: 1.4; }
 
-        .bio-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; margin: 16px 0 5px; padding-top: 14px; border-top: 1px dashed var(--border-color); text-align: center; width: 100%; }
-        .bio-val { font-size: 17px; font-family: var(--font-serif); font-weight: 600; color: var(--accent-gold); display: block; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .bio-label { font-size: 8px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 3px; display: block; font-weight: 700; }
-        .disclaimer-text { font-size: 8px; color: var(--text-dim); text-align: center; margin-bottom: 8px; letter-spacing: 0.5px; }
+        .bio-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; margin: 18px 0 5px; padding-top: 18px; border-top: 1px dashed var(--border-color); text-align: center; width: 100%; }
+        .bio-val { font-size: 19px; font-family: var(--font-serif); font-weight: 600; color: var(--accent-gold); display: block; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .bio-label { font-size: 8.5px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; display: block; font-weight: 700; }
+        .disclaimer-text { font-size: 8.5px; color: var(--text-dim); text-align: center; margin-bottom: 10px; letter-spacing: 0.5px; }
 
-        .water-hint { font-size: 9px; color: var(--accent-emerald); text-align: center; text-transform: uppercase; letter-spacing: 0.5px; margin: 16px 0 6px; font-weight: 800; }
-        .water-widget { display: flex; align-items: center; gap: 12px; background: var(--surface-hover); border-radius: 14px; padding: 14px; border: 1px solid var(--border-color); border-left: 4px solid var(--water); width: 100%; box-sizing: border-box; }
-        .water-glass-container { width: 36px; height: 58px; border: 2px solid rgba(59, 130, 246, 0.3); border-radius: 6px 6px 12px 12px; position: relative; overflow: hidden; cursor: pointer; flex-shrink: 0; background: rgba(59, 130, 246, 0.05); }
+        .water-hint { font-size: 9.5px; color: var(--accent-emerald); text-align: center; text-transform: uppercase; letter-spacing: 1px; margin: 20px 0 8px; font-weight: 800; }
+        .water-widget { display: flex; align-items: center; gap: 14px; background: var(--surface-hover); border-radius: 16px; padding: 16px; border: 1px solid var(--border-color); border-left: 4px solid var(--water); width: 100%; box-sizing: border-box; }
+        .water-glass-container { width: 40px; height: 65px; border: 2px solid rgba(59, 130, 246, 0.3); border-radius: 6px 6px 12px 12px; position: relative; overflow: hidden; cursor: pointer; flex-shrink: 0; background: rgba(59, 130, 246, 0.05); }
         .water-fill { position: absolute; bottom: 0; left: 0; width: 100%; height: 0%; background: linear-gradient(to top, #1D4ED8, var(--water)); transition: height 0.5s ease-out; box-shadow: 0 -5px 15px var(--water-glow); }
-        .water-info { flex: 1; min-width: 90px; }
-        .water-btn { background: rgba(59, 130, 246, 0.12); border: 1px solid rgba(59, 130, 246, 0.3); color: var(--water); padding: 7px 10px; border-radius: 8px; font-size: 9px; text-transform: uppercase; cursor: pointer; transition: 0.3s; font-weight: 800; margin-top: 4px; letter-spacing: 0.5px; width: 100%; }
+        .water-info { flex: 1; min-width: 100px; }
+        .water-btn { background: rgba(59, 130, 246, 0.12); border: 1px solid rgba(59, 130, 246, 0.3); color: var(--water); padding: 8px 12px; border-radius: 8px; font-size: 9.5px; text-transform: uppercase; cursor: pointer; transition: 0.3s; font-weight: 800; margin-top: 6px; letter-spacing: 1px; width: 100%; }
 
-        .verdict-box { background: var(--surface-hover); border-radius: 14px; padding: 14px; margin-top: 14px; border: 1px solid var(--border-color); border-left: 4px solid var(--accent-gold); display: flex; gap: 10px; width: 100%; box-sizing: border-box; }
+        .verdict-box { background: var(--surface-hover); border-radius: 16px; padding: 16px; margin-top: 18px; border: 1px solid var(--border-color); border-left: 4px solid var(--accent-gold); display: flex; gap: 12px; width: 100%; box-sizing: border-box; }
         .status-line { width: 4px; border-radius: 10px; flex-shrink: 0; background: var(--safe); transition: 0.5s; }
-        .verdict-text { font-size: 11.5px; color: var(--text-main); line-height: 1.4; }
+        .verdict-text { font-size: 12px; color: var(--text-main); line-height: 1.5; }
 
-        .club-card { border: 1px solid var(--border-color); border-radius: 16px; overflow: hidden; margin-top: 20px; background: var(--surface-color); display: flex; flex-direction: column; width: 100%; }
+        .club-card { border: 1px solid var(--border-color); border-radius: 18px; overflow: hidden; margin-top: 24px; background: var(--surface-color); display: flex; flex-direction: column; width: 100%; }
         .club-card-img { width: 100%; aspect-ratio: 16/9; position: relative; }
         .club-card-img img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; opacity: 0.75; filter: grayscale(10%); display: block; }
-        .club-card-img-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); display: flex; flex-direction: column; justify-content: flex-end; padding: 14px; }
-        .club-card-content { padding: 16px 12px; text-align: center; }
+        .club-card-img-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); display: flex; flex-direction: column; justify-content: flex-end; padding: 16px; }
+        .club-card-content { padding: 20px 16px; text-align: center; }
 
-        .training-item { background: var(--surface-hover); border: 1px solid var(--border-color); border-radius: 14px; padding: 14px; transition: 0.3s; cursor: pointer; display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; width: 100%; box-sizing: border-box; }
+        .training-item { background: var(--surface-hover); border: 1px solid var(--border-color); border-radius: 16px; padding: 16px; transition: 0.3s; cursor: pointer; display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; width: 100%; box-sizing: border-box; }
         .training-item:hover { border-color: var(--accent-emerald); transform: translateX(3px); }
-        .train-info h4 { font-family: var(--font-serif); font-size: 18px; color: var(--text-main); margin-bottom: 2px; }
-        .train-info p { font-size: 8px; color: var(--accent-emerald); font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
+        .train-info h4 { font-family: var(--font-serif); font-size: 20px; color: var(--text-main); margin-bottom: 2px; }
+        .train-info p { font-size: 8.5px; color: var(--accent-emerald); font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
 
-        .seo-editorial-bento { background: var(--surface-color); border: 1px solid var(--border-color); border-radius: 18px; padding: 20px 14px; margin-top: 10px; }
-        .seo-editorial-bento h2 { font-family: var(--font-serif); font-size: 20px; color: var(--accent-gold); margin-bottom: 8px; }
-        .seo-editorial-bento h3 { font-size: 14px; color: var(--accent-emerald); margin-top: 14px; margin-bottom: 4px; font-weight: 800; }
-        .seo-editorial-bento p { font-size: 12px; color: var(--text-dim); line-height: 1.5; text-align: justify; margin-bottom: 8px; }
+        .seo-editorial-bento { background: var(--surface-color); border: 1px solid var(--border-color); border-radius: 20px; padding: 24px 18px; margin-top: 10px; }
+        .seo-editorial-bento h2 { font-family: var(--font-serif); font-size: 22px; color: var(--accent-gold); margin-bottom: 10px; }
+        .seo-editorial-bento h3 { font-size: 15px; color: var(--accent-emerald); margin-top: 16px; margin-bottom: 6px; font-weight: 800; }
+        .seo-editorial-bento p { font-size: 13px; color: var(--text-dim); line-height: 1.6; text-align: justify; margin-bottom: 10px; }
 
-        .modal { display: none; position: fixed; inset: 0; z-index: 3000; background: rgba(5, 5, 12, 0.95); backdrop-filter: blur(10px); align-items: center; justify-content: center; padding: 14px; }
-        .modal-content { width: 100%; max-width: 400px; position: relative; }
-
-        /* ОКНО ПРОСМОТРА И СОХРАНЕНИЯ ГОТОВОГО ПАСПОРТА */
-        .passport-modal-img { width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--accent-gold); display: block; margin-bottom: 12px; }
+        .modal { display: none; position: fixed; inset: 0; z-index: 3000; background: rgba(5, 5, 12, 0.95); backdrop-filter: blur(10px); align-items: center; justify-content: center; padding: 16px; }
+        .modal-content { width: 100%; max-width: 420px; position: relative; }
 
         #passportCanvas { display: none; }
 
-        @media (min-width: 768px) {
-            .export-actions-grid { display: grid; grid-template-columns: 1fr 1fr; }
-        }
+        footer { padding-bottom: 30px; }
 
         @media (min-width: 992px) {
             .app-bento-grid { grid-template-columns: 360px 1fr; align-items: start; }
@@ -306,9 +304,10 @@
 
 <div class="page-container">
     
-    <!-- БЕНТО-БЛОК ОНБОРДИНГА -->
+    <!-- БЕНТО-БЛОК ОНБОРДИНГА С ВЕРТИКАЛЬНЫМ ФОТО НАВЕРХУ ДЛЯ СМАРТФОНА И СПРАВА ДЛЯ КОМПА -->
     <div class="bento-card onboarding-bento">
         
+        <!-- ВЕРТИКАЛЬНЫЙ СЛОТ ФОТО -->
         <div class="vertical-photo-slot" onclick="document.getElementById('userPhotoInput').click()">
             <span style="font-size: 10px; color: var(--accent-emerald); font-weight: 800; text-transform: uppercase; letter-spacing: 1px; text-align: center; padding: 0 10px;">📸 Загрузить вертикальное фото прогресса</span>
             <input type="file" id="userPhotoInput" accept="image/*" style="display:none;" onchange="handleUserPhotoUpload(event)">
@@ -335,12 +334,12 @@
             <div class="bento-card" style="text-align: center;">
                 <span class="section-label">Твоя эволюция</span>
                 <div class="level-badge" id="lvl-icon">🌱</div>
-                <h2 id="lvl-name" style="font-size: 26px; margin-bottom: 2px; color: var(--accent-gold);">Новичок</h2>
+                <h2 id="lvl-name" style="font-size: 28px; margin-bottom: 2px; color: var(--accent-gold);">Новичок</h2>
                 
                 <p id="lvl-count" style="font-size: 10px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 2px;">Всего тренировок: 0</p>
                 <div class="weekly-count" id="weekly-count">На этой неделе: 0</div>
 
-                <!-- КНОПКИ ЭКСПОРТА И ПОДЕЛИТЬСЯ (ИСПРАВЛЕНЫ ПОД IPHONE) -->
+                <!-- КНОПКИ ЭКСПОРТА И ПОДЕЛИТЬСЯ С ИСПРАВЛЕННОЙ КОНТРАСТНОСТЬЮ -->
                 <div class="export-actions-grid">
                     <button class="btn btn-emerald" onclick="downloadPassportImage()">📸 Карта с фото</button>
                     <button class="btn" onclick="exportToExcelCSV()">📊 В Excel / МойОфис</button>
@@ -375,7 +374,7 @@
                 </div>
 
                 <div class="real-chart-container">
-                    <span style="font-size: 9px; text-transform: uppercase; color: var(--text-dim); letter-spacing: 1px; position: absolute; top: -15px; left: 0; font-weight: 700;">Динамика веса</span>
+                    <span style="font-size: 9px; text-transform: uppercase; color: var(--text-dim); letter-spacing: 1.5px; position: absolute; top: -15px; left: 0; font-weight: 700;">Динамика веса</span>
                     <svg class="chart-svg" id="real-chart" viewBox="0 0 300 120" preserveAspectRatio="xMidYMid meet">
                         <g id="chart-grid"></g>
                         <path class="chart-path" id="chart-path" d=""></path>
@@ -384,7 +383,7 @@
                     <div class="chart-dates" id="chart-dates"></div>
                 </div>
                 
-                <button style="background:none; border:none; color:var(--text-dim); font-size:10px; margin-top:18px; cursor:pointer; text-decoration: underline;" onclick="resetData()">Сбросить данные</button>
+                <button style="background:none; border:none; color:var(--text-dim); font-size:10px; margin-top:20px; cursor:pointer; text-decoration: underline;" onclick="resetData()">Сбросить данные</button>
             </div>
         </div>
 
@@ -403,7 +402,6 @@
                     </div>
                 </div>
 
-                <!-- ЭФФЕКТ ONFOCUS="THIS.SELECT()" ДЛЯ МГНОВЕННОГО ВВОДА НА IPHONE -->
                 <div class="input-row">
                     <div class="input-group">
                         <label>Вес (кг)</label>
@@ -442,8 +440,8 @@
                         <div class="water-fill" id="water-fill-visual"></div>
                     </div>
                     <div class="water-info">
-                        <h4 style="font-size: 12.5px; margin-bottom: 2px; font-family: var(--font-serif); color: var(--text-main);">Водный баланс</h4>
-                        <p style="font-size: 10px; color: var(--text-dim); margin-bottom: 4px;">Выпито: <b id="water-drunk-text" style="color: var(--water); font-size: 11.5px;">0.0</b> / <span id="water-target-text">0.0</span> л</p>
+                        <h4 style="font-size: 13px; margin-bottom: 2px; font-family: var(--font-serif); color: var(--text-main);">Водный баланс</h4>
+                        <p style="font-size: 10.5px; color: var(--text-dim); margin-bottom: 4px;">Выпито: <b id="water-drunk-text" style="color: var(--water); font-size: 12px;">0.0</b> / <span id="water-target-text">0.0</span> л</p>
                         <button class="water-btn" onclick="addWater()">+ 250 мл</button>
                     </div>
                 </div>
@@ -457,11 +455,11 @@
             </div>
 
             <!-- БЕНТО-БЛОК ПОДБОРА ПРАКТИК -->
-            <div class="bento-card" style="margin-top: 16px;">
+            <div class="bento-card" style="margin-top: 20px;">
                 <span class="section-label">Смарт Подбор Практик</span>
-                <p style="font-size: 11px; color: var(--text-dim); margin-bottom: 8px; text-align: center;">Оцените ваше текущее состояние:</p>
+                <p style="font-size: 11.5px; color: var(--text-dim); margin-bottom: 10px; text-align: center;">Оцените ваше текущее состояние:</p>
                 
-                <div class="cycle-tabs" style="margin-bottom: 12px;">
+                <div class="cycle-tabs" style="margin-bottom: 15px;">
                     <button class="cycle-tab" id="res-low" onclick="setResource('low')">Усталость</button>
                     <button class="cycle-tab active" id="res-norm" onclick="setResource('norm')">В тонусе</button>
                     <button class="cycle-tab" id="res-peak" onclick="setResource('peak')">Заряжена</button>
@@ -479,11 +477,11 @@
                     <div class="club-card-img">
                         <img src="active-drive.png" alt="Библиотека онлайн тренировок">
                         <div class="club-card-img-overlay">
-                            <h3 class="serif" style="font-size: 22px; color: #fff; margin-bottom: 0;">Онлайн-Клуб «РЕСУРС»</h3>
+                            <h3 class="serif" style="font-size: 24px; color: #fff; margin-bottom: 0;">Онлайн-Клуб «РЕСУРС»</h3>
                         </div>
                     </div>
                     <div class="club-card-content">
-                        <p style="font-size: 11.5px; color: var(--text-dim); margin-bottom: 16px; line-height: 1.5;">
+                        <p style="font-size: 12px; color: var(--text-dim); margin-bottom: 18px; line-height: 1.5;">
                             Тренировки — это фундамент, но настоящая эволюция тела невозможна без нутрициологии. Возьми свою форму под полный контроль: получи доступ к библиотеке из десятков умных практик и авторским протоколам питания.
                         </p>
                         <a href="club.html" class="btn btn-emerald">Всё включено за 1600 ₽</a>
@@ -504,24 +502,12 @@
 
 </div>
 
-<!-- МОДАЛЬНОЕ ОКНО ДЛЯ ПОДТВЕРЖДЕНИЯ ТРЕНИРОВКИ -->
 <div class="modal" id="trainModal">
     <div class="bento-card modal-content">
-        <div style="position: absolute; top: 14px; right: 18px; font-size: 20px; cursor: pointer; color: var(--text-dim);" onclick="closeModal()">✕</div>
-        <h2 id="m-title" style="font-size: 26px; color: var(--accent-gold); margin-bottom: 8px;" class="serif">Название</h2>
-        <p id="m-desc" style="font-size: 12.5px; color: var(--text-main); margin-bottom: 18px; line-height: 1.5;">Описание</p>
+        <div style="position: absolute; top: 16px; right: 20px; font-size: 20px; cursor: pointer; color: var(--text-dim);" onclick="closeModal()">✕</div>
+        <h2 id="m-title" style="font-size: 28px; color: var(--accent-gold); margin-bottom: 10px;" class="serif">Название</h2>
+        <p id="m-desc" style="font-size: 13px; color: var(--text-main); margin-bottom: 20px; line-height: 1.5;">Описание</p>
         <button class="btn btn-emerald" onclick="confirmWorkout()">Я выполнила практику</button>
-    </div>
-</div>
-
-<!-- МОДАЛЬНОЕ ОКНО ПРОСМОТРА И СОХРАНЕНИЯ ПАСПОРТА -->
-<div class="modal" id="passportViewModal">
-    <div class="bento-card modal-content" style="text-align: center;">
-        <div style="position: absolute; top: 14px; right: 18px; font-size: 20px; cursor: pointer; color: var(--text-dim);" onclick="closePassportModal()">✕</div>
-        <h3 class="serif" style="font-size: 22px; color: var(--accent-gold); margin-bottom: 10px;">Ваш паспорт эволюции</h3>
-        <img id="passportGeneratedImg" class="passport-modal-img" alt="Карта эволюции тела">
-        <p style="font-size: 10.5px; color: var(--text-dim); margin-bottom: 12px;">Зажмите изображение пальцем для сохранения в галерею смартфона.</p>
-        <button class="btn btn-emerald" onclick="closePassportModal()">Понятно, закрыть</button>
     </div>
 </div>
 
@@ -529,9 +515,9 @@
 
 <footer>
     <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
-        <div style="font-family: var(--font-serif); font-size: 18px; letter-spacing: 5px; margin-bottom: 10px; text-transform: uppercase; color: var(--accent-gold);">Ресурс</div>
-        <p style="font-size: 11px; color: var(--text-dim); line-height: 1.5; margin-bottom: 14px;">Сыктывкар, ул. Коммунистическая 67<br>ИП Худяков Николай Сергеевич</p>
-        <div style="font-size: 9px; color: var(--text-dim); letter-spacing: 1px; text-transform: uppercase;">© 2026 Студия растяжки и движения Ресурс. Экосистема здоровья.</div>
+        <div style="font-family: var(--font-serif); font-size: 18px; letter-spacing: 6px; margin-bottom: 12px; text-transform: uppercase; color: var(--accent-gold);">Ресурс</div>
+        <p style="font-size: 11px; color: var(--text-dim); line-height: 1.5; margin-bottom: 16px;">Сыктывкар, ул. Коммунистическая 67<br>ИП Худяков Николай Сергеевич</p>
+        <div style="font-size: 9.5px; color: var(--text-dim); letter-spacing: 1.5px; text-transform: uppercase;">© 2026 Студия растяжки и движения Ресурс. Экосистема здоровья.</div>
     </div>
 </footer>
 
@@ -616,34 +602,32 @@
         }
     }
 
-    // ГАРАНТИРОВАННЫЙ ЭКСПОРТ В EXCEL / МОЙОФИС (CSV)
+    // НАДЕЖНЫЙ ЭКСПОРТ В EXCEL / МОЙОФИС С ПОДДЕРЖКОЙ IPHONE SAFARI
     function exportToExcelCSV() {
-        let exportData = state.history;
-        
-        // Если история еще пуста, генерируем текущую строчку
-        if (!exportData || exportData.length === 0) {
-            exportData = [{ ts: Date.now(), w: state.weight }];
+        if (state.history.length === 0) {
+            alert("История измерений пуста.");
+            return;
         }
 
         let csvContent = "\uFEFFДата;Вес (кг);ИМТ;Выпито воды (л);Всего тренировок\n";
         
-        exportData.forEach(item => {
+        state.history.forEach(item => {
             const dateStr = formatDate(item.ts);
             const bmi = (item.w / ((state.height / 100) ** 2)).toFixed(1);
             csvContent += `${dateStr};${item.w};${bmi};${state.waterDrunk};${state.workouts.length}\n`;
         });
 
-        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        // ПРЯМАЯ ДАТА-ССЫЛКА ДЛЯ НАДЕЖНОЙ ЗАГРУЗКИ В IOS SAFARI / ВК-БРАУЗЕРЕ
+        const encodedUri = encodeURI("data:text/csv;charset=utf-8," + csvContent);
         const link = document.createElement("a");
-        const url = URL.createObjectURL(blob);
-        link.setAttribute("href", url);
+        link.setAttribute("href", encodedUri);
         link.setAttribute("download", `resurs-evolution-export-${new Date().toISOString().slice(0,10)}.csv`);
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
     }
 
-    // СБОРКА И ОТКРЫТИЕ ПАСПОРТА ЭВОЛЮЦИИ С ФОТО
+    // СБОРКА И СКАЧИВАНИЕ ПАСПОРТА ЭВОЛЮЦИИ С ФОТО НА СМАРТФОНЕ (УМНЫЙ OBJECT-FIT: COVER)
     function downloadPassportImage() {
         const canvas = document.getElementById('passportCanvas');
         const ctx = canvas.getContext('2d');
@@ -660,19 +644,40 @@
         ctx.textAlign = "center";
         ctx.fillText("РЕСУРС • ПАСПОРТ ЭВОЛЮЦИИ ТЕЛА", canvas.width / 2, 60);
 
+        const targetX = 50;
+        const targetY = 90;
+        const targetW = 500;
+        const targetH = 340;
+
         if (state.userPhotoDataUrl) {
             const img = new Image();
             img.onload = function() {
-                ctx.drawImage(img, 50, 90, 500, 320);
+                const imgRatio = img.width / img.height;
+                const targetRatio = targetW / targetH;
+                let sw, sh, sx, sy;
+
+                if (imgRatio > targetRatio) {
+                    sh = img.height;
+                    sw = img.height * targetRatio;
+                    sx = (img.width - sw) / 2;
+                    sy = 0;
+                } else {
+                    sw = img.width;
+                    sh = img.width / targetRatio;
+                    sx = 0;
+                    sy = (img.height - sh) / 2;
+                }
+
+                ctx.drawImage(img, sx, sy, sw, sh, targetX, targetY, targetW, targetH);
                 drawPassportTextDetails(ctx, canvas);
             };
             img.src = state.userPhotoDataUrl;
         } else {
             ctx.fillStyle = "#111A13";
-            ctx.fillRect(50, 90, 500, 320);
+            ctx.fillRect(targetX, targetY, targetW, targetH);
             ctx.fillStyle = "#92A196";
             ctx.font = "18px Manrope";
-            ctx.fillText("Загрузите фото прогресса для отображения", canvas.width / 2, 250);
+            ctx.fillText("Фото прогресса не загружено", canvas.width / 2, 250);
             drawPassportTextDetails(ctx, canvas);
         }
     }
@@ -686,22 +691,20 @@
         let currentLevel = levels[0];
         for(let i=0; i<levels.length; i++) { if(totalSessions >= levels[i].n) currentLevel = levels[i]; }
 
-        ctx.fillText(`Уровень: ${currentLevel.icon} ${currentLevel.name}`, 50, 460);
-        ctx.fillText(`Выполнено практик: ${totalSessions}`, 50, 500);
-        ctx.fillText(`Текущий вес: ${state.weight} кг (ИМТ: ${(state.weight / ((state.height / 100) ** 2)).toFixed(1)})`, 50, 540);
-        ctx.fillText(`Выпито воды сегодня: ${state.waterDrunk} л`, 50, 580);
+        ctx.fillText(`Уровень: ${currentLevel.icon} ${currentLevel.name}`, 50, 470);
+        ctx.fillText(`Выполнено практик: ${totalSessions}`, 50, 510);
+        ctx.fillText(`Текущий вес: ${state.weight} кг (ИМТ: ${(state.weight / ((state.height / 100) ** 2)).toFixed(1)})`, 50, 550);
+        ctx.fillText(`Выпито воды сегодня: ${state.waterDrunk} л`, 50, 590);
 
         ctx.fillStyle = "#10B981";
         ctx.font = "italic 16px Manrope";
-        ctx.fillText("г. Сыктывкар, ул. Коммунистическая 67 • resurs-stretch.ru", 50, 720);
+        ctx.fillText("г. Сыктывкар, ул. Коммунистическая 67 • resurs-stretch.ru", 50, 730);
 
         const dataUrl = canvas.toDataURL('image/jpeg');
-        document.getElementById('passportGeneratedImg').src = dataUrl;
-        document.getElementById('passportViewModal').style.display = 'flex';
-    }
-
-    function closePassportModal() {
-        document.getElementById('passportViewModal').style.display = 'none';
+        const link = document.createElement('a');
+        link.download = `resurs-passport-evolution.jpg`;
+        link.href = dataUrl;
+        link.click();
     }
 
     async function shareEvolutionLink() {
@@ -803,7 +806,7 @@
             vLine.style.background = 'var(--danger)';
         }
         
-        vText.innerHTML = `<span style="color:var(--accent-gold); font-family:var(--font-serif); font-size:15px; font-weight:600;">${bmiVerdict}</span><br><span style="display:inline-block; margin-top:4px;">${advice}</span>`;
+        vText.innerHTML = `<span style="color:var(--accent-gold); font-family:var(--font-serif); font-size:16px; font-weight:600;">${bmiVerdict}</span><br><span style="display:inline-block; margin-top:5px;">${advice}</span>`;
     }
 
     function getMotivationalText(sessions) {
@@ -934,7 +937,7 @@
             const data = trainingLibrary[name];
             return `<div class="training-item" onclick="openTrainModal('${name}')">
                         <div class="train-info"><h4 class="serif">${name}</h4><p>${data.tags.join(' • ')}</p></div>
-                        <div style="color: var(--accent-gold); font-size: 18px; font-weight: 800;">→</div>
+                        <div style="color: var(--accent-gold); font-size: 20px; font-weight: 800;">→</div>
                     </div>`;
         }).join('');
     }
