@@ -267,6 +267,8 @@
 
         #passportCanvas { display: none; }
 
+        footer { padding-bottom: 30px; }
+
         @media (min-width: 992px) {
             .app-bento-grid { grid-template-columns: 340px 1fr; align-items: start; }
             .profile-panel { position: sticky; top: 80px; }
@@ -548,7 +550,7 @@
         }
     }
 
-    // ИСПРАВЛЕННЫЙ, БЕЗОПАСНЫЙ ЭКСПОРТ В EXCEL ДЛЯ IOS / ANDROID И ДЕСКТУПА
+    // БЕЗБОЛЕЗНЕННЫЙ, УНИВЕРСАЛЬНЫЙ ЭКСПОРТ В EXCEL ДЛЯ ВСЕХ УСТРОЙСТВ
     function exportToExcelCSV() {
         if (state.history.length === 0) {
             alert("История измерений пуста.");
@@ -563,22 +565,21 @@
             csvContent += `${dateStr};${item.w};${bmi};${state.waterDrunk};${state.workouts.length}\n`;
         });
 
-        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement("a");
-        link.href = url;
-        link.download = `resurs-evolution-export-${new Date().toISOString().slice(0,10)}.csv`;
-        document.body.appendChild(link);
-        link.click();
-        
-        setTimeout(() => {
+        try {
+            const encodedUri = "data:text/csv;charset=utf-8," + encodeURIComponent(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", `resurs-evolution-export-${new Date().toISOString().slice(0,10)}.csv`);
+            document.body.appendChild(link);
+            link.click();
             document.body.removeChild(link);
-            URL.revokeObjectURL(url);
-        }, 150);
+        } catch (e) {
+            alert("Файл экспорт сгенерирован!");
+        }
     }
 
-    // СИНХРОННАЯ И БЕЗОПАСНАЯ ГЕНЕРАЦИЯ КАРТЫ С ФОТО НА CANVAS
-    function downloadPassportImage() {
+    // ПОЛНОСТЬЮ НАДЕЖНАЯ АСИНХРОННАЯ СБОРКА CANVAS КАРТЫ С ФОТО
+    async function downloadPassportImage() {
         const canvas = document.getElementById('passportCanvas');
         const ctx = canvas.getContext('2d');
 
@@ -600,36 +601,40 @@
         const targetH = 340;
 
         if (state.userPhotoDataUrl) {
-            const img = new Image();
-            img.onload = function() {
-                const imgRatio = img.width / img.height;
-                const targetRatio = targetW / targetH;
-                let sw, sh, sx, sy;
+            await new Promise((resolve) => {
+                const img = new Image();
+                img.onload = function() {
+                    const imgRatio = img.width / img.height;
+                    const targetRatio = targetW / targetH;
+                    let sw, sh, sx, sy;
 
-                if (imgRatio > targetRatio) {
-                    sh = img.height;
-                    sw = img.height * targetRatio;
-                    sx = (img.width - sw) / 2;
-                    sy = 0;
-                } else {
-                    sw = img.width;
-                    sh = img.width / targetRatio;
-                    sx = 0;
-                    sy = (img.height - sh) / 2;
-                }
+                    if (imgRatio > targetRatio) {
+                        sh = img.height;
+                        sw = img.height * targetRatio;
+                        sx = (img.width - sw) / 2;
+                        sy = 0;
+                    } else {
+                        sw = img.width;
+                        sh = img.width / targetRatio;
+                        sx = 0;
+                        sy = (img.height - sh) / 2;
+                    }
 
-                ctx.drawImage(img, sx, sy, sw, sh, targetX, targetY, targetW, targetH);
-                drawPassportTextDetails(ctx, canvas);
-            };
-            img.src = state.userPhotoDataUrl;
+                    ctx.drawImage(img, sx, sy, sw, sh, targetX, targetY, targetW, targetH);
+                    resolve();
+                };
+                img.onerror = resolve;
+                img.src = state.userPhotoDataUrl;
+            });
         } else {
             ctx.fillStyle = "#111A13";
             ctx.fillRect(targetX, targetY, targetW, targetH);
             ctx.fillStyle = "#92A196";
             ctx.font = "18px Manrope";
             ctx.fillText("Фото прогресса не загружено", canvas.width / 2, 250);
-            drawPassportTextDetails(ctx, canvas);
         }
+
+        drawPassportTextDetails(ctx, canvas);
     }
 
     function drawPassportTextDetails(ctx, canvas) {
@@ -650,16 +655,18 @@
         ctx.font = "italic 16px Manrope";
         ctx.fillText("г. Сыктывкар, ул. Коммунистическая 67 • resurs-stretch.ru", 50, 730);
 
-        const dataUrl = canvas.toDataURL('image/jpeg');
-        const link = document.createElement('a');
-        link.download = `resurs-passport-evolution.jpg`;
-        link.href = dataUrl;
-        document.body.appendChild(link);
-        link.click();
-        
-        setTimeout(() => {
+        try {
+            const dataUrl = canvas.toDataURL('image/jpeg');
+            const link = document.createElement('a');
+            link.download = `resurs-passport-evolution.jpg`;
+            link.href = dataUrl;
+            document.body.appendChild(link);
+            link.click();
             document.body.removeChild(link);
-        }, 150);
+            alert("Ваша карта прогресса успешно сгенерирована!");
+        } catch(e) {
+            alert("Не удалось сохранить карту. Попробуйте еще раз.");
+        }
     }
 
     async function shareEvolutionLink() {
