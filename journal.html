@@ -401,14 +401,45 @@
         const postSlug = urlParams.get('slug');
         const postId = urlParams.get('id');
 
-        await fetchArticlesData(); 
+        if (postSlug || postId) {
+            // Если в ссылке передан slug или id, запрашиваем статью точечно с сервера
+            let targetArticle = null;
+            try {
+                const queryParam = postSlug ? `slug=${encodeURIComponent(postSlug)}` : `id=${encodeURIComponent(postId)}`;
+                const res = await fetch(`${API_URL}?action=get&${queryParam}&t=${new Date().getTime()}`);
+                const data = await res.json();
+                
+                if (data && data.article) {
+                    targetArticle = data.article;
+                } else if (data && data.id) {
+                    targetArticle = data;
+                }
+            } catch (e) {
+                console.error("Ошибка при запросе конкретной статьи:", e);
+            }
 
-        if (postSlug) {
-            const targetArticle = articlesData.find(a => a.slug === postSlug);
-            if (targetArticle) renderArticleView(targetArticle.id);
-        } else if (postId) {
-            renderArticleView(postId);
+            // Загружаем основной список для корректной работы ленты
+            await fetchArticlesData();
+
+            if (targetArticle) {
+                // Если статья найдена, гарантируем ее наличие в локальном массиве
+                const exists = articlesData.some(a => a.id === targetArticle.id);
+                if (!exists) {
+                    articlesData.push(targetArticle);
+                }
+                renderArticleView(targetArticle.id);
+            } else {
+                // Если точечный поиск не дал результатов, пробуем найти в общей загрузке
+                const localArticle = articlesData.find(a => (postSlug && a.slug === postSlug) || (postId && a.id === postId));
+                if (localArticle) {
+                    renderArticleView(localArticle.id);
+                } else {
+                    renderArticleView(null); // Покажет страницу "Статья не найдена"
+                }
+            }
         } else {
+            // Обычный вход без параметров в URL
+            await fetchArticlesData();
             renderHomeView();
         }
     }
@@ -614,7 +645,7 @@
             document.title = "Статья не найдена";
             document.getElementById('full-title').innerText = "Статья не найдена";
             document.getElementById('full-meta').innerHTML = "";
-            document.getElementById('full-content').innerHTML = "<p>Возможно, material был удален или ссылка устарела.</p>";
+            document.getElementById('full-content').innerHTML = "<p>Возможно, материал был удален или ссылка устарела.</p>";
             document.getElementById('seo-robot-content').innerHTML = '';
             document.getElementById('full-cover').style.display = 'none';
             document.getElementById('video-wrapper').style.display = 'none';
