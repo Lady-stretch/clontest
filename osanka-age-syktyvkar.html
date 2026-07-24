@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <script>
-        // ИЗМЕНЕНО: По умолчанию для инфо-страниц ставим эко-светлую тему, сохраняем выбор пользователя
+        // По умолчанию для инфо-страниц ставим эко-светлую тему, сохраняем выбор пользователя
         const savedTheme = localStorage.getItem('theme') || 'light';
         document.documentElement.setAttribute('data-theme', savedTheme);
     </script>
@@ -24,11 +24,11 @@
             if (d.getElementById(id)) return;
             var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
             ts.src = "https://top-fwz1.mail.ru/js/code.js";
-            var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
+            var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(s, f);};
             if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
         })(document, window, "tmr-code");
     </script>
-    <noscript>
+    <noscript><div><img src="https://top-fwz1.mail.ru/counter?id=3755240;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" /></div></noscript>
 
     <script>
         // Глобальная логика перехвата ботов для SEO-превью через Яндекс Функцию
@@ -220,7 +220,7 @@
 
         .recipe-badge { background: var(--accent-green); color: #FFF; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; text-transform: uppercase; display: inline-block; margin-bottom: 15px; }
 
-        /* ИЗМЕНЕНО: СТИЛИ ДЛЯ УЛЬТРА-ЯРКОЙ И ПРИВЛЕКАТЕЛЬНОЙ КНОПКИ ШЕРИНГА */
+        /* КНОПКА ШЕРИНГА */
         .share-section { margin-top: 50px; background: linear-gradient(135deg, rgba(76, 175, 80, 0.08), rgba(179, 134, 57, 0.08)); border: 2px solid var(--accent-green); border-radius: 28px; padding: 40px 30px; text-align: center; box-shadow: 0 15px 40px rgba(76,175,80,0.1); }
         .btn-share {
             display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 18px 40px;
@@ -512,7 +512,7 @@
         </div>
     </div>
 
-    <!-- ИЗМЕНЕНО: НОВАЯ УЛЬТРА-ЯРКАЯ И КОНТРАСТНАЯ КНОПКА ШЕРИНГА С ПРЕМИАЛЬНЫМ ГРАДИЕНТОМ -->
+    <!-- КНОПКА ШЕРИНГА -->
     <section class="share-section">
         <h3 class="serif" style="font-size: 22px; margin-bottom: 12px; color: var(--text-main);">🔥 Поделиться калькулятором осанки с подругами и коллегами!</h3>
         <p style="font-size: 14px; color: var(--text-dim); margin-bottom: 25px;">Отправьте этот тест тем, кто весь день сидит за компьютером или в телефоне, чтобы помочь им спасти спину от зажимов.</p>
@@ -525,7 +525,7 @@
 </main>
 
 <footer>
-    <p>© 2026 РЕСУРС | Система умного фитнеса, растяжки и движения. Сыктывкар, ул. Коммунистическая 77/2.</p>
+    <p>© 2026 РЕСУРС | Система умного фитнеса, растяжки и движения. Сыктывкар, ул. Коммунистическая 67.</p>
     <p style="margin-top: 5px; opacity: 0.6; font-size: 10px;">Интерактивный расчет возраста является скрининговым тестом и носит информационный характер. При хронических болях и патологиях позвоночника обратитесь к профильному врачу.</p>
 </footer>
 
@@ -681,7 +681,7 @@
         });
     }
 
-    // ЛОГИКА ДЛЯ УЛЬТРА-ЯРКОЙ КНОПКИ ШЕРИНГА (NAVIGATOR SHARE / БУФЕР ОБМЕНА)
+    // ЛОГИКА ДЛЯ КНОПКИ ШЕРИНГА
     async function sharePage() {
         const shareData = {
             title: 'Узнай биологический возраст своей осанки онлайн!',
