@@ -8,7 +8,7 @@
     </script>
 
     <script type="text/javascript">
-   // --- Yandex.Metrika counter ---
+    // --- Yandex.Metrika counter ---
         (function(m,e,t,r,i,k,a){
             m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
             m[i].l=1*new Date();
@@ -28,7 +28,7 @@
             if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
         })(document, window, "tmr-code");
     </script>
-    <noscript>
+    <noscript><div><img src="https://top-fwz1.mail.ru/counter?id=3755240;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" /></div></noscript>
 
     <script>
         // Глобальная логика перехвата ботов для SEO-превью через Яндекс Функцию
@@ -227,7 +227,6 @@
         }
         .btn-share:hover { transform: scale(1.03) translateY(-2px); box-shadow: 0 15px 35px rgba(76, 175, 80, 0.6); }
 
-        /* ИСПРАВЛЕНО: ГЛОБАЛЬНЫЙ СИММЕТРИЧНЫЙ ПОДВАЛ ДЛЯ БОЛЬШИХ МОНИТОРОВ */
         footer { 
             margin-top: 80px; 
             padding: 60px 0 40px; 
@@ -386,7 +385,7 @@
                     <div>
                         <h3 class="serif" style="font-size: 22px; margin-bottom: 10px;">Анатомическая правда: почему жир не сгорает в болоте</h3>
                         <p style="font-size: 14px; color: var(--text-dim); line-height: 1.6;">
-                            Лиммическая система не имеет своего «сердца»-насоса. Единственный способ заставить её двигаться и очищать ткани — это сокращение и растяжение наших скелетных мышц. Когда вы долго сидите в офисе или перегружаете тело однообразным бегом, мышцы спазмируются и зажимают лимфатические сосуды. Вокруг жировых клеток образуется неподвижное «болото» из межклеточной жидкости. В таких условиях биохимический процесс *липолиза* (расщепления жировых клеток) физически не может запуститься, так как к клеткам заблокирован приток кислорода. Лимфодренажный МФР (миофасциальный релиз) и мягкий Пилатес буквально отжимают мышцы как губку, убирая болото и открывая жировым клеткам путь к безопасному сжиганию.
+                            Лимфатическая система не имеет своего «сердца»-насоса. Единственный способ заставить её двигаться и очищать ткани — это сокращение и растяжение наших скелетных мышц. Когда вы долго сидите в офисе или перегружаете тело однообразным бегом, мышцы спазмируются и зажимают лимфатические сосуды. Вокруг жировых клеток образуется неподвижное «болото» из межклеточной жидкости. В таких условиях биохимический процесс *липолиза* (расщепления жировых клеток) физически не может запуститься, так как к клеткам заблокирован приток кислорода. Лимфодренажный МФР (миофасциальный релиз) и мягкий Пилатес буквально отжимают мышцы как губку, убирая болото и открывая жировым клеткам путь к безопасному сжиганию.
                         </p>
                     </div>
                     <div style="background: var(--elem-bg); padding: 15px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
@@ -537,7 +536,7 @@
 
 <footer>
     <div class="footer-container">
-        <p class="footer-text-main">© 2026 РЕСУРС | Студия фитнеса, растяжки и движения. Сыктывкар, ул. Коммунистическая 77/2.</p>
+        <p class="footer-text-main">© 2026 РЕСУРС | Студия фитнеса, растяжки и движения. Сыктывкар, ул. Коммунистическая 67.</p>
         <p class="footer-text-sub">Интерактивный анализ жидкостных сред является скрининговым тестом. При стойких лимфатических патологиях и нарушениях работы почек проконсультируйтесь с лечащим врачом.</p>
     </div>
 </footer>
@@ -581,7 +580,7 @@
         calculateEdemaIndex();
     }
 
-    // ИСПРАВЛЕННАЯ, ДИНАМИЧЕСКАЯ И ЧУТКАЯ МАТЕМАТИЧЕСКАЯ МОДЕЛЬ РАСЧЕТА
+    // МАТЕМАТИЧЕСКАЯ МОДЕЛЬ РАСЧЕТА
     function calculateEdemaIndex() {
         const weightFluid = parseInt(document.querySelector('input[name="weight_fluid"]:checked').value);
         const marks = parseInt(document.querySelector('input[name="marks"]:checked').value);
@@ -591,43 +590,32 @@
         const drinkLabels = ['0 чашек (Идеал)', '1-2 чашки', '3-4 чашки', 'Более 5 порций'];
         document.getElementById('range-drink-val').innerText = drinkLabels[coffeeCount];
 
-        // Базовые веса: варианты 3 дают много отека, варианты 1 дают жировой компонент
-        // Превращаем значения радиокнопок (3, 2, 1) в очки отечности
         let score = 0;
         
-        // Вопрос 1: Разница в сутках (3 = 25 очков, 2 = 12 очков, 1 = 0 очков)
         if (weightFluid === 3) score += 25;
         if (weightFluid === 2) score += 12;
         
-        // Вопрос 2: Глубокие следы (3 = 25 очков, 2 = 12 очков, 1 = 0 очков)
         if (marks === 3) score += 25;
         if (marks === 2) score += 12;
         
-        // Вопрос 3: Текстура кожи (3 = 25 очков, 2 = 10 очков, 1 = 0 очков)
         if (skinTexture === 3) score += 25;
         if (skinTexture === 2) score += 10;
         
-        // Ползунок кофе (0 = 0 очков, 1 = 8 очков, 2 = 16 очков, 3 = 25 очков)
         score += (coffeeCount * 8.3);
 
-        // Итоговый процент отека
         let edemaPercent = Math.round(score);
         
-        // Ограничиваем рамки, чтобы выглядело органично и не уходило в крайности 0 или 100
         if (edemaPercent > 92) edemaPercent = 92;
         if (edemaPercent < 15) edemaPercent = 15;
 
-        // Жировой компонент — это остаток от 100%
         let fatPercent = 100 - edemaPercent;
 
         const resultTitle = document.getElementById('calc-result-title');
         const statusEl = document.getElementById('calc-status');
         const textEl = document.getElementById('calc-text');
 
-        // Выводим обновленные живые пропорции
         resultTitle.innerText = edemaPercent + "% Отек / " + fatPercent + "% Жир";
 
-        // Интерактивная смена текстов в зависимости от реальных галочек
         if (edemaPercent >= 65) {
             statusEl.innerText = "Лимфатический застой";
             statusEl.style.color = "var(--accent-berry)";
