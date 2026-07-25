@@ -38,17 +38,17 @@
     </noscript>
     
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     
-    <title>РЕСУРС | Студия умного фитнеса, здоровой спины и коррекции осанки</title>
-    <meta name="description" content="Международная система эволюции тела РЕСУРС. Избавляем от болей в спине и пояснице, исправляем осанку, убираем спазмы триггерных точек за 50 минут. Мягкий фитнес, umный пилатес, аэройога и лимфодренажный МФР. Запишитесь на тест-драйв за 990₽!">
-    <meta name="keywords" content="здоровая спина, исправление осанки, умный пилатес, миофасциальный релиз триггерных точек, лимфодренажные тренировки от отеков, аэростретчинг в гамаках, мягкий фитнес, растяжка сыктывкар, студия ресурс">
+    <title>РЕСУРС | Фитнес клуб и студия умного фитнеса в Сыктывкаре</title>
+    <meta name="description" content="Фитнес-центр и студия эволюции тела РЕСУРС в Сыктывкаре. Поможем быстро похудеть, убрать живот, скинуть вес и избавиться от болей в спине за 50 минут. Легкие тренировки, умный пилатес, аэройога и МФР массаж. Запишитесь на тест-драйв!">
+    <meta name="keywords" content="фитнес клуб сыктывкар, фитнес-центр сыктывкар, похудеть в сыктывкаре, похудеть сыктывкар, легкие тренировки сыктывкар, убрать живот сыктывкар, скинуть вес сыктывкар, быстро похудеть сыктывкар, МФР, массаж, самомассаж сыктывкар, здоровая спина, исправление осанки, умный пилатес, лимфодренажные тренировки от отеков, аэростретчинг в гамаках, мягкий фитнес, растяжка сыктывкар, студия ресурс">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://resurs-stretch.ru/">
 
     <meta property="og:type" content="website">
-    <meta property="og:title" content="РЕСУРС | Система эволюции движения и здорового тела">
-    <meta property="og:description" content="Устраняем боли в позвоночнике и возвращаем легкость за 50 минут. Приходите на тест-драйв за 990₽.">
+    <meta property="og:title" content="РЕСУРС | Фитнес клуб и система эволюции здорового тела">
+    <meta property="og:description" content="Устраняем боли в позвоночнике, помогаем скинуть вес и возвращаем легкость за 50 минут. Приходите на тест-драйв за 990₽.">
     <meta property="og:url" content="https://resurs-stretch.ru/">
     <meta property="og:image" content="https://resurs-stretch.ru/logo_header_final.png">
     <meta property="og:site_name" content="РЕСУРС">
@@ -294,7 +294,7 @@
         /* БУРГЕР ИЗ 4 ЛИНИЙ */
         .nav-trigger { 
             position: relative; display: flex; align-items: center; justify-content: center; 
-            z-index: 1100; width: 48px; height: 48px; 
+            z-index: 2100; width: 48px; height: 48px; 
         }
         .nav-trigger span { 
             position: absolute; left: 11px; height: 1.5px; background: var(--text-main); 
@@ -395,12 +395,6 @@
             opacity: 0.8;
             margin: 0 !important;
         }
-
-        .close-arrow {
-            position: absolute; top: 40px; left: 40px;
-            font-size: 30px; cursor: pointer; opacity: 0.5; transition: 0.3s;
-        }
-        .close-arrow:hover { opacity: 1; transform: translateX(-5px); }
 
         /* --- HERO SECTION --- */
         .hero {
@@ -516,6 +510,25 @@
             justify-content: space-between; flex-wrap: wrap; gap: 20px; text-align: left;
         }
 
+        /* --- АДАПТИВНОЕ ОКНО COOKIE --- */
+        #cookie-notice {
+            position: fixed;
+            bottom: clamp(15px, 3vh, 25px);
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 5000;
+            padding: 16px 24px;
+            border-radius: 18px;
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            border: 1px solid var(--accent-gold);
+            width: clamp(280px, 92%, 460px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+            margin-bottom: env(safe-area-inset-bottom, 0px);
+        }
+
         @media (max-width: 1100px) {
             .expert-grid, .philosophy, .dir-container, .bento-grid { grid-template-columns: 1fr; }
             .bento-full { grid-column: span 1; }
@@ -549,6 +562,8 @@
             .faq-answer { font-size: 14px; padding: 0 20px; }
             .faq-item.active .faq-answer { padding: 0 20px 20px; }
             #journal-float-btn { bottom: 25px; left: 15px; width: 55px; height: 55px; }
+            #cookie-notice { padding: 14px 18px; flex-direction: column; text-align: center; }
+            #cookie-notice button { width: 100%; }
         }
         
         /* --- MODALS --- */
@@ -638,8 +653,6 @@
 </div>
 
 <div id="navOverlay" class="glass-sidebar">
-    <div class="close-arrow" onclick="toggleNav()">←</div>
-    
     <div class="nav-links" style="display: flex; flex-direction: column; align-items: center; gap: 0;">
         <a href="#about" onclick="toggleNav()" class="nav-main-link">О студии</a>
         <a href="journal.html" class="nav-main-link gold-link">ЖУРНАЛ СТУДИИ</a>
@@ -727,7 +740,7 @@
                 Это основа вашего ресурса. Сидячий образ жизни, гаджеты и постоянный стресс «запирают» напряжение в шее, плечах и пояснице. Наши экспертные тренировки направлены на мягкую и вдумчивую работу с первопричиной боли.
             </p>
             <p style="opacity: 0.8; font-size: 16px; margin-bottom: 40px; line-height: 1.8;">
-                За 50 минут мы бережно укрепим мышечный корсет, провем декомпрессию позвоночника и вернем вашему телу естественную осанку. Забудьте о скованности — дышите полной грудью.
+                За 50 минут мы бережно укрепим мышечный корсет, проведем декомпрессию позвоночника и вернем вашему телу естественную осанку. Забудьте о скованности — дышите полной грудью.
             </p>
             <div style="margin-top: 40px;">
                 <a href="schedule.html" class="btn btn-lens">Записаться на практику</a>
@@ -961,7 +974,7 @@
     </div>
     
     <div class="faq-item glass">
-        <div class="faq-question">What нужно взять с собой на первую тренировку?</div>
+        <div class="faq-question">Что нужно взять с собой на первую тренировку?</div>
         <div class="faq-answer">
             Возьмите с собой паспорт (понадобится для оформления) и бутылочку для воды. Если вам нет 18 лет, понадобится письменное разрешение от родителей. В самой студии есть абсолютно всё необходимое оборудование (коврики, роллы, блоки), которое мы тщательно обрабатываем после каждого занятия.
         </div>
@@ -1037,7 +1050,7 @@
         <div class="footer-grid">
             <div>
                 <h4>Адрес студии</h4>
-                <p style="font-size: 13px; opacity: 0.8; line-height: 1.8;">Сыктывкар, ул. Коммунистическая 77/2</p>
+                <p style="font-size: 13px; opacity: 0.8; line-height: 1.8;">г. Сыктывкар</p>
             </div>
             <div>
                 <h4>Документы</h4>
@@ -1053,7 +1066,7 @@
         
         <p style="margin-top: 60px; font-size: 10px; opacity: 0.5; letter-spacing: 3px; text-transform: uppercase;">
              © 2026 РЕСУРС | Студия фитнеса, растяжки и движения. Все права защищены.
-</p>
+        </p>
     </div>
 </footer>
 
@@ -1423,8 +1436,8 @@
     });
 </script>
 
-<div id="cookie-notice" class="glass" style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 5000; padding: 15px 25px; border-radius: 15px; display: none; align-items: center; justify-content: space-between; gap: 15px; border: 1px solid var(--accent-gold); max-width: 480px; width: 90%; flex-wrap: wrap;">
-    <span style="font-size: 12px; opacity: 0.9; flex: 1; min-width: 200px;">Мы используем файлы cookie, чтобы сайт «Ресурса» работал лучше. <a href="privacy.html" style="text-decoration: underline;">Подробнее</a></span>
+<div id="cookie-notice" class="glass">
+    <span style="font-size: 12px; opacity: 0.9; flex: 1;">Мы используем файлы cookie, чтобы сайт «Ресурса» работал лучше. <a href="privacy.html" style="text-decoration: underline;">Подробнее</a></span>
     <button onclick="acceptCookies()" class="btn-lens" style="padding: 8px 20px; font-size: 10px; text-transform: uppercase; border-color: var(--accent-gold); color: var(--accent-gold);">ОК</button>
 </div>
 
