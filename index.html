@@ -54,7 +54,6 @@
     <meta property="og:site_name" content="РЕСУРС">
     <meta property="og:locale" content="ru_RU">
 
-    <!-- Микроразметка организации с актуальным адресом -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -546,14 +545,14 @@
             margin-bottom: env(safe-area-inset-bottom, 0px);
         }
 
-        /* МЕДИА-ЗАПРОСЫ ДЛЯ АДАПТИВНОСТИ И ПЕРЕСТРАИВАНИЯ СЕТКИ */
+        /* МЕДИА-ЗАПРОСЫ И СВОЙСТВО ORDER ДЛЯ МОБИЛЬНЫХ СМАРТФОНОВ */
         @media (max-width: 1100px) {
             .expert-grid, .philosophy, .dir-container, .bento-grid { grid-template-columns: 1fr; }
             .bento-full { grid-column: span 1; }
             .expert-img-wrap, .philosophy-img-wrap { height: 400px; }
             .footer-grid { grid-template-columns: 1fr; text-align: center; }
 
-            /* Перенастройка порядка элементов на мобильных (Текст -> Видео -> Баннер -> Текст -> Видео) */
+            /* ПОРЯДОК НА СМАРТФОНАХ: Текст МФР -> Видео МФР -> Баннер -> Текст Аэро -> Видео Гамаков */
             .mobile-order-1 { order: 1; }
             .mobile-order-2 { order: 2; }
             .mobile-order-3 { order: 3; }
@@ -780,13 +779,13 @@
     </div>
 </section>
 
-<!-- СЕКЦИЯ BENTO GRID (ШАХМАТКА НА ПК, ЧЕРЕДОВАНИЕ ТЕКСТ->ВИДЕО НА СМАРТФОНЕ) -->
+<!-- СЕКЦИЯ BENTO GRID C ТОЧНО НАСТРОЕННЫМ ПОРЯДКОМ ЭЛЕМЕНТОВ -->
 <section class="club-section" id="directions-video">
     <span class="section-label">Эстетика движения</span>
     
     <div class="bento-grid">
         
-        <!-- 1. ТЕКСТ МФР (ПК: Слева / Моб: 1-й) -->
+        <!-- 1. ТЕКСТ МФР (ПК: Слева / Смартфон: 1-й) -->
         <div class="bento-card mobile-order-1">
             <span style="color: var(--accent-gold); font-size: 11px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 15px; display: block; font-weight: 600;">Тотальное расслабление</span>
             <h3 class="serif" style="font-size: clamp(24px, 3vw, 36px); margin-bottom: 20px; line-height: 1.1;">Миофасциальный релиз (МФР)</h3>
@@ -801,14 +800,14 @@
             <a href="schedule.html" class="btn btn-lens" style="align-self: flex-start; margin-top: auto;">Записаться на МФР</a>
         </div>
 
-        <!-- 2. ВИДЕО МФР (ПК: Справа / Моб: 2-е) -->
+        <!-- 2. ВИДЕО МФР (ПК: Справа / Смартфон: 2-е) -->
         <div class="practice-video mobile-order-2" style="border-radius: 24px;">
             <video autoplay muted loop playsinline poster="mfr.jpg" style="width: 100%; height: 100%; object-fit: cover;">
                 <source src="mfr-clip.mp4" type="video/mp4">
             </video>
         </div>
 
-        <!-- 3. ЦЕНТРАЛЬНЫЙ БАННЕР (2 Колонки / Моб: 3-й) -->
+        <!-- 3. ШИРОКИЙ БАННЕР ОНЛАЙН-КЛУБА (ПК: На 2 колонки под МФР / Смартфон: 3-й, ровно между 2-мя видео) -->
         <div class="inline-packages bento-full mobile-order-3" style="margin: 10px 0; border-radius: 24px;">
             <h2 class="serif" style="font-size: clamp(28px, 5vw, 45px); margin-bottom: 20px;">
                 Ресурс, который <span style="color: var(--accent-gold); font-style: italic;">всегда с тобой</span>
@@ -822,14 +821,7 @@
             </div>
         </div>
 
-        <!-- 4. ВИДЕО АЭРОСТРЕТЧИНГА / ГАМАКОВ (ПК: Слева / Моб: 5-е) -->
-        <div class="practice-video mobile-order-5" style="border-radius: 24px;">
-            <video autoplay muted loop playsinline poster="jackson.jpg" style="width: 100%; height: 100%; object-fit: cover;">
-                <source src="Упражнение Майкл Джексон Ls.mp4" type="video/mp4">
-            </video>
-        </div>
-
-        <!-- 5. ТЕКСТ АЭРОСТРЕТЧИНГА (ПК: Справа / Моб: 4-й) -->
+        <!-- 4. ТЕКСТ АЭРОСТРЕТЧИНГА (ПК: Слева во 2-м ряду / Смартфон: 4-й) -->
         <div class="bento-card mobile-order-4">
             <span style="color: var(--accent-gold); font-size: 11px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 15px; display: block; font-weight: 600;">Обновление залов</span>
             <h3 class="serif" style="font-size: clamp(24px, 3vw, 36px); margin-bottom: 20px; line-height: 1.1;">Аэростретчинг (в гамаках)</h3>
@@ -842,6 +834,13 @@
                 <li>О дате возобновления полетов мы анонсируем в приложении!</li>
             </ul>
             <a href="schedule.html" class="btn btn-lens" style="align-self: flex-start; margin-top: auto;">Выбрать мягкую практику</a>
+        </div>
+
+        <!-- 5. ВИДЕО С ГАМАКАМИ (ПК: Справа во 2-м ряду / Смартфон: 5-е) -->
+        <div class="practice-video mobile-order-5" style="border-radius: 24px;">
+            <video autoplay muted loop playsinline poster="jackson.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+                <source src="Упражнение Майкл Джексон Ls.mp4" type="video/mp4">
+            </video>
         </div>
 
     </div>
