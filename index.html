@@ -22,7 +22,6 @@
     _tmr.push({id: "3755240", type: "pageView", start: (new Date()).getTime()});
     (function (d, w, id) {
         if (d.getElementById(id)) return;
-        if (d.getElementById(id)) return;
         var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
         ts.src = "https://top-fwz1.mail.ru/js/code.js";
         var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
@@ -54,7 +53,6 @@
     <meta property="og:site_name" content="РЕСУРС">
     <meta property="og:locale" content="ru_RU">
 
-    <!-- Микроразметка организации с обновленным адресом -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -174,6 +172,8 @@
             padding: 40px;
             transition: var(--transition);
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
         }
         .bento-card:hover {
             transform: translateY(-4px);
@@ -544,11 +544,19 @@
             margin-bottom: env(safe-area-inset-bottom, 0px);
         }
 
+        /* МЕДИА-ЗАПРОСЫ ДЛЯ АДАПТИВНОСТИ И CSS ORDER */
         @media (max-width: 1100px) {
             .expert-grid, .philosophy, .dir-container, .bento-grid { grid-template-columns: 1fr; }
             .bento-full { grid-column: span 1; }
             .expert-img-wrap, .philosophy-img-wrap { height: 400px; }
             .footer-grid { grid-template-columns: 1fr; text-align: center; }
+
+            /* Строгий порядок карточек на мобильных экранах для убирания наложения видео */
+            .mobile-order-1 { order: 1; }
+            .mobile-order-2 { order: 2; }
+            .mobile-order-3 { order: 3; }
+            .mobile-order-4 { order: 4; }
+            .mobile-order-5 { order: 5; }
         }
 
         @media (max-width: 900px) {
@@ -713,7 +721,7 @@
 
     <div class="header-right">
         <button id="themeToggle" class="theme-selector-trigger" onclick="toggleThemePopup()" aria-label="Переключить тему">Тема</button>
-        <img src="logo_header_final.png" alt="Логотип Ресурс">
+        <img src="logo_header_final.png" alt="Логотип РесуРС">
     </div>
 </header>
 
@@ -770,14 +778,14 @@
     </div>
 </section>
 
-<!-- Секция с идеальным распорядком Bento-сетки -->
+<!-- СЕКЦИЯ С НАСТРОЕННЫМ ПОРЯДКОМ BENTO СЕТКИ -->
 <section class="club-section" id="directions-video">
     <span class="section-label">Эстетика движения</span>
     
     <div class="bento-grid">
         
-        <!-- 1. ТЕКСТ МФР (Слева) -->
-        <div class="bento-card">
+        <!-- 1. ТЕКСТ МФР (На мобильных: 1-й) -->
+        <div class="bento-card mobile-order-1">
             <span style="color: var(--accent-gold); font-size: 11px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 15px; display: block; font-weight: 600;">Тотальное расслабление</span>
             <h3 class="serif" style="font-size: clamp(24px, 3vw, 36px); margin-bottom: 20px; line-height: 1.1;">Миофасциальный релиз (МФР)</h3>
             <p style="opacity: 0.8; font-size: 15px; margin-bottom: 25px; line-height: 1.7;">
@@ -791,15 +799,15 @@
             <a href="schedule.html" class="btn btn-lens" style="align-self: flex-start; margin-top: auto;">Записаться на МФР</a>
         </div>
 
-        <!-- 2. ВИДЕО МФР (Справа) -->
-        <div class="practice-video" style="border-radius: 24px;">
+        <!-- 2. ВИДЕО МФР (На мобильных: 2-е) -->
+        <div class="practice-video mobile-order-2" style="border-radius: 24px;">
             <video autoplay muted loop playsinline poster="mfr.jpg" style="width: 100%; height: 100%; object-fit: cover;">
                 <source src="mfr-clip.mp4" type="video/mp4">
             </video>
         </div>
 
-        <!-- 3. ЦЕНТРАЛЬНЫЙ БАННЕР -->
-        <div class="inline-packages bento-full" style="margin: 10px 0; border-radius: 24px;">
+        <!-- 3. ЦЕНТРАЛЬНЫЙ БАННЕР (На мобильных: 3-й) -->
+        <div class="inline-packages bento-full mobile-order-3" style="margin: 10px 0; border-radius: 24px;">
             <h2 class="serif" style="font-size: clamp(28px, 5vw, 45px); margin-bottom: 20px;">
                 Ресурс, который <span style="color: var(--accent-gold); font-style: italic;">всегда с тобой</span>
             </h2>
@@ -812,15 +820,8 @@
             </div>
         </div>
 
-        <!-- 4. ВТОРОЕ ВИДЕО (Слева) -->
-        <div class="practice-video" style="border-radius: 24px;">
-            <video autoplay muted loop playsinline poster="jackson.jpg" style="width: 100%; height: 100%; object-fit: cover;">
-                <source src="Упражнение Майкл Джексон Ls.mp4" type="video/mp4">
-            </video>
-        </div>
-
-        <!-- 5. ТЕКСТ АЭРОСТРЕТЧИНГА С ПЛОТНЫМ НАПОЛНЕНИЕМ (Справа) -->
-        <div class="bento-card">
+        <!-- 4. ТЕКСТ АЭРОСТРЕТЧИНГА (На мобильных: 4-й) -->
+        <div class="bento-card mobile-order-4">
             <span style="color: var(--accent-gold); font-size: 11px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 15px; display: block; font-weight: 600;">Обновление залов</span>
             <h3 class="serif" style="font-size: clamp(24px, 3vw, 36px); margin-bottom: 20px; line-height: 1.1;">Аэростретчинг (в гамаках)</h3>
             <p style="opacity: 0.8; font-size: 15px; margin-bottom: 25px; line-height: 1.7;">
@@ -832,6 +833,13 @@
                 <li>О дате возобновления полетов мы анонсируем в приложении!</li>
             </ul>
             <a href="schedule.html" class="btn btn-lens" style="align-self: flex-start; margin-top: auto;">Выбрать мягкую практику</a>
+        </div>
+
+        <!-- 5. ВТОРОЕ ВИДЕО (На мобильных: 5-е) -->
+        <div class="practice-video mobile-order-5" style="border-radius: 24px;">
+            <video autoplay muted loop playsinline poster="jackson.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+                <source src="Упражнение Майкл Джексон Ls.mp4" type="video/mp4">
+            </video>
         </div>
 
     </div>
