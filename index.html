@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+    <!-- ЖЕСТКИЙ СБРОС КЕША БРАУЗЕРА И СЕРВЕРОВ -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
     <script>
         // По умолчанию ставим премиальную темную тему ('dark')
         const savedTheme = localStorage.getItem('theme') || 'dark';
@@ -184,6 +189,14 @@
         }
         .bento-full {
             grid-column: span 2;
+        }
+
+        /* Жесткая позиция карточек на ПК */
+        @media (min-width: 1101px) {
+            .bento-card.pc-left { grid-column: 1 / 2; }
+            .practice-video.pc-right { grid-column: 2 / 3; }
+            .practice-video.pc-left { grid-column: 1 / 2; }
+            .bento-card.pc-right { grid-column: 2 / 3; }
         }
 
         /* --- UI COMPONENTS --- */
@@ -694,7 +707,7 @@
 <section class="hero">
     <div class="hero-video-wrap">
         <video class="hero-video" autoplay muted loop playsinline poster="bg.jpg">
-            <source src="hero-video.mp4" type="video/mp4">
+            <source src="hero-video.mp4?v=20260809" type="video/mp4">
         </video>
     </div>
     <div class="hero-overlay"></div>
@@ -751,7 +764,7 @@
     <div class="bento-grid">
         
         <!-- 1. ТЕКСТ МФР (ПК: Слева во 1-м ряду / Смартфон: 1-й) -->
-        <div class="bento-card mobile-order-1">
+        <div class="bento-card pc-left mobile-order-1">
             <span style="color: var(--accent-gold); font-size: 11px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 15px; display: block; font-weight: 600;">Тотальное расслабление</span>
             <h3 class="serif" style="font-size: clamp(24px, 3vw, 36px); margin-bottom: 20px; line-height: 1.1;">Миофасциальный релиз (МФР)</h3>
             <p style="opacity: 0.8; font-size: 15px; margin-bottom: 25px; line-height: 1.7;">
@@ -766,9 +779,9 @@
         </div>
 
         <!-- 2. ВИДЕО МФР (ПК: Справа в 1-м ряду / Смартфон: 2-е) -->
-        <div class="practice-video mobile-order-2" style="border-radius: 24px;">
+        <div class="practice-video pc-right mobile-order-2" style="border-radius: 24px;">
             <video autoplay muted loop playsinline poster="mfr.jpg" style="width: 100%; height: 100%; object-fit: cover;">
-                <source src="mfr-clip.mp4" type="video/mp4">
+                <source src="mfr-clip.mp4?v=20260809" type="video/mp4">
             </video>
         </div>
 
@@ -786,15 +799,15 @@
             </div>
         </div>
 
-        <!-- 4. ВИДЕО С ГАМАКАМИ (ПК: Слева в 3-м ряду! / Смартфон: 5-е за счет mobile-order-5) -->
-        <div class="practice-video mobile-order-5" style="border-radius: 24px;">
+        <!-- 4. ВИДЕО С ГАМАКАМИ (ПК: Слева в 3-м ряду / Смартфон: 5-е за счет mobile-order-5) -->
+        <div class="practice-video pc-left mobile-order-5" style="border-radius: 24px;">
             <video autoplay muted loop playsinline poster="jackson.jpg" style="width: 100%; height: 100%; object-fit: cover;">
-                <source src="Упражнение Майкл Джексон Ls.mp4" type="video/mp4">
+                <source src="Упражнение Майкл Джексон Ls.mp4?v=20260809" type="video/mp4">
             </video>
         </div>
 
-        <!-- 5. ТЕКСТ АЭРОСТРЕТЧИНГА И АЛЬТЕРНАТИВ (ПК: Справа в 3-м ряду! / Смартфон: 4-й за счет mobile-order-4) -->
-        <div class="bento-card mobile-order-4">
+        <!-- 5. ТЕКСТ АЭРОСТРЕТЧИНГА И АЛЬТЕРНАТИВ (ПК: Справа в 3-м ряду / Смартфон: 4-й за счет mobile-order-4) -->
+        <div class="bento-card pc-right mobile-order-4">
             <span style="color: var(--accent-gold); font-size: 11px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 15px; display: block; font-weight: 600;">Невесомость и свобода от боли</span>
             <h3 class="serif" style="font-size: clamp(24px, 3vw, 36px); margin-bottom: 15px; line-height: 1.1;">Аэростретчинг (в гамаках)</h3>
             <p style="opacity: 0.8; font-size: 14px; margin-bottom: 15px; line-height: 1.6;">
@@ -832,7 +845,7 @@
     </div>
 
     <div class="philosophy-img-wrap">
-        <img src="philosophy.jpg" alt="Философия Ресурс" style="width: 100%; height: 100%; object-fit: cover;">
+        <img src="philosophy.jpg" alt="Философия Ресурс">
     </div>
 </section>
 
