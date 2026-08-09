@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+    <!-- Инструкция сброса кеша браузера -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
     <script>
-        // ИЗМЕНЕНО: Теперь по умолчанию стоит темная тема ('dark')
         const savedTheme = localStorage.getItem('theme') || 'dark';
         document.documentElement.setAttribute('data-theme', savedTheme);
     </script>
@@ -37,22 +41,23 @@
     </noscript>
     
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     
-    <title>РЕСУРС | Студия умного фитнеса, здоровой спины и коррекции осанки</title>
-    <meta name="description" content="Международная система эволюции тела РЕСУРС. Избавляем от болей в спине и пояснице, исправляем осанку, убираем спазмы триггерных точек за 50 минут. Мягкий фитнес, умный пилатес, аэройога и лимфодренажный МФР. Запишитесь на тест-драйв за 990₽!">
-    <meta name="keywords" content="здоровая спина, исправление осанки, умный пилатес, миофасциальный релиз триггерных точек, лимфодренажные тренировки от отеков, аэростретчинг в гамаках, мягкий фитнес, растяжка сыктывкар, студия ресурс">
+    <title>РЕСУРС | Фитнес клуб и студия умного фитнеса в Сыктывкаре</title>
+    <meta name="description" content="Фитнес-центр и студия эволюции тела РЕСУРС в Сыктывкаре. Поможем быстро похудеть, убрать живот, скинуть вес и избавиться от болей в спине за 50 минут. Легкие тренировки, умный пилатес, аэройога и МФР массаж. Запишитесь на тест-драйв!">
+    <meta name="keywords" content="фитнес клуб сыктывкар, фитнес-центр сыктывкар, похудеть в сыктывкаре, похудеть сыктывкар, легкие тренировки сыктывкар, убрать живот сыктывкар, скинуть вес сыктывкар, быстро похудеть сыктывкар, МФР, массаж, самомассаж сыктывкар, здоровая спина, исправление осанки, умный пилатес, лимфодренажные тренировки от отеков, аэростретчинг в гамаках, мягкий фитнес, растяжка сыктывкар, студия ресурс">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://resurs-stretch.ru/">
 
     <meta property="og:type" content="website">
-    <meta property="og:title" content="РЕСУРС | Система эволюции движения и здорового тела">
-    <meta property="og:description" content="Устраняем боли в позвоночнике и возвращаем легкость за 50 минут. Приходите на тест-драйв за 990₽.">
+    <meta property="og:title" content="РЕСУРС | Фитнес клуб и система эволюции здорового тела">
+    <meta property="og:description" content="Устраняем боли в позвоночнике, помогаем скинуть вес и возвращаем легкость за 50 минут. Приходите на тест-драйв за 990₽.">
     <meta property="og:url" content="https://resurs-stretch.ru/">
     <meta property="og:image" content="https://resurs-stretch.ru/logo_header_final.png">
     <meta property="og:site_name" content="РЕСУРС">
     <meta property="og:locale" content="ru_RU">
 
+    <!-- Микроразметка организации с актуальным адресом -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -62,19 +67,18 @@
       "@id": "https://resurs-stretch.ru",
       "url": "https://resurs-stretch.ru",
       "telephone": "+79087155557",
-      "priceRange": "RUB 990 - RUB 16800",
+      "priceRange": "RUB 990 - RUB 44800",
       "description": "Экосистема мягкого фитнеса, растяжки, лимфодренажного МФР, декомпрессии позвоночника в гамаках и умного пилатеса для восстановления ресурса и здоровья тела.",
-      "address": [
-        {
-          "@type": "PostalAddress",
-          "streetAddress": "ул. Коммунистическая, 77/2",
-          "addressLocality": "Сыктывкар",
-          "addressRegion": "Республика Коми",
-          "addressCountry": "RU"
-        }
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "ул. Коммунистическая, 67",
+        "addressLocality": "Сыктывкар",
+        "addressRegion": "Республика Коми",
+        "addressCountry": "RU"
       }
     }
     </script>
+    
     <link rel="icon" type="image/png" href="logo_header_final.png">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -85,17 +89,32 @@
     <script src="https://unpkg.com/imask"></script>
     <script src="https://yookassa.ru/checkout-widget/v1/checkout-widget.js"></script>
 
+    <!-- Микроразметка Хлебных Крошек -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Главная",
+        "item": "https://resurs-stretch.ru/"
+      }]
+    }
+    </script>
+
     <style>
-        /* CSS ПЕРЕМЕННЫЕ ДЛЯ СВЕТЛОЙ (ОСНОВНОЙ) ТЕМЫ */
+        /* CSS ПЕРЕМЕННЫЕ ДЛЯ СВЕТЛОЙ ТЕМЫ */
         :root {
             --bg-deep: #F4F4F9; 
             --glass-bg: rgba(255, 255, 255, 0.85); 
-            --glass-border: 1px solid rgba(0, 0, 0, 0.08); 
+            --glass-border: 1px solid rgba(91, 59, 140, 0.12); 
             --accent-gold: #B38639; 
+            --accent-purple: #5B3B8C;
             --text-main: #05050A; 
             --text-dim: rgba(8, 8, 20, 0.7);
-            --elem-bg: rgba(0, 0, 0, 0.04);
-            --elem-border: rgba(0, 0, 0, 0.1);
+            --elem-bg: rgba(91, 59, 140, 0.04);
+            --elem-border: rgba(91, 59, 140, 0.15);
             --nav-bg: rgba(244, 244, 249, 0.95);
             --hero-overlay: linear-gradient(to bottom, rgba(244,244,249,0.3), var(--bg-deep));
             --font-main: 'Manrope', sans-serif;
@@ -106,13 +125,14 @@
         /* ТЕМНАЯ ТЕМА */
         [data-theme="dark"] {
             --bg-deep: #080814; 
-            --glass-bg: rgba(255, 255, 255, 0.02); 
-            --glass-border: 1px solid rgba(255, 255, 255, 0.08); 
+            --glass-bg: rgba(20, 14, 35, 0.45); 
+            --glass-border: 1px solid rgba(197, 160, 89, 0.15); 
             --accent-gold: #C5A059; 
+            --accent-purple: #8E62D5;
             --text-main: #F4F4F9;
             --text-dim: rgba(244, 244, 249, 0.6);
-            --elem-bg: rgba(255, 255, 255, 0.05);
-            --elem-border: rgba(255, 255, 255, 0.15);
+            --elem-bg: rgba(91, 59, 140, 0.12);
+            --elem-border: rgba(197, 160, 89, 0.2);
             --nav-bg: rgba(8, 8, 20, 0.95);
             --hero-overlay: linear-gradient(to bottom, rgba(8,8,20,0.5), var(--bg-deep));
         }
@@ -141,6 +161,35 @@
         h1, h2, h3, .serif { font-family: var(--font-serif); font-weight: 600; letter-spacing: 1px; }
         a { text-decoration: none; color: inherit; transition: var(--transition); }
         ul { list-style: none; }
+
+        /* --- BENTO CARD LAYOUT --- */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .bento-card {
+            background: linear-gradient(135deg, var(--glass-bg), var(--elem-bg));
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            transition: var(--transition);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+        .bento-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-gold);
+            box-shadow: 0 15px 40px rgba(91, 59, 140, 0.18);
+        }
+        .bento-full {
+            grid-column: span 2;
+        }
 
         /* --- UI COMPONENTS --- */
         .glass {
@@ -189,14 +238,13 @@
             border-color: var(--accent-gold);
         }
 
-        /* СТИЛЬ КНОПКИ ПЕРЕКЛЮЧЕНИЯ ТЕМЫ ИЗ АБОНЕМЕНТОВ */
-        #themeToggle {
+        .theme-selector-trigger {
             padding: 0 15px; height: 35px; font-size: 11px; font-weight: 600; letter-spacing: 2px;
-            display: flex; align-items: center; justify-content: center;
+            display: inline-flex; align-items: center; justify-content: center;
             border-radius: 8px; border: 1px solid var(--elem-border); background: var(--elem-bg);
             cursor: pointer; transition: var(--transition); color: var(--text-main); text-transform: uppercase;
         }
-        #themeToggle:hover { border-color: var(--accent-gold); transform: translateY(-2px); }
+        .theme-selector-trigger:hover { border-color: var(--accent-gold); transform: translateY(-2px); }
 
         /* --- HEADER --- */
         header {
@@ -217,7 +265,7 @@
             display: flex; align-items: center; width: 33%;
         }
         .header-right {
-            justify-content: flex-end; gap: 15px;
+            justify-content: flex-end; gap: 15px; position: relative;
         }
         .header-center {
             width: 34%; display: flex; justify-content: center;
@@ -231,13 +279,13 @@
             font-weight: 600; margin-right: -12px;
         }
 
-        header img { filter: drop-shadow(0 0 5px rgba(0,0,0,0.1)); transition: 0.4s; }
-        header.scrolled img { height: 35px !important; width: 35px !important; opacity: 1 !important; }
+        header img { height: 40px; width: 40px; border-radius: 8px; filter: drop-shadow(0 0 5px rgba(0,0,0,0.1)); transition: 0.4s; }
+        header.scrolled img { height: 35px !important; width: 35px !important; }
 
         /* БУРГЕР ИЗ 4 ЛИНИЙ */
         .nav-trigger { 
             position: relative; display: flex; align-items: center; justify-content: center; 
-            z-index: 1100; width: 48px; height: 48px; 
+            z-index: 2100; width: 48px; height: 48px; 
         }
         .nav-trigger span { 
             position: absolute; left: 11px; height: 1.5px; background: var(--text-main); 
@@ -255,16 +303,16 @@
 
         /* --- ШТОРКА МЕНЮ --- */
         .glass-sidebar {
-            position: fixed; top: 0; left: -100%; width: 100%; height: 100vh;
+            position: fixed; top: 0; left: -100%; width: 100%; height: 100dvh;
             background: var(--nav-bg); 
             backdrop-filter: blur(25px) saturate(180%); 
             -webkit-backdrop-filter: blur(25px) saturate(180%); 
             z-index: 2000; 
             display: flex; 
-            align-items: flex-start;      
+            align-items: flex-start;       
             justify-content: center;
-            overflow-y: auto;              
-            padding: 80px 20px 60px;      
+            overflow-y: auto;               
+            padding: 80px 20px 60px;       
             transition: left 0.7s cubic-bezier(0.85, 0, 0.15, 1); 
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
         }
@@ -307,6 +355,7 @@
             text-transform: none;
             letter-spacing: 0;
             margin: 10px 0 !important;
+            color: var(--text-main) !important;
         }
         .sub-nav-group {
             margin-top: 40px !important;
@@ -337,12 +386,6 @@
             opacity: 0.8;
             margin: 0 !important;
         }
-
-        .close-arrow {
-            position: absolute; top: 40px; left: 40px;
-            font-size: 30px; cursor: pointer; opacity: 0.5; transition: 0.3s;
-        }
-        .close-arrow:hover { opacity: 1; transform: translateX(-5px); }
 
         /* --- HERO SECTION --- */
         .hero {
@@ -383,7 +426,7 @@
         .expert-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
         .expert-img-wrap:hover img { transform: scale(1.03); }
 
-        /* --- CLUB SECTION --- */
+        /* --- CLUB SECTION (FLEXBOX СТРУКТУРА) --- */
         .club-section { padding: 120px 5%; position: relative; }
         .practice-row { display: flex; gap: 40px; align-items: stretch; margin-bottom: 60px; }
         .practice-text { flex: 1; min-width: 320px; order: 1; padding: 60px 50px; border-radius: 40px; display: flex; flex-direction: column; justify-content: center; }
@@ -393,8 +436,8 @@
         .practice-row.reverse .practice-text { order: 2; }
         .practice-row.reverse .practice-video { order: 1; }
 
-        .feature-list { opacity: 0.8; font-size: 15px; margin-bottom: 40px; padding-left: 20px; }
-        .feature-list li { margin-bottom: 12px; position: relative; }
+        .feature-list { opacity: 0.85; font-size: 15px; margin-bottom: 30px; padding-left: 20px; }
+        .feature-list li { margin-bottom: 10px; position: relative; }
         .feature-list li::marker { color: var(--accent-gold); }
 
         .inline-packages {
@@ -458,9 +501,13 @@
             justify-content: space-between; flex-wrap: wrap; gap: 20px; text-align: left;
         }
 
+        /* --- МЕДИА-ЗАПРОСЫ --- */
         @media (max-width: 1100px) {
-            .expert-grid, .philosophy, .dir-container { grid-template-columns: 1fr; }
-            .expert-img-wrap, .philosophy-img-wrap { h-height: 400px; }
+            .expert-grid, .philosophy, .dir-container, .bento-grid { 
+                grid-template-columns: 1fr; 
+            }
+            .bento-full { grid-column: span 1; }
+            .expert-img-wrap, .philosophy-img-wrap { height: 400px; }
             .footer-grid { grid-template-columns: 1fr; text-align: center; }
         }
 
@@ -481,7 +528,7 @@
         @media (max-width: 600px) {
             header { padding: 15px 5% !important; }
             .brand-name { font-size: 18px !important; letter-spacing: 6px !important; }
-            #themeToggle { font-size: 9px; padding: 0 10px; height: 35px; }
+            .theme-selector-trigger { font-size: 9px; padding: 0 10px; height: 35px; }
             header img { height: 35px !important; width: 35px !important; }
             .hero-title { font-size: 32px !important; letter-spacing: 5px !important; }
             .inline-packages { padding: 40px 20px; }
@@ -490,6 +537,9 @@
             .faq-answer { font-size: 14px; padding: 0 20px; }
             .faq-item.active .faq-answer { padding: 0 20px 20px; }
             #journal-float-btn { bottom: 25px; left: 15px; width: 55px; height: 55px; }
+            #cookie-notice { padding: 14px 18px; flex-direction: column; text-align: center; }
+            #cookie-notice button { width: 100%; }
+            .modal-content { padding: 40px 20px !important; }
         }
         
         /* --- MODALS --- */
@@ -538,10 +588,6 @@
         .promo-close:hover { opacity: 1; color: var(--accent-gold); }
         .promo-title { font-family: var(--font-serif); font-size: 24px; color: var(--accent-gold); line-height: 1.1; }
         .promo-text { font-size: 13px; opacity: 0.8; line-height: 1.5; }
-        .promo-timer-box { display: flex; gap: 10px; margin-top: 5px; }
-        .timer-item { background: var(--elem-bg); border: 1px solid var(--elem-border); border-radius: 8px; padding: 8px 5px; text-align: center; flex: 1; }
-        .timer-val { font-size: 18px; font-weight: 600; color: var(--text-main); font-family: var(--font-main); }
-        .timer-label { font-size: 9px; text-transform: uppercase; letter-spacing: 1px; opacity: 0.6; margin-top: 2px; }
         .promo-btn { display: block; text-align: center; padding: 12px; background: var(--accent-gold); color: #000; text-decoration: none; border-radius: 8px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; }
         .promo-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(197, 160, 89, 0.4); }
         @keyframes promoFadeIn { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: translateX(0); } }
@@ -577,8 +623,6 @@
 <body>
 
 <div id="navOverlay" class="glass-sidebar">
-    <div class="close-arrow" onclick="toggleNav()">←</div>
-    
     <div class="nav-links" style="display: flex; flex-direction: column; align-items: center; gap: 0;">
         <a href="#about" onclick="toggleNav()" class="nav-main-link">О студии</a>
         <a href="journal.html" class="nav-main-link gold-link">ЖУРНАЛ СТУДИИ</a>
@@ -623,15 +667,15 @@
     </div>
 
     <div class="header-right">
-        <button id="themeToggle" class="btn-lens" onclick="toggleTheme()" aria-label="Переключить тему">ТЕНЬ</button>
-        <img src="logo_header_final.png" alt="Логотип Ресурс" style="height: 40px; width: 40px; border-radius: 8px;">
+        <button id="themeToggle" class="theme-selector-trigger" onclick="toggleTheme()" aria-label="Переключить тему">Тема</button>
+        <img src="logo_header_final.png" alt="Логотип Ресурс">
     </div>
 </header>
 
 <section class="hero">
     <div class="hero-video-wrap">
         <video class="hero-video" autoplay muted loop playsinline poster="bg.jpg">
-            <source src="hero-video.mp4" type="video/mp4">
+            <source src="hero-video.mp4?v=20260809" type="video/mp4">
         </video>
     </div>
     <div class="hero-overlay"></div>
@@ -639,9 +683,9 @@
     <div class="hero-content">
         <span class="section-label" style="opacity: 0.8; margin-bottom: 20px;">Сыктывкар</span>
         <h1 class="hero-title">
-    Твоё тело — твой <br>
-    <span style="color: var(--accent-gold); font-style: italic;">главный ресурс</span>
-</h1>
+            Твоё тело — твой <br>
+            <span style="color: var(--accent-gold); font-style: italic;">главный ресурс</span>
+        </h1>
         <p class="hero-tagline" style="margin-top: 25px;">
             Избавляем от болей в спине и возвращаем легкость тела за 50 минут
         </p>
@@ -663,7 +707,7 @@
         <div style="padding-right: 20px;">
             <h2 class="serif" style="font-size: clamp(32px, 5vw, 56px); margin-bottom: 30px; line-height: 1.1;">Здоровая спина <br><span style="color: var(--accent-gold); font-style: italic;">и осанка</span></h2>
             <p style="opacity: 0.8; font-size: 16px; margin-bottom: 20px; line-height: 1.8;">
-                Это основа вашего ресурса. Сидячий образ жизни, гаджеты и постоянный стресс «запирают» напряжение in шее, плечах и пояснице. Наши экспертные тренировки направлены на мягкую и вдумчивую работу с первопричиной боли.
+                Это основа вашего ресурса. Сидячий образ жизни, гаджеты и постоянный стресс «запирают» напряжение в шее, плечах и пояснице. Наши экспертные тренировки направлены на мягкую и вдумчивую работу с первопричиной боли.
             </p>
             <p style="opacity: 0.8; font-size: 16px; margin-bottom: 40px; line-height: 1.8;">
                 За 50 минут мы бережно укрепим мышечный корсет, проведем декомпрессию позвоночника и вернем вашему телу естественную осанку. Забудьте о скованности — дышите полной грудью.
@@ -681,20 +725,22 @@
     </div>
 </section>
 
+<!-- СЕКЦИЯ С ИДЕАЛЬНОЙ FLEXBOX-СТРУКТУРОЙ ДЛЯ ПК И ТЕЛЕФОНОВ -->
 <section class="club-section" id="directions-video">
     <span class="section-label">Эстетика движения</span>
     
     <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column;">
         
+        <!-- РЯД 1: ТЕКСТ МФР (СЛЕВА) + ВИДЕО МФР (СПРАВА) -->
         <div class="practice-row">
             <div class="glass practice-text">
                 <span style="color: var(--accent-gold); font-size: 11px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 15px; display: block; font-weight: 600;">Тотальное расслабление</span>
                 <h3 class="serif" style="font-size: clamp(28px, 4vw, 42px); margin-bottom: 20px; line-height: 1.1;">Миофасциальный релиз (МФР)</h3>
                 <p style="opacity: 0.8; font-size: 15px; margin-bottom: 25px; line-height: 1.7;">
-                    Глубокий самомассаж всего тела с использованием роллов и мячей. Практика, которая за <b>500 рублей</b> дает эффект, практически сопоставимый с часовым сеансом у профессионального массажиста за 2000₽.
+                    Глубокий самомассаж всего тела с использованием роллов и мячей. Практика, которая себестоимостью выходит всего в 500 рублей внутри абонемента, дает эффект, практически сопоставимый с часовым сеансом у профессионального массажиста за 2000₽.
                 </p>
                 <ul class="feature-list">
-                    <li>Снимает глубокие мышечные спазмы и триггерные точки</li>
+                    <li>Снимает глубокие мышечные спазмы, триггеры и скованность</li>
                     <li>Разгоняет лимфу, эффективно избавляя от затяжных отеков</li>
                     <li>Восстанавливает природную эластичность фасций и тканей</li>
                 </ul>
@@ -702,11 +748,12 @@
             </div>
             <div class="practice-video">
                 <video autoplay muted loop playsinline poster="mfr.jpg">
-                    <source src="mfr-clip.mp4" type="video/mp4">
+                    <source src="mfr-clip.mp4?v=20260809" type="video/mp4">
                 </video>
             </div>
         </div>
 
+        <!-- РЯД 2: ШИРОКИЙ БАННЕР -->
         <div class="inline-packages glass">
             <h2 class="serif" style="font-size: clamp(28px, 5vw, 45px); margin-bottom: 20px;">
                 Ресурс, который <span style="color: var(--accent-gold); font-style: italic;">всегда с тобой</span>
@@ -720,24 +767,25 @@
             </div>
         </div>
 
+        <!-- РЯД 3: ВИДЕО ГАМАКИ (СЛЕВА) + ТЕКСТ АЭРОСТРЕТЧИНГА (СПРАВА) -->
         <div class="practice-row reverse">
             <div class="practice-video">
                 <video autoplay muted loop playsinline poster="jackson.jpg">
-                    <source src="Упражнение Майкл Джексон Ls.mp4" type="video/mp4">
+                    <source src="Упражнение Майкл Джексон Ls.mp4?v=20260809" type="video/mp4">
                 </video>
             </div>
             <div class="glass practice-text">
-                <span style="color: var(--accent-gold); font-size: 11px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 15px; display: block; font-weight: 600;">Полет и грация</span>
-                <h3 class="serif" style="font-size: clamp(28px, 4vw, 42px); margin-bottom: 20px; line-height: 1.1;">Аэростретчинг (в гамаке)</h3>
-                <p style="opacity: 0.8; font-size: 15px; margin-bottom: 25px; line-height: 1.7;">
-                    Бросьте вызов гравитации. Плотный гамак берет на себя часть вашего веса, позволяя мягко и максимально бесплатно вытянуть позвоночник без какой-либо осевой нагрузки.
+                <span style="color: var(--accent-gold); font-size: 11px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 15px; display: block; font-weight: 600;">Невесомость и свобода от боли</span>
+                <h3 class="serif" style="font-size: clamp(28px, 4vw, 42px); margin-bottom: 20px; line-height: 1.1;">Аэростретчинг (в гамаках)</h3>
+                <p style="opacity: 0.8; font-size: 15px; margin-bottom: 20px; line-height: 1.7;">
+                    Практика в гамаках мягко вытягивает позвоночник под собственным весом тела, полностью снимая зажимы с поясницы и шеи после работы. Пока гамаки временно поставлены на плановую модернизацию оборудования, мы предлагаем сильные альтернативы со схожим эффектом:
                 </p>
-                <ul class="feature-list">
-                    <li>Безопасная декомпрессия межпозвоночных дисков</li>
-                    <li>Мгновенное включение глубоких мышц-стабилизаторов</li>
-                    <li>Развитие баланса, гибкости и невероятное чувство полета</li>
+                <ul class="feature-list" style="margin-bottom: 30px;">
+                    <li><b>Здоровая спина:</b> декомпрессия позвоночника, укрепление корсета и коррекция осанки.</li>
+                    <li><b>Умный Пилатес:</b> глубинное укрепление суставов, работа с дыханием и тонус.</li>
+                    <li><b>МФР:</b> точечное снятие мышечных спазмов и мгновенный лимфодренаж от отеков.</li>
                 </ul>
-                <a href="schedule.html" class="btn btn-lens" style="align-self: flex-start;">Попробовать в гамаке</a>
+                <a href="schedule.html" class="btn btn-lens" style="align-self: flex-start;">Выбрать эффективную практику</a>
             </div>
         </div>
 
@@ -826,39 +874,37 @@
 </section>
 
 <section style="padding: 40px 5% 80px;">
-    <div class="glass" style="max-width: 1200px; margin: 0 auto; border-radius: 40px; overflow: hidden;">
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
-            
-            <div style="padding: 60px 40px; position: relative; border-right: var(--glass-border);">
-                <span style="font-size: 10px; text-transform: uppercase; letter-spacing: 3px; color: var(--accent-gold); margin-bottom: 15px; display: block; font-weight: 600;">Аналитика</span>
-                <h3 class="serif" style="font-size: 36px; margin-bottom: 20px; line-height: 1.1;">Живой пульс<br>нашего комьюнити</h3>
-                <p style="opacity: 0.7; font-size: 14px; margin-bottom: 40px; line-height: 1.6;">
-                    Мы оцифровали ответы сотен наших резидентов. Узнайте прямо сейчас, с какими болями приходят женщины Сыктывкара, что они ценят больше всего и почему выбирают «РЕСУРС».
-                </p>
-                <a href="community.html" class="btn btn-lens" style="padding: 15px 30px; font-size: 10px; width: 100%;">
-                    Смотреть статистику
-                </a>
-            </div>
-
-            <div style="padding: 60px 40px; position: relative; background: var(--elem-bg);">
-                <span style="font-size: 10px; text-transform: uppercase; letter-spacing: 3px; color: var(--accent-gold); margin-bottom: 15px; display: block; font-weight: 600;">Твой голос</span>
-                <h3 class="serif" style="font-size: 36px; margin-bottom: 20px; line-height: 1.1; color: var(--accent-gold);">Станьте соавтором<br>студии будущего</h3>
-                <p style="opacity: 0.7; font-size: 14px; margin-bottom: 40px; line-height: 1.6;">
-                    Ваше мнение — фундамент нашего развития. Инвестируйте 7 минут в прохождение аудита, чтобы мы сделали студию идеальной для вас, и <b>заберите гарантированный бонус</b> (подарок к абонементу).
-                </p>
-                <a href="survey.html" class="btn btn-lens" style="padding: 15px 30px; font-size: 10px; width: 100%; border-color: var(--accent-gold);">
-                    Пройти опрос и забрать бонус
-                </a>
-            </div>
-
+    <div class="bento-grid">
+        
+        <div class="bento-card">
+            <span style="font-size: 10px; text-transform: uppercase; letter-spacing: 3px; color: var(--accent-gold); margin-bottom: 15px; display: block; font-weight: 600;">Аналитика</span>
+            <h3 class="serif" style="font-size: 32px; margin-bottom: 20px; line-height: 1.1;">Живой пульс<br>нашего комьюнити</h3>
+            <p style="opacity: 0.7; font-size: 14px; margin-bottom: 40px; line-height: 1.6;">
+                Мы оцифровали ответы сотен наших резидентов. Узнайте прямо сейчас, с какими болями приходят женщины Сыктывкара, что они ценят больше всего и почему выбирают «РЕСУРС».
+            </p>
+            <a href="community.html" class="btn btn-lens" style="padding: 15px 30px; font-size: 10px; width: 100%; margin-top: auto;">
+                Смотреть статистику
+            </a>
         </div>
+
+        <div class="bento-card" style="background: var(--elem-bg);">
+            <span style="font-size: 10px; text-transform: uppercase; letter-spacing: 3px; color: var(--accent-gold); margin-bottom: 15px; display: block; font-weight: 600;">Твой голос</span>
+            <h3 class="serif" style="font-size: 32px; margin-bottom: 20px; line-height: 1.1; color: var(--accent-gold);">Станьте соавтором<br>студии будущего</h3>
+            <p style="opacity: 0.7; font-size: 14px; margin-bottom: 40px; line-height: 1.6;">
+                Ваше мнение — фундамент нашего развития. Инвестируйте 7 минут в прохождение аудита, чтобы мы сделали студию идеальной для вас, и <b>заберите гарантированный бонус</b> (подарок к абонементу).
+            </p>
+            <a href="survey.html" class="btn btn-lens" style="padding: 15px 30px; font-size: 10px; width: 100%; border-color: var(--accent-gold); margin-top: auto;">
+                Пнуть опрос и забрать бонус
+            </a>
+        </div>
+
     </div>
 </section>
 
 <section style="padding: 0 5% 80px;">
-    <div class="glass" style="max-width: 1200px; margin: 0 auto; border-radius: 40px; padding: 60px 50px; border: 1px solid var(--accent-gold); position: relative; overflow: hidden; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 40px; background: linear-gradient(135deg, rgba(197, 160, 89, 0.05), transparent);">
+    <div class="glass" style="max-width: 1200px; margin: 0 auto; border-radius: 40px; padding: 60px 50px; border: 1px solid var(--accent-gold); position: relative; overflow: hidden; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 40px; background: linear-gradient(135deg, rgba(91, 59, 140, 0.15), rgba(197, 160, 89, 0.05));">
         
-        <div style="position: absolute; inset: 0; background-image: radial-gradient(circle at 80% 20%, rgba(197, 160, 89, 0.15), transparent 50%); pointer-events: none;"></div>
+        <div style="position: absolute; inset: 0; background-image: radial-gradient(circle at 80% 20%, rgba(91, 59, 140, 0.25), transparent 50%); pointer-events: none;"></div>
         
         <div style="flex: 1; min-width: 300px; position: relative; z-index: 2;">
             <span style="font-size: 10px; text-transform: uppercase; letter-spacing: 3px; color: var(--accent-gold); margin-bottom: 15px; display: block; font-weight: 600;">Синхронизация с телом</span>
@@ -882,7 +928,7 @@
     <div class="faq-item glass">
         <div class="faq-question">В какой одежде и обуви приходить на занятия?</div>
         <div class="faq-answer">
-            Выбирайте удобную, не сковывающую движения одежда (лосины, шорты, топ или майка). <br><br>
+            Выбирайте удобную, не сковывающую движения одежду (лосины, шорты, топ или майка). <br><br>
             <strong style="color: var(--accent-gold);">Важно по обуви:</strong><br>
             — <b>Для активных и силовых тренировок</b> желательно приходить в кроссовках (обязательно с чистой подошвой). На степах мы работаем только в кроссовках!<br>
             — <b>Для спокойных практик</b> (Стретчинг, Здоровая спина, Пилатес, МФР, Аэро) мы занимаемся в носочках (лучше использовать антискользящие).
@@ -913,7 +959,7 @@
 
 <section class="reviews-section" id="reviews" style="padding: 60px 5%; text-align: center;">
     <span class="section-label" style="margin-bottom: 20px;">Голоса резидентов</span>
-    <h2 style="font-size: clamp(32px, 5vw, 48px); margin-bottom: 50px;">What говорят о Ресурсе</h2>
+    <h2 style="font-size: clamp(32px, 5vw, 48px); margin-bottom: 50px;">Что говорят о Ресурсе</h2>
     
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; text-align: left;">
         
@@ -968,10 +1014,10 @@
             </div>
             
             <div style="display: flex; gap: 20px; align-items: center; border-left: 1px solid var(--elem-border); padding-left: 25px;">
-                <a href="https://vk.com/resurs_syktyvkar" target="_blank" style="transition: 0.3s; opacity: 0.8;">
+                <a href="https://vk.com/resurs_syktyvkar" target="_blank" aria-label="Мы ВКонтакте" style="transition: 0.3s; opacity: 0.8;">
                     <svg width="24" height="24" viewBox="0 0 24 24" style="fill: var(--accent-gold);"><path d="M15.07 2H8.93C3.33 2 2 3.33 2 8.93v6.14C2 20.67 3.33 22 8.93 22h6.14c5.6 0 6.93-1.33 6.93-6.93V8.93C22 3.33 20.67 2 15.07 2zm3.1 13.08c0 .12-.04.22-.11.3-.08.08-.19.12-.32.12h-1.5c-.32 0-.6-.11-.84-.33-.24-.22-.44-.52-.61-.88-.23-.49-.46-.86-.68-1.12-.22-.26-.45-.39-.68-.39-.1 0-.19.02-.28.07-.09.05-.16.12-.21.21-.1.17-.15.42-.15.76v.88c0 .2-.06.36-.17.47s-.27.17-.47.17h-.8c-.78 0-1.48-.24-2.11-.73-.63-.49-1.16-1.16-1.59-2.02-.44-.86-.87-1.89-1.28-3.08-.05-.14-.02-.26.08-.36.1-.1.24-.15.42-.15h1.56c.16 0 .29.05.38.16.09.11.14.24.15.4.15.54.34 1.05.58 1.54.24.49.5.91.77 1.25.27.34.52.51.74.51.08 0 .15-.02.2-.07.05-.05.08-.11.1-.19.04-.21.06-.55.06-1.01V9.5c-.01-.35-.1-.61-.26-.78-.16-.17-.4-.28-.7-.34-.1-.02-.15-.08-.15-.17 0-.08.04-.15.13-.21.19-.13.48-.2.88-.2h1.54c.26 0 .46.06.6.18.14.12.21.32.21.61v2.33c0 .16.02.28.06.35.04.07.1.11.18.11.1 0 .23-.08.38-.23.15-.15.34-.39.56-.72.22-.33.45-.75.68-1.27.06-.14.16-.25.29-.33.13-.08.28-.12.45-.12h1.61c.19 0 .34.05.45.14.11.09.15.22.11.38-.19.72-.47 1.34-.84 1.87-.37.53-.74.92-1.1 1.16-.1.08-.15.16-.15.25 0 .07.04.14.11.22.18.2.4.48.65.84s.46.73.61 1.09c.1.25.15.48.15.7z"/></svg>
                 </a>
-                <a href="https://t.me/Resurs_syktyvkar_bot" target="_blank" style="transition: 0.3s; opacity: 0.8;">
+                <a href="https://t.me/Resurs_syktyvkar_bot" target="_blank" aria-label="Наш Telegram бот" style="transition: 0.3s; opacity: 0.8;">
                     <svg width="24" height="24" viewBox="0 0 24 24" style="fill: var(--accent-gold);"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.11.02-1.93 1.23-5.46 3.62-.51.35-.98.53-1.39.52-.46-.01-1.33-.26-1.98-.48-.8-.27-1.43-.42-1.37-.89.03-.25.38-.51 1.07-.78 4.2-1.82 7-3.03 8.41-3.63 4.02-1.71 4.86-2.01 5.4-2.02.12 0 .38.03.55.17.14.12.18.28.2.4z"/></svg>
                 </a>
             </div>
@@ -980,7 +1026,7 @@
         <div class="footer-grid">
             <div>
                 <h4>Адрес студии</h4>
-                <p style="font-size: 13px; opacity: 0.8; line-height: 1.8;">Сыктывкар, ул. Коммунистическая 77/2</p>
+                <p style="font-size: 13px; opacity: 0.8; line-height: 1.8;">г. Сыктывкар, ул. Коммунистическая, 67</p>
             </div>
             <div>
                 <h4>Документы</h4>
@@ -995,8 +1041,8 @@
         </div>
         
         <p style="margin-top: 60px; font-size: 10px; opacity: 0.5; letter-spacing: 3px; text-transform: uppercase;">
-     © 2026 РЕСУРС | Студия фитнеса, растяжки и движения. Все права защищены.
-</p>
+             © 2026 РЕСУРС | Студия фитнеса, растяжки и движения. Все права защищены.
+        </p>
     </div>
 </footer>
 
@@ -1073,22 +1119,19 @@
 </div>
 
 <script>
-    // --- ПЕРЕКЛЮЧЕНИЕ ТЕМЫ (СВЕТ / ТЕНЬ) ---
+    // --- ПЕРЕКЛЮЧЕНИЕ ТЕМЫ ПО КЛИКУ НА КНОПКУ «ТЕМА» ---
     function toggleTheme() {
-        const html = document.documentElement;
-        const currentTheme = html.getAttribute('data-theme');
+        const root = document.documentElement;
+        const currentTheme = root.getAttribute('data-theme') || 'dark';
         const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
         
-        html.setAttribute('data-theme', newTheme);
+        root.setAttribute('data-theme', newTheme);
         localStorage.setItem('theme', newTheme);
-        
-        const btn = document.getElementById('themeToggle');
-        btn.innerText = newTheme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
     }
 
     window.addEventListener('DOMContentLoaded', () => {
-        const theme = document.documentElement.getAttribute('data-theme');
-        document.getElementById('themeToggle').innerText = theme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
     });
 
     window.addEventListener('scroll', () => {
@@ -1207,7 +1250,7 @@
         }
     });
 
-    // 1. НАСТРОЙКИ АКЦИИ
+    // НАСТРОЙКИ АКЦИИ
     const promoConfig = {
         startDate: "2026-04-21T09:00:00", 
         endDate: "2026-04-23T23:59:59",   
@@ -1327,7 +1370,10 @@
             sessionStorage.setItem('resurs_chat_history', JSON.stringify(chatHistory));
             renderMsg(answerText, 'assistant');
         } catch (e) { 
-            document.getElementById(loaderId).innerHTML = "Ошибка связи. <a href='https://vk.com/resurs_syktyvkar' target='_blank' style='color: var(--accent-gold);'>Напишите нам в ВК!</a>"; 
+            const loaderElem = document.getElementById(loaderId);
+            if (loaderElem) {
+                loaderElem.innerHTML = "Ошибка связи. <a href='https://vk.com/resurs_syktyvkar' target='_blank' style='color: var(--accent-gold);'>Напишите нам в ВК!</a>"; 
+            }
         }
     }
     document.getElementById('ls-ai-input').onkeypress = (e) => { if(e.key === 'Enter') sendMessage(); };
@@ -1343,13 +1389,12 @@
     });
 </script>
 
-<div id="cookie-notice" class="glass" style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 5000; padding: 15px 25px; border-radius: 15px; display: none; align-items: center; justify-content: space-between; gap: 15px; border: 1px solid var(--accent-gold); max-width: 480px; width: 90%; flex-wrap: wrap;">
-    <span style="font-size: 12px; opacity: 0.9; flex: 1; min-width: 200px;">Мы используем файлы cookie, чтобы сайт «Ресурса» работал лучше. <a href="privacy.html" style="text-decoration: underline;">Подробнее</a></span>
+<div id="cookie-notice" class="glass">
+    <span style="font-size: 12px; opacity: 0.9; flex: 1;">Мы используем файлы cookie, чтобы сайт «Ресурса» работал лучше. <a href="privacy.html" style="text-decoration: underline;">Подробнее</a></span>
     <button onclick="acceptCookies()" class="btn-lens" style="padding: 8px 20px; font-size: 10px; text-transform: uppercase; border-color: var(--accent-gold); color: var(--accent-gold);">ОК</button>
 </div>
 
 <script>
-    // Проверка Куки
     function acceptCookies() {
         localStorage.setItem('cookiesAccepted', 'true');
         document.getElementById('cookie-notice').style.display = 'none';
