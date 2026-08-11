@@ -272,6 +272,33 @@
         .water-info { flex: 1; min-width: 90px; }
         .water-btn { background: rgba(59, 130, 246, 0.12); border: 1px solid rgba(59, 130, 246, 0.3); color: var(--water); padding: 7px 10px; border-radius: 8px; font-size: 9px; text-transform: uppercase; cursor: pointer; transition: 0.3s; font-weight: 800; margin-top: 4px; letter-spacing: 0.5px; width: 100%; }
 
+        /* СТИЛИ ДЛЯ БЛОКА ШАГОМЕРА */
+        .pedometer-widget {
+            background: var(--surface-hover);
+            border-radius: 14px;
+            padding: 14px;
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--accent-gold);
+            margin-top: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .step-progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(197, 160, 89, 0.15);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 4px;
+        }
+        .step-progress-fill {
+            height: 100%;
+            width: 0%;
+            background: var(--accent-gold);
+            transition: width 0.4s ease;
+        }
+
         .verdict-box { background: var(--surface-hover); border-radius: 14px; padding: 14px; margin-top: 14px; border: 1px solid var(--border-color); border-left: 4px solid var(--accent-gold); display: flex; gap: 10px; width: 100%; box-sizing: border-box; }
         .status-line { width: 4px; border-radius: 10px; flex-shrink: 0; background: var(--safe); transition: 0.5s; }
         .verdict-text { font-size: 11.5px; color: var(--text-main); line-height: 1.4; }
@@ -352,9 +379,10 @@
                 <p id="lvl-count" style="font-size: 10px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 2px;">Всего тренировок: 0</p>
                 <div class="weekly-count" id="weekly-count">На этой неделе: 0</div>
 
-                <!-- КНОПКА ЭКСПОРТА (ОСТАВЛЕНА ТОЛЬКО КАРТА С ФОТО) -->
+                <!-- КНОПКИ ЭКСПОРТА И PWA PUSH-УВЕДОМЛЕНИЙ -->
                 <div class="export-actions-grid">
                     <button class="btn btn-emerald" onclick="generatePassportModal()">📸 Карта с фото</button>
+                    <button class="btn" style="border-color: var(--accent-gold); color: var(--accent-gold);" onclick="requestPushNotifications()">🔔 Включить напоминания</button>
                 </div>
                 
                 <button class="btn" style="margin-top: 8px; border-color: var(--accent-emerald); color: var(--accent-emerald);" onclick="shareEvolutionLink()">
@@ -399,7 +427,7 @@
             </div>
         </div>
 
-        <!-- ПРАВАЯ КОЛОНКА: РАСЧЕТЫ И ПОДБОР ПРАКТИК -->
+        <!-- ПРАВАЯ КОЛОНКА: РАСЧЕТЫ, ШАГОМЕР И ПОДБОР ПРАКТИК -->
         <div class="content-panel">
             <div class="bento-card">
                 <span class="section-label">Архитектура тела</span>
@@ -414,7 +442,6 @@
                     </div>
                 </div>
 
-                <!-- ВНЕДРЕН ЭФФЕКТ ONFOCUS="THIS.SELECT()" ДЛЯ МГНОВЕННОГО ВВОДА НА СМАРТФОНЕ -->
                 <div class="input-row">
                     <div class="input-group">
                         <label>Вес (кг)</label>
@@ -457,6 +484,29 @@
                         <p style="font-size: 10.5px; color: var(--text-dim); margin-bottom: 4px;">Выпито: <b id="water-drunk-text" style="color: var(--water); font-size: 12px;">0.0</b> / <span id="water-target-text">0.0</span> л</p>
                         <button class="water-btn" onclick="addWater()">+ 250 мл</button>
                     </div>
+                </div>
+
+                <!-- ВНЕДРЕННЫЙ БЛОК ИНТЕРАКТИВНОГО ШАГОМЕРА -->
+                <div class="pedometer-widget">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h4 style="font-size: 13px; font-family: var(--font-serif); color: var(--text-main);">👟 Умный шагомер</h4>
+                        <span id="pedometer-status" style="font-size: 8.5px; color: var(--accent-gold); font-weight: 800; text-transform: uppercase;">Готов</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                        <div>
+                            <span id="step-count" style="font-size: 22px; font-weight: 800; color: var(--accent-emerald); font-family: var(--font-serif);">0</span>
+                            <span style="font-size: 10px; color: var(--text-dim);"> / 10 000 шагов</span>
+                        </div>
+                        <div style="font-size: 10px; color: var(--text-dim); text-align: right;">
+                            <span id="step-dist">0.0</span> км • <span id="step-kcal">0</span> ккал
+                        </div>
+                    </div>
+                    <div class="step-progress-bar">
+                        <div class="step-progress-fill" id="step-progress-fill"></div>
+                    </div>
+                    <button class="btn" id="pedometer-btn" style="margin-top: 4px; border-color: var(--accent-gold); color: var(--accent-gold);" onclick="togglePedometer()">
+                        Включить трекинг шагов
+                    </button>
                 </div>
 
                 <div class="verdict-box">
@@ -551,8 +601,14 @@
         history: [], 
         workouts: [], 
         waterDrunk: 0, lastWaterDate: "",
-        userPhotoDataUrl: ""
+        userPhotoDataUrl: "",
+        stepsToday: 0,
+        lastStepDate: ""
     };
+
+    let isPedometerActive = false;
+    let lastAccel = { x: 0, y: 0, z: 0 };
+    let stepThreshold = 12.5;
 
     const trainingLibrary = {
         "Пилатес": { d: "Укрепление мышечного корсета и глубоких мышц тазового дна. Идеально для женского здоровья и красивой осанки.", tags: ["Спина", "Тазовое дно"] },
@@ -592,9 +648,12 @@
     window.onload = () => {
         load();
         if (state.history.length === 0) recordWeight(state.weight);
+        checkDailyStepReset();
         calculate(false); 
         setResource(state.resource);
         updateEvolution();
+        updatePedometerUI();
+        registerServiceWorker();
         
         window.addEventListener('scroll', () => {
             const header = document.getElementById('header');
@@ -608,6 +667,111 @@
         const next = current === 'dark' ? 'light' : 'dark';
         root.setAttribute('data-theme', next);
         localStorage.setItem('user-theme', next);
+    }
+
+    function registerServiceWorker() {
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js').then(reg => {
+                console.log('SW зарегистрирован:', reg);
+            }).catch(err => console.log('Ошибка регистрации SW:', err));
+        }
+    }
+
+    function requestPushNotifications() {
+        if (!('Notification' in window)) {
+            alert('Ваш браузер не поддерживает push-уведомления.');
+            return;
+        }
+        Notification.requestPermission().then(permission => {
+            if (permission === 'granted') {
+                alert('Уведомления включены! Теперь вы будете получать полезные напоминания о тренировках и воде.');
+                if (navigator.serviceWorker.controller) {
+                    navigator.serviceWorker.ready.then(registration => {
+                        registration.showNotification('Студия РЕСУРС', {
+                            body: 'Напоминания успешно активированы! Эволюция начинается прямо сейчас.',
+                            icon: 'https://resurs-stretch.ru/favicon.png'
+                        });
+                    });
+                }
+            } else {
+                alert('Доступ к уведомлениям отклонен в настройках браузера.');
+            }
+        });
+    }
+
+    /* РАБОТА С ШАГОМЕРОМ */
+    function checkDailyStepReset() {
+        const today = new Date().toDateString();
+        if (state.lastStepDate !== today) {
+            state.stepsToday = 0;
+            state.lastStepDate = today;
+            save();
+        }
+    }
+
+    function togglePedometer() {
+        if (!isPedometerActive) {
+            if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function') {
+                DeviceMotionEvent.requestPermission().then(response => {
+                    if (response === 'granted') {
+                        startMotionTracking();
+                    } else {
+                        alert('Разрешение на доступ к датчикам движения отклонено.');
+                    }
+                }).catch(console.error);
+            } else if ('DeviceMotionEvent' in window) {
+                startMotionTracking();
+            } else {
+                alert('Датчик движения не поддерживается вашим устройством.');
+            }
+        } else {
+            stopMotionTracking();
+        }
+    }
+
+    function startMotionTracking() {
+        window.addEventListener('devicemotion', handleMotion, true);
+        isPedometerActive = true;
+        document.getElementById('pedometer-btn').innerText = 'Остановить шагомер';
+        document.getElementById('pedometer-status').innerText = 'Активен';
+        document.getElementById('pedometer-status').style.color = 'var(--accent-emerald)';
+    }
+
+    function stopMotionTracking() {
+        window.removeEventListener('devicemotion', handleMotion, true);
+        isPedometerActive = false;
+        document.getElementById('pedometer-btn').innerText = 'Включить трекинг шагов';
+        document.getElementById('pedometer-status').innerText = 'Пауза';
+        document.getElementById('pedometer-status').style.color = 'var(--accent-gold)';
+    }
+
+    function handleMotion(e) {
+        checkDailyStepReset();
+        const acc = e.accelerationIncludingGravity;
+        if (!acc) return;
+
+        let deltaX = Math.abs(acc.x - lastAccel.x);
+        let deltaY = Math.abs(acc.y - lastAccel.y);
+        let deltaZ = Math.abs(acc.z - lastAccel.z);
+
+        if ((deltaX + deltaY + deltaZ) > stepThreshold) {
+            state.stepsToday += 1;
+            updatePedometerUI();
+            save();
+        }
+
+        lastAccel = { x: acc.x, y: acc.y, z: acc.z };
+    }
+
+    function updatePedometerUI() {
+        document.getElementById('step-count').innerText = state.stepsToday;
+        let km = (state.stepsToday * 0.00075).toFixed(1);
+        let kcal = Math.round(state.stepsToday * 0.04);
+        document.getElementById('step-dist').innerText = km;
+        document.getElementById('step-kcal').innerText = kcal;
+
+        let pct = Math.min((state.stepsToday / 10000) * 100, 100);
+        document.getElementById('step-progress-fill').style.width = pct + '%';
     }
 
     function handleUserPhotoUpload(e) {
@@ -625,7 +789,6 @@
         }
     }
 
-    // СБОРКА И ОТОБРАЖЕНИЕ ПАСПОРТА В МОДАЛЬНОМ ОКНЕ (ДЛЯ IOS И ANDROID)
     function generatePassportModal() {
         const canvas = document.getElementById('passportCanvas');
         const ctx = canvas.getContext('2d');
@@ -693,7 +856,7 @@
         ctx.fillText(`Уровень: ${currentLevel.icon} ${currentLevel.name}`, 50, 470);
         ctx.fillText(`Выполнено практик: ${totalSessions}`, 50, 510);
         ctx.fillText(`Текущий вес: ${state.weight} кг (ИМТ: ${(state.weight / ((state.height / 100) ** 2)).toFixed(1)})`, 50, 550);
-        ctx.fillText(`Выпито воды сегодня: ${state.waterDrunk} л`, 50, 590);
+        ctx.fillText(`Выпито воды сегодня: ${state.waterDrunk} л | Шагов: ${state.stepsToday}`, 50, 590);
 
         ctx.fillStyle = "#10B981";
         ctx.font = "italic 16px Manrope";
