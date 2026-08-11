@@ -732,10 +732,17 @@
         });
     }
 
+    /* ИСПРАВЛЕННЫЙ МОДУЛЬ ШАГОМЕРА С ФИЛЬТРАЦИЕЙ ГРАВИТАЦИИ */
+    let lastStepTime = 0;
+    const STEP_COOLDOWN = 330; 
+    const ACCEL_THRESHOLD = 2.8;
+
     function checkDailyStepReset() {
         const today = new Date().toDateString();
         if (state.lastStepDate !== today) {
-            state.stepsToday = 0; state.lastStepDate = today; save();
+            state.stepsToday = 0;
+            state.lastStepDate = today;
+            save();
         }
     }
 
@@ -743,9 +750,15 @@
         if (!isPedometerActive) {
             if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function') {
                 DeviceMotionEvent.requestPermission().then(response => {
-                    if (response === 'granted') startMotionTracking();
-                    else alert('Разрешение на доступ к датчикам движения отклонено.');
-                }).catch(console.error);
+                    if (response === 'granted') {
+                        startMotionTracking();
+                    } else {
+                        alert('Разрешение на доступ к датчикам движения отклонено.');
+                    }
+                }).catch(err => {
+                    console.error(err);
+                    alert('Ошибка подключения к датчикам.');
+                });
             } else if ('DeviceMotionEvent' in window) {
                 startMotionTracking();
             } else {
@@ -759,34 +772,49 @@
     function startMotionTracking() {
         window.addEventListener('devicemotion', handleMotion, true);
         isPedometerActive = true;
-        document.getElementById('pedometer-btn').innerText = 'Остановить шагомер';
-        document.getElementById('pedometer-status').innerText = 'Активен';
-        document.getElementById('pedometer-status').style.color = 'var(--accent-emerald)';
+        
+        const btn = document.getElementById('pedometer-btn');
+        const status = document.getElementById('pedometer-status');
+        
+        btn.innerText = 'Остановить шагомер';
+        btn.style.borderColor = 'var(--accent-emerald)';
+        btn.style.color = 'var(--accent-emerald)';
+        
+        status.innerText = 'Активен';
+        status.style.color = 'var(--accent-emerald)';
     }
 
     function stopMotionTracking() {
         window.removeEventListener('devicemotion', handleMotion, true);
         isPedometerActive = false;
-        document.getElementById('pedometer-btn').innerText = 'Включить трекинг шагов';
-        document.getElementById('pedometer-status').innerText = 'Пауза';
-        document.getElementById('pedometer-status').style.color = 'var(--accent-gold)';
+        
+        const btn = document.getElementById('pedometer-btn');
+        const status = document.getElementById('pedometer-status');
+        
+        btn.innerText = 'Включить трекинг шагов';
+        btn.style.borderColor = 'var(--accent-gold)';
+        btn.style.color = 'var(--accent-gold)';
+        
+        status.innerText = 'Пауза';
+        status.style.color = 'var(--accent-gold)';
     }
 
     function handleMotion(e) {
         checkDailyStepReset();
-        const acc = e.accelerationIncludingGravity;
-        if (!acc) return;
+        
+        const acc = e.acceleration || e.accelerationIncludingGravity;
+        if (!acc || acc.x === null) return;
 
-        let deltaX = Math.abs(acc.x - lastAccel.x);
-        let deltaY = Math.abs(acc.y - lastAccel.y);
-        let deltaZ = Math.abs(acc.z - lastAccel.z);
+        const now = Date.now();
+        const magnitude = Math.sqrt(acc.x * acc.x + acc.y * acc.y + acc.z * acc.z);
+        const netAcceleration = e.acceleration ? magnitude : Math.abs(magnitude - 9.81);
 
-        if ((deltaX + deltaY + deltaZ) > stepThreshold) {
+        if (netAcceleration > ACCEL_THRESHOLD && (now - lastStepTime) > STEP_COOLDOWN) {
+            lastStepTime = now;
             state.stepsToday += 1;
             updatePedometerUI();
             save();
         }
-        lastAccel = { x: acc.x, y: acc.y, z: acc.z };
     }
 
     function updatePedometerUI() {
