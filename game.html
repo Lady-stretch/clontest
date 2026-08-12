@@ -3,14 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>РЕСУРС • 3D-Раннер Эволюция</title>
+    <title>РЕСУРС • 2D-Сайдскроллер Эволюция</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
-
-    <!-- Подключение легкого 3D движка Three.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
     <style>
         :root {
@@ -33,7 +30,7 @@
             font-family: var(--font-main); user-select: none;
         }
 
-        /* ИГРОВОЙ ИНТЕРФЕЙС ПОВЕРХ 3D ХОЛСТА */
+        /* ВЕРХНЯЯ ПАНЕЛЬ СЧЕТА И КНОПКА ВОЗВРАТА */
         #game-ui {
             position: absolute; inset: 0; z-index: 10;
             display: flex; flex-direction: column; justify-content: space-between;
@@ -47,14 +44,14 @@
         }
 
         .btn-back {
-            background: rgba(17, 26, 19, 0.85); border: 1px solid rgba(16, 185, 129, 0.3);
+            background: rgba(17, 26, 19, 0.9); border: 1px solid rgba(16, 185, 129, 0.4);
             color: var(--accent-gold); padding: 8px 14px; border-radius: 10px;
             font-size: 11px; font-weight: 800; text-transform: uppercase;
             letter-spacing: 1px; text-decoration: none; backdrop-filter: blur(10px);
         }
 
         .coin-counter {
-            background: rgba(17, 26, 19, 0.85); border: 1px solid var(--accent-gold);
+            background: rgba(17, 26, 19, 0.9); border: 1px solid var(--accent-gold);
             padding: 8px 16px; border-radius: 20px; color: var(--accent-gold);
             font-family: var(--font-serif); font-size: 20px; font-weight: 700;
             display: flex; align-items: center; gap: 6px; backdrop-filter: blur(10px);
@@ -69,7 +66,7 @@
 
         @keyframes pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
 
-        /* ЭКРАН GAME OVER / СТАРТА */
+        /* МОДАЛЬНЫЕ ОКНА СТАРТА И ФИНИША */
         .overlay-modal {
             position: absolute; inset: 0; z-index: 20;
             background: rgba(6, 12, 7, 0.92); backdrop-filter: blur(12px);
@@ -78,12 +75,12 @@
         }
 
         .modal-card {
-            background: var(--surface-color); border: 1px solid rgba(16, 185, 129, 0.3);
-            border-radius: 20px; padding: 28px 20px; max-width: 360px; width: 100%;
+            background: var(--surface-color); border: 1px solid rgba(16, 185, 129, 0.4);
+            border-radius: 22px; padding: 28px 22px; max-width: 380px; width: 100%;
             box-shadow: 0 10px 40px rgba(0,0,0,0.8);
         }
 
-        .modal-card h2 { font-family: var(--font-serif); font-size: 32px; color: var(--accent-gold); margin-bottom: 8px; }
+        .modal-card h2 { font-family: var(--font-serif); font-size: 30px; color: var(--accent-gold); margin-bottom: 8px; }
         .modal-card p { font-size: 13px; color: var(--text-dim); line-height: 1.5; margin-bottom: 20px; }
 
         .btn-start {
@@ -94,237 +91,347 @@
         }
         .btn-start:hover { background: #059669; }
 
-        #canvas-container { width: 100%; height: 100%; position: absolute; inset: 0; z-index: 1; }
+        canvas { display: block; width: 100%; height: 100%; position: absolute; inset: 0; z-index: 1; }
     </style>
 </head>
 <body>
 
-<div id="canvas-container"></div>
+<canvas id="gameCanvas"></canvas>
 
 <div id="game-ui">
     <div class="top-bar">
         <a href="evolution.html" class="btn-back">← Дневник</a>
         <div class="coin-counter">🪙 <span id="coin-val">0</span></div>
     </div>
-    <div class="tap-instruction" id="tap-hint">Нажмите на экран для прыжка</div>
+    <div class="tap-instruction">Тап по экрану — Прыжок</div>
 </div>
 
-<!-- МОДАЛЬНОЕ ОКНО СТАРТА / ПЕРЕЗАПУСКА -->
 <div class="overlay-modal" id="modal-overlay">
     <div class="modal-card">
-        <h2 id="modal-title">Путь к Эволюции</h2>
-        <p id="modal-desc">Собирайте золотые коины, уворачивайтесь от фастфуда и прокачивайте свой крипто-кошелек здоровья!</p>
+        <h2 id="modal-title">Эволюция РЕСУРСА</h2>
+        <p id="modal-desc">Собирайте золотые коины и бонусы здоровья, избегайте сахара и прокачивайте свой кошелек для скидок в студии Сыктывкара!</p>
         <button class="btn-start" onclick="startGame()">Начать забег</button>
     </div>
 </div>
 
 <script>
-    let scene, camera, renderer;
-    let player, floor;
-    let obstacles = [], coins = [];
-    let isPlaying = false, isJumping = false;
-    let jumpVelocity = 0;
-    const gravity = -0.015;
-    
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let isPlaying = false;
     let scoreCoins = 0;
     let totalCoins = parseInt(localStorage.getItem('resurs_coins')) || 0;
-    let gameSpeed = 0.35;
-    let spawnTimer = 0;
-
     document.getElementById('coin-val').innerText = totalCoins;
 
-    function init3D() {
-        const container = document.getElementById('canvas-container');
+    let gameSpeed = 5;
+    let frameCount = 0;
+    let distance = 0;
 
-        scene = new THREE.Scene();
-        scene.background = new THREE.Color(0x060C07);
-        scene.fog = new THREE.FogExp2(0x060C07, 0.025);
-
-        camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.set(0, 3.5, 7);
-        camera.lookAt(0, 1, 0);
-
-        renderer = new THREE.WebGLRenderer({ antialias: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        container.appendChild(renderer.domElement);
-
-        // ОСВЕЩЕНИЕ
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
-        scene.add(ambientLight);
-
-        const dirLight = new THREE.DirectionalLight(0xC5A059, 0.8);
-        dirLight.position.set(5, 10, 7);
-        scene.add(dirLight);
-
-        // ДОРОЖКА (ИЗУМРУДНАЯ)
-        const floorGeo = new THREE.PlaneGeometry(6, 200);
-        const floorMat = new THREE.MeshBasicMaterial({ color: 0x111A13, side: THREE.DoubleSide });
-        floor = new THREE.Mesh(floorGeo, floorMat);
-        floor.rotation.x = Math.PI / 2;
-        floor.position.z = -90;
-        scene.add(floor);
-
-        // БОКОВЫЕ ЛИНИИ ДОРОЖКИ
-        const lineGeo = new THREE.PlaneGeometry(0.1, 200);
-        const lineMat = new THREE.MeshBasicMaterial({ color: 0x10B981 });
-        const leftLine = new THREE.Mesh(lineGeo, lineMat);
-        leftLine.rotation.x = Math.PI / 2; leftLine.position.set(-3, 0.01, -90);
-        scene.add(leftLine);
-
-        const rightLine = new THREE.Mesh(lineGeo, lineMat);
-        rightLine.rotation.x = Math.PI / 2; rightLine.position.set(3, 0.01, -90);
-        scene.add(rightLine);
-
-        // СОЗДАНИЕ ИГРОКА (3D СИЛУЭТ)
-        const playerGroup = new THREE.Group();
-        const bodyGeo = new THREE.BoxGeometry(0.6, 0.9, 0.4);
-        const bodyMat = new THREE.MeshStandardMaterial({ color: 0x10B981, roughness: 0.3 });
-        const body = new THREE.Mesh(bodyGeo, bodyMat);
-        body.position.y = 0.45;
-        playerGroup.add(body);
-
-        const headGeo = new THREE.SphereGeometry(0.25, 16, 16);
-        const headMat = new THREE.MeshStandardMaterial({ color: 0xC5A059 });
-        const head = new THREE.Mesh(headGeo, headMat);
-        head.position.y = 1.15;
-        playerGroup.add(head);
-
-        player = playerGroup;
-        player.position.set(0, 0, 2);
-        scene.add(player);
-
-        window.addEventListener('resize', onWindowResize);
-        
-        // УПРАВЛЕНИЕ ТАПАМИ И КЛИКАМИ
-        window.addEventListener('touchstart', handleTap, { passive: false });
-        window.addEventListener('mousedown', handleTap);
-        window.addEventListener('keydown', (e) => { if(e.code === 'Space') handleTap(); });
-
-        animate();
+    // РАЗМЕРЫ ХОЛСТА
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
     }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
 
-    function handleTap(e) {
+    // ОБЪЕКТ ТРЕНЕРА (ИГРОКА)
+    const player = {
+        x: 60,
+        y: 0,
+        width: 42,
+        height: 65,
+        velocityY: 0,
+        gravity: 0.7,
+        jumpPower: -14,
+        isGrounded: false,
+        legAngle: 0,
+        hasShield: false
+    };
+
+    let groundY = canvas.height - 110;
+
+    let obstacles = [];
+    let items = [];
+
+    // УПРАВЛЕНИЕ
+    function handleJump(e) {
         if (e && e.target && e.target.closest('#game-ui .top-bar')) return;
         if (!isPlaying) return;
-        
-        if (!isJumping) {
-            isJumping = true;
-            jumpVelocity = 0.26;
+        if (player.isGrounded) {
+            player.velocityY = player.jumpPower;
+            player.isGrounded = false;
         }
     }
 
-    function spawnEntity() {
-        spawnTimer++;
-        if (spawnTimer > 45) {
-            spawnTimer = 0;
-            const isObstacle = Math.random() > 0.4;
+    window.addEventListener('touchstart', handleJump, { passive: false });
+    window.addEventListener('mousedown', handleJump);
+    window.addEventListener('keydown', (e) => { if (e.code === 'Space') handleJump(); });
 
-            if (isObstacle) {
-                // ПРЕПЯТСТВИЕ (КРАСНЫЙ ФАСТФУД КУБ)
-                const obsGeo = new THREE.BoxGeometry(0.8, 0.8, 0.8);
-                const obsMat = new THREE.MeshStandardMaterial({ color: 0xEF4444, roughness: 0.5 });
-                const obs = new THREE.Mesh(obsGeo, obsMat);
-                obs.position.set(0, 0.4, -40);
-                scene.add(obs);
-                obstacles.push(obs);
+    // СПАВН ОБЪЕКТОВ
+    function spawnObjects() {
+        frameCount++;
+        groundY = canvas.height - 110;
+
+        // Постепенное увеличение сложности (Динамические этапы)
+        if (distance > 250 && gameSpeed < 7) gameSpeed = 6.5;
+        if (distance > 600 && gameSpeed < 9) gameSpeed = 8;
+
+        if (frameCount % Math.max(45, Math.floor(110 - gameSpeed * 5)) === 0) {
+            let rand = Math.random();
+            if (rand < 0.5) {
+                // Препятствие: Булочка / Фастфуд
+                obstacles.push({
+                    x: canvas.width + 30,
+                    y: groundY - 35,
+                    width: 36,
+                    height: 36,
+                    type: 'burger'
+                });
+            } else if (rand < 0.85) {
+                // Монета ResursCoin
+                items.push({
+                    x: canvas.width + 30,
+                    y: groundY - (Math.random() > 0.4 ? 40 : 100),
+                    width: 26,
+                    height: 26,
+                    type: 'coin'
+                });
             } else {
-                // БОНУС (ЗОЛОТАЯ МОНЕТА RESURSCOIN)
-                const coinGeo = new THREE.OctahedronGeometry(0.35, 0);
-                const coinMat = new THREE.MeshStandardMaterial({ color: 0xC5A059, metalness: 0.8, roughness: 0.2 });
-                const coin = new THREE.Mesh(coinGeo, coinMat);
-                coin.position.set(0, 0.6, -40);
-                scene.add(coin);
-                coins.push(coin);
+                // Редкий супер-бонус (Вода или Коврик)
+                let isMat = Math.random() > 0.5;
+                items.push({
+                    x: canvas.width + 30,
+                    y: groundY - 50,
+                    width: 32,
+                    height: 32,
+                    type: isMat ? 'mat' : 'water'
+                });
             }
         }
     }
 
-    function animate() {
-        requestAnimationFrame(animate);
+    // ИГРОВОЙ ЦИКЛ
+    function update() {
+        if (!isPlaying) return;
 
-        if (isPlaying) {
-            // ФИЗИКА ПРЫЖКА
-            if (isJumping) {
-                player.position.y += jumpVelocity;
-                jumpVelocity += gravity;
-                if (player.position.y <= 0) {
-                    player.position.y = 0;
-                    isJumping = false;
-                }
-            }
+        distance += Math.round(gameSpeed * 0.1);
 
-            spawnEntity();
+        // ФИЗИКА ИГРОКА
+        player.velocityY += player.gravity;
+        player.y += player.velocityY;
 
-            // ДВИЖЕНИЕ ПРЕПЯТСТВИЙ И СТОЛКНОВЕНИЯ
-            for (let i = obstacles.length - 1; i >= 0; i--) {
-                let obs = obstacles[i];
-                obs.position.z += gameSpeed;
+        if (player.y >= groundY - player.height) {
+            player.y = groundY - player.height;
+            player.velocityY = 0;
+            player.isGrounded = true;
+        }
 
-                // Проверка столкновения
-                if (Math.abs(obs.position.z - player.position.z) < 0.6 && player.position.y < 0.6) {
-                    gameOver();
-                }
+        player.legAngle += 0.2;
 
-                if (obs.position.z > 5) {
-                    scene.remove(obs);
+        // ОБРАБОТКА ПРЕПЯТСТВИЙ
+        for (let i = obstacles.length - 1; i >= 0; i--) {
+            let obs = obstacles[i];
+            obs.x -= gameSpeed;
+
+            // Проверка столкновения
+            if (
+                player.x < obs.x + obs.width &&
+                player.x + player.width > obs.x &&
+                player.y < obs.y + obs.height &&
+                player.y + player.height > obs.y
+            ) {
+                if (player.hasShield) {
+                    player.hasShield = false;
                     obstacles.splice(i, 1);
+                } else {
+                    gameOver();
+                    return;
                 }
             }
 
-            // ДВИЖЕНИЕ МОНЕТ И СБОР
-            for (let i = coins.length - 1; i >= 0; i--) {
-                let c = coins[i];
-                c.position.z += gameSpeed;
-                c.rotation.y += 0.05;
+            if (obs.x < -50) obstacles.splice(i, 1);
+        }
 
-                // Сбор монеты
-                if (Math.abs(c.position.z - player.position.z) < 0.7 && Math.abs(player.position.y - c.position.y) < 0.8) {
+        // ОБРАБОТКА БОНУСОВ И МОНЕТ
+        for (let i = items.length - 1; i >= 0; i--) {
+            let item = items[i];
+            item.x -= gameSpeed;
+
+            if (
+                player.x < item.x + item.width &&
+                player.x + player.width > item.x &&
+                player.y < item.y + item.height &&
+                player.y + player.height > item.y
+            ) {
+                if (item.type === 'coin') {
                     scoreCoins += 10;
-                    totalCoins += 10;
-                    document.getElementById('coin-val').innerText = totalCoins;
-                    localStorage.setItem('resurs_coins', totalCoins);
-                    
-                    scene.remove(c);
-                    coins.splice(i, 1);
-                } else if (c.position.z > 5) {
-                    scene.remove(c);
-                    coins.splice(i, 1);
+                } else if (item.type === 'water') {
+                    scoreCoins += 50;
+                } else if (item.type === 'mat') {
+                    scoreCoins += 100;
+                    player.hasShield = true;
                 }
+
+                totalCoins += (item.type === 'coin' ? 10 : item.type === 'water' ? 50 : 100);
+                document.getElementById('coin-val').innerText = totalCoins;
+                localStorage.setItem('resurs_coins', totalCoins);
+
+                items.splice(i, 1);
+            } else if (item.x < -50) {
+                items.splice(i, 1);
             }
         }
 
-        renderer.render(scene, camera);
+        spawnObjects();
+        draw();
+        requestAnimationFrame(update);
+    }
+
+    // ОТРЕСОВКА ГРАФИКИ СТИЛЯ «РЕСУРС»
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // ФОН (ГЛУБОКИЙ ИЗУМРУДНО-ТЕМНЫЙ ГРАДИЕНТ)
+        let bgGrad = ctx.createLinearGradient(0, 0, 0, canvas.height);
+        bgGrad.addColorStop(0, '#060C07');
+        bgGrad.addColorStop(1, '#111A13');
+        ctx.fillStyle = bgGrad;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // БЕГОВАЯ ДОРОЖКА (ЛИНИИ)
+        ctx.strokeStyle = '#10B981';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.moveTo(0, groundY);
+        ctx.lineTo(canvas.width, groundY);
+        ctx.stroke();
+
+        ctx.fillStyle = 'rgba(16, 185, 129, 0.05)';
+        ctx.fillRect(0, groundY, canvas.width, canvas.height - groundY);
+
+        // ОТРЕСОВКА ТРЕНЕРА (ПЕРСОНАЖА)
+        ctx.save();
+        ctx.translate(player.x, player.y);
+
+        // Если активен щит от коврика — рисуем золотое аура-свечение
+        if (player.hasShield) {
+            ctx.strokeStyle = '#C5A059';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.arc(player.width/2, player.height/2, 40, 0, Math.PI * 2);
+            ctx.stroke();
+        }
+
+        // Голова тренера
+        ctx.fillStyle = '#C5A059';
+        ctx.beginPath();
+        ctx.arc(player.width / 2, 12, 10, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Тело (Изумрудный тонус)
+        ctx.fillStyle = '#10B981';
+        ctx.beginPath();
+        ctx.roundRect(6, 22, player.width - 12, 26, 6);
+        ctx.fill();
+
+        // Ноги с анимацией бега
+        ctx.strokeStyle = '#F4F4F9';
+        ctx.lineWidth = 4;
+        ctx.lineCap = 'round';
+
+        let legOffset = Math.sin(player.legAngle) * 12;
+
+        if (player.isGrounded) {
+            // Левая нога
+            ctx.beginPath();
+            ctx.moveTo(12, 48);
+            ctx.lineTo(12 - legOffset, 65);
+            ctx.stroke();
+
+            // Правая нога
+            ctx.beginPath();
+            ctx.moveTo(player.width - 12, 48);
+            ctx.lineTo(player.width - 12 + legOffset, 65);
+            ctx.stroke();
+        } else {
+            // Ноги в прыжке
+            ctx.beginPath();
+            ctx.moveTo(12, 48);
+            ctx.lineTo(6, 58);
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.moveTo(player.width - 12, 48);
+            ctx.lineTo(player.width - 6, 62);
+            ctx.stroke();
+        }
+
+        ctx.restore();
+
+        // ОТРЕСОВКА ПРЕПЯТСТВИЙ (БУЛОЧКИ / ФАСТФУД)
+        obstacles.forEach(obs => {
+            ctx.fillStyle = '#EF4444';
+            ctx.beginPath();
+            ctx.roundRect(obs.x, obs.y, obs.width, obs.height, 8);
+            ctx.fill();
+
+            ctx.fillStyle = '#FFF';
+            ctx.font = 'bold 16px Manrope';
+            ctx.textAlign = 'center';
+            ctx.fillText('🍔', obs.x + obs.width/2, obs.y + 24);
+        });
+
+        // ОТРЕСОВКА БОНУСОВ И МОНЕТ
+        items.forEach(item => {
+            if (item.type === 'coin') {
+                ctx.fillStyle = '#C5A059';
+                ctx.beginPath();
+                ctx.arc(item.x + 13, item.y + 13, 13, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.fillStyle = '#060C07';
+                ctx.font = 'bold 12px Manrope';
+                ctx.textAlign = 'center';
+                ctx.fillText('🪙', item.x + 13, item.y + 17);
+            } else if (item.type === 'water') {
+                ctx.fillStyle = '#3B82F6';
+                ctx.font = 'bold 22px Manrope';
+                ctx.fillText('💧', item.x + 6, item.y + 24);
+            } else if (item.type === 'mat') {
+                ctx.fillStyle = '#C5A059';
+                ctx.font = 'bold 22px Manrope';
+                ctx.fillText('🧘', item.x + 6, item.y + 24);
+            }
+        });
+
+        // ДИСТАНЦИЯ
+        ctx.fillStyle = 'rgba(244, 244, 249, 0.6)';
+        ctx.font = 'bold 12px Manrope';
+        ctx.textAlign = 'left';
+        ctx.fillText(`Дистанция: ${distance} м`, 16, canvas.height - 20);
     }
 
     function startGame() {
-        // Очистка старых объектов
-        obstacles.forEach(o => scene.remove(o));
-        coins.forEach(c => scene.remove(c));
-        obstacles = []; coins = [];
-        
+        obstacles = [];
+        items = [];
         scoreCoins = 0;
-        player.position.set(0, 0, 2);
-        isJumping = false;
-        
+        distance = 0;
+        gameSpeed = 530;
+        player.y = groundY - player.height;
+        player.velocityY = 0;
+        player.hasShield = false;
+
         document.getElementById('modal-overlay').style.display = 'none';
         isPlaying = true;
+        update();
     }
 
     function gameOver() {
         isPlaying = false;
-        document.getElementById('modal-title').innerText = "Забег окончен!";
-        document.getElementById('modal-desc').innerText = `Вы заработали +${scoreCoins} ResursCoins в этом забеге. Общий баланс обновлен!`;
+        document.getElementById('modal-title').innerText = "Забег завершен!";
+        document.getElementById('modal-desc').innerText = `Вы преодолели ${distance} метров и заработали +${scoreCoins} ResursCoins. Общий баланс обновлен!`;
         document.getElementById('modal-overlay').style.display = 'flex';
     }
-
-    function onWindowResize() {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-    }
-
-    window.onload = init3D;
 </script>
 </body>
 </html>
