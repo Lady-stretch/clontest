@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>РЕСУРС • Эволюция Движения</title>
+    <title>РЕСУРС • Премиум Эволюция Движения</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,12 +12,12 @@
     <style>
         :root {
             --bg-deep: #060C07;
-            --surface-color: #111A13;
+            --surface-color: #0B1F16;
             --accent-emerald: #10B981;
-            --accent-gold: #C5A059;
+            --accent-gold: #D4AF37;
             --text-main: #F4F4F9;
             --text-dim: #A3B2A7;
-            --danger: #EF4444;
+            --danger: #FF3366;
             --font-main: 'Manrope', sans-serif;
             --font-serif: 'Cormorant Garamond', serif;
         }
@@ -43,63 +43,71 @@
         }
 
         .btn-back {
-            background: rgba(17, 26, 19, 0.9); border: 1px solid rgba(16, 185, 129, 0.4);
+            background: rgba(11, 31, 22, 0.95); border: 1px solid rgba(212, 175, 55, 0.4);
             color: var(--accent-gold); padding: 8px 14px; border-radius: 10px;
             font-size: 11px; font-weight: 800; text-transform: uppercase;
             letter-spacing: 1px; text-decoration: none; backdrop-filter: blur(10px);
         }
 
+        .brand-watermark {
+            font-family: var(--font-serif); font-size: 14px; letter-spacing: 4px;
+            color: var(--accent-gold); text-transform: uppercase; font-weight: 700;
+            text-align: center; text-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+        }
+
         .hud-stats {
-            display: flex; gap: 10px; align-items: center;
+            display: flex; gap: 12px; align-items: center;
         }
 
         .lives-container {
-            background: rgba(17, 26, 19, 0.9); border: 1px solid rgba(239, 68, 68, 0.4);
+            background: rgba(11, 31, 22, 0.95); border: 1px solid rgba(255, 51, 102, 0.5);
             padding: 8px 14px; border-radius: 20px; color: var(--danger);
-            font-size: 16px; font-weight: 800; display: flex; align-items: center; gap: 4px;
-            backdrop-filter: blur(10px);
+            font-size: 15px; font-weight: 800; display: flex; align-items: center; gap: 4px;
+            backdrop-filter: blur(10px); box-shadow: 0 0 15px rgba(255, 51, 102, 0.2);
         }
 
         .coin-counter {
-            background: rgba(17, 26, 19, 0.9); border: 1px solid var(--accent-gold);
-            padding: 8px 16px; border-radius: 20px; color: var(--accent-gold);
-            font-family: var(--font-serif); font-size: 20px; font-weight: 700;
+            background: rgba(11, 31, 22, 0.95); border: 1px solid var(--accent-gold);
+            padding: 8px 18px; border-radius: 20px; color: var(--accent-gold);
+            font-family: var(--font-serif); font-size: 22px; font-weight: 700;
             display: flex; align-items: center; gap: 6px; backdrop-filter: blur(10px);
-            box-shadow: 0 4px 20px rgba(197, 160, 89, 0.2);
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.3);
         }
 
         .tap-instruction {
-            text-align: center; color: var(--text-dim); font-size: 12px;
-            text-transform: uppercase; letter-spacing: 2px; font-weight: 700;
-            animation: pulse 1.8s infinite;
+            text-align: center; color: var(--accent-emerald); font-size: 13px;
+            text-transform: uppercase; letter-spacing: 3px; font-weight: 800;
+            text-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+            animation: pulse 1.5s infinite;
         }
 
-        @keyframes pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+        @keyframes pulse { 0%, 100% { opacity: 0.5; transform: scale(1); } 50% { opacity: 1; transform: scale(1.05); } }
 
         .overlay-modal {
             position: absolute; inset: 0; z-index: 20;
-            background: rgba(6, 12, 7, 0.92); backdrop-filter: blur(12px);
+            background: rgba(6, 12, 7, 0.94); backdrop-filter: blur(12px);
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             padding: 24px; text-align: center; pointer-events: auto;
         }
 
         .modal-card {
-            background: var(--surface-color); border: 1px solid rgba(16, 185, 129, 0.4);
-            border-radius: 22px; padding: 28px 22px; max-width: 380px; width: 100%;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            background: var(--surface-color); border: 1px solid var(--accent-gold);
+            border-radius: 22px; padding: 32px 24px; max-width: 400px; width: 100%;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.9), 0 0 30px rgba(212, 175, 55, 0.2);
         }
 
-        .modal-card h2 { font-family: var(--font-serif); font-size: 30px; color: var(--accent-gold); margin-bottom: 8px; }
-        .modal-card p { font-size: 13px; color: var(--text-dim); line-height: 1.5; margin-bottom: 20px; }
+        .modal-card h2 { font-family: var(--font-serif); font-size: 32px; color: var(--accent-gold); margin-bottom: 8px; letter-spacing: 2px; }
+        .modal-card p { font-size: 13.5px; color: var(--text-dim); line-height: 1.6; margin-bottom: 22px; }
 
         .btn-start {
             display: inline-flex; align-items: center; justify-content: center; width: 100%;
-            padding: 14px; background: var(--accent-emerald); border: none;
-            color: #FFF; font-size: 12px; font-weight: 800; text-transform: uppercase;
-            letter-spacing: 1px; border-radius: 12px; cursor: pointer; transition: 0.3s;
+            padding: 15px; background: var(--accent-emerald); border: none;
+            color: #FFF; font-size: 13px; font-weight: 800; text-transform: uppercase;
+            letter-spacing: 1.5px; border-radius: 12px; cursor: pointer; transition: 0.3s;
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
         }
-        .btn-start:hover { background: #059669; }
-        .btn-start:disabled { background: #334139; color: #64748b; cursor: not-allowed; }
+        .btn-start:hover { background: #059669; box-shadow: 0 0 25px rgba(16, 185, 129, 0.7); }
+        .btn-start:disabled { background: #1B2E24; color: #4B6357; cursor: not-allowed; box-shadow: none; }
 
         canvas { display: block; width: 100%; height: 100%; position: absolute; inset: 0; z-index: 1; }
     </style>
@@ -111,18 +119,19 @@
 <div id="game-ui">
     <div class="top-bar">
         <a href="evolution.html" class="btn-back">← Дневник</a>
+        <div class="brand-watermark">RESURS • Студия движения</div>
         <div class="hud-stats">
             <div class="lives-container" id="lives-display">❤️❤️❤️❤️❤️</div>
             <div class="coin-counter">🪙 <span id="coin-val">0</span></div>
         </div>
     </div>
-    <div class="tap-instruction">Тап по экрану — Прыжок</div>
+    <div class="tap-instruction">⚡ Тап по экрану или Пробел — Прыжок</div>
 </div>
 
 <div class="overlay-modal" id="modal-overlay">
     <div class="modal-card">
-        <h2 id="modal-title">Путь к Эволюции</h2>
-        <p id="modal-desc">У вас есть 5 жизней в день. Собирайте коины, воду 💧 для энергии и коврики 🧘 для защиты от фастфуда!</p>
+        <h2 id="modal-title">ЭВОЛЮЦИЯ РЕСУРСА</h2>
+        <p id="modal-desc">Премиум-тренировка баланса. 5 попыток на сегодня. Собирайте монеты 🪙, воду 💧 для энергии и золотые коврики 🧘 для защитного щита!</p>
         <button class="btn-start" id="start-btn" onclick="startGame()">Начать забег (5 жизней)</button>
     </div>
 </div>
@@ -134,22 +143,25 @@
     let isPlaying = false;
     let scoreCoins = 0;
     
-    // Система 5 жизней в день сброс по дате
+    // Надежная инициализация 5 жизней в день без багов сброса
     let todayStr = new Date().toDateString();
-    let savedData = JSON.parse(localStorage.getItem('resurs_game_data')) || { date: todayStr, lives: 5, coins: 0 };
+    let savedData = JSON.parse(localStorage.getItem('resurs_game_data'));
     
-    if (savedData.date !== todayStr) {
-        savedData.date = todayStr;
-        savedData.lives = 5;
+    if (!savedData || savedData.date !== todayStr) {
+        savedData = {
+            date: todayStr,
+            lives: 5,
+            coins: parseInt(localStorage.getItem('resurs_coins')) || 0
+        };
         localStorage.setItem('resurs_game_data', JSON.stringify(savedData));
     }
 
-    let totalCoins = savedData.coins || 0;
+    let totalCoins = savedData.coins;
     let currentLives = savedData.lives;
     document.getElementById('coin-val').innerText = totalCoins;
     updateLivesUI();
 
-    let gameSpeed = 5;
+    let gameSpeed = 5.5;
     let frameCount = 0;
     let distance = 0;
 
@@ -161,29 +173,30 @@
     resizeCanvas();
 
     const player = {
-        x: 70,
+        x: 80,
         y: 0,
-        width: 44,
-        height: 70,
+        width: 48,
+        height: 74,
         velocityY: 0,
-        gravity: 0.7,
-        jumpPower: -14,
+        gravity: 0.75,
+        jumpPower: -15,
         isGrounded: false,
         legAngle: 0,
         shieldTimer: 0
     };
 
-    let groundY = canvas.height - 110;
+    let groundY = canvas.height - 120;
     let obstacles = [];
     let items = [];
+    let particles = [];
 
     function updateLivesUI() {
-        let hearts = '❤️'.repeat(currentLives) + '🖤'.repeat(5 - currentLives);
+        let hearts = '❤️'.repeat(Math.max(0, currentLives)) + '🖤'.repeat(Math.max(0, 5 - currentLives));
         document.getElementById('lives-display').innerText = hearts;
         
         const btn = document.getElementById('start-btn');
         if (currentLives <= 0) {
-            btn.innerText = 'Жизни на сегодня кончились!';
+            btn.innerText = 'Попытки на сегодня исчерпаны';
             btn.disabled = true;
         } else {
             btn.innerText = `Начать забег (Осталось жизней: ${currentLives}/5)`;
@@ -197,56 +210,68 @@
         if (player.isGrounded) {
             player.velocityY = player.jumpPower;
             player.isGrounded = false;
+            // Эффект пыли при прыжке
+            createParticles(player.x + 20, groundY, '#10B981', 6);
         }
     }
 
     window.addEventListener('touchstart', handleJump, { passive: false });
     window.addEventListener('mousedown', handleJump);
-    window.addEventListener('keydown', (e) => { if (e.code === 'Space') handleJump(); });
+    window.addEventListener('keydown', (e) => { if (e.code === 'Space') { e.preventDefault(); handleJump(); } });
+
+    function createParticles(x, y, color, count) {
+        for (let i = 0; i < count; i++) {
+            particles.push({
+                x: x,
+                y: y,
+                vx: (Math.random() - 0.5) * 4,
+                vy: (Math.random() - 0.5) * 4 - 2,
+                size: Math.random() * 4 + 2,
+                color: color,
+                alpha: 1
+            });
+        }
+    }
 
     function spawnObjects() {
         frameCount++;
-        groundY = canvas.height - 110;
+        groundY = canvas.height - 120;
 
         if (distance > 300 && gameSpeed < 7.5) gameSpeed = 7;
         if (distance > 700 && gameSpeed < 9.5) gameSpeed = 9;
 
-        if (frameCount % Math.max(40, Math.floor(100 - gameSpeed * 4)) === 0) {
+        if (frameCount % Math.max(45, Math.floor(100 - gameSpeed * 3.5)) === 0) {
             let rand = Math.random();
             if (rand < 0.45) {
-                // Фастфуд (препятствие)
                 obstacles.push({
-                    x: canvas.width + 30,
-                    y: groundY - 38,
-                    width: 38,
-                    height: 38,
+                    x: canvas.width + 40,
+                    y: groundY - 42,
+                    width: 42,
+                    height: 42,
                     type: 'burger'
                 });
             } else if (rand < 0.8) {
-                // Золотая монета
                 items.push({
-                    x: canvas.width + 30,
-                    y: groundY - (Math.random() > 0.4 ? 45 : 110),
-                    width: 28,
-                    height: 28,
+                    x: canvas.width + 40,
+                    y: groundY - (Math.random() > 0.4 ? 50 : 120),
+                    width: 32,
+                    height: 32,
                     type: 'coin'
                 });
             } else if (rand < 0.92) {
-                // Вода (Энергия / очки)
                 items.push({
-                    x: canvas.width + 30,
-                    y: groundY - 50,
-                    width: 32,
-                    height: 32,
-                    type: 'water'
-                });
-            } else {
-                // Коврик для йоги (Щит неуязвимости)
-                items.push({
-                    x: canvas.width + 30,
+                    x: canvas.width + 40,
                     y: groundY - 55,
                     width: 36,
                     height: 36,
+                    type: 'water'
+                });
+            } else {
+                items.push({
+                    x: canvas.width + 40,
+                    y: groundY - 60,
+                    width: 40,
+                    height: 40,
                     type: 'mat'
                 });
             }
@@ -267,8 +292,17 @@
             player.isGrounded = true;
         }
 
-        player.legAngle += 0.2;
+        player.legAngle += 0.22;
         if (player.shieldTimer > 0) player.shieldTimer--;
+
+        // Обновление частиц
+        for (let i = particles.length - 1; i >= 0; i--) {
+            let p = particles[i];
+            p.x += p.vx;
+            p.y += p.vy;
+            p.alpha -= 0.03;
+            if (p.alpha <= 0) particles.splice(i, 1);
+        }
 
         // Столкновения с препятствиями
         for (let i = obstacles.length - 1; i >= 0; i--) {
@@ -276,19 +310,23 @@
             obs.x -= gameSpeed;
 
             if (
-                player.x < obs.x + obs.width - 8 &&
-                player.x + player.width - 8 > obs.x &&
+                player.x < obs.x + obs.width - 10 &&
+                player.x + player.width - 10 > obs.x &&
                 player.y < obs.y + obs.height &&
                 player.y + player.height > obs.y
             ) {
                 if (player.shieldTimer > 0) {
-                    // Щит отражает фастфуд!
+                    createParticles(obs.x + 20, obs.y + 20, '#D4AF37', 12);
                     obstacles.splice(i, 1);
                 } else {
                     currentLives--;
+                    createParticles(player.x + 24, player.y + 35, '#FF3366', 15);
                     obstacles.splice(i, 1);
                     updateLivesUI();
                     
+                    savedData.lives = currentLives;
+                    localStorage.setItem('resurs_game_data', JSON.stringify(savedData));
+
                     if (currentLives <= 0) {
                         gameOver(true);
                         return;
@@ -296,12 +334,12 @@
                 }
             }
 
-            if (obs.x < -50) obstacles.splice(i, 1);
+            if (obs.x < -60) obstacles.splice(i, 1);
         }
 
         // Столкновения с бонусами
         for (let i = items.length - 1; i >= 0; i--) {
-            let item = items.get ? items[i] : items[i];
+            let item = items[i];
             item.x -= gameSpeed;
 
             if (
@@ -311,15 +349,18 @@
                 player.y + player.height > item.y
             ) {
                 if (item.type === 'coin') {
-                    scoreCoins += 15;
-                    totalCoins += 15;
+                    scoreCoins += 20;
+                    totalCoins += 20;
+                    createParticles(item.x, item.y, '#D4AF37', 8);
                 } else if (item.type === 'water') {
-                    scoreCoins += 60;
-                    totalCoins += 60;
+                    scoreCoins += 80;
+                    totalCoins += 80;
+                    createParticles(item.x, item.y, '#3B82F6', 10);
                 } else if (item.type === 'mat') {
-                    scoreCoins += 100;
-                    totalCoins += 100;
-                    player.shieldTimer = 350; // Щит на ~5 секунд
+                    scoreCoins += 150;
+                    totalCoins += 150;
+                    player.shieldTimer = 400; // ~6 секунд щита
+                    createParticles(item.x, item.y, '#D4AF37', 15);
                 }
 
                 document.getElementById('coin-val').innerText = totalCoins;
@@ -329,7 +370,7 @@
                 localStorage.setItem('resurs_coins', totalCoins);
 
                 items.splice(i, 1);
-            } else if (item.x < -50) {
+            } else if (item.x < -60) {
                 items.splice(i, 1);
             }
         }
@@ -342,97 +383,133 @@
     function draw() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        // Премиальный фон
+        // Премиальный глубокий фон в стиле студии Ресурс (Изумруд + золото + геометрия)
         let bgGrad = ctx.createLinearGradient(0, 0, 0, canvas.height);
         bgGrad.addColorStop(0, '#060C07');
-        bgGrad.addColorStop(1, '#111A13');
+        bgGrad.addColorStop(0.5, '#0B1F16');
+        bgGrad.addColorStop(1, '#060C07');
         ctx.fillStyle = bgGrad;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        // Дорожка
+        // Фоновые неоновые линии студии
+        ctx.strokeStyle = 'rgba(212, 175, 55, 0.08)';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(0, canvas.height * 0.3); ctx.lineTo(canvas.width, canvas.height * 0.2);
+        ctx.moveTo(canvas.width * 0.2, 0); ctx.lineTo(canvas.width * 0.4, canvas.height);
+        ctx.stroke();
+
+        // Неоновая беговая дорожка (пол студии)
+        ctx.shadowBlur = 20;
+        ctx.shadowColor = '#10B981';
         ctx.strokeStyle = '#10B981';
-        ctx.lineWidth = 3;
+        ctx.lineWidth = 4;
         ctx.beginPath();
         ctx.moveTo(0, groundY);
         ctx.lineTo(canvas.width, groundY);
         ctx.stroke();
+        ctx.shadowBlur = 0; // Сброс теней для оптимизации
 
-        ctx.fillStyle = 'rgba(16, 185, 129, 0.08)';
+        ctx.fillStyle = 'rgba(16, 185, 129, 0.12)';
         ctx.fillRect(0, groundY, canvas.width, canvas.height - groundY);
 
-        // Мультяшный стильный тренер
+        // Частицы пыли/энергии
+        particles.forEach(p => {
+            ctx.fillStyle = p.color;
+            ctx.globalAlpha = p.alpha;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.globalAlpha = 1;
+        });
+
+        // Яркий мультяшный премиум-тренер
         ctx.save();
         ctx.translate(player.x, player.y);
 
-        // Свечение щита
+        // Аура золотого коврика (щита)
         if (player.shieldTimer > 0) {
-            ctx.strokeStyle = '#C5A059';
-            ctx.lineWidth = 3;
+            ctx.shadowBlur = 25;
+            ctx.shadowColor = '#D4AF37';
+            ctx.strokeStyle = '#D4AF37';
+            ctx.lineWidth = 4;
             ctx.beginPath();
-            ctx.arc(player.width/2, player.height/2, 45, 0, Math.PI * 2);
+            ctx.arc(player.width/2, player.height/2, 50, 0, Math.PI * 2);
             ctx.stroke();
+            ctx.shadowBlur = 0;
         }
 
         // Голова
-        ctx.fillStyle = '#C5A059';
+        ctx.fillStyle = '#D4AF37';
         ctx.beginPath();
-        ctx.arc(player.width / 2, 12, 11, 0, Math.PI * 2);
+        ctx.arc(player.width / 2, 14, 12, 0, Math.PI * 2);
         ctx.fill();
 
-        // Тело в форме спортивной майки
+        // Спортивная форма (Изумрудный брендовый костюм)
         ctx.fillStyle = '#10B981';
         ctx.beginPath();
-        ctx.roundRect(8, 23, player.width - 16, 28, 6);
+        ctx.roundRect(6, 26, player.width - 12, 30, 8);
         ctx.fill();
 
-        // Руки и ноги (анимация)
+        // Логотип/акцент на майке
+        ctx.fillStyle = '#D4AF37';
+        ctx.fillRect(player.width / 2 - 4, 34, 8, 4);
+
+        // Динамичные ноги
         ctx.strokeStyle = '#F4F4F9';
-        ctx.lineWidth = 4;
+        ctx.lineWidth = 5;
         ctx.lineCap = 'round';
 
-        let legOffset = Math.sin(player.legAngle) * 14;
+        let legOffset = Math.sin(player.legAngle) * 16;
 
         if (player.isGrounded) {
             ctx.beginPath();
-            ctx.moveTo(14, 50);
-            ctx.lineTo(14 - legOffset, 68);
+            ctx.moveTo(14, 56);
+            ctx.lineTo(14 - legOffset, 74);
             ctx.stroke();
 
             ctx.beginPath();
-            ctx.moveTo(player.width - 14, 50);
-            ctx.lineTo(player.width - 14 + legOffset, 68);
+            ctx.moveTo(player.width - 14, 56);
+            ctx.lineTo(player.width - 14 + legOffset, 74);
             ctx.stroke();
         } else {
             ctx.beginPath();
-            ctx.moveTo(14, 50);
-            ctx.lineTo(8, 60);
+            ctx.moveTo(14, 56);
+            ctx.lineTo(8, 66);
             ctx.stroke();
 
             ctx.beginPath();
-            ctx.moveTo(player.width - 14, 50);
-            ctx.lineTo(player.width - 8, 64);
+            ctx.moveTo(player.width - 14, 56);
+            ctx.lineTo(player.width - 6, 70);
             ctx.stroke();
         }
 
         ctx.restore();
 
-        // Фастфуд
+        // Яркие неоновые бургеры (Препятствия)
         obstacles.forEach(obs => {
-            ctx.font = '26px Manrope';
+            ctx.shadowBlur = 15;
+            ctx.shadowColor = '#FF3366';
+            ctx.font = '32px Manrope';
             ctx.textAlign = 'center';
-            ctx.fillText('🍔', obs.x + obs.width/2, obs.y + 26);
+            ctx.fillText('🍔', obs.x + obs.width/2, obs.y + 32);
+            ctx.shadowBlur = 0;
         });
 
-        // Бонусы
+        // Яркие контрастные бонусы
         items.forEach(item => {
-            ctx.font = '24px Manrope';
+            ctx.shadowBlur = 15;
+            ctx.shadowColor = item.type === 'coin' ? '#D4AF37' : item.type === 'water' ? '#3B82F6' : '#D4AF37';
+            ctx.font = '30px Manrope';
             ctx.textAlign = 'center';
             let icon = item.type === 'coin' ? '🪙' : item.type === 'water' ? '💧' : '🧘';
-            ctx.fillText(icon, item.x + item.width/2, item.y + 24);
+            ctx.fillText(icon, item.x + item.width/2, item.y + 28);
+            ctx.shadowBlur = 0;
         });
 
-        ctx.fillStyle = 'rgba(244, 244, 249, 0.7)';
-        ctx.font = 'bold 13px Manrope';
+        // Метрика дистанции на экране
+        ctx.fillStyle = 'rgba(244, 244, 249, 0.85)';
+        ctx.font = 'bold 14px Manrope';
         ctx.textAlign = 'left';
         ctx.fillText(`Дистанция: ${distance} м`, 16, canvas.height - 20);
     }
@@ -442,9 +519,10 @@
 
         obstacles = [];
         items = [];
+        particles = [];
         scoreCoins = 0;
         distance = 0;
-        gameSpeed = 5;
+        gameSpeed = 5.5;
         player.y = groundY - player.height;
         player.velocityY = 0;
         player.shieldTimer = 0;
@@ -457,11 +535,11 @@
     function gameOver(isOutOfLives) {
         isPlaying = false;
         if (isOutOfLives) {
-            document.getElementById('modal-title').innerText = "Забег окончен!";
-            document.getElementById('modal-desc').innerText = `Жизни на сегодня исчерпаны (0/5). Вы заработали +${scoreCoins} ResursCoins. Возвращайтесь завтра или тренируйтесь в зале!`;
+            document.getElementById('modal-title').innerText = "ДЕНЬ ЗАВЕРШЕН";
+            document.getElementById('modal-desc').innerText = `Все 5 попыток на сегодня исчерпаны. Вы заработали +${scoreCoins} ResursCoins. Ждем вас на тренировке в студии на Коммунистической 67!`;
         } else {
-            document.getElementById('modal-title').innerText = "Препятствие!";
-            document.getElementById('modal-desc').innerText = `Потеряна жизнь! Осталось попыток: ${currentLives}/5. Заработано: +${scoreCoins} ResursCoins.`;
+            document.getElementById('modal-title').innerText = "ВНИМАНИЕ!";
+            document.getElementById('modal-desc').innerText = `Столкновение с фастфудом! Осталось попыток: ${currentLives}/5. Заработано в забеге: +${scoreCoins} ResursCoins.`;
         }
         updateLivesUI();
         document.getElementById('modal-overlay').style.display = 'flex';
