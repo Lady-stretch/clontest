@@ -70,14 +70,24 @@
 
         .section-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-gold); font-weight: 800; margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; }
 
+        /* Табло Времени и Календаря */
+        .time-tracker-card {
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, transparent 80%);
+            border: 1px solid var(--accent-emerald); border-radius: 14px; padding: 12px 16px;
+            margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center;
+        }
+        .time-display { font-family: var(--font-serif); font-size: 22px; color: var(--accent-gold); font-weight: 700; }
+        .daily-sales-counter { font-size: 11.5px; color: var(--text-dim); text-align: right; }
+        .daily-sales-counter b { color: var(--accent-emerald); font-size: 13px; }
+
         /* Прогресс наград */
         .reward-progress-card {
             background: rgba(197, 160, 89, 0.08); border: 1px solid var(--accent-gold);
-            border-radius: 14px; padding: 14px; margin-bottom: 16px; text-align: center;
+            border-radius: 14px; padding: 12px 14px; margin-bottom: 16px; text-align: center;
         }
-        .reward-progress-card h4 { font-family: var(--font-serif); font-size: 18px; color: var(--accent-gold); margin-bottom: 4px; }
-        .reward-progress-card p { font-size: 11.5px; color: var(--text-dim); margin-bottom: 8px; }
-        .progress-bar-bg { width: 100%; height: 8px; background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden; }
+        .reward-progress-card h4 { font-family: var(--font-serif); font-size: 17px; color: var(--accent-gold); margin-bottom: 2px; }
+        .reward-progress-card p { font-size: 11px; color: var(--text-dim); margin-bottom: 6px; }
+        .progress-bar-bg { width: 100%; height: 7px; background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden; }
         .progress-bar-fill { height: 100%; background: var(--accent-gold); width: 0%; transition: 0.4s; }
 
         /* Дашборд */
@@ -86,20 +96,28 @@
         .dash-item b { display: block; font-size: 19px; font-family: var(--font-serif); color: var(--accent-gold); }
         .dash-item span { font-size: 10px; text-transform: uppercase; color: var(--text-dim); font-weight: 800; }
 
-        /* Смета расходов */
-        .expenses-breakdown { background: rgba(6, 12, 7, 0.6); border: 1px solid rgba(239, 68, 68, 0.2); border-radius: 14px; padding: 12px; margin-bottom: 16px; }
-        .expenses-title { font-size: 11px; text-transform: uppercase; color: var(--danger); font-weight: 800; letter-spacing: 1px; margin-bottom: 8px; display: flex; justify-content: space-between; }
-        .expense-row { display: flex; justify-content: space-between; font-size: 11.5px; color: var(--text-dim); padding: 3px 0; border-bottom: 1px dashed rgba(255,255,255,0.05); }
-
-        /* Кнопка Воронки Продаж и Месяца */
-        .control-buttons-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
-        .btn-sell { background: var(--accent-gold); border: none; color: #000; padding: 14px; font-size: 12px; font-weight: 800; text-transform: uppercase; border-radius: 12px; cursor: pointer; transition: 0.3s; }
-        .btn-sell:hover { background: #b38639; color: #fff; }
+        /* Ручные Счета для Оплаты */
+        .expenses-breakdown { background: rgba(6, 12, 7, 0.6); border: 1px solid rgba(239, 68, 68, 0.2); border-radius: 14px; padding: 14px; margin-bottom: 16px; }
+        .expenses-title { font-size: 11px; text-transform: uppercase; color: var(--danger); font-weight: 800; letter-spacing: 1px; margin-bottom: 10px; display: flex; justify-content: space-between; }
         
-        .btn-turn { background: var(--accent-emerald); border: none; color: #FFF; padding: 14px; font-size: 12px; font-weight: 800; text-transform: uppercase; border-radius: 12px; cursor: pointer; transition: 0.3s; }
-        .btn-turn:hover { background: var(--accent-emerald-hover); }
+        .pay-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px dashed rgba(255,255,255,0.08); }
+        .pay-row:last-child { border-bottom: none; }
+        .pay-info { font-size: 12px; color: var(--text-main); }
+        .pay-info span { display: block; font-size: 10px; color: var(--text-dim); }
 
-        /* Инвентарь */
+        .btn-pay {
+            background: var(--danger); border: none; color: #FFF; padding: 6px 10px;
+            border-radius: 6px; font-size: 10px; font-weight: 800; cursor: pointer; text-transform: uppercase; transition: 0.3s;
+        }
+        .btn-pay:hover { background: #dc2626; }
+        .btn-pay.paid { background: rgba(16, 185, 129, 0.2); color: var(--accent-emerald); border: 1px solid var(--accent-emerald); cursor: default; }
+
+        /* Кнопки Управления */
+        .control-buttons-grid { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 10px; }
+        .btn-sell { background: var(--accent-gold); border: none; color: #000; padding: 14px; font-size: 12px; font-weight: 800; text-transform: uppercase; border-radius: 12px; cursor: pointer; transition: 0.3s; text-align: center; }
+        .btn-sell:hover { background: #b38639; color: #fff; }
+
+        /* Список закупки */
         .action-list { display: flex; flex-direction: column; gap: 10px; max-height: 480px; overflow-y: auto; padding-right: 4px; }
         .action-item { background: var(--surface-hover); border: 1px solid rgba(16, 185, 129, 0.15); border-radius: 12px; padding: 12px; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
         .action-info h4 { font-size: 13.5px; font-family: var(--font-serif); color: var(--text-main); margin-bottom: 2px; }
@@ -108,13 +126,13 @@
         .btn-action { background: var(--accent-gold); border: none; color: #000; padding: 8px 12px; border-radius: 8px; font-size: 10.5px; font-weight: 800; cursor: pointer; text-transform: uppercase; transition: 0.3s; }
         .btn-action:hover { background: #b38639; color: #fff; }
 
-        .log-box { background: #030604; border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 12px; padding: 10px; height: 130px; overflow-y: auto; font-size: 11px; color: var(--text-dim); font-family: monospace; margin-top: 12px; }
+        .log-box { background: #030604; border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 12px; padding: 10px; height: 120px; overflow-y: auto; font-size: 11px; color: var(--text-dim); font-family: monospace; margin-top: 12px; }
         .log-item { margin-bottom: 4px; }
         .log-item.success { color: var(--accent-emerald); }
         .log-item.danger { color: var(--danger); }
         .log-item.gold { color: var(--accent-gold); }
 
-        /* Попапы */
+        /* Модальные окна */
         .modal { display: none; position: fixed; inset: 0; background: rgba(5, 5, 10, 0.92); z-index: 2000; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(10px); }
         .modal-content { background: var(--surface-color); border: 2px solid var(--accent-gold); border-radius: 22px; padding: 26px; max-width: 520px; width: 100%; text-align: center; max-height: 90vh; overflow-y: auto; }
         .modal-content h2 { font-family: var(--font-serif); font-size: 26px; color: var(--accent-gold); margin-bottom: 10px; }
@@ -147,7 +165,22 @@
     <!-- ЛЕВАЯ КОЛОНКА -->
     <div style="display: flex; flex-direction: column; gap: 16px;">
         <div class="bento-card">
-            <!-- КАРТОЧКА ОТСЕЧЕК НАГРАД -->
+            
+            <!-- ТАБЛО ВРЕМЕНИ И КАЛЕНДАРЯ -->
+            <div class="time-tracker-card">
+                <div>
+                    <span style="font-size: 10px; text-transform: uppercase; color: var(--text-dim); font-weight: 800;">Календарь</span>
+                    <div class="time-display" id="time-display">День 1</div>
+                    <span style="font-size: 11px; color: var(--accent-emerald);" id="sub-time-display">Месяц 1, Год 1</span>
+                </div>
+                <div class="daily-sales-counter">
+                    За сегодня продано:<br>
+                    <b><span id="daily-sales-count">0</span> абонементов</b><br>
+                    <span id="daily-revenue-val" style="color: var(--accent-gold);">+0 ₽</span>
+                </div>
+            </div>
+
+            <!-- КАРТОЧКА НАГРАД -->
             <div class="reward-progress-card">
                 <h4 id="reward-level-title">Награда: Скидка 600 ₽ (8 занятий)</h4>
                 <p id="reward-level-desc">Закройте 3 месяца в плюс для активации первого промокода!</p>
@@ -164,37 +197,73 @@
                     <span>Касса студии</span>
                 </div>
                 <div class="dash-item">
-                    <b id="month-val">Месяц 1</b>
-                    <span>Срок работы</span>
-                </div>
-                <div class="dash-item">
-                    <b id="clients-val">12</b>
-                    <span>Клиентов в базе</span>
+                    <b id="clients-val">14</b>
+                    <span>Активных клиентов</span>
                 </div>
                 <div class="dash-item">
                     <b id="reputation-val">50%</b>
                     <span>Репутация бренда</span>
                 </div>
+                <div class="dash-item">
+                    <b id="unpaid-bills-count" style="color: var(--danger);">0</b>
+                    <span>Неоплаченных счетов</span>
+                </div>
             </div>
 
+            <!-- РУЧНЫЕ СЧЕТА ДЛЯ ОПЛАТЫ ПАЛЬЦЕМ -->
             <div class="expenses-breakdown">
                 <div class="expenses-title">
-                    <span>Обязательные расходы / месяц:</span>
-                    <span id="total-monthly-costs">79 480 ₽</span>
+                    <span>Оплата обязательных счетов за Месяц:</span>
+                    <span>Кнопки оплаты ниже</span>
                 </div>
-                <div class="expense-row"><span>🏢 Аренда (ул. Коммунистическая 67):</span> <b>55 700 ₽</b></div>
-                <div class="expense-row"><span>💡 Коммуналка (свет, тепло):</span> <b>10 000 ₽</b></div>
-                <div class="expense-row"><span>💧 Вода питьевая (2 бут / 2 нед):</span> <b>1 280 ₽</b></div>
-                <div class="expense-row"><span>💻 Listok CRM + Приложение (150к/год):</span> <b>12 500 ₽</b></div>
+                
+                <div class="pay-row">
+                    <div class="pay-info">
+                        🏢 Аренда зала (ул. Коммунистическая 67)
+                        <span>55 700 ₽ • Срок: 1-й день месяца</span>
+                    </div>
+                    <button class="btn-pay" id="btn-pay-rent" onclick="payBill('rent', 55700)">Оплатить</button>
+                </div>
+
+                <div class="pay-row">
+                    <div class="pay-info">
+                        💡 Коммуналка (свет, тепло, ЭЭ)
+                        <span>10 000 ₽ • Срок: 15-й день месяца</span>
+                    </div>
+                    <button class="btn-pay" id="btn-pay-utilities" onclick="payBill('utilities', 10000)">Оплатить</button>
+                </div>
+
+                <div class="pay-row">
+                    <div class="pay-info">
+                        💧 Питьевая вода в кулер (2 бутыли)
+                        <span>1 280 ₽ • Срок: Каждые 2 недели</span>
+                    </div>
+                    <button class="btn-pay" id="btn-pay-water" onclick="payBill('water', 1280)">Оплатить</button>
+                </div>
+
+                <div class="pay-row">
+                    <div class="pay-info">
+                        🧹 Ежедневная уборка зала
+                        <span>500 ₽ / день • Срок: Каждый день</span>
+                    </div>
+                    <button class="btn-pay" id="btn-pay-clean" onclick="payBill('clean', 500)">Оплатить</button>
+                </div>
+
+                <div class="pay-row">
+                    <div class="pay-info">
+                        💻 Listok CRM + Мобильное приложение
+                        <span>12 500 ₽ • Срок: Конец месяца</span>
+                    </div>
+                    <button class="btn-pay" id="btn-pay-crm" onclick="payBill('crm', 12500)">Оплатить</button>
+                </div>
             </div>
 
             <div class="control-buttons-grid">
-                <button class="btn-sell" onclick="openSalesModal()">➕ Продать абонемент</button>
-                <button class="btn-turn" onclick="nextMonth()">Завершить месяц →</button>
+                <button class="btn-sell" onclick="openSalesModal()">➕ Продать абонемент клиенту</button>
             </div>
 
             <div class="log-box" id="game-log">
-                <div class="log-item gold">📌 Тренажер запущен. Продавайте абонементы, перекрывайте расходы и заберите реальную скидку!</div>
+                <div class="log-item gold">📌 Календарь запущен! Следите за днями и вовремя оплачивайте счета за аренду и воду.</div>
             </div>
         </div>
     </div>
@@ -217,11 +286,11 @@
         <div class="capital-choices">
             <button class="cap-btn" onclick="selectCapital('savings')">
                 <b>Личные накопления</b>
-                <span>Старт: 150 000 ₽. Без долгов, но скромный инвентарь на старте.</span>
+                <span>Старт: 150 000 ₽. Свои деньги без долгов.</span>
             </button>
             <button class="cap-btn" onclick="selectCapital('credit')">
                 <b>Банковский кредит</b>
-                <span>Старт: 350 000 ₽. Ежемесячный платеж 9 500 ₽ на 5 лет.</span>
+                <span>Старт: 350 000 ₽. Платеж 9 500 ₽/мес.</span>
             </button>
             <button class="cap-btn" onclick="selectCapital('loan')">
                 <b>Частный займ</b>
@@ -229,13 +298,13 @@
             </button>
             <button class="cap-btn" onclick="selectCapital('invest')">
                 <b>Партнер-Инвестор</b>
-                <span>Старт: 500 000 ₽. Доля 25% с каждой продажи абонемента.</span>
+                <span>Старт: 500 000 ₽. Доля 25% с абонементов.</span>
             </button>
         </div>
     </div>
 </div>
 
-<!-- МОДАЛКА 2: ВОРОНКА ПРОДАЖ И ВЫБОР АБОНЕМЕНТА -->
+<!-- МОДАЛКА 2: ВОРОНКА ПРОДАЖ -->
 <div class="modal" id="salesModal">
     <div class="modal-content">
         <h2>Воронка Продаж Абонементов</h2>
@@ -250,7 +319,7 @@
     </div>
 </div>
 
-<!-- МОДАЛКА 3: ДИАЛОГ И ОБРАБОТКА ВОЗРАЖЕНИЙ -->
+<!-- МОДАЛКА 3: ДИАЛОГ ВОЗРАЖЕНИЙ -->
 <div class="modal" id="objectionModal">
     <div class="modal-content">
         <h2 id="obj-title">Клиент сомневается...</h2>
@@ -259,31 +328,22 @@
     </div>
 </div>
 
-<!-- МОДАЛКА 4: ВЫДАЧА НАГРАДЫ -->
+<!-- МОДАЛКА 4: НАГРАДА -->
 <div class="modal" id="rewardModal">
     <div class="modal-content">
         <h2 id="rew-title">Награда Заработана!</h2>
         <p id="rew-text"></p>
         <div class="promo-code-box" id="rew-code">RESURS-600</div>
-        <a href="schedule.html" class="btn-turn" style="display: block; text-decoration: none; margin-bottom: 10px;">📅 Записаться на тренировку</a>
+        <a href="schedule.html" class="btn-sell" style="display: block; text-decoration: none; margin-bottom: 10px;">📅 Записаться на тренировку</a>
         <button class="btn-action" style="width: 100%; padding: 10px;" onclick="closeModal('rewardModal')">Продолжить игру</button>
     </div>
 </div>
 
-<!-- МОДАЛКА 5: ИТОГИ ГОДА И ШЕРИНГ -->
-<div class="modal" id="yearReportModal">
-    <div class="modal-content">
-        <h2>Итоги Игрового Года!</h2>
-        <p id="year-report-text"></p>
-        <div class="promo-code-box">RESURS-VIP-2400</div>
-        <button class="btn-turn" style="margin-bottom: 10px;" onclick="shareResult()">🔗 Поделиться успехом</button>
-        <button class="btn-action" style="width: 100%; padding: 10px;" onclick="startYearTwo()">Перейти на 2-й Год (Масштабирование) →</button>
-    </div>
-</div>
-
 <script>
-    let state = JSON.parse(localStorage.getItem('resurs_strategy_v9')) || {
+    let state = JSON.parse(localStorage.getItem('resurs_strategy_v10')) || {
+        day: 1,
         month: 1,
+        year: 1,
         profitableMonths: 0,
         money: 0,
         clients: 14,
@@ -291,11 +351,11 @@
         capitalType: null,
         debt: 0,
         hasPartner: false,
-        year: 1,
+        dailySales: 0,
+        dailyRevenue: 0,
+        billsPaid: { rent: false, utilities: false, water: false, clean: false, crm: false },
         upgrades: { mats: 3, dumbbells: 3, blocks: 3, bars: 0, fitballs: 0, hammocks: 0, crm: 0, trainer: 1 }
     };
-
-    const costs = { rent: 55700, utilities: 10000, water: 1280, crm: 12500 };
 
     const actionsData = [
         { id: 'mats', name: 'Коврики для МФР (+3 шт)', cost: 6000, effect: () => { state.upgrades.mats += 3; state.clients += 3; } },
@@ -310,7 +370,7 @@
 
     function logEvent(text, type = '') {
         const box = document.getElementById('game-log');
-        box.innerHTML += `<div class="log-item ${type}">[Месяц ${state.month}] ${text}</div>`;
+        box.innerHTML += `<div class="log-item ${type}">[День ${state.day}, Мес ${state.month}] ${text}</div>`;
         box.scrollTop = box.scrollHeight;
     }
 
@@ -322,7 +382,48 @@
         else if (type === 'invest') { state.money = 500000; state.hasPartner = true; }
         
         closeModal('startModal');
+        startDayTimer();
         updateUI(); renderActions();
+    }
+
+    function startDayTimer() {
+        // Каждые 10 секунд реального времени проходит 1 игровой день
+        setInterval(() => {
+            state.day++;
+            
+            // Сброс ежедневных показателей
+            state.dailySales = 0;
+            state.dailyRevenue = 0;
+            state.billsPaid.clean = false; // Каждый день нужна уборка
+            
+            if (state.day > 30) {
+                state.day = 1;
+                state.month++;
+                checkMonthEnd();
+            }
+
+            if (state.month > 12) {
+                state.month = 1;
+                state.year++;
+            }
+
+            updateUI(); saveGame();
+        }, 10000);
+    }
+
+    function payBill(type, cost) {
+        if (state.money >= cost) {
+            state.money -= cost;
+            state.billsPaid[type] = true;
+            
+            const btn = document.getElementById(`btn-pay-${type}`);
+            if (btn) { btn.innerText = 'Оплачено ✓'; btn.className = 'btn-pay paid'; }
+
+            logEvent(`Оплачен счет: ${type.toUpperCase()} (-${cost.toLocaleString()} ₽)`, 'success');
+            updateUI(); saveGame();
+        } else {
+            alert('Недостаточно средств в кассе студии!');
+        }
     }
 
     function openSalesModal() { document.getElementById('salesModal').style.display = 'flex'; }
@@ -331,31 +432,29 @@
     function trySellTariff(sessions, price) {
         closeModal('salesModal');
         
-        // Проверка инвентаря зала 48 кв.м
         if (sessions >= 32 && state.upgrades.mats < 6) {
-            alert('Внимание! Зал 48 м² содержит всего 3 коврика. Для долгосрочных абонементов докупите инвентарь!');
+            alert('Внимание! В зале всего 3 коврика. Докупите инвентарь!');
         }
 
         pendingSale = { sessions, price };
 
-        // Диалог обработки возражения
         const optionsContainer = document.getElementById('obj-options');
         optionsContainer.innerHTML = '';
 
         if (sessions === 64) {
-            document.getElementById('obj-title').innerText = "Возражение: «64 занятия — это слишком много, не отхожу!»";
-            document.getElementById('obj-text').innerText = "Клиент опасается, что сгорит абонемент за 31 360 ₽.";
+            document.getElementById('obj-title').innerText = "Возражение: «64 занятия — это много, не отхожу!»";
+            document.getElementById('obj-text').innerText = "Клиент сомневается перед покупкой абонемента за 31 360 ₽.";
             
             optionsContainer.innerHTML = `
-                <button class="btn-dialog" onclick="resolveObjection(true, 'Отлично! Вы предложили заморозку абонемента на период отпуска.')">«У нас есть заморозка абонемента и гибкий график!»</button>
-                <button class="btn-dialog" onclick="resolveObjection(false, 'Сделка сорвалась. Клиент ушел.')">«Не переживайте, отходите как-нибудь.»</button>
+                <button class="btn-dialog" onclick="resolveObjection(true, 'Вы предложили заморозку абонемента!')">«У нас есть заморозка абонемента и гибкий график!»</button>
+                <button class="btn-dialog" onclick="resolveObjection(false, 'Сделка сорвалась.')">«Не переживайте, отходите как-нибудь.»</button>
             `;
         } else {
             document.getElementById('obj-title').innerText = "Возражение: «Пока дороговато...»";
-            document.getElementById('obj-text').innerText = "Клиент сомневается в стоимости.";
+            document.getElementById('obj-text').innerText = "Клиент сравнивает цены.";
             
             optionsContainer.innerHTML = `
-                <button class="btn-dialog" onclick="resolveObjection(true, 'Сделка закрыта! Вы объяснили ценность занятий с Ольгой.')">«Наши тренировки экономят вам часы и деньги на врачей!»</button>
+                <button class="btn-dialog" onclick="resolveObjection(true, 'Клиент понял ценность занятий с Ольгой!')">«Наши тренировки экономят вам часы и деньги на врачей!»</button>
                 <button class="btn-dialog" onclick="resolveObjection(false, 'Клиент решил подумать.')">«Ну, скидок сейчас нет.»</button>
             `;
         }
@@ -371,6 +470,9 @@
             
             state.money += finalPrice;
             state.clients++;
+            state.dailySales++;
+            state.dailyRevenue += finalPrice;
+            
             logEvent(`✅ Продан абонемент на ${pendingSale.sessions} зан. (+${finalPrice.toLocaleString()} ₽). ${message}`, 'success');
         } else {
             logEvent(`❌ ${message}`, 'danger');
@@ -406,43 +508,39 @@
         }
     }
 
-    function nextMonth() {
-        state.month++;
+    function checkMonthEnd() {
+        // Проверка неоплаченных обязательных счетов
+        let unpaid = 0;
+        if (!state.billsPaid.rent) unpaid++;
+        if (!state.billsPaid.utilities) unpaid++;
+        if (!state.billsPaid.water) unpaid++;
 
-        let baseRevenue = state.clients * 3800;
-        let reputationMultiplier = state.reputation / 50;
-        let grossRevenue = Math.round(baseRevenue * reputationMultiplier);
-
-        let totalMonthlyExpenses = costs.rent + costs.utilities + costs.water + costs.crm + state.debt;
-        let netProfit = grossRevenue - totalMonthlyExpenses;
-
-        state.money += netProfit;
-
-        if (netProfit >= 0) {
+        if (unpaid === 0) {
             state.profitableMonths++;
-            logEvent(`Месяц закрыт в ПЛЮС! Прибыль: +${netProfit.toLocaleString()} ₽`, 'success');
+            logEvent(`Месяц ${state.month-1} закрыт без долгов! Прибыль сохранена.`, 'success');
             checkRewards();
         } else {
-            logEvent(`Кассовый разрыв! Убыток: ${netProfit.toLocaleString()} ₽`, 'danger');
+            state.reputation = Math.max(10, state.reputation - 15);
+            logEvent(`⚠️ Внимание! В конце месяца осталось неоплаченных счетов: ${unpaid}. Репутация упала!`, 'danger');
         }
 
-        if (state.month > 12) {
-            showYearReport();
-        } else {
-            updateUI(); saveGame();
-        }
+        // Сброс счетов на новый месяц
+        state.billsPaid = { rent: false, utilities: false, water: false, clean: false, crm: false };
+        resetPayButtons();
+    }
+
+    function resetPayButtons() {
+        ['rent', 'utilities', 'water', 'clean', 'crm'].forEach(type => {
+            const btn = document.getElementById(`btn-pay-${type}`);
+            if (btn) { btn.innerText = 'Оплатить'; btn.className = 'btn-pay'; }
+        });
     }
 
     function checkRewards() {
-        if (state.profitableMonths === 3) {
-            showRewardModal("Скидка 600 ₽ (8 занятий)", "RESURS-600", "Вы успешно работали 3 месяца в плюс!");
-        } else if (state.profitableMonths === 6) {
-            showRewardModal("Скидка 1 200 ₽ (16 занятий)", "RESURS-1200", "Полугодовой рубеж проиден!");
-        } else if (state.profitableMonths === 9) {
-            showRewardModal("Скидка 1 800 ₽ (32 занятия)", "RESURS-1800", "9 месяцев устойчивой прибыли!");
-        } else if (state.profitableMonths === 12) {
-            showRewardModal("Скидка 2 400 ₽ (64 занятия)", "RESURS-2400", "Максимальная награда за 12 месяцев!");
-        }
+        if (state.profitableMonths === 3) showRewardModal("Скидка 600 ₽ (8 зан.)", "RESURS-600", "3 месяца без долгов!");
+        else if (state.profitableMonths === 6) showRewardModal("Скидка 1 200 ₽ (16 зан.)", "RESURS-1200", "Полугодовой рубеж!");
+        else if (state.profitableMonths === 9) showRewardModal("Скидка 1 800 ₽ (32 зан.)", "RESURS-1800", "9 месяцев в плюс!");
+        else if (state.profitableMonths === 12) showRewardModal("Скидка 2 400 ₽ (64 зан.)", "RESURS-2400", "Год успешного управления!");
     }
 
     function showRewardModal(title, code, desc) {
@@ -452,63 +550,30 @@
         document.getElementById('rewardModal').style.display = 'flex';
     }
 
-    function showYearReport() {
-        let text = `За 12 месяцев работы студии на Коммунистической 67 вы сформировали базу из ${state.clients} клиентов и накопили ${Math.round(state.money).toLocaleString()} ₽!`;
-        document.getElementById('year-report-text').innerText = text;
-        document.getElementById('yearReportModal').style.display = 'flex';
-    }
-
-    async function shareResult() {
-        const shareData = {
-            title: 'Мой результат в симуляторе РЕСУРС',
-            text: `Я прошел 12 месяцев управления студией РЕСУРС в Сыктывкаре и заработал скидку 2400 ₽! Попробуй и ты:`,
-            url: window.location.href
-        };
-        if (navigator.share) {
-            try { await navigator.share(shareData); } catch (err) {}
-        } else {
-            await navigator.clipboard.writeText(window.location.href);
-            alert('Ссылка на тренажер скопирована!');
-        }
-    }
-
-    function startYearTwo() {
-        closeModal('yearReportModal');
-        state.year = 2;
-        logEvent('🚀 Запущен 2-й год управления! Цель: Масштабирование бренда.', 'gold');
-        updateUI(); saveGame();
-    }
-
     function updateUI() {
         document.getElementById('money-val').innerText = Math.round(state.money).toLocaleString() + ' ₽';
-        document.getElementById('month-val').innerText = `Месяц ${state.month} (Год ${state.year})`;
+        document.getElementById('time-display').innerText = `День ${state.day}`;
+        document.getElementById('sub-time-display').innerText = `Месяц ${state.month}, Год ${state.year}`;
+        
+        document.getElementById('daily-sales-count').innerText = state.dailySales;
+        document.getElementById('daily-revenue-val').innerText = `+${state.dailyRevenue.toLocaleString()} ₽`;
+
         document.getElementById('clients-val').innerText = state.clients;
         document.getElementById('reputation-val').innerText = state.reputation + '%';
 
-        // Обновление прогресс-бара наград
+        let unpaidCount = Object.values(state.billsPaid).filter(v => v === false).length;
+        document.getElementById('unpaid-bills-count').innerText = unpaidCount;
+
         let fillPct = Math.min((state.profitableMonths / 12) * 100, 100);
         document.getElementById('reward-progress-fill').style.width = fillPct + '%';
-
-        if (state.profitableMonths < 3) {
-            document.getElementById('reward-level-title').innerText = "Награда: Скидка 600 ₽ (8 зан.)";
-            document.getElementById('reward-level-desc').innerText = `Осталось закрыть в плюс: ${3 - state.profitableMonths} мес.`;
-        } else if (state.profitableMonths < 6) {
-            document.getElementById('reward-level-title').innerText = "Награда: Скидка 1 200 ₽ (16 зан.)";
-            document.getElementById('reward-level-desc').innerText = `Осталось закрыть в плюс: ${6 - state.profitableMonths} мес.`;
-        } else if (state.profitableMonths < 9) {
-            document.getElementById('reward-level-title').innerText = "Награда: Скидка 1 800 ₽ (32 зан.)";
-            document.getElementById('reward-level-desc').innerText = `Осталось закрыть в плюс: ${9 - state.profitableMonths} мес.`;
-        } else {
-            document.getElementById('reward-level-title').innerText = "Награда: Скидка 2 400 ₽ (64 зан.)";
-            document.getElementById('reward-level-desc').innerText = `Максимальный статус достигнут!`;
-        }
     }
 
-    function saveGame() { localStorage.setItem('resurs_strategy_v9', JSON.stringify(state)); }
+    function saveGame() { localStorage.setItem('resurs_strategy_v10', JSON.stringify(state)); }
 
     window.onload = () => {
         if (state.capitalType) {
             document.getElementById('startModal').style.display = 'none';
+            startDayTimer();
             renderActions();
         }
         updateUI();
