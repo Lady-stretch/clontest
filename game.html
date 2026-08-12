@@ -3,14 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>РЕСУРС • 3D-Раннер Эволюция</title>
+    <title>РЕСУРС • Эволюция Движения</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
-
-    <!-- Подключение легкого 3D движка Three.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
     <style>
         :root {
@@ -33,7 +30,6 @@
             font-family: var(--font-main); user-select: none;
         }
 
-        /* ИГРОВОЙ ИНТЕРФЕЙС ПОВЕРХ 3D ХОЛСТА */
         #game-ui {
             position: absolute; inset: 0; z-index: 10;
             display: flex; flex-direction: column; justify-content: space-between;
@@ -47,14 +43,25 @@
         }
 
         .btn-back {
-            background: rgba(17, 26, 19, 0.85); border: 1px solid rgba(16, 185, 129, 0.3);
+            background: rgba(17, 26, 19, 0.9); border: 1px solid rgba(16, 185, 129, 0.4);
             color: var(--accent-gold); padding: 8px 14px; border-radius: 10px;
             font-size: 11px; font-weight: 800; text-transform: uppercase;
             letter-spacing: 1px; text-decoration: none; backdrop-filter: blur(10px);
         }
 
+        .hud-stats {
+            display: flex; gap: 10px; align-items: center;
+        }
+
+        .lives-container {
+            background: rgba(17, 26, 19, 0.9); border: 1px solid rgba(239, 68, 68, 0.4);
+            padding: 8px 14px; border-radius: 20px; color: var(--danger);
+            font-size: 16px; font-weight: 800; display: flex; align-items: center; gap: 4px;
+            backdrop-filter: blur(10px);
+        }
+
         .coin-counter {
-            background: rgba(17, 26, 19, 0.85); border: 1px solid var(--accent-gold);
+            background: rgba(17, 26, 19, 0.9); border: 1px solid var(--accent-gold);
             padding: 8px 16px; border-radius: 20px; color: var(--accent-gold);
             font-family: var(--font-serif); font-size: 20px; font-weight: 700;
             display: flex; align-items: center; gap: 6px; backdrop-filter: blur(10px);
@@ -69,7 +76,6 @@
 
         @keyframes pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
 
-        /* ЭКРАН GAME OVER / СТАРТА */
         .overlay-modal {
             position: absolute; inset: 0; z-index: 20;
             background: rgba(6, 12, 7, 0.92); backdrop-filter: blur(12px);
@@ -78,12 +84,12 @@
         }
 
         .modal-card {
-            background: var(--surface-color); border: 1px solid rgba(16, 185, 129, 0.3);
-            border-radius: 20px; padding: 28px 20px; max-width: 360px; width: 100%;
+            background: var(--surface-color); border: 1px solid rgba(16, 185, 129, 0.4);
+            border-radius: 22px; padding: 28px 22px; max-width: 380px; width: 100%;
             box-shadow: 0 10px 40px rgba(0,0,0,0.8);
         }
 
-        .modal-card h2 { font-family: var(--font-serif); font-size: 32px; color: var(--accent-gold); margin-bottom: 8px; }
+        .modal-card h2 { font-family: var(--font-serif); font-size: 30px; color: var(--accent-gold); margin-bottom: 8px; }
         .modal-card p { font-size: 13px; color: var(--text-dim); line-height: 1.5; margin-bottom: 20px; }
 
         .btn-start {
@@ -93,238 +99,373 @@
             letter-spacing: 1px; border-radius: 12px; cursor: pointer; transition: 0.3s;
         }
         .btn-start:hover { background: #059669; }
+        .btn-start:disabled { background: #334139; color: #64748b; cursor: not-allowed; }
 
-        #canvas-container { width: 100%; height: 100%; position: absolute; inset: 0; z-index: 1; }
+        canvas { display: block; width: 100%; height: 100%; position: absolute; inset: 0; z-index: 1; }
     </style>
 </head>
 <body>
 
-<div id="canvas-container"></div>
+<canvas id="gameCanvas"></canvas>
 
 <div id="game-ui">
     <div class="top-bar">
         <a href="evolution.html" class="btn-back">← Дневник</a>
-        <div class="coin-counter">🪙 <span id="coin-val">0</span></div>
+        <div class="hud-stats">
+            <div class="lives-container" id="lives-display">❤️❤️❤️❤️❤️</div>
+            <div class="coin-counter">🪙 <span id="coin-val">0</span></div>
+        </div>
     </div>
-    <div class="tap-instruction" id="tap-hint">Нажмите на экран для прыжка</div>
+    <div class="tap-instruction">Тап по экрану — Прыжок</div>
 </div>
 
-<!-- МОДАЛЬНОЕ ОКНО СТАРТА / ПЕРЕЗАПУСКА -->
 <div class="overlay-modal" id="modal-overlay">
     <div class="modal-card">
         <h2 id="modal-title">Путь к Эволюции</h2>
-        <p id="modal-desc">Собирайте золотые коины, уворачивайтесь от фастфуда и прокачивайте свой крипто-кошелек здоровья!</p>
-        <button class="btn-start" onclick="startGame()">Начать забег</button>
+        <p id="modal-desc">У вас есть 5 жизней в день. Собирайте коины, воду 💧 для энергии и коврики 🧘 для защиты от фастфуда!</p>
+        <button class="btn-start" id="start-btn" onclick="startGame()">Начать забег (5 жизней)</button>
     </div>
 </div>
 
 <script>
-    let scene, camera, renderer;
-    let player, floor;
-    let obstacles = [], coins = [];
-    let isPlaying = false, isJumping = false;
-    let jumpVelocity = 0;
-    const gravity = -0.015;
-    
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let isPlaying = false;
     let scoreCoins = 0;
-    let totalCoins = parseInt(localStorage.getItem('resurs_coins')) || 0;
-    let gameSpeed = 0.35;
-    let spawnTimer = 0;
-
-    document.getElementById('coin-val').innerText = totalCoins;
-
-    function init3D() {
-        const container = document.getElementById('canvas-container');
-
-        scene = new THREE.Scene();
-        scene.background = new THREE.Color(0x060C07);
-        scene.fog = new THREE.FogExp2(0x060C07, 0.025);
-
-        camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.set(0, 3.5, 7);
-        camera.lookAt(0, 1, 0);
-
-        renderer = new THREE.WebGLRenderer({ antialias: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        container.appendChild(renderer.domElement);
-
-        // ОСВЕЩЕНИЕ
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
-        scene.add(ambientLight);
-
-        const dirLight = new THREE.DirectionalLight(0xC5A059, 0.8);
-        dirLight.position.set(5, 10, 7);
-        scene.add(dirLight);
-
-        // ДОРОЖКА (ИЗУМРУДНАЯ)
-        const floorGeo = new THREE.PlaneGeometry(6, 200);
-        const floorMat = new THREE.MeshBasicMaterial({ color: 0x111A13, side: THREE.DoubleSide });
-        floor = new THREE.Mesh(floorGeo, floorMat);
-        floor.rotation.x = Math.PI / 2;
-        floor.position.z = -90;
-        scene.add(floor);
-
-        // БОКОВЫЕ ЛИНИИ ДОРОЖКИ
-        const lineGeo = new THREE.PlaneGeometry(0.1, 200);
-        const lineMat = new THREE.MeshBasicMaterial({ color: 0x10B981 });
-        const leftLine = new THREE.Mesh(lineGeo, lineMat);
-        leftLine.rotation.x = Math.PI / 2; leftLine.position.set(-3, 0.01, -90);
-        scene.add(leftLine);
-
-        const rightLine = new THREE.Mesh(lineGeo, lineMat);
-        rightLine.rotation.x = Math.PI / 2; rightLine.position.set(3, 0.01, -90);
-        scene.add(rightLine);
-
-        // СОЗДАНИЕ ИГРОКА (3D СИЛУЭТ)
-        const playerGroup = new THREE.Group();
-        const bodyGeo = new THREE.BoxGeometry(0.6, 0.9, 0.4);
-        const bodyMat = new THREE.MeshStandardMaterial({ color: 0x10B981, roughness: 0.3 });
-        const body = new THREE.Mesh(bodyGeo, bodyMat);
-        body.position.y = 0.45;
-        playerGroup.add(body);
-
-        const headGeo = new THREE.SphereGeometry(0.25, 16, 16);
-        const headMat = new THREE.MeshStandardMaterial({ color: 0xC5A059 });
-        const head = new THREE.Mesh(headGeo, headMat);
-        head.position.y = 1.15;
-        playerGroup.add(head);
-
-        player = playerGroup;
-        player.position.set(0, 0, 2);
-        scene.add(player);
-
-        window.addEventListener('resize', onWindowResize);
-        
-        // УПРАВЛЕНИЕ ТАПАМИ И КЛИКАМИ
-        window.addEventListener('touchstart', handleTap, { passive: false });
-        window.addEventListener('mousedown', handleTap);
-        window.addEventListener('keydown', (e) => { if(e.code === 'Space') handleTap(); });
-
-        animate();
+    
+    // Система 5 жизней в день сброс по дате
+    let todayStr = new Date().toDateString();
+    let savedData = JSON.parse(localStorage.getItem('resurs_game_data')) || { date: todayStr, lives: 5, coins: 0 };
+    
+    if (savedData.date !== todayStr) {
+        savedData.date = todayStr;
+        savedData.lives = 5;
+        localStorage.setItem('resurs_game_data', JSON.stringify(savedData));
     }
 
-    function handleTap(e) {
+    let totalCoins = savedData.coins || 0;
+    let currentLives = savedData.lives;
+    document.getElementById('coin-val').innerText = totalCoins;
+    updateLivesUI();
+
+    let gameSpeed = 5;
+    let frameCount = 0;
+    let distance = 0;
+
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    const player = {
+        x: 70,
+        y: 0,
+        width: 44,
+        height: 70,
+        velocityY: 0,
+        gravity: 0.7,
+        jumpPower: -14,
+        isGrounded: false,
+        legAngle: 0,
+        shieldTimer: 0
+    };
+
+    let groundY = canvas.height - 110;
+    let obstacles = [];
+    let items = [];
+
+    function updateLivesUI() {
+        let hearts = '❤️'.repeat(currentLives) + '🖤'.repeat(5 - currentLives);
+        document.getElementById('lives-display').innerText = hearts;
+        
+        const btn = document.getElementById('start-btn');
+        if (currentLives <= 0) {
+            btn.innerText = 'Жизни на сегодня кончились!';
+            btn.disabled = true;
+        } else {
+            btn.innerText = `Начать забег (Осталось жизней: ${currentLives}/5)`;
+            btn.disabled = false;
+        }
+    }
+
+    function handleJump(e) {
         if (e && e.target && e.target.closest('#game-ui .top-bar')) return;
         if (!isPlaying) return;
-        
-        if (!isJumping) {
-            isJumping = true;
-            jumpVelocity = 0.26;
+        if (player.isGrounded) {
+            player.velocityY = player.jumpPower;
+            player.isGrounded = false;
         }
     }
 
-    function spawnEntity() {
-        spawnTimer++;
-        if (spawnTimer > 45) {
-            spawnTimer = 0;
-            const isObstacle = Math.random() > 0.4;
+    window.addEventListener('touchstart', handleJump, { passive: false });
+    window.addEventListener('mousedown', handleJump);
+    window.addEventListener('keydown', (e) => { if (e.code === 'Space') handleJump(); });
 
-            if (isObstacle) {
-                // ПРЕПЯТСТВИЕ (КРАСНЫЙ ФАСТФУД КУБ)
-                const obsGeo = new THREE.BoxGeometry(0.8, 0.8, 0.8);
-                const obsMat = new THREE.MeshStandardMaterial({ color: 0xEF4444, roughness: 0.5 });
-                const obs = new THREE.Mesh(obsGeo, obsMat);
-                obs.position.set(0, 0.4, -40);
-                scene.add(obs);
-                obstacles.push(obs);
+    function spawnObjects() {
+        frameCount++;
+        groundY = canvas.height - 110;
+
+        if (distance > 300 && gameSpeed < 7.5) gameSpeed = 7;
+        if (distance > 700 && gameSpeed < 9.5) gameSpeed = 9;
+
+        if (frameCount % Math.max(40, Math.floor(100 - gameSpeed * 4)) === 0) {
+            let rand = Math.random();
+            if (rand < 0.45) {
+                // Фастфуд (препятствие)
+                obstacles.push({
+                    x: canvas.width + 30,
+                    y: groundY - 38,
+                    width: 38,
+                    height: 38,
+                    type: 'burger'
+                });
+            } else if (rand < 0.8) {
+                // Золотая монета
+                items.push({
+                    x: canvas.width + 30,
+                    y: groundY - (Math.random() > 0.4 ? 45 : 110),
+                    width: 28,
+                    height: 28,
+                    type: 'coin'
+                });
+            } else if (rand < 0.92) {
+                // Вода (Энергия / очки)
+                items.push({
+                    x: canvas.width + 30,
+                    y: groundY - 50,
+                    width: 32,
+                    height: 32,
+                    type: 'water'
+                });
             } else {
-                // БОНУС (ЗОЛОТАЯ МОНЕТА RESURSCOIN)
-                const coinGeo = new THREE.OctahedronGeometry(0.35, 0);
-                const coinMat = new THREE.MeshStandardMaterial({ color: 0xC5A059, metalness: 0.8, roughness: 0.2 });
-                const coin = new THREE.Mesh(coinGeo, coinMat);
-                coin.position.set(0, 0.6, -40);
-                scene.add(coin);
-                coins.push(coin);
+                // Коврик для йоги (Щит неуязвимости)
+                items.push({
+                    x: canvas.width + 30,
+                    y: groundY - 55,
+                    width: 36,
+                    height: 36,
+                    type: 'mat'
+                });
             }
         }
     }
 
-    function animate() {
-        requestAnimationFrame(animate);
+    function update() {
+        if (!isPlaying) return;
 
-        if (isPlaying) {
-            // ФИЗИКА ПРЫЖКА
-            if (isJumping) {
-                player.position.y += jumpVelocity;
-                jumpVelocity += gravity;
-                if (player.position.y <= 0) {
-                    player.position.y = 0;
-                    isJumping = false;
-                }
-            }
+        distance += Math.round(gameSpeed * 0.1);
 
-            spawnEntity();
+        player.velocityY += player.gravity;
+        player.y += player.velocityY;
 
-            // ДВИЖЕНИЕ ПРЕПЯТСТВИЙ И СТОЛКНОВЕНИЯ
-            for (let i = obstacles.length - 1; i >= 0; i--) {
-                let obs = obstacles[i];
-                obs.position.z += gameSpeed;
+        if (player.y >= groundY - player.height) {
+            player.y = groundY - player.height;
+            player.velocityY = 0;
+            player.isGrounded = true;
+        }
 
-                // Проверка столкновения
-                if (Math.abs(obs.position.z - player.position.z) < 0.6 && player.position.y < 0.6) {
-                    gameOver();
-                }
+        player.legAngle += 0.2;
+        if (player.shieldTimer > 0) player.shieldTimer--;
 
-                if (obs.position.z > 5) {
-                    scene.remove(obs);
+        // Столкновения с препятствиями
+        for (let i = obstacles.length - 1; i >= 0; i--) {
+            let obs = obstacles[i];
+            obs.x -= gameSpeed;
+
+            if (
+                player.x < obs.x + obs.width - 8 &&
+                player.x + player.width - 8 > obs.x &&
+                player.y < obs.y + obs.height &&
+                player.y + player.height > obs.y
+            ) {
+                if (player.shieldTimer > 0) {
+                    // Щит отражает фастфуд!
                     obstacles.splice(i, 1);
+                } else {
+                    currentLives--;
+                    obstacles.splice(i, 1);
+                    updateLivesUI();
+                    
+                    if (currentLives <= 0) {
+                        gameOver(true);
+                        return;
+                    }
                 }
             }
 
-            // ДВИЖЕНИЕ МОНЕТ И СБОР
-            for (let i = coins.length - 1; i >= 0; i--) {
-                let c = coins[i];
-                c.position.z += gameSpeed;
-                c.rotation.y += 0.05;
+            if (obs.x < -50) obstacles.splice(i, 1);
+        }
 
-                // Сбор монеты
-                if (Math.abs(c.position.z - player.position.z) < 0.7 && Math.abs(player.position.y - c.position.y) < 0.8) {
-                    scoreCoins += 10;
-                    totalCoins += 10;
-                    document.getElementById('coin-val').innerText = totalCoins;
-                    localStorage.setItem('resurs_coins', totalCoins);
-                    
-                    scene.remove(c);
-                    coins.splice(i, 1);
-                } else if (c.position.z > 5) {
-                    scene.remove(c);
-                    coins.splice(i, 1);
+        // Столкновения с бонусами
+        for (let i = items.length - 1; i >= 0; i--) {
+            let item = items.get ? items[i] : items[i];
+            item.x -= gameSpeed;
+
+            if (
+                player.x < item.x + item.width &&
+                player.x + player.width > item.x &&
+                player.y < item.y + item.height &&
+                player.y + player.height > item.y
+            ) {
+                if (item.type === 'coin') {
+                    scoreCoins += 15;
+                    totalCoins += 15;
+                } else if (item.type === 'water') {
+                    scoreCoins += 60;
+                    totalCoins += 60;
+                } else if (item.type === 'mat') {
+                    scoreCoins += 100;
+                    totalCoins += 100;
+                    player.shieldTimer = 350; // Щит на ~5 секунд
                 }
+
+                document.getElementById('coin-val').innerText = totalCoins;
+                savedData.coins = totalCoins;
+                savedData.lives = currentLives;
+                localStorage.setItem('resurs_game_data', JSON.stringify(savedData));
+                localStorage.setItem('resurs_coins', totalCoins);
+
+                items.splice(i, 1);
+            } else if (item.x < -50) {
+                items.splice(i, 1);
             }
         }
 
-        renderer.render(scene, camera);
+        spawnObjects();
+        draw();
+        requestAnimationFrame(update);
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Премиальный фон
+        let bgGrad = ctx.createLinearGradient(0, 0, 0, canvas.height);
+        bgGrad.addColorStop(0, '#060C07');
+        bgGrad.addColorStop(1, '#111A13');
+        ctx.fillStyle = bgGrad;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Дорожка
+        ctx.strokeStyle = '#10B981';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.moveTo(0, groundY);
+        ctx.lineTo(canvas.width, groundY);
+        ctx.stroke();
+
+        ctx.fillStyle = 'rgba(16, 185, 129, 0.08)';
+        ctx.fillRect(0, groundY, canvas.width, canvas.height - groundY);
+
+        // Мультяшный стильный тренер
+        ctx.save();
+        ctx.translate(player.x, player.y);
+
+        // Свечение щита
+        if (player.shieldTimer > 0) {
+            ctx.strokeStyle = '#C5A059';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.arc(player.width/2, player.height/2, 45, 0, Math.PI * 2);
+            ctx.stroke();
+        }
+
+        // Голова
+        ctx.fillStyle = '#C5A059';
+        ctx.beginPath();
+        ctx.arc(player.width / 2, 12, 11, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Тело в форме спортивной майки
+        ctx.fillStyle = '#10B981';
+        ctx.beginPath();
+        ctx.roundRect(8, 23, player.width - 16, 28, 6);
+        ctx.fill();
+
+        // Руки и ноги (анимация)
+        ctx.strokeStyle = '#F4F4F9';
+        ctx.lineWidth = 4;
+        ctx.lineCap = 'round';
+
+        let legOffset = Math.sin(player.legAngle) * 14;
+
+        if (player.isGrounded) {
+            ctx.beginPath();
+            ctx.moveTo(14, 50);
+            ctx.lineTo(14 - legOffset, 68);
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.moveTo(player.width - 14, 50);
+            ctx.lineTo(player.width - 14 + legOffset, 68);
+            ctx.stroke();
+        } else {
+            ctx.beginPath();
+            ctx.moveTo(14, 50);
+            ctx.lineTo(8, 60);
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.moveTo(player.width - 14, 50);
+            ctx.lineTo(player.width - 8, 64);
+            ctx.stroke();
+        }
+
+        ctx.restore();
+
+        // Фастфуд
+        obstacles.forEach(obs => {
+            ctx.font = '26px Manrope';
+            ctx.textAlign = 'center';
+            ctx.fillText('🍔', obs.x + obs.width/2, obs.y + 26);
+        });
+
+        // Бонусы
+        items.forEach(item => {
+            ctx.font = '24px Manrope';
+            ctx.textAlign = 'center';
+            let icon = item.type === 'coin' ? '🪙' : item.type === 'water' ? '💧' : '🧘';
+            ctx.fillText(icon, item.x + item.width/2, item.y + 24);
+        });
+
+        ctx.fillStyle = 'rgba(244, 244, 249, 0.7)';
+        ctx.font = 'bold 13px Manrope';
+        ctx.textAlign = 'left';
+        ctx.fillText(`Дистанция: ${distance} м`, 16, canvas.height - 20);
     }
 
     function startGame() {
-        // Очистка старых объектов
-        obstacles.forEach(o => scene.remove(o));
-        coins.forEach(c => scene.remove(c));
-        obstacles = []; coins = [];
-        
+        if (currentLives <= 0) return;
+
+        obstacles = [];
+        items = [];
         scoreCoins = 0;
-        player.position.set(0, 0, 2);
-        isJumping = false;
-        
+        distance = 0;
+        gameSpeed = 5;
+        player.y = groundY - player.height;
+        player.velocityY = 0;
+        player.shieldTimer = 0;
+
         document.getElementById('modal-overlay').style.display = 'none';
         isPlaying = true;
+        update();
     }
 
-    function gameOver() {
+    function gameOver(isOutOfLives) {
         isPlaying = false;
-        document.getElementById('modal-title').innerText = "Забег окончен!";
-        document.getElementById('modal-desc').innerText = `Вы заработали +${scoreCoins} ResursCoins в этом забеге. Общий баланс обновлен!`;
+        if (isOutOfLives) {
+            document.getElementById('modal-title').innerText = "Забег окончен!";
+            document.getElementById('modal-desc').innerText = `Жизни на сегодня исчерпаны (0/5). Вы заработали +${scoreCoins} ResursCoins. Возвращайтесь завтра или тренируйтесь в зале!`;
+        } else {
+            document.getElementById('modal-title').innerText = "Препятствие!";
+            document.getElementById('modal-desc').innerText = `Потеряна жизнь! Осталось попыток: ${currentLives}/5. Заработано: +${scoreCoins} ResursCoins.`;
+        }
+        updateLivesUI();
         document.getElementById('modal-overlay').style.display = 'flex';
     }
-
-    function onWindowResize() {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-    }
-
-    window.onload = init3D;
 </script>
 </body>
 </html>
