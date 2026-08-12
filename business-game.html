@@ -3,11 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>РЕСУРС • Бизнес-Симулятор Студии</title>
+    <title>Бизнес-Стратегия Студии РЕСУРС | Управление студией в Сыктывкаре</title>
     
+    <!-- ФАВИКОН И ЛОГОТИП -->
+    <link rel="icon" type="image/png" href="https://resurs-stretch.ru/favicon.png">
+    
+    <!-- ПОДКЛЮЧЕНИЕ СИСТЕМЫ ЯНДЕКС РЕКЛАМЫ (РСЯ) -->
+    <script>window.yaContextCb=window.yaContextCb||[]</script>
+    <script src="https://yandex.ru/ads/system/context.js" async></script>
+    <script>
+        window.yaContextCb.push(() => {
+            Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-6", "type": "floorAd", "platform": "touch" });
+            Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-7", "type": "floorAd", "platform": "desktop" });
+        });
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -16,332 +29,425 @@
             --surface-hover: #19271D;
             --accent-emerald: #10B981;
             --accent-emerald-hover: #059669;
-            --accent-gold: #D4AF37;
+            --accent-gold: #C5A059;
             --text-main: #F4F4F9;
             --text-dim: #A3B2A7;
-            --danger: #FF3366;
+            --danger: #EF4444;
             --warning: #FBBF24;
             --font-main: 'Manrope', sans-serif;
             --font-serif: 'Cormorant Garamond', serif;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
-        body, html { width: 100%; min-height: 100vh; background: var(--bg-deep); color: var(--text-main); font-family: var(--font-main); }
+        body, html { width: 100%; min-height: 100vh; background: var(--bg-deep); color: var(--text-main); font-family: var(--font-main); line-height: 1.5; }
 
         header {
             position: fixed; top: 0; left: 0; width: 100%;
             background: rgba(6, 12, 7, 0.95); backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(16, 185, 129, 0.2);
-            padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; z-index: 1000;
+            padding: 10px 16px; display: flex; justify-content: space-between; align-items: center; z-index: 1000;
         }
 
-        .brand-title { font-family: var(--font-serif); font-size: 18px; letter-spacing: 4px; color: var(--accent-gold); text-transform: uppercase; font-weight: 700; }
+        .brand-header { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .brand-header img { width: 32px; height: 32px; border-radius: 6px; }
+        .brand-title { font-family: var(--font-serif); font-size: 17px; letter-spacing: 3px; color: var(--accent-gold); text-transform: uppercase; font-weight: 600; }
+        
         .btn-back { border: 1px solid var(--accent-emerald); color: var(--accent-emerald); background: transparent; padding: 6px 12px; border-radius: 8px; font-size: 11px; font-weight: 800; text-transform: uppercase; text-decoration: none; transition: 0.3s; }
         .btn-back:hover { background: var(--accent-emerald); color: #FFF; }
 
         .game-container {
-            max-width: 900px; margin: 85px auto 30px; padding: 0 16px;
+            max-width: 1050px; margin: 85px auto 40px; padding: 0 16px;
             display: grid; grid-template-columns: 1fr; gap: 16px;
         }
-
-        @media(min-width: 768px) {
-            .game-container { grid-template-columns: 1fr 1fr; }
+        @media(min-width: 850px) {
+            .game-container { grid-template-columns: 1.1fr 1fr; }
         }
 
         .bento-card {
             background: var(--surface-color); border: 1px solid rgba(16, 185, 129, 0.2);
-            border-radius: 20px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-radius: 20px; padding: 22px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        .section-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-gold); font-weight: 800; margin-bottom: 12px; display: block; text-align: center; }
+        .section-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-gold); font-weight: 800; margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; }
 
-        /* Касса и кликер */
-        .cashbox-screen {
-            text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            min-height: 280px; position: relative; overflow: hidden; border-radius: 16px;
-            background: radial-gradient(circle, rgba(16, 185, 129, 0.08) 0%, transparent 70%);
-            border: 1px dashed rgba(212, 175, 55, 0.3); cursor: pointer; transition: 0.1s;
+        /* Табло бюджета */
+        .dashboard-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 16px; }
+        .dash-item { background: var(--surface-hover); padding: 12px; border-radius: 12px; border: 1px solid rgba(16, 185, 129, 0.15); text-align: center; }
+        .dash-item b { display: block; font-size: 19px; font-family: var(--font-serif); color: var(--accent-gold); }
+        .dash-item span { font-size: 10px; text-transform: uppercase; color: var(--text-dim); font-weight: 800; }
+
+        /* Постоянные сметы расходов */
+        .expenses-breakdown { background: rgba(6, 12, 7, 0.6); border: 1px solid rgba(239, 68, 68, 0.2); border-radius: 14px; padding: 12px; margin-bottom: 16px; }
+        .expenses-title { font-size: 11px; text-transform: uppercase; color: var(--danger); font-weight: 800; letter-spacing: 1px; margin-bottom: 8px; display: flex; justify-content: space-between; }
+        .expense-row { display: flex; justify-content: space-between; font-size: 11.5px; color: var(--text-dim); padding: 3px 0; border-bottom: 1px dashed rgba(255,255,255,0.05); }
+        .expense-row:last-child { border-bottom: none; }
+
+        /* Симуляция месяца */
+        .turn-box {
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, transparent 80%);
+            border: 2px solid var(--accent-emerald); border-radius: 16px; padding: 20px; text-align: center;
         }
-        .cashbox-screen:active { transform: scale(0.98); background: rgba(16, 185, 129, 0.15); }
-        .balance-num { font-family: var(--font-serif); font-size: 42px; color: var(--accent-gold); font-weight: 700; margin: 6px 0; }
-        .income-per-sec { font-size: 12px; color: var(--accent-emerald); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
-        .click-prompt { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 2px; margin-top: 14px; }
+        .btn-turn {
+            background: var(--accent-emerald); border: none; color: #FFF; padding: 15px 24px;
+            font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px;
+            border-radius: 12px; cursor: pointer; width: 100%; transition: 0.3s;
+            box-shadow: 0 4px 20px rgba(16, 185, 129, 0.4); margin-top: 10px;
+        }
+        .btn-turn:hover { background: var(--accent-emerald-hover); transform: translateY(-2px); }
 
-        /* Финансы (баланс бюджета) */
-        .finances-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
-        .fin-item { background: var(--surface-hover); padding: 10px; border-radius: 10px; text-align: center; border: 1px solid rgba(16, 185, 129, 0.1); }
-        .fin-item b { display: block; font-size: 15px; font-family: var(--font-serif); color: var(--text-main); }
-        .fin-item span { font-size: 9.5px; text-transform: uppercase; color: var(--text-dim); font-weight: 800; }
-
-        /* Магазин улучшений и инвентаря */
-        .shop-list { display: flex; flex-direction: column; gap: 10px; max-height: 400px; overflow-y: auto; padding-right: 4px; }
-        .shop-item {
+        /* Магазин улучшений */
+        .action-list { display: flex; flex-direction: column; gap: 10px; max-height: 480px; overflow-y: auto; padding-right: 4px; }
+        .action-item {
             background: var(--surface-hover); border: 1px solid rgba(16, 185, 129, 0.15);
-            border-radius: 12px; padding: 12px; display: flex; justify-content: space-between; align-items: center;
+            border-radius: 12px; padding: 12px 14px; display: flex; justify-content: space-between; align-items: center; gap: 10px;
         }
-        .shop-info h4 { font-size: 14px; font-family: var(--font-serif); color: var(--text-main); margin-bottom: 2px; }
-        .shop-info p { font-size: 11px; color: var(--text-dim); }
-        .shop-info p b { color: var(--accent-gold); }
+        .action-info { flex: 1; }
+        .action-info h4 { font-size: 14px; font-family: var(--font-serif); color: var(--text-main); margin-bottom: 2px; }
+        .action-info p { font-size: 11px; color: var(--text-dim); line-height: 1.3; }
+        .action-info p b { color: var(--accent-gold); }
 
-        .btn-buy {
-            background: var(--accent-emerald); border: none; color: #FFF; padding: 8px 14px;
+        .btn-action {
+            background: var(--accent-gold); border: none; color: #000; padding: 9px 14px;
             border-radius: 8px; font-size: 11px; font-weight: 800; cursor: pointer; text-transform: uppercase;
             transition: 0.3s; white-space: nowrap;
         }
-        .btn-buy:hover { background: var(--accent-emerald-hover); }
-        .btn-buy:disabled { background: #223329; color: #556B5D; cursor: not-allowed; }
+        .btn-action:hover { background: #b38639; color: #fff; }
+        
+        .info-btn { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border-radius: 50%; border: 1px solid var(--accent-gold); color: var(--accent-gold); font-size: 11px; font-weight: 800; cursor: pointer; background: rgba(197, 160, 89, 0.1); margin-left: 4px; }
 
         /* Лог событий */
         .log-box {
             background: #030604; border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 12px;
-            padding: 10px; height: 110px; overflow-y: auto; font-size: 11.5px; color: var(--text-dim);
-            line-height: 1.4; font-family: monospace; margin-top: 10px;
+            padding: 10px; height: 140px; overflow-y: auto; font-size: 11px; color: var(--text-dim);
+            line-height: 1.4; font-family: monospace; margin-top: 12px;
         }
         .log-item { margin-bottom: 4px; }
         .log-item.success { color: var(--accent-emerald); }
         .log-item.danger { color: var(--danger); }
         .log-item.gold { color: var(--accent-gold); }
 
-        /* Модалка победы / промокода */
-        .modal { display: none; position: fixed; inset: 0; background: rgba(5, 5, 10, 0.9); z-index: 2000; align-items: center; justify-content: center; padding: 20px; }
-        .modal-content { background: var(--surface-color); border: 2px solid var(--accent-gold); border-radius: 22px; padding: 28px; max-width: 400px; width: 100%; text-align: center; }
+        /* Попапы */
+        .modal { display: none; position: fixed; inset: 0; background: rgba(5, 5, 10, 0.92); z-index: 2000; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(10px); }
+        .modal-content { background: var(--surface-color); border: 2px solid var(--accent-gold); border-radius: 22px; padding: 28px; max-width: 540px; width: 100%; text-align: center; max-height: 90vh; overflow-y: auto; }
         .modal-content h2 { font-family: var(--font-serif); font-size: 28px; color: var(--accent-gold); margin-bottom: 10px; }
-        .modal-content p { font-size: 13px; color: var(--text-dim); line-height: 1.5; margin-bottom: 20px; }
-        .promo-code-box { background: #030604; border: 1px dashed var(--accent-gold); padding: 12px; font-size: 18px; font-weight: 800; color: var(--accent-gold); border-radius: 10px; margin-bottom: 20px; letter-spacing: 2px; }
+        .modal-content p { font-size: 13px; color: var(--text-dim); line-height: 1.6; margin-bottom: 18px; text-align: left; }
         
-        .floating-text {
-            position: absolute; font-weight: 800; font-size: 16px; color: var(--accent-gold);
-            pointer-events: none; animation: floatUp 0.8s ease-out forwards; z-index: 50;
-        }
-        @keyframes floatUp { 0% { opacity: 1; transform: translateY(0) scale(1); } 100% { opacity: 0; transform: translateY(-50px) scale(1.2); } }
+        .capital-choices { display: grid; grid-template-columns: 1fr; gap: 10px; margin-bottom: 15px; }
+        @media(min-width: 500px) { .capital-choices { grid-template-columns: 1fr 1fr; } }
+
+        .cap-btn { background: var(--surface-hover); border: 1px solid var(--accent-emerald); color: var(--text-main); padding: 12px; border-radius: 12px; cursor: pointer; text-align: left; transition: 0.3s; }
+        .cap-btn:hover { border-color: var(--accent-gold); background: rgba(197, 160, 89, 0.1); }
+        .cap-btn b { color: var(--accent-gold); display: block; margin-bottom: 4px; font-size: 13.5px; }
+        .cap-btn span { font-size: 11px; color: var(--text-dim); line-height: 1.3; display: block; }
+
+        .promo-code-box { background: #030604; border: 1px dashed var(--accent-gold); padding: 14px; font-size: 20px; font-weight: 800; color: var(--accent-gold); border-radius: 10px; margin-bottom: 20px; letter-spacing: 2px; }
     </style>
 </head>
 <body>
 
 <header>
-    <a href="evolution.html" class="btn-back">← На главную</a>
-    <div class="brand-title">РЕСУРС • Бизнес</div>
-    <div style="width: 70px;"></div>
+    <a href="evolution.html" class="brand-header">
+        <img src="https://resurs-stretch.ru/favicon.png" alt="Логотип Ресурс">
+        <span class="brand-title">РЕСУРС • Стратегия</span>
+    </a>
+    <a href="evolution.html" class="btn-back">← В дневник</a>
 </header>
 
 <div class="game-container">
     
-    <!-- ЛЕВАЯ КОЛОНКА: КАССА И БАЛАНС -->
+    <!-- ЛЕВАЯ КОЛОНКА: ДАШБОРД ФИНАНСОВ И БУХГАЛТЕРИИ -->
     <div style="display: flex; flex-direction: column; gap: 16px;">
         <div class="bento-card">
-            <span class="section-label">Касса студии (г. Сыктывкар)</span>
-            <div class="cashbox-screen" id="click-target" onclick="clickCashbox(event)">
-                <div style="font-size: 12px; color: var(--text-dim); text-transform: uppercase;">Чистая прибыль</div>
-                <div class="balance-num"><span id="balance-val">500</span> ₽</div>
-                <div class="income-per-sec">Пассивный доход: <span id="income-val">0</span> ₽/сек</div>
-                <div class="click-prompt">👆 Кликайте, чтобы обслуживать клиентов!</div>
+            <span class="section-label">
+                Бухгалтерия студии (Коммунистическая 67)
+                <span class="info-btn" onclick="openHelpModal('accounting')">?</span>
+            </span>
+            
+            <div class="dashboard-grid">
+                <div class="dash-item">
+                    <b id="money-val">0 ₽</b>
+                    <span>Свободный кэш</span>
+                </div>
+                <div class="dash-item">
+                    <b id="month-val">Месяц 1</b>
+                    <span>Срок работы</span>
+                </div>
+                <div class="dash-item">
+                    <b id="clients-val">12</b>
+                    <span>Активных клиентов</span>
+                </div>
+                <div class="dash-item">
+                    <b id="reputation-val">50%</b>
+                    <span>Репутация бренда</span>
+                </div>
             </div>
 
-            <div class="finances-grid">
-                <div class="fin-item">
-                    <span id="rent-timer">60 сек</span>
-                    <span>До аренды</span>
+            <!-- ОБЯЗАТЕЛЬНЫЕ ЕЖЕМЕСЯЧНЫЕ РАСХОДЫ СЫКТЫВКАРА -->
+            <div class="expenses-breakdown">
+                <div class="expenses-title">
+                    <span>Обязательные расходы / месяц:</span>
+                    <span id="total-monthly-costs">79 480 ₽</span>
                 </div>
-                <div class="fin-item">
-                    <b id="total-expenses">450 ₽</b>
-                    <span>Расходы / цикл</span>
-                </div>
+                <div class="expense-row"><span>🏢 Аренда зала (ул. Коммунистическая 67):</span> <b>55 700 ₽</b></div>
+                <div class="expense-row"><span>💡 Коммуналка (свет, тепло, электроэнергия):</span> <b>10 000 ₽</b></div>
+                <div class="expense-row"><span>💧 Питьевая вода (2 бут / 2 нед):</span> <b>1 280 ₽</b></div>
+                <div class="expense-row"><span>💻 Listok CRM + Приложение (150к/год):</span> <b>12 500 ₽</b></div>
+                <div class="expense-row" id="debt-row" style="display: none;"><span style="color: var(--danger);">🏦 Обслуживание долга/кредита:</span> <b id="debt-val" style="color: var(--danger);">0 ₽</b></div>
+            </div>
+
+            <div class="turn-box">
+                <p style="font-size: 11.5px; color: var(--text-dim); margin-bottom: 8px;">Кликните «Прожить 1 месяц», чтобы запустить симуляцию продаж абонементов и списания расходов.</p>
+                <button class="btn-turn" onclick="nextMonth()">Прожить 1 месяц →</button>
             </div>
 
             <div class="log-box" id="game-log">
-                <div class="log-item gold">⚡ Добро пожаловать! Управляйте студией на Коммунистической 67. Покрывайте расходы и развивайте бизнес.</div>
+                <div class="log-item gold">📌 Симулятор запущен. Выберите источник капитала и сформируйте финансовую стратегию студии.</div>
             </div>
         </div>
     </div>
 
-    <!-- ПРАВАЯ КОЛОНКА: ИВЕНТАРЬ И МАГАЗИН УЛУЧШЕНИЙ -->
+    <!-- ПРАВАЯ КОЛОНКА: ИНВЕСТИЦИИ, ИНВЕНТАРЬ И АВТОМАТИЗАЦИЯ -->
     <div style="display: flex; flex-direction: column; gap: 16px;">
         <div class="bento-card">
-            <span class="section-label">Инвентарь и Развитие студии</span>
-            <div class="shop-list" id="shop-container">
-                <!-- Динамически заполняется скриптом -->
+            <span class="section-label">
+                Инвентарь и Масштабирование
+                <span class="info-btn" onclick="openHelpModal('scaling')">?</span>
+            </span>
+            <div class="action-list" id="action-container">
+                <!-- Динамически заполняется JS -->
             </div>
         </div>
     </div>
 
 </div>
 
-<!-- МОДАЛЬНОЕ ОКНО ПОБЕДЫ (ПРОМОКОД НА СКИДКУ 500 РУБЛЕЙ) -->
+<!-- МОДАЛЬНОЕ ОКНО 1: ВЫБОР СТАРТОВОГО КАПИТАЛА -->
+<div class="modal" id="startModal" style="display: flex;">
+    <div class="modal-content">
+        <h2>Старт бизнеса в Сыктывкаре</h2>
+        <p>Открытие студии растяжки и движения «РЕСУРС» по адресу <b>ул. Коммунистическая 67</b> требует стартовых вложений. Выберите источник финансирования и оцените его риски:</p>
+        
+        <div class="capital-choices">
+            <button class="cap-btn" onclick="selectCapital('savings')">
+                <b>Личные накопления</b>
+                <span>Старт: 150 000 ₽. Свои деньги без долгов и процентов. Безопасно, но медленный темп закупки оборудования.</span>
+            </button>
+            <button class="cap-btn" onclick="selectCapital('credit')">
+                <b>Банковский кредит</b>
+                <span>Старт: 350 000 ₽. Обязательный платеж 9 500 ₽ каждый месяц на 5 лет. Высокий риск кассового разрыва!</span>
+            </button>
+            <button class="cap-btn" onclick="selectCapital('loan')">
+                <b>Частный займ</b>
+                <span>Старт: 400 000 ₽. Ставка 35% годовых. На счету много денег, но проценты съедают чистую маржу.</span>
+            </button>
+            <button class="cap-btn" onclick="selectCapital('invest')">
+                <b>Партнер-Инвестор</b>
+                <span>Старт: 500 000 ₽. Без финансовых долгов, но инвестор забирает 25% от продажи каждого абонемента.</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- МОДАЛЬНОЕ ОКНО 2: ПОБАП-ОБУЧЕНИЕИ И СПРАВКА (?) -->
+<div class="modal" id="infoModal">
+    <div class="modal-content">
+        <h2 id="info-title">Экспертная справка</h2>
+        <p id="info-text"></p>
+        <button class="btn-action" style="width: 100%; padding: 12px; font-size: 12px;" onclick="document.getElementById('infoModal').style.display='none'">Понятно, продолжаю стратегию</button>
+    </div>
+</div>
+
+<!-- МОДАЛЬНОЕ ОКНО 3: ПОБЕДА И ВЫДАЧА НАГРАДЫ -->
 <div class="modal" id="winModal">
     <div class="modal-content">
-        <h2>Поздравляем!</h2>
-        <p>Вы успешно вывели студию «РЕСУРС» на окупаемость, собрали стартовый капитал и доказали навыки управления! Получите вашу заслуженную реальную награду.</p>
-        <div class="promo-code-box">RESURS-BUSINESS-500</div>
-        <p style="font-size: 11.5px; color: var(--text-dim);">Покажите этот промокод администратору в студии на Коммунистической 67 или назовите его при заказе абонемента.</p>
-        <button class="btn-buy" style="width: 100%; padding: 12px;" onclick="document.getElementById('winModal').style.display='none'">Продолжить игру</button>
+        <h2>Премиум-Уровень Достигнут!</h2>
+        <p>Вы доказали высочайший класс управления: выстроили продажи абонементов, перекрыли арендную ставку (55 700 ₽) и коммунальные расходы, снизили отток клиентов и вывели студию в устойчивый плюс!</p>
+        <div class="promo-code-box">RESURS-STRATEGY-500</div>
+        <p style="font-size: 11.5px; color: var(--text-dim);">Покажите этот промокод или назовите его при заказе абонемента в студии на Коммунистической 67 для получения реальной скидки 500 рублей!</p>
+        <button class="btn-action" style="width: 100%; padding: 12px; font-size: 12px;" onclick="document.getElementById('winModal').style.display='none'">Продолжить управление</button>
     </div>
 </div>
 
 <script>
-    let game = JSON.parse(localStorage.getItem('resurs_business_save')) || {
-        money: 500,
-        totalEarned: 0,
+    let state = JSON.parse(localStorage.getItem('resurs_strategy_v8')) || {
+        month: 1,
+        money: 0,
+        clients: 14,
+        reputation: 50,
+        capitalType: null,
+        debt: 0,
+        hasPartner: false,
         upgrades: {
             mats: 3,
             dumbbells: 3,
-            bands: 1,
-            blocks: 1,
+            blocks: 3,
             bars: 0,
             fitballs: 0,
             hammocks: 0,
-            cleaner: 0,
-            trainer: 0
+            crm: 0,
+            waterCooler: 1,
+            trainer: 1
         }
     };
 
-    const itemsData = [
-        { id: 'mats', name: 'Коврик для растяжки', baseCost: 150, income: 2, desc: 'База для зала. Сейчас в наличии: ' },
-        { id: 'dumbbells', name: 'Пара гантелей', baseCost: 300, income: 5, desc: 'Для силового тонуса. В наличии: ' },
-        { id: 'bands', name: 'Фитнес-резинки (набор)', baseCost: 600, income: 12, desc: 'Популярный инвентарь. В наличии: ' },
-        { id: 'blocks', name: 'Кубики для йоги', baseCost: 900, income: 20, desc: 'Комфорт клиента. В наличии: ' },
-        { id: 'bars', name: 'Стойка бодибаров', baseCost: 2500, income: 55, desc: 'Премиум-оборудование. В наличии: ' },
-        { id: 'fitballs', name: 'Профессиональный фитбол', baseCost: 4500, income: 100, desc: 'Для работы со спиной. В наличии: ' },
-        { id: 'hammocks', name: 'Гамаки для аэростретчинга', baseCost: 8000, income: 180, desc: 'Топовое направление! В наличии: ' },
-        { id: 'cleaner', name: 'Профессиональная уборка', baseCost: 15000, income: 350, desc: 'Чистота и порядок. Уровней: ' },
-        { id: 'trainer', name: 'Нанять топ-тренера Ольгу', baseCost: 30000, income: 750, desc: 'Профессионал высшей лиги. Уровней: ' }
+    // Точные ежемесячные обязательные расходы в Сыктывкаре
+    const costs = {
+        rent: 55700,      // Аренда Коммунистическая 67
+        utilities: 10000, // Коммуналка (свет, тепло)
+        water: 1280,      // Вода питьевая (2 бут / 2 нед = 4 бут/мес)
+        crm: 12500        // Listok CRM + Приложение (150к / 12)
+    };
+
+    const actionsData = [
+        { id: 'mats', name: 'Коврики для МФР и пилатеса (+3 шт)', cost: 6000, help: 'Увеличивает емкость зала. Без ковриков новые клиенты не смогут заниматься на групповых практиках.', effect: () => { state.upgrades.mats += 3; state.clients += 3; } },
+        { id: 'dumbbells', name: 'Набор гантелей и резинок', cost: 9000, help: 'Разнообразит программы силового тонуса. Повышает лояльность девушек на тренировках.', effect: () => { state.upgrades.dumbbells += 3; state.reputation += 4; } },
+        { id: 'blocks', name: 'Кубики для йоги и ремни', cost: 5000, help: 'Помогают новичкам с неразвитой растяжкой выполнять асаны без боли и травм.', effect: () => { state.upgrades.blocks += 3; state.reputation += 3; } },
+        { id: 'bars', name: 'Стойка бодибаров', cost: 18000, help: 'Открывает доступ к классам "Прокачка + Спина", что увеличивает средний чек абонемента.', effect: () => { state.upgrades.bars += 1; state.clients += 6; } },
+        { id: 'fitballs', name: 'Профессиональные фитболы', cost: 22000, help: 'Незаменимы для декомпрессии позвоночника и мягкой работы с беременными и восстанавливающимися.', effect: () => { state.upgrades.fitballs += 1; state.reputation += 6; } },
+        { id: 'hammocks', name: 'Гамаки для Аэростретчинга', cost: 45000, help: 'Флагманское направление студии! Вызывает вирусный сарафанный радио-эффект в Сыктывкаре.', effect: () => { state.upgrades.hammocks += 1; state.clients += 12; state.reputation += 10; } },
+        { id: 'crm', name: 'Автоматизация Listok CRM + Бот', cost: 15000, help: 'Внедряет онлайн-запись 24/7 и напоминания. Снижает отток клиентов (churn rate) на 40%!', effect: () => { state.upgrades.crm = 1; state.reputation += 8; } },
+        { id: 'trainer', name: 'Сертификация тренеров у Ольги', cost: 30000, help: 'Обучение персонала стандартам движения. Повышает retention (повторные продления абонементов).', effect: () => { state.upgrades.trainer += 1; state.reputation += 12; } }
     ];
 
-    let rentCountdown = 60; // Секунд до списания аренды и расходов
-    let hasWon = localStorage.getItem('resurs_business_won') === 'true';
-
-    // Расходы студии в игровой цикл (Аренда Коммунистическая 67, свет, вода, админ)
-    const fixedExpenses = 450;
-    document.getElementById('total-expenses').innerText = fixedExpenses + ' ₽';
+    const helpTexts = {
+        accounting: "Обязательные платежи необходимо перечислять ежемесячно. Если выручка от абонементов ниже 79 480 ₽, студия уходит в кассовый разрыв. Заботьтесь о постоянном притоке новых девушек и продлении действующих абонементов!",
+        scaling: "Покупка нового оборудования прямо влияет на вместимость зала и ценность занятий. Чем выше качество инвентаря (гамаки, роллы, бодибары), тем выше репутация бренда 'РЕСУРС' и средний чек."
+    };
 
     function logEvent(text, type = '') {
         const box = document.getElementById('game-log');
-        box.innerHTML += `<div class="log-item ${type}">[${new Date().toLocaleTimeString()}] ${text}</div>`;
+        box.innerHTML += `<div class="log-item ${type}">[Месяц ${state.month}] ${text}</div>`;
         box.scrollTop = box.scrollHeight;
     }
 
-    function calculateIncomePerSec() {
-        let income = 0;
-        income += game.upgrades.mats * 2;
-        income += game.upgrades.dumbbells * 5;
-        income += game.upgrades.bands * 12;
-        income += game.upgrades.blocks * 20;
-        income += game.upgrades.bars * 55;
-        income += game.upgrades.fitballs * 100;
-        income += game.upgrades.hammocks * 180;
-        income += game.upgrades.cleaner * 350;
-        income += game.upgrades.trainer * 750;
-        return income;
+    function openHelpModal(key) {
+        document.getElementById('info-title').innerText = "Обучающий блок";
+        document.getElementById('info-text').innerText = helpTexts[key];
+        document.getElementById('infoModal').style.display = 'flex';
     }
 
-    function renderShop() {
-        const container = document.getElementById('shop-container');
+    function openActionHelp(name, text) {
+        document.getElementById('info-title').innerText = name;
+        document.getElementById('info-text').innerText = text;
+        document.getElementById('infoModal').style.display = 'flex';
+    }
+
+    function selectCapital(type) {
+        state.capitalType = type;
+        if (type === 'savings') {
+            state.money = 150000;
+            logEvent('Выбран капитал: Личные накопления (150 000 ₽). Никаких обязательств по кредитам.', 'success');
+        } else if (type === 'credit') {
+            state.money = 350000;
+            state.debt = 9500;
+            logEvent('Выбран капитал: Банковский кредит (350 000 ₽). Ежемесячный платеж долга: 9 500 ₽.', 'warning');
+        } else if (type === 'loan') {
+            state.money = 400000;
+            state.debt = 14000;
+            logEvent('Выбран капитал: Частный займ под 35%. Дополнительная нагрузка на кассу: 14 000 ₽/мес.', 'danger');
+        } else if (type === 'invest') {
+            state.money = 500000;
+            state.hasPartner = true;
+            logEvent('Выбран капитал: Инвестор (500 000 ₽). Партнер забирает 25% чистой прибыли с абонементов.', 'gold');
+        }
+        document.getElementById('startModal').style.display = 'none';
+        updateUI();
+        renderActions();
+    }
+
+    function renderActions() {
+        const container = document.getElementById('action-container');
         container.innerHTML = '';
 
-        itemsData.forEach(item => {
-            let count = game.upgrades[item.id];
-            let currentCost = Math.round(item.baseCost * Math.pow(1.18, count));
-            
+        actionsData.forEach(item => {
             container.innerHTML += `
-                <div class="shop-item">
-                    <div class="shop-info">
-                        <h4>${item.name} (${count})</h4>
-                        <p>${item.desc}${count} | Доход: <b>+${item.income} ₽/сек</b></p>
+                <div class="action-item">
+                    <div class="action-info">
+                        <h4>
+                            ${item.name}
+                            <span class="info-btn" onclick="openActionHelp('${item.name}', '${item.help}')">?</span>
+                        </h4>
+                        <p>${item.help}</p>
+                        <p style="margin-top:4px;">Инвестиция: <b>${item.cost.toLocaleString()} ₽</b></p>
                     </div>
-                    <button class="btn-buy" id="btn-${item.id}" onclick="buyUpgrade('${item.id}', ${currentCost})" ${game.money < currentCost ? 'disabled' : ''}>
-                        ${currentCost} ₽
-                    </button>
+                    <button class="btn-action" onclick="buyAction('${item.id}', ${item.cost})">Внедрить</button>
                 </div>
             `;
         });
     }
 
-    function clickCashbox(event) {
-        let clickPower = 1 + Math.floor(calculateIncomePerSec() * 0.05);
-        game.money += clickPower;
-        game.totalEarned += clickPower;
-        updateUI();
-        
-        // Всплывающая анимация цифры клика
-        const rect = event.currentTarget.getBoundingClientRect();
-        const el = document.createElement('div');
-        el.className = 'floating-text';
-        el.innerText = `+${clickPower} ₽`;
-        el.style.left = `${event.clientX - rect.left}px`;
-        el.style.top = `${event.clientY - rect.top}px`;
-        event.currentTarget.appendChild(el);
-        setTimeout(() => el.remove(), 800);
-
-        checkWinCondition();
-    }
-
-    function buyUpgrade(id, cost) {
-        if (game.money >= cost) {
-            game.money -= cost;
-            game.upgrades[id]++;
-            logEvent(`Куплено: ${itemsData.find(i=>i.id===id).name}. Студия расширяется!`, 'success');
+    function buyAction(id, cost) {
+        if (state.money >= cost) {
+            state.money -= cost;
+            const action = actionsData.find(a => a.id === id);
+            action.effect();
+            logEvent(`Внедрение: "${action.name}" выполнено успешно!`, 'success');
             updateUI();
-            renderShop();
             saveGame();
+        } else {
+            logEvent(`Ошибка! Недостаточно свободного кэша на счете для запуска "${actionsData.find(a=>a.id===id).name}".`, 'danger');
         }
     }
 
-    function updateUI() {
-        document.getElementById('balance-val').innerText = Math.floor(game.money).toLocaleString();
-        document.getElementById('income-val').innerText = calculateIncomePerSec().toLocaleString();
-        
-        // Обновляем доступность кнопок магазина без полной перерисовки
-        itemsData.forEach(item => {
-            let count = game.upgrades[item.id];
-            let currentCost = Math.round(item.baseCost * Math.pow(1.18, count));
-            const btn = document.getElementById(`btn-${item.id}`);
-            if (btn) {
-                btn.disabled = game.money < currentCost;
-                btn.innerText = `${currentCost.toLocaleString()} ₽`;
-            }
-        });
+    function nextMonth() {
+        state.month++;
+
+        // Расчет выручки: База клиентов * средний абонемент (3 800 ₽) * коэффициент репутации
+        let baseRevenue = state.clients * 3800;
+        let reputationMultiplier = state.reputation / 50;
+        let grossRevenue = Math.round(baseRevenue * reputationMultiplier);
+
+        if (state.hasPartner) {
+            grossRevenue = Math.round(grossRevenue * 0.75); // Минус 25% инвестору
+        }
+
+        // Сумма обязательных списаний
+        let totalMonthlyExpenses = costs.rent + costs.utilities + costs.water + costs.crm + state.debt;
+
+        let netProfit = grossRevenue - totalMonthlyExpenses;
+        state.money += netProfit;
+
+        if (netProfit >= 0) {
+            state.clients += Math.floor(Math.random() * 3) + 2;
+            logEvent(`Месяц закрыт с прибылью! Выручка: +${grossRevenue.toLocaleString()} ₽ | Расходы: -${totalMonthlyExpenses.toLocaleString()} ₽. Чистый плюс: +${netProfit.toLocaleString()} ₽`, 'success');
+        } else {
+            state.clients = Math.max(6, state.clients - 2);
+            logEvent(`Кассовый разрыв! Выручки не хватило на покрытие аренды и коммуналки. Убыток: ${netProfit.toLocaleString()} ₽`, 'danger');
+        }
+
+        // Победа: капитал от 300 000 ₽ и постоянная база от 35 активных клиентов
+        if (state.money >= 300000 && state.clients >= 35) {
+            document.getElementById('winModal').style.display = 'flex';
+        }
+
+        updateUI();
+        saveGame();
     }
 
-    function checkWinCondition() {
-        // Условие победы: накопить капитал 25,000 ₽ и получать от 500 ₽/сек пассивного дохода
-        if (!hasWon && game.money >= 25000 && calculateIncomePerSec() >= 500) {
-            hasWon = true;
-            localStorage.setItem('resurs_business_won', 'true');
-            document.getElementById('winModal').style.display = 'flex';
-            logEvent('🏆 УСПЕХ! Вы вывели студию на премиальный уровень доходности!', 'gold');
+    function updateUI() {
+        document.getElementById('money-val').innerText = Math.round(state.money).toLocaleString() + ' ₽';
+        document.getElementById('month-val').innerText = `Месяц ${state.month}`;
+        document.getElementById('clients-val').innerText = state.clients;
+        document.getElementById('reputation-val').innerText = state.reputation + '%';
+
+        let totalCosts = costs.rent + costs.utilities + costs.water + costs.crm + state.debt;
+        document.getElementById('total-monthly-costs').innerText = totalCosts.toLocaleString() + ' ₽';
+
+        if (state.debt > 0) {
+            document.getElementById('debt-row').style.display = 'flex';
+            document.getElementById('debt-val').innerText = state.debt.toLocaleString() + ' ₽';
         }
     }
 
     function saveGame() {
-        localStorage.setItem('resurs_business_save', JSON.stringify(game));
+        localStorage.setItem('resurs_strategy_v8', JSON.stringify(state));
     }
 
-    // Игровой цикл пассивного дохода и расходов (каждую секунду)
-    setInterval(() => {
-        let income = calculateIncomePerSec();
-        game.money += income;
-        game.totalEarned += income;
-
-        rentCountdown--;
-        document.getElementById('rent-timer').innerText = rentCountdown + ' сек';
-
-        if (rentCountdown <= 0) {
-            rentCountdown = 60;
-            if (game.money >= fixedExpenses) {
-                game.money -= fixedExpenses;
-                logEvent(`💰 Оплачена аренда, коммуналка и зарплаты: -${fixedExpenses} ₽`, 'success');
-            } else {
-                game.money -= fixedExpenses; // Уходим в минус
-                logEvent(`⚠️ Внимание! Касса ушла в минус из-за нехватки средств на аренду!`, 'danger');
-            }
-        }
-
-        updateUI();
-        checkWinCondition();
-        saveGame();
-    }, 1000);
-
     window.onload = () => {
-        renderShop();
+        if (state.capitalType) {
+            document.getElementById('startModal').style.display = 'none';
+            renderActions();
+        }
         updateUI();
     };
 </script>
