@@ -22,6 +22,7 @@
     _tmr.push({id: "3755240", type: "pageView", start: (new Date()).getTime()});
     (function (d, w, id) {
         if (d.getElementById(id)) return;
+        if (d.getElementById(id)) return;
         var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
         ts.src = "https://top-fwz1.mail.ru/js/code.js";
         var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
@@ -41,21 +42,21 @@
     
     <!-- SEO Метатеги -->
     <title>РЕСУРС | ОНЛАЙН-КЛУБ | Занятия фитнесом и растяжкой дома</title>
-    <meta name="description" content="Онлайн-клуб фитнеса и движения РЕСУРС. Пошаговый курс Стройность, Детокс-интенсив и библиотека тренировок дома. Занимайтесь из любой точки мира. Попробуйте тест-драйв за 300₽!">
+    <meta name="description" content="Онлайн-клуб фитнеса и движения РЕСУРС. Пошаговый курс Стройность, Детокс-интенсив и библиотека тренировок дома. Занимайтесь из любой точки мира. Попробуйте тест-драйв за 100₽!">
     <meta name="keywords" content="онлайн клуб фитнеса, курс стройность, детокс интенсив, домашние тренировки, растяжка дома, фитнес сыктывкар онлайн, библиотека тренировок, забор здоровья">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://resurs-stretch.ru/club.html">
 
-    <!-- Open Graph (Карточка для соцсетей и мессенджеров) -->
+    <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="РЕСУРС | ОНЛАЙН-КЛУБ | Твоя личная трансформация дома">
-    <meta property="og:description" content="Закрытая цифровая экосистема: флагманские курсы, детокс и библиотека тренировок. Попробуйте тест-драйв клубу за 300₽.">
+    <meta property="og:description" content="Закрытая цифровая экосистема: флагманские курсы, детокс и библиотека тренировок. Попробуйте тест-драйв клубу за 100₽.">
     <meta property="og:url" content="https://resurs-stretch.ru/club.html">
     <meta property="og:image" content="https://resurs-stretch.ru/logo_header_final.png">
     <meta property="og:site_name" content="РЕСУРС">
     <meta property="og:locale" content="ru_RU">
 
-    <!-- Микроразметка Schema.org для поисковиков -->
+    <!-- Микроразметка Schema.org -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -90,10 +91,12 @@
     </script>
 
     <link rel="icon" type="image/png" href="logo_header_final.png">
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Manrope:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Подключение библиотеки маски для номеров телефонов -->
+    <script src="https://unpkg.com/imask"></script>
     
     <style>
         :root {
@@ -314,7 +317,7 @@
 <div style="padding: 0 5%; max-width: 1400px; margin: 0 auto;">
     <div class="glass test-drive-card" style="padding: 40px 50px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 25px; border: 1px solid rgba(197, 160, 89, 0.4); box-shadow: 0 10px 40px rgba(197, 160, 89, 0.05);">
         <div style="flex: 1; min-width: 280px;">
-            <h2 class="serif" style="font-size: 32px; color: var(--accent-gold); margin-bottom: 10px;">Попробуйте клуб за 300₽</h2>
+            <h2 class="serif" style="font-size: 32px; color: var(--accent-gold); margin-bottom: 10px;">Попробуйте клуб за 100₽</h2>
             <p style="opacity: 0.8; font-size: 15px; max-width: 600px;">Тест-драйв: 3 дня полного доступа ко всем флагманским программам и закрытой библиотеке. Оцените формат изнутри без риска.</p>
         </div>
         <a href="javascript:void(0)" class="btn btn-fill" onclick="openPayment('Тест-драйв')">Начать Тест-Драйв</a>
@@ -407,7 +410,7 @@
 </div>
 
 <script>
-    // Настройка кнопки при загрузке страницы
+    // Настройка кнопки темы
     window.addEventListener('DOMContentLoaded', () => {
         var btn = document.getElementById('theme-toggle-btn');
         if (document.documentElement.classList.contains('light-theme')) {
@@ -431,16 +434,27 @@
         }
     }
 
-    // --- НАСТРОЙКИ ОПЛАТЫ ---
+    // --- НАСТРОЙКИ ОПЛАТЫ И ЦЕНЫ ---
     var CLOUD_FUNCTION_URL = 'https://functions.yandexcloud.net/d4eg7hphveek8g1co3fr'; 
     var currentProduct = '';
 
+    // Обновленный прайс-лист
     var prices = {
-        'Стройность': 5000,
-        'Детокс': 3000,
-        'Все включено': 1600,
-        'Тест-драйв': 300
+        'Стройность': 1500,
+        'Детокс': 1000,
+        'Все включено': 600,
+        'Тест-драйв': 100
     };
+
+    // Маска телефона IMask
+    var phoneInput = document.getElementById('pay-phone');
+    var phoneMask = null;
+    if (phoneInput && typeof IMask !== 'undefined') {
+        phoneMask = IMask(phoneInput, {
+            mask: '+{7} (000) 000-00-00',
+            lazy: false
+        });
+    }
 
     window.addEventListener('scroll', function() {
         var header = document.getElementById('header');
@@ -452,11 +466,16 @@
     function openPayment(productName) {
         currentProduct = productName;
         document.getElementById('modal-product-name').innerText = productName;
-        var price = prices[productName] || 1600;
+        var price = prices[productName] || 600;
         document.getElementById('price-display').innerText = 'К оплате: ' + price + ' руб.';
         
         document.getElementById('payment-modal').style.display = 'block';
         document.getElementById('modal-overlay').style.display = 'block';
+
+        // Фокус и сброс маски если поле пустое
+        if (phoneMask && !phoneMask.unmaskedValue) {
+            phoneMask.value = '';
+        }
     }
 
     function closePayment() {
@@ -465,18 +484,23 @@
     }
 
     async function processPayment() {
-        var name = document.getElementById('pay-name').value;
-        var email = document.getElementById('pay-email').value;
-        var phone = document.getElementById('pay-phone').value;
-        var promo = document.getElementById('pay-promo').value;
+        var name = document.getElementById('pay-name').value.trim();
+        var email = document.getElementById('pay-email').value.trim();
+        var phone = phoneMask ? phoneMask.unmaskedValue : document.getElementById('pay-phone').value.trim();
+        var promo = document.getElementById('pay-promo').value.trim();
         var btn = document.getElementById('confirm-pay-btn');
 
         if (!name || !email || !phone) {
-            alert('Пожалуйста, заполните Имя, Email и Телефон');
+            alert('Пожалуйста, заполните Имя, Email и Телефон полностью');
             return;
         }
 
-        // --- ЛОКАЛЬНАЯ ЗАЩИТА ТЕСТ-ДРАЙВА (1 РАЗ НА УСТРОЙСТВО) ---
+        if (phone.length < 10) {
+            alert('Пожалуйста, введите корректный номер телефона');
+            return;
+        }
+
+        // Локальная защита тест-драйва
         if (currentProduct === 'Тест-драйв') {
             if (localStorage.getItem('testDriveUsed') === 'true') {
                 alert('Вы уже использовали Тест-драйв 1 раз. Пожалуйста, выберите основной тариф для продолжения.');
@@ -484,7 +508,7 @@
             }
         }
 
-        // --- ЛОКАЛЬНАЯ ЗАЩИТА ПРОМОКОДА (1 РАЗ НА УСТРОЙСТВО) ---
+        // Локальная защита промокода
         if (promo) {
             if (localStorage.getItem('promoUsed') === 'true') {
                 alert('Вы уже использовали промокод 1 раз. Для покупки введите актуальные данные без промокода.');
