@@ -44,7 +44,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     
     <title>РЕСУРС | Фитнес клуб и студия умного движения в Сыктывкаре</title>
-    <meta name="description" content="Фитнес-центр и студия эволюции тела РЕСУРС в Сыктывкаре. Поможем быстро похудеть, убрать живот, скинуть вес и избавиться от болей в спине за 50 минут. Легкие тренировки, умный пилатес, аэройога и МФР массаж. Запишитесь на тест-драйв!">
+    <meta name="description" content="Фитнес-центр и студия эволюции тела РЕСУРС в Сыктывкаре на ул. Коммунистическая, 67. Поможем быстро похудеть, убрать живот, скинуть вес и избавиться от болей в спине за 50 минут. Легкие тренировки, умный пилатес, аэройога и МФР массаж. Запишитесь на тест-драйв!">
     <meta name="keywords" content="фитнес клуб сыктывкар, фитнес-центр сыктывкар, похудеть в сыктывкаре, похудеть сыктывкар, легкие тренировки сыктывкар, убрать живот сыктывкар, скинуть вес сыктывкар, быстро похудеть сыктывкар, МФР, массаж, самомассаж сыктывкар, здоровая спина, исправление осанки, умный пилатес, лимфодренажные тренировки от отеков, аэростретчинг в гамаках, мягкий фитнес, растяжка сыктывкар, студия ресурс">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://resurs-stretch.ru/">
@@ -105,7 +105,6 @@
     </script>
 
     <style>
-        /* НЕО-БРУТАЛИЗМ: ГРАФИТ + ФИОЛЕТОВЫЙ АКЦЕНТ С ЛОГОТИПА */
         :root {
             --bg-deep: #F8F7FC; 
             --surface-color: #FFFFFF;
@@ -120,7 +119,6 @@
             --elem-bg: rgba(91, 52, 148, 0.04);
             --elem-border: rgba(91, 52, 148, 0.15);
             --nav-bg: rgba(248, 247, 252, 0.96);
-            --hero-overlay: linear-gradient(to bottom, rgba(248,247,252,0.4), var(--bg-deep));
             --font-main: 'Manrope', sans-serif;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             --shadow: rgba(0, 0, 0, 0.06);
@@ -140,16 +138,16 @@
             --elem-bg: rgba(108, 62, 184, 0.12);
             --elem-border: rgba(108, 62, 184, 0.2);
             --nav-bg: rgba(10, 9, 15, 0.96);
-            --hero-overlay: linear-gradient(to bottom, rgba(10,9,15,0.6), var(--bg-deep));
             --shadow: rgba(0, 0, 0, 0.6);
         }
 
-        /* --- GLOBAL RESET --- */
+        /* GLOBAL RESET */
         * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
         html { scroll-behavior: smooth; }
         
         html, body {
             overflow-x: hidden !important;
+            max-width: 100%;
             width: 100%;
             position: relative;
         }
@@ -169,17 +167,9 @@
         a { text-decoration: none; color: inherit; transition: var(--transition); }
         ul { list-style: none; }
 
-        /* --- UI COMPONENTS --- */
-        .glass {
-            background: var(--surface-color);
-            border: 1px solid var(--border-color, var(--elem-border));
-            border-radius: 12px;
-            transition: var(--transition);
-        }
-
         .btn {
             display: inline-flex; align-items: center; justify-content: center;
-            padding: 16px 32px;
+            padding: 14px 28px;
             border: 1px solid var(--accent-purple);
             color: #FFF;
             background: var(--accent-purple);
@@ -195,13 +185,18 @@
         }
 
         .btn-lens {
+            display: inline-flex; align-items: center; justify-content: center;
             background: var(--surface-color);
             color: var(--text-main);
             border: 1px solid var(--elem-border);
             border-radius: 8px;
+            padding: 14px 28px;
             transition: var(--transition);
             cursor: pointer;
             font-weight: 700;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         .btn-lens:hover {
             border-color: var(--accent-purple);
@@ -215,140 +210,102 @@
             margin-bottom: 25px; display: block; font-weight: 800;
         }
 
-        /* --- HEADER --- */
+        /* HEADER STICKY */
         header {
-            position: fixed; top: 0; width: 100%; padding: 18px 5%;
-            display: flex; justify-content: space-between; align-items: center;
-            z-index: 2000; transition: all 0.3s ease; background: transparent; 
-        }
-
-        header.scrolled { 
-            background: var(--nav-bg) !important; 
-            backdrop-filter: blur(20px) !important; 
-            -webkit-backdrop-filter: blur(20px) !important; 
-            padding: 12px 5% !important; 
+            position: sticky; top: 0; width: 100%; padding: 14px 5%;
+            z-index: 2000; transition: all 0.3s ease;
+            background: var(--nav-bg); 
+            backdrop-filter: blur(20px); 
+            -webkit-backdrop-filter: blur(20px); 
             border-bottom: 1px solid var(--elem-border);
         }
 
-        .header-left, .header-right {
-            display: flex; align-items: center; width: 33%;
-        }
-        .header-right {
-            justify-content: flex-end; gap: 14px; position: relative;
-        }
-        .header-center {
-            width: 34%; display: flex; justify-content: center;
+        .header-top {
+            display: flex; justify-content: space-between; align-items: center; width: 100%;
         }
 
-        .brand-name { 
-            font-size: 20px; 
-            letter-spacing: 2px; text-transform: uppercase; color: var(--text-main); 
-            font-weight: 800;
+        .logo-wrap {
+            display: flex; align-items: center; gap: 10px;
         }
+        .logo-wrap img { height: 34px; width: 34px; border-radius: 6px; }
+        .brand-name { font-size: 18px; letter-spacing: 1px; text-transform: uppercase; font-weight: 800; }
         .brand-name span { color: var(--accent-purple); }
 
-        header img { height: 36px; width: 36px; border-radius: 6px; transition: 0.3s; }
+        /* Навигация наружу: 5 ключевых ссылок */
+        .desktop-nav {
+            display: flex; align-items: center; gap: 20px; list-style: none;
+        }
+        .desktop-nav a, .desktop-nav button {
+            color: var(--text-main); font-weight: 700; font-size: 12px;
+            text-transform: uppercase; letter-spacing: 0.5px; background: none; border: none; cursor: pointer;
+        }
+        .desktop-nav a:hover, .desktop-nav button:hover { color: var(--accent-purple); }
+
+        .desktop-actions {
+            display: flex; align-items: center; gap: 12px;
+        }
 
         .theme-toggle-btn {
-            padding: 6px 12px; height: 36px; font-size: 10px; font-weight: 800; letter-spacing: 1px;
+            padding: 8px 14px; height: 36px; font-size: 10px; font-weight: 800; letter-spacing: 1px;
             display: inline-flex; align-items: center; justify-content: center;
             border-radius: 6px; border: 1px solid var(--elem-border); background: var(--surface-color);
             cursor: pointer; transition: var(--transition); color: var(--text-main); text-transform: uppercase;
         }
         .theme-toggle-btn:hover { border-color: var(--accent-purple); color: var(--accent-purple); }
 
-        /* БУРГЕР ИЗ 4 ЛИНИЙ */
-        .nav-trigger { 
-            position: relative; display: flex; align-items: center; justify-content: center; 
-            z-index: 2100; width: 44px; height: 44px; border-radius: 8px;
-            background: var(--surface-color); border: 1px solid var(--elem-border); cursor: pointer;
+        .btn-header-cta {
+            text-decoration: none; font-size: 11px; font-weight: 800; padding: 9px 18px;
+            background: var(--accent-purple); color: #FFF !important; border-radius: 6px;
+            text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; border: none;
         }
-        .nav-trigger span { 
-            position: absolute; left: 10px; height: 2px; background: var(--text-main); 
-            transition: var(--transition); width: 24px; border-radius: 2px;
-        }
-        .nav-trigger span:nth-child(1) { top: 12px; }
-        .nav-trigger span:nth-child(2) { top: 18px; }
-        .nav-trigger span:nth-child(3) { top: 24px; }
-        .nav-trigger span:nth-child(4) { top: 30px; }
+        .btn-header-cta:hover { background-color: var(--accent-hover); }
 
-        .nav-trigger.active span:nth-child(1) { top: 21px; transform: rotate(45deg); width: 24px; }
-        .nav-trigger.active span:nth-child(2) { opacity: 0; transform: translateX(-15px); }
-        .nav-trigger.active span:nth-child(3) { opacity: 0; transform: translateX(15px); }
-        .nav-trigger.active span:nth-child(4) { top: 21px; transform: rotate(-45deg); width: 24px; }
-
-        /* --- ШТОРКА МЕНЮ --- */
-        .glass-sidebar {
-            position: fixed; top: 0; left: -100%; width: 100%; height: 100dvh;
-            background: var(--nav-bg); 
-            backdrop-filter: blur(25px) saturate(180%); 
-            -webkit-backdrop-filter: blur(25px) saturate(180%); 
-            z-index: 2000; 
-            display: flex; 
-            align-items: flex-start;       
-            justify-content: center;
-            overflow-y: auto;               
-            padding: 80px 20px 60px;       
-            transition: left 0.5s cubic-bezier(0.85, 0, 0.15, 1); 
-        }
-        .glass-sidebar.active { left: 0; }
-
-        .nav-links { text-align: center; width: 100%; max-width: 500px; }
-        .nav-main-link {
-            font-family: 'Manrope', sans-serif !important;
-            font-size: 20px !important;
-            font-weight: 700 !important;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin: 12px 0 !important;
-            color: var(--text-main) !important;
-            display: block;
-        }
-        .nav-main-link.purple-link {
-            color: var(--accent-purple) !important;
-        }
-        .nav-main-link.special-link {
-            font-size: 16px !important;
-            font-weight: 500 !important;
-            text-transform: none;
-            letter-spacing: 0;
-            margin: 8px 0 !important;
-            color: var(--text-dim) !important;
-        }
-        .sub-nav-group {
-            margin-top: 30px !important;
-            padding-top: 25px !important;
-            border-top: 1px solid var(--elem-border);
+        /* МОБИЛЬНЫЙ ВТОРОЙ ЭТАЖ ДЛЯ УДОБСТВА БОЛЬШОГО ПАЛЬЦА */
+        .mobile-thumb-bar {
+            display: none;
             width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px !important;
-        }
-        .sub-nav-header {
-            font-size: 11px !important;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 800;
-            color: var(--accent-purple) !important;
-            margin-bottom: 5px !important;
             margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid var(--elem-border);
+            gap: 10px;
         }
-        .sub-nav-header:first-child { margin-top: 0; }
-        .sub-nav-link {
-            font-size: 14px !important;
-            font-weight: 500 !important;
-            color: var(--text-main) !important;
-            opacity: 0.85;
-            margin: 0 !important;
-            display: block;
+        .mobile-thumb-bar .theme-toggle-btn {
+            flex: 1; height: 42px; font-size: 10px;
+        }
+        .mobile-thumb-bar .btn-header-cta {
+            flex: 2; height: 42px; display: flex; align-items: center; justify-content: center; font-size: 11px;
         }
 
-        /* --- ДВУХКОЛОНОЧНЫЙ HERO (ВАРИАНТ 1) --- */
+        @media (max-width: 900px) {
+            .desktop-nav { display: none; }
+            .desktop-actions { display: none; }
+            .mobile-thumb-bar { display: flex; }
+        }
+
+        /* ГОРИЗОНТАЛЬНЫЙ СКРОЛЛ КАТЕГОРИЙ ДЛЯ МОБИЛОК */
+        .mobile-quick-nav {
+            display: none;
+            overflow-x: auto;
+            white-space: nowrap;
+            scrollbar-width: none;
+            padding: 8px 5%;
+            background: var(--surface-color);
+            border-bottom: 1px solid var(--elem-border);
+            gap: 12px;
+        }
+        .mobile-quick-nav::-webkit-scrollbar { display: none; }
+        .mobile-quick-nav a, .mobile-quick-nav button {
+            display: inline-block; font-size: 11px; font-weight: 700; text-transform: uppercase;
+            color: var(--text-main); background: none; border: none; cursor: pointer;
+        }
+        @media (max-width: 900px) {
+            .mobile-quick-nav { display: flex; }
+        }
+
+        /* HERO ДВУХКОЛОНОЧНЫЙ */
         .hero {
-            padding: 120px 5% 70px;
+            padding: 50px 5% 60px;
             width: 100%;
-            min-height: 85vh;
             display: flex;
             align-items: center;
         }
@@ -361,18 +318,18 @@
             margin: 0 auto;
             width: 100%;
         }
-        @media (max-width: 968px) { .hero-grid { grid-template-columns: 1fr; gap: 32px; padding-top: 20px; } }
+        @media (max-width: 968px) { .hero-grid { grid-template-columns: 1fr; gap: 30px; } }
 
         .hero-offer h1 {
-            font-size: clamp(30px, 4.5vw, 50px);
+            font-size: clamp(28px, 4.2vw, 48px);
             font-weight: 800;
             line-height: 1.15;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
             letter-spacing: -0.5px;
         }
         .hero-offer h1 span { color: var(--accent-purple); }
         .hero-offer p {
-            font-size: 16px;
+            font-size: 15px;
             color: var(--text-dim);
             margin-bottom: 25px;
             line-height: 1.7;
@@ -386,12 +343,12 @@
             font-weight: 800;
             color: var(--accent-purple);
             background: var(--accent-subtle);
-            padding: 6px 14px;
+            padding: 6px 12px;
             border-radius: 6px;
             border: 1px solid var(--elem-border);
             margin-bottom: 20px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
         .pulse-dot {
             width: 8px; height: 8px; background-color: var(--accent-purple);
@@ -421,152 +378,115 @@
             font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: #FFF;
         }
 
-        /* --- EXPERT SECTION --- */
-        .expert-section { padding: 90px 5%; position: relative; border-top: 1px solid var(--elem-border); }
-        .expert-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 50px; align-items: center; max-width: 1200px; margin: 0 auto; }
-        .expert-img-wrap { border-radius: 12px; overflow: hidden; height: 500px; box-shadow: 0 20px 40px var(--shadow); border: 1px solid var(--elem-border); }
-        .expert-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
-        .expert-img-wrap:hover img { transform: scale(1.02); }
+        /* EXPERT SECTION */
+        .expert-section { padding: 80px 5%; border-top: 1px solid var(--elem-border); }
+        .expert-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: center; max-width: 1200px; margin: 0 auto; }
+        .expert-img-wrap { border-radius: 12px; overflow: hidden; height: 460px; box-shadow: 0 20px 40px var(--shadow); border: 1px solid var(--elem-border); }
+        .expert-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* --- CLUB SECTION (FLEXBOX СТРУКТУРА) --- */
-        .club-section { padding: 90px 5%; position: relative; border-top: 1px solid var(--elem-border); }
+        /* PRACTICE ROWS */
+        .club-section { padding: 80px 5%; border-top: 1px solid var(--elem-border); }
         .practice-row { display: flex; gap: 30px; align-items: stretch; margin-bottom: 50px; }
-        .practice-text { flex: 1; min-width: 320px; order: 1; padding: 45px; border-radius: 12px; display: flex; flex-direction: column; justify-content: center; background: var(--surface-color); border: 1px solid var(--elem-border); }
-        .practice-video { flex: 1; min-width: 320px; order: 2; border-radius: 12px; overflow: hidden; box-shadow: 0 15px 35px var(--shadow); border: 1px solid var(--elem-border); }
-        .practice-video video { width: 100%; height: 100%; object-fit: cover; min-height: 400px; display: block; }
+        .practice-text { flex: 1; min-width: 300px; order: 1; padding: 40px; border-radius: 12px; display: flex; flex-direction: column; justify-content: center; background: var(--surface-color); border: 1px solid var(--elem-border); }
+        .practice-video { flex: 1; min-width: 300px; order: 2; border-radius: 12px; overflow: hidden; box-shadow: 0 15px 35px var(--shadow); border: 1px solid var(--elem-border); }
+        .practice-video video { width: 100%; height: 100%; object-fit: cover; min-height: 380px; display: block; }
         
         .practice-row.reverse .practice-text { order: 2; }
         .practice-row.reverse .practice-video { order: 1; }
 
         .feature-list { opacity: 0.85; font-size: 14px; margin-bottom: 25px; padding-left: 18px; }
-        .feature-list li { margin-bottom: 8px; position: relative; }
+        .feature-list li { margin-bottom: 8px; }
         .feature-list li::marker { color: var(--accent-purple); }
 
         .inline-packages {
-            padding: 60px 40px; border-radius: 12px; text-align: center; 
-            border: 1px solid var(--elem-border); 
-            background: var(--surface-color);
-            margin: 60px 0;
-            box-shadow: 0 15px 35px var(--shadow);
+            padding: 50px 30px; border-radius: 12px; text-align: center; 
+            border: 1px solid var(--elem-border); background: var(--surface-color); margin: 50px 0;
         }
 
-        /* --- PHILOSOPHY --- */
-        .philosophy { padding: 90px 5%; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; border-top: 1px solid var(--elem-border); }
+        /* PHILOSOPHY */
+        .philosophy { padding: 80px 5%; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; border-top: 1px solid var(--elem-border); max-width: 1200px; margin: 0 auto; }
         .philosophy-text { text-align: center; display: flex; flex-direction: column; align-items: center; }
-        .philosophy-img-wrap { position: relative; height: 500px; border-radius: 12px; overflow: hidden; border: 1px solid var(--elem-border); }
-        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; width: 100%; text-align: center; margin-top: 35px; gap: 20px; }
-        .stat-val { font-size: 40px; color: var(--accent-purple); font-weight: 800; line-height: 1; }
+        .philosophy-img-wrap { height: 460px; border-radius: 12px; overflow: hidden; border: 1px solid var(--elem-border); }
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; width: 100%; text-align: center; margin-top: 30px; gap: 20px; }
+        .stat-val { font-size: 38px; color: var(--accent-purple); font-weight: 800; line-height: 1; }
 
-        /* --- DIRECTIONS --- */
-        .directions { padding: 90px 5%; border-top: 1px solid var(--elem-border); }
-        .dir-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1200px; margin: 0 auto; }
-        .dir-item { height: 480px; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; padding: 40px; border-radius: 12px; border: 1px solid var(--elem-border); }
+        /* DIRECTIONS */
+        .directions { padding: 80px 5%; border-top: 1px solid var(--elem-border); }
+        .dir-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1200px; margin: 0 auto; }
+        .dir-item { height: 440px; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; padding: 32px; border-radius: 12px; border: 1px solid var(--elem-border); }
         .dir-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.35; transition: 1.2s; z-index: 0; }
         .dir-item:hover .dir-bg { transform: scale(1.08); opacity: 0.55; }
         .dir-content { position: relative; z-index: 2; }
-        .dir-title { font-size: 28px; margin-bottom: 12px; color: #FFF; font-weight: 800; }
-        .dir-list { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.9; list-style: none; color: #FFF; }
-        .dir-list li { margin-bottom: 6px; position: relative; padding-left: 18px; }
+        .dir-title { font-size: 26px; margin-bottom: 10px; color: #FFF; font-weight: 800; }
+        .dir-list { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; opacity: 0.9; list-style: none; color: #FFF; }
+        .dir-list li { margin-bottom: 6px; padding-left: 16px; position: relative; }
         .dir-list li::before { content: '—'; position: absolute; left: 0; color: var(--accent-purple); }
 
-        .schedule-section { padding: 80px 5% 100px; text-align: center; border-top: 1px solid var(--elem-border); }
+        .schedule-section { padding: 70px 5% 90px; text-align: center; border-top: 1px solid var(--elem-border); }
 
-        /* --- BENTO CARD LAYOUT --- */
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .bento-card {
-            background: var(--surface-color);
-            border: 1px solid var(--elem-border);
-            border-radius: 12px;
-            padding: 36px;
-            transition: var(--transition);
-            box-shadow: 0 10px 30px var(--shadow);
-            display: flex;
-            flex-direction: column;
-        }
-        .bento-card:hover {
-            transform: translateY(-3px);
-            border-color: var(--accent-purple);
-        }
+        /* BENTO */
+        .bento-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; max-width: 1200px; margin: 0 auto; }
+        .bento-card { background: var(--surface-color); border: 1px solid var(--elem-border); border-radius: 12px; padding: 32px; display: flex; flex-direction: column; }
 
-        /* --- FAQ SECTION --- */
+        /* FAQ */
         .faq-section { padding: 70px 5% 90px; max-width: 900px; margin: 0 auto; }
-        .faq-item { margin-bottom: 14px; border-radius: 8px; overflow: hidden; border: 1px solid var(--elem-border); background: var(--surface-color); }
-        .faq-question { padding: 20px 24px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 700; font-size: 15px; }
-        .faq-question::after { content: '+'; font-size: 22px; color: var(--accent-purple); transition: transform 0.3s ease; font-weight: 300; }
-        .faq-item.active .faq-question::after { transform: rotate(45deg); font-weight: 700; }
+        .faq-item { margin-bottom: 12px; border-radius: 8px; overflow: hidden; border: 1px solid var(--elem-border); background: var(--surface-color); }
+        .faq-question { padding: 18px 24px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 700; font-size: 15px; }
+        .faq-question::after { content: '+'; font-size: 20px; color: var(--accent-purple); }
+        .faq-item.active .faq-question::after { content: '−'; font-weight: 800; }
         .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease; opacity: 0.85; font-size: 14px; padding: 0 24px; line-height: 1.7; }
         .faq-item.active .faq-answer { max-height: 500px; padding: 0 24px 20px; }
 
-        /* --- REVIEWS --- */
+        /* REVIEWS */
         .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; text-align: left; }
-        .review-card { background: var(--surface-color); border: 1px solid var(--elem-border); padding: 32px; border-radius: 12px; }
+        .review-card { background: var(--surface-color); border: 1px solid var(--elem-border); padding: 28px; border-radius: 12px; }
 
-        /* --- FOOTER --- */
-        footer { padding: 80px 5% 40px; border-top: 1px solid var(--elem-border); text-align: center; background: var(--surface-color); }
-        .footer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-bottom: 60px; text-align: left; max-width: 1200px; margin-left: auto; margin-right: auto; }
-        .footer-col h4 { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-purple); margin-bottom: 20px; font-weight: 800; }
-
-        #journal-float-btn {
-            position: fixed; bottom: 25px; left: 25px; width: 56px; height: 56px;
-            background: var(--surface-color); border: 1px solid var(--accent-purple); border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; z-index: 9998;
-            box-shadow: 0 10px 25px var(--shadow); transition: 0.3s;
-        }
-        #journal-float-btn:hover { transform: translateY(-3px); background: var(--accent-purple); }
-        #journal-float-btn svg { stroke: var(--accent-purple); }
-        #journal-float-btn:hover svg { stroke: #FFF; }
+        /* FOOTER */
+        footer { padding: 70px 5% 40px; border-top: 1px solid var(--elem-border); text-align: center; background: var(--surface-color); }
+        .footer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-bottom: 50px; text-align: left; max-width: 1200px; margin-left: auto; margin-right: auto; }
+        .footer-col h4 { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-purple); margin-bottom: 18px; font-weight: 800; }
 
         .footer-journal-banner {
-            background: var(--surface-color);
-            border: 1px solid var(--elem-border); border-radius: 12px;
-            padding: 36px; margin-bottom: 50px; display: flex; align-items: center;
-            justify-content: space-between; flex-wrap: wrap; gap: 20px; text-align: left;
+            background: var(--surface-color); border: 1px solid var(--elem-border); border-radius: 12px;
+            padding: 32px; margin-bottom: 45px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; text-align: left;
         }
 
-        /* --- MODALS --- */
+        /* MODALS */
         .modal { display: none; position: fixed; inset: 0; z-index: 3000; background: rgba(0,0,0,0.85); backdrop-filter: blur(12px); align-items: center; justify-content: center; padding: 20px; overflow-y: auto; }
-        .modal-content { width: 100%; max-width: 480px; padding: 40px 30px; position: relative; text-align: center; border-radius: 12px; margin: auto; background: var(--surface-color); border: 1px solid var(--elem-border); }
-        .modal-close { position: absolute; top: 15px; right: 20px; font-size: 30px; cursor: pointer; color: var(--text-dim); transition: 0.3s; }
+        .modal-content { width: 100%; max-width: 480px; padding: 36px 28px; position: relative; border-radius: 12px; margin: auto; background: var(--surface-color); border: 1px solid var(--elem-border); text-align: center; }
+        .modal-close { position: absolute; top: 14px; right: 18px; font-size: 28px; cursor: pointer; color: var(--text-dim); }
         .modal-close:hover { color: var(--accent-purple); }
-        .modal input { 
-            width: 100%; background: var(--bg-deep); border: 1px solid var(--elem-border); 
-            padding: 14px 16px; color: var(--text-main); font-size: 15px; margin-bottom: 16px; 
-            border-radius: 8px; text-align: left !important;
-        }
-        .modal input:focus { border-color: var(--accent-purple); }
-        #payment-form { width: 100%; min-height: 400px; margin: 0 auto; display: flex; justify-content: center; }
-
+        .modal input { width: 100%; background: var(--bg-deep); border: 1px solid var(--elem-border); padding: 14px 16px; color: var(--text-main); font-size: 14px; margin-bottom: 14px; border-radius: 6px; }
         #crmModal .modal-content { background: #FFFFFF !important; color: #000000 !important; text-align: left !important; }
-        #crmModal .modal-close { color: #000000 !important; }
 
-        /* --- PROMO WIDGET --- */
-        #promo-widget {
-            position: fixed; top: 100px; left: 24px; width: 320px; z-index: 1500; padding: 22px; border-radius: 12px;
-            background: var(--surface-color); border: 1px solid var(--accent-purple);
-            box-shadow: 0 15px 40px var(--shadow); display: none; flex-direction: column; gap: 12px;
+        /* ПОПАП "ПРОЧИЕ СТРАНИЦЫ" */
+        #pagesModal .modal-content { max-width: 650px; text-align: left; }
+        .pages-cat-title { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent-purple); font-weight: 800; margin-bottom: 8px; margin-top: 16px; }
+        .pages-cat-title:first-child { margin-top: 0; }
+        .pages-link-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+        @media (max-width: 550px) { .pages-link-grid { grid-template-columns: 1fr; } }
+        .pages-link-item { padding: 10px 14px; background: var(--bg-deep); border: 1px solid var(--elem-border); border-radius: 6px; font-size: 13px; font-weight: 600; color: var(--text-main); display: block; }
+        .pages-link-item:hover { border-color: var(--accent-purple); color: var(--accent-purple); }
+
+        /* FLOATING WIDGETS */
+        #journal-float-btn {
+            position: fixed; bottom: 25px; left: 25px; width: 54px; height: 54px;
+            background: var(--surface-color); border: 1px solid var(--accent-purple); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; z-index: 9998; box-shadow: 0 10px 25px var(--shadow);
         }
-        .promo-close { position: absolute; top: 12px; right: 14px; cursor: pointer; opacity: 0.6; font-size: 18px; }
-        .promo-title { font-size: 18px; font-weight: 800; color: var(--accent-purple); line-height: 1.2; }
-        .promo-text { font-size: 13px; opacity: 0.85; line-height: 1.5; }
-        .promo-btn { display: block; text-align: center; padding: 12px; background: var(--accent-purple); color: #FFF; border-radius: 6px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+        #journal-float-btn svg { stroke: var(--accent-purple); }
+        #journal-float-btn:hover { background: var(--accent-purple); }
+        #journal-float-btn:hover svg { stroke: #FFF; }
 
-        /* --- AI CHAT WIDGET --- */
         #ls-ai-button {
-            position: fixed; bottom: 25px; right: 25px; width: 56px; height: 56px;
+            position: fixed; bottom: 25px; right: 25px; width: 54px; height: 54px;
             background: var(--accent-purple); border: none; border-radius: 50%;
             cursor: pointer; box-shadow: 0 10px 25px rgba(108, 62, 184, 0.4);
-            z-index: 9999; display: flex; align-items: center; justify-content: center;
-            font-size: 22px; color: #FFF;
+            z-index: 9999; display: flex; align-items: center; justify-content: center; font-size: 20px; color: #FFF;
         }
         #ls-ai-chat {
-            display: none; position: fixed; bottom: 95px; right: 25px; width: 360px;
-            height: 520px; max-height: 80vh; background: var(--surface-color);
+            display: none; position: fixed; bottom: 90px; right: 25px; width: 360px;
+            height: 500px; max-height: 80vh; background: var(--surface-color);
             border: 1px solid var(--elem-border); border-radius: 12px; z-index: 10000;
             flex-direction: column; overflow: hidden; box-shadow: 0 20px 50px var(--shadow);
         }
@@ -575,98 +495,81 @@
         .msg-assistant { background: var(--surface-hover); color: var(--text-main); align-self: flex-start; }
         .msg-user { background: var(--accent-purple); color: #FFF; align-self: flex-end; }
 
-        /* COOKIE */
+        #promo-widget {
+            position: fixed; top: 90px; left: 24px; width: 300px; z-index: 1500; padding: 20px; border-radius: 10px;
+            background: var(--surface-color); border: 1px solid var(--accent-purple); box-shadow: 0 15px 40px var(--shadow); display: none; flex-direction: column; gap: 8px;
+        }
+        .promo-close { position: absolute; top: 10px; right: 12px; cursor: pointer; opacity: 0.6; font-size: 18px; }
+        .promo-title { font-size: 16px; font-weight: 800; color: var(--accent-purple); }
+        .promo-text { font-size: 12px; opacity: 0.85; line-height: 1.4; }
+
         #cookie-notice {
-            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 600px;
-            z-index: 2500; display: none; align-items: center; justify-content: space-between; gap: 15px;
-            padding: 14px 20px; border-radius: 8px; box-shadow: 0 10px 30px var(--shadow);
-            background: var(--surface-color); border: 1px solid var(--elem-border);
+            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 550px;
+            z-index: 2500; display: none; align-items: center; justify-content: space-between; gap: 14px;
+            padding: 12px 18px; border-radius: 8px; box-shadow: 0 10px 30px var(--shadow); background: var(--surface-color); border: 1px solid var(--elem-border);
         }
 
-        /* --- MEDIA QUERIES --- */
         @media (max-width: 1100px) {
             .expert-grid, .philosophy, .dir-container, .bento-grid { grid-template-columns: 1fr; }
-            .expert-img-wrap, .philosophy-img-wrap { height: 380px; }
+            .expert-img-wrap, .philosophy-img-wrap { height: 360px; }
             .footer-grid { grid-template-columns: 1fr; text-align: center; }
         }
         @media (max-width: 900px) {
             .practice-row { flex-direction: column; gap: 20px; }
-            .practice-text { order: 2 !important; padding: 32px 24px; }
+            .practice-text { order: 2 !important; padding: 30px 20px; }
             .practice-video { order: 1 !important; }
-            .practice-video video { min-height: 320px; }
-            .header-left, .header-right { width: 25%; }
-            .header-center { width: 50%; }
-        }
-        @media (max-width: 600px) {
-            header { padding: 12px 5% !important; }
-            .brand-name { font-size: 16px !important; letter-spacing: 1px !important; }
-            .theme-toggle-btn { font-size: 9px; padding: 0 10px; height: 32px; }
-            .hero { padding: 100px 5% 50px; }
-            .inline-packages { padding: 36px 20px; }
-            #ls-ai-chat { bottom: 0; right: 0; width: 100%; height: 100dvh; border-radius: 0; }
+            .practice-video video { min-height: 300px; }
         }
     </style>
 </head>
 <body>
 
-<!-- ШТОРКА МЕНЮ СО ВСЕМИ 15+ ССЫЛКАМИ -->
-<div id="navOverlay" class="glass-sidebar">
-    <div class="nav-links">
-        <a href="#about" onclick="toggleNav()" class="nav-main-link">О студии</a>
-        <a href="manifest.html" class="nav-main-link purple-link">МАНИФЕСТ ТЕЛА</a>
-        <a href="journal.html" class="nav-main-link purple-link">ЖУРНАЛ СТУДИИ</a>
-        <a href="#schedule" onclick="toggleNav()" class="nav-main-link">РАСПИСАНИЕ</a>
-        <a href="future-packages.html" class="nav-main-link purple-link">АБОНЕМЕНТЫ</a>
-        <a href="club.html" class="nav-main-link">100% похудение</a>
-        
-        <a href="#" onclick="openCrmModal(); toggleNav()" class="nav-main-link">Записаться онлайн</a>
-        
-        <a href="horoscope.html" class="nav-main-link purple-link" style="font-style: italic !important;">Астро-прогноз от Веры Венеры</a>
-        <a href="community.html" class="nav-main-link special-link">Пульс студии (Аналитика)</a>
-        <a href="survey.html" class="nav-main-link special-link">Опрос & Бонус</a>
-        <a href="#contacts" onclick="toggleNav()" class="nav-main-link">Контакты</a>
-        
-        <div class="sub-nav-group">
-            <span class="sub-nav-header">Решения и практики</span>
-            <a href="anti-office.html" class="sub-nav-link">Снятие боли в спине</a>
-            <a href="stress-relief.html" class="sub-nav-link">Антистресс и сон</a>
-            <a href="body-tone.html" class="sub-nav-link">Похудение и рельеф</a>
-            <a href="split-goals.html" class="sub-nav-link">Шпагат безопасно</a>
-            <a href="beginners-start.html" class="sub-nav-link">С чего начать новичку?</a>
-            
-            <span class="sub-nav-header">Фокусные направления</span>
-            <a href="pilates.html" class="sub-nav-link">Умный Пилатес</a>
-            <a href="body-sculpt.html" class="sub-nav-link">Стройное тело</a>
-        </div>
-    </div>
-</div>
-    
-<!-- HEADER С КНОПКОЙ ТЕМЫ БЕЗ ПОПАПА -->
+<!-- ШАПКА -->
 <header id="header">
-    <div class="header-left">
-        <div class="nav-trigger" id="navTrigger" onclick="toggleNav()">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
+    <div class="header-top">
+        <div class="logo-wrap">
+            <a href="index.html" class="logo-wrap">
+                <img src="logo_header_final.png" alt="Логотип РЕСУРС">
+                <div class="brand-name">РЕСУРС<span>.ДВИЖЕНИЕ</span></div>
+            </a>
+        </div>
+
+        <!-- 5 ключевых ссылок снаружи для ПК -->
+        <ul class="desktop-nav">
+            <li><a href="future-packages.html">Абонементы</a></li>
+            <li><a href="schedule.html">Расписание</a></li>
+            <li><a href="club.html">Онлайн-клуб</a></li>
+            <li><a href="#contacts">Контакты</a></li>
+            <li><button onclick="openPagesModal()">Прочие страницы ▾</button></li>
+        </ul>
+
+        <!-- Кнопки управления для ПК -->
+        <div class="desktop-actions">
+            <button id="themeToggleBtn" class="theme-toggle-btn" onclick="toggleThemeInstant()">ТЕМА: ТЕМНАЯ</button>
+            <button class="btn-header-cta" onclick="openCrmModal()">Записаться</button>
         </div>
     </div>
 
-    <div class="header-center">
-        <a href="index.html" class="brand-name">РЕСУРС<span>.ДВИЖЕНИЕ</span></a>
-    </div>
-
-    <div class="header-right">
-        <button id="themeToggleBtn" class="theme-toggle-btn" onclick="toggleThemeInstant()" aria-label="Переключить тему">ТЕМА: ТЕМНАЯ</button>
-        <a href="index.html"><img src="logo_header_final.png" alt="Логотип Ресурс"></a>
+    <!-- ВТОРОЙ ЭТАЖ ДЛЯ МОБИЛЬНЫХ (УДОБСТВО БОЛЬШОГО ПАЛЬЦА) -->
+    <div class="mobile-thumb-bar">
+        <button id="themeToggleMobile" class="theme-toggle-btn" onclick="toggleThemeInstant()">ТЕМА: ТЕМНАЯ</button>
+        <button class="btn-header-cta" onclick="openCrmModal()">ЗАПИСАТЬСЯ ОНЛАЙН</button>
     </div>
 </header>
 
-<!-- СЕКЦИЯ 1: ДВУХКОЛОНОЧНЫЙ HERO (ВАРИАНТ 1) -->
+<!-- МОБИЛЬНЫЙ СКРОЛЛ 5 КЛЮЧЕВЫХ ССЫЛОК -->
+<div class="mobile-quick-nav">
+    <a href="future-packages.html">Абонементы</a>
+    <a href="schedule.html">Расписание</a>
+    <a href="club.html">Онлайн-клуб</a>
+    <a href="#contacts">Контакты</a>
+    <button onclick="openPagesModal()" style="color: var(--accent-purple);">Все разделы ▾</button>
+</div>
+
+<!-- БЛОК 1: ДВУХКОЛОНОЧНЫЙ HERO (ВАРИАНТ 1) -->
 <section class="hero">
     <div class="hero-grid">
         
-        <!-- Слева: УТП, слоган, адрес и кнопки -->
         <div class="hero-offer">
             <div class="location-badge">
                 <span class="pulse-dot"></span>
@@ -676,20 +579,18 @@
             <p>
                 Избавляем от болей в спине, устраняем зажимы шеи и возвращаем легкость за 50 минут. Экспертная декомпрессия позвоночника, умный пилатес и лимфодренажный МФР под контролем дипломированных тренеров.
             </p>
-            <div style="display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 20px;">
+            <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px;">
                 <button class="btn" onclick="openModal()">ЗАБРАТЬ ТЕСТ-ДРАЙВ</button>
-                <a href="wheel.html" class="btn btn-lens">Испытать удачу 🎡</a>
+                <a href="wheel.html" class="btn-lens">Испытать удачу 🎡</a>
             </div>
             <p style="font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--text-dim);">
                 3 тренировки на 10 дней всего за 990 ₽
             </p>
         </div>
 
-        <!-- Справа: Bento-рамка с закольцованным Hero-видео -->
         <div class="hero-video-box">
             <video autoplay muted loop playsinline poster="bg.jpg">
                 <source src="hero-video.mp4?v=20260809" type="video/mp4">
-                Ваш браузер не поддерживает видео.
             </video>
             <div class="hero-video-badge">
                 <span>50 минут живого движения в студии</span>
@@ -700,23 +601,23 @@
     </div>
 </section>
 
-<!-- СЕКЦИЯ 2: ЭКСПЕРТ ЗДОРОВАЯ СПИНА -->
+<!-- БЛОК 2: ЭКСПЕРТИЗА: СПИНА -->
 <section class="expert-section" id="healthy-back">
     <span class="section-label">Фундамент тела</span>
     <div class="expert-grid">
         <div style="padding-right: 15px;">
-            <h2 style="font-size: clamp(28px, 4.5vw, 44px); margin-bottom: 20px; line-height: 1.2;">
+            <h2 style="font-size: clamp(26px, 4vw, 42px); margin-bottom: 18px; line-height: 1.2;">
                 Здоровая спина <br><span style="color: var(--accent-purple);">и осанка</span>
             </h2>
-            <p style="opacity: 0.85; font-size: 15px; margin-bottom: 18px; line-height: 1.7;">
-                Это основа вашего ресурса. Сидячий образ жизни, гаджеты и постоянный стресс «запирают» напряжение в шее, плечах и пояснице. Наши экспертные тренировки направлены на мягкую и вдумчивую работу с первопричиной боли.
+            <p style="opacity: 0.85; font-size: 15px; margin-bottom: 16px; line-height: 1.7;">
+                Это основа вашего ресурса. Сидячий образ жизни, гаджеты и постоянный стресс «запирают» напряжение в шее, плечах и пояснице. Наши тренировки направлены на мягкую и вдумчивую работу с первопричиной боли.
             </p>
-            <p style="opacity: 0.85; font-size: 15px; margin-bottom: 30px; line-height: 1.7;">
-                За 50 минут мы бережно укрепим мышечный корсет, проведем декомпрессию позвоночника и вернем вашему телу естественную осанку. Забудьте о скованности — дышите полной грудью.
+            <p style="opacity: 0.85; font-size: 15px; margin-bottom: 25px; line-height: 1.7;">
+                За 50 минут мы бережно укрепим мышечный корсет, проведем декомпрессию позвоночника и вернем вашему телу естественную осанку.
             </p>
             <div>
-                <a href="schedule.html" class="btn btn-lens" style="padding: 14px 28px;">Записаться на практику</a>
-                <div style="margin-top: 20px;">
+                <a href="schedule.html" class="btn-lens">Записаться на практику</a>
+                <div style="margin-top: 18px;">
                     <a href="journal.html" style="font-size: 11px; color: var(--accent-purple); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700;">Читать научный разбор о болях в спине →</a>
                 </div>
             </div>
@@ -727,26 +628,26 @@
     </div>
 </section>
 
-<!-- СЕКЦИЯ 3: МФР, БАННЕР И АЭРОСТРЕТЧИНГ -->
+<!-- БЛОК 3: МФР, БАННЕР И ГАМАКИ -->
 <section class="club-section" id="directions-video">
     <span class="section-label">Эстетика движения</span>
     
     <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column;">
         
-        <!-- РЯД 1: ТЕКСТ МФР + ВИДЕО МФР -->
+        <!-- РЯД 1: МФР -->
         <div class="practice-row">
             <div class="practice-text">
-                <span style="color: var(--accent-purple); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; display: block; font-weight: 800;">Тотальное расслабление</span>
-                <h3 style="font-size: clamp(24px, 3.5vw, 36px); margin-bottom: 16px; line-height: 1.2;">Миофасциальный релиз (МФР)</h3>
-                <p style="opacity: 0.85; font-size: 14px; margin-bottom: 20px; line-height: 1.7;">
-                    Глубокий самомассаж всего тела с использованием роллов и мячей. Практика, которая себестоимостью выходит всего в 500 рублей внутри абонемента, дает эффект, практически сопоставимый с часовым сеансом у профессионального массажиста за 2000₽.
+                <span style="color: var(--accent-purple); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; display: block; font-weight: 800;">Тотальное расслабление</span>
+                <h3 style="font-size: clamp(22px, 3.2vw, 34px); margin-bottom: 14px; line-height: 1.2;">Миофасциальный релиз (МФР)</h3>
+                <p style="opacity: 0.85; font-size: 14px; margin-bottom: 18px; line-height: 1.7;">
+                    Глубокий самомассаж всего тела с использованием роллов и мячей. Практика, которая себестоимостью выходит всего в 500 рублей внутри абонемента, дает эффект, сопоставимый с часовым сеансом у профессионального массажиста за 2000₽.
                 </p>
                 <ul class="feature-list">
-                    <li>Снимает глубокие мышечные спазмы, триггеры и скованность</li>
-                    <li>Разгоняет лимфу, эффективно избавляя от затяжных отеков</li>
-                    <li>Восстанавливает природную эластичность фасций и тканей</li>
+                    <li>Снимает глубокие мышечные спазмы и триггеры</li>
+                    <li>Разгоняет лимфу, эффективно избавляя от отеков</li>
+                    <li>Восстанавливает природную эластичность фасций</li>
                 </ul>
-                <a href="schedule.html" class="btn btn-lens" style="align-self: flex-start; padding: 12px 24px;">Записаться на МФР</a>
+                <a href="schedule.html" class="btn-lens" style="align-self: flex-start;">Записаться на МФР</a>
             </div>
             <div class="practice-video">
                 <video autoplay muted loop playsinline poster="mfr.jpg">
@@ -757,19 +658,19 @@
 
         <!-- РЯД 2: ШИРОКИЙ БАННЕР -->
         <div class="inline-packages">
-            <h2 style="font-size: clamp(26px, 4vw, 40px); margin-bottom: 16px;">
+            <h2 style="font-size: clamp(24px, 3.5vw, 38px); margin-bottom: 14px;">
                 Ресурс, который <span style="color: var(--accent-purple);">всегда с тобой</span>
             </h2>
-            <p style="opacity: 0.85; max-width: 620px; margin: 0 auto 30px; font-size: 15px; line-height: 1.6;">
-                Продолжай практику там, где тебе удобно. Выбери выгодный абонемент для занятий в нашей уютной камерной студии или присоединяйся к закрытому онлайн-клубу из любой точки мира.
+            <p style="opacity: 0.85; max-width: 600px; margin: 0 auto 26px; font-size: 14px; line-height: 1.6;">
+                Выбери выгодный абонемент для занятий в нашей студии или присоединяйся к закрытому онлайн-клубу из любой точки мира.
             </p>
-            <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
-                <a href="future-packages.html" class="btn btn-lens" style="padding: 16px 36px; min-width: 230px;">Абонементы в студию</a>
-                <a href="club.html" class="btn" style="padding: 16px 36px; min-width: 230px;">Онлайн-клуб</a>
+            <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+                <a href="future-packages.html" class="btn-lens" style="min-width: 220px;">Абонементы в студию</a>
+                <a href="club.html" class="btn" style="min-width: 220px;">Онлайн-клуб</a>
             </div>
         </div>
 
-        <!-- РЯД 3: ВИДЕО ГАМАКИ + ТЕКСТ АЭРОСТРЕТЧИНГА -->
+        <!-- РЯД 3: ГАМАКИ (ВИДЕО МАЙКЛА ДЖЕКСОНА) -->
         <div class="practice-row reverse">
             <div class="practice-video">
                 <video autoplay muted loop playsinline poster="jackson.jpg">
@@ -777,40 +678,40 @@
                 </video>
             </div>
             <div class="practice-text">
-                <span style="color: var(--accent-purple); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; display: block; font-weight: 800;">Невесомость и свобода от боли</span>
-                <h3 style="font-size: clamp(24px, 3.5vw, 36px); margin-bottom: 16px; line-height: 1.2;">Аэростретчинг (в гамаках)</h3>
-                <p style="opacity: 0.85; font-size: 14px; margin-bottom: 18px; line-height: 1.7;">
-                    Практика в гамаках мягко вытягивает позвоночник под собственным весом тела, полностью снимая зажимы с поясницы и шеи после работы. Пока гамаки временно поставлены на плановую модернизацию оборудования, мы предлагаем сильные альтернативы со схожим эффектом:
+                <span style="color: var(--accent-purple); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; display: block; font-weight: 800;">Невесомость и свобода от боли</span>
+                <h3 style="font-size: clamp(22px, 3.2vw, 34px); margin-bottom: 14px; line-height: 1.2;">Аэростретчинг (в гамаках)</h3>
+                <p style="opacity: 0.85; font-size: 14px; margin-bottom: 16px; line-height: 1.7;">
+                    Мягко вытягивает позвоночник под собственным весом тела, полностью снимая зажимы с поясницы и шеи после работы. Также предлагаем сильные альтернативы:
                 </p>
-                <ul class="feature-list" style="margin-bottom: 25px;">
-                    <li><b>Здоровая спина:</b> декомпрессия позвоночника, укрепление корсета и коррекция осанки.</li>
-                    <li><b>Умный Пилатес:</b> глубинное укрепление суставов, работа с дыханием и тонус.</li>
-                    <li><b>МФР:</b> точечное снятие мышечных спазмов и мгновенный лимфодренаж от отеков.</li>
+                <ul class="feature-list" style="margin-bottom: 22px;">
+                    <li><b>Здоровая спина:</b> декомпрессия позвоночника и коррекция осанки.</li>
+                    <li><b>Умный Пилатес:</b> глубинное укрепление суставов и тонус.</li>
+                    <li><b>МФР:</b> точечное снятие спазмов и лимфодренаж.</li>
                 </ul>
-                <a href="schedule.html" class="btn btn-lens" style="align-self: flex-start; padding: 12px 24px;">Выбрать эффективную практику</a>
+                <a href="schedule.html" class="btn-lens" style="align-self: flex-start;">Выбрать практику</a>
             </div>
         </div>
 
     </div>
 </section>
 
-<!-- СЕКЦИЯ 4: ФИЛОСОФИЯ РЕСУРСА -->
+<!-- БЛОК 4: ФИЛОСОФИЯ СТУДИИ -->
 <section class="philosophy">
     <div class="philosophy-text">
         <span class="section-label">Наша философия</span>
-        <h2 style="font-size: clamp(28px, 4vw, 48px); margin-bottom: 20px; line-height: 1.15;">Тело как ресурс</h2>
-        <p style="font-size: 16px; opacity: 0.85; line-height: 1.7; max-width: 480px;">
+        <h2 style="font-size: clamp(26px, 3.8vw, 44px); margin-bottom: 16px; line-height: 1.2;">Тело как ресурс</h2>
+        <p style="font-size: 15px; opacity: 0.85; line-height: 1.7; max-width: 460px;">
             «Мы создали пространство в Сыктывкаре, где каждая минута — это инвестиция в ваше долголетие и внутреннюю опору.»
         </p>
         
         <div class="stats-grid">
             <div>
                 <div class="stat-val">50</div>
-                <p style="font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.7; margin-top: 6px;">Минут практика</p>
+                <p style="font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.7; margin-top: 4px;">Минут практика</p>
             </div>
             <div>
                 <div class="stat-val">12</div>
-                <p style="font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.7; margin-top: 6px;">Направлений</p>
+                <p style="font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.7; margin-top: 4px;">Направлений</p>
             </div>
         </div>
     </div>
@@ -820,12 +721,11 @@
     </div>
 </section>
 
-<!-- СЕКЦИЯ 5: НАПРАВЛЕНИЯ ТРЕНИРОВОК -->
+<!-- БЛОК 5: СЕТКА НАПРАВЛЕНИЙ -->
 <section class="directions" id="directions-grid">
     <span class="section-label">Твои практики</span>
     <div class="dir-container">
         
-        <!-- Спокойствие -->
         <div class="dir-item">
             <img src="relax.jpg" class="dir-bg" alt="Спокойные практики"> 
             <div class="dir-content">
@@ -839,7 +739,6 @@
             </div>
         </div>
 
-        <!-- Энергия -->
         <div class="dir-item">
             <img src="drive.jpg" class="dir-bg" alt="Активные тренировки"> 
             <div class="dir-content">
@@ -853,7 +752,6 @@
             </div>
         </div>
 
-        <!-- Легкость -->
         <div class="dir-item">
             <img src="air.jpg" class="dir-bg" alt="Практики в воздухе"> 
             <div class="dir-content">
@@ -869,162 +767,156 @@
     </div>
 </section>
 
-<!-- СЕКЦИЯ 6: РАСПИСАНИЕ -->
+<!-- БЛОК 6: РАСПИСАНИЕ -->
 <section class="schedule-section" id="schedule">
     <span class="section-label">Ритм студии</span>
-    <div style="max-width: 700px; margin: 0 auto;">
-        <h2 style="font-size: clamp(28px, 4vw, 42px); margin-bottom: 18px;">Твое время в студии</h2>
-        <p style="opacity: 0.85; margin-bottom: 35px; font-size: 15px;">
+    <div style="max-width: 650px; margin: 0 auto;">
+        <h2 style="font-size: clamp(26px, 3.8vw, 38px); margin-bottom: 16px;">Твое время в студии</h2>
+        <p style="opacity: 0.85; margin-bottom: 30px; font-size: 14px;">
             Выбери удобный день и направление. Запись доступна на две недели вперед.
         </p>
-        <a href="schedule.html" class="btn" style="padding: 18px 45px;">
-            Открыть расписание
-        </a>
+        <a href="schedule.html" class="btn">Открыть расписание</a>
     </div>
 </section>
 
-<!-- СЕКЦИЯ 7: BENTO АНАЛИТИКА И ОПРОС -->
-<section style="padding: 40px 5% 70px;">
+<!-- БЛОК 7: BENTO АНАЛИТИКА И ОПРОС -->
+<section style="padding: 30px 5% 60px;">
     <div class="bento-grid">
         
         <div class="bento-card">
-            <span style="font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-purple); margin-bottom: 12px; display: block; font-weight: 800;">Аналитика</span>
-            <h3 style="font-size: 26px; margin-bottom: 14px; line-height: 1.2;">Живой пульс<br>нашего комьюнити</h3>
-            <p style="opacity: 0.75; font-size: 14px; margin-bottom: 30px; line-height: 1.6;">
-                Мы оцифровали ответы сотен наших резидентов. Узнайте прямо сейчас, с какими болями приходят женщины Сыктывкара, что они ценят больше всего и почему выбирают «РЕСУРС».
+            <span style="font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-purple); margin-bottom: 10px; display: block; font-weight: 800;">Аналитика</span>
+            <h3 style="font-size: 24px; margin-bottom: 12px; line-height: 1.2;">Живой пульс<br>нашего комьюнити</h3>
+            <p style="opacity: 0.75; font-size: 13px; margin-bottom: 25px; line-height: 1.6;">
+                Мы оцифровали ответы сотен наших резидентов. Узнайте, с какими болями приходят женщины Сыктывкара и почему выбирают «РЕСУРС».
             </p>
-            <a href="community.html" class="btn btn-lens" style="padding: 14px 24px; font-size: 11px; width: 100%; margin-top: auto;">
-                Смотреть статистику
-            </a>
+            <a href="community.html" class="btn-lens" style="width: 100%; margin-top: auto;">Смотреть статистику</a>
         </div>
 
         <div class="bento-card" style="background: var(--surface-hover);">
-            <span style="font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-purple); margin-bottom: 12px; display: block; font-weight: 800;">Твой голос</span>
-            <h3 style="font-size: 26px; margin-bottom: 14px; line-height: 1.2; color: var(--accent-purple);">Станьте соавтором<br>студии будущего</h3>
-            <p style="opacity: 0.75; font-size: 14px; margin-bottom: 30px; line-height: 1.6;">
-                Ваше мнение — фундамент нашего развития. Инвестируйте 7 минут в прохождение аудита, чтобы мы сделали студию идеальной для вас, и <b>заберите гарантированный бонус</b> (подарок к абонементу).
+            <span style="font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-purple); margin-bottom: 10px; display: block; font-weight: 800;">Твой голос</span>
+            <h3 style="font-size: 24px; margin-bottom: 12px; line-height: 1.2; color: var(--accent-purple);">Станьте соавтором<br>студии будущего</h3>
+            <p style="opacity: 0.75; font-size: 13px; margin-bottom: 25px; line-height: 1.6;">
+                Ваше мнение — фундамент нашего развития. Пройдите короткий аудит и <b>заберите гарантированный бонус</b> к абонементу.
             </p>
-            <a href="survey.html" class="btn btn-lens" style="padding: 14px 24px; font-size: 11px; width: 100%; border-color: var(--accent-purple); margin-top: auto;">
-                Пройти опрос и забрать бонус
-            </a>
+            <a href="survey.html" class="btn-lens" style="width: 100%; border-color: var(--accent-purple); margin-top: auto;">Забрать бонус</a>
         </div>
 
     </div>
 </section>
 
-<!-- СЕКЦИЯ 8: АСТРО-ПРОГНОЗ -->
-<section style="padding: 0 5% 70px;">
-    <div style="max-width: 1200px; margin: 0 auto; border-radius: 12px; padding: 45px; border: 1px solid var(--elem-border); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 30px; background: var(--surface-color);">
+<!-- БЛОК 8: АСТРО-ПРОГНОЗ -->
+<section style="padding: 0 5% 60px;">
+    <div style="max-width: 1200px; margin: 0 auto; border-radius: 12px; padding: 40px; border: 1px solid var(--elem-border); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 25px; background: var(--surface-color);">
         
-        <div style="flex: 1; min-width: 300px;">
-            <span style="font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-purple); margin-bottom: 10px; display: block; font-weight: 800;">Синхронизация с телом</span>
-            <h3 style="font-size: clamp(26px, 3.5vw, 36px); margin-bottom: 14px; line-height: 1.2;">Глубокий астро-прогноз <br><span style="color: var(--accent-purple); font-style: italic;">от Веры Венеры</span></h3>
-            <p style="opacity: 0.8; font-size: 14px; line-height: 1.7; max-width: 520px; margin-bottom: 0;">
-                Звезды напрямую влияют на наше тело. Узнайте свой уровень жизненной энергии на сегодня, получите индивидуальный расчет транзитов и поймите, какая практика сейчас нужна вашему организму.
+        <div style="flex: 1; min-width: 280px;">
+            <span style="font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-purple); margin-bottom: 8px; display: block; font-weight: 800;">Синхронизация с телом</span>
+            <h3 style="font-size: clamp(24px, 3vw, 34px); margin-bottom: 12px; line-height: 1.2;">Глубокий астро-прогноз <br><span style="color: var(--accent-purple); font-style: italic;">от Веры Венеры</span></h3>
+            <p style="opacity: 0.8; font-size: 14px; line-height: 1.6; max-width: 500px; margin-bottom: 0;">
+                Узнайте свой уровень энергии на сегодня и поймите, какая практика сейчас нужна вашему организму.
             </p>
         </div>
         
-        <div style="display: flex; gap: 14px; flex-wrap: wrap;">
-            <a href="horoscope.html" class="btn" style="padding: 16px 32px;">Получить прогноз</a>
-            <a href="wheel.html" class="btn btn-lens" style="padding: 16px 32px;">Испытать удачу</a>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <a href="horoscope.html" class="btn">Получить прогноз</a>
+            <a href="wheel.html" class="btn-lens">Испытать удачу</a>
         </div>
     </div>
 </section>
 
-<!-- СЕКЦИЯ 9: FAQ -->
+<!-- БЛОК 9: FAQ -->
 <section class="faq-section" id="faq">
     <span class="section-label">Частые вопросы</span>
-    <h2 style="font-size: clamp(28px, 4vw, 42px); margin-bottom: 40px; text-align: center;">Отвечаем на главное</h2>
+    <h2 style="font-size: clamp(26px, 3.5vw, 38px); margin-bottom: 35px; text-align: center;">Отвечаем на главное</h2>
     
     <div class="faq-item">
         <div class="faq-question">В какой одежде и обуви приходить на занятия?</div>
         <div class="faq-answer">
-            Выбирайте удобную, не сковывающую движения одежду (лосины, шорты, топ или майка). <br><br>
-            <strong style="color: var(--accent-purple);">Важно по обуви:</strong><br>
-            — <b>Для активных и силовых тренировок</b> обязательно приходить в чистых кроссовках.<br>
-            — <b>Для спокойных практик</b> (Стретчинг, Здоровая спина, Пилатес, МФР, Аэро) мы занимаемся в носочках (лучше использовать антискользящие).
+            Выбирайте удобную одежду (лосины, шорты, топ или майка). <br><br>
+            <strong style="color: var(--accent-purple);">По обуви:</strong><br>
+            — <b>Активные и силовые тренировки:</b> только в чистых кроссовках.<br>
+            — <b>Спокойные практики (Стретчинг, Здоровая спина, Пилатес, МФР, Аэро):</b> в чистых носочках (лучше антискользящих).
         </div>
     </div>
 
     <div class="faq-item">
         <div class="faq-question">Кому противопоказана растяжка и фитнес?</div>
         <div class="faq-answer">
-            Основные противопоказания: свежие травмы позвоночника и суставов, острые воспалительные процессы, тяжелые стадии варикоза, грыжи в стадии обострения, недавние операции. Беременным девушкам разрешены только специализированные классы. Перед первой тренировкой мы обязательно попросим вас заполнить небольшую анкету о здоровье.
+            Основные противопоказания: свежие травмы позвоночника и суставов, острые воспалительные процессы, тяжелые стадии варикоза, грыжи в стадии обострения. Беременным разрешены только спецклассы. Перед первой тренировкой мы обязательно заполняем анкету о здоровье.
         </div>
     </div>
 
     <div class="faq-item">
         <div class="faq-question">Я никогда ничем не занималась, мне будет сложно?</div>
         <div class="faq-answer">
-            Абсолютно нет! Мы выступаем за мягкий, бережный фитнес без стресса для организма. У нас нет задачи «убить» вас на тренировке. Все направления подходят для новичков. Тренеры внимательно следят за техникой и предлагают базовые вариации упражнений.
+            Абсолютно нет! Мы выступаем за мягкий фитнес без стресса. Тренеры внимательно следят за техникой каждой девушки и всегда предлагают базовые вариации упражнений.
         </div>
     </div>
     
     <div class="faq-item">
         <div class="faq-question">Что нужно взять с собой на первую тренировку?</div>
         <div class="faq-answer">
-            Возьмите с собой паспорт (понадобится для оформления) и бутылочку для воды. В самой студии есть абсолютно всё необходимое оборудование (коврики, роллы, блоки), которое мы тщательно дезинфицируем после каждого занятия.
+            Возьмите паспорт (для договора) и бутылочку для воды. В студии есть абсолютно всё оборудование (коврики, роллы, блоки), которое дезинфицируется после каждого занятия.
         </div>
     </div>
 </section>
 
-<!-- СЕКЦИЯ 10: ОТЗЫВЫ 2ГИС -->
-<section style="padding: 60px 5%; text-align: center; border-top: 1px solid var(--elem-border);">
+<!-- БЛОК 10: ОТЗЫВЫ 2ГИС -->
+<section style="padding: 50px 5%; text-align: center; border-top: 1px solid var(--elem-border);">
     <span class="section-label">Голоса резидентов</span>
-    <h2 style="font-size: clamp(28px, 4vw, 42px); margin-bottom: 40px;">Что говорят о Ресурсе</h2>
+    <h2 style="font-size: clamp(26px, 3.5vw, 38px); margin-bottom: 35px;">Что говорят о Ресурсе</h2>
     
     <div class="reviews-grid">
         <div class="review-card">
-            <div style="color: var(--accent-purple); margin-bottom: 12px; font-size: 16px;">★★★★★</div>
-            <p style="font-style: italic; opacity: 0.85; line-height: 1.6; margin-bottom: 18px; font-size: 13px;">«Обожаю занятия! Инструкторы настоящие профессионалы своего дела: внимательно следят за техникой, поддерживают и мотивируют. Особенно полюбились курсы "Здоровая спина" и "МФР": тело стало гибче, боли в спине исчезли!»</p>
-            <div style="font-weight: 800; font-size: 13px;">ОЛЬГА ИВОНИНСКАЯ</div>
+            <div style="color: var(--accent-purple); margin-bottom: 10px; font-size: 15px;">★★★★★</div>
+            <p style="font-style: italic; opacity: 0.85; line-height: 1.6; margin-bottom: 16px; font-size: 13px;">«Обожаю занятия! Инструкторы профессионалы: внимательно следят за техникой. Особенно полюбились курсы "Здоровая спина" и "МФР": тело стало гибче, боли в спине исчезли!»</p>
+            <div style="font-weight: 800; font-size: 12px;">ОЛЬГА ИВОНИНСКАЯ</div>
             <div style="font-size: 10px; opacity: 0.6; margin-top: 2px;">Источник: 2ГИС</div>
         </div>
         
         <div class="review-card">
-            <div style="color: var(--accent-purple); margin-bottom: 12px; font-size: 16px;">★★★★★</div>
-            <p style="font-style: italic; opacity: 0.85; line-height: 1.6; margin-bottom: 18px; font-size: 13px;">«Моя любовь началась после первого занятия. Все тренеры классные, тренировки на любой вкус и уровень. С Ольгой Мартыновой всегда весело и эффективно. Студия — это больше, чем просто спорт, это душевная атмосфера.»</p>
-            <div style="font-weight: 800; font-size: 13px;">ОКСАНА АЛЕКСЕЕВА</div>
+            <div style="color: var(--accent-purple); margin-bottom: 10px; font-size: 15px;">★★★★★</div>
+            <p style="font-style: italic; opacity: 0.85; line-height: 1.6; margin-bottom: 16px; font-size: 13px;">«Моя любовь началась после первого занятия. Все тренеры классные, тренировки на любой вкус. С Ольгой Мартыновой всегда весело и эффективно. Душевная атмосфера!»</p>
+            <div style="font-weight: 800; font-size: 12px;">ОКСАНА АЛЕКСЕЕВА</div>
             <div style="font-size: 10px; opacity: 0.6; margin-top: 2px;">Источник: 2ГИС</div>
         </div>
         
         <div class="review-card">
-            <div style="color: var(--accent-purple); margin-bottom: 12px; font-size: 16px;">★★★★★</div>
-            <p style="font-style: italic; opacity: 0.85; line-height: 1.6; margin-bottom: 18px; font-size: 13px;">«Моя любимая студия! Место, куда после работы с радостью бежишь, а после тренировки окрылённый порхаешь домой. Много направлений: силовые, пилатес, гамаки. Тренерский состав отличный!»</p>
-            <div style="font-weight: 800; font-size: 13px;">АНАСТАСИЯ Ч.</div>
+            <div style="color: var(--accent-purple); margin-bottom: 10px; font-size: 15px;">★★★★★</div>
+            <p style="font-style: italic; opacity: 0.85; line-height: 1.6; margin-bottom: 16px; font-size: 13px;">«Моя любимая студия! Место, куда после работы с радостью бежишь, а после тренировки порхаешь домой. Тренерский состав отличный!»</p>
+            <div style="font-weight: 800; font-size: 12px;">АНАСТАСИЯ Ч.</div>
             <div style="font-size: 10px; opacity: 0.6; margin-top: 2px;">Источник: 2ГИС</div>
         </div>
     </div>
 
-    <div style="margin-top: 35px;">
-        <a href="https://go.2gis.com/H0XBA" target="_blank" class="btn btn-lens">
+    <div style="margin-top: 30px;">
+        <a href="https://go.2gis.com/H0XBA" target="_blank" class="btn-lens">
             Все отзывы (ул. Коммунистическая) &rarr;
         </a>
     </div>
 </section>
     
-<!-- ФУТЕР И РЕКВИЗИТЫ -->
+<!-- ФУТЕР -->
 <footer id="contacts">
     <div style="max-width: 1200px; margin: 0 auto;">
         
         <div class="footer-journal-banner">
-            <div style="max-width: 600px;">
+            <div style="max-width: 580px;">
                 <span style="font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-purple); margin-bottom: 6px; display: block; font-weight: 800;">База знаний</span>
-                <h3 style="font-size: 24px; margin-bottom: 8px;">Экспертный журнал РЕСУРС</h3>
-                <p style="opacity: 0.8; font-size: 14px; margin-bottom: 0;">Научный подход к телу, разбор биомеханики МФР и секреты лимфодренажа от топ-тренеров.</p>
+                <h3 style="font-size: 22px; margin-bottom: 6px;">Экспертный журнал РЕСУРС</h3>
+                <p style="opacity: 0.8; font-size: 13px; margin-bottom: 0;">Научный подход к телу, разбор биомеханики МФР и секреты лимфодренажа от топ-тренеров.</p>
             </div>
             <div>
-                <a href="journal.html" class="btn btn-lens" style="padding: 14px 28px;">Читать статьи &rarr;</a>
+                <a href="journal.html" class="btn-lens">Читать статьи &rarr;</a>
             </div>
         </div>
 
-        <div style="display: flex; justify-content: space-between; align-items: center; gap: 24px; margin-bottom: 40px; flex-wrap: wrap;">
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 20px; margin-bottom: 35px; flex-wrap: wrap;">
             <div style="display: flex; align-items: center; gap: 12px;">
-                <img src="logo_header_final.png" alt="Логотип футер" style="height: 36px; border-radius: 6px;">
+                <img src="logo_header_final.png" alt="Логотип футер" style="height: 32px; border-radius: 6px;">
                 <span class="brand-name">РЕСУРС<span>.ДВИЖЕНИЕ</span></span>
             </div>
             
-            <div style="display: flex; gap: 16px; align-items: center;">
+            <div style="display: flex; gap: 14px; align-items: center;">
                 <a href="https://vk.ru/im?sel=-221142875" target="_blank" aria-label="Мы ВКонтакте" style="opacity: 0.85; display: inline-flex;">
                     <svg width="24" height="24" viewBox="0 0 24 24" style="fill: var(--accent-purple);"><path d="M15.07 2H8.93C3.33 2 2 3.33 2 8.93v6.14C2 20.67 3.33 22 8.93 22h6.14c5.6 0 6.93-1.33 6.93-6.93V8.93C22 3.33 20.67 2 15.07 2zm3.1 13.08c0 .12-.04.22-.11.3-.08.08-.19.12-.32.12h-1.5c-.32 0-.6-.11-.84-.33-.24-.22-.44-.52-.61-.88-.23-.49-.46-.86-.68-1.12-.22-.26-.45-.39-.68-.39-.1 0-.19.02-.28.07-.09.05-.16.12-.21.21-.1.17-.15.42-.15.76v.88c0 .2-.06.36-.17.47s-.27.17-.47.17h-.8c-.78 0-1.48-.24-2.11-.73-.63-.49-1.16-1.16-1.59-2.02-.44-.86-.87-1.89-1.28-3.08-.05-.14-.02-.26.08-.36.1-.1.24-.15.42-.15h1.56c.16 0 .29.05.38.16.09.11.14.24.15.4.15.54.34 1.05.58 1.54.24.49.5.91.77 1.25.27.34.52.51.74.51.08 0 .15-.02.2-.07.05-.05.08-.11.1-.19.04-.21.06-.55.06-1.01V9.5c-.01-.35-.1-.61-.26-.78-.16-.17-.4-.28-.7-.34-.1-.02-.15-.08-.15-.17 0-.08.04-.15.13-.21.19-.13.48-.2.88-.2h1.54c.26 0 .46.06.6.18.14.12.21.32.21.61v2.33c0 .16.02.28.06.35.04.07.1.11.18.11.1 0 .23-.08.38-.23.15-.15.34-.39.56-.72.22-.33.45-.75.68-1.27.06-.14.16-.25.29-.33.13-.08.28-.12.45-.12h1.61c.19 0 .34.05.45.14.11.09.15.22.11.38-.19.72-.47 1.34-.84 1.87-.37.53-.74.92-1.1 1.16-.1.08-.15.16-.15.25 0 .07.04.14.11.22.18.2.4.48.65.84s.46.73.61 1.09c.1.25.15.48.15.7z"/></svg>
                 </a>
@@ -1041,8 +933,8 @@
             </div>
             <div>
                 <h4>Документы</h4>
-                <a href="privacy.html" style="font-size: 13px; opacity: 0.85; display:block; margin-bottom:6px;">Политика конфиденциальности</a>
-                <a href="offer.html" style="font-size: 13px; opacity: 0.85; display:block; margin-bottom:6px;">Договор оферты</a>
+                <a href="privacy.html" style="font-size: 13px; opacity: 0.85; display:block; margin-bottom:5px;">Политика конфиденциальности</a>
+                <a href="offer.html" style="font-size: 13px; opacity: 0.85; display:block; margin-bottom:5px;">Договор оферты</a>
                 <a href="consent.html" style="font-size: 13px; opacity: 0.85; display:block;">Согласие на ОПД</a>
             </div>
             <div>
@@ -1051,11 +943,45 @@
             </div>
         </div>
         
-        <p style="margin-top: 40px; font-size: 11px; opacity: 0.6; letter-spacing: 1px;">
+        <p style="margin-top: 30px; font-size: 11px; opacity: 0.6;">
              © 2026 РЕСУРС | Студия фитнеса, растяжки и движения. Все права защищены.
         </p>
     </div>
 </footer>
+
+<!-- ПОПАП "ПРОЧИЕ СТРАНИЦЫ" -->
+<div class="modal" id="pagesModal">
+    <div class="modal-content">
+        <div class="modal-close" onclick="closePagesModal()">&times;</div>
+        <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 15px;">Все разделы экосистемы РЕСУРС</h3>
+        
+        <div class="pages-cat-title">Практики и боли</div>
+        <div class="pages-link-grid">
+            <a href="anti-office.html" class="pages-link-item">Снятие боли в спине</a>
+            <a href="stress-relief.html" class="pages-link-item">Антистресс и сон</a>
+            <a href="body-tone.html" class="pages-link-item">Похудение и рельеф</a>
+            <a href="split-goals.html" class="pages-link-item">Шпагат безопасно</a>
+            <a href="beginners-start.html" class="pages-link-item">С чего начать новичку?</a>
+            <a href="manifest.html" class="pages-link-item" style="color: var(--accent-purple);">Манифест осознанности</a>
+        </div>
+
+        <div class="pages-cat-title">Направления студии</div>
+        <div class="pages-link-grid">
+            <a href="pilates.html" class="pages-link-item">Умный Пилатес</a>
+            <a href="body-sculpt.html" class="pages-link-item">Стройное тело</a>
+            <a href="future-packages.html" class="pages-link-item">Каталог абонементов</a>
+            <a href="club.html" class="pages-link-item">Закрытый онлайн-клуб</a>
+        </div>
+
+        <div class="pages-cat-title">Интерактив и сообщество</div>
+        <div class="pages-link-grid">
+            <a href="horoscope.html" class="pages-link-item">Астро-прогноз Веры Венеры</a>
+            <a href="community.html" class="pages-link-item">Пульс комьюнити (Аналитика)</a>
+            <a href="survey.html" class="pages-link-item">Опрос и гарантированный бонус</a>
+            <a href="wheel.html" class="pages-link-item">Колесо фортуны</a>
+        </div>
+    </div>
+</div>
 
 <!-- МОДАЛЬНОЕ ОКНО CRM (ЛИСТОК CRM) -->
 <div class="modal" id="crmModal">
@@ -1067,12 +993,12 @@
     </div>
 </div>
 
-<!-- МОДАЛЬНОЕ ОКНО ОПЛАТЫ ТЕСТ-ДРАЙВА (ЮKASSA) -->
+<!-- МОДАЛЬНОЕ ОКНО ТЕСТ-ДРАЙВА (ЮKASSA) -->
 <div class="modal" id="orderModal">
     <div class="modal-content">
         <div class="modal-close" onclick="closeModal()">&times;</div>
         <h2 style="font-size: 22px; margin-bottom: 6px;">Вход в Ресурс</h2>
-        <p style="margin-bottom: 20px; font-size: 13px; opacity: 0.8;">Оставьте контакты для активации доступа</p>
+        <p style="margin-bottom: 18px; font-size: 13px; opacity: 0.8;">Оставьте контакты для активации тест-драйва</p>
         
         <form id="tgForm">
             <input type="hidden" id="selectedPackage" value="Тест-драйв Ресурс">
@@ -1081,9 +1007,9 @@
             <input type="text" id="userName" placeholder="ВАШЕ ИМЯ" required>
             <input type="tel" id="userPhone" placeholder="+7 (___) ___-__-__" required>
             
-            <div style="margin-bottom: 18px; font-size: 10px; opacity: 0.7; text-align: left; display: flex; gap: 8px;">
+            <div style="margin-bottom: 16px; font-size: 10px; opacity: 0.7; text-align: left; display: flex; gap: 8px;">
                 <input type="checkbox" checked required style="width: 14px; height: 14px; margin: 0;">
-                <span>Нажимая кнопку, вы соглашаетесь с <a href="privacy.html" style="text-decoration: underline; color: inherit;">Политикой</a> и <a href="offer.html" style="text-decoration: underline; color: inherit;">Офертой</a></span>
+                <span>Согласен с <a href="privacy.html" style="text-decoration: underline; color: inherit;">политикой</a> и <a href="offer.html" style="text-decoration: underline; color: inherit;">офертой</a></span>
             </div>
             
             <button type="submit" class="btn" style="width: 100%;">Оплатить доступ • 990 ₽</button>
@@ -1092,7 +1018,7 @@
     </div> 
 </div>
 
-<!-- ПРОМО-ВИДЖЕТ -->
+<!-- ПРОМО WIDGET -->
 <div id="promo-widget">
     <div class="promo-close" onclick="document.getElementById('promo-widget').style.display='none'">&times;</div>
     <div class="promo-title" id="p-title">Заголовок</div>
@@ -1105,7 +1031,7 @@
         <div><b id="t-secs" style="color: var(--accent-purple);">00</b><div style="font-size: 9px; opacity: 0.7;">Секунд</div></div>
     </div>
 
-    <a href="future-packages.html" class="promo-btn" id="p-btn">Посмотреть цены</a>
+    <a href="future-packages.html" class="btn" id="p-btn" style="padding: 10px; font-size: 10px; width: 100%;">Посмотреть цены</a>
 </div>
 
 <!-- ПЛАВАЮЩИЙ ЖУРНАЛ -->
@@ -1142,7 +1068,7 @@
 
 <!-- СКРИПТЫ ВСЕХ СИСТЕМ -->
 <script>
-    // --- ПЕРЕКЛЮЧЕНИЕ ТЕМЫ В 1 КЛИК БЕЗ ПОПАПА ---
+    // ПЕРЕКЛЮЧЕНИЕ ТЕМЫ В 1 КЛИК БЕЗ ПОПАПА
     function toggleThemeInstant() {
         const root = document.documentElement;
         const currentTheme = root.getAttribute('data-theme') || 'dark';
@@ -1150,43 +1076,31 @@
         
         root.setAttribute('data-theme', newTheme);
         localStorage.setItem('theme', newTheme);
-        updateThemeBtn(newTheme);
+        updateThemeButtons(newTheme);
     }
 
-    function updateThemeBtn(theme) {
-        const btn = document.getElementById('themeToggleBtn');
-        if (btn) btn.innerText = theme === 'dark' ? 'ТЕМА: ТЕМНАЯ' : 'ТЕМА: СВЕТЛАЯ';
+    function updateThemeButtons(theme) {
+        const text = theme === 'dark' ? 'ТЕМА: ТЕМНАЯ' : 'ТЕМА: СВЕТЛАЯ';
+        const btnDesktop = document.getElementById('themeToggleBtn');
+        const btnMobile = document.getElementById('themeToggleMobile');
+        if (btnDesktop) btnDesktop.innerText = text;
+        if (btnMobile) btnMobile.innerText = text;
     }
 
     window.addEventListener('DOMContentLoaded', () => {
         const savedTheme = localStorage.getItem('theme') || 'dark';
         document.documentElement.setAttribute('data-theme', savedTheme);
-        updateThemeBtn(savedTheme);
+        updateThemeButtons(savedTheme);
         initPromo();
     });
 
-    window.addEventListener('scroll', () => {
-        const header = document.getElementById('header');
-        if (window.scrollY > 50) header.classList.add('scrolled');
-        else header.classList.remove('scrolled');
-    });
+    // МОДАЛКА ПРОЧИХ СТРАНИЦ
+    function openPagesModal() { document.getElementById('pagesModal').style.display = 'flex'; }
+    function closePagesModal() { document.getElementById('pagesModal').style.display = 'none'; }
 
-    function toggleNav() {
-        const overlay = document.getElementById('navOverlay');
-        const trigger = document.getElementById('navTrigger');
-        trigger.classList.toggle('active');
-        overlay.classList.toggle('active');
-        document.body.style.overflow = overlay.classList.contains('active') ? 'hidden' : 'auto';
-    }
-
-    function openCrmModal() {
-        document.getElementById('crmModal').style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-    }
-    function closeCrmModal() {
-        document.getElementById('crmModal').style.display = 'none';
-        document.body.style.overflow = 'auto';
-    }
+    // МОДАЛКИ CRM И ОПЛАТЫ
+    function openCrmModal() { document.getElementById('crmModal').style.display = 'flex'; }
+    function closeCrmModal() { document.getElementById('crmModal').style.display = 'none'; }
 
     const CLOUD_URL = "https://functions.yandexcloud.net/d4el388cufj9g6egpam3";
     const phoneElement = document.getElementById('userPhone');
@@ -1195,7 +1109,6 @@
 
     function openModal() { 
         document.getElementById('orderModal').style.display = 'flex'; 
-        document.body.style.overflow = 'hidden'; 
         document.getElementById('tgForm').style.display = 'block';
         document.getElementById('payment-form').innerHTML = '';
         const btn = document.querySelector('#tgForm button');
@@ -1203,80 +1116,55 @@
         btn.disabled = false;
         phoneMask.value = '';
     }
-    
-    function closeModal() { 
-        document.getElementById('orderModal').style.display = 'none'; 
-        document.body.style.overflow = 'auto'; 
-    }
+    function closeModal() { document.getElementById('orderModal').style.display = 'none'; }
 
     window.onclick = function(event) {
         if (event.target == document.getElementById('orderModal')) closeModal();
         if (event.target == document.getElementById('crmModal')) closeCrmModal();
+        if (event.target == document.getElementById('pagesModal')) closePagesModal();
     }
 
-    // --- ЮKASSA ЧЕРЕЗ ЯНДЕКС ОБЛАКО ---
+    // ПЛАТЕЖИ ЮKASSA
     document.getElementById('tgForm').addEventListener('submit', async function(e) {
         e.preventDefault();
-        
-        if (phoneMask.unmaskedValue.length !== 11) {
-            alert('Пожалуйста, введите номер телефона полностью.');
-            return;
-        }
+        if (phoneMask.unmaskedValue.length !== 11) return alert('Пожалуйста, введите номер телефона полностью.');
         
         const btn = this.querySelector('button');
         btn.innerText = 'СВЯЗЬ С БАНКОМ...';
         btn.disabled = true;
-
-        const name = document.getElementById('userName').value;
-        const phone = phoneMask.unmaskedValue; 
-        const packageType = document.getElementById('selectedPackage').value;
-        const price = document.getElementById('selectedPrice').value;
 
         try {
             const response = await fetch(CLOUD_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    amount: price,
-                    name: name,
-                    phone: phone,
-                    description: packageType
+                    amount: document.getElementById('selectedPrice').value,
+                    name: document.getElementById('userName').value,
+                    phone: phoneMask.unmaskedValue,
+                    description: document.getElementById('selectedPackage').value
                 })
             });
-
             if (!response.ok) throw new Error('Облако вернуло ошибку');
-            
             const data = await response.json();
 
             if (data.confirmation_token) {
                 document.getElementById('tgForm').style.display = 'none';
-                
                 const checkout = new window.YooMoneyCheckoutWidget({
                     confirmation_token: data.confirmation_token,
                     return_url: 'https://resurs-stretch.ru/thanks.html', 
-                    customization: {
-                        modal: false, 
-                        width: '100%' 
-                    },
-                    error_callback: (error) => { 
-                        alert('Ошибка виджета оплаты.');
-                        console.error(error); 
-                    }
+                    customization: { modal: false, width: '100%' },
+                    error_callback: () => alert('Ошибка виджета оплаты.')
                 });
-
                 checkout.render('payment-form');
-            } else {
-                throw new Error('Токен не получен');
-            }
+            } else throw new Error('Токен не получен');
         } catch (error) {
-            console.error('Детали ошибки:', error);
             alert('Не удалось связаться с банком. Напишите нам в ВК или попробуйте позже.');
             btn.disabled = false;
             btn.innerText = 'Попробовать снова';
         }
     });
 
-    // --- ПРОМО WIDGET ---
+    // ПРОМО ВИДЖЕТ
     const promoConfig = {
         startDate: "2026-04-21T09:00:00", 
         endDate: "2026-04-23T23:59:59",   
@@ -1299,7 +1187,6 @@
             document.getElementById('p-text').innerText = promoConfig.text;
             document.getElementById('p-btn').innerText = promoConfig.btnText;
             document.getElementById('p-btn').href = promoConfig.btnLink;
-            
             widget.style.display = 'flex';
             updatePromoTimer(end);
             promoTimerInterval = setInterval(() => updatePromoTimer(end), 1000);
@@ -1309,15 +1196,12 @@
     }
     
     function updatePromoTimer(endTime) {
-        const now = new Date().getTime();
-        const distance = endTime - now;
-
+        const distance = endTime - new Date().getTime();
         if (distance < 0) {
             clearInterval(promoTimerInterval);
             initPromo(); 
             return;
         }
-
         const d = Math.floor(distance / (1000 * 60 * 60 * 24));
         const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
@@ -1329,16 +1213,9 @@
         document.getElementById('t-secs').innerText = s < 10 ? '0' + s : s;
     }
 
-    // --- ИИ ЧАТ ---
+    // ИИ ЧАТ
     const API_URL = 'https://functions.yandexcloud.net/d4e53n9jgppsajgc4n2s';
     let chatHistory = JSON.parse(sessionStorage.getItem('resurs_chat_history')) || [];
-
-    function parseButtons(text) {
-        const buttonRegex = /\[BUTTON:(.*?)\|(.*?)\]/g;
-        return text.replace(buttonRegex, function(match, btnText, btnLink) {
-            return `<div style="margin-top: 10px;"><a href="${btnLink.trim()}" target="_blank" style="display: inline-block; padding: 8px 16px; background: var(--accent-purple); color: #FFF; text-decoration: none; border-radius: 6px; font-weight: 700; font-size: 11px; text-transform: uppercase;">${btnText.trim()}</a></div>`;
-        });
-    }
 
     function toggleChat() {
         document.getElementById('ls-ai-chat').classList.toggle('chat-active');
@@ -1349,9 +1226,7 @@
         const div = document.createElement('div');
         div.className = `msg msg-${type}`;
         if(id) div.id = id;
-        if (type === 'user') div.textContent = text; 
-        else div.innerHTML = parseButtons(text);
-        
+        div.textContent = text;
         const container = document.getElementById("ls-ai-messages");
         container.appendChild(div);
         container.scrollTop = container.scrollHeight;
@@ -1392,7 +1267,7 @@
     }
     document.getElementById('ls-ai-input').onkeypress = (e) => { if(e.key === 'Enter') sendMessage(); };
 
-    // --- FAQ АККОРДЕОН ---
+    // FAQ АККОРДЕОН
     document.querySelectorAll('.faq-question').forEach(item => {
         item.addEventListener('click', () => {
             const parent = item.parentElement;
@@ -1403,17 +1278,14 @@
         });
     });
 
-    // --- COOKIE NOTICE ---
+    // COOKIE
     function acceptCookies() {
         localStorage.setItem('cookiesAccepted', 'true');
         document.getElementById('cookie-notice').style.display = 'none';
     }
-
-    window.addEventListener('DOMContentLoaded', () => {
-        if (!localStorage.getItem('cookiesAccepted')) {
-            document.getElementById('cookie-notice').style.display = 'flex';
-        }
-    });
+    if (!localStorage.getItem('cookiesAccepted')) {
+        document.getElementById('cookie-notice').style.display = 'flex';
+    }
 </script>
 </body>
 </html>
