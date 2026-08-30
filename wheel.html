@@ -200,7 +200,7 @@
 
         /* КОЛЕСО УДАЧИ */
         .wheel-block-container { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
-        .wheel-container { position: relative; width: clamp(280px, 100%, 360px); height: clamp(280px, 100%, 360px); margin: 0 auto; }
+        .wheel-container { position: relative; width: clamp(290px, 100%, 380px); height: clamp(290px, 100%, 380px); margin: 0 auto; }
         #wheelCanvas { width: 100%; height: 100%; border-radius: 50%; border: 4px solid var(--accent-color); background: #0A090F; box-shadow: 0 0 30px rgba(108, 62, 184, 0.35); }
         .pointer {
             position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
@@ -432,49 +432,80 @@
         location.reload();
     });
 
-    // АРХИТЕКТУРА И ОТРИСОВКА КОЛЕСА
+    // АРХИТЕКТУРА И ОТРИСОВКА КОЛЕСА (ДВУХСТРОЧНЫЙ КРУПНЫЙ ТЕКСТ)
     const canvas = document.getElementById('wheelCanvas');
     const ctx = canvas.getContext('2d');
     
-    // Новые выверенные призы
+    // Новые призы: text1 - крупный акцент, text2 - пояснение/цена
     const prizes = [
-        { text: "70% РАЗОВОЕ", code: "SINGLE70", full: "Скидка 70% на разовое занятие", desc: "Разовый визит в студию РЕСУРС всего за 210 ₽ вместо 700 ₽!" },
-        { text: "30% АБОНЕМЕНТ", code: "ABON30", full: "Скидка 30% на абонемент", desc: "Крупная разовая скидка на пакет из 8, 16 или 24 тренировок!" },
-        { text: "8 за 3200₽", code: "EIGHT3200", full: "8 занятий за 3200 ₽ (на месяц)", desc: "Месяц бережного фитнеса: Пилатес, МФР, Здоровая спина или активные группы." },
-        { text: "16 за 5900₽", code: "SIXTEEN5900", full: "16 занятий за 5900 ₽", desc: "Грандиозный и максимальный дисконт на системное здоровье спины." },
-        { text: "ТЕСТ-ДРАЙВ 990₽", code: "TD990", full: "Тест-драйв: 4 занятия / 990 ₽", desc: "Легендарный стартовый сет из 4 тренировок на целый месяц!" }
+        { text1: "70%", text2: "РАЗОВОЕ", code: "SINGLE70", full: "Скидка 70% на разовое занятие", desc: "Разовый визит в студию РЕСУРС всего за 210 ₽ вместо 700 ₽!" },
+        { text1: "-30%", text2: "АБОНЕМЕНТ", code: "ABON30", full: "Скидка 30% на абонемент", desc: "Крупная разовая скидка на пакет из 8, 16 или 24 тренировок!" },
+        { text1: "8 ЗАН.", text2: "3200 ₽", code: "EIGHT3200", full: "8 занятий за 3200 ₽ (на месяц)", desc: "Месяц бережного фитнеса: Пилатес, МФР, Здоровая спина или активные группы." },
+        { text1: "16 ЗАН.", text2: "5900 ₽", code: "SIXTEEN5900", full: "16 занятий за 5900 ₽", desc: "Грандиозный и максимальный дисконт на системное здоровье спины." },
+        { text1: "ТЕСТ-ДРАЙВ", text2: "990 ₽", code: "TD990", full: "Тест-драйв: 4 занятия / 990 ₽", desc: "Легендарный стартовый сет из 4 тренировок на целый месяц!" }
     ];
 
     let currentAngle = 0;
     const arc = Math.PI / (prizes.length / 2);
 
     function draw() {
-        ctx.clearRect(0,0,600,600);
+        ctx.clearRect(0, 0, 600, 600);
         const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
 
         prizes.forEach((p, i) => {
             const angle = currentAngle + i * arc;
+            
+            // Заливка секторов: чередование фирменного глубокого графита и затемненного фиолетового
             ctx.fillStyle = i % 2 === 0 
                 ? (isDark ? "#12101B" : "#FFFFFF") 
-                : (isDark ? "#1C172E" : "#F1EDF9");
+                : (isDark ? "#1E1833" : "#F0EBF8");
             
             ctx.beginPath();
             ctx.moveTo(300, 300);
-            ctx.arc(300, 300, 290, angle, angle + arc, false);
+            ctx.arc(300, 300, 292, angle, angle + arc, false);
             ctx.fill();
             
-            ctx.strokeStyle = isDark ? "rgba(108, 62, 184, 0.4)" : "rgba(91, 52, 148, 0.3)";
-            ctx.lineWidth = 2;
+            // Обод сектора
+            ctx.strokeStyle = isDark ? "rgba(108, 62, 184, 0.45)" : "rgba(91, 52, 148, 0.35)";
+            ctx.lineWidth = 3;
             ctx.stroke();
 
+            // Отрисовка двухстрочного текста
             ctx.save();
-            ctx.fillStyle = isDark ? "#F5F4F9" : "#14121E";
-            ctx.translate(300 + Math.cos(angle + arc/2) * 205, 300 + Math.sin(angle + arc/2) * 205);
-            ctx.rotate(angle + arc/2 + Math.PI/2);
-            ctx.font = '800 20px Manrope';
-            ctx.fillText(p.text, -ctx.measureText(p.text).width/2, 0);
+            ctx.translate(300 + Math.cos(angle + arc / 2) * 190, 300 + Math.sin(angle + arc / 2) * 190);
+            ctx.rotate(angle + arc / 2 + Math.PI / 2);
+            
+            // Тень текста для максимальной читаемости
+            ctx.shadowColor = isDark ? "rgba(0,0,0,0.8)" : "rgba(255,255,255,0.8)";
+            ctx.shadowBlur = 4;
+
+            // 1 строка: Крупный акцентный заголовок
+            ctx.font = '800 26px Manrope';
+            ctx.fillStyle = isDark ? "#FFFFFF" : "#14121E";
+            ctx.textAlign = "center";
+            ctx.fillText(p.text1, 0, -6);
+
+            // 2 строка: Подзаголовок (фиолетовый акцент из логотипа)
+            ctx.font = '800 18px Manrope';
+            ctx.fillStyle = isDark ? "#9D6CE8" : "#5B3494";
+            ctx.fillText(p.text2, 0, 18);
+
             ctx.restore();
         });
+
+        // Центральный декоративный диск
+        ctx.beginPath();
+        ctx.arc(300, 300, 38, 0, Math.PI * 2);
+        ctx.fillStyle = isDark ? "#0A090F" : "#FFFFFF";
+        ctx.fill();
+        ctx.lineWidth = 4;
+        ctx.strokeStyle = isDark ? "#6C3EB8" : "#5B3494";
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(300, 300, 14, 0, Math.PI * 2);
+        ctx.fillStyle = isDark ? "#6C3EB8" : "#5B3494";
+        ctx.fill();
     }
 
     function startSpin() {
@@ -501,7 +532,8 @@
 
                 document.getElementById('prizeName').innerText = win.full;
                 document.getElementById('prizeInfo').innerText = win.desc;
-                // Ссылка в актуальный чат сообщества ВКонтакте
+                
+                // Ссылка в актуальный диалог сообщества ВКонтакте
                 document.getElementById('vkBtn').href = `https://vk.me/public221142875?ref=wheel_${win.code}`;
                 
                 document.getElementById('vkBtn').onclick = function() {
