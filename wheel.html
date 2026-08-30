@@ -131,60 +131,107 @@
             --shadow: rgba(0, 0, 0, 0.06);
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease; }
+        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
         html { scroll-behavior: smooth; }
-        body, html { width: 100%; min-height: 100%; font-family: 'Manrope', sans-serif; background: var(--bg-color); color: var(--text-main); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
-
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 10; }
+        
+        body, html {
+            width: 100%;
+            min-height: 100%;
+            font-family: 'Manrope', sans-serif;
+            background: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden !important;
+            position: relative;
+            -webkit-font-smoothing: antialiased;
+        }
 
         /* HEADER */
         header {
-            position: sticky; top: 0; width: 100%; height: 70px;
-            padding: 0 5%; display: flex; align-items: center; justify-content: space-between;
+            position: sticky; top: 0; width: 100%;
+            padding: 14px 5%;
             z-index: 2000; background: var(--header-bg);
             backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border-color);
         }
-        .back-link {
-            display: inline-flex; align-items: center; gap: 8px; color: var(--accent-color);
-            text-decoration: none; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;
-        }
-        .back-link:hover { color: var(--accent-hover); transform: translateX(-2px); }
 
-        .brand-name {
-            font-size: 18px; letter-spacing: 2px; text-transform: uppercase; font-weight: 800; color: var(--text-main);
+        .header-top {
+            display: flex; justify-content: space-between; align-items: center; width: 100%;
+            max-width: 1200px; margin: 0 auto;
         }
+
+        .logo-wrap {
+            display: flex; align-items: center; gap: 10px; cursor: pointer;
+        }
+        .logo-wrap img { height: 34px; width: 34px; border-radius: 6px; }
+        .brand-name { font-size: 18px; letter-spacing: 1px; text-transform: uppercase; font-weight: 800; color: var(--text-main); }
         .brand-name span { color: var(--accent-color); }
 
-        .header-actions { display: flex; align-items: center; gap: 12px; }
+        .back-link {
+            font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+            color: var(--text-muted); display: inline-flex; align-items: center; gap: 6px;
+        }
+        .back-link:hover { color: var(--accent-color); }
+
+        .desktop-actions {
+            display: flex; align-items: center; gap: 12px;
+        }
 
         .theme-toggle-btn {
-            font-weight: 800; font-size: 11px; letter-spacing: 1px; cursor: pointer;
-            text-transform: uppercase; padding: 8px 14px; border: 1px solid var(--border-color);
-            border-radius: 6px; background: var(--surface-color); color: var(--text-main);
+            padding: 8px 14px; height: 36px; font-size: 10px; font-weight: 800; letter-spacing: 1px;
+            display: inline-flex; align-items: center; justify-content: center;
+            border-radius: 6px; border: 1px solid var(--border-color); background: var(--surface-color);
+            cursor: pointer; transition: var(--transition); color: var(--text-main); text-transform: uppercase;
         }
         .theme-toggle-btn:hover { border-color: var(--accent-color); color: var(--accent-color); }
 
-        .header-logo { cursor: pointer; display: flex; align-items: center; }
-        .header-logo img { height: 34px; width: 34px; border-radius: 6px; }
+        /* ВТОРОЙ ЭТАЖ ДЛЯ МОБИЛЬНЫХ (ЗОНА БОЛЬШОГО ПАЛЬЦА) */
+        .mobile-thumb-bar {
+            display: none;
+            width: 100%;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border-color);
+            gap: 10px;
+        }
+        .mobile-thumb-bar .theme-toggle-btn { flex: 1; height: 42px; }
+        .mobile-thumb-bar .btn-mobile-action { 
+            flex: 2; height: 42px; display: flex; align-items: center; justify-content: center;
+            background: var(--accent-color); color: #FFF; border-radius: 6px; font-size: 11px;
+            font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; text-decoration: none;
+        }
+
+        @media (max-width: 900px) {
+            .desktop-actions { display: none; }
+            .mobile-thumb-bar { display: flex; }
+        }
 
         /* ФОНОВОЕ ВИДЕО */
-        .video-fixed-bg { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; overflow: hidden; }
+        .video-fixed-bg { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; overflow: hidden; pointer-events: none; }
         .video-fixed-bg video { width: 100%; height: 100%; object-fit: cover; opacity: var(--video-opacity); transition: opacity 0.5s ease; }
         .video-fixed-overlay { position: absolute; inset: 0; background: rgba(10, 9, 15, 0.45); pointer-events: none; }
 
         /* BENTO LAYOUT */
-        .main-layout { margin: 40px auto 60px; }
+        .main-layout { 
+            max-width: 1200px;
+            width: 100%;
+            margin: 40px auto 60px;
+            padding: 0 24px;
+            position: relative;
+            z-index: 10;
+        }
+        @media (max-width: 600px) { .main-layout { margin: 25px auto 50px; padding: 0 16px; } }
 
         .bento-grid {
             display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: start;
+            width: 100%;
         }
         .bento-card {
             background: var(--surface-color); border: 1px solid var(--border-color);
             border-radius: 14px; padding: 36px; position: relative; overflow: hidden;
             transition: var(--transition); box-shadow: 0 15px 35px var(--shadow);
+            min-width: 0;
         }
-        .bento-card:hover { border-color: var(--accent-color); transform: translateY(-2px); }
+        .bento-card:hover { border-color: var(--accent-color); }
         .span-2 { grid-column: span 2; }
         .span-3 { grid-column: span 3; }
 
@@ -200,8 +247,8 @@
 
         /* КОЛЕСО УДАЧИ */
         .wheel-block-container { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
-        .wheel-container { position: relative; width: clamp(290px, 100%, 380px); height: clamp(290px, 100%, 380px); margin: 0 auto; }
-        #wheelCanvas { width: 100%; height: 100%; border-radius: 50%; border: 4px solid var(--accent-color); background: #0A090F; box-shadow: 0 0 30px rgba(108, 62, 184, 0.35); }
+        .wheel-container { position: relative; width: 100%; max-width: 380px; aspect-ratio: 1 / 1; margin: 0 auto; }
+        #wheelCanvas { width: 100%; height: 100%; border-radius: 50%; border: 4px solid var(--accent-color); background: #0A090F; box-shadow: 0 0 30px rgba(108, 62, 184, 0.35); display: block; }
         .pointer {
             position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
             width: 0; height: 0; border-left: 14px solid transparent; border-right: 14px solid transparent;
@@ -231,6 +278,7 @@
         .seo-manifest-box {
             background: var(--surface-color); border: 1px solid var(--border-color); border-radius: 14px;
             padding: 36px; border-left: 4px solid var(--accent-color); margin-top: 24px;
+            min-width: 0;
         }
         .seo-manifest-box h2 { font-size: 20px; font-weight: 800; margin-bottom: 12px; }
         .seo-manifest-box p { font-size: 13px; color: var(--text-muted); line-height: 1.7; margin-bottom: 12px; }
@@ -266,25 +314,33 @@
         @media (max-width: 968px) {
             .bento-grid { grid-template-columns: 1fr; gap: 20px; }
             .span-2, .span-3 { grid-column: span 1; }
-            .main-layout { margin-top: 24px; }
-            .bento-card { padding: 26px; }
+            .bento-card { padding: 26px 20px; }
         }
     </style>
 </head>
 <body>
 
-<!-- ШАПКА -->
+<!-- ДВУХЭТАЖНАЯ ФИРМЕННАЯ ШАПКА -->
 <header>
-    <a href="index.html" class="back-link" aria-label="Вернуться на главную">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-        <span>На главную</span>
-    </a>
-    <div class="brand-name">РЕСУРС<span>.УДАЧА</span></div>
-    <div class="header-actions">
-        <button id="themeToggle" class="theme-toggle-btn" onclick="toggleTheme()">ТЕМА: ТЕМНАЯ</button>
-        <div id="secretReset" class="header-logo" title="Двойной клик: сбросить память попыток (админ)">
+    <div class="header-top">
+        <div class="logo-wrap" onclick="window.location.href='index.html'">
             <img src="logo_header_final.png" alt="Логотип РЕСУРС">
+            <div class="brand-name">РЕСУРС<span>.УДАЧА</span></div>
         </div>
+
+        <div class="desktop-actions">
+            <a href="index.html" class="back-link">← На главную</a>
+            <button id="themeToggle" class="theme-toggle-btn" onclick="toggleTheme()">ТЕМА: ТЕМНАЯ</button>
+            <div id="secretReset" style="cursor: pointer; display: flex; align-items: center;" title="Двойной клик: сбросить память попыток (админ)">
+                <img src="logo_header_final.png" alt="Сброс" style="height: 32px; width: 32px; border-radius: 6px;">
+            </div>
+        </div>
+    </div>
+
+    <!-- ВТОРОЙ ЭТАЖ ДЛЯ СМАРТФОНОВ (ЗОНА БОЛЬШОГО ПАЛЬЦА) -->
+    <div class="mobile-thumb-bar">
+        <button id="themeToggleMobile" class="theme-toggle-btn" onclick="toggleTheme()">ТЕМА: ТЕМНАЯ</button>
+        <a href="index.html" class="btn-mobile-action">← НА ГЛАВНУЮ</a>
     </div>
 </header>
 
@@ -296,7 +352,7 @@
     <div class="video-fixed-overlay"></div>
 </div>
 
-<main class="container main-layout">
+<main class="main-layout">
     <div class="bento-grid">
         
         <!-- ЛЕВАЯ КАРТОЧКА: КОЛЕСО ФОРТУНЫ -->
@@ -375,7 +431,7 @@
 
 <!-- ПОДВАЛ -->
 <footer>
-    <div class="container">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
         <p style="font-size: 13px; font-weight: 800; color: var(--text-main); margin-bottom: 6px;">
             © 2026 РЕСУРС | Студия фитнеса, растяжки и движения. Сыктывкар, ул. Коммунистическая, 67.
         </p>
@@ -400,8 +456,11 @@
     }
 
     function updateBtnText(t) {
-        const btn = document.getElementById('themeToggle');
-        if (btn) btn.innerText = t === 'dark' ? 'ТЕМА: ТЕМНАЯ' : 'ТЕМА: СВЕТЛАЯ';
+        const btnDesktop = document.getElementById('themeToggle');
+        const btnMobile = document.getElementById('themeToggleMobile');
+        const text = t === 'dark' ? 'ТЕМА: ТЕМНАЯ' : 'ТЕМА: СВЕТЛАЯ';
+        if (btnDesktop) btnDesktop.innerText = text;
+        if (btnMobile) btnMobile.innerText = text;
     }
 
     window.addEventListener('DOMContentLoaded', () => {
@@ -432,11 +491,10 @@
         location.reload();
     });
 
-    // АРХИТЕКТУРА И ОТРИСОВКА КОЛЕСА (ДВУХСТРОЧНЫЙ КРУПНЫЙ ТЕКСТ)
+    // АРХИТЕКТУРА И ОТРИСОВКА КОЛЕСА
     const canvas = document.getElementById('wheelCanvas');
     const ctx = canvas.getContext('2d');
     
-    // Новые призы: text1 - крупный акцент, text2 - пояснение/цена
     const prizes = [
         { text1: "70%", text2: "РАЗОВОЕ", code: "SINGLE70", full: "Скидка 70% на разовое занятие", desc: "Разовый визит в студию РЕСУРС всего за 210 ₽ вместо 700 ₽!" },
         { text1: "-30%", text2: "АБОНЕМЕНТ", code: "ABON30", full: "Скидка 30% на абонемент", desc: "Крупная разовая скидка на пакет из 8, 16 или 24 тренировок!" },
@@ -455,7 +513,6 @@
         prizes.forEach((p, i) => {
             const angle = currentAngle + i * arc;
             
-            // Заливка секторов: чередование фирменного глубокого графита и затемненного фиолетового
             ctx.fillStyle = i % 2 === 0 
                 ? (isDark ? "#12101B" : "#FFFFFF") 
                 : (isDark ? "#1E1833" : "#F0EBF8");
@@ -465,27 +522,22 @@
             ctx.arc(300, 300, 292, angle, angle + arc, false);
             ctx.fill();
             
-            // Обод сектора
             ctx.strokeStyle = isDark ? "rgba(108, 62, 184, 0.45)" : "rgba(91, 52, 148, 0.35)";
             ctx.lineWidth = 3;
             ctx.stroke();
 
-            // Отрисовка двухстрочного текста
             ctx.save();
             ctx.translate(300 + Math.cos(angle + arc / 2) * 190, 300 + Math.sin(angle + arc / 2) * 190);
             ctx.rotate(angle + arc / 2 + Math.PI / 2);
             
-            // Тень текста для максимальной читаемости
             ctx.shadowColor = isDark ? "rgba(0,0,0,0.8)" : "rgba(255,255,255,0.8)";
             ctx.shadowBlur = 4;
 
-            // 1 строка: Крупный акцентный заголовок
             ctx.font = '800 26px Manrope';
             ctx.fillStyle = isDark ? "#FFFFFF" : "#14121E";
             ctx.textAlign = "center";
             ctx.fillText(p.text1, 0, -6);
 
-            // 2 строка: Подзаголовок (фиолетовый акцент из логотипа)
             ctx.font = '800 18px Manrope';
             ctx.fillStyle = isDark ? "#9D6CE8" : "#5B3494";
             ctx.fillText(p.text2, 0, 18);
@@ -493,7 +545,6 @@
             ctx.restore();
         });
 
-        // Центральный декоративный диск
         ctx.beginPath();
         ctx.arc(300, 300, 38, 0, Math.PI * 2);
         ctx.fillStyle = isDark ? "#0A090F" : "#FFFFFF";
@@ -533,7 +584,6 @@
                 document.getElementById('prizeName').innerText = win.full;
                 document.getElementById('prizeInfo').innerText = win.desc;
                 
-                // Ссылка в актуальный диалог сообщества ВКонтакте
                 document.getElementById('vkBtn').href = `https://vk.me/public221142875?ref=wheel_${win.code}`;
                 
                 document.getElementById('vkBtn').onclick = function() {
