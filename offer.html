@@ -7,6 +7,7 @@
     </script>
 
     <script type="text/javascript">
+    // --- Yandex.Metrika counter ---
     (function(m,e,t,r,i,k,a){
         m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
         m[i].l=1*new Date();
@@ -15,6 +16,7 @@
     })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108177329', 'ym');
     ym(108177329, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
 
+    // --- Top.Mail.Ru counter ---
     var _tmr = window._tmr || (window._tmr = []);
     _tmr.push({id: "3755240", type: "pageView", start: (new Date()).getTime()});
     (function (d, w, id) {
@@ -148,7 +150,7 @@
         .brand-name { font-size: 18px; letter-spacing: 1px; text-transform: uppercase; font-weight: 800; color: var(--text-main); }
         .brand-name span { color: var(--accent-color); }
 
-        .desktop-actions { display: flex; align-items: center; gap: 12px; }
+        .desktop-actions { display: flex; align-items: center; gap: 10px; }
 
         .back-link {
             font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
@@ -163,6 +165,14 @@
             cursor: pointer; transition: var(--transition); color: var(--text-main); text-transform: uppercase;
         }
         .theme-toggle-btn:hover { border-color: var(--accent-color); color: var(--accent-color); }
+
+        .btn-header-tool {
+            display: inline-flex; align-items: center; gap: 6px; padding: 8px 12px;
+            background: var(--surface-color); border: 1px solid var(--border-color);
+            border-radius: 6px; font-size: 10px; font-weight: 800; text-transform: uppercase;
+            letter-spacing: 0.5px; color: var(--text-main); cursor: pointer; transition: var(--transition);
+        }
+        .btn-header-tool:hover { border-color: var(--accent-color); color: var(--accent-color); }
 
         .mobile-thumb-bar {
             display: none; width: 100%; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border-color); gap: 10px;
@@ -194,39 +204,10 @@
         }
         @media (max-width: 600px) { .document-card { padding: 25px 18px; } }
 
-        /* ПАНЕЛЬ ИНСТРУМЕНТОВ */
-        .doc-toolbar {
-            display: flex; justify-content: space-between; align-items: center;
-            margin-bottom: 30px; padding-bottom: 16px;
-            flex-wrap: wrap; gap: 15px;
-        }
-        .doc-actions { display: flex; gap: 10px; }
-        
-        .section-tag {
-            color: var(--accent-color);
-            font-size: 11px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            display: inline-block;
-            background: var(--accent-subtle);
-            padding: 4px 10px;
-            border-radius: 4px;
-            border: 1px solid var(--border-color);
-        }
-
-        .btn-tool {
-            display: inline-flex; align-items: center; gap: 6px; padding: 9px 15px;
-            background: var(--bg-color); border: 1px solid var(--border-color);
-            border-radius: 6px; font-size: 11px; font-weight: 800; text-transform: uppercase;
-            letter-spacing: 0.5px; color: var(--text-main); cursor: pointer; transition: var(--transition);
-        }
-        .btn-tool:hover { border-color: var(--accent-color); color: var(--accent-color); background: var(--accent-subtle); }
-
-        /* ШРИФТЫ ДОКУМЕНТА (ТОЧНО 12pt для H2, 11pt для основного текста) */
+        /* ТИТУЛ ДОКУМЕНТА */
         .doc-title { text-align: center; margin-bottom: 30px; }
         .doc-title h1 { 
-            font-size: 21px; /* ~16pt */
+            font-size: 21px; /* 16pt */
             line-height: 1.3; 
             margin-bottom: 6px; 
             color: var(--text-main); 
@@ -241,7 +222,7 @@
             font-weight: 700; 
         }
 
-        /* Заголовки разделов: строго 12pt (16px), без линий */
+        /* Заголовки разделов: строго 12pt (16px), без разделительных линий */
         .legal-content h2 {
             font-size: 16px; /* 12pt */
             color: var(--accent-color); 
@@ -272,7 +253,7 @@
             margin-top: 0 !important;
         }
         
-        /* БЛОК ПОДПИСИ (АККУРАТНЫЙ АВТОГРАФ БЕЗ КАРАКУЛЕЙ) */
+        /* БЛОК ПОДПИСИ (АНАТОМИЧЕСКАЯ ПОДПИСЬ «НСХудяков») */
         .signature-block {
             margin-top: 25px; 
             padding-top: 20px;
@@ -294,8 +275,8 @@
         
         .sig-image-container {
             position: relative;
-            width: 180px;
-            height: 70px;
+            width: 190px;
+            height: 75px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -304,7 +285,7 @@
         .authentic-sign-svg {
             width: 100%;
             height: auto;
-            max-height: 75px;
+            max-height: 80px;
             filter: drop-shadow(0 1px 2px rgba(30, 58, 138, 0.35));
         }
 
@@ -320,7 +301,7 @@
             font-weight: 700; 
             letter-spacing: 1px;
             margin-top: 4px;
-            margin-left: 200px;
+            margin-left: 210px;
         }
 
         footer {
@@ -328,12 +309,12 @@
         }
         .footer-sub { font-size: 11px; color: var(--text-muted); line-height: 1.8; margin-top: 6px; }
 
-        /* СТИЛИ ДЛЯ ПЕЧАТИ И PDF (ЧИСТЫЙ А4 БЕЗ ЛИШНЕГО) */
+        /* СТИЛИ ДЛЯ ПЕЧАТИ И PDF */
         @media print {
             body, html { background: #FFFFFF !important; color: #000000 !important; font-size: 10pt; }
             * { color: #000000 !important; text-shadow: none !important; box-shadow: none !important; }
             
-            header, .doc-toolbar, footer, .seo-hidden { display: none !important; }
+            header, footer, .seo-hidden { display: none !important; }
             
             .offer-wrapper { max-width: 100% !important; margin: 0 !important; padding: 0 !important; }
             .document-card { border: none !important; padding: 0 !important; border-radius: 0 !important; background: transparent !important; }
@@ -357,6 +338,10 @@
         </div>
 
         <div class="desktop-actions">
+            <button class="btn-header-tool" onclick="window.print()">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><path d="M6 14h12v8H6z"/></svg>
+                Распечатать / PDF
+            </button>
             <a href="index.html" class="back-link">← На главную</a>
             <button id="themeToggleBtn" class="theme-toggle-btn" onclick="toggleThemeInstant()">ТЕМА: ТЕМНАЯ</button>
         </div>
@@ -372,21 +357,6 @@
 <main class="offer-wrapper">
     <div class="document-card">
         
-        <!-- ПАНЕЛЬ УПРАВЛЕНИЯ -->
-        <div class="doc-toolbar">
-            <span class="section-tag">Юридический реестр</span>
-            <div class="doc-actions">
-                <button class="btn-tool" onclick="window.print()">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><path d="M6 14h12v8H6z"/></svg>
-                    Распечатать
-                </button>
-                <button class="btn-tool" onclick="window.print()" style="border-color: var(--accent-color); color: var(--accent-color);">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-                    Скачать PDF
-                </button>
-            </div>
-        </div>
-
         <div class="doc-title">
             <h1>ДОГОВОР-ОФЕРТА</h1>
             <p>о предоставлении услуг по проведению занятий по растяжке и фитнесу</p>
@@ -528,15 +498,15 @@
                     Email: <a href="mailto:foltaim@mail.ru"><b>foltaim@mail.ru</b></a>
                 </p>
 
-                <!-- ОФИЦИАЛЬНЫЙ БЛОК ПОДПИСИ С РЕАЛИСТИЧНЫМ РОСЧЕРКОМ -->
+                <!-- ОФИЦИАЛЬНЫЙ БЛОК ПОДПИСИ (ТОЧНО ПО ОБРАЗЦУ «НСХудяков») -->
                 <div class="signature-block">
                     <div class="signature-wrapper">
                         <span class="sig-role">Индивидуальный предприниматель</span>
                         <div class="sig-image-container">
-                            <!-- ТОЧНАЯ ВЕКТОРНАЯ РЕПЛИКА ВАШЕГО АВТОГРАФА ПО ФОТО -->
-                            <svg class="authentic-sign-svg" viewBox="0 0 240 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M22 68 C18 64, 15 52, 24 45 C35 36, 42 62, 46 76 C48 82, 38 90, 32 86 C24 81, 28 66, 38 52 C54 30, 78 12, 94 8 C98 7, 96 15, 92 28 C82 58, 62 88, 55 94 C50 98, 46 95, 52 86 C64 68, 86 38, 98 26 C105 19, 110 22, 106 32 C96 58, 78 92, 85 94 C92 96, 104 84, 115 72 C128 58, 142 42, 145 46 C148 50, 138 68, 126 84 C118 94, 112 96, 118 90 C128 78, 148 62, 160 54 C172 46, 175 52, 168 64 C158 82, 142 96, 148 95 C156 94, 172 78, 188 60 C204 42, 222 24, 232 14" 
-                                      stroke="#1E3A8A" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <!-- ТОЧНЫЙ ВЕКТОРНЫЙ АВТОГРАФ ПО ВАШЕМУ ФОТО: Н + С + ХУДЯКОВ С РОСЧЕРКОМ -->
+                            <svg class="authentic-sign-svg" viewBox="0 0 260 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M 28 85 C 22 75, 14 55, 26 42 C 34 32, 42 46, 45 68 C 47 78, 38 88, 30 84 C 22 78, 25 62, 36 48 C 50 28, 76 10, 88 6 C 92 5, 90 14, 86 28 C 76 62, 58 92, 52 98 C 47 102, 44 98, 50 88 C 62 68, 86 34, 98 22 C 104 16, 110 18, 106 28 C 96 56, 78 92, 85 95 C 92 98, 106 82, 118 68 C 132 52, 146 38, 150 42 C 154 46, 142 66, 130 82 C 122 92, 115 95, 122 88 C 132 76, 154 58, 168 48 C 178 40, 182 46, 175 58 C 164 78, 148 94, 154 92 C 162 90, 180 72, 198 52 C 218 32, 238 16, 250 8" 
+                                      stroke="#1E3A8A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </div>
                         <span class="sig-name">/ Н. С. Худяков /</span>
