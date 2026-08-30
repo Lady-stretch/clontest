@@ -241,7 +241,7 @@
             font-weight: 700; 
         }
 
-        /* Заголовки разделов: строго 12pt (16px), без линий */
+        /* Заголовки разделов */
         .legal-content h2 {
             font-size: 16px; 
             color: var(--accent-color); 
@@ -251,7 +251,7 @@
             font-weight: 800;
         }
 
-        /* Основной юридический текст: строго 11pt (14.5px) */
+        /* Основной юридический текст */
         .legal-content p {
             font-size: 14.5px; 
             line-height: 1.65; 
@@ -301,7 +301,6 @@
             justify-content: center;
         }
         
-        /* ЭЛЕГАНТНАЯ И СТИЛИЗОВАННАЯ ДЕКОРАТИВНАЯ ПОДПИСЬ «НСХудяков» */
         .authentic-sign-svg {
             width: 100%;
             height: auto;
@@ -329,32 +328,32 @@
         }
         .footer-sub { font-size: 11px; color: var(--text-muted); line-height: 1.8; margin-top: 6px; }
 
-        /* СТИЛИ ДЛЯ ПЕЧАТИ И PDF С УДАЛЕНИЕМ КОЛОНТИТУЛОВ БРАУЗЕРА */
+        /* СТИЛИ ДЛЯ ПЕЧАТИ И PDF С УСТРАНЕНИЕМ ЛИШНИХ ПОЛЕЙ */
         @media print {
             @page {
-                margin: 0mm !important;
+                margin: 10mm 15mm 10mm 15mm !important;
                 size: A4 portrait;
             }
 
             body, html { 
                 background: #FFFFFF !important; 
                 color: #000000 !important; 
-                font-size: 10pt !important;
+                font-size: 10.5pt !important;
                 background-image: none !important;
-                padding: 15mm !important;
+                padding: 0 !important;
             }
 
             * { color: #000000 !important; text-shadow: none !important; box-shadow: none !important; }
             
             header, .doc-toolbar, footer, .seo-hidden { display: none !important; }
             
-            .offer-wrapper { max-width: 100% !important; margin: 0 !important; padding: 0 !important; }
-            .document-card { border: none !important; padding: 0 !important; border-radius: 0 !important; background: transparent !important; }
+            .offer-wrapper { max-width: 100% !important; margin: 0 !important; padding: 0 !important; width: 100% !important; }
+            .document-card { border: none !important; padding: 0 !important; border-radius: 0 !important; background: transparent !important; box-shadow: none !important; width: 100% !important; }
             
             .legal-content h2 { color: #000 !important; margin-top: 14pt; margin-bottom: 6pt; font-size: 12pt; }
-            .legal-content p { color: #000 !important; text-align: justify; margin-bottom: 6pt; font-size: 10.5pt; line-height: 1.45; }
+            .legal-content p { color: #000 !important; text-align: justify; margin-bottom: 6pt; font-size: 10.5pt; line-height: 1.45; width: 100% !important; }
             
-            .requisites-box { border: 1px solid #000 !important; background: transparent !important; padding: 12pt; }
+            .requisites-box { border: 1px solid #000 !important; background: transparent !important; padding: 12pt; width: 100% !important; }
             .authentic-sign-svg path { stroke: #001B79 !important; }
         }
     </style>
