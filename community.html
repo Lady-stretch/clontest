@@ -1,26 +1,37 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <script type="text/javascript">
-        // --- Yandex.Metrika counter ---
-        (function(m,e,t,r,i,k,a){
-            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();
-            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108177329', 'ym');
-        ym(108177329, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
 
-        // --- Top.Mail.Ru counter ---
-        var _tmr = window._tmr || (window._tmr = []);
-        _tmr.push({id: "3755240", type: "pageView", start: (new Date()).getTime()});
-        (function (d, w, id) {
-            if (d.getElementById(id)) return;
-            var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
-            ts.src = "https://top-fwz1.mail.ru/js/code.js";
-            var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
-            if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
-        })(document, window, "tmr-code");
+    <!-- Инициализация темы без мерцания -->
+    <script>
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+
+    <!-- Счетчики аналитики: Яндекс.Метрика и Top.Mail.Ru -->
+    <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108177329', 'ym');
+    ym(108177329, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+
+    var _tmr = window._tmr || (window._tmr = []);
+    _tmr.push({id: "3755240", type: "pageView", start: (new Date()).getTime()});
+    (function (d, w, id) {
+        if (d.getElementById(id)) return;
+        var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
+        ts.src = "https://top-fwz1.mail.ru/js/code.js";
+        var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
+        if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
+    })(document, window, "tmr-code");
     </script>
     <noscript>
         <div>
@@ -29,326 +40,323 @@
         </div>
     </noscript>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Живая статистика и результаты опросов резидентов фитнес-студии РЕСУРС в Сыктывкаре. Узнайте, почему сотни женщин доверяют нам свое здоровье и красоту.">
-    <meta name="keywords" content="отзывы растяжка Сыктывкар, результаты тренировок фитнес, статистика студии Ресурс, фитнес комьюнити">
-    
-    <title>Выбор комьюнити | РЕСУРС</title>
-    <link rel="icon" type="image/png" href="logo_header_final.png">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Manrope:wght@200;300;400;500;600&display=swap" rel="stylesheet">
-    
+    <!-- СЕО МЕТА-ТЕГИ -->
+    <title>Живой пульс комьюнити и статистика | Студия РЕСУРС Сыктывкар</title>
+    <meta name="description" content="Живой дашборд и результаты опросов резидентов фитнес-студии РЕСУРС на ул. Коммунистическая, 67 в Сыктывкаре. Честные данные о тренировках, предпочтениях и результатах комьюнити.">
+    <meta name="keywords" content="отзывы растяжка сыктывкар, результаты тренировок фитнес, статистика студии ресурс, фитнес комьюнити сыктывкар, опрос результаты">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://resurs-stretch.ru/community.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://resurs-stretch.ru/community.html">
+    <meta property="og:title" content="Живой пульс комьюнити | Студия РЕСУРС Сыктывкар">
+    <meta property="og:description" content="Честная статистика и данные на основе анкет сотен резидентов нашей студии.">
+    <meta property="og:image" content="https://resurs-stretch.ru/logo_header_final.png">
+    <meta property="og:locale" content="ru_RU">
+
+    <!-- Микроразметка Schema.org -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebPage",
       "name": "Комьюнити и Статистика студии РЕСУРС",
-      "description": "Живой дашборд с результатами опросов наших резидентов. Честные данные о тренировках и предпочтениях.",
+      "description": "Живой дашборд с результатами опросов резидентов студии в Сыктывкаре.",
       "url": "https://resurs-stretch.ru/community.html",
       "publisher": {
         "@type": "Organization",
-        "name": "РЕСУРС - Студия фитнеса и растяжки"
+        "name": "Студия растяжки и движения РЕСУРС",
+        "sameAs": "https://resurs-stretch.ru"
       }
     }
     </script>
 
+    <!-- Chart.js и IMask -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
+    <script src="https://unpkg.com/imask"></script>
+    <script src="https://yookassa.ru/checkout-widget/v1/checkout-widget.js"></script>
+
+    <!-- Фавикон и шрифты -->
+    <link rel="icon" type="image/png" href="logo_header_final.png">
+    <link rel="apple-touch-icon" href="logo_header_final.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --bg-deep: #080814; 
-            --accent-gold: #C5A059; 
-            --text-main: #F4F4F9;
-            --text-dim: rgba(244, 244, 249, 0.6);
-            --font-main: 'Manrope', sans-serif;
-            --font-serif: 'Cormorant Garamond', serif;
-            --glass-bg: rgba(10, 10, 25, 0.65);
-            --glass-border: 1px solid rgba(197, 160, 89, 0.3);
-            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            --bg-color: #0A090F;
+            --surface-color: #12101B;
+            --surface-hover: #1A1727;
+            --accent-color: #6C3EB8;
+            --accent-hover: #8352D6;
+            --accent-subtle: rgba(108, 62, 184, 0.15);
+            --text-main: #F5F4F9;
+            --text-muted: #9693A6;
+            --border-color: rgba(108, 62, 184, 0.22);
+            --header-bg: rgba(10, 9, 15, 0.88);
+            --shadow: rgba(0, 0, 0, 0.6);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* --- СВЕТЛАЯ ТЕМА --- */
-        :root.light-theme {
-            --bg-deep: #F4F4F9;
-            --text-main: #080814;
-            --text-dim: rgba(8, 8, 20, 0.6);
-            --glass-bg: rgba(255, 255, 255, 0.85);
-            --glass-border: 1px solid rgba(0, 0, 0, 0.1);
+        [data-theme="light"] {
+            --bg-color: #F8F7FC;
+            --surface-color: #FFFFFF;
+            --surface-hover: #F1EDF9;
+            --accent-color: #5B3494;
+            --accent-hover: #48257B;
+            --accent-subtle: rgba(91, 52, 148, 0.08);
+            --text-main: #14121E;
+            --text-muted: #666375;
+            --border-color: rgba(91, 52, 148, 0.16);
+            --header-bg: rgba(248, 247, 252, 0.9);
+            --shadow: rgba(0, 0, 0, 0.05);
         }
-        :root.light-theme body { background-image: none; color: var(--text-main); }
-        :root.light-theme .chart-card { background: rgba(0, 0, 0, 0.02); border-color: rgba(0,0,0,0.05); }
-        :root.light-theme .theme-btn { border-color: rgba(0,0,0,0.2); color: var(--text-main); }
-        :root.light-theme .modal-content { background: #F4F4F9; border-color: rgba(0,0,0,0.1); }
-        :root.light-theme .modal-content h2 { color: #080814 !important; }
-        :root.light-theme .modal-input { background: #EAEAEA; border-color: rgba(0,0,0,0.2); color: #080814; }
-        :root.light-theme .modal-input:focus { border-color: var(--accent-gold); }
 
-        body {
-            font-family: var(--font-main);
-            background: var(--bg-deep);
+        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
+        html { scroll-behavior: smooth; }
+        
+        html, body {
+            overflow-x: hidden !important;
+            max-width: 100%;
+            width: 100%;
+            position: relative;
+        }
+
+        body { 
+            background: var(--bg-color); 
             color: var(--text-main);
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
-            margin: 0;
-            padding: 40px 20px;
+            font-family: 'Manrope', sans-serif; 
+            line-height: 1.6;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            transition: background-color 0.3s ease, color 0.3s ease;
+            -webkit-font-smoothing: antialiased;
+            padding: 40px 20px 80px;
             display: flex;
             justify-content: center;
-            transition: var(--transition);
         }
+
+        h1, h2, h3, h4 { font-weight: 800; letter-spacing: -0.5px; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        ul { list-style: none; }
 
         .container {
-            max-width: 1000px;
+            max-width: 1050px;
             width: 100%;
-            background: var(--glass-bg);
-            backdrop-filter: blur(25px) saturate(180%);
-            -webkit-backdrop-filter: blur(25px) saturate(180%);
-            border-radius: 24px;
-            border: var(--glass-border);
-            padding: 50px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-            transition: var(--transition);
+            background: var(--surface-color);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            padding: 45px 40px;
+            box-shadow: 0 20px 50px var(--shadow);
+            position: relative;
         }
+        @media (max-width: 768px) { .container { padding: 30px 20px; } }
 
+        /* ШАПКА ФОРМЫ */
         .header-top { 
-            position: relative; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            margin-bottom: 20px; 
+            display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; 
         }
-        .header-top img { height: 40px; border-radius: 8px; transition: var(--transition); }
-        .header-top img:hover { opacity: 0.8; }
+        .back-link {
+            font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+            color: var(--text-muted); display: inline-flex; align-items: center; gap: 6px;
+        }
+        .back-link:hover { color: var(--accent-color); }
 
-        .back-btn {
-            position: absolute;
-            left: 0;
-            color: var(--text-dim);
-            text-decoration: none;
+        .theme-toggle-btn {
+            padding: 8px 14px; height: 36px; font-size: 10px; font-weight: 800; letter-spacing: 1px;
+            display: inline-flex; align-items: center; justify-content: center;
+            border-radius: 6px; border: 1px solid var(--border-color); background: var(--bg-color);
+            cursor: pointer; transition: var(--transition); color: var(--text-main); text-transform: uppercase;
+        }
+        .theme-toggle-btn:hover { border-color: var(--accent-color); color: var(--accent-color); }
+
+        .section-tag {
+            color: var(--accent-color);
             font-size: 11px;
+            font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 2px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: var(--transition);
-            z-index: 10;
+            margin-bottom: 8px;
+            display: inline-block;
+            background: var(--accent-subtle);
+            padding: 4px 12px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
         }
-        .back-btn:hover { color: var(--accent-gold); transform: translateX(-4px); }
 
-        .theme-btn {
-            position: absolute;
-            right: 0;
-            background: transparent; 
-            border: 1px solid rgba(255,255,255,0.15); 
-            border-radius: 8px; 
-            padding: 6px 14px; 
-            color: var(--accent-gold); 
-            font-family: var(--font-main); 
-            font-size: 10px; 
-            font-weight: 600;
-            text-transform: uppercase; 
-            cursor: pointer; 
-            transition: var(--transition);
-        }
-        .theme-btn:hover { background: rgba(197, 160, 89, 0.1); border-color: var(--accent-gold); }
+        h1 { font-size: clamp(28px, 4vw, 40px); margin-bottom: 12px; line-height: 1.2; }
+        h1 span { color: var(--accent-color); }
+        .subtitle { color: var(--text-muted); margin-bottom: 40px; font-size: 15px; line-height: 1.7; }
 
-        h1 { font-family: var(--font-serif); text-align: center; font-size: 42px; margin-bottom: 10px; font-weight: 300; letter-spacing: 2px; }
-        .subtitle { text-align: center; color: var(--text-dim); margin-bottom: 50px; font-size: 16px; line-height: 1.6; }
-
+        /* BENTO ДАШБОРД СЕТКА */
         .dashboard-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
         }
+        @media (max-width: 768px) { .dashboard-grid { grid-template-columns: 1fr; } }
 
         .chart-card {
-            background: rgba(255, 255, 255, 0.02);
-            padding: 30px;
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 28px;
+            box-shadow: 0 10px 25px var(--shadow);
             transition: var(--transition);
         }
-
-        .chart-card.full-width { grid-column: 1 / -1; }
+        .chart-card:hover { border-color: var(--accent-color); }
+        .chart-card.full-width { grid-column: span 2; }
+        @media (max-width: 768px) { .chart-card.full-width { grid-column: span 1; } }
 
         .card-title {
-            font-family: var(--font-serif);
-            font-size: 24px;
-            font-weight: 400;
-            margin-bottom: 25px;
-            text-align: center;
-            color: var(--accent-gold);
-            letter-spacing: 1px;
+            font-size: 16px; font-weight: 800; margin-bottom: 20px;
+            text-align: center; color: var(--accent-color); text-transform: uppercase; letter-spacing: 1px;
         }
 
+        /* CTA БАННЕР */
         .cta-box {
+            background: linear-gradient(135deg, var(--surface-color), var(--surface-hover));
+            border: 1px solid var(--accent-color);
+            border-radius: 14px;
+            padding: 40px 30px;
             text-align: center;
-            margin-top: 50px;
-            padding: 40px;
-            background: rgba(197, 160, 89, 0.05);
-            border: 1px solid rgba(197, 160, 89, 0.3);
-            border-radius: 16px;
-            transition: var(--transition);
+            margin-top: 40px;
+            box-shadow: 0 15px 35px var(--shadow);
         }
-        
-        .cta-box h2 { font-family: var(--font-serif); font-size: 32px; font-weight: 300; margin-bottom: 15px; }
+        .cta-box h2 { font-size: 26px; margin-bottom: 10px; }
+        .cta-box p { color: var(--text-muted); font-size: 14px; margin-bottom: 25px; }
 
         .btn-test-drive {
-            display: inline-block;
-            background: var(--accent-gold);
-            color: #000;
-            padding: 18px 40px;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            margin-top: 20px;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            transition: var(--transition);
-            cursor: pointer;
-            border: none;
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 16px 36px; background: var(--accent-color); color: #FFF;
+            border: none; border-radius: 8px; font-size: 12px; font-weight: 800;
+            text-transform: uppercase; letter-spacing: 1.5px; cursor: pointer;
+            transition: var(--transition); box-shadow: 0 10px 25px rgba(108, 62, 184, 0.4);
         }
+        .btn-test-drive:hover { background: var(--accent-hover); transform: translateY(-1px); }
 
-        .btn-test-drive:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(197, 160, 89, 0.4); }
-
-        /* Стили модального окна оплаты */
-        .modal-overlay {
+        /* МОДАЛЬНОЕ ОКНО ОПЛАТЫ */
+        .modal {
             display: none; position: fixed; inset: 0; z-index: 3000;
-            background: rgba(5, 5, 12, 0.95); backdrop-filter: blur(10px);
-            align-items: center; justify-content: center; padding: 20px;
+            background: rgba(10,9,15,0.88); backdrop-filter: blur(12px);
+            align-items: center; justify-content: center; padding: 20px; overflow-y: auto;
         }
         .modal-content {
-            width: 100%; max-width: 450px; padding: 50px 40px; position: relative;
-            text-align: center; border-radius: 24px; border: 1px solid rgba(197, 160, 89, 0.3);
-            background: rgba(10, 10, 25, 0.85); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
-            transition: var(--transition);
+            width: 100%; max-width: 480px; padding: 40px 30px;
+            position: relative; border-radius: 12px; background: var(--surface-color);
+            border: 1px solid var(--border-color); text-align: center;
         }
-        .modal-close {
-            position: absolute; top: 20px; right: 25px; font-size: 30px;
-            cursor: pointer; color: var(--accent-gold); opacity: 0.7; transition: 0.3s;
+        .modal-close { position: absolute; top: 15px; right: 20px; font-size: 28px; cursor: pointer; color: var(--text-muted); }
+        .modal-close:hover { color: var(--accent-color); }
+        .modal input {
+            width: 100%; background: var(--bg-color); border: 1px solid var(--border-color);
+            padding: 14px 16px; color: var(--text-main); font-size: 14px; margin-bottom: 16px; border-radius: 6px;
         }
-        .modal-close:hover { opacity: 1; }
-        .modal-input {
-            width: 100%; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);
-            color: white; padding: 18px; border-radius: 12px; margin-bottom: 15px;
-            font-family: var(--font-main); font-size: 15px; box-sizing: border-box; transition: 0.3s;
-        }
-        .modal-input:focus { border-color: var(--accent-gold); outline: none; }
-        .modal-btn {
-            width: 100%; padding: 20px; background: var(--accent-gold); color: #000;
-            border: none; border-radius: 12px; font-size: 13px; text-transform: uppercase;
-            letter-spacing: 3px; font-weight: 600; cursor: pointer; transition: 0.3s; margin-top: 10px;
-        }
-        .modal-btn:hover { box-shadow: 0 0 30px rgba(197, 160, 89, 0.4); transform: translateY(-2px); }
-
-        @media (max-width: 768px) {
-            .dashboard-grid { grid-template-columns: 1fr; }
-            .container { padding: 30px 20px; }
-            h1 { font-size: 32px; }
-            .modal-content { padding: 40px 20px; }
-        }
-        
-        @media (max-width: 500px) {
-            .back-text { display: none; }
-            .back-btn { font-size: 20px; left: 0px; top: 10px; }
-            .theme-btn { top: 10px; }
-        }
+        .modal input:focus { border-color: var(--accent-color); }
     </style>
 </head>
 <body>
 
 <div class="container">
+    
+    <!-- ШАПКА ФОРМЫ -->
     <div class="header-top">
-        <a href="index.html" class="back-btn">
-            <span style="font-size: 18px; line-height: 1; padding-bottom: 2px;">←</span> 
-            <span class="back-text">На главную</span>
-        </a>
-        <a href="index.html" style="display: flex;">
-            <img src="logo_header_final.png" alt="РЕСУРС Логотип">
-        </a>
-        <button id="themeToggleBtn" class="theme-btn" onclick="toggleTheme()">Свет</button>
+        <a href="index.html" class="back-link">← На главную</a>
+        <div class="logo-wrap" style="display:flex; align-items:center; gap:8px;">
+            <img src="logo_header_final.png" alt="РЕСУРС" style="height:28px; border-radius:6px;">
+            <span style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:1px;">РЕСУРС</span>
+        </div>
+        <button id="themeToggleBtn" class="theme-toggle-btn" onclick="toggleThemeInstant()">ТЕМА: ТЕМНАЯ</button>
     </div>
     
-    <h1 style="display: none;">РЕСУРС: Статистика и результаты фитнес-тренировок</h1> <h1 style="font-size: 42px; margin-bottom: 10px;">Живой пульс студии «РЕСУРС»</h1>
-    <p class="subtitle" id="dynamic-subtitle">Узнайте, почему сотни женщин Сыктывкара доверяют нам свое здоровье.<br>Данные основаны на честных ответах наших резидентов.</p>
+    <span class="section-tag">Живая аналитика комьюнити</span>
+    <h1>Пульс студии <span>«РЕСУРС»</span></h1>
+    <p class="subtitle" id="dynamic-subtitle">Узнайте, почему сотни женщин Сыктывкара доверяют нам свое здоровье. Данные основаны на честных ответах наших резидентов.</p>
 
+    <!-- ДАШБОРД С ГРАФИКАМИ -->
     <div class="dashboard-grid">
         
         <div class="chart-card">
             <div class="card-title">Какой ритм выбирают?</div>
-            <canvas id="vibeChart"></canvas>
+            <div style="position: relative; height: 260px;">
+                <canvas id="vibeChart"></canvas>
+            </div>
         </div>
 
         <div class="chart-card">
             <div class="card-title">Главный приоритет</div>
-            <canvas id="priorityChart"></canvas>
+            <div style="position: relative; height: 260px;">
+                <canvas id="priorityChart"></canvas>
+            </div>
         </div>
 
         <div class="chart-card full-width">
             <div class="card-title">Решенные запросы комьюнити</div>
-            <canvas id="problemsChart" height="100"></canvas>
+            <div style="position: relative; height: 240px;">
+                <canvas id="problemsChart"></canvas>
+            </div>
         </div>
+
     </div>
 
+    <!-- CTA БАННЕР -->
     <div class="cta-box">
         <h2>Пора заняться собой</h2>
-        <p style="color: var(--text-dim); font-size: 15px;">Тысячи слов не заменят одного ощущения легкости в теле.</p>
-        <button class="btn-test-drive" id="openPaymentBtn">Ваш тест-драйв • 990₽</button>
+        <p>Тысячи слов не заменят одного ощущения легкости в теле.</p>
+        <button class="btn-test-drive" id="openPaymentBtn">Забрать тест-драйв • 990 ₽</button>
     </div>
 </div>
 
-<div class="modal-overlay" id="paymentModal">
+<!-- МОДАЛЬНОЕ ОКНО ОПЛАТЫ ЮKASSA -->
+<div class="modal" id="orderModal">
     <div class="modal-content">
         <div class="modal-close" onclick="closePaymentModal()">&times;</div>
+        <h2 style="font-size: 22px; margin-bottom: 6px;">Вход в Ресурс</h2>
+        <p style="margin-bottom: 20px; font-size: 13px; color: var(--text-muted);">Оставьте контакты для активации тест-драйва</p>
         
-        <h2 style="font-family: var(--font-serif); font-size: 32px; margin-bottom: 15px; color: #fff;">Шаг к ресурсу</h2>
-        <p style="margin-bottom: 30px; font-size: 14px; color: var(--text-dim);">Оставьте контакт забронировать место. Мы перенаправим вас на безопасную оплату.</p>
-        
-        <form id="paymentLeadForm">
-            <input type="text" id="payName" class="modal-input" placeholder="ВАШЕ ИМЯ" required>
-            <input type="tel" id="payPhone" class="modal-input" placeholder="+7 (___) ___-__-__" required>
+        <form id="tgForm">
+            <input type="text" id="userName" placeholder="Ваше имя" required>
+            <input type="tel" id="userPhone" placeholder="+7 (___) ___-__-__" required>
             
-            <button type="submit" id="paySubmitBtn" class="modal-btn">Оплатить 990₽</button>
-            
-            <div style="margin-top: 20px; display: flex; align-items: center; justify-content: center; gap: 10px; opacity: 0.5;">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color: var(--text-main)"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-2h2v2h-2zm0-4V7h2v6h-2z"/></svg>
-                <span style="font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-main)">Защищенный платеж Robokassa</span>
+            <div style="margin-bottom: 18px; font-size: 10px; color: var(--text-muted); text-align: left; display: flex; gap: 8px;">
+                <input type="checkbox" checked required style="width: 14px; height: 14px; margin: 0;">
+                <span>Согласен с <a href="privacy.html" style="text-decoration: underline; color: inherit;">политикой</a> и <a href="offer.html" style="text-decoration: underline; color: inherit;">офертой</a></span>
             </div>
+            
+            <button type="submit" class="btn-test-drive" id="submitBtn" style="width: 100%;">Оплатить доступ • 990 ₽</button>
         </form>
+        <div id="payment-form" style="margin-top: 15px;"></div>
     </div> 
 </div>
 
 <script>
-    // --- ПЕРЕКЛЮЧЕНИЕ ТЕМЫ ---
-    let currentChartColor = "rgba(244, 244, 249, 0.6)";
-
-    function toggleTheme() {
+    // ПЕРЕКЛЮЧЕНИЕ ТЕМЫ В 1 КЛИК
+    function toggleThemeInstant() {
         const root = document.documentElement;
-        const btn = document.getElementById('themeToggleBtn');
-        if (root.classList.contains('light-theme')) {
-            root.classList.remove('light-theme');
-            btn.innerText = 'Свет';
-            localStorage.setItem('resurs_theme', 'dark');
-            currentChartColor = "rgba(244, 244, 249, 0.6)";
-        } else {
-            root.classList.add('light-theme');
-            btn.innerText = 'Тень';
-            localStorage.setItem('resurs_theme', 'light');
-            currentChartColor = "rgba(8, 8, 20, 0.6)";
+        const current = root.getAttribute('data-theme') || 'dark';
+        const next = current === 'dark' ? 'light' : 'dark';
+        
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        updateThemeBtnText(next);
+        
+        if (window.lastLoadedData) {
+            drawCharts(window.lastLoadedData);
         }
-        if (window.lastLoadedData) { drawCharts(window.lastLoadedData); }
     }
 
-    if (localStorage.getItem('resurs_theme') === 'light') {
-        document.documentElement.classList.add('light-theme');
-        document.getElementById('themeToggleBtn').innerText = 'Тень';
-        currentChartColor = "rgba(8, 8, 20, 0.6)";
+    function updateThemeBtnText(theme) {
+        const btn = document.getElementById('themeToggleBtn');
+        if (btn) btn.innerText = theme === 'dark' ? 'ТЕМА: ТЕМНАЯ' : 'ТЕМА: СВЕТЛАЯ';
     }
 
-    // Универсальный расчет процентов для тултипов
+    window.addEventListener('DOMContentLoaded', () => {
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        updateThemeBtnText(savedTheme);
+    });
+
+    // Расчет процентов для тултипов графиков
     const percentageTooltip = {
         callbacks: {
             label: function(context) {
@@ -361,48 +369,41 @@
         }
     };
 
-    /* ==========================================
-       ЧАСТЬ 1: ЗАГРУЗКА И ОТРИСОВКА СТАТИСТИКИ 
-       ========================================== */
     const STATS_URL = 'https://functions.yandexcloud.net/d4e09bhn4sp9p2sqpt7u';
     let chartInstances = [];
 
     async function loadStats() {
         try {
-            console.log("Запрос данных с сервера...");
             const response = await fetch(STATS_URL);
             if (!response.ok) throw new Error('Ошибка сети');
             const data = await response.json();
             
-            console.log("Данные получены:", data);
-            window.lastLoadedData = data; // Сохраняем для переключения темы
+            window.lastLoadedData = data;
 
             const subtitle = document.getElementById('dynamic-subtitle');
-            subtitle.innerHTML = `Узнайте, почему сотни женщин Сыктывкара доверяют нам свое здоровье.<br>Данные основаны на честных ответах наших резидентов.<br><br><span style="color: var(--accent-gold); font-size: 12px; letter-spacing: 2px; text-transform: uppercase;">ОБНОВЛЕНО НА ОСНОВЕ ${data.count || 0} АНКЕТ</span>`;
+            subtitle.innerHTML = `Узнайте, почему сотни женщин Сыктывкара доверяют нам свое здоровье.<br>Данные основаны на честных ответах наших резидентов.<br><br><span style="color: var(--accent-color); font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;">ОБНОВЛЕНО НА ОСНОВЕ ${data.count || 0} АНКЕТ</span>`;
 
-            // Ждем небольшую паузу, чтобы canvas успели прогрузиться в DOM
             setTimeout(() => drawCharts(data), 100);
         } catch (error) {
-            console.error('Критическая ошибка загрузки:', error);
+            console.error('Ошибка загрузки статистики:', error);
             document.getElementById('dynamic-subtitle').innerText = "Ошибка загрузки данных. Попробуйте обновить страницу.";
         }
     }
 
     function drawCharts(data) {
-        // Очистка старых графиков
         chartInstances.forEach(chart => chart.destroy());
         chartInstances = [];
 
-        // Проверка наличия библиотеки Chart.js
-        if (typeof Chart === 'undefined') {
-            console.error("Ошибка: Библиотека Chart.js не загружена!");
-            return;
-        }
+        if (typeof Chart === 'undefined') return;
+
+        const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
+        const textColor = isDark ? '#F5F4F9' : '#14121E';
+        const primaryColor = isDark ? '#6C3EB8' : '#5B3494';
+        const secondaryColor = isDark ? '#9693A6' : '#666375';
 
         Chart.defaults.font.family = "'Manrope', sans-serif";
-        Chart.defaults.color = currentChartColor;
+        Chart.defaults.color = textColor;
 
-        // Настройка графиков
         try {
             const vibeCtx = new Chart(document.getElementById('vibeChart'), {
                 type: 'doughnut',
@@ -410,11 +411,11 @@
                     labels: ['Мягкий ресурс', 'Активный ресурс'],
                     datasets: [{
                         data: data.vibe_data || [0,0],
-                        backgroundColor: ['#C5A059', 'rgba(197, 160, 89, 0.3)'],
+                        backgroundColor: [primaryColor, secondaryColor],
                         borderWidth: 0
                     }]
                 },
-                options: { cutout: '75%', plugins: { legend: { position: 'bottom' }, tooltip: percentageTooltip } }
+                options: { cutout: '75%', maintainAspectRatio: false, plugins: { legend: { position: 'bottom' }, tooltip: percentageTooltip } }
             });
 
             const priorityCtx = new Chart(document.getElementById('priorityChart'), {
@@ -423,11 +424,11 @@
                     labels: ['Экспертность', 'Атмосфера', 'Удобство', 'Цена'],
                     datasets: [{
                         data: data.priority_data || [0,0,0,0],
-                        backgroundColor: ['#C5A059', '#D9B97F', 'rgba(197, 160, 89, 0.5)', 'rgba(197, 160, 89, 0.2)'],
+                        backgroundColor: [primaryColor, '#8E62D5', secondaryColor, 'rgba(108, 62, 184, 0.25)'],
                         borderWidth: 0
                     }]
                 },
-                options: { cutout: '75%', plugins: { legend: { position: 'bottom' }, tooltip: percentageTooltip } }
+                options: { cutout: '75%', maintainAspectRatio: false, plugins: { legend: { position: 'bottom' }, tooltip: percentageTooltip } }
             });
 
             const problemsCtx = new Chart(document.getElementById('problemsChart'), {
@@ -437,12 +438,13 @@
                     datasets: [{
                         label: 'Кол-во резидентов',
                         data: data.problems_data || [0,0,0,0],
-                        backgroundColor: '#C5A059', borderRadius: 6
+                        backgroundColor: primaryColor, borderRadius: 6
                     }]
                 },
                 options: {
+                    maintainAspectRatio: false,
                     scales: { 
-                        y: { beginAtZero: true, grid: { color: 'rgba(197, 160, 89, 0.1)' } },
+                        y: { beginAtZero: true, grid: { color: isDark ? 'rgba(108, 62, 184, 0.15)' : 'rgba(91, 52, 148, 0.1)' } },
                         x: { grid: { display: false } }
                     },
                     plugins: { legend: { display: false }, tooltip: percentageTooltip }
@@ -450,7 +452,6 @@
             });
 
             chartInstances.push(vibeCtx, priorityCtx, problemsCtx);
-            console.log("Графики успешно отрисованы");
         } catch (err) {
             console.error("Ошибка при отрисовке графиков:", err);
         }
@@ -458,41 +459,77 @@
 
     loadStats();
 
-    /* ==========================================
-       ЧАСТЬ 2: МОДАЛКА ОПЛАТЫ
-       ========================================== */
-    const paymentModal = document.getElementById('paymentModal');
-    
+    // МОДАЛКА И ВИДЖЕТ ЮKASSA
+    const orderModal = document.getElementById('orderModal');
+    const CLOUD_URL = "https://functions.yandexcloud.net/d4el388cufj9g6egpam3";
+
+    const phoneElement = document.getElementById('userPhone');
+    const phoneMask = IMask(phoneElement, { mask: '+{7} (000) 000-00-00', lazy: false });
+
     document.getElementById('openPaymentBtn').addEventListener('click', function(e) {
         e.preventDefault();
         try { ym(108177329, 'reachGoal', 'TEST_DRIVE_CLICK'); } catch(e){}
-        paymentModal.style.display = 'flex';
-        document.body.style.overflow = 'hidden'; 
+        orderModal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        document.getElementById('tgForm').style.display = 'block';
+        document.getElementById('payment-form').innerHTML = '';
+        phoneMask.value = '';
     });
 
     function closePaymentModal() { 
-        paymentModal.style.display = 'none'; 
+        orderModal.style.display = 'none'; 
         document.body.style.overflow = 'auto'; 
     }
 
-    document.getElementById('paymentLeadForm').addEventListener('submit', async function(e) {
+    window.onclick = function(event) {
+        if (event.target == orderModal) closePaymentModal();
+    }
+
+    document.getElementById('tgForm').addEventListener('submit', async function(e) {
         e.preventDefault();
-        const btn = document.getElementById('paySubmitBtn');
-        btn.innerText = "ПЕРЕХОД К ОПЛАТЕ...";
+        
+        if (phoneMask.unmaskedValue.length !== 11) {
+            alert('Пожалуйста, введите номер телефона полностью.');
+            return;
+        }
+        
+        const btn = document.getElementById('submitBtn');
+        btn.innerText = 'СВЯЗЬ С БАНКОМ...';
         btn.disabled = true;
 
         try {
-            await fetch("https://functions.yandexcloud.net/d4eg243jthg6ruglntjj", {
+            const response = await fetch(CLOUD_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    action: 'payment_lead',
-                    name: document.getElementById('payName').value,
-                    phone: document.getElementById('payPhone').value
+                    amount: '990',
+                    name: document.getElementById('userName').value,
+                    phone: phoneMask.unmaskedValue,
+                    description: 'Тест-драйв Ресурс (с комьюнити)'
                 })
             });
-        } catch (error) { console.error(error); }
-        window.location.href = "https://auth.robokassa.ru/merchant/Invoice/zICwctvJTEqrASoc9pbzYQ";
+
+            if (!response.ok) throw new Error('Облако вернуло ошибку');
+            const data = await response.json();
+
+            if (data.confirmation_token) {
+                document.getElementById('tgForm').style.display = 'none';
+                
+                const checkout = new window.YooMoneyCheckoutWidget({
+                    confirmation_token: data.confirmation_token,
+                    return_url: 'https://resurs-stretch.ru/thanks.html', 
+                    customization: { modal: false, width: '100%' },
+                    error_callback: () => alert('Ошибка виджета оплаты.')
+                });
+                checkout.render('payment-form');
+            } else {
+                throw new Error('Токен не получен');
+            }
+        } catch (error) {
+            alert('Не удалось связаться с банком. Напишите нам в ВК или попробуйте позже.');
+            btn.disabled = false;
+            btn.innerText = 'Оплатить доступ • 990 ₽';
+        }
     });
 </script>
 </body>
