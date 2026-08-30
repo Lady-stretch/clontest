@@ -1,26 +1,37 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <script type="text/javascript">
-        // --- Yandex.Metrika counter ---
-        (function(m,e,t,r,i,k,a){
-            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();
-            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108177329', 'ym');
-        ym(108177329, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
 
-        // --- Top.Mail.Ru counter ---
-        var _tmr = window._tmr || (window._tmr = []);
-        _tmr.push({id: "3755240", type: "pageView", start: (new Date()).getTime()});
-        (function (d, w, id) {
-            if (d.getElementById(id)) return;
-            var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
-            ts.src = "https://top-fwz1.mail.ru/js/code.js";
-            var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
-            if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
-        })(document, window, "tmr-code");
+    <!-- Инициализация темы без мерцания -->
+    <script>
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+
+    <!-- Счетчики аналитики: Яндекс.Метрика и Top.Mail.Ru -->
+    <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108177329', 'ym');
+    ym(108177329, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+
+    var _tmr = window._tmr || (window._tmr = []);
+    _tmr.push({id: "3755240", type: "pageView", start: (new Date()).getTime()});
+    (function (d, w, id) {
+        if (d.getElementById(id)) return;
+        var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
+        ts.src = "https://top-fwz1.mail.ru/js/code.js";
+        var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
+        if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
+    })(document, window, "tmr-code");
     </script>
     <noscript>
         <div>
@@ -28,270 +39,247 @@
             <img src="https://top-fwz1.mail.ru/counter?id=3755240;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" />
         </div>
     </noscript>
-    
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Пройдите опрос резидентов фитнес-студии РЕСУРС в Сыктывкаре. Помогите улучшить качество сервиса растяжки и фитнеса, и получите гарантированный бонус на тренировки.">
-    <meta name="keywords" content="опрос клиентов фитнес-студии Сыктывкар, отзывы резидентов Ресурс, улучшение качества сервиса растяжки, фитнес опрос Сыктывкар">
-    
-    <title>Опрос РЕСУРС 2026 | Станьте соавтором студии</title>
-    <link rel="icon" type="image/png" href="logo_header_final.png">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Manrope:wght@200;300;400;500;600&display=swap" rel="stylesheet">
-    
+
+    <!-- СЕО МЕТА-ТЕГИ -->
+    <title>Опрос резидентов и бонус | Студия растяжки и движения РЕСУРС Сыктывкар</title>
+    <meta name="description" content="Пройдите опрос резидентов фитнес-студии РЕСУРС в Сыктывкаре на ул. Коммунистическая, 67. Помогите улучшить сервис растяжки и пилатеса, и получите гарантированный бонус на тренировки.">
+    <meta name="keywords" content="опрос клиентов фитнес студии сыктывкар, отзывы резидентов ресурс, улучшение сервиса растяжки, опросник фитнес сыктывкар, бонус на тренировки">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://resurs-stretch.ru/survey.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://resurs-stretch.ru/survey.html">
+    <meta property="og:title" content="Опрос резидентов РЕСУРС | Станьте соавтором студии">
+    <meta property="og:description" content="Инвестируйте 5 минут в развитие пространства и заберите гарантированный подарок к абонементу.">
+    <meta property="og:image" content="https://resurs-stretch.ru/logo_header_final.png">
+    <meta property="og:locale" content="ru_RU">
+
+    <!-- Микроразметка Schema.org -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Questionnaire",
       "name": "Опрос резидентов фитнес-студии РЕСУРС",
-      "description": "Анкета для оценки сервиса, направлений и выявления истинных потребностей клиентов студии РЕСУРС в Сыктывкаре.",
+      "description": "Анкета для оценки сервиса, направлений и выявления потребностей клиентов студии РЕСУРС в Сыктывкаре.",
       "url": "https://resurs-stretch.ru/survey.html",
       "publisher": {
         "@type": "Organization",
-        "name": "РЕСУРС - Студия фитнеса и растяжки"
+        "name": "Студия растяжки и движения РЕСУРС",
+        "sameAs": "https://resurs-stretch.ru"
       }
     }
     </script>
 
+    <!-- Фавикон и шрифты -->
+    <link rel="icon" type="image/png" href="logo_header_final.png">
+    <link rel="apple-touch-icon" href="logo_header_final.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --bg-deep: #080814; 
-            --accent-gold: #C5A059; 
-            --text-main: #F4F4F9;
-            --text-dim: rgba(244, 244, 249, 0.6);
-            --font-main: 'Manrope', sans-serif;
-            --font-serif: 'Cormorant Garamond', serif;
-            --glass-bg: rgba(10, 10, 25, 0.65);
-            --glass-border: 1px solid rgba(197, 160, 89, 0.3);
-            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            --bg-color: #0A090F;
+            --surface-color: #12101B;
+            --surface-hover: #1A1727;
+            --accent-color: #6C3EB8;
+            --accent-hover: #8352D6;
+            --accent-subtle: rgba(108, 62, 184, 0.15);
+            --text-main: #F5F4F9;
+            --text-muted: #9693A6;
+            --border-color: rgba(108, 62, 184, 0.22);
+            --header-bg: rgba(10, 9, 15, 0.88);
+            --shadow: rgba(0, 0, 0, 0.6);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* --- СВЕТЛАЯ ТЕМА --- */
-        :root.light-theme {
-            --bg-deep: #F4F4F9;
-            --text-main: #080814;
-            --text-dim: rgba(8, 8, 20, 0.6);
-            --glass-bg: rgba(255, 255, 255, 0.85);
-            --glass-border: 1px solid rgba(0, 0, 0, 0.1);
+        [data-theme="light"] {
+            --bg-color: #F8F7FC;
+            --surface-color: #FFFFFF;
+            --surface-hover: #F1EDF9;
+            --accent-color: #5B3494;
+            --accent-hover: #48257B;
+            --accent-subtle: rgba(91, 52, 148, 0.08);
+            --text-main: #14121E;
+            --text-muted: #666375;
+            --border-color: rgba(91, 52, 148, 0.16);
+            --header-bg: rgba(248, 247, 252, 0.9);
+            --shadow: rgba(0, 0, 0, 0.05);
         }
-        :root.light-theme body {
-            background-image: none; 
-        }
-        :root.light-theme .question-block { background: rgba(0, 0, 0, 0.02); border-color: rgba(0,0,0,0.05); }
-        :root.light-theme .radio-label { background: rgba(0, 0, 0, 0.03); border-color: rgba(0,0,0,0.1); color: var(--text-main); }
-        :root.light-theme input[type="text"], :root.light-theme textarea, :root.light-theme select { background: rgba(0, 0, 0, 0.03); border-color: rgba(0, 0, 0, 0.1); color: var(--text-main); }
-        :root.light-theme select option { background: #F4F4F9; color: #080814; }
-        :root.light-theme .theme-btn { border-color: rgba(0,0,0,0.2); color: var(--text-main); }
 
-        body {
-            font-family: var(--font-main);
-            background: var(--bg-deep);
+        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
+        html { scroll-behavior: smooth; }
+        
+        html, body {
+            overflow-x: hidden !important;
+            max-width: 100%;
+            width: 100%;
+            position: relative;
+        }
+
+        body { 
+            background: var(--bg-color); 
             color: var(--text-main);
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
-            margin: 0;
-            padding: 40px 20px;
+            font-family: 'Manrope', sans-serif; 
+            line-height: 1.6;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            transition: background-color 0.3s ease, color 0.3s ease;
+            -webkit-font-smoothing: antialiased;
+            padding: 40px 20px 80px;
             display: flex;
             justify-content: center;
-            line-height: 1.6;
-            transition: var(--transition);
         }
+
+        h1, h2, h3, h4 { font-weight: 800; letter-spacing: -0.5px; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        ul { list-style: none; }
 
         .container {
-            max-width: 800px;
+            max-width: 760px;
             width: 100%;
-            background: var(--glass-bg);
-            backdrop-filter: blur(25px) saturate(180%);
-            -webkit-backdrop-filter: blur(25px) saturate(180%);
-            border-radius: 24px;
-            border: var(--glass-border);
-            padding: 50px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-            transition: var(--transition);
+            background: var(--surface-color);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            padding: 45px 40px;
+            box-shadow: 0 20px 50px var(--shadow);
+            position: relative;
         }
 
+        /* ШКАЛА ПРОГРЕССА ЗАПОЛНЕНИЯ */
+        .progress-bar-wrap {
+            width: 100%; height: 6px; background: var(--bg-color);
+            border-radius: 3px; margin-bottom: 30px; overflow: hidden; border: 1px solid var(--border-color);
+        }
+        .progress-bar-fill {
+            height: 100%; background: var(--accent-color); width: 0%; transition: width 0.4s ease;
+        }
+
+        /* ШАПКА ФОРМЫ */
         .header-top { 
-            position: relative; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center;
-            margin-bottom: 30px; 
+            display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; 
         }
-        .header-top img { height: 50px; border-radius: 8px; transition: var(--transition); }
-        .header-top img:hover { opacity: 0.8; }
+        .back-link {
+            font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+            color: var(--text-muted); display: inline-flex; align-items: center; gap: 6px;
+        }
+        .back-link:hover { color: var(--accent-color); }
 
-        .back-btn {
-            position: absolute;
-            left: 0;
-            color: var(--text-dim);
-            text-decoration: none;
+        .theme-toggle-btn {
+            padding: 8px 14px; height: 36px; font-size: 10px; font-weight: 800; letter-spacing: 1px;
+            display: inline-flex; align-items: center; justify-content: center;
+            border-radius: 6px; border: 1px solid var(--border-color); background: var(--bg-color);
+            cursor: pointer; transition: var(--transition); color: var(--text-main); text-transform: uppercase;
+        }
+        .theme-toggle-btn:hover { border-color: var(--accent-color); color: var(--accent-color); }
+
+        .section-tag {
+            color: var(--accent-color);
             font-size: 11px;
+            font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 2px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: var(--transition);
-            z-index: 10;
+            margin-bottom: 8px;
+            display: inline-block;
+            background: var(--accent-subtle);
+            padding: 4px 12px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
         }
-        .back-btn:hover { color: var(--accent-gold); transform: translateX(-4px); }
 
-        .theme-btn {
-            position: absolute;
-            right: 0;
-            background: transparent; 
-            border: 1px solid rgba(255,255,255,0.15); 
-            border-radius: 8px; 
-            padding: 6px 14px; 
-            color: var(--accent-gold); 
-            font-family: var(--font-main); 
-            font-size: 10px; 
-            font-weight: 600;
-            text-transform: uppercase; 
-            cursor: pointer; 
-            transition: var(--transition);
-        }
-        .theme-btn:hover { background: rgba(197, 160, 89, 0.1); border-color: var(--accent-gold); }
-
-        h1 { font-family: var(--font-serif); text-align: center; font-size: 36px; margin-bottom: 10px; font-weight: 300; letter-spacing: 1px; }
-        .subtitle { text-align: center; color: var(--text-dim); margin-bottom: 50px; font-size: 15px; }
+        h1 { font-size: clamp(26px, 4vw, 36px); margin-bottom: 12px; line-height: 1.2; }
+        .subtitle { color: var(--text-muted); margin-bottom: 40px; font-size: 14px; line-height: 1.6; }
 
         .section-title {
-            font-family: var(--font-serif);
-            font-size: 24px;
-            color: var(--accent-gold);
-            border-bottom: 1px solid rgba(197, 160, 89, 0.3);
-            padding-bottom: 10px;
-            margin: 50px 0 25px;
-            font-weight: 400;
-            letter-spacing: 2px;
+            font-size: 18px; color: var(--accent-color); border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px; margin: 45px 0 20px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px;
         }
 
+        /* КАРТОЧКИ ВОПРОСОВ И ОТВЕТОВ */
         .question-block {
-            background: rgba(255, 255, 255, 0.02);
-            padding: 30px;
-            border-radius: 16px;
-            margin-bottom: 25px;
-            border: 1px solid rgba(255,255,255,0.05);
+            background: var(--bg-color);
+            padding: 24px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
             transition: var(--transition);
         }
+        .question-block:focus-within { border-color: var(--accent-color); }
 
-        label.q-title { display: block; font-weight: 500; margin-bottom: 20px; font-size: 16px; letter-spacing: 0.5px; }
-        .q-hint { display: block; font-size: 12px; opacity: 0.6; margin-top: -15px; margin-bottom: 15px; }
+        label.q-title { display: block; font-weight: 800; margin-bottom: 14px; font-size: 15px; }
+        .q-hint { display: block; font-size: 12px; color: var(--text-muted); margin-top: -10px; margin-bottom: 14px; }
 
-        .options-grid { display: grid; gap: 12px; }
+        .options-grid { display: grid; gap: 10px; }
         .options-grid.two-cols { grid-template-columns: 1fr 1fr; }
+        @media (max-width: 600px) { .options-grid.two-cols { grid-template-columns: 1fr; } }
         
         .radio-label {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 12px;
-            cursor: pointer;
-            transition: var(--transition);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 14px;
+            display: flex; align-items: center; gap: 12px; padding: 14px 18px;
+            background: var(--surface-color); border-radius: 8px; cursor: pointer;
+            transition: var(--transition); border: 1px solid var(--border-color); font-size: 14px; font-weight: 600;
         }
-        .radio-label:hover { border-color: var(--accent-gold); background: rgba(197, 160, 89, 0.05); }
-        
-        input[type="radio"], input[type="checkbox"] { accent-color: var(--accent-gold); width: 18px; height: 18px; flex-shrink: 0;}
+        .radio-label:hover { border-color: var(--accent-color); background: var(--surface-hover); }
+        .radio-label input[type="radio"], .radio-label input[type="checkbox"] {
+            accent-color: var(--accent-color); width: 18px; height: 18px; flex-shrink: 0; cursor: pointer;
+        }
 
         input[type="text"], textarea, select {
-            width: 100%;
-            padding: 16px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-main);
-            border-radius: 12px;
-            box-sizing: border-box;
-            font-family: inherit;
-            font-size: 15px;
-            transition: var(--transition);
+            width: 100%; padding: 14px 18px; background: var(--surface-color);
+            border: 1px solid var(--border-color); color: var(--text-main);
+            border-radius: 8px; font-family: inherit; font-size: 14px; transition: var(--transition);
         }
-        
-        input[type="text"]:focus, textarea:focus, select:focus { border-color: var(--accent-gold); outline: none; }
-        select option { background: var(--bg-deep); color: var(--text-main); }
-        textarea { resize: vertical; min-height: 120px; }
-        ::placeholder { color: rgba(128, 128, 128, 0.5); }
+        input[type="text"]:focus, textarea:focus, select:focus { border-color: var(--accent-color); }
+        select option { background: var(--surface-color); color: var(--text-main); }
+        textarea { resize: vertical; min-height: 110px; }
 
+        /* КНОПКА ОТПРАВКИ */
         .submit-btn {
-            background: transparent;
-            color: var(--accent-gold);
-            border: 1px solid var(--accent-gold);
-            padding: 20px 40px;
-            border-radius: 50px;
-            font-size: 13px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            font-weight: 600;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 40px;
-            transition: var(--transition);
-            font-family: var(--font-main);
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 100%; padding: 18px; background: var(--accent-color); color: #FFF;
+            border: none; border-radius: 8px; font-size: 12px; font-weight: 800;
+            text-transform: uppercase; letter-spacing: 1.5px; cursor: pointer;
+            transition: var(--transition); margin-top: 30px; box-shadow: 0 10px 25px rgba(108, 62, 184, 0.4);
         }
-
-        .submit-btn:hover { background: var(--accent-gold); color: #000; box-shadow: 0 0 30px rgba(197, 160, 89, 0.3); transform: translateY(-2px); }
+        .submit-btn:hover { background: var(--accent-hover); transform: translateY(-1px); }
 
         .vk-btn {
-            background: #0077FF; /* Цвет ВК */
-            color: #fff;
-            border: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
+            background: #0077FF !important; box-shadow: 0 10px 25px rgba(0, 119, 255, 0.4) !important;
+            margin-top: 20px;
         }
-        .vk-btn:hover { background: #0063D6; color: #fff; box-shadow: 0 0 20px rgba(0, 119, 255, 0.4); }
+        .vk-btn:hover { background: #0063D6 !important; }
 
-        #success-message { display: none; text-align: center; padding: 50px 20px; }
+        #success-message { display: none; text-align: center; padding: 30px 10px; }
 
         .promo-code {
-            font-family: var(--font-serif);
-            font-size: 42px;
-            color: var(--accent-gold);
-            background: rgba(197, 160, 89, 0.05);
-            padding: 20px 40px;
-            border-radius: 16px;
-            display: inline-block;
-            margin: 30px 0;
-            border: 1px dashed var(--accent-gold);
-            letter-spacing: 5px;
-            user-select: all;
-        }
-
-        @media (max-width: 600px) {
-            .options-grid.two-cols { grid-template-columns: 1fr; }
-            .container { padding: 30px 20px; }
-            h1 { font-size: 28px; }
-        }
-
-        @media (max-width: 500px) {
-            .back-text { display: none; }
-            .back-btn { font-size: 20px; left: 0px; top: 15px; }
-            .theme-btn { top: 15px; }
+            font-size: 32px; font-weight: 800; color: var(--accent-color);
+            background: var(--bg-color); padding: 18px 30px; border-radius: 12px;
+            display: inline-block; margin: 24px 0; border: 1px dashed var(--accent-color);
+            letter-spacing: 4px; user-select: all;
         }
     </style>
 </head>
 <body>
 
 <div class="container" id="main-container">
-    <div class="header-top">
-        <a href="index.html" class="back-btn">
-            <span style="font-size: 18px; line-height: 1; padding-bottom: 2px;">←</span> 
-            <span class="back-text">На главную</span>
-        </a>
-        <a href="index.html" style="display: flex;">
-            <img src="logo_header_final.png" alt="РЕСУРС Логотип">
-        </a>
-        <button id="themeToggleBtn" class="theme-btn" onclick="toggleTheme()">Свет</button>
-    </div>
     
-    <h1 style="display: none;">Опрос резидентов фитнес-студии РЕСУРС | Сыктывкар 2026</h1> <h1 style="font-size: 36px; margin-bottom: 10px;">Станьте соавтором студии «РЕСУРС»</h1>
-    <p class="subtitle">Ваше мнение — фундамент нашего развития. Уделите 5 минут, чтобы сделать студию идеальной для вас, и заберите свой подарок.</p>
+    <!-- ШАПКА ФОРМЫ -->
+    <div class="header-top">
+        <a href="index.html" class="back-link">← На главную</a>
+        <div class="logo-wrap" style="display:flex; align-items:center; gap:8px;">
+            <img src="logo_header_final.png" alt="РЕСУРС" style="height:28px; border-radius:6px;">
+            <span style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:1px;">РЕСУРС</span>
+        </div>
+        <button id="themeToggleBtn" class="theme-toggle-btn" onclick="toggleThemeInstant()">ТЕМА: ТЕМНАЯ</button>
+    </div>
+
+    <!-- ШКАЛА ПРОГРЕССА -->
+    <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" id="progressBar"></div>
+    </div>
+
+    <span class="section-tag">Аудит студии будущего</span>
+    <h1>Станьте соавтором студии <span>«РЕСУРС»</span></h1>
+    <p class="subtitle">Ваше мнение — фундамент нашего развития. Уделите 5 минут, чтобы сделать студию идеальной для вас, и заберите гарантированный бонус.</p>
 
     <form id="surveyForm">
         
@@ -299,7 +287,7 @@
         
         <div class="question-block">
             <label class="q-title">Ваш возраст</label>
-            <select name="age" id="ageSelect" required>
+            <select name="age" id="ageSelect" required onchange="updateProgress()">
                 <option value="" disabled selected>Выберите из списка...</option>
                 <option value="do25">до 25 лет</option>
                 <option value="26-35">26-35 лет</option>
@@ -313,19 +301,19 @@
         <div class="question-block">
             <label class="q-title">Удобное время для занятий</label>
             <div class="options-grid two-cols">
-                <label class="radio-label"><input type="radio" name="time" value="Утро" required> Утро (до работы)</label>
-                <label class="radio-label"><input type="radio" name="time" value="День"> День (перезагрузка)</label>
-                <label class="radio-label"><input type="radio" name="time" value="Вечер"> Вечер (снять стресс)</label>
-                <label class="radio-label"><input type="radio" name="time" value="Выходные"> Выходные дни</label>
+                <label class="radio-label"><input type="radio" name="time" value="Утро" required onchange="updateProgress()"> Утро (до работы)</label>
+                <label class="radio-label"><input type="radio" name="time" value="День" onchange="updateProgress()"> День (перезагрузка)</label>
+                <label class="radio-label"><input type="radio" name="time" value="Вечер" onchange="updateProgress()"> Вечер (снять стресс)</label>
+                <label class="radio-label"><input type="radio" name="time" value="Выходные" onchange="updateProgress()"> Выходные дни</label>
             </div>
         </div>
 
         <div class="question-block">
             <label class="q-title">Сколько раз в неделю ваше тело «просит» тренировок?</label>
             <div class="options-grid">
-                <label class="radio-label"><input type="radio" name="frequency" value="1" required> 1 раз (для поддержания)</label>
-                <label class="radio-label"><input type="radio" name="frequency" value="2-3"> 2-3 раза (оптимальный ритм)</label>
-                <label class="radio-label"><input type="radio" name="frequency" value="4+"> 4 и более (хочу жить в студии!)</label>
+                <label class="radio-label"><input type="radio" name="frequency" value="1" required onchange="updateProgress()"> 1 раз (для поддержания формы)</label>
+                <label class="radio-label"><input type="radio" name="frequency" value="2-3" onchange="updateProgress()"> 2-3 раза (оптимальный ритм)</label>
+                <label class="radio-label"><input type="radio" name="frequency" value="4+" onchange="updateProgress()"> 4 и более (хочу жить в студии!)</label>
             </div>
         </div>
 
@@ -335,83 +323,82 @@
             <label class="q-title">Какую проблему вы хотите решить (или уже решили) в «РЕСУРСЕ»?</label>
             <span class="q-hint">Можно выбрать несколько вариантов</span>
             <div class="options-grid">
-                <label class="radio-label"><input type="checkbox" name="problem" value="Спина"> Боли в спине, шее, скованность</label>
-                <label class="radio-label"><input type="checkbox" name="problem" value="Вес"> Лишний вес, отеки, коррекция фигуры</label>
-                <label class="radio-label"><input type="checkbox" name="problem" value="Стресс"> Стресс, тревожность, выгорание</label>
-                <label class="radio-label"><input type="checkbox" name="problem" value="Энергия"> Нехватка жизненной энергии</label>
+                <label class="radio-label"><input type="checkbox" name="problem" value="Спина" onchange="updateProgress()"> Боли в спине, шее, скованность</label>
+                <label class="radio-label"><input type="checkbox" name="problem" value="Вес" onchange="updateProgress()"> Лишний вес, отеки, коррекция фигуры</label>
+                <label class="radio-label"><input type="checkbox" name="problem" value="Стресс" onchange="updateProgress()"> Стресс, тревожность, выгорание</label>
+                <label class="radio-label"><input type="checkbox" name="problem" value="Энергия" onchange="updateProgress()"> Нехватка жизненной энергии</label>
             </div>
         </div>
 
         <div class="question-block">
-            <label class="q-title">Что вас больше всего отталкивает или бесит в фитнес-клубах?</label>
-            <span class="q-hint">Это поможет нам не допускать чужих ошибок. Можно выбрать несколько вариантов.</span>
+            <label class="q-title">Что вас больше всего отталкивает или берит в фитнес-клубах?</label>
+            <span class="q-hint">Помогите нам не допускать чужих ошибок</span>
             <div class="options-grid">
-                <label class="radio-label"><input type="checkbox" name="annoyance" value="Взгляды"> Оценивающие взгляды и некомфортная атмосфера</label>
-                <label class="radio-label"><input type="checkbox" name="annoyance" value="Толпа"> Большое количество людей и очереди</label>
-                <label class="radio-label"><input type="checkbox" name="annoyance" value="Продажи"> Навязчивые продажи администраторов</label>
-                <label class="radio-label"><input type="checkbox" name="annoyance" value="Безразличие"> Безразличие тренера, когда ты просто номер в списке</label>
-                <label class="radio-label"><input type="checkbox" name="annoyance" value="Грязь"> Отсутствие чистоты в раздевалках и залах</label>
+                <label class="radio-label"><input type="checkbox" name="annoyance" value="Взгляды" onchange="updateProgress()"> Оценивающие взгляды и некомфортная атмосфера</label>
+                <label class="radio-label"><input type="checkbox" name="annoyance" value="Толпа" onchange="updateProgress()"> Большое количество людей и очереди</label>
+                <label class="radio-label"><input type="checkbox" name="annoyance" value="Продажи" onchange="updateProgress()"> Навязчивые продажи администраторов</label>
+                <label class="radio-label"><input type="checkbox" name="annoyance" value="Безразличие" onchange="updateProgress()"> Безразличие тренера, когда ты просто номер в списке</label>
+                <label class="radio-label"><input type="checkbox" name="annoyance" value="Грязь" onchange="updateProgress()"> Отсутствие чистоты в раздевалках и залах</label>
             </div>
         </div>
 
         <div class="question-block">
             <label class="q-title">Какой «вайб» направлений вам ближе?</label>
             <div class="options-grid">
-                <label class="radio-label"><input type="radio" name="vibe" value="Мягкий" required> <span style="color: var(--accent-gold); margin-right: 5px;">Мягкий Ресурс</span> (Здоровая спина, Пилатес, МФР)</label>
-                <label class="radio-label"><input type="radio" name="vibe" value="Активный"> <span style="color: var(--accent-gold); margin-right: 5px;">Активный Ресурс</span> (Табата, Рельеф, Подкачка)</label>
+                <label class="radio-label"><input type="radio" name="vibe" value="Мягкий" required onchange="updateProgress()"> <span style="color: var(--accent-color); margin-right: 6px; font-weight:800;">Мягкий Ресурс</span> (Здоровая спина, Пилатес, МФР)</label>
+                <label class="radio-label"><input type="radio" name="vibe" value="Активный" onchange="updateProgress()"> <span style="color: var(--accent-color); margin-right: 6px; font-weight:800;">Активный Ресурс</span> (Табата, Рельеф, Подкачка)</label>
             </div>
         </div>
 
         <div class="question-block" id="halfwayPoint">
             <label class="q-title">Что для вас станет решающим при выборе студии?</label>
             <div class="options-grid two-cols">
-                <label class="radio-label"><input type="radio" name="priority" value="Цена" required> Цена (где дешевле)</label>
-                <label class="radio-label"><input type="radio" name="priority" value="Удобство"> Удобство (ближе к дому)</label>
-                <label class="radio-label"><input type="radio" name="priority" value="Экспертность"> Экспертность тренера</label>
-                <label class="radio-label"><input type="radio" name="priority" value="Атмосфера"> Атмосфера и комфорт</label>
+                <label class="radio-label"><input type="radio" name="priority" value="Цена" required onchange="updateProgress()"> Цена (где дешевле)</label>
+                <label class="radio-label"><input type="radio" name="priority" value="Удобство" onchange="updateProgress()"> Удобство (ближе к дому)</label>
+                <label class="radio-label"><input type="radio" name="priority" value="Экспертность" onchange="updateProgress()"> Экспертность тренера</label>
+                <label class="radio-label"><input type="radio" name="priority" value="Атмосфера" onchange="updateProgress()"> Атмосфера и комфорт</label>
             </div>
         </div>
 
         <div class="question-block">
             <label class="q-title">Какая одна мелочь сделала бы ваше пребывание в студии идеальным?</label>
-            <textarea name="perfect_detail" placeholder="Например: Фен с ионизацией, зарядки для iPhone в шкафчиках, зеленый чай после тренировки..."></textarea>
+            <textarea name="perfect_detail" placeholder="Например: Фен с ионизацией, зарядки для телефона в шкафчиках, чай после тренировки..."></textarea>
         </div>
 
         <div class="question-block">
-            <label class="q-title">Если вы уже занимаетесь у нас, что изменилось в вашей жизни?</label>
-            <textarea name="feedback" placeholder="Ваша честность помогает нам становиться лучше. Например: Перестала болеть поясница по утрам, появилось время на себя..."></textarea>
+            <label class="q-title">Если вы уже занимаетесь у нас, что изменилось в вашем теле?</label>
+            <textarea name="feedback" placeholder="Например: Перестала болеть поясница по утрам, появилось время на себя..."></textarea>
         </div>
 
         <div class="section-title">III. Экономика и Удобство</div>
 
         <div class="question-block">
             <label class="q-title">Сколько вы готовы инвестировать в свое здоровье и тело в месяц?</label>
-            <span class="q-hint">Это поможет нам сформировать честные и удобные пакеты абонементов</span>
             <div class="options-grid two-cols">
-                <label class="radio-label"><input type="radio" name="budget" value="2000" required> До 2 000 ₽</label>
-                <label class="radio-label"><input type="radio" name="budget" value="3000"> Около 3 000 ₽</label>
-                <label class="radio-label"><input type="radio" name="budget" value="4000"> Около 4 000 ₽</label>
-                <label class="radio-label"><input type="radio" name="budget" value="5000+"> 5 000 ₽ и более (за сервис)</label>
+                <label class="radio-label"><input type="radio" name="budget" value="2000" required onchange="updateProgress()"> До 2 000 ₽</label>
+                <label class="radio-label"><input type="radio" name="budget" value="3000" onchange="updateProgress()"> Около 3 000 ₽</label>
+                <label class="radio-label"><input type="radio" name="budget" value="4000" onchange="updateProgress()"> Около 4 000 ₽</label>
+                <label class="radio-label"><input type="radio" name="budget" value="5000+" onchange="updateProgress()"> 5 000 ₽ и более (за сервис)</label>
             </div>
         </div>
 
         <div class="question-block">
             <label class="q-title">Что для вас в приоритете при выборе абонемента?</label>
             <div class="options-grid">
-                <label class="radio-label"><input type="radio" name="abonement_priority" value="Дешевле и короче" required> Меньшая стоимость, даже если срок абонемента сгорит быстрее</label>
-                <label class="radio-label"><input type="radio" name="abonement_priority" value="Дороже и дольше"> Больший срок действия (чтобы ходить в комфортном темпе)</label>
-                <label class="radio-label"><input type="radio" name="abonement_priority" value="Баланс и рассрочка"> Длинный абонемент, но с комфортной оплатой частями (рассрочка без %)</label>
+                <label class="radio-label"><input type="radio" name="abonement_priority" value="Дешевле и короче" required onchange="updateProgress()"> Меньшая стоимость, даже если срок сгорит быстрее</label>
+                <label class="radio-label"><input type="radio" name="abonement_priority" value="Дороже и дольше" onchange="updateProgress()"> Больший срок действия (чтобы ходить в комфортном темпе)</label>
+                <label class="radio-label"><input type="radio" name="abonement_priority" value="Баланс и рассрочка" onchange="updateProgress()"> Длинный абонемент с оплатой частями (рассрочка без %)</label>
             </div>
         </div>
 
         <div class="question-block">
             <label class="q-title">Оцените удобство записи на тренировки (через нашего ИИ-бота)</label>
-            <select name="bot_rating" required>
+            <select name="bot_rating" required onchange="updateProgress()">
                 <option value="" disabled selected>Оценка от 1 до 10</option>
-                <option value="10">10 - Идеально, очень быстро</option>
-                <option value="8">8 - Хорошо, но есть нюансы</option>
-                <option value="5">5 - Средне, иногда путаюсь</option>
-                <option value="1">1 - Верните живого человека!</option>
+                <option value="10">10 — Идеально, очень быстро</option>
+                <option value="8">8 — Хорошо, но есть нюансы</option>
+                <option value="5">5 — Средне, иногда путаюсь</option>
+                <option value="1">1 — Верните живого человека!</option>
             </select>
         </div>
 
@@ -420,56 +407,81 @@
         <div class="question-block">
             <label class="q-title">Какой бонус вы хотите получить за прохождение опроса?</label>
             <div class="options-grid">
-                <label class="radio-label"><input type="radio" name="gift" value="Продление" required> Продление текущего абонемента на 14 дней</label>
-                <label class="radio-label"><input type="radio" name="gift" value="2тренировки"> +2 тренировки к вашему действующему абонементу</label>
+                <label class="radio-label"><input type="radio" name="gift" value="Продление" required onchange="updateProgress()"> Продление текущего абонемента на 14 дней</label>
+                <label class="radio-label"><input type="radio" name="gift" value="2тренировки" onchange="updateProgress()"> +2 тренировки к вашему действующему абонементу</label>
             </div>
         </div>
 
         <button type="submit" class="submit-btn" id="submitBtn">Отправить и забрать бонус</button>
     </form>
 
+    <!-- УСПЕШНАЯ ОТПРАВКА -->
     <div id="success-message">
-        <h2 style="font-family: var(--font-serif); font-size: 32px;">Благодарим за доверие!</h2>
-        <p style="color: var(--text-dim);">Вы сделали огромный вклад в развитие комьюнити «РЕСУРС».</p>
+        <h2 style="font-size: 32px; margin-bottom: 12px;">Благодарим за доверие!</h2>
+        <p style="color: var(--text-muted); font-size: 14px;">Вы сделали огромный вклад в развитие пространства «РЕСУРС».</p>
         
-        <p id="gift-text" style="margin-top: 30px;">Ваш подарок забронирован. Нажмите кнопку ниже, чтобы система скопировала код и перевела вас в диалог с администратором:</p>
+        <p id="gift-text" style="margin-top: 25px; font-size: 14px; line-height: 1.6;">Ваш подарок забронирован. Нажмите кнопку ниже, чтобы система скопировала код и перевела вас в диалог с администратором:</p>
         
         <div class="promo-code" id="promo-code-display">RESURS_14</div>
         
         <button id="copyToVkBtn" class="submit-btn vk-btn">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.162 18.994C6.541 18.994 2.766 14.444 2.618 6H5.972C6.07 12.392 8.7 15.111 10.741 15.658V6H14.004V11.517C16.015 11.298 18.17 9.034 18.895 6H22.158C21.579 9.581 18.98 12.064 17.155 13.068C18.98 13.87 21.908 16.059 22.863 20H19.264C18.491 17.265 16.353 15.158 14.004 14.884V20H13.162V18.994Z" fill="currentColor"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;"><path d="M15.07 2H8.93C3.33 2 2 3.33 2 8.93v6.14C2 20.67 3.33 22 8.93 22h6.14c5.6 0 6.93-1.33 6.93-6.93V8.93C22 3.33 20.67 2 15.07 2zm3.1 13.08c0 .12-.04.22-.11.3-.08.08-.19.12-.32.12h-1.5c-.32 0-.6-.11-.84-.33-.24-.22-.44-.52-.61-.88-.23-.49-.46-.86-.68-1.12-.22-.26-.45-.39-.68-.39-.1 0-.19.02-.28.07-.09.05-.16.12-.21.21-.1.17-.15.42-.15.76v.88c0 .2-.06.36-.17.47s-.27.17-.47.17h-.8c-.78 0-1.48-.24-2.11-.73-.63-.49-1.16-1.16-1.59-2.02-.44-.86-.87-1.89-1.28-3.08-.05-.14-.02-.26.08-.36.1-.1.24-.15.42-.15h1.56c.16 0 .29.05.38.16.09.11.14.24.15.4.15.54.34 1.05.58 1.54.24.49.5.91.77 1.25.27.34.52.51.74.51.08 0 .15-.02.2-.07.05-.05.08-.11.1-.19.04-.21.06-.55.06-1.01V9.5c-.01-.35-.1-.61-.26-.78-.16-.17-.4-.28-.7-.34-.1-.02-.15-.08-.15-.17 0-.08.04-.15.13-.21.19-.13.48-.2.88-.2h1.54c.26 0 .46.06.6.18.14.12.21.32.21.61v2.33c0 .16.02.28.06.35.04.07.1.11.18.11.1 0 .23-.08.38-.23.15-.15.34-.39.56-.72.22-.33.45-.75.68-1.27.06-.14.16-.25.29-.33.13-.08.28-.12.45-.12h1.61c.19 0 .34.05.45.14.11.09.15.22.11.38-.19.72-.47 1.34-.84 1.87-.37.53-.74.92-1.1 1.16-.1.08-.15.16-.15.25 0 .07.04.14.11.22.18.2.4.48.65.84s.46.73.61 1.09c.1.25.15.48.15.7z"/></svg>
             Скопировать и перейти в ВК
         </button>
 
-        <p style="margin-top: 40px;">
-            <a href="community.html" style="color: var(--accent-gold); font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--accent-gold); padding-bottom: 3px;">Посмотреть результаты нашего комьюнити ➔</a>
+        <p style="margin-top: 35px;">
+            <a href="community.html" style="color: var(--accent-color); font-weight: 700; text-decoration: underline; font-size: 13px;">Посмотреть результаты нашего комьюнити →</a>
         </p>
     </div>
 </div>
 
 <script>
-    // --- ПЕРЕКЛЮЧЕНИЕ ТЕМЫ ---
-    function toggleTheme() {
+    // ПЕРЕКЛЮЧЕНИЕ ТЕМЫ В 1 КЛИК
+    function toggleThemeInstant() {
         const root = document.documentElement;
+        const current = root.getAttribute('data-theme') || 'dark';
+        const next = current === 'dark' ? 'light' : 'dark';
+        
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        updateThemeBtnText(next);
+    }
+
+    function updateThemeBtnText(theme) {
         const btn = document.getElementById('themeToggleBtn');
-        if (root.classList.contains('light-theme')) {
-            root.classList.remove('light-theme');
-            btn.innerText = 'Свет';
-            localStorage.setItem('resurs_theme', 'dark');
-        } else {
-            root.classList.add('light-theme');
-            btn.innerText = 'Тень';
-            localStorage.setItem('resurs_theme', 'light');
-        }
+        if (btn) btn.innerText = theme === 'dark' ? 'ТЕМА: ТЕМНАЯ' : 'ТЕМА: СВЕТЛАЯ';
     }
 
-    // Проверка сохраненной темы при загрузке
-    if (localStorage.getItem('resurs_theme') === 'light') {
-        document.documentElement.classList.add('light-theme');
-        document.getElementById('themeToggleBtn').innerText = 'Тень';
+    window.addEventListener('DOMContentLoaded', () => {
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        updateThemeBtnText(savedTheme);
+        updateProgress();
+    });
+
+    // ДИНАМИЧЕСКИЙ ПРОГРЕСС-БАР
+    function updateProgress() {
+        const form = document.getElementById('surveyForm');
+        const requiredElements = form.querySelectorAll('[required]');
+        let filledCount = 0;
+
+        requiredElements.forEach(el => {
+            if (el.type === 'radio' || el.type === 'checkbox') {
+                const group = form.querySelectorAll(`[name="${el.name}"]`);
+                let groupChecked = false;
+                group.forEach(g => { if (g.checked) groupChecked = true; });
+                if (groupChecked) filledCount++;
+            } else if (el.value.trim() !== '') {
+                filledCount++;
+            }
+        });
+
+        const totalReq = new Set([...requiredElements].map(el => el.name)).size;
+        const percent = Math.min(100, Math.round((filledCount / totalReq) * 100));
+        document.getElementById('progressBar').style.width = percent + '%';
     }
 
-    // --- МЕТРИКА: REACH GOALS ---
+    // МЕТРИКА И ОТПРАВКА
     document.getElementById('ageSelect').addEventListener('change', function() {
         if(!window.surveyStartedTarget) { 
             try { ym(108177329, 'reachGoal', 'SURVEY_STARTED'); } catch(e){}
@@ -477,14 +489,13 @@
         }
     });
 
-    document.querySelector('input[name="priority"]').addEventListener('change', function() {
+    document.querySelector('input[name="priority"]')?.addEventListener('change', function() {
         if(!window.halfDoneTarget) { 
             try { ym(108177329, 'reachGoal', 'SURVEY_HALF_DONE'); } catch(e){}
             window.halfDoneTarget = true; 
         }
     });
 
-    // --- ЛОГИКА ОТПРАВКИ ФОРМЫ ---
     document.getElementById('surveyForm').addEventListener('submit', function(e) {
         e.preventDefault();
         
@@ -492,46 +503,38 @@
         btn.innerText = 'ОТПРАВКА...';
         btn.disabled = true;
 
-        // Собираем данные формы корректно (с учетом чекбоксов мульти-выбора)
         const formData = new FormData(this);
         const data = {};
         
         for (let [key, value] of formData.entries()) {
             if (data[key]) {
-                data[key] += ', ' + value; // Склеиваем ответы из чекбоксов через запятую
+                data[key] += ', ' + value; 
             } else {
                 data[key] = value;
             }
         }
 
-        // Отправляем данные на боевую функцию Yandex Cloud
         fetch('https://functions.yandexcloud.net/d4eg243jthg6ruglntjj', {
             method: 'POST',
             body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json'
-            }
+            headers: { 'Content-Type': 'application/json' }
         })
         .then(response => {
             if (!response.ok) throw new Error('Ошибка соединения с сервером');
             return response.json();
         })
         .then(result => {
-            // Данные успешно ушли
             document.getElementById('surveyForm').style.display = 'none';
             document.getElementById('success-message').style.display = 'block';
             window.scrollTo(0, 0);
 
             try { ym(108177329, 'reachGoal', 'BONUS_REVEALED'); } catch(e){}
 
-            // Логика рандомайзера
             const isWinner = Math.random() < 0.05; 
             
             if (isWinner) {
                 document.getElementById('promo-code-display').innerText = 'ПОБЕДА_ВБ500';
-                document.getElementById('promo-code-display').style.borderColor = '#C5A059';
-                document.getElementById('promo-code-display').style.color = '#C5A059';
-                document.getElementById('gift-text').innerHTML = '🎉 <b>ДЖЕКПОТ!</b> Наш рандомайзер выбрал вас! Вы получаете 500 рублей на шоппинг Wildberries. Нажмите кнопку ниже, чтобы отправить этот код администратору:';
+                document.getElementById('gift-text').innerHTML = '🎉 <b>ДЖЕКПОТ!</b> Наш рандомайзер выбрал вас! Вы получаете 500 рублей на шопинг Wildberries. Нажмите кнопку ниже, чтобы отправить этот код администратору:';
             } else {
                 const selectedGift = data.gift;
                 if(selectedGift === '2тренировки') {
@@ -549,20 +552,18 @@
         });
     });
 
-    // --- ЛОГИКА КНОПКИ ВК ---
+    // КОПИРОВАНИЕ И ПЕРЕХОД В ВК
     document.getElementById('copyToVkBtn').addEventListener('click', function() {
         const promoText = document.getElementById('promo-code-display').innerText;
         const msg = `Привет! Я прошел опрос резидента РЕСУРС. Мой промокод: ${promoText}`;
         
-        // Копируем в буфер обмена
         navigator.clipboard.writeText(msg).then(() => {
             try { ym(108177329, 'reachGoal', 'PROMO_COPIED'); } catch(e){}
             
-            // Открываем диалог с группой (автоматически перебросит в приложение на телефоне)
-window.open('https://vk.me/-221142875', '_blank');
+            window.open('https://vk.ru/im?sel=-221142875', '_blank');
             
             this.innerText = "Скопировано! Открываем ВК...";
-            this.style.background = "#28a745"; // Зеленый цвет успеха
+            this.style.background = "#10B981"; 
         }).catch(err => {
             console.error('Ошибка копирования', err);
             alert('Не удалось скопировать. Пожалуйста, выделите промокод вручную.');
