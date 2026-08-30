@@ -1,8 +1,78 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
+    <!-- Инициализация темы без мерцания -->
+    <script>
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+
+    <!-- СЕО МЕТА-ТЕГИ -->
+    <title>Расписание тренировок и онлайн-запись | Студия растяжки РЕСУРС Сыктывкар</title>
+    <meta name="description" content="Актуальное расписание занятий в студии движения и мягкого фитнеса РЕСУРС в Сыктывкаре на ул. Коммунистическая, 67. Онлайн-запись на тренировки: Здоровая спина, МФР, Пилатес, Стретчинг и Силовой тонус.">
+    <meta name="keywords" content="расписание фитнес сыктывкар, запись на растяжку сыктывкар, расписание тренировок ресурс, здоровая спина график занятий, пилатес сыктывкар время, мфр самомассаж расписание, фитнес коммунистическая 67">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://resurs-stretch.ru/schedule.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://resurs-stretch.ru/schedule.html">
+    <meta property="og:title" content="Расписание тренировок | Студия РЕСУРС Сыктывкар">
+    <meta property="og:description" content="Выбирайте удобное время и записывайтесь на тренировки онлайн за 1 минуту. Ул. Коммунистическая, 67.">
+    <meta property="og:image" content="https://resurs-stretch.ru/logo_header_final.png">
+    <meta property="og:locale" content="ru_RU">
+
+    <!-- Микроразметка Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "HealthAndBeautyBusiness",
+          "@id": "https://resurs-stretch.ru/#organization",
+          "name": "Студия фитнеса и растяжки РЕСУРС",
+          "url": "https://resurs-stretch.ru",
+          "logo": "https://resurs-stretch.ru/logo_header_final.png",
+          "image": "https://resurs-stretch.ru/logo_header_final.png",
+          "telephone": "+79087155557",
+          "priceRange": "RUB 990 - RUB 13080",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "ул. Коммунистическая, 67",
+            "addressLocality": "Сыктывкар",
+            "addressRegion": "Республика Коми",
+            "addressCountry": "RU"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Главная",
+              "item": "https://resurs-stretch.ru/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Расписание",
+              "item": "https://resurs-stretch.ru/schedule.html"
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <!-- Счетчики аналитики: Яндекс.Метрика и Top.Mail.Ru -->
     <script type="text/javascript">
-    // --- Yandex.Metrika counter ---
     (function(m,e,t,r,i,k,a){
         m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
         m[i].l=1*new Date();
@@ -11,7 +81,6 @@
     })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108177329', 'ym');
     ym(108177329, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
 
-    // --- Top.Mail.Ru counter ---
     var _tmr = window._tmr || (window._tmr = []);
     _tmr.push({id: "3755240", type: "pageView", start: (new Date()).getTime()});
     (function (d, w, id) {
@@ -22,164 +91,326 @@
         if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
     })(document, window, "tmr-code");
     </script>
-
     <noscript>
         <div>
             <img src="https://mc.yandex.ru/watch/108177329" style="position:absolute; left:-9999px;" alt="" />
             <img src="https://top-fwz1.mail.ru/counter?id=3755240;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" />
         </div>
     </noscript>
-    
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Расписание | РЕСУРС</title>
 
+    <!-- Фавикон и шрифты -->
     <link rel="icon" type="image/png" href="logo_header_final.png">
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&family=Cormorant+Garamond:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" href="logo_header_final.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
+    <!-- Виджет расписания Листок CRM -->
     <script src="https://intgraf0398ccf6013d13d2c50992542aa25b.listokcrm.ru/wapi/script"></script>
 
     <style>
         :root {
-            --bg-light: #FBFBFB;
-            --text-dark: #1A1A1A;
-            --accent: #C5A059;
-            --transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            --bg-color: #0A090F;
+            --surface-color: #12101B;
+            --surface-hover: #1A1727;
+            --accent-color: #6C3EB8;
+            --accent-hover: #8352D6;
+            --accent-subtle: rgba(108, 62, 184, 0.15);
+            --text-main: #F5F4F9;
+            --text-muted: #9693A6;
+            --border-color: rgba(108, 62, 184, 0.22);
+            --header-bg: rgba(10, 9, 15, 0.88);
+            --shadow: rgba(0, 0, 0, 0.6);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
+        [data-theme="light"] {
+            --bg-color: #F8F7FC;
+            --surface-color: #FFFFFF;
+            --surface-hover: #F1EDF9;
+            --accent-color: #5B3494;
+            --accent-hover: #48257B;
+            --accent-subtle: rgba(91, 52, 148, 0.08);
+            --text-main: #14121E;
+            --text-muted: #666375;
+            --border-color: rgba(91, 52, 148, 0.16);
+            --header-bg: rgba(248, 247, 252, 0.9);
+            --shadow: rgba(0, 0, 0, 0.05);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease; }
+        html { scroll-behavior: smooth; }
         body {
-            margin: 0;
-            background-color: var(--bg-light);
-            color: var(--text-dark);
+            background-color: var(--bg-color);
+            color: var(--text-main);
             font-family: 'Manrope', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
         .container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 0 24px;
         }
 
+        h1, h2, h3, h4 { font-weight: 800; letter-spacing: -0.5px; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+
+        /* HEADER */
         header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 60px;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-            padding-bottom: 20px;
+            position: sticky; top: 0; width: 100%; padding: 14px 5%;
+            z-index: 2000; background: var(--header-bg);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
         }
+
+        .header-top {
+            display: flex; justify-content: space-between; align-items: center; width: 100%;
+        }
+
+        .logo-wrap {
+            display: flex; align-items: center; gap: 10px;
+        }
+        .logo-wrap img { height: 34px; width: 34px; border-radius: 6px; }
+        .brand-name { font-size: 18px; letter-spacing: 1px; text-transform: uppercase; font-weight: 800; }
+        .brand-name span { color: var(--accent-color); }
 
         .back-link {
-            text-decoration: none;
-            color: var(--text-dark);
-            font-size: 12px;
+            font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+            color: var(--text-muted); display: inline-flex; align-items: center; gap: 6px;
+        }
+        .back-link:hover { color: var(--accent-color); }
+
+        .desktop-actions {
+            display: flex; align-items: center; gap: 12px;
+        }
+
+        .theme-toggle-btn {
+            padding: 8px 14px; height: 36px; font-size: 10px; font-weight: 800; letter-spacing: 1px;
+            display: inline-flex; align-items: center; justify-content: center;
+            border-radius: 6px; border: 1px solid var(--border-color); background: var(--surface-color);
+            cursor: pointer; transition: var(--transition); color: var(--text-main); text-transform: uppercase;
+        }
+        .theme-toggle-btn:hover { border-color: var(--accent-color); color: var(--accent-color); }
+
+        /* ВТОРОЙ ЭТАЖ ДЛЯ СМАРТФОНОВ (ЗОНА БОЛЬШОГО ПАЛЬЦА) */
+        .mobile-thumb-bar {
+            display: none;
+            width: 100%;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border-color);
+            gap: 10px;
+        }
+        .mobile-thumb-bar .theme-toggle-btn { flex: 1; height: 42px; }
+        .mobile-thumb-bar .btn-mobile-back { 
+            flex: 2; height: 42px; display: flex; align-items: center; justify-content: center;
+            background: var(--accent-color); color: #FFF; border-radius: 6px; font-size: 11px;
+            font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;
+        }
+
+        @media (max-width: 900px) {
+            .desktop-actions { display: none; }
+            .mobile-thumb-bar { display: flex; }
+        }
+
+        /* ТИТУЛЬНЫЙ БЛОК */
+        .schedule-hero {
+            padding: 50px 0 30px;
+            text-align: center;
+        }
+        .section-tag {
+            color: var(--accent-color);
+            font-size: 11px;
+            font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 2px;
+            margin-bottom: 12px;
+            display: inline-block;
+            background: var(--accent-subtle);
+            padding: 4px 12px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+        }
+        .schedule-hero h1 {
+            font-size: clamp(28px, 4.2vw, 46px);
+            line-height: 1.2;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+        .schedule-hero h1 span { color: var(--accent-color); }
+        .schedule-hero p {
+            font-size: 15px; color: var(--text-muted); max-width: 650px; margin: 0 auto; line-height: 1.6;
+        }
+
+        /* BENTO БАННЕР АНКЕТЫ */
+        .anketa-banner {
+            background: linear-gradient(135deg, var(--surface-color), var(--surface-hover));
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px 30px;
+            margin: 20px auto 40px;
             display: flex;
             align-items: center;
-            transition: 0.3s;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+            box-shadow: 0 10px 30px var(--shadow);
         }
-        .back-link:hover { color: var(--accent); transform: translateX(-5px); }
+        .anketa-info h3 { font-size: 18px; margin-bottom: 4px; font-weight: 800; }
+        .anketa-info p { font-size: 13px; color: var(--text-muted); margin: 0; line-height: 1.5; }
 
-        .logo-text {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 24px;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-        }
-
-        h1 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(32px, 5vw, 56px);
-            font-weight: 400;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-
-        .subtitle {
-            text-align: center;
-            opacity: 0.5;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            font-size: 10px;
-            margin-bottom: 30px;
-        }
-
-        /* 🔥 СТИЛЬ КНОПКИ АНКЕТЫ */
-        @keyframes shimmer {
+        @keyframes shimmerBtn {
             0% { background-position: -200% center; }
             100% { background-position: 200% center; }
         }
 
-        .anketa-btn-container {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
         .btn-anketa {
-            display: inline-block;
-            text-decoration: none;
-            padding: 18px 35px;
-            background: linear-gradient(90deg, #1a1a1a 25%, #333 50%, #1a1a1a 75%);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 28px;
+            background: linear-gradient(90deg, var(--accent-color) 0%, #8E62D5 50%, var(--accent-color) 100%);
             background-size: 200% auto;
-            color: #fff;
-            border-radius: 4px;
+            color: #FFF;
+            border-radius: 6px;
             font-size: 11px;
+            font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            font-weight: 600;
-            border: 1px solid var(--accent);
-            animation: shimmer 4s infinite linear;
-            transition: var(--transition);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            letter-spacing: 1px;
+            border: none;
+            cursor: pointer;
+            animation: shimmerBtn 4s infinite linear;
+            box-shadow: 0 8px 20px rgba(108, 62, 184, 0.3);
+            white-space: nowrap;
+        }
+        .btn-anketa:hover { transform: translateY(-2px); box-shadow: 0 12px 25px rgba(108, 62, 184, 0.45); }
+
+        /* КОНТЕЙНЕР РАСПИСАНИЯ ЛИСТОК CRM */
+        .schedule-box {
+            background: #FFFFFF;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 15px 45px var(--shadow);
+            padding: 12px;
+            min-height: 650px;
+            margin-bottom: 60px;
+            overflow: hidden;
         }
 
-        .btn-anketa:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(197, 160, 89, 0.3);
-            background-color: #000;
+        /* ПОДВАЛ */
+        footer {
+            padding: 60px 0 40px; border-top: 1px solid var(--border-color); text-align: center; background: var(--surface-color);
         }
-
-        .schedule-wrapper {
-            background: #fff;
-            border-radius: 4px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.03);
-            padding: 10px;
-            min-height: 600px;
-        }
+        .footer-sub { font-size: 11px; color: var(--text-muted); line-height: 1.8; margin-top: 12px; }
 
         @media (max-width: 600px) {
-            .btn-anketa { width: 100%; box-sizing: border-box; }
+            .anketa-banner { padding: 20px; flex-direction: column; text-align: center; }
+            .btn-anketa { width: 100%; }
+            .schedule-box { padding: 6px; }
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <header>
-        <a href="index.html" class="back-link">← На главную</a>
-        <div class="logo-text">Ресурс</div>
-        <div style="width: 80px;"></div> 
-    </header>
+<!-- ШАПКА -->
+<header>
+    <div class="header-top container" style="padding:0;">
+        <div class="logo-wrap">
+            <a href="index.html" class="logo-wrap">
+                <img src="logo_header_final.png" alt="РЕСУРС">
+                <div class="brand-name">РЕСУРС<span>.РАСПИСАНИЕ</span></div>
+            </a>
+        </div>
 
-    <h1>Расписание занятий</h1>
-    <p class="subtitle">Сыктывкар • Запись онлайн</p>
-
-    <div class="anketa-btn-container">
-        <a href="anketa.html" class="btn-anketa">Заполнить анкету онлайн</a>
-        <p style="font-size: 9px; opacity: 0.4; margin-top: 10px; text-transform: uppercase; letter-spacing: 1px;">
-            Заполни заранее, чтобы не терять время в студии ✨
-        </p>
+        <div class="desktop-actions">
+            <a href="index.html" class="back-link">← На главную</a>
+            <button id="themeToggleBtn" class="theme-toggle-btn" onclick="toggleThemeInstant()">ТЕМА: ТЕМНАЯ</button>
+        </div>
     </div>
 
-    <div class="schedule-wrapper">
+    <!-- ВТОРОЙ ЭТАЖ ДЛЯ МОБИЛЬНЫХ -->
+    <div class="mobile-thumb-bar">
+        <button id="themeToggleMobile" class="theme-toggle-btn" onclick="toggleThemeInstant()">ТЕМА: ТЕМНАЯ</button>
+        <a href="index.html" class="btn-mobile-back">← НА ГЛАВНУЮ</a>
+    </div>
+</header>
+
+<main class="container">
+    
+    <!-- ТИТУЛ -->
+    <section class="schedule-hero">
+        <span class="section-tag">Сыктывкар • ул. Коммунистическая, 67</span>
+        <h1>Расписание занятий <span>студии</span></h1>
+        <p>
+            Запись доступна онлайн на две недели вперед. Тренировки длятся ровно 50 минут. Выбирайте удобное время и планируйте свой ресурс.
+        </p>
+    </section>
+
+    <!-- БАННЕР ОНЛАЙН-АНКЕТЫ -->
+    <div class="anketa-banner">
+        <div class="anketa-info">
+            <h3>Впервые в нашей студии?</h3>
+            <p>Заполните короткую анкету о здоровье заранее, чтобы не тратить время перед началом тренировки ✨</p>
+        </div>
+        <div>
+            <a href="anketa.html" class="btn-anketa">Заполнить анкету онлайн →</a>
+        </div>
+    </div>
+
+    <!-- ВИДЖЕТ РАСПИСАНИЯ ЛИСТОК CRM -->
+    <div class="schedule-box">
         <div id="listokWidgetContainer">
-            <div style="padding: 100px; text-align: center; opacity: 0.5;">
-                Загрузка актуального графика...
+            <div style="padding: 100px 20px; text-align: center; color: #666; font-size: 14px;">
+                Загрузка актуального графика занятий...
             </div>
         </div>
     </div>
-</div>
+
+</main>
+
+<!-- ПОДВАЛ -->
+<footer>
+    <div class="container">
+        <div class="brand-name" style="margin-bottom: 8px;">РЕСУРС<span>.ДВИЖЕНИЕ</span></div>
+        <p style="font-size: 13px; font-weight: 700; color: var(--text-main);">
+            г. Сыктывкар, ул. Коммунистическая, 67 • Вход со стороны главной улицы
+        </p>
+        <p class="footer-sub">
+            ИП Худяков Николай Сергеевич • ИНН 111801576622 • ОГРН 323110000009152 • Тел.: <a href="tel:+79087155557" style="color:var(--accent-color); font-weight:700;">+7 (908) 715-55-57</a><br>
+            Отмена записи на тренировку возможна не позднее чем за 5 часов до её начала.
+        </p>
+    </div>
+</footer>
+
+<!-- ПЕРЕКЛЮЧЕНИЕ ТЕМЫ -->
+<script>
+    function toggleThemeInstant() {
+        const root = document.documentElement;
+        const currentTheme = root.getAttribute('data-theme') || 'dark';
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        root.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateThemeButtons(newTheme);
+    }
+
+    function updateThemeButtons(theme) {
+        const text = theme === 'dark' ? 'ТЕМА: ТЕМНАЯ' : 'ТЕМА: СВЕТЛАЯ';
+        const btnDesktop = document.getElementById('themeToggleBtn');
+        const btnMobile = document.getElementById('themeToggleMobile');
+        if (btnDesktop) btnDesktop.innerText = text;
+        if (btnMobile) btnMobile.innerText = text;
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        updateThemeButtons(savedTheme);
+    });
+</script>
 
 </body>
 </html>
