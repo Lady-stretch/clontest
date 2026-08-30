@@ -81,7 +81,7 @@
     <noscript>
         <div>
             <img src="https://mc.yandex.ru/watch/108177329" style="position:absolute; left:-9999px;" alt="" />
-            <img src="https://top-fwz1.mail.ru/counter?id=3755240;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" />
+            <img src="https://top-fwz1.mail.ru/counter?id=3755240;js=na" style="position:absoluteleft:-9999px;" alt="Top.Mail.Ru" />
         </div>
     </noscript>
 
@@ -677,14 +677,14 @@
             </div>
         </section>
 
-        <!-- БЛОК 4: ЭКСПЕРТИЗА ОЛЬГИ МАРТЫНОВОЙ И 5-МИНУТНОЕ ВИДЕО -->
+        <!-- БЛОК 4: ЭКСПЕРТИЗА ОЛЬГИ МАРТЫНОВОЙ И 5-МИНУТНОЕ ВИДЕО ИЗ ОБЛАКА -->
         <section class="profile-section" id="video-manifest">
             <div class="profile-grid">
                 
-                <!-- 5-минутное видео манифеста -->
+                <!-- 5-минутное видео напрямую из Yandex Cloud Storage -->
                 <div class="video-container">
-                    <video controls playsinline poster="healthy-back.jpg">
-                        <source src="video-manifest.mp4" type="video/mp4">
+                    <video controls playsinline preload="metadata" poster="healthy-back.jpg">
+                        <source src="https://storage.yandexcloud.net/resurs-content/videos/razminka_5min.mp4" type="video/mp4">
                         Ваш браузер не поддерживает воспроизведение видео.
                     </video>
                 </div>
@@ -837,7 +837,7 @@
             </p>
             <div style="display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;">
                 <button class="action-btn" style="max-width: 280px;" onclick="openModal()">Тест-драйв за 990 ₽</button>
-                <a href="https://vk.com/resurs_syktyvkar" target="_blank" class="action-btn" style="max-width: 280px; background: var(--surface-hover); border: 1px solid var(--accent-color); text-decoration: none; color: var(--text-main);">Написать нам в ВК</a>
+                <a href="https://vk.ru/im?sel=-221142875" target="_blank" class="action-btn" style="max-width: 280px; background: var(--surface-hover); border: 1px solid var(--accent-color); text-decoration: none; color: var(--text-main);">Написать нам в ВК</a>
             </div>
             
             <div style="font-size: 11px; color: var(--text-muted); border-top: 1px solid var(--border-color); padding-top: 30px; margin-top: 40px; text-align: center;">
@@ -923,7 +923,7 @@
         document.documentElement.setAttribute('data-theme', savedTheme);
         updateThemeBtnText(savedTheme);
 
-        // КВИЗ И ВКОНТАКТЕ БУФЕР
+        // КВИЗ И ВКОНТАКТЕ БУФЕР С ВАШИМ НОВЫМ ЧАТОМ
         let userChoices = { focus: 'Здоровая спина и шея', level: '' };
 
         function selectHeroCategory(cat, el) {
@@ -977,7 +977,7 @@
             alertBox.style.backgroundColor = "rgba(16, 185, 129, 0.1)";
 
             setTimeout(() => {
-                window.open("https://vk.com/im?sel=-211421453", "_blank");
+                window.open("https://vk.ru/im?sel=-221142875", "_blank");
             }, 600);
         }
 
