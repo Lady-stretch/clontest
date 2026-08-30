@@ -1,14 +1,68 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
+    <!-- Инициализация темы без мерцания -->
     <script>
-        // Инициализация темы при загрузке (чтобы не было моргания фона)
-        const savedTheme = localStorage.getItem('theme') || 'dark';
+        const savedTheme = localStorage.getItem('resurs_wheel_theme') || localStorage.getItem('theme') || 'dark';
         document.documentElement.setAttribute('data-theme', savedTheme);
     </script>
 
+    <!-- СЕО МЕТА-ТЕГИ: АКЦИИ, СКИДКИ, СПЕЦПРЕДЛОЖЕНИЯ, КОЛЕСО УДАЧИ -->
+    <title>Акции и скидки на фитнес в Сыктывкаре | Выиграть абонемент в Колесе удачи студии РЕСУРС</title>
+    <meta name="description" content="Официальные акции, супер скидки и спецпредложения на абонементы фитнеса и растяжки в Сыктывкаре. Крутите интерактивное колесо фортуны и забирайте гарантированные подарки: скидки до 70%, тест-драйв 4 занятия за 990₽ и абонементы от 3200₽ на ул. Коммунистическая, 67.">
+    <meta name="keywords" content="акции фитнес сыктывкар, скидки на абонементы сыктывкар, выгодные абонементы на фитнес, супер скидки растяжка, спец предложение фитнес сыктывкар, колесо удачи подарки, розыгрыш абонемента сыктывкар, тест-драйв фитнес 990, студия ресурс акции, абонемент здоровая спина скидка">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://resurs-stretch.ru/wheel.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://resurs-stretch.ru/wheel.html">
+    <meta property="og:title" content="Колесо удачи студии РЕСУРС | Заберите свой подарок на фитнес в Сыктывкаре">
+    <meta property="og:description" content="Крутите колесо фортуны: скидки до 70% на разовые визиты, до 30% на абонементы и тест-драйв 4 занятия за 990 рублей.">
+    <meta property="og:image" content="https://resurs-stretch.ru/logo_header_final.png">
+    <meta property="og:locale" content="ru_RU">
+
+    <!-- Микроразметка Schema.org: HealthAndBeautyBusiness + SpecialAnnouncement (Акции) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "HealthAndBeautyBusiness",
+          "@id": "https://resurs-stretch.ru/#organization",
+          "name": "Студия фитнеса и растяжки РЕСУРС",
+          "url": "https://resurs-stretch.ru",
+          "logo": "https://resurs-stretch.ru/logo_header_final.png",
+          "image": "https://resurs-stretch.ru/logo_header_final.png",
+          "telephone": "+79087155557",
+          "priceRange": "RUB 210 - RUB 44800",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "ул. Коммунистическая, 67",
+            "addressLocality": "Сыктывкар",
+            "addressRegion": "Республика Коми",
+            "addressCountry": "RU"
+          }
+        },
+        {
+          "@type": "SpecialAnnouncement",
+          "name": "Интерактивный розыгрыш подарков и спецпредложений на абонементы",
+          "text": "Гарантированные приветственные привилегии для новых резидентов студии РЕСУРС в Сыктывкаре: разовое занятие со скидкой 70% за 210 руб, тест-драйв 4 занятия за 990 руб, 8 занятий за 3200 руб, 16 занятий за 5900 руб.",
+          "category": "https://schema.org/SaleEvent",
+          "url": "https://resurs-stretch.ru/wheel.html"
+        }
+      ]
+    }
+    </script>
+
+    <!-- Счетчики аналитики: Яндекс.Метрика и Top.Mail.Ru -->
     <script type="text/javascript">
-    // --- Yandex.Metrika counter ---
     (function(m,e,t,r,i,k,a){
         m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
         m[i].l=1*new Date();
@@ -17,7 +71,6 @@
     })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108177329', 'ym');
     ym(108177329, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
 
-    // --- Top.Mail.Ru counter ---
     var _tmr = window._tmr || (window._tmr = []);
     _tmr.push({id: "3755240", type: "pageView", start: (new Date()).getTime()});
     (function (d, w, id) {
@@ -28,361 +81,368 @@
         if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
     })(document, window, "tmr-code");
     </script>
-
     <noscript>
         <div>
             <img src="https://mc.yandex.ru/watch/108177329" style="position:absolute; left:-9999px;" alt="" />
             <img src="https://top-fwz1.mail.ru/counter?id=3755240;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" />
         </div>
     </noscript>
-    
-    <!-- Подключение рекламной системы Яндекса (РСЯ) -->
+
+    <!-- Рекламная сеть Яндекса (РСЯ) -->
     <script>window.yaContextCb=window.yaContextCb||[]</script>
     <script src="https://yandex.ru/ads/system/context.js" async></script>
-    
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Розыгрыш привилегий и подарков | Студия РЕСУРС Сыктывкар</title>
-    <meta name="description" content="Интерактивное колесо фортуны студии мягкого фитнеса и растяжки РЕСУРС in Сыктывкаре. Испытайте удачу и заберите гарантированный приветственный бонус на тренировки здоровой спины, МФР и пилатеса.">
-    <meta name="keywords" content="колесо удачи фитнес, выиграть абонемент растяжка, студия ресурс сыктывкар скидки, здоровая спина сыктывкар акции, бесплатная тренировка пилатес">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://resurs-stretch.ru/wheel.html">
 
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Испытай удачу и забери свой ресурс на старт! | РЕСУРС">
-    <meta property="og:description" content="Запусти колесо фортуны и выиграй до 40% скидки на абонементы в студию умного движения.">
-    <meta property="og:url" content="https://resurs-stretch.ru/wheel.html">
-    <meta property="og:image" content="https://resurs-stretch.ru/logo_header_final.png">
-    <meta property="og:site_name" content="РЕСУРС">
-    <meta property="og:locale" content="ru_RU">
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "HealthAndBeautyBusiness",
-      "name": "Студия фитнеса и растяжки РЕСУРС",
-      "image": "https://resurs-stretch.ru/logo_header_final.png",
-      "@id": "https://resurs-stretch.ru",
-      "url": "https://resurs-stretch.ru",
-      "telephone": "+79087155557",
-      "priceRange": "4760sub - 16800RUB",
-      "description": "Экосистема умного фитнеса, восстановления позвоночника и растяжки в Сыктывкаре. Гарантированные бонусы новым резидентам.",
-      "address": [
-        {
-          "@type": "PostalAddress",
-          "streetAddress": "ул. Коммунистическая, 77/2",
-          "addressLocality": "Сыктывкар",
-          "addressRegion": "Республика Коми",
-          "addressCountry": "RU"
-        }
-      ]
-    }
-    </script>
-
+    <!-- Шрифты и фавикон -->
     <link rel="icon" type="image/png" href="logo_header_final.png">
+    <link rel="apple-touch-icon" href="logo_header_final.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Manrope:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --bg-deep: #F4F4F9;
-            --text-main: #05050A;
-            --text-dim: rgba(5, 5, 10, 0.6);
-            --glass-bg: rgba(255, 255, 255, 0.85);
-            --glass-border: rgba(43, 46, 42, 0.08);
-            --accent-gold: #B38639;
-            --accent-green: #4CAF50;
-            --accent-berry: #C2185B;
-            --font-main: 'Manrope', sans-serif;
-            --font-serif: 'Cormorant Garamond', serif;
-            --header-bg: rgba(244, 244, 249, 0.8);
-            --video-opacity: 0.45; /* ЗАТЕМНЕНИЕ HERO VIDEO ДЛЯ СВЕТЛОЙ ТЕМЫ */
-            --elem-bg: rgba(76, 175, 80, 0.04);
+            --bg-color: #0A090F;
+            --surface-color: #12101B;
+            --surface-hover: #1A1727;
+            --accent-color: #6C3EB8;
+            --accent-hover: #8352D6;
+            --accent-subtle: rgba(108, 62, 184, 0.15);
+            --text-main: #F5F4F9;
+            --text-muted: #9693A6;
+            --border-color: rgba(108, 62, 184, 0.22);
+            --header-bg: rgba(10, 9, 15, 0.88);
+            --video-opacity: 0.35;
+            --shadow: rgba(0, 0, 0, 0.6);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        [data-theme="dark"] {
-            --bg-deep: #080814;
-            --text-main: #ffffff;
-            --text-dim: rgba(255, 255, 255, 0.5);
-            --glass-bg: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --accent-gold: #C5A059;
-            --accent-green: #66BB6A;
-            --accent-berry: #E91E63;
-            --header-bg: rgba(8, 8, 20, 0.8);
-            --video-opacity: 0.45; /* ЗАТЕМНЕНИЕ HERO VIDEO ДЛЯ ТЕМНОЙ ТЕМЫ */
-            --elem-bg: rgba(255, 255, 255, 0.02);
+        [data-theme="light"] {
+            --bg-color: #F8F7FC;
+            --surface-color: #FFFFFF;
+            --surface-hover: #F1EDF9;
+            --accent-color: #5B3494;
+            --accent-hover: #48257B;
+            --accent-subtle: rgba(91, 52, 148, 0.08);
+            --text-main: #14121E;
+            --text-muted: #666375;
+            --border-color: rgba(91, 52, 148, 0.16);
+            --header-bg: rgba(248, 247, 252, 0.9);
+            --video-opacity: 0.25;
+            --shadow: rgba(0, 0, 0, 0.06);
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body, html { width: 100%; min-height: 100%; font-family: var(--font-main); background: var(--bg-deep); color: var(--text-main); overflow-x: hidden; transition: background-color 0.5s ease, color 0.5s ease; }
+        * { box-sizing: border-box; margin: 0; padding: 0; transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease; }
+        html { scroll-behavior: smooth; }
+        body, html { width: 100%; min-height: 100%; font-family: 'Manrope', sans-serif; background: var(--bg-color); color: var(--text-main); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
 
-        /* --- ШАПКА --- */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 10; }
+
+        /* HEADER */
         header {
-            position: fixed; top: 0; width: 100%; height: 70px;
+            position: sticky; top: 0; width: 100%; height: 70px;
             padding: 0 5%; display: flex; align-items: center; justify-content: space-between;
             z-index: 2000; background: var(--header-bg);
             backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--glass-border);
-            transition: background-color 0.5s ease;
+            border-bottom: 1px solid var(--border-color);
         }
-        .back-link { width: 40px; color: var(--accent-gold); display: flex; align-items: center; text-decoration: none; z-index: 2100; }
-        .brand-name { 
-            position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
-            font-family: var(--font-serif); font-size: clamp(18px, 4vw, 24px); 
-            letter-spacing: 8px; text-transform: uppercase; white-space: nowrap; padding-left: 8px; font-weight: 600;
+        .back-link {
+            display: inline-flex; align-items: center; gap: 8px; color: var(--accent-color);
+            text-decoration: none; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;
         }
-        
-        #themeToggle {
-            padding: 0 12px; height: 32px; font-size: 10px; font-weight: 600; letter-spacing: 1px;
-            display: flex; align-items: center; justify-content: center;
-            border-radius: 6px; border: 1px solid var(--glass-border); background: transparent;
-            cursor: pointer; transition: 0.3s; color: var(--text-main); text-transform: uppercase;
-            z-index: 2100; margin-right: 15px;
-        }
-        #themeToggle:hover { border-color: var(--accent-gold); transform: translateY(-1px); }
+        .back-link:hover { color: var(--accent-hover); transform: translateX(-2px); }
 
-        .header-logo-wrap { display: flex; align-items: center; }
-        .header-logo { width: 40px; display: flex; justify-content: flex-end; z-index: 2100; cursor: pointer; }
-        .header-logo img { height: 35px; width: 35px; border-radius: 6px; pointer-events: none; }
+        .brand-name {
+            font-size: 18px; letter-spacing: 2px; text-transform: uppercase; font-weight: 800; color: var(--text-main);
+        }
+        .brand-name span { color: var(--accent-color); }
 
-        /* --- ВИДЕОФОН --- */
+        .header-actions { display: flex; align-items: center; gap: 12px; }
+
+        .theme-toggle-btn {
+            font-weight: 800; font-size: 11px; letter-spacing: 1px; cursor: pointer;
+            text-transform: uppercase; padding: 8px 14px; border: 1px solid var(--border-color);
+            border-radius: 6px; background: var(--surface-color); color: var(--text-main);
+        }
+        .theme-toggle-btn:hover { border-color: var(--accent-color); color: var(--accent-color); }
+
+        .header-logo { cursor: pointer; display: flex; align-items: center; }
+        .header-logo img { height: 34px; width: 34px; border-radius: 6px; }
+
+        /* ФОНОВОЕ ВИДЕО */
         .video-fixed-bg { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; overflow: hidden; }
         .video-fixed-bg video { width: 100%; height: 100%; object-fit: cover; opacity: var(--video-opacity); transition: opacity 0.5s ease; }
-        .video-fixed-overlay { position: absolute; inset: 0; background: rgba(8, 8, 20, 0.2); pointer-events: none; }
+        .video-fixed-overlay { position: absolute; inset: 0; background: rgba(10, 9, 15, 0.45); pointer-events: none; }
 
-        /* --- СВОБОДНЫЙ BENTO-LAYOUT СТРАНИЦЫ --- */
-        .main-layout { max-width: 1200px; margin: 100px auto 60px; padding: 0 20px; position: relative; z-index: 10; }
-        
-        .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: start; }
-        .bento-card { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 24px; padding: 35px; position: relative; overflow: hidden; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-        .bento-card:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(0,0,0,0.03); }
-        
+        /* BENTO LAYOUT */
+        .main-layout { margin: 40px auto 60px; }
+
+        .bento-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: start;
+        }
+        .bento-card {
+            background: var(--surface-color); border: 1px solid var(--border-color);
+            border-radius: 14px; padding: 36px; position: relative; overflow: hidden;
+            transition: var(--transition); box-shadow: 0 15px 35px var(--shadow);
+        }
+        .bento-card:hover { border-color: var(--accent-color); transform: translateY(-2px); }
         .span-2 { grid-column: span 2; }
         .span-3 { grid-column: span 3; }
 
-        h1 { font-family: var(--font-serif); font-size: clamp(26px, 4vw, 36px); color: var(--accent-gold); margin-bottom: 12px; font-weight: 600; line-height: 1.2; }
-        .info-txt { font-size: 14px; opacity: 0.85; margin-bottom: 20px; line-height: 1.5; }
+        .badge-tag {
+            color: var(--accent-color); font-size: 11px; font-weight: 800; text-transform: uppercase;
+            letter-spacing: 2px; margin-bottom: 12px; display: inline-block; background: var(--accent-subtle);
+            padding: 4px 10px; border-radius: 4px; border: 1px solid var(--border-color);
+        }
 
-        /* --- WHEEL ARCHITECTURE --- */
-        .wheel-block-container { display: flex; flex-direction: column; align-items: center; justify-content: center; }
-        .wheel-container { position: relative; width: clamp(260px, 100%, 340px); height: clamp(260px, 100%, 340px); margin: 0 auto; }
-        #wheelCanvas { width: 100%; height: 100%; border-radius: 50%; border: 4px solid var(--accent-gold); background: #0a0a14; }
+        h1 { font-size: clamp(26px, 3.8vw, 38px); font-weight: 800; line-height: 1.2; margin-bottom: 16px; letter-spacing: -0.5px; }
+        h1 span { color: var(--accent-color); }
+        .info-txt { font-size: 15px; color: var(--text-muted); margin-bottom: 24px; line-height: 1.7; }
+
+        /* КОЛЕСО УДАЧИ */
+        .wheel-block-container { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+        .wheel-container { position: relative; width: clamp(280px, 100%, 360px); height: clamp(280px, 100%, 360px); margin: 0 auto; }
+        #wheelCanvas { width: 100%; height: 100%; border-radius: 50%; border: 4px solid var(--accent-color); background: #0A090F; box-shadow: 0 0 30px rgba(108, 62, 184, 0.35); }
         .pointer {
             position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
             width: 0; height: 0; border-left: 14px solid transparent; border-right: 14px solid transparent;
-            border-top: 28px solid var(--accent-gold); z-index: 100;
+            border-top: 28px solid var(--accent-color); z-index: 100; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));
         }
 
         .spin-btn {
-            margin-top: 25px; width: 100%; padding: 18px; background: var(--accent-gold);
-            color: #000; border: none; border-radius: 14px; font-weight: 700; font-size: 14px;
-            text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: 0.3s;
-            box-shadow: 0 8px 20px rgba(197, 160, 89, 0.2);
+            margin-top: 25px; width: 100%; padding: 18px; background: var(--accent-color);
+            color: #FFF; border: none; border-radius: 8px; font-weight: 800; font-size: 13px;
+            text-transform: uppercase; letter-spacing: 1.5px; cursor: pointer; transition: var(--transition);
+            box-shadow: 0 10px 25px rgba(108, 62, 184, 0.4);
         }
-        .spin-btn:hover { opacity: 0.95; transform: translateY(-1px); box-shadow: 0 12px 25px rgba(197, 160, 89, 0.35); }
-        .spin-btn:disabled { opacity: 0.4; cursor: default; transform: none; box-shadow: none; }
+        .spin-btn:hover { background-color: var(--accent-hover); transform: translateY(-1px); }
+        .spin-btn:disabled { opacity: 0.45; cursor: default; transform: none; box-shadow: none; }
 
-        /* СПИСОК ПРИЗОВ В КАРТОЧКЕ ОПИСАНИЯ */
-        .prize-rules-list { list-style: none; margin-top: 20px; text-align: left; }
-        .prize-rules-list li { position: relative; padding-left: 28px; margin-bottom: 15px; font-size: 13.5px; line-height: 1.4; }
-        .prize-rules-list li strong { color: var(--accent-gold); font-weight: 600; }
+        /* СПИСОК ПРИЗОВ */
+        .prize-rules-list { list-style: none; margin-top: 15px; }
+        .prize-rules-list li {
+            position: relative; padding-left: 24px; margin-bottom: 14px; font-size: 14px; line-height: 1.6; color: var(--text-muted);
+        }
+        .prize-rules-list li strong { color: var(--text-main); font-weight: 800; }
         .prize-rules-list li::before {
-            content: "✦"; position: absolute; left: 4px; top: 0;
-            color: var(--accent-gold); font-size: 14px;
+            content: "✦"; position: absolute; left: 0; top: 0; color: var(--accent-color); font-weight: 800; font-size: 14px;
         }
 
-        /* --- MODAL (ОБНОВЛЕННЫЙ С ЗЕЛЕНОВАТОЙ РАМКОЙ) --- */
+        /* SEO ТЕКСТОВЫЙ БЛОК */
+        .seo-manifest-box {
+            background: var(--surface-color); border: 1px solid var(--border-color); border-radius: 14px;
+            padding: 36px; border-left: 4px solid var(--accent-color); margin-top: 24px;
+        }
+        .seo-manifest-box h2 { font-size: 20px; font-weight: 800; margin-bottom: 12px; }
+        .seo-manifest-box p { font-size: 13px; color: var(--text-muted); line-height: 1.7; margin-bottom: 12px; }
+
+        /* МОДАЛЬНОЕ ОКНО ВЫИГРЫША */
         .modal {
-            display: none; position: fixed; inset: 0; background: rgba(5,5,15,0.96);
+            display: none; position: fixed; inset: 0; background: rgba(10,9,15,0.92);
             z-index: 5000; align-items: center; justify-content: center; padding: 20px;
             backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
         }
         .modal-body {
-            background: #0f0f1e; padding: 45px 30px; border-radius: 28px;
-            border: 2px solid var(--accent-green); text-align: center; max-width: 420px; width: 100%;
-            color: #fff; box-shadow: 0 20px 50px rgba(76, 175, 80, 0.15);
+            background: var(--surface-color); padding: 40px 30px; border-radius: 16px;
+            border: 2px solid var(--accent-color); text-align: center; max-width: 440px; width: 100%;
+            color: var(--text-main); box-shadow: 0 25px 60px rgba(108, 62, 184, 0.35);
         }
         .instruction-box {
-            background: rgba(76, 175, 80, 0.05); border: 1px dashed var(--accent-green);
-            padding: 18px; border-radius: 14px; margin: 25px 0;
+            background: var(--accent-subtle); border: 1px dashed var(--accent-color);
+            padding: 16px; border-radius: 8px; margin: 20px 0; font-size: 13px;
         }
         
-        /* КНОПКА ВК (ГОЛУБАЯ) */
+        /* КНОПКА ВК */
         .vk-link {
             display: inline-flex; align-items: center; justify-content: center; width: 100%;
-            padding: 18px; background: #0077FF !important; color: #fff !important;
-            text-decoration: none; border-radius: 14px; font-weight: 700; font-size: 14px;
-            text-transform: uppercase; letter-spacing: 1.5px; transition: 0.3s;
-            box-shadow: 0 10px 25px rgba(0, 119, 255, 0.35) !important;
-            animation: pulse-blue 2.5s infinite;
+            padding: 16px 24px; background: #0077FF !important; color: #FFF !important;
+            text-decoration: none; border-radius: 8px; font-weight: 800; font-size: 13px;
+            text-transform: uppercase; letter-spacing: 1px; transition: var(--transition);
+            box-shadow: 0 10px 25px rgba(0, 119, 255, 0.4);
         }
-        .vk-link:hover { transform: translateY(-2px); box-shadow: 0 15px 30px rgba(0, 119, 255, 0.5) !important; opacity: 0.95; }
-        @keyframes pulse-blue { 0% { box-shadow: 0 0 0 0 rgba(0, 119, 255, 0.6); } 70% { box-shadow: 0 0 0 15px rgba(0, 119, 255, 0); } 100% { box-shadow: 0 0 0 0 rgba(0, 119, 255, 0); } }
+        .vk-link:hover { transform: translateY(-2px); opacity: 0.95; }
 
-        footer { margin-top: 60px; padding: 40px 0; border-top: 1px solid var(--glass-border); text-align: center; }
+        footer { margin-top: 60px; padding: 50px 0 35px; border-top: 1px solid var(--border-color); text-align: center; background: var(--surface-color); position: relative; z-index: 10; }
 
         @media (max-width: 968px) {
             .bento-grid { grid-template-columns: 1fr; gap: 20px; }
             .span-2, .span-3 { grid-column: span 1; }
-            .main-layout { margin-top: 90px; }
+            .main-layout { margin-top: 24px; }
+            .bento-card { padding: 26px; }
         }
     </style>
 </head>
 <body>
 
+<!-- ШАПКА -->
 <header>
-    <a href="index.html" class="back-link" aria-label="Назад на главную">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    <a href="index.html" class="back-link" aria-label="Вернуться на главную">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        <span>На главную</span>
     </a>
-    <div class="brand-name">РЕСУРС</div>
-    <div class="header-logo-wrap">
-        <button id="themeToggle" onclick="toggleTheme()">ТЕНЬ</button>
-        <div id="secretReset" class="header-logo" title="Сбросить память (админ)">
-            <img src="logo_header_final.png" alt="Logo">
+    <div class="brand-name">РЕСУРС<span>.УДАЧА</span></div>
+    <div class="header-actions">
+        <button id="themeToggle" class="theme-toggle-btn" onclick="toggleTheme()">ТЕМА: ТЕМНАЯ</button>
+        <div id="secretReset" class="header-logo" title="Двойной клик: сбросить память попыток (админ)">
+            <img src="logo_header_final.png" alt="Логотип РЕСУРС">
         </div>
     </div>
 </header>
 
+<!-- ФОНОВОЕ ВИДЕО -->
 <div class="video-fixed-bg">
     <video muted autoplay loop playsinline preload="auto" id="bgVideo">
-        <source src="hero-video.mp4" type="video/mp4">
+        <source src="hero-video.mp4?v=20260809" type="video/mp4">
     </video>
     <div class="video-fixed-overlay"></div>
 </div>
 
-<main class="main-layout">
+<main class="container main-layout">
     <div class="bento-grid">
         
-        <!--ЛЕВАЯ КАРТОЧКА СЕТКИ: ИНТЕРАКТИВНОЕ КОЛЕСО УДАЧИ -->
+        <!-- ЛЕВАЯ КАРТОЧКА: КОЛЕСО ФОРТУНЫ -->
         <div class="bento-card wheel-block-container">
+            <span class="badge-tag">Интерактивный розыгрыш</span>
             <div class="wheel-container">
                 <div class="pointer"></div>
                 <canvas id="wheelCanvas" width="600" height="600"></canvas>
             </div>
-            <button id="spinBtn" class="spin-btn" onclick="startSpin()">Запустить удачу</button>
+            <button id="spinBtn" class="spin-btn" onclick="startSpin()">Запустить колесо фортуны</button>
         </div>
 
-        <!-- ПРАВАЯ КАРТОЧКА СЕТКИ: УСЛОВИЯ И КЛАССИЧЕСКОЕ ОПИСАНИЕ ПРИЗОВ -->
-        <div class="bento-card span-2" style="display: flex; flex-direction: column; justify-content: center; text-align: left;">
-            <span style="font-size: 11px; text-transform: uppercase; letter-spacing: 3px; color: var(--accent-gold); font-weight: 700; display: block; margin-bottom: 5px;">Твой счастливый случай</span>
-            <h1>Интерактивный розыгрыш призов</h1>
+        <!-- ПРАВАЯ КАРТОЧКА: УСЛОВИЯ И АКТУАЛЬНЫЕ ПРИЗЫ -->
+        <div class="bento-card span-2">
+            <span class="badge-tag">Акции и скидки студии • Сыктывкар</span>
+            <h1>Выгодные абонементы и подарки от <span>студии РЕСУРС</span></h1>
             <p id="mainText" class="info-txt">
-                Здравствуйте, если вы наткнулись на это колесо — это настоящая удача! Раскрутите потенциал своего тела. Специально для новых гостей мы выделили закрытый фонд гарантированных приветственных подарков. У вас есть ровно **3 попытки**, чтобы запустить колесо и зафиксировать за собой наилучший результат на старт!
+                Если вы попали на эту страницу — вам улыбнулась удача! Специально для гостей и новых резидентов студии в Сыктывкаре мы открыли фонд приветственных привилегий. У вас есть ровно <b>3 попытки</b>, чтобы запустить колесо фортуны и зафиксировать за собой супер скидку на тренировки.
             </p>
             
-            <h3 style="font-family: var(--font-serif); font-size: 20px; color: var(--accent-gold); margin-top: 5px;">Какие привилегии на кону:</h3>
+            <h3 style="font-size: 17px; font-weight: 800; margin-bottom: 8px;">Какие супер скидки и спецпредложения на кону:</h3>
             <ul class="prize-rules-list">
-                <li><strong>70% РАЗОВОЕ:</strong> Полноценный тест-драйв атмосферы залов РЕСУРСА всего за 210 рублей.</li>
-                <li><strong>20% АБОНЕМЕНТ:</strong> Разовая крупная скидка на любой выбранный пакет из 8, 16, 32 или 64 тренировок. Полная стоимость абонементов: 8 тренировок - 5 600, 16 тренировок - 11 200, 32 тренировки - 22 400, 64 тренировки - 44 800.</li>
-                <li><strong>4 занятия за 2000₽:</strong> Две недели бережного погружения в Пилатес, МФР и Здоровую спину.</li>
-                <li><strong>40% ГОДОВОЙ:</strong> Грандиозный и максимальный дисконт на долгосрочное поддержание здоровья.</li>
-                <li><strong>ТЕСТ-ДРАЙВ:</strong> Наш легендарный стартовый сет из 3 занятий всего за 990 рублей.</li>
+                <li><strong>70% НА РАЗОВОЕ:</strong> Полноценный тест-драйв атмосферы студии РЕСУРС всего за <b>210 рублей вместо 700 рублей</b>.</li>
+                <li><strong>30% НА АБОНЕМЕНТ:</strong> Крупная разовая скидка на любой выбранный пакет. Полная стоимость абонементов: <b>8 тренировок — 5 600 ₽</b>, <b>16 тренировок — 11 200 ₽</b>, <b>24 тренировки — 16 800 ₽</b>.</li>
+                <li><strong>8 занятий за 3200 ₽:</strong> Месяц бережного погружения в Пилатес, МФР и Здоровую спину или активных комплексов (Ягодицы+Пресс, Подкачка с растяжкой, Круговая).</li>
+                <li><strong>16 занятий за 5900 ₽:</strong> Грандиозный и максимальный дисконт на долгосрочное поддержание здоровья и восстановление осанки.</li>
+                <li><strong>ТЕСТ-ДРАЙВ:</strong> Наш легендарный стартовый сет из <b>4 занятий на целый месяц всего за 990 рублей</b>.</li>
             </ul>
         </div>
 
-        <!-- АДАПТИВНЫЙ БЛОК РСЯ НА ВСЮ ШИРИНУ ВНИЗУ КОНТЕНТА -->
-        <div class="bento-card span-3" style="background: transparent; border: none; box-shadow: none; padding: 10px 0; text-align: center; width: 100%;">
+        <!-- ОТКРЫТЫЙ SEO-БЛОК ДЛЯ ПОИСКОВИКОВ (АКЦИИ И СПЕЦПРЕДЛОЖЕНИЯ) -->
+        <div class="seo-manifest-box span-3">
+            <h2>Официальные акции, скидки и спецпредложения на фитнес в Сыктывкаре</h2>
+            <p>
+                Ищете выгодные абонементы на фитнес, мягкую растяжку или восстановительные тренировки для спины в Сыктывкаре? Студия движения «РЕСУРС» на <b>ул. Коммунистическая, 67</b> регулярно проводит интерактивные розыгрыши подарков и предоставляет специальные условия для новых гостей.
+            </p>
+            <p>
+                Все выигранные промокоды и сертификаты являются официальными предложениями студии, не сгорают в течение срока действия акции и дают право на посещение сертифицированных практик: «Здоровая спина», миофасциальный релиз (МФР), умный пилатес, классический стретчинг и силовые сессии по 50 минут. Подарки активируются через диалог с сообществом ВКонтакте или у администратора студии.
+            </p>
+        </div>
+
+        <!-- АДАПТИВНЫЙ БЛОК РСЯ -->
+        <div class="bento-card span-3" style="background: transparent; border: none; box-shadow: none; padding: 0; text-align: center; width: 100%;">
             <div id="yandex_rtb_R-A-19181219-4"></div>
             <script>
                 window.yaContextCb.push(()=>{
                     Ya.Context.AdvManager.render({
                         "blockId": "R-A-19181219-4",
                         "renderTo": "yandex_rtb_R-A-19181219-4"
-                    })
-                })
+                    });
+                });
             </script>
         </div>
 
     </div>
 </main>
 
+<!-- МОДАЛЬНОЕ ОКНО ВЫИГРЫША -->
 <div class="modal" id="winModal">
     <div class="modal-body">
-        <h2 style="font-family: var(--font-serif); color: var(--accent-gold); font-size: 32px;">Поздравляем!</h2>
-        <div id="prizeName" style="font-size: 22px; font-weight: 600; color: #fff; margin: 15px 0;"></div>
-        <div id="prizeInfo" style="font-size: 14px; opacity: 0.8; line-height: 1.6;"></div>
+        <span class="badge-tag">Поздравляем с победой!</span>
+        <div id="prizeName" style="font-size: 20px; font-weight: 800; color: var(--text-main); margin: 12px 0;"></div>
+        <div id="prizeInfo" style="font-size: 13px; color: var(--text-muted); line-height: 1.6;"></div>
         
         <div class="instruction-box">
-            <p style="font-size: 13px; color: var(--accent-green); text-transform: uppercase; font-weight: 700; margin-bottom: 5px;">Важный шаг:</p>
-            <p style="font-size: 14px; color: #fff;">Нажмите кнопку ниже и отправьте Вере в чат сообщества сообщение: <br><strong>«Забрать выигрыш»</strong></p>
+            <p style="font-size: 11px; color: var(--accent-color); text-transform: uppercase; font-weight: 800; margin-bottom: 4px;">Важный шаг активации:</p>
+            <p style="font-size: 13px; color: var(--text-main);">Нажмите кнопку ниже и отправьте в чат группы сообщение: <br><strong>«Забрать выигрыш»</strong></p>
         </div>
 
-        <a href="#" id="vkBtn" class="vk-link">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;"><path d="M15.011 22c7.227 0 11.233-4.945 11.233-12.443 0-.583-.131-1.155-.386-1.684a3.834 3.834 0 00-1.077-1.332 5.922 5.922 0 00-1.637-.89C21.946 5.253 20.612 5 19.261 5h-1.683c-.563 0-1.011.455-1.011 1.014v2.7c0 .647-.214 1.156-.632 1.488-.382.3-.923.447-1.62.447h-.673V6.014C13.643 5.455 13.195 5 12.632 5h-1.346a7.844 7.844 0 00-5.753 2.457 9.176 9.176 0 00-2.164 5.955c0 3.327 1.631 6.275 4.545 7.79 1.411.734 2.997 1.127 4.607 1.144l2.49-.346V22h.001z"/></svg>
-            ЗАБРАТЬ ВЫИГРЫШ
+        <a href="#" id="vkBtn" class="vk-link" target="_blank">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;"><path d="M15.07 2H8.93C3.33 2 2 3.33 2 8.93v6.14C2 20.67 3.33 22 8.93 22h6.14c5.6 0 6.93-1.33 6.93-6.93V8.93C22 3.33 20.67 2 15.07 2zm3.1 13.08c0 .12-.04.22-.11.3-.08.08-.19.12-.32.12h-1.5c-.32 0-.6-.11-.84-.33-.24-.22-.44-.52-.61-.88-.23-.49-.46-.86-.68-1.12-.22-.26-.45-.39-.68-.39-.1 0-.19.02-.28.07-.09.05-.16.12-.21.21-.1.17-.15.42-.15.76v.88c0 .2-.06.36-.17.47s-.27.17-.47.17h-.8c-.78 0-1.48-.24-2.11-.73-.63-.49-1.16-1.16-1.59-2.02-.44-.86-.87-1.89-1.28-3.08-.05-.14-.02-.26.08-.36.1-.1.24-.15.42-.15h1.56c.16 0 .29.05.38.16.09.11.14.24.15.4.15.54.34 1.05.58 1.54.24.49.5.91.77 1.25.27.34.52.51.74.51.08 0 .15-.02.2-.07.05-.05.08-.11.1-.19.04-.21.06-.55.06-1.01V9.5c-.01-.35-.1-.61-.26-.78-.16-.17-.4-.28-.7-.34-.1-.02-.15-.08-.15-.17 0-.08.04-.15.13-.21.19-.13.48-.2.88-.2h1.54c.26 0 .46.06.6.18.14.12.21.32.21.61v2.33c0 .16.02.28.06.35.04.07.1.11.18.11.1 0 .23-.08.38-.23.15-.15.34-.39.56-.72.22-.33.45-.75.68-1.27.06-.14.16-.25.29-.33.13-.08.28-.12.45-.12h1.61c.19 0 .34.05.45.14.11.09.15.22.11.38-.19.72-.47 1.34-.84 1.87-.37.53-.74.92-1.1 1.16-.1.08-.15.16-.15.25 0 .07.04.14.11.22.18.2.4.48.65.84s.46.73.61 1.09c.1.25.15.48.15.7z"/></svg>
+            ЗАБРАТЬ ВЫИГРЫШ В ВК
         </a>
     </div>
 </div>
 
-<div style="display: none !important; visibility: hidden !important;" aria-hidden="true">
-    <h2>Официальные акции, интерактивные розыгрыши, лотереи, промокоды, купоны и подарки студии умного фитнеса РЕСУРС Сыктывкар</h2>
-    <p>Добро пожаловать на игровую интерактивную платформу студии РЕСУРС. Крутите колесо фортуны, чтобы гарантированно выиграть приветственные подарки: скидки до 70% на разовые занятия умным пилатесом, выгоду до 40% на годовые абонементы, специальные цены на тест-драйв из 3 тренировок за 990 рублей. Наша флагманская студия реабилитации позвоночника, безопасного шпагата, аэройоги в гамаках, латерального дыхания, коррекции осанки, тазового дна и лимфодренажного МФР расположена по единому адресу: Республика Коми, город Сыктывкар, улица Коммунистическая, дом 77/2.</p>
-</div>
-
+<!-- ПОДВАЛ -->
 <footer>
-    <div class="footer-container">
-        <p style="font-size: 13px; font-weight: 500; color: var(--text-main); margin-bottom: 8px;">
-            © 2026 РЕСУРС | Студия фитнеса, растяжки и движения. Сыктывкар, ул. Коммунистическая 77/2. 
+    <div class="container">
+        <p style="font-size: 13px; font-weight: 800; color: var(--text-main); margin-bottom: 6px;">
+            © 2026 РЕСУРС | Студия фитнеса, растяжки и движения. Сыктывкар, ул. Коммунистическая, 67.
         </p>
-        <p style="font-size: 11px; color: var(--text-dim); opacity: 0.85; max-width: 900px; margin: 0 auto; line-height: 1.6;">
-            ИП Худяков Н. С. | ОГРН 323110000009152. Интерактивный детокс-анализ и розыгрыш являются скрининговыми тестами и носят информационно-развлекательный характер. При наличии серьезных хронических грыж в стадии обострения или противопоказаний перед началом тренировок проконсультируйтесь со специалистом.
+        <p style="font-size: 11px; color: var(--text-muted); max-width: 850px; margin: 0 auto; line-height: 1.6;">
+            ИП Худяков Николай Сергеевич • ОГРН 323110000009152 • ИНН 111801576622 • Тел.: +7 (908) 715-55-57. Интерактивный розыгрыш и акции носят ознакомительный маркетинговый характер для новых резидентов. Предложение не является публичной офертой.
         </p>
     </div>
 </footer>
 
 <script>
+    // ПЕРЕКЛЮЧЕНИЕ ТЕМЫ В 1 КЛИК
     function toggleTheme() {
-        const html = document.documentElement;
-        const currentTheme = html.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        const root = document.documentElement;
+        const current = root.getAttribute('data-theme') || 'dark';
+        const next = current === 'dark' ? 'light' : 'dark';
         
-        html.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-        
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('resurs_wheel_theme', next);
+        localStorage.setItem('theme', next);
+        updateBtnText(next);
+        draw(); // перерисовка колеса под контраст темы
+    }
+
+    function updateBtnText(t) {
         const btn = document.getElementById('themeToggle');
-        btn.innerText = newTheme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
+        if (btn) btn.innerText = t === 'dark' ? 'ТЕМА: ТЕМНАЯ' : 'ТЕМА: СВЕТЛАЯ';
     }
 
     window.addEventListener('DOMContentLoaded', () => {
-        const theme = document.documentElement.getAttribute('data-theme');
-        document.getElementById('themeToggle').innerText = theme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
+        const saved = localStorage.getItem('resurs_wheel_theme') || localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', saved);
+        updateBtnText(saved);
+
+        // Проверка попыток
+        let attempts = parseInt(localStorage.getItem('resurs_wheel_attempts')) || 0;
+        if (attempts >= 3) {
+            const btn = document.getElementById('spinBtn');
+            btn.disabled = true;
+            btn.innerText = "ПОПЫТКИ ИСПОЛЬЗОВАНЫ";
+            document.getElementById('mainText').innerHTML = "Все 3 попытки исчерпаны. Ваш наилучший результат зафиксирован в системе.<br>Напишите нам ВКонтакте, чтобы активировать подарок!";
+        } else if (attempts > 0) {
+            document.getElementById('mainText').innerHTML = "Использовано попыток: <b>" + attempts + " из 3</b>. Крутите колесо снова, чтобы улучшить свой приз!";
+        }
     });
 
     const video = document.getElementById('bgVideo');
     function playBg() { video.play().catch(() => { document.addEventListener('click', () => video.play(), {once:true}); }); }
     playBg();
 
-    // ПРОВЕРКА ПАМЯТИ ПОПЫТОК (ДО 3-Х РАЗ)
-    window.addEventListener('DOMContentLoaded', () => {
-        let attempts = parseInt(localStorage.getItem('resurs_wheel_attempts')) || 0;
-        if (attempts >= 3) {
-            const btn = document.getElementById('spinBtn');
-            btn.disabled = true;
-            btn.innerText = "ПОПЫТКИ ИСПОЛЬЗОВАНЫ";
-            document.getElementById('mainText').innerHTML = "Все 3 попытки исчерпаны. Ваш наилучший выигрыш зафиксирован в системе.<br>Вы можете гарантированно активировать его в сообщениях нашей группы ВК.";
-        } else if (attempts > 0) {
-            document.getElementById('mainText').innerHTML = "Использовано попыток: **" + attempts + " из 3**.<br>Вы можете крутить колесо снова, чтобы улучшить и зафиксировать лучший результат!";
-        }
-    });
-
+    // Секретный сброс попыток Николаю Сергеевичу
     document.getElementById('secretReset').addEventListener('dblclick', () => {
         localStorage.removeItem('resurs_wheel_attempts');
         alert("Память попыток сброшена. Николай Сергеевич, удачного тестирования!");
         location.reload();
     });
 
+    // АРХИТЕКТУРА И ОТРИСОВКА КОЛЕСА
     const canvas = document.getElementById('wheelCanvas');
     const ctx = canvas.getContext('2d');
     
+    // Новые выверенные призы
     const prizes = [
-        { text: "70% РАЗОВОЕ", code: "SINGLE70", full: "Скидка 70% на разовое занятие", desc: "Попробуй атмосферу РЕСУРСА за 390 руб! Идеально для первого знакомства." },
-        { text: "20% АБОНЕМЕНТ", code: "ABON20", full: "Скидка 20% на любой абонемент", desc: "Твоя привилегия на любой пакет (16, 32 или 64 занятия)." },
-        { text: "4 за 2000₽", code: "FOUR2000", full: "4 занятия за 2000 руб (14 дней)", desc: "Две недели полноценной практики. Погрузись в ритм студии." },
-        { text: "40% ГОДОВОЙ", code: "YEAR40", full: "40% на годовой абонемент", desc: "Максимальный вклад в твою форму. Твой ресурс на целый год!" },
-        { text: "ТЕСТ-ДРАЙВ", code: "TD990", full: "Тест-драйв: 3 занятия / 990₽ (7 дней)", desc: "Наш легендарный старт на одну неделю. Почувствуй эффект уже за 3 вивита!" }
+        { text: "70% РАЗОВОЕ", code: "SINGLE70", full: "Скидка 70% на разовое занятие", desc: "Разовый визит в студию РЕСУРС всего за 210 ₽ вместо 700 ₽!" },
+        { text: "30% АБОНЕМЕНТ", code: "ABON30", full: "Скидка 30% на абонемент", desc: "Крупная разовая скидка на пакет из 8, 16 или 24 тренировок!" },
+        { text: "8 за 3200₽", code: "EIGHT3200", full: "8 занятий за 3200 ₽ (на месяц)", desc: "Месяц бережного фитнеса: Пилатес, МФР, Здоровая спина или активные группы." },
+        { text: "16 за 5900₽", code: "SIXTEEN5900", full: "16 занятий за 5900 ₽", desc: "Грандиозный и максимальный дисконт на системное здоровье спины." },
+        { text: "ТЕСТ-ДРАЙВ 990₽", code: "TD990", full: "Тест-драйв: 4 занятия / 990 ₽", desc: "Легендарный стартовый сет из 4 тренировок на целый месяц!" }
     ];
 
     let currentAngle = 0;
@@ -390,17 +450,28 @@
 
     function draw() {
         ctx.clearRect(0,0,600,600);
+        const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
+
         prizes.forEach((p, i) => {
             const angle = currentAngle + i * arc;
-            ctx.fillStyle = i % 2 === 0 ? "#0a0a14" : "#121225";
-            ctx.beginPath(); ctx.moveTo(300, 300);
+            ctx.fillStyle = i % 2 === 0 
+                ? (isDark ? "#12101B" : "#FFFFFF") 
+                : (isDark ? "#1C172E" : "#F1EDF9");
+            
+            ctx.beginPath();
+            ctx.moveTo(300, 300);
             ctx.arc(300, 300, 290, angle, angle + arc, false);
-            ctx.fill(); ctx.strokeStyle = "rgba(197, 160, 89, 0.4)"; ctx.lineWidth = 2; ctx.stroke();
+            ctx.fill();
+            
+            ctx.strokeStyle = isDark ? "rgba(108, 62, 184, 0.4)" : "rgba(91, 52, 148, 0.3)";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
             ctx.save();
-            ctx.fillStyle = "#C5A059";
-            ctx.translate(300 + Math.cos(angle + arc/2) * 215, 300 + Math.sin(angle + arc/2) * 215);
+            ctx.fillStyle = isDark ? "#F5F4F9" : "#14121E";
+            ctx.translate(300 + Math.cos(angle + arc/2) * 205, 300 + Math.sin(angle + arc/2) * 205);
             ctx.rotate(angle + arc/2 + Math.PI/2);
-            ctx.font = 'bold 24px Manrope';
+            ctx.font = '800 20px Manrope';
             ctx.fillText(p.text, -ctx.measureText(p.text).width/2, 0);
             ctx.restore();
         });
@@ -427,8 +498,10 @@
                 const index = Math.floor((((currentAngle + Math.PI/2) % (Math.PI * 2)) / (Math.PI * 2)) * prizes.length);
                 const finalIdx = prizes.length - 1 - index;
                 const win = prizes[finalIdx < 0 ? 0 : finalIdx];
+
                 document.getElementById('prizeName').innerText = win.full;
                 document.getElementById('prizeInfo').innerText = win.desc;
+                // Ссылка в актуальный чат сообщества ВКонтакте
                 document.getElementById('vkBtn').href = `https://vk.me/public221142875?ref=wheel_${win.code}`;
                 
                 document.getElementById('vkBtn').onclick = function() {
@@ -436,22 +509,22 @@
                     location.reload();
                 };
                 
-                setTimeout(() => { document.getElementById('winModal').style.display = 'flex'; }, 600);
+                setTimeout(() => { document.getElementById('winModal').style.display = 'flex'; }, 500);
             }
         }, 15);
     }
     draw();
 </script>
 
-<!-- РЕНДЕР КАНАЛОВ РСЯ FLOOR AD -->
+<!-- КАНАЛЫ РСЯ FLOOR AD -->
 <script>
 window.yaContextCb.push(() => {
     Ya.Context.AdvManager.render({
         "blockId": "R-A-19181219-6",
         "type": "floorAd",
         "platform": "touch"
-    })
-})
+    });
+});
 </script>
 <script>
 window.yaContextCb.push(() => {
@@ -459,8 +532,8 @@ window.yaContextCb.push(() => {
         "blockId": "R-A-19181219-7",
         "type": "floorAd",
         "platform": "desktop"
-    })
-})
+    });
+});
 </script>
 
 </body>
