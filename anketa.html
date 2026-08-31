@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     
-    <title>РЕСУРС | Твое новое состояние</title>
+    <title>РЕСУРС | Анкета резидента</title>
     
     <link rel="icon" type="image/png" href="logo_header_final.png">
     <link rel="apple-touch-icon" href="logo_header_final.png">
@@ -132,6 +132,14 @@
         }
         .theme-toggle-btn:hover { border-color: var(--accent-color); color: var(--accent-color); }
 
+        /* СЕКРЕТНАЯ КНОПКА СБРОСА ПАМЯТИ В ШАПКЕ */
+        .secret-reset {
+            width: 8px; height: 8px; background: var(--accent-color); border-radius: 50%;
+            opacity: 0.4; cursor: pointer; transition: var(--transition); display: inline-block;
+            vertical-align: middle; margin-left: 6px;
+        }
+        .secret-reset:hover { opacity: 1; box-shadow: 0 0 10px var(--accent-color); }
+
         .mobile-thumb-bar {
             display: none; width: 100%; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border-color); gap: 10px;
         }
@@ -211,7 +219,6 @@
         .buttons-row { display: flex; gap: 12px; flex-wrap: wrap; }
         .buttons-row .btn-lens { flex: 1; min-width: 240px; }
         
-        /* Стили для второй кнопки, чтобы текст был супер-контрастным в светлой/темной темах */
         .btn-secondary-action {
             background: var(--surface-hover); border: 1px solid var(--accent-color); color: var(--text-main);
         }
@@ -237,19 +244,23 @@
         .modal-close:hover { color: var(--text-main); }
         #payment-form-container { width: 100%; min-height: 380px; margin-top: 15px; display: flex; justify-content: center; }
 
-        /* СЕТКА АБОНЕМЕНТОВ В СТИЛЕ FUTURE-PACKAGES */
+        /* НОВАЯ АБОНЕМЕНТНАЯ СЕТКА (В СТИЛЕ ТАРИФОВ) */
         .gift-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 25px; }
         @media(max-width: 800px) { .gift-grid { grid-template-columns: 1fr; gap: 14px; } }
 
         .gift-card {
             background: var(--bg-color); border: 1px solid var(--border-color);
             padding: 30px 20px; text-align: center; border-radius: 16px; transition: var(--transition);
-            display: flex; flex-direction: column; justify-content: space-between;
+            display: flex; flex-direction: column; justify-content: space-between; position: relative;
         }
         .gift-card:hover { border-color: var(--accent-color); transform: translateY(-4px); box-shadow: 0 15px 35px var(--shadow); }
-        .gift-card h3 { font-size: 22px; font-weight: 800; color: var(--text-main); margin-bottom: 4px; }
-        .price-tag { font-size: 28px; margin: 15px 0; font-weight: 800; color: var(--accent-color); }
-        .old-price { text-decoration: line-through; opacity: 0.4; font-size: 16px; margin-right: 8px; font-weight: 400; color: var(--text-muted); }
+        .gift-card h3 { font-size: 20px; font-weight: 800; color: var(--text-main); margin-bottom: 4px; }
+        .gift-card .per-session { font-size: 11px; color: var(--text-muted); margin-bottom: 12px; }
+        .price-tag { font-size: 26px; margin: 12px 0; font-weight: 800; color: var(--accent-color); }
+        .old-price { text-decoration: line-through; opacity: 0.4; font-size: 15px; margin-right: 6px; font-weight: 400; color: var(--text-muted); }
+        .gift-features { font-size: 12px; color: var(--text-muted); line-height: 1.5; margin-bottom: 20px; text-align: left; }
+        .gift-features li { list-style: none; margin-bottom: 6px; position: relative; padding-left: 16px; }
+        .gift-features li::before { content: "•"; position: absolute; left: 0; color: var(--accent-color); font-weight: 800; }
 
         .app-links { display: flex; gap: 14px; margin-top: 20px; justify-content: center; flex-wrap: wrap;}
         .app-btn {
@@ -274,12 +285,12 @@
 
 <canvas id="stars-canvas"></canvas>
 
-<!-- ДВУХЭТАЖНАЯ ШАПКА -->
+<!-- ДВУХЭТАЖНАЯ ШАПКА СО СЕКРЕТНЫМ СБРОСОМ -->
 <header id="header">
     <div class="header-top">
         <div class="logo-wrap" onclick="window.location.href='index.html'">
             <img src="logo_header_final.png" alt="РЕСУРС">
-            <div class="brand-name">РЕСУРС</div>
+            <div class="brand-name">РЕСУРС<span>.АНКЕТА</span><span class="secret-reset" onclick="localStorage.clear(); location.reload();" title="Секретный сброс памяти"></span></div>
         </div>
 
         <div class="desktop-actions">
@@ -379,9 +390,9 @@
     <div class="bento-glass-card" id="formPart2" style="display:none;">
         <h3 style="font-size: 22px; font-weight: 800; margin-bottom: 15px; text-align: center;">Твое состояние после практики</h3>
         
-        <!-- Яркий информационный блок вместо таймера -->
+        <!-- Очень яркий информационный блок -->
         <div style="background: linear-gradient(135deg, var(--surface-hover), var(--surface-color)); border: 2px solid var(--accent-color); padding: 22px; border-radius: 14px; margin-bottom: 30px; text-align: center; box-shadow: 0 10px 25px var(--card-glow);">
-            <span style="display: block; font-size: 13px; font-weight: 800; color: var(--accent-color); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1.5px;">⭐ Заполняется после занятия</span>
+            <span style="display: block; font-size: 13px; font-weight: 800; color: var(--accent-color); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1.5px;">⭐ ЗАПОЛНЯЕТСЯ ПОСЛЕ ЗАНЯТИЯ</span>
             <p style="font-size: 13.5px; color: var(--text-main); line-height: 1.6;">Поделитесь своими впечатлениями — это поможет нам сделать ваш прогресс максимально комфортным.</p>
         </div>
 
@@ -431,7 +442,7 @@
         <button class="btn-lens" onclick="submitPart2()">СОХРАНИТЬ И ПЕРЕЙТИ К АБОНЕМЕНТАМ</button>
     </div>
 
-    <!-- ЧАСТЬ 3: ПОДАРКИ (АБОНЕМЕНТЫ В СТИЛЕ FUTURE-PACKAGES) -->
+    <!-- ЧАСТЬ 3: ПОДАРКИ (НОВАЯ АБОНЕМЕНТНАЯ СЕТКА) -->
     <div id="giftSection" style="display: none;">
         <h3 style="font-size: 28px; font-weight: 800; text-align: center; color: var(--accent-color); margin-bottom: 6px;">Твой подарок активен</h3>
         <p style="text-align: center; font-size: 11px; color: var(--text-muted); margin-bottom: 15px; text-transform: uppercase; letter-spacing: 2px;">Только 24 часа после первой тренировки</p>
@@ -450,32 +461,54 @@
         </div>
 
         <div class="gift-grid">
+            <!-- Базовый -->
             <div class="gift-card">
                 <div>
-                    <h3>ЛЕГКОСТЬ</h3>
-                    <p style="font-size: 11px; color: var(--text-muted); margin-top: 6px;">8 занятий + 2 в подарок</p>
-                    <div class="price-tag"><span class="old-price">5 600</span> 4 760 ₽</div>
+                    <h3>Базовый</h3>
+                    <div class="per-session">595 ₽ за 50 минут практики</div>
+                    <div class="price-tag">4 760 ₽</div>
+                    <ul class="gift-features">
+                        <li>8 полноценных занятий по 50 минут (+2 в подарок)</li>
+                        <li>Срок действия: 2 месяца</li>
+                        <li>Доступ ко всем направлениям</li>
+                        <li>Возможность ходить вдвоем</li>
+                    </ul>
                 </div>
-                <button class="btn-lens" style="padding: 14px;" onclick="buySubscription(4760, 'ЛЕГКОСТЬ', this)">Выбрать</button>
+                <button class="btn-lens" style="padding: 14px;" onclick="buySubscription(4760, 'Базовый', this)">Выбрать 8 занятий</button>
             </div>
 
+            <!-- Оптимальный (Хит студии) -->
             <div class="gift-card" style="border-color: var(--accent-color); background: var(--surface-hover);">
                 <div>
-                    <div style="font-size: 9px; color: var(--accent-color); letter-spacing: 2px; font-weight: 800; margin-bottom: 8px; text-transform: uppercase;">Выбор резидентов</div>
-                    <h3>ЭНЕРГИЯ</h3>
-                    <p style="font-size: 11px; color: var(--text-muted); margin-top: 6px;">16 занятий + 3 в подарок</p>
-                    <div class="price-tag"><span class="old-price">11 200</span> 8 960 ₽</div>
+                    <div style="font-size: 9px; color: var(--accent-color); letter-spacing: 2px; font-weight: 800; margin-bottom: 8px; text-transform: uppercase;">Хит студии • Оптимальный</div>
+                    <h3>Энергия</h3>
+                    <div class="per-session">560 ₽ за 50 минут практики</div>
+                    <div class="price-tag">8 960 ₽</div>
+                    <ul class="gift-features">
+                        <li>16 полноценных занятий по 50 минут (+2 в подарок)</li>
+                        <li>Срок действия: 3 месяца</li>
+                        <li>Заморозка на случай отпуска</li>
+                        <li>Доступна беспроцентная рассрочка</li>
+                    </ul>
                 </div>
-                <button class="btn-lens" style="padding: 14px;" onclick="buySubscription(8960, 'ЭНЕРГИЯ', this)">Инвестировать</button>
+                <button class="btn-lens" style="padding: 14px;" onclick="buySubscription(8960, 'Энергия', this)">Выбрать 16 занятий</button>
             </div>
 
+            <!-- Максимальный -->
             <div class="gift-card">
                 <div>
-                    <h3>СТАТУС</h3>
-                    <p style="font-size: 11px; color: var(--text-muted); margin-top: 6px;">32 занятия + 4 в подарок</p>
-                    <div class="price-tag"><span class="old-price">22 400</span> 16 800 ₽</div>
+                    <div style="font-size: 9px; color: var(--accent-color); letter-spacing: 2px; font-weight: 800; margin-bottom: 8px; text-transform: uppercase;">Лучшая цена</div>
+                    <h3>Максимальный</h3>
+                    <div class="per-session">545 ₽ за 50 минут практики</div>
+                    <div class="price-tag">13 080 ₽</div>
+                    <ul class="gift-features">
+                        <li>24 полноценных занятия по 50 минут (+2 в подарок)</li>
+                        <li>Срок действия: 4 месяца</li>
+                        <li>Глубокая трансформация осанки</li>
+                        <li>Удобная рассрочка без переплат</li>
+                    </ul>
                 </div>
-                <button class="btn-lens" style="padding: 14px;" onclick="buySubscription(16800, 'СТАТУС', this)">Получить 25%</button>
+                <button class="btn-lens" style="padding: 14px;" onclick="buySubscription(13080, 'Максимальный', this)">Выбрать 24 занятия</button>
             </div>
         </div>
     </div>
