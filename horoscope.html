@@ -118,170 +118,6 @@
 
         #stars-canvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
 
-        /* =======================================================
-           СЦЕНА 0: НАСТОЯЩИЙ 3D КОСМОС И ВСЕ ПЛАНЕТЫ
-           ======================================================= */
-        #scene-cosmos {
-            position: fixed; inset: 0; z-index: 3000;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            background: #06050A; transition: opacity 0.8s ease, transform 0.8s ease;
-            perspective: 1400px; -webkit-perspective: 1400px;
-        }
-        #scene-cosmos.hidden { opacity: 0; transform: scale(1.05); pointer-events: none; }
-
-        .solar-system {
-            position: absolute; top: 50%; left: 50%; width: 0; height: 0;
-            transform: rotateX(72deg) rotateY(-10deg);
-            transform-style: preserve-3d; -webkit-transform-style: preserve-3d;
-        }
-
-        /* СОЛНЦЕ В СЕРЕДИНЕ (СВЕТИТ В ФИОЛЕТОВО-БЕЛЫХ ТОНАХ) */
-        .sun {
-            position: absolute; top: -65px; left: -65px; width: 130px; height: 130px;
-            border-radius: 50%;
-            background: radial-gradient(circle, #FFFFFF 0%, #E9D5FF 25%, #8B5CF6 60%, rgba(108, 62, 184, 0.4) 80%, transparent 100%);
-            box-shadow: 0 0 70px rgba(139, 92, 246, 0.8), 0 0 120px rgba(108, 62, 184, 0.4);
-            transform: rotateX(-72deg);
-            transform-style: preserve-3d;
-            backface-visibility: hidden;
-            z-index: 100;
-        }
-
-        /* ОБЩИЙ КЛАСС ОРБИТ */
-        .orbit {
-            position: absolute; top: 50%; left: 50%; border-radius: 50%;
-            border: 1px dashed rgba(168, 85, 247, 0.2);
-            transform: translate(-50%, -50%);
-            transform-style: preserve-3d; -webkit-transform-style: preserve-3d;
-        }
-
-        .orbit-spin {
-            position: absolute; inset: 0;
-            transform-style: preserve-3d; -webkit-transform-style: preserve-3d;
-        }
-
-        /* ПЛАНЕТА С КОМПЕНСАЦИЕЙ НАКЛОНА */
-        .planet {
-            position: absolute; border-radius: 50%;
-            transform: translate(-50%, -50%) rotateX(-72deg);
-            transform-style: preserve-3d;
-            backface-visibility: hidden;
-        }
-
-        /* 1. МЕРКУРИЙ */
-        .orbit-mercury { width: 190px; height: 190px; }
-        .spin-mercury { animation: orbitAnim 6s linear infinite; }
-        .planet-mercury {
-            top: 0; left: 50%; width: 12px; height: 12px;
-            background: radial-gradient(circle at 30% 30%, #E2E8F0, #64748B);
-            box-shadow: 0 0 10px rgba(255,255,255,0.4);
-        }
-
-        /* 2. ВЕНЕРА */
-        .orbit-venus { width: 260px; height: 260px; }
-        .spin-venus { animation: orbitAnim 11s linear infinite; }
-        .planet-venus {
-            top: 50%; left: 100%; width: 18px; height: 18px;
-            background: radial-gradient(circle at 30% 30%, #F1F5F9, #94A3B8);
-            box-shadow: 0 0 12px rgba(192, 132, 252, 0.6);
-        }
-
-        /* 3. ЗЕМЛЯ С ЛУНОЙ */
-        .orbit-earth { width: 360px; height: 360px; }
-        .spin-earth { animation: orbitAnim 18s linear infinite; }
-        .earth-holder {
-            position: absolute; top: 100%; left: 50%; width: 0; height: 0;
-            transform-style: preserve-3d;
-        }
-        .planet-earth {
-            width: 24px; height: 24px;
-            background: radial-gradient(circle at 30% 30%, #38BDF8, #1E3A8A, #020617);
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.7);
-        }
-        .orbit-moon {
-            position: absolute; top: 0; left: 0; width: 54px; height: 54px;
-            margin: -27px; border-radius: 50%; border: 1px dotted rgba(255,255,255,0.25);
-            transform-style: preserve-3d;
-            animation: orbitAnim 4s linear infinite;
-        }
-        .planet-moon {
-            top: 0; left: 50%; width: 6px; height: 6px;
-            background: #FFFFFF; box-shadow: 0 0 6px #FFF;
-        }
-
-        /* 4. МАРС */
-        .orbit-mars { width: 450px; height: 450px; }
-        .spin-mars { animation: orbitAnim 26s linear infinite; }
-        .planet-mars {
-            top: 50%; left: 0; width: 16px; height: 16px;
-            background: radial-gradient(circle at 30% 30%, #FB7185, #9F1239);
-            box-shadow: 0 0 12px rgba(251, 113, 133, 0.6);
-        }
-
-        /* 5. ЮПИТЕР */
-        .orbit-jupiter { width: 570px; height: 570px; }
-        .spin-jupiter { animation: orbitAnim 42s linear infinite; }
-        .planet-jupiter {
-            top: 15%; left: 85%; width: 36px; height: 36px;
-            background: radial-gradient(circle at 30% 30%, #DDD6FE, #7C3AED, #2E1065);
-            box-shadow: 0 0 20px rgba(139, 92, 246, 0.7);
-        }
-
-        /* 6. САТУРН С КОЛЬЦОМ */
-        .orbit-saturn { width: 700px; height: 700px; }
-        .spin-saturn { animation: orbitAnim 65s linear infinite; }
-        .saturn-holder {
-            position: absolute; top: 85%; left: 15%; width: 0; height: 0;
-            transform-style: preserve-3d;
-        }
-        .planet-saturn {
-            width: 28px; height: 28px;
-            background: radial-gradient(circle at 30% 30%, #F5D0FE, #A21CAF);
-            box-shadow: 0 0 16px rgba(162, 28, 175, 0.6);
-        }
-        .saturn-ring {
-            position: absolute; top: -14px; left: -24px; width: 76px; height: 28px;
-            border: 3px solid rgba(216, 180, 254, 0.6); border-radius: 50%;
-            transform: rotateX(25deg); pointer-events: none;
-        }
-
-        @keyframes orbitAnim {
-            0% { transform: rotateZ(0deg); }
-            100% { transform: rotateZ(360deg); }
-        }
-
-        /* 3 КНОПКИ В РЯД НА ЭКРАНЕ КОСМОСА */
-        .cosmos-ui-box {
-            position: absolute; bottom: 10%; width: 100%; max-width: 860px;
-            padding: 0 20px; text-align: center; z-index: 500;
-        }
-        .cosmos-title {
-            font-size: clamp(24px, 4vw, 36px); font-weight: 800; letter-spacing: 2px;
-            text-transform: uppercase; color: var(--text-main); margin-bottom: 24px;
-        }
-        .cosmos-title span { color: var(--accent-color); }
-
-        .entry-buttons-row {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
-        }
-        @media (max-width: 700px) {
-            .entry-buttons-row { grid-template-columns: 1fr; gap: 10px; }
-            .solar-system { transform: scale(0.65) rotateX(72deg); }
-        }
-
-        .btn-enter-role {
-            padding: 18px 14px; background: rgba(18, 16, 27, 0.85);
-            border: 1px solid var(--border-color); border-radius: 12px;
-            color: var(--text-main); font-size: 11.5px; font-weight: 800;
-            text-transform: uppercase; letter-spacing: 1px; cursor: pointer;
-            backdrop-filter: blur(15px); transition: var(--transition);
-            display: flex; align-items: center; justify-content: center; gap: 8px;
-        }
-        .btn-enter-role:hover {
-            border-color: var(--accent-color); background: var(--accent-color);
-            color: #FFF; transform: translateY(-2px); box-shadow: 0 10px 25px rgba(108, 62, 184, 0.4);
-        }
-
         /* ДВУХЭТАЖНАЯ ШАПКА */
         header {
             position: sticky; top: 0; width: 100%; padding: 14px 5%;
@@ -343,12 +179,12 @@
             padding: 4px 12px; border-radius: 4px; border: 1px solid var(--border-color);
         }
 
-        .hero-title-box { text-align: center; margin-bottom: 40px; }
+        .hero-title-box { text-align: center; margin-bottom: 35px; }
         .hero-title-box h1 { font-size: clamp(26px, 4.5vw, 42px); line-height: 1.2; margin-bottom: 12px; }
         .hero-title-box h1 span { color: var(--accent-color); }
         .hero-title-box p { color: var(--text-muted); font-size: 15px; line-height: 1.6; max-width: 760px; margin: 0 auto; }
 
-        /* 3 BENTO КАРТОЧКИ ВНУТРИ СТРАНИЦЫ */
+        /* 3 BENTO КАРТОЧКИ ВЫБОРА */
         .roles-grid {
             display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 35px;
         }
@@ -515,64 +351,6 @@
     </style>
 </head>
 <body>
-
-<!-- СЦЕНА 0: ПОЛНАЯ СОЛНЕЧНАЯ СИСТЕМА (ВСЕ ПЛАНЕТЫ И 3D ПЕРЕКРЫТИЕ) -->
-<div id="scene-cosmos">
-    <div class="solar-system">
-        <!-- СОЛНЦЕ -->
-        <div class="sun"></div>
-        
-        <!-- 1. МЕРКУРИЙ -->
-        <div class="orbit orbit-mercury">
-            <div class="orbit-spin spin-mercury"><div class="planet planet-mercury"></div></div>
-        </div>
-
-        <!-- 2. ВЕНЕРА -->
-        <div class="orbit orbit-venus">
-            <div class="orbit-spin spin-venus"><div class="planet planet-venus"></div></div>
-        </div>
-
-        <!-- 3. ЗЕМЛЯ С ЛУНОЙ -->
-        <div class="orbit orbit-earth">
-            <div class="orbit-spin spin-earth">
-                <div class="earth-holder">
-                    <div class="planet planet-earth"></div>
-                    <div class="orbit-moon"><div class="planet planet-moon"></div></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 4. МАРС -->
-        <div class="orbit orbit-mars">
-            <div class="orbit-spin spin-mars"><div class="planet planet-mars"></div></div>
-        </div>
-
-        <!-- 5. ЮПИТЕР -->
-        <div class="orbit orbit-jupiter">
-            <div class="orbit-spin spin-jupiter"><div class="planet planet-jupiter"></div></div>
-        </div>
-
-        <!-- 6. САТУРН С КОЛЬЦОМ -->
-        <div class="orbit orbit-saturn">
-            <div class="orbit-spin spin-saturn">
-                <div class="saturn-holder">
-                    <div class="planet planet-saturn"></div>
-                    <div class="saturn-ring"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- 3 КНОПКИ В РЯД НА ЭКРАНЕ ВХОДА -->
-    <div class="cosmos-ui-box">
-        <div class="cosmos-title">Пространство <span>баланса</span></div>
-        <div class="entry-buttons-row">
-            <button class="btn-enter-role" onclick="enterToRole('astro')">🪐 К Астрологу</button>
-            <button class="btn-enter-role" onclick="enterToRole('psycho')">🌿 К Психологу</button>
-            <button class="btn-enter-role" onclick="enterToRole('numerology')">✨ К Нумерологу</button>
-        </div>
-    </div>
-</div>
 
 <canvas id="stars-canvas"></canvas>
 
@@ -766,15 +544,6 @@
 </footer>
 
 <script>
-    // ПРЯМОЙ ВХОД В ВЫБРАННУЮ РОЛЬ С ЭКРАНА КОСМОСА
-    function enterToRole(role) {
-        document.getElementById('scene-cosmos').classList.add('hidden');
-        setRole(role);
-        setTimeout(() => {
-            document.getElementById('chatSection').scrollIntoView({ behavior: 'smooth' });
-        }, 300);
-    }
-
     // ТЕМА В 1 КЛИК
     function toggleThemeInstant() {
         const root = document.documentElement;
@@ -809,7 +578,7 @@
 
     function initBgStars() {
         bgCanvas.width = window.innerWidth; bgCanvas.height = window.innerHeight;
-        bgStars = Array.from({length: 220}, () => ({
+        bgStars = Array.from({length: 180}, () => ({
             x: Math.random() * bgCanvas.width, y: Math.random() * bgCanvas.height,
             size: Math.random() * 1.4, opacity: Math.random(), speed: (Math.random() * 0.015) + 0.005
         }));
