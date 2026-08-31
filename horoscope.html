@@ -14,13 +14,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Инициализация темы без мерцания -->
     <script>
         const savedTheme = localStorage.getItem('theme') || 'dark';
         document.documentElement.setAttribute('data-theme', savedTheme);
     </script>
 
-    <!-- Счетчики аналитики: Яндекс.Метрика и Top.Mail.Ru -->
     <script type="text/javascript">
     (function(m,e,t,r,i,k,a){
         m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -47,29 +45,16 @@
         </div>
     </noscript>
 
-    <!-- Рекламная сеть Яндекса (РСЯ) -->
     <script>window.yaContextCb=window.yaContextCb||[]</script>
     <script src="https://yandex.ru/ads/system/context.js" async></script>
-
-    <!-- РСЯ: Смартфон FloorAd -->
     <script>
     window.yaContextCb.push(() => {
-        Ya.Context.AdvManager.render({
-            "blockId": "R-A-19181219-16",
-            "type": "floorAd",
-            "platform": "touch"
-        })
+        Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-16", "type": "floorAd", "platform": "touch" })
     })
     </script>
-
-    <!-- РСЯ: Десктоп FloorAd -->
     <script>
     window.yaContextCb.push(() => {
-        Ya.Context.AdvManager.render({
-            "blockId": "R-A-19181219-17",
-            "type": "floorAd",
-            "platform": "desktop"
-        })
+        Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-17", "type": "floorAd", "platform": "desktop" })
     })
     </script>
 
@@ -118,7 +103,6 @@
 
         #stars-canvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
 
-        /* ДВУХЭТАЖНАЯ ШАПКА */
         header {
             position: sticky; top: 0; width: 100%; padding: 14px 5%;
             z-index: 2000; background: var(--header-bg); 
@@ -167,7 +151,6 @@
             .mobile-thumb-bar { display: flex; }
         }
 
-        /* ОСНОВНОЙ КОНТЕЙНЕР */
         .page-wrapper {
             max-width: 1200px; width: 100%; margin: 0 auto; padding: 35px 24px 80px; position: relative; z-index: 10;
         }
@@ -184,7 +167,6 @@
         .hero-title-box h1 span { color: var(--accent-color); }
         .hero-title-box p { color: var(--text-muted); font-size: 14.5px; line-height: 1.6; max-width: 720px; margin: 0 auto; }
 
-        /* 3 BENTO КАРТОЧКИ ВЫБОРА */
         .roles-grid {
             display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 30px;
         }
@@ -199,7 +181,6 @@
         .role-card:hover { border-color: var(--accent-color); transform: translateY(-2px); }
         .role-card.active { border-color: var(--accent-color); background: var(--surface-hover); }
 
-        .role-icon { font-size: 28px; margin-bottom: 10px; }
         .role-title { font-size: 18px; font-weight: 800; margin-bottom: 6px; color: var(--text-main); }
         .role-desc { font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-bottom: 18px; }
         
@@ -211,42 +192,6 @@
         }
         .role-card:hover .role-btn, .role-card.active .role-btn { background: var(--accent-color); color: #FFF; }
 
-        /* ИНТЕРАКТИВНЫЙ БЛОК ДЛЯ АСТРО-РЕЖИМА (СОЗВЕЗДИЯ И ЗНАКИ) */
-        .astro-interactive-box {
-            display: grid; grid-template-columns: 220px 1fr; gap: 20px;
-            background: var(--surface-color); border: 1px solid var(--border-color);
-            border-radius: 16px; padding: 22px; margin-bottom: 30px; box-shadow: 0 15px 35px var(--shadow);
-        }
-        @media (max-width: 900px) { .astro-interactive-box { grid-template-columns: 1fr; } }
-
-        .constellation-wrapper {
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 12px; padding: 15px;
-        }
-        #constellationCanvas { width: 170px; height: 170px; }
-
-        .signs-grid {
-            display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px;
-        }
-        @media (max-width: 600px) { .signs-grid { grid-template-columns: repeat(3, 1fr); } }
-
-        .sign-pill {
-            background: var(--bg-color); border: 1px solid var(--border-color);
-            border-radius: 8px; padding: 10px 4px; text-align: center; cursor: pointer; transition: var(--transition);
-        }
-        .sign-pill:hover, .sign-pill.active { border-color: var(--accent-color); background: var(--accent-subtle); }
-        .sign-pill-icon { font-size: 16px; margin-bottom: 2px; color: var(--accent-color); }
-        .sign-pill-name { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
-
-        /* ЭНЕРГИЯ ДНЯ */
-        .energy-status-box { margin-top: 14px; }
-        .energy-track {
-            width: 100%; height: 6px; background: var(--bg-color); border-radius: 3px;
-            overflow: hidden; border: 1px solid var(--border-color); margin: 6px 0;
-        }
-        .energy-fill { height: 100%; background: var(--accent-color); width: 0%; transition: width 1.2s ease; }
-
-        /* ЧАТ-МЕССЕНДЖЕР */
         .chat-container {
             background: var(--surface-color); border: 1px solid var(--border-color);
             border-radius: 16px; box-shadow: 0 20px 50px var(--shadow);
@@ -261,7 +206,7 @@
         .chat-profile { display: flex; align-items: center; gap: 12px; }
         .chat-avatar {
             width: 38px; height: 38px; border-radius: 50%; background: var(--accent-color);
-            display: flex; align-items: center; justify-content: center; font-size: 16px; color: #FFF;
+            display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; color: #FFF;
         }
         .chat-user-name { font-size: 14.5px; font-weight: 800; color: var(--text-main); }
         .chat-user-status { font-size: 10.5px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
@@ -310,7 +255,6 @@
         }
         .chat-send-btn:hover { background: var(--accent-hover); }
 
-        /* ПРАВОВОЙ ДИСКЛЕЙМЕР */
         .legal-shield-box {
             background: var(--bg-color); border: 1px dashed var(--border-color);
             border-radius: 10px; padding: 16px; margin-bottom: 30px; font-size: 11.5px;
@@ -318,12 +262,10 @@
         }
         .legal-shield-box b { color: var(--text-main); }
 
-        /* КОНТЕНТНЫЙ БЛОК РСЯ */
         .rtb-container {
             margin: 25px auto; text-align: center; width: 100%; min-height: 100px;
         }
 
-        /* SEO АККОРДЕОН */
         .faq-section { margin-top: 30px; }
         .faq-grid { display: grid; gap: 10px; margin-top: 18px; }
         .faq-item {
@@ -354,7 +296,6 @@
 
 <canvas id="stars-canvas"></canvas>
 
-<!-- ДВУХЭТАЖНАЯ ШАПКА -->
 <header id="header">
     <div class="header-top">
         <div class="logo-wrap" onclick="window.location.href='index.html'">
@@ -369,7 +310,6 @@
         </div>
     </div>
 
-    <!-- ВТОРОЙ ЭТАЖ ДЛЯ СМАРТФОНОВ -->
     <div class="mobile-thumb-bar">
         <button id="themeToggleMobile" class="theme-toggle-btn" onclick="toggleThemeInstant()">ТЕМА: ТЕМНАЯ</button>
         <a href="index.html" class="btn-mobile-action">← НА ГЛАВНУЮ</a>
@@ -381,82 +321,41 @@
     <div class="hero-title-box">
         <span class="section-tag">Пространство ментального ресурса</span>
         <h1>Гармония души и <span>тела</span></h1>
-        <p>Выберите грань диалога: натальные влияния планет, бережную психологическую поддержку или нумерологический расчет по дате рождения.</p>
+        <p>Выберите направление диалога: астрологический прогноз, телесная психология или нумерологический расчет по дате рождения.</p>
     </div>
 
-    <!-- 3 КАРТОЧКИ РОЛЕЙ ВЕРЫ -->
+    <!-- BENTO КАРТОЧКИ ВЫБОРА -->
     <div class="roles-grid">
         <div class="role-card active" id="card-astro" onclick="setRole('astro')">
             <div>
-                <div class="role-icon">🪐</div>
                 <div class="role-title">Звездный Астролог</div>
-                <div class="role-desc">Натальные аспекты, лунные фазы и понимание внутреннего потенциала дня по знакам зодиака.</div>
+                <div class="role-desc"> Натальные аспекты, лунные фазы и потенциал дня.</div>
             </div>
             <div class="role-btn">Выбрать Астролога</div>
         </div>
 
         <div class="role-card" id="card-psycho" onclick="setRole('psycho')">
             <div>
-                <div class="role-icon">🌿</div>
                 <div class="role-title">Телесный Психолог</div>
-                <div class="role-desc">Психосоматика усталости, выслушать накопившиеся переживания и бережно восстановить контакт с собой.</div>
+                <div class="role-desc"> Психосоматика усталости и бережное снятие напряжения.</div>
             </div>
             <div class="role-btn">Выбрать Психолога</div>
         </div>
 
         <div class="role-card" id="card-numerology" onclick="setRole('numerology')">
             <div>
-                <div class="role-icon">✨</div>
                 <div class="role-title">Цифровой Нумеролог</div>
-                <div class="role-desc">Расчет энергий по дате рождения, число жизненного пути и поиск персональных точек внутренней опоры.</div>
+                <div class="role-desc"> Расчет энергии по дате рождения и точки опоры.</div>
             </div>
             <div class="role-btn">Выбрать Нумеролога</div>
         </div>
     </div>
 
-    <!-- ИНТЕРАКТИВНЫЙ БЛОК ДЛЯ АСТРО-РЕЖИМА (СОЗВЕЗДИЯ И ЗНАКИ) -->
-    <div class="astro-interactive-box" id="astroInteractiveBlock">
-        <div class="constellation-wrapper">
-            <canvas id="constellationCanvas" width="170" height="170"></canvas>
-            <div style="font-size: 12px; font-weight: 800; color: var(--accent-color); margin-top: 8px; text-transform: uppercase;" id="constellationSignName">Знак не выбран</div>
-        </div>
-
-        <div>
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                <span class="section-tag" style="margin:0;">Выберите ваш знак зодиака</span>
-                <span style="font-size: 11.5px; color: var(--text-muted);" id="moonPhaseText">🌕 Полнолуние</span>
-            </div>
-
-            <div class="signs-grid">
-                <div class="sign-pill" onclick="selectSign('Овен', this)"><div class="sign-pill-icon">♈</div><div class="sign-pill-name">Овен</div></div>
-                <div class="sign-pill" onclick="selectSign('Телец', this)"><div class="sign-pill-icon">♉</div><div class="sign-pill-name">Телец</div></div>
-                <div class="sign-pill" onclick="selectSign('Близнецы', this)"><div class="sign-pill-icon">♊</div><div class="sign-pill-name">Близнецы</div></div>
-                <div class="sign-pill" onclick="selectSign('Рак', this)"><div class="sign-pill-icon">♋</div><div class="sign-pill-name">Рак</div></div>
-                <div class="sign-pill" onclick="selectSign('Лев', this)"><div class="sign-pill-icon">♌</div><div class="sign-pill-name">Лев</div></div>
-                <div class="sign-pill" onclick="selectSign('Дева', this)"><div class="sign-pill-icon">♍</div><div class="sign-pill-name">Дева</div></div>
-                <div class="sign-pill" onclick="selectSign('Весы', this)"><div class="sign-pill-icon">♎</div><div class="sign-pill-name">Весы</div></div>
-                <div class="sign-pill" onclick="selectSign('Скорпион', this)"><div class="sign-pill-icon">♏</div><div class="sign-pill-name">Скорпион</div></div>
-                <div class="sign-pill" onclick="selectSign('Стрелец', this)"><div class="sign-pill-icon">♐</div><div class="sign-pill-name">Стрелец</div></div>
-                <div class="sign-pill" onclick="selectSign('Козерог', this)"><div class="sign-pill-icon">♑</div><div class="sign-pill-name">Козерог</div></div>
-                <div class="sign-pill" onclick="selectSign('Водолей', this)"><div class="sign-pill-icon">♒</div><div class="sign-pill-name">Водолей</div></div>
-                <div class="sign-pill" onclick="selectSign('Рыбы', this)"><div class="sign-pill-icon">♓</div><div class="sign-pill-name">Рыбы</div></div>
-            </div>
-
-            <div class="energy-status-box">
-                <div style="display: flex; justify-content: space-between; font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--text-muted);">
-                    <span>Уровень витальной энергии</span>
-                    <span id="energyPercentText" style="color: var(--accent-color);">—</span>
-                </div>
-                <div class="energy-track"><div class="energy-fill" id="energyFillBar" style="width: 0%;"></div></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ЧАТ-МЕССЕНДЖЕР С ВЕРОЙ -->
+    <!-- ЧАТ-МЕССЕНДЖЕР -->
     <div class="chat-container">
         <div class="chat-top-bar">
             <div class="chat-profile">
-                <div class="chat-avatar" id="chatAvatar">🪐</div>
+                <div class="chat-avatar" id="chatAvatar">В</div>
                 <div>
                     <div class="chat-user-name" id="chatRoleName">Вера Венера</div>
                     <div class="chat-user-status" id="chatRoleStatus">Астрологический проводник • Онлайн</div>
@@ -467,23 +366,21 @@
 
         <div class="chat-messages" id="chatMessages">
             <div class="chat-msg vera" id="welcomeMsg">
-                Здравствуйте! 🤍 Выберите свой знак зодиака выше, и я подготовлю для вас индивидуальный прогноз и рассчитаю уровень энергии на сегодня. Либо задайте любой волнующий вопрос в строке ниже.
+                Здравствуйте. Выберите нужное направление выше и напишите свой вопрос или дату рождения в строке ниже.
             </div>
-            <div class="typing-pill" id="typingPill">Вера формулирует ответ...</div>
+            <div class="typing-pill" id="typingPill">Вера формирует ответ...</div>
         </div>
 
         <div class="chat-input-area">
-            <input type="text" id="chatInput" placeholder="Напишите свой вопрос или опишите состояние..." onkeypress="if(event.key==='Enter') sendMessage()">
+            <input type="text" id="chatInput" placeholder="Напишите свой вопрос, знак или дату рождения..." onkeypress="if(event.key==='Enter') sendMessage()">
             <button class="chat-send-btn" onclick="sendMessage()">➤</button>
         </div>
     </div>
 
-    <!-- ПРАВОВОЙ ДИСКЛЕЙМЕР -->
     <div class="legal-shield-box">
-        <b>Официальное юридическое уведомление:</b> Настоящий интерактивный сервис носит исключительно ознакомительный, познавательный и досуговый характер. Ответы цифрового ассистента генерируются искусственным интеллектом, не являются психологической консультацией, медицинской диагностикой, назначением лечения или финансовой рекомендацией. При наличии клинических симптомов или острых состояний обратитесь к профильному специалисту.
+        <b>Официальное юридическое уведомление:</b> Сервис носит ознакомительный и досуговый характер. Ответы генерируются искусственным интеллектом, не являются медицинской диагностикой или психологической терапией. При наличии симптомов обратитесь к специалисту.
     </div>
 
-    <!-- АДАПТИВНЫЙ БЛОК РСЯ (КОНТЕНТНЫЙ) -->
     <div class="rtb-container">
         <div id="yandex_rtb_R-A-19181219-4"></div>
         <script>
@@ -496,7 +393,6 @@
         </script>
     </div>
 
-    <!-- SEO FAQ НА 20 ВОПРОСОВ -->
     <div class="faq-section">
         <div style="text-align: center; margin-bottom: 16px;">
             <span class="section-tag">База знаний и ответы</span>
@@ -504,32 +400,31 @@
         </div>
 
         <div class="faq-grid">
-            <div class="faq-item"><div class="faq-question">1. Почему от стресса болит шея и поясница?<span class="arrow">▼</span></div><div class="faq-answer">При стрессе организм рефлекторно спазмирует мышцы плечевого пояса и поясницы. Регулярная мягкая растяжка и МФР-релиз помогают безопасно убрать этот зажим.</div></div>
-            <div class="faq-item"><div class="faq-question">2. Как избавиться от чувства постоянной усталости и вернуть ресурс?<span class="arrow">▼</span></div><div class="faq-answer">Хроническая усталость часто связана с застоем лимфы и отсутствием глубокого дыхания. Спокойные практики пилатеса возвращают телу естественную бодрость.</div></div>
+            <div class="faq-item"><div class="faq-question">1. Почему от стресса болит шея и поясница?<span class="arrow">▼</span></div><div class="faq-answer">При стрессе организм рефлекторно спазмирует мышцы плечевого пояса и поясницы. Мягкая растяжка и МФР-релиз помогают безопасно убрать этот зажим.</div></div>
+            <div class="faq-item"><div class="faq-question">2. Как избавиться от постоянной усталости и вернуть ресурс?<span class="arrow">▼</span></div><div class="faq-answer">Хроническая усталость связана с застоем лимфы и отсутствием глубокого дыхания. Спокойные практики пилатеса возвращают телу бодрость.</div></div>
             <div class="faq-item"><div class="faq-question">3. Как эмоциональное выгорание проявляется в теле?<span class="arrow">▼</span></div><div class="faq-answer">Оно выражается тяжестью в ногах, спазмом диафрагмы и поверхностным дыханием. Организму требуется безопасное пространство для отдыха.</div></div>
-            <div class="faq-item"><div class="faq-question">4. Что такое телесно-ориентированный подход и кому он подходит?<span class="arrow">▼</span></div><div class="faq-answer">Это бережное соединение движения, дыхания и внимания к ощущениям. Подходит всем, кто много сидит за компьютером или испытывает стресс.</div></div>
-            <div class="faq-item"><div class="faq-question">5. Как расслабить диафрагму и снять зажимы с грудного отдела?<span class="arrow">▼</span></div><div class="faq-answer">Помогают мягкие дыхательные практики и вытяжение позвоночника на коврике без резких скручиваний.</div></div>
-            <div class="faq-item"><div class="faq-question">6. Почему после сильного стресса хочется плакать на растяжке?<span class="arrow">▼</span></div><div class="faq-answer">Мышцы хранят эмоциональную память. При их бережном расслаблении нервная система сбрасывает напряжение через слезы облегчения.</div></div>
-            <div class="faq-item"><div class="faq-question">7. Как тревожность влияет на осанку и появление отеков?<span class="arrow">▼</span></div><div class="faq-answer">Тревога формирует сутулость, пережимая лимфатические протоки. Выравнивание осанки нормализует циркуляцию жидкостей.</div></div>
-            <div class="faq-item"><div class="faq-question">8. Как лунные фазы влияют на женский цикл и уровень сил?<span class="arrow">▼</span></div><div class="faq-answer">Полнолуние дает всплеск активности и требует заземления, а новолуние — время покоя и мягких восстановительных практик.</div></div>
-            <div class="faq-item"><div class="faq-question">9. Какие практики подходят знакам Огня (Овен, Лев, Стрелец)?<span class="arrow">▼</span></div><div class="faq-answer">Огненным знакам полезно балансировать пыл плавными упражнениями на гибкость, чтобы предотвратить мышечное переутомление.</div></div>
-            <div class="faq-item"><div class="faq-question">10. Как знакам стихии Земли преодолеть лень и скованность?<span class="arrow">▼</span></div><div class="faq-answer">Помогает постепенное вхождение в практику без стресса — пилатес и работа с суставной мобильностью.</div></div>
-            <div class="faq-item"><div class="faq-question">11. Какая активность идеальна для воздушных знаков?<span class="arrow">▼</span></div><div class="faq-answer">Текучие скоординированные занятия, позволяющие переключить внимание с постоянных мыслей на ощущения в теле.</div></div>
-            <div class="faq-item"><div class="faq-question">12. Почему водным знакам полезны МФР и самомассаж?<span class="arrow">▼</span></div><div class="faq-answer">Водные знаки эмоциональны и склонны к накоплению отеков. Миофасциальный релиз улучшает микроциркуляцию и дарит легкость.</div></div>
-            <div class="faq-item"><div class="faq-question">13. Как рассчитывать дни с максимальным уровнем энергии?<span class="arrow">▼</span></div><div class="faq-answer">Ориентируйтесь на сигналы тела и фазы лунного календаря, чередуя дни активных дел с днями глубокого восстановления.</div></div>
-            <div class="faq-item"><div class="faq-question">14. Как число дня рождения указывает на уязвимые зоны тела?<span class="arrow">▼</span></div><div class="faq-answer">Нумерологический код соотносится с энергетическими центрами, подсказывая, каким отделам позвоночника уделить внимание.</div></div>
-            <div class="faq-item"><div class="faq-question">15. Что такое денежная емкость и как она связана с тонусом тела?<span class="arrow">▼</span></div><div class="faq-answer">Внутренняя устойчивость и уверенность опираются на крепкий мышечный корсет, ровную осанку и глубокое спокойное дыхание.</div></div>
-            <div class="faq-item"><div class="faq-question">16. Как по дате рождения определить комфортный ритм занятий?<span class="arrow">▼</span></div><div class="faq-answer">Числовой код отражает природный темперамент — от потребности в ритмичной нагрузке до любви к статичной растяжке.</div></div>
-            <div class="faq-item"><div class="faq-question">17. С чего начать занятия в Сыктывкаре, если никогда не тренировалась?<span class="arrow">▼</span></div><div class="faq-answer">Идеальный старт — программа Тест-драйв студии РЕСУРС: 4 полноценных пробных занятия за 990 рублей в течение месяца.</div></div>
-            <div class="faq-item"><div class="faq-question">18. Чем умный пилатес отличается от силового фитнеса?<span class="arrow">▼</span></div><div class="faq-answer">Пилатес укрепляет глубокие мышцы без компрессии позвоночника и подъема тяжестей, сохраняя суставы здоровыми.</div></div>
-            <div class="faq-item"><div class="faq-question">19. Почему тренировки длятся строго 50 минут?<span class="arrow">▼</span></div><div class="faq-answer">50 минут — физиологический оптимум концентрации внимания и проработки мышц без риска перетренированности.</div></div>
-            <div class="faq-item"><div class="faq-question">20. Где в Сыктывкаре проходят мягкие оздоровительные тренировки?<span class="arrow">▼</span></div><div class="faq-answer">В студии растяжки и движения «РЕСУРС» по адресу: г. Сыктывкар, ул. Коммунистическая, 67 (за гостиницей «Сыктывкар»).</div></div>
+            <div class="faq-item"><div class="faq-question">4. Что такое телесно-ориентированный подход?<span class="arrow">▼</span></div><div class="faq-answer">Это бережное соединение движения, дыхания и внимания к ощущениям для снятия напряжения.</div></div>
+            <div class="faq-item"><div class="faq-question">5. Как расслабить диафрагму и снять зажимы с грудного отдела?<span class="arrow">▼</span></div><div class="faq-answer">Помогают мягкие дыхательные практики и вытяжение позвоночника на коврике без резких движений.</div></div>
+            <div class="faq-item"><div class="faq-question">6. Почему после сильного стресса хочется плакать на растяжке?<span class="arrow">▼</span></div><div class="faq-answer">Мышцы хранят эмоциональную память, и при их расслаблении нервная система сбрасывает напряжение.</div></div>
+            <div class="faq-item"><div class="faq-question">7. Как тревожность влияет на осанку и появление отеков?<span class="arrow">▼</span></div><div class="faq-answer">Тревога формирует сутулость, пережимая лимфатические пути. Выравнивание осанки нормализует циркуляцию жидкостей.</div></div>
+            <div class="faq-item"><div class="faq-question">8. Как лунные фазы влияют на уровень сил?<span class="arrow">▼</span></div><div class="faq-answer">Полнолуние дает всплеск активности и требует заземления, а новолуние — время восстановления.</div></div>
+            <div class="faq-item"><div class="faq-question">9. Какие практики подходят знакам Огня?<span class="arrow">▼</span></div><div class="faq-answer">Огненным знакам полезно балансировать энергию плавными упражнениями на гибкость.</div></div>
+            <div class="faq-item"><div class="faq-question">10. Как знакам Земли преодолеть скованность?<span class="arrow">▼</span></div><div class="faq-answer">Помогает постепенное вхождение в практику через пилатес и суставную гимнастику.</div></div>
+            <div class="faq-item"><div class="faq-question">11. Какая активность идеальна для воздушных знаков?<span class="arrow">▼</span></div><div class="faq-answer">Текучие скоординированные занятия, помогающие переключить мысли на ощущения в теле.</div></div>
+            <div class="faq-item"><div class="faq-question">12. Почему водным знакам полезны МФР и самомассаж?<span class="arrow">▼</span></div><div class="faq-answer">Миофасциальный релиз улучшает микроциркуляцию и снимает накопленное напряжение фасций.</div></div>
+            <div class="faq-item"><div class="faq-question">13. Как рассчитывать дни с максимальным уровнем энергии?<span class="arrow">▼</span></div><div class="faq-answer">Ориентируйтесь на сигналы тела и фазы лунного календаря, чередуя активность с отдыхом.</div></div>
+            <div class="faq-item"><div class="faq-question">14. Как число дня рождения указывает на уязвимые зоны тела?<span class="arrow">▼</span></div><div class="faq-answer">Нумерологический код соотносится с энергетическими центрами и зонами внимания.</div></div>
+            <div class="faq-item"><div class="faq-question">15. Как денежная емкость связана с тонусом тела?<span class="arrow">▼</span></div><div class="faq-answer">Внутренняя устойчивость опирается на крепкий мышечный корсет и ровную осанку.</div></div>
+            <div class="faq-item"><div class="faq-question">16. Как по дате рождения определить ритм занятий?<span class="arrow">▼</span></div><div class="faq-answer">Числовой код отражает природный темперамент для выбора направления нагрузок.</div></div>
+            <div class="faq-item"><div class="faq-question">17. С чего начать занятия в Сыктывкаре?<span class="arrow">▼</span></div><div class="faq-answer">Идеальный старт — программа Тест-драйв студии РЕСУРС: 4 занятия за 990 рублей.</div></div>
+            <div class="faq-item"><div class="faq-question">18. Чем пилатес отличается от силового фитнеса?<span class="arrow">▼</span></div><div class="faq-answer">Пилатес укрепляет глубокие мышцы без компрессии позвоночника и тяжестей.</div></div>
+            <div class="faq-item"><div class="faq-question">19. Почему тренировки длятся строго 50 минут?<span class="arrow">▼</span></div><div class="faq-answer">Это физиологический оптимум проработки мышц без переутомления.</div></div>
+            <div class="faq-item"><div class="faq-question">20. Где проходят занятия в Сыктывкаре?<span class="arrow">▼</span></div><div class="faq-answer">В студии движения РЕСУРС по адресу: ул. Коммунистическая, 67.</div></div>
         </div>
     </div>
 
 </main>
 
-<!-- ПОДВАЛ -->
 <footer>
     <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
         <div class="brand-name" style="margin-bottom: 8px;">РЕСУРС<span>.БАЛАНС</span></div>
@@ -565,7 +460,6 @@
         const savedTheme = localStorage.getItem('theme') || 'dark';
         document.documentElement.setAttribute('data-theme', savedTheme);
         updateThemeBtnText(savedTheme);
-        calculateMoonPhase();
     });
 
     const bgCanvas = document.getElementById('stars-canvas');
@@ -593,96 +487,13 @@
     window.addEventListener('resize', initBgStars);
     initBgStars(); drawBgStars();
 
-    const ASTRO_DATA = {
-        'Овен': { s: [[30,50],[50,40],[70,60],[80,80]], l: [[0,1],[1,2],[2,3]] },
-        'Телец': { s: [[20,20],[40,40],[55,55],[75,40],[90,20],[50,75],[45,95]], l: [[0,1],[1,2],[2,3],[3,4],[2,5],[5,6]] },
-        'Близнецы': { s: [[35,25],[35,75],[65,25],[65,75],[50,50]], l: [[0,2],[1,3],[0,4],[1,4],[2,4],[3,4]] },
-        'Рак': { s: [[60,30],[60,60],[40,85],[80,85]], l: [[0,1],[1,2],[1,3]] },
-        'Лев': { s: [[80,75],[50,75],[30,55],[40,25],[70,25],[85,45]], l: [[0,1],[1,2],[2,3],[3,4],[4,5],[5,0]] },
-        'Дева': { s: [[25,35],[45,55],[65,45],[85,65],[55,85],[35,75]], l: [[0,1],[1,2],[2,3],[3,4],[4,5],[5,1]] },
-        'Весы': { s: [[50,25],[30,55],[70,55],[50,85]], l: [[0,1],[0,2],[1,3],[2,3]] },
-        'Скорпион': { s: [[85,25],[70,35],[55,50],[45,65],[35,85],[20,90],[15,75],[25,60]], l: [[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,7]] },
-        'Стрелец': { s: [[35,75],[55,55],[85,35],[75,65],[90,85],[45,35]], l: [[0,1],[1,2],[2,3],[3,4],[4,1],[1,5]] },
-        'Козерог': { s: [[25,35],[55,25],[85,45],[75,85],[45,90]], l: [[0,1],[1,2],[2,3],[3,4],[4,0]] },
-        'Водолей': { s: [[25,45],[45,35],[65,55],[85,45],[75,85],[55,75]], l: [[0,1],[1,2],[2,3],[3,4],[4,5],[5,1]] },
-        'Рыбы': { s: [[25,25],[45,45],[75,40],[85,65],[65,85],[35,75]], l: [[0,1],[1,2],[2,3],[3,4],[4,5],[5,1]] }
-    };
-
-    let activeSign = '';
     let currentRole = 'astro';
     const ASTRO_BACKEND_URL = "https://functions.yandexcloud.net/d4eppsqi3i8dpface6dr";
-
-    function calculateMoonPhase() {
-        const date = new Date(); const lp = 2551443; const new_moon = new Date(1970, 0, 7, 20, 35, 0);
-        const phase = ((date.getTime() - new_moon.getTime()) / 1000) % lp; const age = Math.floor(phase / (24 * 3600));
-        let pText = "🌕 Полнолуние";
-        if (age < 2 || age > 28) pText = "🌑 Новолуние";
-        else if (age < 14) pText = "🌓 Растущая Луна";
-        else if (age < 17) pText = "🌕 Полнолуние";
-        else pText = "🌗 Убывающая Луна";
-        document.getElementById('moonPhaseText').innerText = pText;
-    }
-
-    const cCanvas = document.getElementById('constellationCanvas');
-    const cCtx = cCanvas.getContext('2d');
-
-    function renderConstellation(sign) {
-        cCtx.clearRect(0, 0, 160, 160);
-        if(!sign) return;
-        const data = ASTRO_DATA[sign] || ASTRO_DATA['Овен'];
-        const scale = 1.6;
-
-        cCtx.beginPath();
-        cCtx.strokeStyle = "rgba(108, 62, 184, 0.5)";
-        cCtx.lineWidth = 1.5;
-        data.l.forEach(line => {
-            const p1 = data.s[line[0]]; const p2 = data.s[line[1]];
-            cCtx.moveTo(p1[0] * scale, p1[1] * scale);
-            cCtx.lineTo(p2[0] * scale, p2[1] * scale);
-        });
-        cCtx.stroke();
-
-        data.s.forEach(star => {
-            const x = star[0] * scale; const y = star[1] * scale;
-            cCtx.save();
-            cCtx.shadowBlur = 10; cCtx.shadowColor = "#8352D6";
-            cCtx.fillStyle = "#FFF";
-            cCtx.beginPath(); cCtx.arc(x, y, 3, 0, Math.PI * 2); cCtx.fill();
-            cCtx.restore();
-        });
-    }
-
-    function selectSign(sign, el) {
-        activeSign = sign;
-        document.querySelectorAll('.sign-pill').forEach(p => p.classList.remove('active'));
-        el.classList.add('active');
-
-        document.getElementById('constellationSignName').innerText = sign;
-        renderConstellation(sign);
-
-        const dayKey = new Date().toISOString().slice(0,10);
-        let h = 0; let s = sign + dayKey;
-        for(let i=0; i<s.length; i++) h = Math.imul(31, h) + s.charCodeAt(i) | 0;
-        const energy = 48 + (Math.abs(h) % 48);
-
-        document.getElementById('energyPercentText').innerText = `${energy}%`;
-        document.getElementById('energyFillBar').style.width = `${energy}%`;
-
-        sendDirectMessage(`Составь мой индивидуальный астро-прогноз на сегодня для знака ${sign}`, 'astro', sign);
-    }
 
     function setRole(role) {
         currentRole = role;
         document.querySelectorAll('.role-card').forEach(c => c.classList.remove('active'));
         document.getElementById(`card-${role}`).classList.add('active');
-
-        const pAstro = document.getElementById('panelAstro');
-        const pPsycho = document.getElementById('panelPsycho');
-        const pNumerology = document.getElementById('panelNumerology');
-
-        pAstro.style.display = 'none';
-        pPsycho.style.display = 'none';
-        pNumerology.style.display = 'none';
 
         const roleName = document.getElementById('chatRoleName');
         const roleStatus = document.getElementById('chatRoleStatus');
@@ -693,23 +504,20 @@
         chatHistory = [];
 
         if (role === 'astro') {
-            pAstro.style.display = 'grid';
             roleName.innerText = 'Вера Венера';
             roleStatus.innerText = 'Астрологический проводник • Онлайн';
-            avatar.innerText = '🪐';
-            addVeraMessage('Здравствуйте! 🤍 Выберите свой знак зодиака выше, и я составлю для вас прогноз и рассчитаю уровень энергии.');
+            avatar.innerText = 'В';
+            addVeraMessage('Здравствуйте. Вы выбрали направление астрологии. Напишите свой знак зодиака или вопрос в строке ниже.');
         } else if (role === 'psycho') {
-            pPsycho.style.display = 'block';
             roleName.innerText = 'Вера Эмпатия';
             roleStatus.innerText = 'Телесный психолог • Онлайн';
-            avatar.innerText = '🌿';
-            addVeraMessage('Я рядом 🌿 Здесь безопасное пространство, где можно просто выдохнуть. Напишите в строке ниже всё, что у вас на душе.');
+            avatar.innerText = 'В';
+            addVeraMessage('Здравствуйте. Вы выбрали телесную психологию. Расскажите, что вас беспокоит или где чувствуется напряжение в теле.');
         } else if (role === 'numerology') {
-            pNumerology.style.display = 'block';
             roleName.innerText = 'Вера Матрица';
             roleStatus.innerText = 'Цифровой нумеролог • Онлайн';
-            avatar.innerText = '✨';
-            addVeraMessage('Приветствую в пространстве чисел ✨ Введите дату своего рождения выше и нажмите кнопку расчета.');
+            avatar.innerText = 'В';
+            addVeraMessage('Здравствуйте. Вы выбрали нумерологию. Напишите дату своего рождения для расчета.');
         }
     }
 
@@ -737,13 +545,18 @@
         setRole(currentRole);
     }
 
-    async function sendDirectMessage(queryText, mode, sign) {
-        addUserMessage(queryText);
+    async function sendMessage() {
+        const input = document.getElementById('chatInput');
+        const text = input.value.trim();
+        if (!text) return;
+
+        addUserMessage(text);
+        input.value = '';
 
         const typing = document.getElementById('typingPill');
         typing.style.display = 'block';
 
-        chatHistory.push({ role: 'user', text: queryText });
+        chatHistory.push({ role: 'user', text: text });
 
         try {
             const res = await fetch(ASTRO_BACKEND_URL, {
@@ -751,32 +564,22 @@
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ 
                     messages: chatHistory, 
-                    mode: mode, 
-                    sign: sign 
+                    mode: currentRole, 
+                    sign: 'Не указан' 
                 })
             });
             const data = await res.json();
             typing.style.display = 'none';
 
-            let answer = data.answer || "Я слышу вас 🤍 Сделайте глубокий вдох и выдох.";
+            let answer = data.answer || "Системный ответ сформирован. Сделайте паузу для отдыха.";
             chatHistory.push({ role: 'assistant', text: answer });
             addVeraMessage(answer);
         } catch (e) {
             typing.style.display = 'none';
-            addVeraMessage('Каналы связи на мгновение затихли... Я рядом, попробуйте еще раз 🤍');
+            addVeraMessage('Связь с сервером временно недоступна. Пожалуйста, повторите отправку.');
         }
     }
 
-    async function sendMessage() {
-        const input = document.getElementById('chatInput');
-        const text = input.value.trim();
-        if (!text) return;
-
-        input.value = '';
-        sendDirectMessage(text, currentRole, activeSign || 'Не указан');
-    }
-
-    // АККОРДЕОН FAQ
     document.querySelectorAll('.faq-question').forEach(q => {
         q.addEventListener('click', () => {
             const item = q.parentElement;
