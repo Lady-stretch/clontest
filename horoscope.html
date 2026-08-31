@@ -211,19 +211,22 @@
         }
         .role-card:hover .role-btn, .role-card.active .role-btn { background: var(--accent-color); color: #FFF; }
 
-        /* ИНТЕРАКТИВНЫЙ БЛОК ДЛЯ АСТРО-РЕЖИМА (СОЗВЕЗДИЯ И ЗНАКИ) */
-        .astro-interactive-box {
-            display: grid; grid-template-columns: 220px 1fr; gap: 20px;
+        /* ИНТЕРАКТИВНЫЙ БЛОК ДЕЙСТВИЯ (ШАГ 1 ДЛЯ КАЖДОЙ РОЛИ) */
+        .interactive-action-panel {
             background: var(--surface-color); border: 1px solid var(--border-color);
-            border-radius: 16px; padding: 22px; margin-bottom: 30px; box-shadow: 0 15px 35px var(--shadow);
+            border-radius: 16px; padding: 24px; margin-bottom: 30px; box-shadow: 0 15px 35px var(--shadow);
         }
-        @media (max-width: 900px) { .astro-interactive-box { grid-template-columns: 1fr; } }
 
+        /* 1. Блок Астролога */
+        .astro-panel-grid {
+            display: grid; grid-template-columns: 200px 1fr; gap: 20px;
+        }
+        @media (max-width: 900px) { .astro-panel-grid { grid-template-columns: 1fr; } }
         .constellation-wrapper {
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 12px; padding: 15px;
         }
-        #constellationCanvas { width: 170px; height: 170px; }
+        #constellationCanvas { width: 160px; height: 160px; }
 
         .signs-grid {
             display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px;
@@ -238,7 +241,6 @@
         .sign-pill-icon { font-size: 16px; margin-bottom: 2px; color: var(--accent-color); }
         .sign-pill-name { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
 
-        /* ЭНЕРГИЯ ДНЯ */
         .energy-status-box { margin-top: 14px; }
         .energy-track {
             width: 100%; height: 6px; background: var(--bg-color); border-radius: 3px;
@@ -246,11 +248,42 @@
         }
         .energy-fill { height: 100%; background: var(--accent-color); width: 0%; transition: width 1.2s ease; }
 
+        /* 2. Блок Психолога */
+        .psycho-panel { display: none; text-align: center; }
+        .psycho-tags-row {
+            display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 18px 0;
+        }
+        .psycho-tag-btn {
+            padding: 10px 18px; background: var(--bg-color); border: 1px solid var(--border-color);
+            border-radius: 8px; color: var(--text-main); font-size: 12.5px; font-weight: 600;
+            cursor: pointer; transition: var(--transition);
+        }
+        .psycho-tag-btn:hover { border-color: var(--accent-color); color: var(--accent-color); background: var(--accent-subtle); }
+
+        /* 3. Блок Нумеролога */
+        .numerology-panel { display: none; text-align: center; }
+        .dob-inputs-box {
+            display: flex; gap: 12px; justify-content: center; margin: 18px 0;
+        }
+        .dob-inputs-box input {
+            width: 90px; padding: 14px 10px; text-align: center; font-size: 16px; font-weight: 700;
+            background: var(--bg-color); border: 1px solid var(--border-color); color: var(--text-main);
+            border-radius: 8px; outline: none; font-family: inherit;
+        }
+        .dob-inputs-box input:focus { border-color: var(--accent-color); }
+        .btn-action-start {
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            padding: 14px 32px; background: var(--accent-color); color: #FFF; border: none;
+            border-radius: 8px; font-size: 12px; font-weight: 800; text-transform: uppercase;
+            letter-spacing: 1px; cursor: pointer; transition: var(--transition);
+        }
+        .btn-action-start:hover { background: var(--accent-hover); transform: translateY(-2px); }
+
         /* ЧАТ-МЕССЕНДЖЕР */
         .chat-container {
             background: var(--surface-color); border: 1px solid var(--border-color);
             border-radius: 16px; box-shadow: 0 20px 50px var(--shadow);
-            display: flex; flex-direction: column; height: 520px; max-height: 80vh;
+            display: flex; flex-direction: column; height: 500px; max-height: 80vh;
             overflow: hidden; margin-bottom: 30px;
         }
 
@@ -414,42 +447,71 @@
         </div>
     </div>
 
-    <!-- ИНТЕРАКТИВНЫЙ БЛОК ДЛЯ АСТРО-РЕЖИМА (СОЗВЕЗДИЯ И ЗНАКИ) -->
-    <div class="astro-interactive-box" id="astroInteractiveBlock">
-        <div class="constellation-wrapper">
-            <canvas id="constellationCanvas" width="170" height="170"></canvas>
-            <div style="font-size: 12px; font-weight: 800; color: var(--accent-color); margin-top: 8px; text-transform: uppercase;" id="constellationSignName">Знак не выбран</div>
-        </div>
-
-        <div>
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                <span class="section-tag" style="margin:0;">Выберите ваш знак зодиака</span>
-                <span style="font-size: 11.5px; color: var(--text-muted);" id="moonPhaseText">🌕 Полнолуние</span>
+    <!-- ИНТЕРАКТИВНАЯ ПАНЕЛЬ ДЕЙСТВИЯ (С КНОПКАМИ СТАРТА) -->
+    <div class="interactive-action-panel">
+        
+        <!-- 1. Панель Астролога -->
+        <div id="panelAstro" class="astro-panel-grid">
+            <div class="constellation-wrapper">
+                <canvas id="constellationCanvas" width="160" height="160"></canvas>
+                <div style="font-size: 12px; font-weight: 800; color: var(--accent-color); margin-top: 8px; text-transform: uppercase;" id="constellationSignName">Знак не выбран</div>
             </div>
 
-            <div class="signs-grid">
-                <div class="sign-pill" onclick="selectSign('Овен', this)"><div class="sign-pill-icon">♈</div><div class="sign-pill-name">Овен</div></div>
-                <div class="sign-pill" onclick="selectSign('Телец', this)"><div class="sign-pill-icon">♉</div><div class="sign-pill-name">Телец</div></div>
-                <div class="sign-pill" onclick="selectSign('Близнецы', this)"><div class="sign-pill-icon">♊</div><div class="sign-pill-name">Близнецы</div></div>
-                <div class="sign-pill" onclick="selectSign('Рак', this)"><div class="sign-pill-icon">♋</div><div class="sign-pill-name">Рак</div></div>
-                <div class="sign-pill" onclick="selectSign('Лев', this)"><div class="sign-pill-icon">♌</div><div class="sign-pill-name">Лев</div></div>
-                <div class="sign-pill" onclick="selectSign('Дева', this)"><div class="sign-pill-icon">♍</div><div class="sign-pill-name">Дева</div></div>
-                <div class="sign-pill" onclick="selectSign('Весы', this)"><div class="sign-pill-icon">♎</div><div class="sign-pill-name">Весы</div></div>
-                <div class="sign-pill" onclick="selectSign('Скорпион', this)"><div class="sign-pill-icon">♏</div><div class="sign-pill-name">Скорпион</div></div>
-                <div class="sign-pill" onclick="selectSign('Стрелец', this)"><div class="sign-pill-icon">♐</div><div class="sign-pill-name">Стрелец</div></div>
-                <div class="sign-pill" onclick="selectSign('Козерог', this)"><div class="sign-pill-icon">♑</div><div class="sign-pill-name">Козерог</div></div>
-                <div class="sign-pill" onclick="selectSign('Водолей', this)"><div class="sign-pill-icon">♒</div><div class="sign-pill-name">Водолей</div></div>
-                <div class="sign-pill" onclick="selectSign('Рыбы', this)"><div class="sign-pill-icon">♓</div><div class="sign-pill-name">Рыбы</div></div>
-            </div>
-
-            <div class="energy-status-box">
-                <div style="display: flex; justify-content: space-between; font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--text-muted);">
-                    <span>Уровень витальной энергии</span>
-                    <span id="energyPercentText" style="color: var(--accent-color);">—</span>
+            <div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <span class="section-tag" style="margin:0;">Шаг 1: Выберите ваш знак</span>
+                    <span style="font-size: 11.5px; color: var(--text-muted);" id="moonPhaseText">🌕 Полнолуние</span>
                 </div>
-                <div class="energy-track"><div class="energy-fill" id="energyFillBar" style="width: 0%;"></div></div>
+
+                <div class="signs-grid">
+                    <div class="sign-pill" onclick="selectSign('Овен', this)"><div class="sign-pill-icon">♈</div><div class="sign-pill-name">Овен</div></div>
+                    <div class="sign-pill" onclick="selectSign('Телец', this)"><div class="sign-pill-icon">♉</div><div class="sign-pill-name">Телец</div></div>
+                    <div class="sign-pill" onclick="selectSign('Близнецы', this)"><div class="sign-pill-icon">♊</div><div class="sign-pill-name">Близнецы</div></div>
+                    <div class="sign-pill" onclick="selectSign('Рак', this)"><div class="sign-pill-icon">♋</div><div class="sign-pill-name">Рак</div></div>
+                    <div class="sign-pill" onclick="selectSign('Лев', this)"><div class="sign-pill-icon">♌</div><div class="sign-pill-name">Лев</div></div>
+                    <div class="sign-pill" onclick="selectSign('Дева', this)"><div class="sign-pill-icon">♍</div><div class="sign-pill-name">Дева</div></div>
+                    <div class="sign-pill" onclick="selectSign('Весы', this)"><div class="sign-pill-icon">♎</div><div class="sign-pill-name">Весы</div></div>
+                    <div class="sign-pill" onclick="selectSign('Скорпион', this)"><div class="sign-pill-icon">♏</div><div class="sign-pill-name">Скорпион</div></div>
+                    <div class="sign-pill" onclick="selectSign('Стрелец', this)"><div class="sign-pill-icon">♐</div><div class="sign-pill-name">Стрелец</div></div>
+                    <div class="sign-pill" onclick="selectSign('Козерог', this)"><div class="sign-pill-icon">♑</div><div class="sign-pill-name">Козерог</div></div>
+                    <div class="sign-pill" onclick="selectSign('Водолей', this)"><div class="sign-pill-icon">♒</div><div class="sign-pill-name">Водолей</div></div>
+                    <div class="sign-pill" onclick="selectSign('Рыбы', this)"><div class="sign-pill-icon">♓</div><div class="sign-pill-name">Рыбы</div></div>
+                </div>
+
+                <div class="energy-status-box">
+                    <div style="display: flex; justify-content: space-between; font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--text-muted);">
+                        <span>Уровень витальной энергии</span>
+                        <span id="energyPercentText" style="color: var(--accent-color);">—</span>
+                    </div>
+                    <div class="energy-track"><div class="energy-fill" id="energyFillBar" style="width: 0%;"></div></div>
+                </div>
             </div>
         </div>
+
+        <!-- 2. Панель Психолога -->
+        <div id="panelPsycho" class="psycho-panel">
+            <span class="section-tag">Безопасное пространство поддержки</span>
+            <div style="font-size: 15px; font-weight: 700; color: var(--text-main); margin-top: 6px;">Выберите тему или напишите о своем состоянии:</div>
+            <div class="psycho-tags-row">
+                <button class="psycho-tag-btn" onclick="startPsychoTopic('Я чувствую сильную усталость и выгорание, как вернуть силы?')">🌿 Сильная усталость и упадок сил</button>
+                <button class="psycho-tag-btn" onclick="startPsychoTopic('У меня постоянное напряжение и мышечные зажимы в шее и спине')">💆‍♀️ Напряжение в теле и шее</button>
+                <button class="psycho-tag-btn" onclick="startPsychoTopic('Чувствую тревожность и суету, помоги мне заземлиться')">🤍 Тревожность и беспокойство</button>
+            </div>
+            <button class="btn-action-start" onclick="document.getElementById('chatInput').focus();">💬 Открыть диалог с психологом</button>
+        </div>
+
+        <!-- 3. Панель Нумеролога -->
+        <div id="panelNumerology" class="numerology-panel">
+            <span class="section-tag">Точный расчет по дате рождения</span>
+            <div style="font-size: 15px; font-weight: 700; color: var(--text-main); margin-top: 6px;">Введите дату своего рождения:</div>
+            <div class="dob-inputs-box">
+                <input type="number" id="dobDay" placeholder="ДД" min="1" max="31">
+                <input type="number" id="dobMonth" placeholder="ММ" min="1" max="12">
+                <input type="number" id="dobYear" placeholder="ГГГГ" min="1930" max="2026">
+            </div>
+            <button class="btn-action-start" onclick="startNumerologyCalculation()">✨ Рассчитать матрицу судьбы</button>
+        </div>
+
     </div>
 
     <!-- ЧАТ-МЕССЕНДЖЕР С ВЕРОЙ -->
@@ -627,10 +689,10 @@
     const cCtx = cCanvas.getContext('2d');
 
     function renderConstellation(sign) {
-        cCtx.clearRect(0, 0, 170, 170);
+        cCtx.clearRect(0, 0, 160, 160);
         if(!sign) return;
         const data = ASTRO_DATA[sign] || ASTRO_DATA['Овен'];
-        const scale = 1.7;
+        const scale = 1.6;
 
         cCtx.beginPath();
         cCtx.strokeStyle = "rgba(108, 62, 184, 0.5)";
@@ -668,7 +730,7 @@
         document.getElementById('energyPercentText').innerText = `${energy}%`;
         document.getElementById('energyFillBar').style.width = `${energy}%`;
 
-        requestAstroForecast(sign);
+        sendDirectMessage(`Составь мой индивидуальный астро-прогноз на сегодня для знака ${sign}`, 'astro', sign);
     }
 
     function setRole(role) {
@@ -676,7 +738,14 @@
         document.querySelectorAll('.role-card').forEach(c => c.classList.remove('active'));
         document.getElementById(`card-${role}`).classList.add('active');
 
-        const astroBlock = document.getElementById('astroInteractiveBlock');
+        const pAstro = document.getElementById('panelAstro');
+        const pPsycho = document.getElementById('panelPsycho');
+        const pNumerology = document.getElementById('panelNumerology');
+
+        pAstro.style.display = 'none';
+        pPsycho.style.display = 'none';
+        pNumerology.style.display = 'none';
+
         const roleName = document.getElementById('chatRoleName');
         const roleStatus = document.getElementById('chatRoleStatus');
         const avatar = document.getElementById('chatAvatar');
@@ -686,28 +755,43 @@
         chatHistory = [];
 
         if (role === 'astro') {
-            astroBlock.style.display = 'grid';
+            pAstro.style.display = 'grid';
             roleName.innerText = 'Вера Венера';
             roleStatus.innerText = 'Астрологический проводник • Онлайн';
             avatar.innerText = '🪐';
-            if (activeSign) {
-                addVeraMessage(`Знак ${activeSign} активен 🪐 Чем я могу помочь: разобрать тенденции дня, сферу отношений или дела?`);
-            } else {
-                addVeraMessage('Здравствуйте! 🤍 Выберите свой знак зодиака выше, и я составлю для вас прогноз и рассчитаю уровень энергии.');
-            }
+            addVeraMessage('Здравствуйте! 🤍 Выберите свой знак зодиака выше, и я составлю для вас прогноз и рассчитаю уровень энергии.');
         } else if (role === 'psycho') {
-            astroBlock.style.display = 'none';
+            pPsycho.style.display = 'block';
             roleName.innerText = 'Вера Эмпатия';
             roleStatus.innerText = 'Телесный психолог • Онлайн';
             avatar.innerText = '🌿';
-            addVeraMessage('Я рядом 🌿 Здесь безопасное пространство, где можно просто выдохнуть. Поделитесь, что сейчас на душе или где в теле чувствуется усталость?');
+            addVeraMessage('Я рядом 🌿 Здесь безопасное пространство, где можно просто выдохнуть. Нажмите на одну из тем выше или напишите мне в строке внизу.');
         } else if (role === 'numerology') {
-            astroBlock.style.display = 'none';
+            pNumerology.style.display = 'block';
             roleName.innerText = 'Вера Матрица';
             roleStatus.innerText = 'Цифровой нумеролог • Онлайн';
             avatar.innerText = '✨';
-            addVeraMessage('Приветствую в пространстве чисел ✨ Напишите дату своего рождения (например, 28.10.1981), чтобы рассчитать числовой код и точки внутренней опоры.');
+            addVeraMessage('Приветствую в пространстве чисел ✨ Введите дату своего рождения выше и нажмите кнопку расчета.');
         }
+    }
+
+    function startPsychoTopic(topic) {
+        sendDirectMessage(topic, 'psycho', 'Не указан');
+    }
+
+    function startNumerologyCalculation() {
+        const d = document.getElementById('dobDay').value;
+        const m = document.getElementById('dobMonth').value;
+        const y = document.getElementById('dobYear').value;
+
+        if (!d || !m || !y || d < 1 || d > 31 || m < 1 || m > 12 || y < 1920 || y > 2026) {
+            alert('Пожалуйста, введите корректные день, месяц и год рождения.');
+            return;
+        }
+
+        const dateStr = `${d.padStart(2, '0')}.${m.padStart(2, '0')}.${y}`;
+        const query = `Рассчитай мою матрицу судьбы и числовые коды по дате рождения: ${dateStr}`;
+        sendDirectMessage(query, 'numerology', 'Не указан');
     }
 
     let chatHistory = [];
@@ -734,14 +818,14 @@
         setRole(currentRole);
     }
 
-    async function requestAstroForecast(sign) {
-        const query = `Составь мой индивидуальный астро-прогноз на сегодня для знака ${sign}`;
-        addUserMessage(query);
+    // УНИВЕРСАЛЬНАЯ ПРЯМАЯ ОТПРАВКА ЗАПРОСА
+    async function sendDirectMessage(queryText, mode, sign) {
+        addUserMessage(queryText);
 
         const typing = document.getElementById('typingPill');
         typing.style.display = 'block';
 
-        chatHistory.push({ role: 'user', text: query });
+        chatHistory.push({ role: 'user', text: queryText });
 
         try {
             const res = await fetch(ASTRO_BACKEND_URL, {
@@ -749,56 +833,30 @@
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ 
                     messages: chatHistory, 
-                    mode: 'astro', 
+                    mode: mode, 
                     sign: sign 
                 })
             });
             const data = await res.json();
             typing.style.display = 'none';
 
-            let answer = data.answer || "Звезды сегодня благоволят сохранению внутреннего баланса. Прислушайтесь к сигналам своего тела 🤍";
+            let answer = data.answer || "Я слышу вас 🤍 Сделайте глубокий вдох и выдох.";
             chatHistory.push({ role: 'assistant', text: answer });
             addVeraMessage(answer);
         } catch (e) {
             typing.style.display = 'none';
-            addVeraMessage('Связь со звездами на секунду затихла. Попробуйте еще раз задать вопрос в строке ниже.');
+            addVeraMessage('Каналы связи на мгновение затихли... Я рядом, попробуйте еще раз 🤍');
         }
     }
 
+    // ОТПРАВКА ИЗ СТРОКИ ВВОДА
     async function sendMessage() {
         const input = document.getElementById('chatInput');
         const text = input.value.trim();
         if (!text) return;
 
-        addUserMessage(text);
         input.value = '';
-
-        const typing = document.getElementById('typingPill');
-        typing.style.display = 'block';
-
-        const signParam = activeSign || 'Не указан';
-        chatHistory.push({ role: 'user', text: text });
-
-        try {
-            const res = await fetch(ASTRO_BACKEND_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ 
-                    messages: chatHistory, 
-                    mode: currentRole, 
-                    sign: signParam 
-                })
-            });
-            const data = await res.json();
-            typing.style.display = 'none';
-
-            let answer = data.answer || "Я слышу вас 🤍 Сделайте глубокий вдох и выдох. Дайте себе право на паузу.";
-            chatHistory.push({ role: 'assistant', text: answer });
-            addVeraMessage(answer);
-        } catch (e) {
-            typing.style.display = 'none';
-            addVeraMessage('Каналы связи на мгновение затихли... Сделайте глубокий вдох и выдох 🤍 Я рядом, попробуйте отправить вопрос еще раз.');
-        }
+        sendDirectMessage(text, currentRole, activeSign || 'Не указан');
     }
 
     // АККОРДЕОН FAQ
