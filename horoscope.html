@@ -737,7 +737,6 @@
         setRole(currentRole);
     }
 
-    // Запрос прогноза при клике по знаку
     async function requestAstroForecast(sign) {
         const query = `Составь мой индивидуальный астро-прогноз на сегодня для знака ${sign}`;
         addUserMessage(query);
@@ -745,14 +744,17 @@
         const typing = document.getElementById('typingPill');
         typing.style.display = 'block';
 
-        const backendPrompt = `[РЕЖИМ: ASTRO] [ЗНАК: ${sign}]\nЗапрос: ${query}`;
-        chatHistory.push({ role: 'user', text: backendPrompt });
+        chatHistory.push({ role: 'user', text: query });
 
         try {
             const res = await fetch(ASTRO_BACKEND_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ messages: chatHistory, mode: 'astro', sign: sign })
+                body: JSON.stringify({ 
+                    messages: chatHistory, 
+                    mode: 'astro', 
+                    sign: sign 
+                })
             });
             const data = await res.json();
             typing.style.display = 'none';
@@ -778,14 +780,17 @@
         typing.style.display = 'block';
 
         const signParam = activeSign || 'Не указан';
-        const backendPrompt = `[РЕЖИМ: ${currentRole.toUpperCase()}] [ЗНАК: ${signParam}]\nЗапрос: ${text}`;
-        chatHistory.push({ role: 'user', text: backendPrompt });
+        chatHistory.push({ role: 'user', text: text });
 
         try {
             const res = await fetch(ASTRO_BACKEND_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ messages: chatHistory, mode: currentRole, sign: signParam })
+                body: JSON.stringify({ 
+                    messages: chatHistory, 
+                    mode: currentRole, 
+                    sign: signParam 
+                })
             });
             const data = await res.json();
             typing.style.display = 'none';
