@@ -7,6 +7,8 @@
     <title>РЕСУРС | Твое новое состояние</title>
     
     <link rel="icon" type="image/png" href="logo_header_final.png">
+    <link rel="apple-touch-icon" href="logo_header_final.png">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -54,7 +56,7 @@
             --surface-hover: #1E1A33;
             --accent-color: #7943D4;
             --accent-hover: #9059F2;
-            --accent-subtle: rgba(121, 67, 212, 0.22);
+            --accent-subtle: rgba(121, 67, 212, 0.15);
             --card-border: rgba(121, 67, 212, 0.35);
             --text-main: #F5F4F9;
             --text-muted: #A3A0B5;
@@ -71,14 +73,14 @@
             --surface-hover: #F2EEFB;
             --accent-color: #6336B5;
             --accent-hover: #50279C;
-            --accent-subtle: rgba(99, 54, 181, 0.12);
-            --card-border: rgba(99, 54, 181, 0.28);
+            --accent-subtle: rgba(99, 54, 181, 0.08);
+            --card-border: rgba(99, 54, 181, 0.25);
             --text-main: #14121E;
             --text-muted: #5C586F;
-            --border-color: rgba(99, 54, 181, 0.2);
+            --border-color: rgba(99, 54, 181, 0.18);
             --header-bg: rgba(247, 246, 252, 0.92);
             --shadow: rgba(0, 0, 0, 0.08);
-            --card-glow: rgba(99, 54, 181, 0.1);
+            --card-glow: rgba(99, 54, 181, 0.08);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
@@ -145,15 +147,15 @@
             .mobile-thumb-bar { display: flex; }
         }
 
-        /* ГЕРОЙ-БЛОК БЕЗ ВИДЕО (ЧИСТЫЙ BENTO СТИЛЬ) */
+        /* ГЕРОЙ-БЛОК (BENTO СТИЛЬ) */
         .hero-bento {
-            text-align: center; padding: 50px 20px 30px; max-width: 800px; margin: 0 auto;
+            text-align: center; padding: 45px 20px 25px; max-width: 800px; margin: 0 auto;
         }
-        .hero-bento h1 { font-size: clamp(32px, 6vw, 48px); font-weight: 800; margin-bottom: 10px; }
+        .hero-bento h1 { font-size: clamp(30px, 5.5vw, 44px); font-weight: 800; margin-bottom: 8px; }
         .hero-bento h1 span { color: var(--accent-color); }
-        .hero-bento p { font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: var(--text-muted); font-weight: 700; }
+        .hero-bento p { font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--text-muted); font-weight: 700; }
 
-        .container { max-width: 840px; margin: 0 auto 80px; position: relative; z-index: 10; padding: 0 20px; }
+        .container { max-width: 900px; margin: 0 auto 80px; position: relative; z-index: 10; padding: 0 20px; }
 
         /* BENTO КАРТОЧКА АНКЕТЫ */
         .bento-glass-card {
@@ -165,7 +167,7 @@
         }
         @media(max-width: 600px) { .bento-glass-card { padding: 30px 20px; } }
 
-        .input-group { margin-bottom: 28px; position: relative; }
+        .input-group { margin-bottom: 26px; position: relative; }
         label { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; font-weight: 800; color: var(--accent-color); }
         .required::after { content: ' *'; color: #ff5252; }
         
@@ -208,6 +210,14 @@
         
         .buttons-row { display: flex; gap: 12px; flex-wrap: wrap; }
         .buttons-row .btn-lens { flex: 1; min-width: 240px; }
+        
+        /* Стили для второй кнопки, чтобы текст был супер-контрастным в светлой/темной темах */
+        .btn-secondary-action {
+            background: var(--surface-hover); border: 1px solid var(--accent-color); color: var(--text-main);
+        }
+        .btn-secondary-action:hover {
+            background: var(--accent-color); color: #FFF;
+        }
 
         /* МОДАЛКА ЮKASSA */
         .modal {
@@ -227,15 +237,18 @@
         .modal-close:hover { color: var(--text-main); }
         #payment-form-container { width: 100%; min-height: 380px; margin-top: 15px; display: flex; justify-content: center; }
 
-        /* ПОДАРКИ (АБОНЕМЕНТЫ) */
-        .gift-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 25px; }
+        /* СЕТКА АБОНЕМЕНТОВ В СТИЛЕ FUTURE-PACKAGES */
+        .gift-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 25px; }
+        @media(max-width: 800px) { .gift-grid { grid-template-columns: 1fr; gap: 14px; } }
+
         .gift-card {
             background: var(--bg-color); border: 1px solid var(--border-color);
-            padding: 25px 20px; text-align: center; border-radius: 14px; transition: var(--transition);
+            padding: 30px 20px; text-align: center; border-radius: 16px; transition: var(--transition);
+            display: flex; flex-direction: column; justify-content: space-between;
         }
-        .gift-card:hover { border-color: var(--accent-color); transform: translateY(-3px); }
-        .gift-card h3 { font-size: 20px; font-weight: 800; color: var(--text-main); margin-bottom: 4px; }
-        .price-tag { font-size: 26px; margin: 15px 0; font-weight: 800; color: var(--accent-color); }
+        .gift-card:hover { border-color: var(--accent-color); transform: translateY(-4px); box-shadow: 0 15px 35px var(--shadow); }
+        .gift-card h3 { font-size: 22px; font-weight: 800; color: var(--text-main); margin-bottom: 4px; }
+        .price-tag { font-size: 28px; margin: 15px 0; font-weight: 800; color: var(--accent-color); }
         .old-price { text-decoration: line-through; opacity: 0.4; font-size: 16px; margin-right: 8px; font-weight: 400; color: var(--text-muted); }
 
         .app-links { display: flex; gap: 14px; margin-top: 20px; justify-content: center; flex-wrap: wrap;}
@@ -266,7 +279,7 @@
     <div class="header-top">
         <div class="logo-wrap" onclick="window.location.href='index.html'">
             <img src="logo_header_final.png" alt="РЕСУРС">
-            <div class="brand-name">РЕСУРС<span>.АНКЕТА</span></div>
+            <div class="brand-name">РЕСУРС</div>
         </div>
 
         <div class="desktop-actions">
@@ -357,8 +370,8 @@
         </div>
 
         <div class="buttons-row">
-            <button class="btn-lens" id="btnPaid" onclick="submitPart1(true)">Отправить (если оплачено)</button>
-            <button class="btn-lens" id="btnPay" style="background: var(--surface-hover); border: 1px solid var(--accent-color);" onclick="submitPart1(false)">ОТПРАВИТЬ И ОПЛАТИТЬ (455 ₽)</button>
+            <button class="btn-lens btn-secondary-action" id="btnPaid" onclick="submitPart1(true)">Отправить (если оплачено)</button>
+            <button class="btn-lens" id="btnPay" onclick="submitPart1(false)">ОТПРАВИТЬ И ОПЛАТИТЬ (455 ₽)</button>
         </div>
     </div>
 
@@ -366,9 +379,10 @@
     <div class="bento-glass-card" id="formPart2" style="display:none;">
         <h3 style="font-size: 22px; font-weight: 800; margin-bottom: 15px; text-align: center;">Твое состояние после практики</h3>
         
-        <div style="background: var(--accent-subtle); border: 1px dashed var(--card-border); padding: 18px; border-radius: 10px; margin-bottom: 30px; text-align: center;">
-            <span style="display: block; font-size: 12px; font-weight: 800; color: var(--accent-color); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px;">Заполняется после занятия</span>
-            <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5;">Поделитесь своими впечатлениями — это поможет нам сделать ваш прогресс максимально комфортным.</p>
+        <!-- Яркий информационный блок вместо таймера -->
+        <div style="background: linear-gradient(135deg, var(--surface-hover), var(--surface-color)); border: 2px solid var(--accent-color); padding: 22px; border-radius: 14px; margin-bottom: 30px; text-align: center; box-shadow: 0 10px 25px var(--card-glow);">
+            <span style="display: block; font-size: 13px; font-weight: 800; color: var(--accent-color); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1.5px;">⭐ Заполняется после занятия</span>
+            <p style="font-size: 13.5px; color: var(--text-main); line-height: 1.6;">Поделитесь своими впечатлениями — это поможет нам сделать ваш прогресс максимально комфортным.</p>
         </div>
 
         <div class="input-group">
@@ -417,7 +431,7 @@
         <button class="btn-lens" onclick="submitPart2()">СОХРАНИТЬ И ПЕРЕЙТИ К АБОНЕМЕНТАМ</button>
     </div>
 
-    <!-- ЧАСТЬ 3: ПОДАРКИ (АБОНЕМЕНТЫ) -->
+    <!-- ЧАСТЬ 3: ПОДАРКИ (АБОНЕМЕНТЫ В СТИЛЕ FUTURE-PACKAGES) -->
     <div id="giftSection" style="display: none;">
         <h3 style="font-size: 28px; font-weight: 800; text-align: center; color: var(--accent-color); margin-bottom: 6px;">Твой подарок активен</h3>
         <p style="text-align: center; font-size: 11px; color: var(--text-muted); margin-bottom: 15px; text-transform: uppercase; letter-spacing: 2px;">Только 24 часа после первой тренировки</p>
@@ -437,24 +451,30 @@
 
         <div class="gift-grid">
             <div class="gift-card">
-                <h3>ЛЕГКОСТЬ</h3>
-                <p style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">8 занятий + 2 в подарок</p>
-                <div class="price-tag"><span class="old-price">5 600</span> 4 760 ₽</div>
+                <div>
+                    <h3>ЛЕГКОСТЬ</h3>
+                    <p style="font-size: 11px; color: var(--text-muted); margin-top: 6px;">8 занятий + 2 в подарок</p>
+                    <div class="price-tag"><span class="old-price">5 600</span> 4 760 ₽</div>
+                </div>
                 <button class="btn-lens" style="padding: 14px;" onclick="buySubscription(4760, 'ЛЕГКОСТЬ', this)">Выбрать</button>
             </div>
 
             <div class="gift-card" style="border-color: var(--accent-color); background: var(--surface-hover);">
-                <div style="font-size: 9px; color: var(--accent-color); letter-spacing: 2px; font-weight: 800; margin-bottom: 8px; text-transform: uppercase;">Выбор резидентов</div>
-                <h3>ЭНЕРГИЯ</h3>
-                <p style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">16 занятий + 3 в подарок</p>
-                <div class="price-tag"><span class="old-price">11 200</span> 8 960 ₽</div>
+                <div>
+                    <div style="font-size: 9px; color: var(--accent-color); letter-spacing: 2px; font-weight: 800; margin-bottom: 8px; text-transform: uppercase;">Выбор резидентов</div>
+                    <h3>ЭНЕРГИЯ</h3>
+                    <p style="font-size: 11px; color: var(--text-muted); margin-top: 6px;">16 занятий + 3 в подарок</p>
+                    <div class="price-tag"><span class="old-price">11 200</span> 8 960 ₽</div>
+                </div>
                 <button class="btn-lens" style="padding: 14px;" onclick="buySubscription(8960, 'ЭНЕРГИЯ', this)">Инвестировать</button>
             </div>
 
             <div class="gift-card">
-                <h3>СТАТУС</h3>
-                <p style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">32 занятия + 4 в подарок</p>
-                <div class="price-tag"><span class="old-price">22 400</span> 16 800 ₽</div>
+                <div>
+                    <h3>СТАТУС</h3>
+                    <p style="font-size: 11px; color: var(--text-muted); margin-top: 6px;">32 занятия + 4 в подарок</p>
+                    <div class="price-tag"><span class="old-price">22 400</span> 16 800 ₽</div>
+                </div>
                 <button class="btn-lens" style="padding: 14px;" onclick="buySubscription(16800, 'СТАТУС', this)">Получить 25%</button>
             </div>
         </div>
@@ -537,7 +557,6 @@
     window.addEventListener('resize', initBgStars);
     initBgStars(); drawBgStars();
 
-    // ПАМЯТЬ БРАУЗЕРА (localStorage)
     document.addEventListener("DOMContentLoaded", () => {
         const step = localStorage.getItem('anketa_step');
         if (step === 'part2') {
