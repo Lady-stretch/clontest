@@ -568,7 +568,6 @@
         calculateMoonPhase();
     });
 
-    // КАНВАС ЗВЕЗД
     const bgCanvas = document.getElementById('stars-canvas');
     const bgCtx = bgCanvas.getContext('2d');
     let bgStars = [];
@@ -594,7 +593,6 @@
     window.addEventListener('resize', initBgStars);
     initBgStars(); drawBgStars();
 
-    // БАЗА ДАННЫХ СОЗВЕЗДИЙ
     const ASTRO_DATA = {
         'Овен': { s: [[30,50],[50,40],[70,60],[80,80]], l: [[0,1],[1,2],[2,3]] },
         'Телец': { s: [[20,20],[40,40],[55,55],[75,40],[90,20],[50,75],[45,95]], l: [[0,1],[1,2],[2,3],[3,4],[2,5],[5,6]] },
@@ -670,7 +668,6 @@
         document.getElementById('energyPercentText').innerText = `${energy}%`;
         document.getElementById('energyFillBar').style.width = `${energy}%`;
 
-        // Автоматический запрос прогноза по выбранному знаку
         requestAstroForecast(sign);
     }
 
