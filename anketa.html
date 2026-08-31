@@ -132,14 +132,6 @@
         }
         .theme-toggle-btn:hover { border-color: var(--accent-color); color: var(--accent-color); }
 
-        /* СЕКРЕТНАЯ КНОПКА СБРОСА ПАМЯТИ В ШАПКЕ */
-        .secret-reset {
-            width: 8px; height: 8px; background: var(--accent-color); border-radius: 50%;
-            opacity: 0.4; cursor: pointer; transition: var(--transition); display: inline-block;
-            vertical-align: middle; margin-left: 6px;
-        }
-        .secret-reset:hover { opacity: 1; box-shadow: 0 0 10px var(--accent-color); }
-
         .mobile-thumb-bar {
             display: none; width: 100%; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border-color); gap: 10px;
         }
@@ -163,19 +155,30 @@
         .hero-bento h1 span { color: var(--accent-color); }
         .hero-bento p { font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--text-muted); font-weight: 700; }
 
-        .container { max-width: 900px; margin: 0 auto 80px; position: relative; z-index: 10; padding: 0 20px; }
+        /* Адаптивный контейнер для ПК: делаем шире (до 1100px), поля сеткой */
+        .container { max-width: 1100px; margin: 0 auto 80px; position: relative; z-index: 10; padding: 0 20px; }
 
         /* BENTO КАРТОЧКА АНКЕТЫ */
         .bento-glass-card {
             background: var(--surface-color);
             border: 1px solid var(--card-border);
-            border-radius: 20px; padding: 45px 35px;
+            border-radius: 20px; padding: 50px 45px;
             box-shadow: 0 20px 50px var(--shadow), 0 0 30px var(--card-glow);
             margin-bottom: 30px; transition: var(--transition);
         }
-        @media(max-width: 600px) { .bento-glass-card { padding: 30px 20px; } }
+        @media(max-width: 768px) { .bento-glass-card { padding: 30px 20px; } }
 
-        .input-group { margin-bottom: 26px; position: relative; }
+        /* Двухколоночная сетка для ПК внутри анкеты для гармоничного заполнения широкого экрана */
+        .form-grid-pc {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
+        }
+        .form-grid-pc .full-width { grid-column: span 2; }
+        @media(max-width: 768px) {
+            .form-grid-pc { grid-template-columns: 1fr; }
+            .form-grid-pc .full-width { grid-column: span 1; }
+        }
+
+        .input-group { margin-bottom: 4px; position: relative; }
         label { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; font-weight: 800; color: var(--accent-color); }
         .required::after { content: ' *'; color: #ff5252; }
         
@@ -195,7 +198,7 @@
         .inn-bonus b { color: var(--text-main); }
 
         .checkbox-group {
-            display: flex; align-items: flex-start; gap: 12px; margin-bottom: 25px;
+            display: flex; align-items: flex-start; gap: 12px; margin: 25px 0;
             font-size: 12.5px; color: var(--text-muted); line-height: 1.5; text-align: left;
         }
         .checkbox-group input[type="checkbox"] {
@@ -216,7 +219,7 @@
         .btn-lens:hover:not(:disabled) { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 10px 25px rgba(121, 67, 212, 0.4); }
         .btn-lens:disabled { opacity: 0.5; cursor: not-allowed; }
         
-        .buttons-row { display: flex; gap: 12px; flex-wrap: wrap; }
+        .buttons-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 10px; }
         .buttons-row .btn-lens { flex: 1; min-width: 240px; }
         
         .btn-secondary-action {
@@ -244,7 +247,7 @@
         .modal-close:hover { color: var(--text-main); }
         #payment-form-container { width: 100%; min-height: 380px; margin-top: 15px; display: flex; justify-content: center; }
 
-        /* НОВАЯ АБОНЕМЕНТНАЯ СЕТКА (В СТИЛЕ ТАРИФОВ) */
+        /* СЕТКА АБОНЕМЕНТОВ */
         .gift-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 25px; }
         @media(max-width: 800px) { .gift-grid { grid-template-columns: 1fr; gap: 14px; } }
 
@@ -257,7 +260,7 @@
         .gift-card h3 { font-size: 20px; font-weight: 800; color: var(--text-main); margin-bottom: 4px; }
         .gift-card .per-session { font-size: 11px; color: var(--text-muted); margin-bottom: 12px; }
         .price-tag { font-size: 26px; margin: 12px 0; font-weight: 800; color: var(--accent-color); }
-        .old-price { text-decoration: line-through; opacity: 0.4; font-size: 15px; margin-right: 6px; font-weight: 400; color: var(--text-muted); }
+        .old-price { text-decoration: line-through; opacity: 0.4; font-size: 16px; margin-right: 8px; font-weight: 400; color: var(--text-muted); }
         .gift-features { font-size: 12px; color: var(--text-muted); line-height: 1.5; margin-bottom: 20px; text-align: left; }
         .gift-features li { list-style: none; margin-bottom: 6px; position: relative; padding-left: 16px; }
         .gift-features li::before { content: "•"; position: absolute; left: 0; color: var(--accent-color); font-weight: 800; }
@@ -285,12 +288,12 @@
 
 <canvas id="stars-canvas"></canvas>
 
-<!-- ДВУХЭТАЖНАЯ ШАПКА СО СЕКРЕТНЫМ СБРОСОМ -->
+<!-- ДВУХЭТАЖНАЯ ШАПКА -->
 <header id="header">
     <div class="header-top">
         <div class="logo-wrap" onclick="window.location.href='index.html'">
             <img src="logo_header_final.png" alt="РЕСУРС">
-            <div class="brand-name">РЕСУРС<span>.АНКЕТА</span><span class="secret-reset" onclick="localStorage.clear(); location.reload();" title="Секретный сброс памяти"></span></div>
+            <div class="brand-name">РЕСУРС<span style="color:var(--accent-color);">.</span>АНКЕТА</div>
         </div>
 
         <div class="desktop-actions">
@@ -317,63 +320,65 @@
     <div class="bento-glass-card" id="formPart1">
         <h3 style="font-size: 22px; font-weight: 800; margin-bottom: 30px; text-align: center;">Данные для входа в клуб</h3>
         
-        <div class="input-group">
-            <label class="required">ФИО полностью</label>
-            <input type="text" id="fio" placeholder="Например: Иванова Анна Сергеевна" required>
-        </div>
-
-        <div class="input-group">
-            <label class="required">Твой номер для связи</label>
-            <input type="tel" id="phone" required>
-        </div>
-
-        <div class="input-group">
-            <label class="required">Дата рождения</label>
-            <input type="date" id="birth_date" required>
-        </div>
-
-        <div class="input-group">
-            <label>Твой умный кэшбэк: 13% возврата</label>
-            <input type="number" id="inn" placeholder="Введи ИНН">
-            <div class="inn-bonus">
-                <b>Зачем это нужно?</b> В РЕСУРСЕ мы заботимся о твоих финансах. Введи ИНН, и мы автоматически подготовим документы, чтобы ты вернула 13% от стоимости любого абонемента через налоговый вычет.
+        <div class="form-grid-pc">
+            <div class="input-group full-width">
+                <label class="required">ФИО полностью</label>
+                <input type="text" id="fio" placeholder="Например: Иванова Анна Сергеевна" required>
             </div>
-        </div>
 
-        <div class="input-group">
-            <label class="required">Медицинские противопоказания</label>
-            <textarea id="contraindications" rows="2" placeholder="Травмы, ограничения, рекомендации врача (если нет, напишите слово «нет»)" required></textarea>
-        </div>
+            <div class="input-group">
+                <label class="required">Твой номер для связи</label>
+                <input type="tel" id="phone" required>
+            </div>
 
-        <div class="input-group">
-            <label class="required">Какую цель ставите на ближайшее время?</label>
-            <textarea id="user_goal" rows="2" placeholder="Например: сесть на шпагат, избавиться от боли в спине, похудеть..." required></textarea>
-        </div>
+            <div class="input-group">
+                <label class="required">Дата рождения</label>
+                <input type="date" id="birth_date" required>
+            </div>
 
-        <div class="input-group">
-            <label class="required">Выбери пространство</label>
-            <select id="studio" required>
-                <option value="Коммунистическая">Коммунистическая, 67 (за гостиницей Сыктывкар)</option>
-                <option value="Советская">Советская, 3</option>
-            </select>
-        </div>
+            <div class="input-group full-width">
+                <label>Твой умный кэшбэк: 13% возврата</label>
+                <input type="number" id="inn" placeholder="Введи ИНН">
+                <div class="inn-bonus">
+                    <b>Зачем это нужно?</b> В РЕСУРСЕ мы заботимся о твоих финансах. Введи ИНН, и мы автоматически подготовим документы, чтобы ты вернула 13% от стоимости любого абонемента через налоговый вычет.
+                </div>
+            </div>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 30px;">
-            <div class="input-group" style="margin-bottom: 0;">
+            <div class="input-group full-width">
+                <label class="required">Медицинские противопоказания</label>
+                <textarea id="contraindications" rows="2" placeholder="Травмы, ограничения, рекомендации врача (если нет, напишите слово «нет»)" required></textarea>
+            </div>
+
+            <div class="input-group full-width">
+                <label class="required">Какую цель ставите на ближайшее время?</label>
+                <textarea id="user_goal" rows="2" placeholder="Например: сесть на шпагат, избавиться от боли в спине, похудеть..." required></textarea>
+            </div>
+
+            <div class="input-group full-width">
+                <label class="required">Выбери пространство</label>
+                <select id="studio" required>
+                    <option value="Коммунистическая 67">Коммунистическая, 67 (за гостиницей Сыктывкар)</option>
+                    <option value="Советская 3">Советская, 3</option>
+                </select>
+            </div>
+
+            <div class="input-group">
                 <label class="required">Дата тренировки</label>
                 <input type="date" id="booking_date" required>
             </div>
-            <div class="input-group" style="margin-bottom: 0;">
+
+            <div class="input-group">
                 <label class="required">Время</label>
                 <input type="time" id="booking_time" required>
             </div>
-            <div class="input-group" style="margin-bottom: 0;">
+
+            <div class="input-group full-width">
                 <label class="required">Практика</label>
                 <input type="text" id="booking_type" placeholder="Например: МФР" required>
             </div>
         </div>
 
-        <div class="checkbox-group">
+        <div class="checkbox-group" style="margin-top: 15px;">
             <input type="checkbox" id="consent_part1" required>
             <label for="consent_part1">
                 Я даю <a href="https://resurs-stretch.ru/consent.html" target="_blank">согласие на обработку персональных данных</a> и подтверждаю ознакомление с <a href="https://resurs-stretch.ru/privacy.html" target="_blank">политикой конфиденциальности</a> и <a href="https://resurs-stretch.ru/offer.html" target="_blank">договором оферты</a>.
@@ -390,50 +395,51 @@
     <div class="bento-glass-card" id="formPart2" style="display:none;">
         <h3 style="font-size: 22px; font-weight: 800; margin-bottom: 15px; text-align: center;">Твое состояние после практики</h3>
         
-        <!-- Очень яркий информационный блок -->
         <div style="background: linear-gradient(135deg, var(--surface-hover), var(--surface-color)); border: 2px solid var(--accent-color); padding: 22px; border-radius: 14px; margin-bottom: 30px; text-align: center; box-shadow: 0 10px 25px var(--card-glow);">
             <span style="display: block; font-size: 13px; font-weight: 800; color: var(--accent-color); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1.5px;">⭐ ЗАПОЛНЯЕТСЯ ПОСЛЕ ЗАНЯТИЯ</span>
             <p style="font-size: 13.5px; color: var(--text-main); line-height: 1.6;">Поделитесь своими впечатлениями — это поможет нам сделать ваш прогресс максимально комфортным.</p>
         </div>
 
-        <div class="input-group">
-            <label>Насколько профессионален был тренер? (1-10)</label>
-            <input type="number" id="rate_trainer" min="1" max="10" placeholder="Твоя честная оценка">
+        <div class="form-grid-pc">
+            <div class="input-group full-width">
+                <label>Насколько профессионален был тренер? (1-10)</label>
+                <input type="number" id="rate_trainer" min="1" max="10" placeholder="Твоя честная оценка">
+            </div>
+
+            <div class="input-group full-width">
+                <label>Пару слов о тренере (комментарий)</label>
+                <textarea id="trainer_comment" rows="2" placeholder="Что особенно отозвалось?"></textarea>
+            </div>
+
+            <div class="input-group">
+                <label>Готова уделять себе 2-3 часа в неделю?</label>
+                <select id="ready">
+                    <option value="Да">Да, это мой приоритет</option>
+                    <option value="Хочу попробовать">Хочу попробовать влиться</option>
+                    <option value="Нет">Пока нет возможности</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>Готовы ли порекомендовать нашу студию знакомым?</label>
+                <select id="recommend">
+                    <option value="Обязательно">Да, с удовольствием</option>
+                    <option value="Возможно">Возможно</option>
+                    <option value="Пока нет">Пока нет</option>
+                </select>
+            </div>
+
+            <div class="input-group full-width">
+                <label>Планируете ли покупать абонемент?</label>
+                <select id="plan_buy">
+                    <option value="Да">Да, уже выбираю</option>
+                    <option value="Думаю">Пока думаю</option>
+                    <option value="Нет">Пока нет</option>
+                </select>
+            </div>
         </div>
 
-        <div class="input-group">
-            <label>Пару слов о тренере (комментарий)</label>
-            <textarea id="trainer_comment" rows="2" placeholder="Что особенно отозвалось?"></textarea>
-        </div>
-
-        <div class="input-group">
-            <label>Готова уделять себе 2-3 часа в неделю?</label>
-            <select id="ready">
-                <option value="Да">Да, это мой приоритет</option>
-                <option value="Хочу попробовать">Хочу попробовать влиться</option>
-                <option value="Нет">Пока нет возможности</option>
-            </select>
-        </div>
-
-        <div class="input-group">
-            <label>Готовы ли порекомендовать нашу студию знакомым?</label>
-            <select id="recommend">
-                <option value="Обязательно">Да, с удовольствием</option>
-                <option value="Возможно">Возможно</option>
-                <option value="Пока нет">Пока нет</option>
-            </select>
-        </div>
-
-        <div class="input-group">
-            <label>Планируете ли покупать абонемент?</label>
-            <select id="plan_buy">
-                <option value="Да">Да, уже выбираю</option>
-                <option value="Думаю">Пока думаю</option>
-                <option value="Нет">Пока нет</option>
-            </select>
-        </div>
-
-        <div style="text-align: center; margin-bottom: 25px;">
+        <div style="text-align: center; margin: 25px 0;">
             <span style="display: inline-block; background: var(--accent-subtle); border: 1px dashed var(--card-border); color: var(--accent-color); padding: 8px 16px; border-radius: 20px; font-size: 12px; font-weight: 800;">
                 🎁 Ваши +2 занятия в подарок ждут на следующем шаге!
             </span>
@@ -442,7 +448,7 @@
         <button class="btn-lens" onclick="submitPart2()">СОХРАНИТЬ И ПЕРЕЙТИ К АБОНЕМЕНТАМ</button>
     </div>
 
-    <!-- ЧАСТЬ 3: ПОДАРКИ (НОВАЯ АБОНЕМЕНТНАЯ СЕТКА) -->
+    <!-- ЧАСТЬ 3: ПОДАРКИ (АБОНЕМЕНТЫ) -->
     <div id="giftSection" style="display: none;">
         <h3 style="font-size: 28px; font-weight: 800; text-align: center; color: var(--accent-color); margin-bottom: 6px;">Твой подарок активен</h3>
         <p style="text-align: center; font-size: 11px; color: var(--text-muted); margin-bottom: 15px; text-transform: uppercase; letter-spacing: 2px;">Только 24 часа после первой тренировки</p>
@@ -468,7 +474,7 @@
                     <div class="per-session">595 ₽ за 50 минут практики</div>
                     <div class="price-tag">4 760 ₽</div>
                     <ul class="gift-features">
-                        <li>8 полноценных занятий по 50 минут (+2 в подарок)</li>
+                        <li>8 занятий по 50 минут (+2 в подарок)</li>
                         <li>Срок действия: 2 месяца</li>
                         <li>Доступ ко всем направлениям</li>
                         <li>Возможность ходить вдвоем</li>
@@ -477,7 +483,7 @@
                 <button class="btn-lens" style="padding: 14px;" onclick="buySubscription(4760, 'Базовый', this)">Выбрать 8 занятий</button>
             </div>
 
-            <!-- Оптимальный (Хит студии) -->
+            <!-- Энергия (Хит студии) -->
             <div class="gift-card" style="border-color: var(--accent-color); background: var(--surface-hover);">
                 <div>
                     <div style="font-size: 9px; color: var(--accent-color); letter-spacing: 2px; font-weight: 800; margin-bottom: 8px; text-transform: uppercase;">Хит студии • Оптимальный</div>
@@ -485,7 +491,7 @@
                     <div class="per-session">560 ₽ за 50 минут практики</div>
                     <div class="price-tag">8 960 ₽</div>
                     <ul class="gift-features">
-                        <li>16 полноценных занятий по 50 минут (+2 в подарок)</li>
+                        <li>16 занятий по 50 минут (+2 в подарок)</li>
                         <li>Срок действия: 3 месяца</li>
                         <li>Заморозка на случай отпуска</li>
                         <li>Доступна беспроцентная рассрочка</li>
@@ -502,7 +508,7 @@
                     <div class="per-session">545 ₽ за 50 минут практики</div>
                     <div class="price-tag">13 080 ₽</div>
                     <ul class="gift-features">
-                        <li>24 полноценных занятия по 50 минут (+2 в подарок)</li>
+                        <li>24 занятия по 50 минут (+2 в подарок)</li>
                         <li>Срок действия: 4 месяца</li>
                         <li>Глубокая трансформация осанки</li>
                         <li>Удобная рассрочка без переплат</li>
@@ -590,6 +596,7 @@
     window.addEventListener('resize', initBgStars);
     initBgStars(); drawBgStars();
 
+    // ПАМЯТЬ БРАУЗЕРА (localStorage)
     document.addEventListener("DOMContentLoaded", () => {
         const step = localStorage.getItem('anketa_step');
         if (step === 'part2') {
@@ -823,7 +830,10 @@
             }
         } catch (error) {
             console.error(error);
-            alert('Произошла ошибка при создании платежа. Обратитесь к администратору студии.');
+            alert('Произошла ошибка при создании платежа. Обратитесь к администратору студии. Переходим к абонементам...');
+            document.getElementById('formPart2').style.display = 'none';
+            document.getElementById('giftSection').style.display = 'block';
+            window.scrollTo({top: 0, behavior: 'smooth'});
         }
 
         btnElement.innerText = originalText;
