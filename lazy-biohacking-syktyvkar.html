@@ -217,8 +217,9 @@
         .span-2 { grid-column: span 2; }
         .span-3 { grid-column: span 3; }
 
+        /* УВЕЛИЧЕННАЯ ВЫСОТА БЛОКА С ФОТО ДО 420PX */
         .bento-ai-photo {
-            min-height: 320px; background-size: cover; background-position: center;
+            min-height: 420px; background-size: cover; background-position: center;
             border-radius: 14px; border: 1px solid var(--border-color); transition: var(--transition);
         }
 
@@ -280,6 +281,7 @@
 </head>
 <body>
 
+<!-- ЕДИНАЯ ШАПКА -->
 <header id="header">
     <div class="header-top">
         <div class="logo-wrap" onclick="window.location.href='index.html'">
@@ -293,7 +295,6 @@
         </div>
     </div>
 
-    <!-- МОБИЛЬНЫЙ ВТОРОЙ ЭТАЖ -->
     <div class="mobile-thumb-bar">
         <button id="themeToggleMobile" class="theme-toggle-btn" onclick="toggleThemeInstant()">ТЕМА</button>
         <button class="btn-header-cta" onclick="window.location.href='club.html'">ОНЛАЙН-КЛУБ</button>
@@ -328,7 +329,7 @@
                 <div class="calc-group">
                     <label class="calc-label">1. Опишите ваши первые 15 минут после пробуждения:</label>
                     <div class="radio-box-group">
-                        <label class="radio-tile" onclick="selectTile(this)">
+                        <label class="radio-tile selected" onclick="selectTile(this)">
                             <input type="radio" name="morning_status" value="zombie" checked>
                             <span class="radio-tile-title">Утренний зомби</span>
                             <span class="radio-tile-desc">Отеки лица, мешки под глазами, выживание на кофе.</span>
@@ -344,7 +345,7 @@
                 <div class="calc-group">
                     <label class="calc-label">2. Как ведет себя спина при долгой работе за столом?</label>
                     <div class="radio-box-group">
-                        <label class="radio-tile" onclick="selectTile(this)">
+                        <label class="radio-tile selected" onclick="selectTile(this)">
                             <input type="radio" name="body_posture" value="belly" checked>
                             <span class="radio-tile-title">Вываливается живот</span>
                             <span class="radio-tile-desc">Вес в норме, но низ живота расслаблен и выпячен.</span>
@@ -367,7 +368,21 @@
                 </p>
             </div>
 
+            <!-- УВЕЛИЧЕННЫЙ БЛОК С ФОТО (ВЫСОТА 420PX) -->
             <div class="bento-ai-photo span-3" id="ai-photo-slot" style="background-image: url('healthy-back.jpg');"></div>
+
+            <!-- БЛОК РСЯ №1 -->
+            <div class="rsya-bento-frame span-3">
+                <div id="yandex_rtb_lazy_1"></div>
+                <script>
+                window.yaContextCb.push(() => {
+                    Ya.Context.AdvManager.render({
+                        "blockId": "R-A-19181219-20",
+                        "renderTo": "yandex_rtb_lazy_1"
+                    })
+                })
+                </script>
+            </div>
 
             <div class="bento-card span-3" style="background: var(--surface-hover); text-align: center; padding: 35px 25px;">
                 <h3 style="font-size: 24px; margin-bottom: 12px;">Верните легкость без изнуряющего фитнеса</h3>
@@ -390,15 +405,24 @@
                 <h3 style="font-size: 18px; margin-bottom: 8px;">Отеки — это выключенные мышцы</h3>
                 <p style="font-size: 13px; color: var(--text-muted);">У лимфы нет собственного сердца. Её качают глубокие мышцы. Сидячая работа приводит к застою жидкости и утренней одутловатости лица.</p>
             </div>
+            
+            <!-- БЛОК РСЯ №2 -->
+            <div class="rsya-bento-frame">
+                <div id="yandex_rtb_lazy_2"></div>
+                <script>
+                window.yaContextCb.push(() => {
+                    Ya.Context.AdvManager.render({
+                        "blockId": "R-A-19181219-20",
+                        "renderTo": "yandex_rtb_lazy_2"
+                    })
+                })
+                </script>
+            </div>
+
             <div class="bento-card">
                 <span class="section-tag">Фактор 02</span>
                 <h3 style="font-size: 18px; margin-bottom: 8px;">Почему торчит «офисный живот»</h3>
                 <p style="font-size: 13px; color: var(--text-muted);">При долгом сидении таз наклоняется вперед, диафрагма зажимается, внутренние органы смещаются, образуя выпяченный живот даже при стройности.</p>
-            </div>
-            <div class="bento-card">
-                <span class="section-tag">Фактор 03</span>
-                <h3 style="font-size: 18px; margin-bottom: 8px;">Сила 15 минут в день</h3>
-                <p style="font-size: 13px; color: var(--text-muted);">Ежедневные бережные потягивания запускают капиллярный кровоток и выработку суставной жидкости эффективнее редких тяжелых тренировок.</p>
             </div>
         </div>
     </div>
@@ -411,10 +435,18 @@
                 <h3 style="font-size: 20px; margin-bottom: 10px;">Лимфодренажные микро-толчки</h3>
                 <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">Лежа на спине, поднимите руки и ноги вверх под углом 90 градусов. В течение 2 минут совершайте мелкие вибрирующие потряхивания капиллярами. Это мгновенно открывает венозные клапаны и сливает утреннюю жидкость вниз.</p>
             </div>
-            <div class="bento-card">
-                <span class="recipe-badge">Шаг 02 • Дыхание</span>
-                <h3 style="font-size: 20px; margin-bottom: 10px;">3D-раскрытие ребер</h3>
-                <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">Сядьте прямо, ладони на нижних ребрах. Сделайте глубокий вдох носом, расширяя ребра в стороны, задержите дыхание на 3 сек и сделайте медленный выдох. Повторите 10 раз.</p>
+
+            <!-- БЛОК РСЯ №3 -->
+            <div class="rsya-bento-frame">
+                <div id="yandex_rtb_lazy_3"></div>
+                <script>
+                window.yaContextCb.push(() => {
+                    Ya.Context.AdvManager.render({
+                        "blockId": "R-A-19181219-20",
+                        "renderTo": "yandex_rtb_lazy_3"
+                    })
+                })
+                </script>
             </div>
         </div>
     </div>
@@ -433,6 +465,24 @@
         <p class="footer-text-sub">ул. Коммунистическая, 67 • ИП Худяков Николай Сергеевич • ИНН 111801576622</p>
     </div>
 </footer>
+
+<!-- РЕКЛАМА FLOOR AD -->
+<script>
+window.yaContextCb.push(() => {
+    Ya.Context.AdvManager.render({
+        "blockId": "R-A-19181219-6",
+        "type": "floorAd",
+        "platform": "touch"
+    })
+})
+window.yaContextCb.push(() => {
+    Ya.Context.AdvManager.render({
+        "blockId": "R-A-19181219-7",
+        "type": "floorAd",
+        "platform": "desktop"
+    })
+})
+</script>
 
 <script>
     function toggleThemeInstant() {
@@ -475,20 +525,34 @@
         calculateLazyIndex();
     }
 
+    // ИСПРАВЛЕННАЯ ЛОГИКА ТЕСТА С ВЫБОРОМ РАЗНЫХ ВАРИАНТОВ
     function calculateLazyIndex() {
-        const morning = document.querySelector('input[name="morning_status"]:checked').value;
+        const morningInput = document.querySelector('input[name="morning_status"]:checked');
+        const postureInput = document.querySelector('input[name="body_posture"]:checked');
+        
+        const morning = morningInput ? morningInput.value : 'zombie';
+        const posture = postureInput ? postureInput.value : 'belly';
+        
         const titleEl = document.getElementById('calc-result-title');
         const statusEl = document.getElementById('calc-status');
         const textEl = document.getElementById('calc-text');
+        const photoSlot = document.getElementById('ai-photo-slot');
 
-        if (morning === 'zombie') {
+        if (morning === 'zombie' && posture === 'belly') {
             titleEl.innerText = "75%";
             statusEl.innerText = "Лимфатическое Болото";
-            textEl.innerText = "Критический застой жидкости из-за выключенного лимфо-насоса. Срочно нужен комплекс утренних микро-толчков.";
-        } else {
-            titleEl.innerText = "55%";
+            textEl.innerText = "Критический застой жидкости из-за выключенного лимфо-насоса! Лицо отекает, а энергия на нуле. Срочно нужен Шаг 01 утреннего пижамного комплекса.";
+            if(photoSlot) photoSlot.style.backgroundImage = "url('healthy-back.jpg')";
+        } else if (morning === 'stiff' || posture === 'neck') {
+            titleEl.innerText = "65%";
             statusEl.innerText = "Стеклянная Спина";
-            textEl.innerText = "Поясница и лопатки зажаты из-за статической перегрузки. Запустите деликатное утреннее потягивание.";
+            textEl.innerText = "Поясница и лопатки зажаты из-за статической перегрузки. Мозг буквально забыл, как расслаблять тело. Попробуйте кошачьи потягивания.";
+            if(photoSlot) photoSlot.style.backgroundImage = "url('philosophy.jpg')";
+        } else {
+            titleEl.innerText = "50%";
+            statusEl.innerText = "Офисный Аквариум";
+            textEl.innerText = "Умеренный уровень накопленной усталости. Регулярные короткие разминки помогут вернуть тонус без изнуряющего фитнеса.";
+            if(photoSlot) photoSlot.style.backgroundImage = "url('bg.jpg')";
         }
     }
 
