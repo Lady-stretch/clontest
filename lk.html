@@ -64,6 +64,7 @@
             --shadow: rgba(0, 0, 0, 0.6);
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             --success: #10B981;
+            --danger: #EF4444;
         }
 
         [data-theme="light"] {
@@ -79,6 +80,7 @@
             --header-bg: rgba(248, 247, 252, 0.9);
             --shadow: rgba(0, 0, 0, 0.05);
             --success: #059669;
+            --danger: #DC2626;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
@@ -94,6 +96,8 @@
             position: relative;
             -webkit-font-smoothing: antialiased;
             line-height: 1.6;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         h1, h2, h3, h4 { font-weight: 800; letter-spacing: -0.5px; }
@@ -130,15 +134,16 @@
             border-radius: 6px; border: 1px solid var(--border-color); background: var(--surface-color);
             cursor: pointer; transition: var(--transition); color: var(--text-main); text-transform: uppercase;
         }
-        .theme-toggle-btn:hover { border-color: var(--accent-color); color: var(--accent-color); }
+        .theme-toggle-btn:hover { border-color: var(--accent-color); color: var(--accent-color); transform: translateY(-1px); }
 
         .logout-link {
             font-size: 11px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700;
-            color: var(--text-muted); cursor: pointer; padding: 8px 12px; transition: var(--transition);
+            color: var(--text-muted); cursor: pointer; padding: 8px 14px; transition: var(--transition);
+            border-radius: 6px; border: 1px solid transparent;
         }
-        .logout-link:hover { color: #EF4444; }
+        .logout-link:hover { color: var(--danger); border-color: rgba(239, 68, 68, 0.2); background: rgba(239, 68, 68, 0.05); }
 
-        /* ВТОРОЙ ЭТАЖ ДЛЯ СМАРТФОНОВ (ЗОНА БОЛЬШОГО ПАЛЬЦА) */
+        /* ВТОРОЙ ЭТАЖ ДЛЯ МОБИЛЬНЫХ (ЗОНА БОЛЬШОГО ПАЛЬЦА) */
         .mobile-thumb-bar {
             display: none;
             width: 100%;
@@ -147,48 +152,51 @@
             border-top: 1px solid var(--border-color);
             gap: 10px;
         }
-        .mobile-thumb-bar .theme-toggle-btn { flex: 1; height: 42px; }
+        .mobile-thumb-bar .theme-toggle-btn { flex: 1; height: 42px; font-size: 10px; }
         .mobile-thumb-bar .btn-mobile-action { 
             flex: 2; height: 42px; display: flex; align-items: center; justify-content: center;
             background: var(--surface-color); border: 1px solid var(--border-color); color: var(--text-main);
             border-radius: 6px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;
+            cursor: pointer;
         }
+        .mobile-thumb-bar .btn-mobile-action:hover { border-color: var(--danger); color: var(--danger); }
 
         @media (max-width: 900px) {
             .desktop-actions { display: none; }
             .mobile-thumb-bar { display: flex; }
         }
 
-        /* КОНТЕЙНЕР */
+        /* ОСНОВНОЙ КОНТЕЙНЕР */
         .container {
-            max-width: 1200px; width: 100%; margin: 0 auto; padding: 40px 24px 80px;
+            max-width: 1200px; width: 100%; margin: 0 auto; padding: 35px 24px 80px;
         }
-        @media (max-width: 600px) { .container { padding: 25px 16px 60px; } }
+        @media (max-width: 600px) { .container { padding: 20px 16px 60px; } }
 
+        /* КНОПКИ И ПОЛЯ */
         .btn {
             display: inline-flex; align-items: center; justify-content: center;
             padding: 14px 24px; border: 1px solid var(--accent-color); color: #FFF;
             background: var(--accent-color); text-transform: uppercase; font-size: 11px; letter-spacing: 1px;
             cursor: pointer; transition: var(--transition); font-weight: 800; border-radius: 8px; width: 100%;
         }
-        .btn:hover { background: var(--accent-hover); transform: translateY(-1px); }
+        .btn:hover { background: var(--accent-hover); border-color: var(--accent-hover); transform: translateY(-1px); }
 
         .btn-lens {
             display: inline-flex; align-items: center; justify-content: center;
-            padding: 12px 20px; background: var(--surface-color); border: 1px solid var(--border-color);
+            padding: 10px 18px; background: var(--surface-color); border: 1px solid var(--border-color);
             color: var(--text-main); text-transform: uppercase; font-size: 11px; font-weight: 700;
-            border-radius: 8px; cursor: pointer; transition: var(--transition);
+            border-radius: 8px; cursor: pointer; transition: var(--transition); letter-spacing: 0.5px;
         }
-        .btn-lens:hover { border-color: var(--accent-color); color: var(--accent-color); }
+        .btn-lens:hover { border-color: var(--accent-color); color: var(--accent-color); transform: translateY(-1px); }
 
         .input-field {
             width: 100%; padding: 13px 16px; background: var(--bg-color);
             border: 1px solid var(--border-color); color: var(--text-main);
             border-radius: 8px; font-family: inherit; font-size: 14px; transition: var(--transition);
         }
-        .input-field:focus { border-color: var(--accent-color); }
+        .input-field:focus { border-color: var(--accent-color); background: var(--surface-hover); }
 
-        /* BENTO КАРТОЧКИ */
+        /* BENTO-КАРТОЧКИ */
         .bento-card {
             background: var(--surface-color); border: 1px solid var(--border-color);
             border-radius: 14px; padding: 30px; box-shadow: 0 15px 35px var(--shadow);
@@ -197,10 +205,10 @@
         .bento-card:hover { border-color: var(--accent-color); }
         @media (max-width: 600px) { .bento-card { padding: 22px 18px; } }
 
-        /* ЭКРАН АВТОРИЗАЦИИ */
+        /* ЭКРАН 1: АВТОРИЗАЦИЯ */
         #auth-view {
             display: flex; flex-direction: column; align-items: center; justify-content: center;
-            min-height: calc(100vh - 120px); text-align: center;
+            min-height: calc(100vh - 140px); text-align: center;
         }
         .auth-box {
             max-width: 440px; width: 100%;
@@ -218,7 +226,7 @@
             padding: 4px 10px; border-radius: 4px; border: 1px solid var(--border-color);
         }
 
-        .stat-badges { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
+        .stat-badges { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
         .days-badge {
             display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px;
             background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 8px;
@@ -239,17 +247,17 @@
         .module-tab {
             background: var(--surface-color); border: 1px solid var(--border-color);
             border-radius: 12px; padding: 20px 16px; cursor: pointer; text-align: center;
-            transition: var(--transition); opacity: 0.5;
+            transition: var(--transition); opacity: 0.55;
         }
         .module-tab.active {
             opacity: 1; border-color: var(--accent-color); background: var(--surface-hover);
-            box-shadow: 0 10px 25px var(--shadow);
+            box-shadow: 0 10px 25px var(--shadow); transform: translateY(-2px);
         }
         .module-tab h3 { font-size: 16px; font-weight: 800; margin-bottom: 4px; text-transform: uppercase; }
         .module-tab p { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
 
         .module-pane { display: none; }
-        .module-pane.active { display: block; animation: fadeIn 0.3s ease; }
+        .module-pane.active { display: block; animation: fadeIn 0.35s ease; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 
         /* НЕДЕЛИ И ДНИ */
@@ -279,11 +287,20 @@
 
         .affirmation-card {
             padding: 24px; border-left: 4px solid var(--accent-color); background: var(--bg-color);
-            border-radius: 8px; margin-bottom: 24px; font-style: italic; font-size: 18px;
+            border-radius: 8px; margin-bottom: 24px; font-style: italic; font-size: 17px;
             color: var(--text-main); line-height: 1.6; text-align: center;
         }
 
-        /* ЧЕК-ЛИСТ ТРЕНИРОВКИ */
+        /* АДАПТИВНЫЙ ВИДЕОПЛЕЕР 16:9 */
+        .video-container {
+            position: relative; width: 100%; aspect-ratio: 16 / 9; margin-bottom: 16px;
+            border-radius: 10px; overflow: hidden; border: 1px solid var(--border-color); background: #000;
+        }
+        .video-container iframe, .video-container video {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;
+        }
+
+        /* ЧЕК-ЛИСТ ТРЕНИРОВОК */
         .task-row {
             display: flex; align-items: center; gap: 14px; padding: 14px 18px; background: var(--bg-color);
             border: 1px solid var(--border-color); border-radius: 8px; margin-bottom: 10px; cursor: pointer;
@@ -297,14 +314,14 @@
             width: 20px; height: 20px; accent-color: var(--accent-color); cursor: pointer; flex-shrink: 0; pointer-events: none;
         }
 
-        /* ЗАМЕРЫ И ГРАФИК */
+        /* ЗАМЕРЫ И ДНЕВНИК ДИНАМИКИ */
         .diary-grid {
             display: grid; grid-template-columns: 1.5fr 1fr; gap: 24px; margin-top: 20px;
         }
         @media (max-width: 900px) { .diary-grid { grid-template-columns: 1fr; } }
 
         .chart-box {
-            position: relative; height: 240px; width: 100%; margin-bottom: 20px;
+            position: relative; height: 250px; width: 100%; margin-bottom: 20px;
         }
 
         .measurement-inputs {
@@ -325,11 +342,11 @@
         .photo-preview { display: none; width: 100%; height: 140px; object-fit: cover; border-radius: 8px; margin-top: 10px; border: 1px solid var(--accent-color); }
 
         .table-responsive {
-            max-height: 220px; overflow-y: auto; overflow-x: auto; border: 1px solid var(--border-color); border-radius: 8px;
+            max-height: 230px; overflow-y: auto; overflow-x: auto; border: 1px solid var(--border-color); border-radius: 8px;
         }
         .history-table { width: 100%; border-collapse: collapse; font-size: 13px; text-align: center; }
         .history-table th {
-            color: var(--accent-color); padding: 10px 8px; border-bottom: 1px solid var(--border-color);
+            color: var(--accent-color); padding: 11px 8px; border-bottom: 1px solid var(--border-color);
             text-transform: uppercase; font-size: 10px; letter-spacing: 1px; font-weight: 800; background: var(--bg-color);
         }
         .history-table td { padding: 10px 8px; border-bottom: 1px solid var(--border-color); font-weight: 600; }
@@ -337,7 +354,7 @@
 </head>
 <body oncontextmenu="return false;">
 
-<!-- ДВУХЭТАЖНАЯ ШАПКА -->
+<!-- ШАПКА ДВУХЭТАЖНАЯ -->
 <header id="lk-header" style="display: none;">
     <div class="header-top">
         <div class="logo-wrap" onclick="window.location.href='index.html'">
@@ -363,9 +380,9 @@
     <div class="bento-card auth-box">
         <span class="badge-tag">Закрытое пространство</span>
         <h2 style="font-size: 28px; margin-bottom: 8px;">Вход в клуб</h2>
-        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 30px;">Введите ваш Email, указанный при оформлении абонемента</p>
+        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 28px;">Введите ваш Email, указанный при оформлении доступа</p>
         
-        <input type="email" id="user-email" class="input-field" placeholder="Ваш Email" style="margin-bottom: 18px; text-align: center;">
+        <input type="email" id="user-email" class="input-field" placeholder="Ваш Email" style="margin-bottom: 16px; text-align: center;">
         <button class="btn" id="login-btn" onclick="login()">Получить доступ →</button>
     </div>
 </div>
@@ -378,7 +395,7 @@
         <div class="bento-card">
             <span class="badge-tag">Карта резидента</span>
             <h1 style="font-size: 30px; margin-bottom: 6px;">Привет, <span id="user-name-display" style="color: var(--accent-color);">Резидент</span>!</h1>
-            <p style="color: var(--text-muted); font-size: 14px; line-height: 1.6;">Продолжайте регулярную практику шаг за шагом. Ваше тело преображается с каждым днем.</p>
+            <p style="color: var(--text-muted); font-size: 14px; line-height: 1.6;">Продолжайте регулярную практику шаг за шагом. Ваше тело преображается с каждым днём.</p>
             
             <div class="stat-badges">
                 <div class="days-badge">Доступно дней: <span id="days-left">0</span></div>
@@ -476,7 +493,7 @@
         </div>
     </div>
 
-    <!-- ДНЕВНИК ПРОГРЕССА И ЗАМЕРЫ (ОТКРЫТ ДЛЯ ВСЕХ) -->
+    <!-- ДНЕВНИК ПРОГРЕССА И ЗАМЕРЫ -->
     <div class="bento-card" id="prog-section" style="margin-top: 35px; display: none;">
         <span class="badge-tag">Трекер динамики</span>
         <h2 style="font-size: 26px; margin-bottom: 4px;">Дневник прогресса</h2>
@@ -516,13 +533,13 @@
                         <span style="font-size: 22px; display: block; margin-bottom: 4px;">📸</span>
                         <span style="font-size: 11px; font-weight: 700; color: var(--text-muted);">Фото «ДО»</span>
                         <input type="file" accept="image/*" onchange="uploadPhoto(this, 'before')">
-                        <img id="preview-before" class="photo-preview">
+                        <img id="preview-before" class="photo-preview" alt="Фото ДО">
                     </div>
                     <div class="photo-slot" id="up-after">
                         <span style="font-size: 22px; display: block; margin-bottom: 4px;">✨</span>
                         <span style="font-size: 11px; font-weight: 700; color: var(--accent-color);">Фото «ПОСЛЕ»<br>(+7 дней)</span>
                         <input type="file" accept="image/*" onchange="uploadPhoto(this, 'after')">
-                        <img id="preview-after" class="photo-preview">
+                        <img id="preview-after" class="photo-preview" alt="Фото ПОСЛЕ">
                     </div>
                 </div>
 
@@ -549,7 +566,7 @@
 
 <!-- СКРИПТЫ СИСТЕМЫ ЛИЧНОГО КАБИНЕТА -->
 <script>
-    // ПЕРЕКЛЮЧЕНИЕ ТЕМЫ В 1 КЛИК
+    // ПЕРЕКЛЮЧЕНИЕ ТЕМЫ В 1 КЛИК БЕЗ ПОПАПА
     function toggleThemeInstant() {
         const root = document.documentElement;
         const current = root.getAttribute('data-theme') || 'dark';
@@ -585,6 +602,11 @@
             login(savedEmail);
         }
         loadDB();
+
+        // Авторизация по клавише Enter
+        document.getElementById('user-email').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') login();
+        });
     });
 
     function logout() {
@@ -611,16 +633,19 @@
 
     function getVideoHTML(url) {
         if(!url) return '';
+        let src = '';
         if(url.includes('youtube.com') || url.includes('youtu.be')) {
             let vid = url.split('v=')[1] || url.split('youtu.be/')[1];
             if(vid) vid = vid.split('&')[0];
-            return `<iframe style="width:100%; height:320px; margin-bottom:15px; border-radius:10px; border:1px solid var(--border-color);" src="https://www.youtube.com/embed/${vid}" frameborder="0" allowfullscreen></iframe>`;
+            src = `https://www.youtube.com/embed/${vid}`;
+            return `<div class="video-container"><iframe src="${src}" allowfullscreen></iframe></div>`;
         }
         if(url.includes('vimeo.com')) {
             let vid = url.split('vimeo.com/')[1];
-            return `<iframe style="width:100%; height:320px; margin-bottom:15px; border-radius:10px; border:1px solid var(--border-color);" src="https://player.vimeo.com/video/${vid}" frameborder="0" allowfullscreen></iframe>`;
+            src = `https://player.vimeo.com/video/${vid}`;
+            return `<div class="video-container"><iframe src="${src}" allowfullscreen></iframe></div>`;
         }
-        return `<video controls style="margin-bottom:15px; width:100%; border-radius:10px; border:1px solid var(--border-color); max-height:360px;"><source src="${url}"></video>`;
+        return `<div class="video-container"><video controls playsinline><source src="${url}"></video></div>`;
     }
 
     async function login(manualEmail = null) {
@@ -842,7 +867,7 @@
             if(b) {
                 h = `<h3 style="font-size:24px; margin-bottom:14px; color:var(--text-main);">База знаний детокса</h3>`;
                 h += `<h4 style="color:var(--accent-color); margin:15px 0 8px;">Основные принципы:</h4><ul style="font-size:13.5px; padding-left:20px; line-height:1.7;">${b.detox_rules.map(r => `<li style="margin-bottom:6px;">${r}</li>`).join('')}</ul>`;
-                h += `<div style="background:rgba(239,68,68,0.08); border:1px solid rgba(239,68,68,0.2); border-radius:8px; padding:14px; margin-top:16px; color:#EF4444; font-size:13px;"><b>Исключить из рациона:</b><br>${b.forbidden_products.join(', ')}</div>`;
+                h += `<div style="background:rgba(239,68,68,0.08); border:1px solid rgba(239,68,68,0.2); border-radius:8px; padding:14px; margin-top:16px; color:var(--danger); font-size:13px;"><b>Исключить из рациона:</b><br>${b.forbidden_products.join(', ')}</div>`;
                 h += `<h4 style="color:var(--accent-color); margin:18px 0 8px;">Стратегия выхода:</h4><ul style="font-size:13.5px; padding-left:20px; line-height:1.7;">${b.detox_exit_strategy.map(r => `<li style="margin-bottom:6px;">${r}</li>`).join('')}</ul>`;
             }
         } else {
@@ -1055,7 +1080,7 @@
                 responsive: true, 
                 maintainAspectRatio: false,
                 plugins: { 
-                    legend: { display: false },
+                    legend: { display: false }, 
                     tooltip: { 
                         backgroundColor: isLight ? '#FFFFFF' : '#12101B', 
                         titleColor: primaryColor, 
@@ -1063,7 +1088,7 @@
                         borderColor: isLight ? 'rgba(91,52,148,0.2)' : 'rgba(108,62,184,0.3)', 
                         borderWidth: 1, padding: 10, displayColors: false, 
                         callbacks: { label: function(context) { return context.parsed.y + ' кг'; } } 
-                    }
+                    } 
                 }, 
                 scales: { 
                     y: { grid: { color: gridColor }, suggestedMin: USER.target_weight ? USER.target_weight - 2 : undefined },
