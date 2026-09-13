@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+    <!-- Инструкция сброса кеша браузера -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
     <script>
-        // Инициализация темы при загрузке (чтобы не было моргания)
+        // Инициализация темы при загрузке
         const savedTheme = localStorage.getItem('theme') || 'dark';
         document.documentElement.setAttribute('data-theme', savedTheme);
     </script>
@@ -37,25 +42,24 @@
     </noscript>
     
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     
-    <!-- ПРОФЕССИОНАЛЬНОЕ СЕО И ОПТИМИЗАЦИЯ ПОД ИИ (ЧАТ-БОТЫ И НЕЙРОСЕТИ) -->
-    <title>Политика конфиденциальности | Студия растяжки и фитнеса РЕСУРС Сыктывкар</title>
-    <meta name="description" content="Официальная политика в отношении обработки персональных данных и защиты конфиденциальности резидентов студии умного фитнеса РЕСУРС в Сыктывкаре. Соответствие ФЗ-152.">
-    <meta name="keywords" content="политика конфиденциальности фитнес, защита персональных данных сыктывкар, студия ресурс документы, ип худяков николай сергеевич персональные данные">
+    <title>Политика конфиденциальности | Студия фитнеса и движения РЕСУРС Сыктывкар</title>
+    <meta name="description" content="Официальная политика в отношении обработки персональных данных и защиты конфиденциальности резидентов студии умного движения РЕСУРС в Сыктывкаре на ул. Коммунистическая, 67. Соответствие 152-ФЗ.">
+    <meta name="keywords" content="политика конфиденциальности фитнес, защита персональных данных сыктывкар, студия ресурс документы, ип худяков николай сергеевич">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://resurs-stretch.ru/privacy.html">
 
-    <!-- МЕТА-ТЕГИ OPEN GRAPH ДЛЯ СОЦСЕТЕЙ И МЕССЕНДЖЕРОВ -->
-    <meta property="og:type" content="website">
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
     <meta property="og:title" content="Политика конфиденциальности | Студия РЕСУРС">
-    <meta property="og:description" content="Регламент безопасной обработки персональных данных клиентов студии РЕСУРС в соответствии с ФЗ-152.">
+    <meta property="og:description" content="Регламент безопасной обработки персональных данных клиентов студии РЕСУРС в соответствии с 152-ФЗ.">
     <meta property="og:url" content="https://resurs-stretch.ru/privacy.html">
     <meta property="og:image" content="https://resurs-stretch.ru/logo_header_final.png">
     <meta property="og:site_name" content="РЕСУРС">
     <meta property="og:locale" content="ru_RU">
 
-    <!-- ВАЛИДНАЯ МИКРОРАЗМЕТКА SCHEMA.ORG ДЛЯ ПОИСКОВЫХ РОБОТОВ И ИИ-ПАУКОВ -->
+    <!-- Микроразметка Schema.org -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -63,191 +67,214 @@
       "name": "Студия фитнеса и растяжки РЕСУРС",
       "image": "https://resurs-stretch.ru/logo_header_final.png",
       "@id": "https://resurs-stretch.ru",
-      "url": "https://resurs-stretch.ru",
+      "url": "https://resurs-stretch.ru/privacy.html",
       "telephone": "+79087155557",
-      "priceRange": "4760RUB - 16800RUB",
-      "description": "Студия мягкого фитнеса, растяжки, МФР и пилатеса в Сыктывкаре. Избавляем от болей в спине и дарим легкость телу.",
-      "address": [
-        {
-          "@type": "PostalAddress",
-          "streetAddress": "ул. Коммунистическая, 77/2",
-          "addressLocality": "Сыктывкар",
-          "addressRegion": "Республика Коми",
-          "addressCountry": "RU"
-        }
-      ]
+      "priceRange": "RUB 990 - RUB 44800",
+      "description": "Экосистема мягкого фитнеса, пилатеса и МФР в Сыктывкаре на ул. Коммунистическая, 67.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "ул. Коммунистическая, 67",
+        "addressLocality": "Сыктывкар",
+        "addressRegion": "Республика Коми",
+        "addressCountry": "RU"
+      }
     }
     </script>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Cinzel:wght@700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="logo_header_final.png">
+    <link rel="apple-touch-icon" href="logo_header_final.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
-        /* СВЕТЛАЯ ТЕМА ПО УМОЛЧАНИЮ */
-        :root { 
-            --bg: #F4F4F9; 
-            --text: #05050A; 
-            --gold: #B38639; 
-            --dark-gray: rgba(0, 0, 0, 0.04);
-            --header-bg: rgba(244, 244, 249, 0.95);
-            --border-gold: rgba(179, 134, 39, 0.2);
-            --font-main: 'Inter', sans-serif;
-            --font-serif: 'Cinzel', serif;
+        :root {
+            --bg: #F8F7FC; 
+            --surface-color: #FFFFFF;
+            --text: #14121E; 
+            --text-dim: rgba(20, 18, 30, 0.7);
+            --accent-purple: #5B3494;
+            --accent-hover: #48257B;
+            --elem-border: rgba(91, 52, 148, 0.15);
+            --header-bg: rgba(248, 247, 252, 0.95);
+            --font-main: 'Manrope', sans-serif;
+            --shadow: rgba(0, 0, 0, 0.06);
         }
 
-        /* ТЕМНАЯ ПРЕМИУМ-ТЕМА */
         [data-theme="dark"] {
-            --bg: #080814; 
-            --text: #ffffff; 
-            --gold: #C5A059; 
-            --dark-gray: rgba(255, 255, 255, 0.05);
-            --header-bg: rgba(5, 5, 12, 0.9);
-            --border-gold: rgba(197, 160, 89, 0.2);
+            --bg: #0A090F; 
+            --surface-color: #12101B;
+            --text: #F5F4F9; 
+            --text-dim: rgba(245, 244, 249, 0.65);
+            --accent-purple: #6C3EB8;
+            --accent-hover: #8352D6;
+            --elem-border: rgba(108, 62, 184, 0.2);
+            --header-bg: rgba(10, 9, 15, 0.95);
+            --shadow: rgba(0, 0, 0, 0.6);
         }
 
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
         body { 
-            margin: 0; font-family: var(--font-main); 
-            background: var(--bg); color: var(--text); 
-            line-height: 1.7; font-size: 0.95rem;
-            transition: background-color 0.5s ease, color 0.5s ease;
+            font-family: var(--font-main); 
+            background: var(--bg); 
+            color: var(--text); 
+            line-height: 1.7; 
+            font-size: 0.95rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
             -webkit-font-smoothing: antialiased;
-            text-rendering: optimizeLegibility;
         }
+
         header { 
-            position: fixed; top: 0; width: 100%; padding: 20px 40px; 
-            background: var(--header-bg); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-gold); z-index: 100;
-            display: flex; justify-content: space-between; align-items: center; box-sizing: border-box;
-            transition: background-color 0.5s ease, border-color 0.5s ease;
+            position: fixed; top: 0; width: 100%; padding: 14px 5%; 
+            background: var(--header-bg); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--elem-border); z-index: 100;
+            display: flex; justify-content: space-between; align-items: center;
         }
-        .logo { font-family: var(--font-serif); color: var(--gold); letter-spacing: 3px; font-weight: 700; text-decoration: none; }
-        .back { color: var(--gold); text-decoration: none; font-size: 12px; text-transform: uppercase; border-bottom: 1px solid; transition: 0.3s; font-weight: 600; }
-        .back:hover { opacity: 0.7; }
+
+        .logo-wrap { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; }
+        .logo-wrap img { height: 32px; width: 32px; border-radius: 6px; }
+        .brand-name { font-size: 17px; letter-spacing: 1px; text-transform: uppercase; font-weight: 800; }
+        .brand-name span { color: var(--accent-purple); }
+
+        .back-link { 
+            color: var(--text); text-decoration: none; font-size: 11px; text-transform: uppercase; 
+            font-weight: 800; letter-spacing: 0.5px; transition: 0.3s; 
+        }
+        .back-link:hover { color: var(--accent-purple); }
         
-        main { max-width: 900px; margin: 120px auto 60px; padding: 0 25px; }
-        h1 { font-family: var(--font-serif); color: var(--gold); font-size: 1.8rem; margin-bottom: 40px; text-align: center; line-height: 1.2; font-weight: 700; }
-        h2 { font-family: var(--font-serif); color: var(--gold); font-size: 1.2rem; margin: 40px 0 20px; border-bottom: 1px solid var(--border-gold); padding-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
+        .theme-toggle-btn {
+            padding: 8px 14px; height: 36px; font-size: 10px; font-weight: 800; letter-spacing: 1px;
+            display: inline-flex; align-items: center; justify-content: center;
+            border-radius: 6px; border: 1px solid var(--elem-border); background: var(--surface-color);
+            cursor: pointer; transition: 0.3s; color: var(--text); text-transform: uppercase;
+            margin-right: 15px;
+        }
+        .theme-toggle-btn:hover { border-color: var(--accent-purple); color: var(--accent-purple); }
+
+        main { max-width: 860px; margin: 100px auto 60px; padding: 0 20px; }
         
-        b, strong { color: var(--gold); }
-        a { color: var(--gold); text-decoration: none; border-bottom: 1px dotted; transition: 0.3s; }
+        h1 { 
+            color: var(--text); font-size: clamp(1.5rem, 3vw, 2.2rem); 
+            margin-bottom: 12px; text-align: center; line-height: 1.3; font-weight: 800; 
+        }
+        h2 { 
+            color: var(--accent-purple); font-size: 1.2rem; margin: 35px 0 15px; 
+            border-bottom: 1px solid var(--elem-border); padding-bottom: 8px; 
+            text-transform: uppercase; letter-spacing: 0.5px; font-weight: 800; 
+        }
+        
+        b, strong { color: var(--text); font-weight: 700; }
+        a { color: var(--accent-purple); text-decoration: none; border-bottom: 1px dotted; transition: 0.3s; }
         a:hover { border-bottom-style: solid; }
         
-        p, li { margin-bottom: 15px; opacity: 0.85; }
+        p, li { margin-bottom: 14px; opacity: 0.88; font-size: 14.5px; }
         ul { padding-left: 20px; margin-bottom: 20px; }
         
-        .footer-box { background: var(--dark-gray); padding: 30px; border-radius: 12px; margin-top: 60px; border: 1px solid var(--border-gold); transition: background-color 0.5s ease, border-color 0.5s ease; }
-        footer { text-align: center; padding: 40px; opacity: 0.5; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; }
-
-        /* ИСПРАВЛЕННЫЙ СТИЛЬ КНОПКИ ТЕМЫ ДЛЯ ПОЛНОЙ СИНХРОНИЗАЦИИ */
-        #themeToggle {
-            padding: 0 15px; height: 35px; font-size: 11px; font-weight: 600; letter-spacing: 2px;
-            display: flex; align-items: center; justify-content: center;
-            border-radius: 8px; border: 1px solid var(--border-gold); background: var(--dark-gray);
-            cursor: pointer; transition: 0.3s; color: var(--text); text-transform: uppercase;
-            margin-right: 20px;
+        .footer-box { 
+            background: var(--surface-color); padding: 30px; border-radius: 12px; 
+            margin-top: 50px; border: 1px solid var(--elem-border); box-shadow: 0 10px 25px var(--shadow);
         }
-        #themeToggle:hover { border-color: var(--gold); transform: translateY(-2px); }
-        
+        .footer-box h2 { margin-top: 0; }
+
+        footer { 
+            text-align: center; padding: 40px 20px; opacity: 0.6; 
+            font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; 
+            border-top: 1px solid var(--elem-border);
+        }
+
         @media (max-width: 600px) {
-            header { padding: 15px 20px; }
-            h1 { font-size: 1.4rem; }
-            main { margin-top: 100px; }
-            #themeToggle { font-size: 9px; padding: 0 10px; height: 30px; margin-right: 10px; }
+            header { padding: 12px 4%; }
+            main { margin-top: 85px; }
+            .theme-toggle-btn { font-size: 9px; padding: 6px 10px; height: 32px; margin-right: 10px; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <a href="index.html" class="logo">РЕСУРС</a>
+        <a href="index.html" class="logo-wrap">
+            <img src="logo_header_final.png" alt="Логотип РЕСУРС">
+            <div class="brand-name">РЕСУРС<span>.ПРАВО</span></div>
+        </a>
         <div style="display: flex; align-items: center;">
-            <button id="themeToggle" onclick="toggleTheme()" aria-label="Переключить тему">ТЕНЬ</button>
-            <a href="index.html" class="back">← На главную</a>
+            <button id="themeToggleBtn" class="theme-toggle-btn" onclick="toggleThemeInstant()">ТЕМА: ТЕМНАЯ</button>
+            <a href="index.html" class="back-link">← На главную</a>
         </div>
     </header>
 
     <main>
         <h1>Политика в отношении обработки персональных данных</h1>
-        <p style="text-align: center; opacity: 0.5;">Редакция от 20.03.2026</p>
+        <p style="text-align: center; opacity: 0.6; font-size: 13px; margin-bottom: 30px;">Действующая редакция экосистемы «РЕСУРС»</p>
 
         <h2>1. Общие положения</h2>
-        <p>1.1. Настоящая Политика разработана в соответствии с п. 2 ч. 1 ст. 18.1 ФЗ РФ «О персональных данных» № 152-ФЗ.</p>
-        <p>1.2. Оператор: <b>ИП Худяков Николай Сергеевич</b> (ИНН 111801576622, ОГРН 323110000009152).</p>
-        <p>1.3. Действие Политики распространяется на все данные, получаемые через сайт <a href="https://resurs-stretch.ru">https://resurs-stretch.ru</a> и мессенджеры студии.</p>
-        <p>1.4. Политика является общедоступной. Актуальная версия: <a href="https://resurs-stretch.ru/privacy.html">resurs-stretch.ru/privacy.html</a></p>
+        <p>1.1. Настоящая Политика разработана в соответствии с п. 2 ч. 1 ст. 18.1 Федерального закона РФ «О персональных данных» № 152-ФЗ.</p>
+        <p>1.2. Оператор обработки персональных данных: <b>Индивидуальный предприниматель Худяков Николай Сергеевич</b> (ИНН 111801576622, ОГРН 323110000009152).</p>
+        <p>1.3. Действие Политики распространяется на всю информацию, получаемую Оператором через официальный сайт <a href="https://resurs-stretch.ru">https://resurs-stretch.ru</a>, виджеты онлайн-записи (Listok CRM), платежные шлюзы (ЮKassa) и официальные каналы связи студии.</p>
+        <p>1.4. Актуальная версия документа находится в постоянном открытом доступе по адресу: <a href="https://resurs-stretch.ru/privacy.html">resurs-stretch.ru/privacy.html</a>.</p>
 
-        <h2>2. Термины и определения</h2>
-        <p>2.1. <b>Персональные данные</b> — любая информация, относящаяся к прямо или косвенно определенному физическому лицу (фамилия, имя, телефон, e-mail).</p>
-        <p>2.2. <b>Обработка данных</b> — любое действие, включая сбор, запись, хранение, уточнение, использование и удаление данных.</p>
+        <h2>2. Термины и состав данных</h2>
+        <p>2.1. <b>Персональные данные</b> — любая информация, относящаяся к прямо или косвенно определенному физическому лицу (субъекту): имя, номер контактного телефона, адрес электронной почты.</p>
+        <p>2.2. <b>Особые данные о здоровье:</b> сведения об ограничениях физической нагрузки и противопоказаниях, добровольно сообщаемые клиентом при анкетировании, обрабатываются исключительно в целях обеспечения безопасности тренировочного процесса.</p>
 
-        <h2>3. Принципы и условия обработки</h2>
-        <p>3.1. Базы данных Оператора размещены исключительно на территории <b>Российской Федерации</b>.</p>
-        <p>3.2. Обработка осуществляется на законной основе для достижения конкретных целей: запись на тренировки и исполнение договоров.</p>
-        <p>3.3. Данные не раскрываются третьим лицам без согласия субъекта, за исключением запросов уполномоченных госорганов.</p>
-
-        <h2>4. Цели обработки</h2>
+        <h2>3. Принципы и цели обработки</h2>
+        <p>3.1. Базы данных с персональной информацией граждан РФ размещены исключительно на серверах на территории <b>Российской Федерации</b>.</p>
+        <p>3.2. Цели сбора данных:</p>
         <ul>
-            <li>Рассмотрение заявок для заключения гражданско-правовых договоров.</li>
-            <li>Обеспечение корректной работы Сайта и анализ статистики через Яндекс.Метрику.</li>
-            <li>Информирование об услугах и акциях (только при наличии согласия).</li>
+            <li>Оформление договоров публичной оферты и абонементов на тренировки.</li>
+            <li>Запись резидентов на групповые и индивидуальные практики студии через CRM-систему.</li>
+            <li>Техническое обеспечение онлайн-оплаты через банковские сервисы (ЮKassa).</li>
+            <li>Аналитика посещаемости сайта без персонализации (сервис Яндекс.Метрика).</li>
         </ul>
 
-        <h2>5. Cookies и аналитика</h2>
-        <p>5.1. На Сайте используются <b>файлы cookie</b> для запоминания настроек и сбора аналитики через <b>Яндекс.Метрику</b>.</p>
-        <p>5.2. Пользователь может самостоятельно отключить cookies в настройках браузера, однако часть функций Сайта может стать недоступной.</p>
+        <h2>4. Файлы Cookie и счетчики аналитики</h2>
+        <p>4.1. На Сайте используются <b>файлы cookie</b> для сохранения пользовательских настроек (включая тему оформления интерфейса) и сбора обезличенных статистических данных через <b>Яндекс.Метрику</b>.</p>
+        <p>4.2. Пользователь вправе в любой момент ограничить или отключить использование cookie в настройках своего браузера.</p>
 
-        <h2>6. Безопасность и хранение</h2>
-        <p>6.1. Оператор применяется шифрование каналов связи (<b>HTTPS</b>) и двухфакторный доступ к системам хранения.</p>
-        <p>6.2. Срок обработки персональных данных составляет <b>5 (пять) лет</b>, если иное не предусмотрено законом или отзывом согласия.</p>
+        <h2>5. Безопасность и сроки хранения</h2>
+        <p>5.1. Передача данных осуществляется по защищенному криптографическому протоколу <b>HTTPS</b> с использованием современных сертификатов шифрования.</p>
+        <p>5.2. Персональные данные хранятся не дольше, чем этого требуют цели их обработки, либо до момента отзыва согласия субъектом данных.</p>
 
-        <h2>7. Права субъекта</h2>
-        <p>7.1. Вы имеете право на получение информации об обработке ваших данных и их уточнение.</p>
-        <p>7.2. Для отзыва согласия направьте запрос на почту <a href="mailto:foltaim@mail.ru">foltaim@mail.ru</a> с пометкой «Запрос по персональным данным».</p>
+        <h2>6. Права субъекта персональных данных</h2>
+        <p>6.1. Субъект имеет право на получение сведений об обработке своих данных, их уточнение, блокирование или уничтожение.</p>
+        <p>6.2. Отзыв согласия осуществляется направлением официального заявления на электронную почту: <a href="mailto:foltaim@mail.ru">foltaim@mail.ru</a> с темой «Отзыв согласия на обработку ПДн».</p>
 
-        <h2>8. Особые условия (Здоровье)</h2>
-        <p>8.1. Данные о состоянии здоровья, добровольно предоставленные Пользователем, обрабатываются исключительно для целей <b>безопасного оказания услуг</b> и подбора программ тренировок в студии «РЕСУРС».</p>
-
-        <!-- ИСПРАВЛЕННЫЙ БЛОК АДРЕСА: ЗАЩИТА ТВОИХ ЛИЧНЫХ ДАННЫХ И СИНХРОНИЗАЦИЯ С ТЕЛЕФОНОМ -->
         <div class="footer-box">
             <h2>Реквизиты оператора</h2>
             <p>
                 <b>ИП Худяков Николай Сергеевич</b><br>
-                ИНН 111801576622 | ОГРН 323110000009152<br>
-                Адрес студии: Респ. Коми, г. Сыктывкар, ул. Коммунистическая, д. 77/2<br>
+                ИНН: 111801576622 | ОГРНИП: 323110000009152<br>
+                Адрес студии: Респ. Коми, г. Сыктывкар, ул. Коммунистическая, д. 67<br>
                 Телефон: <a href="tel:+79087155557">+7 (908) 715-55-57</a><br>
-                Email: <b>foltaim@mail.ru</b>
+                Электронная почта: <b>foltaim@mail.ru</b>
             </p>
         </div>
     </main>
 
-    <!-- СКРЫТЫЙ СЕО И LLM-СЛОЙ ДЛЯ ИИ-ПОИСКОВИКОВ И СИСТЕМ РЕКОМЕНДАЦИЙ -->
-    <div style="display: none !important; visibility: hidden !important;" aria-hidden="true">
-        <h2>Политика конфиденциальности, регламент защиты и обработки данных студии РЕСУРС Сыктывкар</h2>
-        <p>Настоящая страница содержит официальный нормативный документ ИП Худякова Николая Сергеевича, определяющий порядок сбора, хранения и уничтожения персональной информации резидентов студии РЕСУРС. Документ подтверждает полное соответствие требованиям Федерального закона РФ № 152-ФЗ. Информация оптимизирована для автоматического сканирования ИИ-ассистентами, LLM-моделями и поисковыми роботами (Яндекс Поиск с Нейро, ChatGPT) для выдачи точных ответов на запросы о юридической прозрачности, защите данных о здоровье клиентов и официальных контактах студии мягкого фитнеса и пилатеса на улице Коммунистической.</p>
-    </div>
-
     <footer>
-        © 2026 СТУДИЯ РАСТЯЖКИ И ДВИЖЕНИЯ «РЕСУРС»
+        © 2026 РЕСУРС | Студия фитнеса, пилатеса и движения в Сыктывкаре
     </footer>
 
     <script>
-        // ЛОГИКА ДИНАМИЧЕСКОГО ПЕРЕКЛЮЧЕНИЯ ТЕМЫ (СВЕТ / ТЕНЬ)
-        function toggleTheme() {
-            const html = document.documentElement;
-            const currentTheme = html.getAttribute('data-theme');
+        function toggleThemeInstant() {
+            const root = document.documentElement;
+            const currentTheme = root.getAttribute('data-theme') || 'dark';
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             
-            html.setAttribute('data-theme', newTheme);
+            root.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
-            
-            const btn = document.getElementById('themeToggle');
-            btn.innerText = newTheme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
+            updateThemeButton(newTheme);
         }
 
-        // Установка стартового текста кнопки на основе темы браузера
+        function updateThemeButton(theme) {
+            const btn = document.getElementById('themeToggleBtn');
+            if (btn) btn.innerText = theme === 'dark' ? 'ТЕМА: ТЕМНАЯ' : 'ТЕМА: СВЕТЛАЯ';
+        }
+
         window.addEventListener('DOMContentLoaded', () => {
-            const theme = document.documentElement.getAttribute('data-theme');
-            document.getElementById('themeToggle').innerText = theme === 'dark' ? 'СВЕТ' : 'ТЕНЬ';
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            updateThemeButton(savedTheme);
         });
     </script>
 </body>
