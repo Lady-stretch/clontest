@@ -441,7 +441,7 @@
                 </div>
             </div>
 
-            <!-- МАРКЕТИНГОВАЯ КНОПКА ЗАПИСИ К ВЕРЕ (ОБНОВЛЕНО 4 ЗАНЯТИЯ ЗА 990₽) -->
+            <!-- МАРКЕТИНГОВАЯ КНОПКА ЗАПИСИ К ВЕРЕ (БЕЗОПАСНЫЙ ДЕПЛИНК + 4 ЗАНЯТИЯ ЗА 990₽) -->
             <div class="bento-card span-3" style="background: var(--surface-hover); border: 1px solid var(--accent-purple); text-align: center; padding: 40px 30px;">
                 <span class="recipe-badge">Плоский живот в Сыктывкаре</span>
                 <h3 style="font-size: 24px; margin-bottom: 14px;">Соберите мышечный корсет изнутри по законам анатомии</h3>
@@ -449,7 +449,7 @@
                     Заберите ваш персональный пакет тест-драйва у Веры в сообщениях сообщества ВК. Начните глубокие дыхательные практики и Пилатес в уютном, камерном формате на ул. Коммунистическая, 67.
                 </p>
                 <div style="max-width: 450px; margin: 0 auto;">
-                    <a id="vk-link-btn" href="https://vk.me/resurs_syktyvkar" target="_blank" class="btn-marketing">Записаться на тест-драйв: 4 занятия за 990₽ на месяц</a>
+                    <a id="vk-link-btn" href="https://vk.me/resurs_syktyvkar?ref=belly&message=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%9F%D1%80%D0%BE%D1%88%D0%BB%D0%B0%20%D1%82%D0%B5%D1%81%D1%82%20%D0%B6%D0%B8%D0%B2%D0%BE%D1%82%D0%B0.%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%82%D0%B5%D1%81%D1%82-%D0%B4%D1%80%D0%B0%D0%B9%D0%B2%204%20%D0%B7%D0%B0%D0%BD%D1%8F%D1%82%D0%B8%D1%8F%20%D0%B7%D0%B0%20990%D1%80" target="_blank" class="btn-marketing">Записаться на тест-драйв: 4 занятия за 990₽ на месяц</a>
                 </div>
             </div>
 
@@ -573,7 +573,7 @@
                     «Мои прекрасные девочки, пожалуйста, перестаньте мучить себя жесткими ограничениями в еде и бесконечным качанием пресса через боль! Выпирающий низ живота — это не признак лени, это крик вашего тела о нарушении осанки и выключении глубоких стабилизаторов кора. Обычные скручивания больших залов только расширяют талию и перегружают вашу уставшую шею. Мы в студии "РЕСУРС" на Коммунистической подход к женской грации ведем научно. Наша программа Пилатеса и умного движения — это деликатная утяжка вашего силуэта изнутри. Мы вернем кости таза в идеальную природную нейтраль, освободим зажатую поясницу и принудительно разбудим поперечную мышцу живота через глубокое латеральное дыхание. Вы проснетесь легкой, собранной, с красивой линией талии и летящей осанкой. Забирайте ваш пакет тест-драйва у Веры, начните любить свое тело вдумчиво!»
                 </p>
                 <div style="max-width: 450px;">
-                    <a id="vk-link-recipe" href="https://vk.me/resurs_syktyvkar" target="_blank" class="btn-marketing btn-green-rule">Записаться на тест-драйв: 4 занятия за 990₽ на месяц</a>
+                    <a id="vk-link-recipe" href="https://vk.me/resurs_syktyvkar?ref=belly&message=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%9F%D1%80%D0%BE%D1%88%D0%BB%D0%B0%20%D1%82%D0%B5%D1%81%D1%82%20%D0%B6%D0%B8%D0%B2%D0%BE%D1%82%D0%B0.%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%82%D0%B5%D1%81%D1%82-%D0%B4%D1%80%D0%B0%D0%B9%D0%B2%204%20%D0%B7%D0%B0%D0%BD%D1%8F%D1%82%D0%B8%D1%8F%20%D0%B7%D0%B0%20990%D1%80" target="_blank" class="btn-marketing btn-green-rule">Записаться на тест-драйв: 4 занятия за 990₽ на месяц</a>
                 </div>
             </div>
 
@@ -692,13 +692,14 @@
         scoreBox.style.transform = 'scale(1.02)';
         setTimeout(() => { scoreBox.style.transform = 'scale(1)'; }, 150);
 
-        // БЕЗОШИБОЧНАЯ ПРЯМАЯ ССЫЛКА НА ДИАЛОГ С СООБЩЕСТВОМ В ВК (БЕЗ СБОЕВ БРАУЗЕРА)
-        const finalVkLink = "https://vk.me/resurs_syktyvkar";
+        // БЕЗОПАСНЫЙ СТАБИЛЬНЫЙ ДЕПЛИНК В СООБЩЕСТВО ВК
+        const shortMsg = encodeURIComponent("Здравствуйте! Прошла тест живота. Хочу тест-драйв 4 занятия за 990р");
+        const safeLink = "https://vk.me/resurs_syktyvkar?ref=belly&message=" + shortMsg;
 
         const btn1 = document.getElementById('vk-link-btn');
         const btn2 = document.getElementById('vk-link-recipe');
-        if (btn1) btn1.setAttribute('href', finalVkLink);
-        if (btn2) btn2.setAttribute('href', finalVkLink);
+        if (btn1) btn1.setAttribute('href', safeLink);
+        if (btn2) btn2.setAttribute('href', safeLink);
 
         const calcData = { belly, lordosis, press, bellyIndex };
         localStorage.setItem('flat_belly_data', JSON.stringify(calcData));
