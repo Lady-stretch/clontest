@@ -293,6 +293,153 @@
         }
         .viral-share-text { text-align: left; font-size: 13px; font-weight: 600; }
 
+        /* ИНТЕРАКТИВНЫЙ ГАДЖЕТ САМОДИАГНОСТИКИ */
+        .diagnostic-card {
+            background: var(--surface-color);
+            border: 1px solid var(--accent-purple);
+            border-radius: 16px;
+            padding: 36px 30px;
+            max-width: 900px;
+            margin: 0 auto 60px;
+            box-shadow: 0 20px 45px var(--shadow);
+            text-align: left;
+            position: relative;
+        }
+        .diag-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--elem-border);
+            padding-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .diag-header h2 { font-size: clamp(20px, 2.5vw, 26px); margin: 0; }
+        .diag-badge {
+            font-size: 10px; font-weight: 800; text-transform: uppercase;
+            padding: 6px 12px; background: var(--accent-subtle);
+            color: var(--accent-purple); border-radius: 6px; border: 1px solid var(--elem-border);
+        }
+        .diag-step-content { min-height: 220px; display: flex; flex-direction: column; justify-content: center; }
+        .diag-options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 12px;
+            margin-top: 20px;
+        }
+        .diag-opt-btn {
+            background: var(--surface-hover);
+            border: 1px solid var(--elem-border);
+            border-radius: 10px;
+            padding: 16px 18px;
+            text-align: left;
+            font-family: var(--font-main);
+            color: var(--text-main);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .diag-opt-btn:hover {
+            border-color: var(--accent-purple);
+            background: var(--accent-subtle);
+            transform: translateY(-2px);
+        }
+        .diag-opt-icon { font-size: 20px; }
+        .diag-progress-bar {
+            width: 100%;
+            height: 6px;
+            background: var(--elem-bg);
+            border-radius: 4px;
+            margin-top: 25px;
+            overflow: hidden;
+        }
+        .diag-progress-fill {
+            height: 100%;
+            width: 33.3%;
+            background: var(--accent-purple);
+            transition: width 0.4s ease;
+        }
+        .diag-result-box {
+            background: var(--surface-hover);
+            border: 1px dashed var(--accent-purple);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 15px 0 20px;
+        }
+
+        /* МЕДИА-БЛОК: ВИДЕО И VK-КЛИП */
+        .media-showcase-section {
+            max-width: 1200px;
+            margin: 0 auto 70px;
+            padding: 0 5%;
+        }
+        .media-grid {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 28px;
+            align-items: start;
+        }
+        .video-box {
+            background: var(--surface-color);
+            border: 1px solid var(--elem-border);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 10px 30px var(--shadow);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .video-player-wrap {
+            position: relative;
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #000;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        .video-player-wrap video {
+            width: 100%;
+            height: auto;
+            max-height: 480px;
+            display: block;
+            outline: none;
+            background: #000;
+        }
+        .vk-clip-box {
+            background: var(--surface-color);
+            border: 1px solid var(--elem-border);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 10px 30px var(--shadow);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .vk-clip-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 363px;
+            height: 640px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #000;
+        }
+        .vk-clip-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        @media (max-width: 960px) {
+            .media-grid { grid-template-columns: 1fr; }
+            .vk-clip-box { max-width: 480px; margin: 0 auto; width: 100%; }
+            .vk-clip-wrapper { height: 600px; }
+        }
+
         /* BENTO GRID (РАЗДЕЛЬНАЯ ЛОГИКА ДЛЯ ДЕСКТОПА И МОБИЛЬНЫХ) */
         .bento-section { padding: 0 5% 80px; max-width: 1240px; margin: 0 auto; }
         .bento-category-title {
@@ -504,6 +651,153 @@
             💌 <b>Полезно не только тебе:</b> отправь этот гид подруге, у которой тоже «хрустит спина» или нет сил после работы.
         </div>
         <button class="btn-lens" onclick="shareWithFriend()">Позвать подругу 🔗</button>
+    </div>
+
+    <!-- ИНТЕРАКТИВНЫЙ ГАДЖЕТ САМОДИАГНОСТИКИ («АТЛАС ТЕЛА») -->
+    <div class="diagnostic-card" id="diagnosticWidget">
+        <div class="diag-header">
+            <div>
+                <span class="section-label" style="text-align: left; margin-bottom: 4px;">Бесплатный инструмент</span>
+                <h2>Интерактивный экспресс-тест тела</h2>
+            </div>
+            <span class="diag-badge" id="diagStepBadge">Шаг 1 из 3</span>
+        </div>
+
+        <div class="diag-step-content" id="diagStepContent">
+            <!-- Вопрос 1 -->
+            <div id="step1">
+                <h3 style="font-size: 18px; margin-bottom: 8px;">1. В какой зоне сильнее всего ощущается спазм или усталость?</h3>
+                <p style="font-size: 13px; opacity: 0.8;">Выберите главный эпицентр дискомфорта к концу дня:</p>
+                <div class="diag-options-grid">
+                    <button class="diag-opt-btn" onclick="selectDiag(1, 'neck', 'Шея и плечи')">
+                        <span class="diag-opt-icon">⚡</span>
+                        <span>Шея и трапеция («каменные плечи»)</span>
+                    </button>
+                    <button class="diag-opt-btn" onclick="selectDiag(1, 'lowerback', 'Поясница и крестец')">
+                        <span class="diag-opt-icon">🧱</span>
+                        <span>Поясница (тянет после сидения/ходьбы)</span>
+                    </button>
+                    <button class="diag-opt-btn" onclick="selectDiag(1, 'scapula', 'Межлопаточная зона')">
+                        <span class="diag-opt-icon">📌</span>
+                        <span>Между лопатками (сутулость и жжение)</span>
+                    </button>
+                    <button class="diag-opt-btn" onclick="selectDiag(1, 'edema', 'Отеки и общая скованность')">
+                        <span class="diag-opt-icon">💧</span>
+                        <span>Отечность, тяжелые ноги, нет легкости</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Вопрос 2 -->
+            <div id="step2" style="display: none;">
+                <h3 style="font-size: 18px; margin-bottom: 8px;">2. Какой режим преобладает в течение рабочего дня?</h3>
+                <p style="font-size: 13px; opacity: 0.8;">Это определяет тип статической нагрузки на ваши суставы:</p>
+                <div class="diag-options-grid">
+                    <button class="diag-opt-btn" onclick="selectDiag(2, 'sedentary', 'Сидячая работа')">
+                        <span class="diag-opt-icon">💻</span>
+                        <span>Сидя за компьютером / с телефоном (6+ часов)</span>
+                    </button>
+                    <button class="diag-opt-btn" onclick="selectDiag(2, 'wheel', 'За рулем')">
+                        <span class="diag-opt-icon">🚗</span>
+                        <span>За рулем автомобиля в напряжении</span>
+                    </button>
+                    <button class="diag-opt-btn" onclick="selectDiag(2, 'standing', 'На ногах')">
+                        <span class="diag-opt-icon">🚶‍♀️</span>
+                        <span>Постоянно на ногах / в непрерывной суете</span>
+                    </button>
+                    <button class="diag-opt-btn" onclick="selectDiag(2, 'stress', 'Эмоциональный стресс')">
+                        <span class="diag-opt-icon">🧠</span>
+                        <span>Высокий стресс, поверхностное дыхание</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Вопрос 3 -->
+            <div id="step3" style="display: none;">
+                <h3 style="font-size: 18px; margin-bottom: 8px;">3. Что вы обычно предпринимаете, чтобы справиться с этим?</h3>
+                <p style="font-size: 13px; opacity: 0.8;">Помогает оценить текущую фазу восстановления:</p>
+                <div class="diag-options-grid">
+                    <button class="diag-opt-btn" onclick="selectDiag(3, 'pills', 'Обезболивающие / мази')">
+                        <span class="diag-opt-icon">💊</span>
+                        <span>Мази, пластыри или таблетки при обострении</span>
+                    </button>
+                    <button class="diag-opt-btn" onclick="selectDiag(3, 'massage', 'Разовый массаж')">
+                        <span class="diag-opt-icon">💆‍♀️</span>
+                        <span>Редкий массаж (хватает на пару дней)</span>
+                    </button>
+                    <button class="diag-opt-btn" onclick="selectDiag(3, 'home', 'Случайные зарядки')">
+                        <span class="diag-opt-icon">📱</span>
+                        <span>Пытаюсь размяться дома по видеороликам</span>
+                    </button>
+                    <button class="diag-opt-btn" onclick="selectDiag(3, 'nothing', 'Терплю')">
+                        <span class="diag-opt-icon">⏳</span>
+                        <span>Терплю, жду когда само пройдет</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Финальный результат -->
+            <div id="stepResult" style="display: none;">
+                <div class="diag-result-box">
+                    <span style="font-size: 11px; font-weight: 800; color: var(--accent-purple); text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 6px;">Результат диагностики биомеханики:</span>
+                    <h3 id="resTitle" style="font-size: 20px; margin-bottom: 10px;">Синдром фасциальной компрессии</h3>
+                    <p id="resDesc" style="font-size: 14px; opacity: 0.9; margin-bottom: 14px; line-height: 1.6;">
+                        Ваше тело сигнализирует о застое лимфы и спазме глубоких стабилизаторов. Обычный покой или пассивный массаж лишь временно маскируют сигнал нервной системы.
+                    </p>
+                    <div style="background: var(--surface-color); padding: 14px; border-radius: 8px; border-left: 3px solid var(--accent-purple); font-size: 13px; font-weight: 600;">
+                        💡 <b>Рекомендованный протокол в «РЕСУРСЕ»:</b> <span id="resProtocol">Миофасциальный релиз (МФР) + Пилатес для декомпрессии позвоночника</span>.
+                    </div>
+                </div>
+                <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center;">
+                    <button class="btn" onclick="openModal()">Применить на тест-драйве • 990 ₽</button>
+                    <button class="btn-lens" onclick="resetDiag()">Пройти заново ↻</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="diag-progress-bar" id="diagProgressBar">
+            <div class="diag-progress-fill" id="diagProgressFill"></div>
+        </div>
+    </div>
+</section>
+
+<!-- МЕДИА-СЕКЦИЯ: РАЗМИНКА И VK КЛИП О СТУДИИ -->
+<section class="media-showcase-section">
+    <span class="section-label">Практика и атмосфера вживую</span>
+    <div class="media-grid">
+        <!-- Блок 1: Видео 5-минутной разминки -->
+        <div class="video-box">
+            <div>
+                <span class="query-badge">Экспресс-практика</span>
+                <h3 style="font-size: 22px; margin-bottom: 8px;">5-минутная разминка: сними зажим прямо сейчас</h3>
+                <p style="font-size: 13px; opacity: 0.85; margin: 0;">
+                    Включи видео и повтори эти простые движения. Без прыжков и насилия над телом — только мягкая декомпрессия суставов и разгон лимфотока.
+                </p>
+            </div>
+            <div class="video-player-wrap">
+                <video controls playsinline preload="metadata" poster="logo_header_final.png">
+                    <source src="https://storage.yandexcloud.net/resurs-content/videos/razminka_5min.mp4" type="video/mp4">
+                    Ваш браузер не поддерживает видео.
+                </video>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                <span style="font-size: 12px; opacity: 0.7;">📍 Сыктывкар, Коммунистическая, 67</span>
+                <button class="btn" onclick="openModal()">Прийти в зал на 50 минут</button>
+            </div>
+        </div>
+
+        <!-- Блок 2: Вертикальный VK Клип -->
+        <div class="vk-clip-box">
+            <div style="text-align: center; margin-bottom: 16px;">
+                <span class="query-badge">Жизнь студии</span>
+                <h3 style="font-size: 20px; margin-bottom: 4px;">Как проходят занятия</h3>
+                <p style="font-size: 12px; opacity: 0.8; margin: 0;">Взгляни на атмосферу без купюр</p>
+            </div>
+            <div class="vk-clip-wrapper">
+                <iframe src="https://vk.ru/clip_ext.php?oid=-221142875&id=456240101&autoplay=0" allow="encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <a href="https://vk.ru/im?sel=-221142875" target="_blank" class="btn-lens" style="width: 100%; margin-top: 16px; text-align: center;">Больше клипов в ВК →</a>
+        </div>
     </div>
 </section>
 
@@ -886,6 +1180,66 @@
                 prompt('Скопируй ссылку для подруги:', window.location.href);
             });
         }
+    }
+
+    // ЛОГИКА ДИАГНОСТИЧЕСКОГО ГАДЖЕТА («АТЛАС ТЕЛА»)
+    const diagState = { step: 1, area: '', habit: '', reaction: '' };
+
+    function selectDiag(step, value, label) {
+        if (step === 1) {
+            diagState.area = value;
+            document.getElementById('step1').style.display = 'none';
+            document.getElementById('step2').style.display = 'block';
+            document.getElementById('diagStepBadge').innerText = 'Шаг 2 из 3';
+            document.getElementById('diagProgressFill').style.width = '66.6%';
+        } else if (step === 2) {
+            diagState.habit = value;
+            document.getElementById('step2').style.display = 'none';
+            document.getElementById('step3').style.display = 'block';
+            document.getElementById('diagStepBadge').innerText = 'Шаг 3 из 3';
+            document.getElementById('diagProgressFill').style.width = '99.9%';
+        } else if (step === 3) {
+            diagState.reaction = value;
+            document.getElementById('step3').style.display = 'none';
+            showDiagResult();
+        }
+    }
+
+    function showDiagResult() {
+        document.getElementById('diagStepBadge').innerText = 'Анализ завершен';
+        document.getElementById('diagProgressBar').style.display = 'none';
+
+        const resTitle = document.getElementById('resTitle');
+        const resDesc = document.getElementById('resDesc');
+        const resProtocol = document.getElementById('resProtocol');
+
+        if (diagState.area === 'neck') {
+            resTitle.innerText = 'Цервикальный зажим и спазм трапеции';
+            resDesc.innerText = 'Долгое удержание головы под наклоном и статика плечевого пояса привели к слипанию фасций и ухудшению венозного оттока от основания черепа. Именно поэтому шея «каменеет», а к вечеру падает концентрация.';
+            resProtocol.innerText = 'Мягкий МФР шеи и воротниковой зоны + Декомпрессия грудного отдела';
+        } else if (diagState.area === 'lowerback') {
+            resTitle.innerText = 'Компрессионный блок пояснично-крестцовой зоны';
+            resDesc.innerText = 'Из-за выключенных ягодичных мышц и перегрузки сгибателей бедра вся нагрузка вертикальной оси приходится на поясничные позвонки. Мази лишь глушат нервные рецепторы, не возвращая суставам пространство.';
+            resProtocol.innerText = 'Здоровая спина + Пилатес для включения глубоких стабилизаторов';
+        } else if (diagState.area === 'scapula') {
+            resTitle.innerText = 'Кифотический дисбаланс и напряжение ромбовидных мышц';
+            resDesc.innerText = 'Постоянная сутулость приводит к растяжению и слабости межлопаточной мускулатуры при спазмированных грудных мышцах. Телу требуется раскрытие плечевого пояса и мобилизация ребер.';
+            resProtocol.innerText = 'Умный пилатес + Мягкая растяжка грудной клетки';
+        } else {
+            resTitle.innerText = 'Лимфатический застой и фасциальная скованность';
+            resDesc.innerText = 'Низкая амплитуда движений блокирует работу мышечной помпы. Жидкость застаивается в тканях, создавая эффект отечности, постоянной тяжести в теле и утренней усталости.';
+            resProtocol.innerText = 'Лимфодренажный МФР на массажных роллах + Комплекс мобильности';
+        }
+
+        document.getElementById('stepResult').style.display = 'block';
+    }
+
+    function resetDiag() {
+        document.getElementById('stepResult').style.display = 'none';
+        document.getElementById('step1').style.display = 'block';
+        document.getElementById('diagStepBadge').innerText = 'Шаг 1 из 3';
+        document.getElementById('diagProgressBar').style.display = 'block';
+        document.getElementById('diagProgressFill').style.width = '33.3%';
     }
 
     // ИИ-АССИСТЕНТ
