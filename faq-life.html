@@ -372,7 +372,7 @@
             margin: 15px 0 20px;
         }
 
-        /* МЕДИА-БЛОК: ВИДЕО И VK-КЛИП */
+        /* МЕДИА-БЛОК: ВИДЕО РАЗМИНКИ И ВЕРТИКАЛЬНЫЙ РОЛИК */
         .media-showcase-section {
             max-width: 1200px;
             margin: 0 auto 70px;
@@ -410,7 +410,7 @@
             outline: none;
             background: #000;
         }
-        .vk-clip-box {
+        .vertical-video-box {
             background: var(--surface-color);
             border: 1px solid var(--elem-border);
             border-radius: 16px;
@@ -420,7 +420,7 @@
             flex-direction: column;
             align-items: center;
         }
-        .vk-clip-wrapper {
+        .vertical-video-wrapper {
             position: relative;
             width: 100%;
             max-width: 363px;
@@ -429,18 +429,20 @@
             overflow: hidden;
             background: #000;
         }
-        .vk-clip-wrapper iframe {
+        .vertical-video-wrapper video {
             width: 100%;
             height: 100%;
-            border: none;
+            object-fit: cover;
+            display: block;
+            outline: none;
         }
         @media (max-width: 960px) {
             .media-grid { grid-template-columns: 1fr; }
-            .vk-clip-box { max-width: 480px; margin: 0 auto; width: 100%; }
-            .vk-clip-wrapper { height: 600px; }
+            .vertical-video-box { max-width: 480px; margin: 0 auto; width: 100%; }
+            .vertical-video-wrapper { height: 600px; }
         }
 
-        /* BENTO GRID (РАЗДЕЛЬНАЯ ЛОГИКА ДЛЯ ДЕСКТОПА И МОБИЛЬНЫХ) */
+        /* BENTO GRID */
         .bento-section { padding: 0 5% 80px; max-width: 1240px; margin: 0 auto; }
         .bento-category-title {
             font-size: 20px; font-weight: 800; text-transform: uppercase;
@@ -451,7 +453,7 @@
             content: ""; flex: 1; height: 1px; background: var(--elem-border);
         }
 
-        /* ДЕСКТОП: 2-3 КОЛОНКИ С РАЗНОЙ ШИРИНОЙ КАРТОЧЕК */
+        /* ДЕСКТОП: СЕТКА */
         .bento-grid-faq {
             display: grid;
             grid-template-columns: repeat(12, 1fr);
@@ -478,7 +480,7 @@
         .col-span-4 { grid-column: span 4; }
         .col-span-12 { grid-column: span 12; }
 
-        /* ВЕРТИКАЛЬНЫЕ ИЗОБРАЖЕНИЯ */
+        /* ВЕРТИКАЛЬНЫЕ ИЗОБРАЖЕНИЯ КАРТОЧЕК */
         .bento-img-wrap {
             width: 100%;
             height: 380px;
@@ -519,7 +521,7 @@
             display: flex; gap: 10px; flex-wrap: wrap; margin-top: auto;
         }
 
-        /* МОБИЛЬНЫЙ РЕЖИМ (ЕДИНАЯ ВЕРТИКАЛЬНАЯ ЛЕНТА С ОПТИМАЛЬНОЙ ВЫСОТОЙ) */
+        /* МОБИЛЬНЫЙ РЕЖИМ BENTO */
         @media (max-width: 992px) {
             .col-span-7, .col-span-5, .col-span-6, .col-span-4, .col-span-12 {
                 grid-column: span 12;
@@ -529,7 +531,7 @@
             .bento-content { padding: 24px 20px; }
         }
 
-        /* БЛОК "ХОЧЕШЬ БОЛЬШЕГО? КОЛЕСО УДАЧИ" */
+        /* КОЛЕСО УДАЧИ */
         .fortune-block {
             background: var(--surface-color);
             border: 1px solid var(--accent-purple);
@@ -761,7 +763,7 @@
     </div>
 </section>
 
-<!-- МЕДИА-СЕКЦИЯ: РАЗМИНКА И VK КЛИП О СТУДИИ -->
+<!-- МЕДИА-СЕКЦИЯ: РАЗМИНКА И ВЕРТИКАЛЬНОЕ ВИДЕО ОТ ОЛЬГИ -->
 <section class="media-showcase-section">
     <span class="section-label">Практика и атмосфера вживую</span>
     <div class="media-grid">
@@ -786,16 +788,16 @@
             </div>
         </div>
 
-        <!-- Блок 2: Вертикальное видео от Ольги -->
-        <div class="vk-clip-box">
+        <!-- Блок 2: Вертикальное видео от Ольги с автостоп-кадром #t=0.5 -->
+        <div class="vertical-video-box">
             <div style="text-align: center; margin-bottom: 16px;">
                 <span class="query-badge">Совет от Ольги</span>
                 <h3 style="font-size: 20px; margin-bottom: 4px;">Полезное видео</h3>
                 <p style="font-size: 12px; opacity: 0.8; margin: 0;">Включите звук и послушайте эксперта</p>
             </div>
-            <div class="vk-clip-wrapper" style="height: 640px; background: #000; border-radius: 12px; overflow: hidden;">
-                <video controls playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block;" poster="logo_header_final.png">
-                    <source src="https://storage.yandexcloud.net/resurs-content/videos/Poleznoe%20video%20ot%20OM.MP4" type="video/mp4">
+            <div class="vertical-video-wrapper">
+                <video controls playsinline preload="metadata">
+                    <source src="https://storage.yandexcloud.net/resurs-content/videos/Poleznoe%20video%20ot%20OM.MP4#t=0.5" type="video/mp4">
                     Ваш браузер не поддерживает видео.
                 </video>
             </div>
