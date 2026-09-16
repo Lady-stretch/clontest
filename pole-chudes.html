@@ -11,41 +11,15 @@
     <script>
         const savedTheme = localStorage.getItem('resurs_pole_theme') || localStorage.getItem('theme') || 'dark';
         document.documentElement.setAttribute('data-theme', savedTheme);
+        if (savedTheme === 'light') { document.documentElement.classList.add('light-theme'); }
     </script>
-
-    <!-- Счетчики аналитики: Яндекс.Метрика и Top.Mail.Ru -->
-    <script type="text/javascript">
-    (function(m,e,t,r,i,k,a){
-        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-        m[i].l=1*new Date();
-        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108177329', 'ym');
-    ym(108177329, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
-
-    var _tmr = window._tmr || (window._tmr = []);
-    _tmr.push({id: "3755240", type: "pageView", start: (new Date()).getTime()});
-    (function (d, w, id) {
-        if (d.getElementById(id)) return;
-        var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
-        ts.src = "https://top-fwz1.mail.ru/js/code.js";
-        var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
-        if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
-    })(document, window, "tmr-code");
-    </script>
-    <noscript>
-        <div>
-            <img src="https://mc.yandex.ru/watch/108177329" style="position:absolute; left:-9999px;" alt="" />
-            <img src="https://top-fwz1.mail.ru/counter?id=3755240;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" />
-        </div>
-    </noscript>
 
     <!-- РСЯ Context -->
     <script>window.yaContextCb=window.yaContextCb||[]</script>
     <script src="https://yandex.ru/ads/system/context.js" async></script>
 
     <title>Поле Чудес: Интеллектуальное Фитнес-Шоу | Студия РЕСУРС</title>
-    <meta name="description" content="Интерактивная игра Поле Чудес по биомеханике, анатомии и фитнесу. Вращайте барабан, разгадывайте научные термины, выигрывайте призы и скидки на абонементы в Сыктывкаре.">
+    <meta name="description" content="Интерактивная развивающая викторина по биомеханике, анатомии и фитнесу. Вращайте барабан, разгадывайте научные термины, открывайте модалки и получайте бонусы студии РЕСУРС.">
     <meta name="keywords" content="поле чудес фитнес, викторина биомеханика, выиграть абонемент сыктывкар, студия ресурс игра, анатомический тест">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://resurs-stretch.ru/pole-chudes.html">
@@ -69,7 +43,6 @@
             --text-muted: #9693A6;
             --border-color: rgba(108, 62, 184, 0.22);
             --header-bg: rgba(10, 9, 15, 0.88);
-            --video-opacity: 0.35;
             --shadow: rgba(0, 0, 0, 0.6);
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             --success: #10B981;
@@ -88,7 +61,6 @@
             --text-muted: #666375;
             --border-color: rgba(91, 52, 148, 0.16);
             --header-bg: rgba(248, 247, 252, 0.9);
-            --video-opacity: 0.25;
             --shadow: rgba(0, 0, 0, 0.06);
         }
 
@@ -104,12 +76,8 @@
             overflow-x: hidden !important;
             position: relative;
             -webkit-font-smoothing: antialiased;
+            line-height: 1.6;
         }
-
-        /* ФОНОВОЕ ВИДЕО */
-        .video-fixed-bg { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; overflow: hidden; pointer-events: none; }
-        .video-fixed-bg video { width: 100%; height: 100%; object-fit: cover; opacity: var(--video-opacity); transition: opacity 0.5s ease; }
-        .video-fixed-overlay { position: absolute; inset: 0; background: rgba(10, 9, 15, 0.55); pointer-events: none; }
 
         /* ДВУХЭТАЖНАЯ ШАПКА */
         header {
@@ -277,6 +245,12 @@
         .modal-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 26px; color: var(--gold); margin-bottom: 10px; }
         .modal-card p { font-size: 14px; color: var(--text-muted); line-height: 1.6; margin-bottom: 18px; }
 
+        .term-explanation-box {
+            background: var(--accent-subtle); border: 1px dashed var(--accent-color);
+            border-radius: 8px; padding: 14px; margin: 15px 0; text-align: left;
+            font-size: 13.5px; line-height: 1.6; color: var(--text-main);
+        }
+
         .modal-btn-row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
         .m-btn {
             padding: 12px 22px; border-radius: 8px; font-size: 12px; font-weight: 800;
@@ -314,15 +288,7 @@
 </head>
 <body>
 
-<!-- ФОНОВОЕ ВИДЕО -->
-<div class="video-fixed-bg">
-    <video muted autoplay loop playsinline preload="auto" id="bgVideo">
-        <source src="hero-video.mp4?v=20260809" type="video/mp4">
-    </video>
-    <div class="video-fixed-overlay"></div>
-</div>
-
-<!-- ШАПКА -->
+<!-- ДВУХЭТАЖНАЯ ШАПКА -->
 <header>
     <div class="header-top">
         <div class="logo-wrap" onclick="window.location.href='index.html'">
@@ -331,13 +297,13 @@
         </div>
         <div class="desktop-actions">
             <button class="btn-rule-nav" onclick="openRulesModal()">Правила игры</button>
-            <button id="themeToggle" class="theme-toggle-btn" onclick="toggleTheme()">ТЕМА: ТЕМНАЯ</button>
+            <button id="themeToggle" class="theme-toggle-btn" onclick="toggleThemeInstant()">ТЕМА: ТЕМНАЯ</button>
             <a href="club.html" class="theme-toggle-btn" style="text-decoration: none;">Онлайн-клуб</a>
         </div>
     </div>
     <div class="mobile-thumb-bar">
         <button class="btn-rule-nav" onclick="openRulesModal()">ПРАВИЛА</button>
-        <button id="themeToggleMobile" class="theme-toggle-btn" onclick="toggleTheme()">ТЕМА</button>
+        <button id="themeToggleMobile" class="theme-toggle-btn" onclick="toggleThemeInstant()">ТЕМА</button>
     </div>
 </header>
 
@@ -386,19 +352,6 @@
             <div class="keyboard-grid" id="keyboardGrid"></div>
         </div>
 
-        <!-- НИЖНИЙ БЛОК РСЯ -->
-        <div class="bento-card span-3" style="background: var(--surface-color); padding: 15px; min-height: 250px; display: flex; align-items: center; justify-content: center;">
-            <div id="yandex_rtb_main_under" style="width: 100%;"></div>
-            <script>
-                window.yaContextCb.push(() => {
-                    Ya.Context.AdvManager.render({
-                        "blockId": "R-A-19181219-4",
-                        "renderTo": "yandex_rtb_main_under"
-                    });
-                });
-            </script>
-        </div>
-
     </div>
 </main>
 
@@ -406,7 +359,7 @@
 <div class="modal-overlay" id="prizeModal">
     <div class="modal-card">
         <h3>Сектор «ПРИЗ» на барабане!</h3>
-        <p>Вы можете забрать гарантированные 150 бонусных очков или рискнуть ради скрытого подарка от студии «РЕСУРС»!</p>
+        <p>Вы можете забрать гарантированные 150 бонусных очков или рискнуть ради подарка от студии «РЕСУРС»!</p>
         <div class="modal-btn-row">
             <button class="m-btn m-btn-secondary" onclick="resolvePrizeChoice(false)">Забрать 150 очков</button>
             <button class="m-btn m-btn-primary" onclick="resolvePrizeChoice(true)">Рискнуть (Секретный приз)</button>
@@ -438,8 +391,8 @@
         <h3>Правила «Поля Чудес»</h3>
         <p style="text-align: left; font-size: 13px;">
             1. <b>1 Тур</b>: игра с двумя соперниками за право выйти в Финал.<br>
-            2. <b>Финал</b>: усложненное биомеханическое слово.<br>
-            3. <b>Суперигра</b>: при победе в финале вам предложат назвать 3 согласные и 1 гласную букву и дать ответ за 60 секунд.<br>
+            2. <b>Финал</b>: усложненный биомеханический термин с новыми соперниками.<br>
+            3. <b>Суперигра</b>: шанс назвать 3 согласные и 1 гласную букву и выиграть главный приз!<br>
             4. <b>Сектор «+»</b> открывает любую выбранную букву.<br>
             5. В шкатулках спрятано до 500 бонусных очков.
         </p>
@@ -454,7 +407,8 @@
 <div class="modal-overlay" id="toFinaleModal">
     <div class="modal-card">
         <h3>Браво! Вы победили в 1 туре!</h3>
-        <p>Вы разгадали первое слово и выходите в <b>ФИНАЛ</b> с новыми, более сильными соперниками!</p>
+        <div class="term-explanation-box" id="tour1TermExplanation"></div>
+        <p>Вы успешно разгадали термин и переходите в <b>ФИНАЛ</b> с новыми, сильными соперниками!</p>
         <button class="m-btn m-btn-primary" onclick="startFinaleRound()">Перейти в Финал</button>
         <div class="modal-rsya-box">
             <div id="yandex_rtb_modal_finale" style="width: 100%;"></div>
@@ -466,7 +420,8 @@
 <div class="modal-overlay" id="superOfferModal">
     <div class="modal-card">
         <h3>Вы абсолютный победитель Финала!</h3>
-        <p>Вы набрали рекордное количество очков! Готовы рискнуть всем в <b>СУПЕРИГРЕ</b> ради главного абонемента студии «РЕСУРС»?</p>
+        <div class="term-explanation-box" id="finaleTermExplanation"></div>
+        <p>Вы набрали рекордное количество очков! Готовы рискнуть в <b>СУПЕРИГРЕ</b> ради главного подарка студии «РЕСУРС»?</p>
         <div class="modal-btn-row">
             <button class="m-btn m-btn-secondary" onclick="declineSuperGame()">Забрать выигрыш</button>
             <button class="m-btn m-btn-primary" onclick="acceptSuperGame()">Играть в Суперигру!</button>
@@ -477,13 +432,14 @@
     </div>
 </div>
 
-<!-- МОДАЛКА: ФИНАЛ / ПОБЕДА / ЗАБРАТЬ ПРИЗ В ВК -->
+<!-- МОДАЛКА: ФИНАЛЬНАЯ ПОБЕДА / ЗАБРАТЬ ПРИЗ В ВК -->
 <div class="modal-overlay" id="finalWinModal">
     <div class="modal-card">
         <h3 id="winTitle">Грандиозная победа!</h3>
-        <p id="winDesc">Вы блестяще справились со всеми терминами биомеханики и выиграли главный приз студии «РЕСУРС»!</p>
+        <div class="term-explanation-box" id="winTermExplanation"></div>
+        <p id="winDesc">Вы блестяще справились с терминами биомеханики и выиграли абонемент от студии «РЕСУРС»!</p>
         <a href="#" id="vkClaimBtn" class="vk-btn-win" target="_blank">Написать Вере в ВК за призом</a>
-        <button class="m-btn m-btn-secondary" style="width: 100%;" onclick="location.reload()">Сыграть заново</button>
+        <button class="m-btn m-btn-secondary" style="width: 100%;" onclick="startNewFullGame()">Сыграть заново (новые слова)</button>
         <div class="modal-rsya-box">
             <div id="yandex_rtb_modal_win" style="width: 100%;"></div>
         </div>
@@ -496,13 +452,13 @@
             © 2026 РЕСУРС | Студия фитнеса, растяжки и движения. Сыктывкар, ул. Коммунистическая, 67.
         </p>
         <p class="footer-text">
-            ИП Худяков Николай Сергеевич • ИНН 111801576622. Интерактивная развивающая викторина по биомеханике движения. Все призы и скидки действительны по правилам студии.
+            ИП Худяков Николай Сергеевич • ИНН 111801576622. Интерактивная развивающая викторина по биомеханике движения.
         </p>
     </div>
 </footer>
 
 <script>
-    // 16 СЕКТОРОВ БАРАБАНА С ОЧКАМИ 30, 40, 50, 75, 100, 150, 200 И СПЕЦСЕКТОРАМИ
+    // 16 СЕКТОРОВ БАРАБАНА (ОЧКИ 30, 40, 50, 75, 100, 150, 200 + СПЕЦСЕКТОРА)
     const wheelSectors = [
         { label: "100", type: "score", value: 100, color: "#6C3EB8" },
         { label: "30", type: "score", value: 30, color: "#1E1833" },
@@ -522,31 +478,77 @@
         { label: "50", type: "score", value: 50, color: "#1E1833" }
     ];
 
-    // СЛОЖНЫЕ ТЕРМИНЫ
-    const gameDatabase = {
-        tour1: {
-            title: "1 ТУР: ГЛУБОКАЯ БИОМЕХАНИКА",
+    // БОЛЬШАЯ БАЗА ЭКСПЕРТНЫХ ТЕРМИНОВ ПО БИОМЕХАНИКЕ
+    const questionsPool = [
+        {
             word: "ПРОПРИОЦЕПЦИЯ",
-            desc: "Глубокое мышечно-суставное чувство положения собственного тела и его сегментов в пространстве без участия зрения."
+            desc: "Глубокое мышечно-суставное чувство положения собственного тела и его частей в пространстве.",
+            explanation: "<b>Проприоцепция</b> — способность мозга ежесекундно считывать натяжение связок и сухожилий, обеспечивая устойчивый баланс и защиту суставов от травм."
         },
-        finale: {
-            title: "ФИНАЛ: МЫШЕЧНЫЙ КОРСЕТ",
+        {
             word: "ПЛАТИЗМА",
-            desc: "Широкая подкожная мышца шеи, натяжение которой напрямую определяет четкость овала лица и отсутствие второго подбородка."
+            desc: "Широкая подкожная мышца шеи, натяжение которой напрямую определяет четкость овала лица.",
+            explanation: "<b>Платизма</b> — поверхностная мышца шеи. При сутулости она укорачивается, стягивая ткани лица вниз и формируя брыли и второй подбородок."
         },
-        superGame: {
-            title: "СУПЕРИГРА: ГИДРАВЛИКА ТЕЛА",
+        {
             word: "ДИАФРАГМА",
-            desc: "Главный непарный куполообразный дыхательный орган, служащий верхним гидравлическим насосом для брюшной полости и лимфотока."
+            desc: "Главный дыхательный орган, служащий верхним гидравлическим насосом для брюшной полости.",
+            explanation: "<b>Диафрагма</b> — куполообразная мышца. На каждом полноценном вдохе она мягко массирует внутренние органы и стимулирует лимфодренаж."
+        },
+        {
+            word: "ИШЕМИЯ",
+            desc: "Дефицит местного кровообращения в спазмированном или зажатом мышечном волокне.",
+            explanation: "<b>Ишемия</b> возникает, когда статическая перегрузка сдавливает капилляры. Мышца перестает получать кислород и отвечает ноющей триггерной болью."
+        },
+        {
+            word: "ДИАСТАЗ",
+            desc: "Анатомическое расхождение прямых мышц живота по сухожильной белой линии после родов.",
+            explanation: "<b>Диастаз</b> — растяжение соединительной ткани белой линии живота. Корректируется включением поперечной мышцы и нормализацией внутрибрюшного давления."
+        },
+        {
+            word: "ФАСЦИЯ",
+            desc: "Трехмерная паутина соединительной ткани, непрерывно пронизывающая и связывающая все тело.",
+            explanation: "<b>Фасция</b> окутывает каждый мышечный пучок. При недостатке движения фасции склеиваются, ограничивая амплитуду движений и вызывая скованность."
+        },
+        {
+            word: "СИНОВИЯ",
+            desc: "Вязкая эластичная жидкость внутри суставной сумки, смазывающая хрящевые поверхности.",
+            explanation: "<b>Синовиальная жидкость</b> вырабатывается исключительно во время мягкого суставного движения, предохраняя хрящ от сухого трения и разрушения."
+        },
+        {
+            word: "АРТИКУЛЯЦИЯ",
+            desc: "Способность позвоночника двигаться плавно и сегментарно, позвонок за позвонком.",
+            explanation: "<b>Артикуляция позвоночника</b> — основа здоровой спины в Пилатесе. Возвращает эластичность каждому межпозвоночному сегменту."
+        },
+        {
+            word: "ГИПОКСИЯ",
+            desc: "Кислородное голодание околоклеточных тканей при нарушении нормального лимфотока.",
+            explanation: "<b>Гипоксия</b> блокирует естественный липолиз (расщепление жира). В застойных тканях с дефицитом кислорода невозможно добиться снижения объемов."
+        },
+        {
+            word: "КОРТИЗОЛ",
+            desc: "Гормон стресса, хронический избыток которого вызывает задержку натрия и скрытые отеки.",
+            explanation: "<b>Кортизол</b> при сильной усталости или изнурительных диетах провоцирует задержку воды, маскируя результаты тренировок под стойкий отек."
+        },
+        {
+            word: "ЛОБНЫЙ",
+            desc: "Шейно-грудной переход и зона прикрепления затылочных фасций к теменному апоневрозу.",
+            explanation: "<b>Субмастоидный релиз</b> затылочной зоны снимает многолетние зажимы с апоневроза черепа и купирует головные боли напряжения."
+        },
+        {
+            word: "ЛИПОЛИЗ",
+            desc: "Биохимический процесс расщепления триглицеридов внутри жировых клеток на жирные кислоты.",
+            explanation: "<b>Липолиз</b> запускается только в тканях с хорошим капиллярным кровотоком и активным притоком кислорода, освобожденных от отека."
         }
-    };
+    ];
 
-    let gameState = "TOUR_1"; // TOUR_1, FINALE, SUPER_GAME
-    let activeQuestion = gameDatabase.tour1;
-    let word = activeQuestion.word;
+    let playedWords = []; // Исключение повторов слов
+    let gameState = "TOUR_1"; // TOUR_1 -> FINALE -> SUPER_GAME
+    let activeQuestion = null;
+    let word = "";
     let revealed = [];
     let scores = [0, 0, 0];
-    let activePlayer = 0; // 0: Вы, 1: Бот 1, 2: Бот 2
+    let activePlayer = 0; // 0 - Юзер, 1 - Бот 1, 2 - Бот 2
 
     let currentSpin = null;
     let isSpinning = false;
@@ -556,20 +558,33 @@
 
     let currentAngle = 0;
     const alphabet = "АБВГДЕЖЗИКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
+    const vowels = "АЕЁИОУЫЭЮЯ";
+
+    function getUnusedQuestion() {
+        const available = questionsPool.filter(q => !playedWords.includes(q.word));
+        if (available.length === 0) {
+            playedWords = []; // Сброс при исчерпании пула
+            return questionsPool[Math.floor(Math.random() * questionsPool.length)];
+        }
+        const picked = available[Math.floor(Math.random() * available.length)];
+        playedWords.push(picked.word);
+        return picked;
+    }
 
     function initGame() {
         scores = [0, 0, 0];
         activePlayer = 0;
-        setupRound(gameDatabase.tour1);
+        gameState = "TOUR_1";
+        startRound(getUnusedQuestion(), "1 ТУР: АНАТОМИЧЕСКИЙ ТЕРМИН");
         drawWheel();
         renderKeyboard();
     }
 
-    function setupRound(qData) {
+    function startRound(qData, tourTitleText) {
         activeQuestion = qData;
         word = qData.word;
         revealed = Array(word.length).fill(false);
-        document.getElementById('tourTitle').innerText = qData.title;
+        document.getElementById('tourTitle').innerText = tourTitleText;
         document.getElementById('questionDesc').innerText = qData.desc;
         renderBoard();
         resetKeyboardState();
@@ -597,7 +612,6 @@
             ctx.lineWidth = 1.5;
             ctx.stroke();
 
-            // Текст сектора
             ctx.save();
             ctx.translate(r, r);
             ctx.rotate(angle + arc / 2);
@@ -655,7 +669,7 @@
         }
     }
 
-    // ВРАЩЕНИЕ БАРАБАНА (ДЛИТЕЛЬНОСТЬ 5.5 СЕКУНД)
+    // ВРАЩЕНИЕ БАРАБАНА (ПЛАВНЫЙ СТРОГИЙ ХОД 5.5 СЕК)
     function userSpin() {
         if (isSpinning || waitingLetter || activePlayer !== 0) return;
         executeSpin();
@@ -665,24 +679,22 @@
         isSpinning = true;
         document.getElementById('spinBtn').disabled = true;
         const status = document.getElementById('turnStatus');
-        status.innerText = activePlayer === 0 ? "Барабан вращается..." : `Соперник ${activePlayer} раскручивает барабан...`;
+        status.innerText = activePlayer === 0 ? "Барабан вращается..." : `Соперник ${activePlayer} крутит барабан...`;
 
         const chosenIndex = Math.floor(Math.random() * wheelSectors.length);
         const arc = (2 * Math.PI) / wheelSectors.length;
-        
-        // Стрелка смотрит сверху (угол 3*PI/2)
+
         const targetSectorCenter = (wheelSectors.length - chosenIndex) * arc - arc / 2 + (3 * Math.PI / 2);
         const extraRounds = Math.PI * 2 * (7 + Math.floor(Math.random() * 3));
         const finalAngle = currentAngle + extraRounds + (targetSectorCenter - (currentAngle % (Math.PI * 2)));
 
         const startTime = performance.now();
-        const duration = 5500; // 5.5 секунд плавного хода
+        const duration = 5500;
         const startAngle = currentAngle;
 
         function animateWheel(now) {
             const elapsed = now - startTime;
             const progress = Math.min(elapsed / duration, 1);
-            // Плавное кубическое замедление
             const easeOut = 1 - Math.pow(1 - progress, 3);
             currentAngle = startAngle + (finalAngle - startAngle) * easeOut;
             drawWheel();
@@ -704,8 +716,8 @@
         if (sector.type === "bankrupt") {
             scores[activePlayer] = 0;
             updateUI();
-            status.innerText = "Сектор БАНКРОТ! Все накопленные очки сгорели!";
-            setTimeout(passTurn, 2200);
+            status.innerText = "Сектор БАНКРОТ! Очки обнулены.";
+            setTimeout(passTurn, 2000);
             return;
         }
 
@@ -715,7 +727,7 @@
             } else {
                 scores[activePlayer] += 150;
                 updateUI();
-                status.innerText = `Соперник ${activePlayer} решил забрать 150 очков!`;
+                status.innerText = `Соперник ${activePlayer} забрал 150 очков.`;
                 setTimeout(passTurn, 2000);
             }
             return;
@@ -732,8 +744,7 @@
                 } else {
                     status.innerText = `Соперник ${activePlayer} открыл пустую шкатулку.`;
                 }
-                // Ход не сгорает при открытии шкатулки!
-                status.innerText += " Ход сохраняется, крутите барабан!";
+                status.innerText += " Ход сохраняется!";
                 setTimeout(() => { executeSpin(); }, 2000);
             }
             return;
@@ -758,9 +769,9 @@
             return;
         }
 
-        // Обычные очки
+        // Обычные очки (30, 40, 50, 75, 100, 150, 200)
         status.innerText = activePlayer === 0
-            ? `Сектор: ${sector.value} очков! Выберите букву на клавиатуре.`
+            ? `Сектор: ${sector.value} очков! Назовите букву на клавиатуре.`
             : `Сектор: ${sector.value} очков. Соперник ${activePlayer} думает...`;
         waitingLetter = true;
 
@@ -770,7 +781,13 @@
     }
 
     function onLetterSelected(char) {
-        if (!waitingLetter) return;
+        if (!waitingLetter && !isSuperPickPhase) return;
+
+        // Режим выбора букв в Суперигре
+        if (isSuperPickPhase) {
+            handleSuperPick(char);
+            return;
+        }
 
         const keyBtn = document.getElementById('key-' + char);
         if (keyBtn) keyBtn.disabled = true;
@@ -790,10 +807,10 @@
         if (openedCount > 0) {
             scores[activePlayer] += pts * openedCount;
             updateUI();
-            status.innerText = `Есть буква «${char}»! (+${pts * openedCount} очков). Ход сохраняется!`;
+            status.innerText = `Есть буква «${char}»! (+${pts * openedCount} очков). Вращайте барабан!`;
 
             if (revealed.every(r => r)) {
-                setTimeout(handleRoundCompletion, 1200);
+                setTimeout(handleRoundWin, 1000);
                 return;
             }
 
@@ -804,7 +821,7 @@
                 setTimeout(executeSpin, 2000);
             }
         } else {
-            status.innerText = `Буквы «${char}» в слове нет! Переход хода.`;
+            status.innerText = `Буквы «${char}» нет! Переход хода.`;
             waitingLetter = false;
             setTimeout(passTurn, 1600);
         }
@@ -832,7 +849,7 @@
         if (freeKeys.length > 0) {
             const hiddenChars = word.split('').filter((c, idx) => !revealed[idx]);
             let picked = '';
-            // 45% шанс угадать
+            // Шанс угадать 45%
             if (Math.random() < 0.45 && hiddenChars.length > 0) {
                 picked = hiddenChars[0];
             } else {
@@ -842,7 +859,6 @@
         }
     }
 
-    // МОДАЛКИ: ПРИЗ И ШКАТУЛКИ
     function resolvePrizeChoice(takePrize) {
         closeModal('prizeModal');
         const status = document.getElementById('turnStatus');
@@ -863,35 +879,31 @@
         const status = document.getElementById('turnStatus');
         const lucky = Math.random() > 0.5 ? 1 : 0;
         if (idx === lucky) {
-            const bonus = Math.floor(Math.random() * 300) + 150; // до 450 очков
+            const bonus = Math.floor(Math.random() * 300) + 150;
             scores[activePlayer] += bonus;
             updateUI();
             status.innerText = `Попадание! В шкатулке +${bonus} очков!`;
         } else {
             status.innerText = "Шкатулка оказалась пустой, но ход остается у вас!";
         }
-        // Ход не сгорает
         document.getElementById('spinBtn').disabled = false;
     }
 
-    // ПЕРЕХОД ПО ТУРАМ
-    function handleRoundCompletion() {
-        if (gameState === "TOUR_1") {
-            if (activePlayer === 0) {
+    // ПОБЕДА В ТУРЕ
+    function handleRoundWin() {
+        if (activePlayer === 0) {
+            if (gameState === "TOUR_1") {
+                document.getElementById('tour1TermExplanation').innerHTML = activeQuestion.explanation;
                 openModal('toFinaleModal', 'yandex_rtb_modal_finale');
-            } else {
-                alert(`Соперник ${activePlayer} отгадал слово! Попробуйте снова.`);
-                location.reload();
-            }
-        } else if (gameState === "FINALE") {
-            if (activePlayer === 0) {
+            } else if (gameState === "FINALE") {
+                document.getElementById('finaleTermExplanation').innerHTML = activeQuestion.explanation;
                 openModal('superOfferModal', 'yandex_rtb_modal_super_offer');
-            } else {
-                alert(`Финал выиграл Соперник ${activePlayer}. Вы можете потренироваться еще раз!`);
-                location.reload();
+            } else if (gameState === "SUPER_GAME") {
+                finishGameWithWin(true);
             }
-        } else if (gameState === "SUPER_GAME") {
-            openFinalWinModal(true);
+        } else {
+            alert(`Слово отгадал Соперник ${activePlayer}! Попробуйте сыграть заново.`);
+            location.reload();
         }
     }
 
@@ -901,8 +913,8 @@
         document.getElementById('pName-1').innerText = "Анна (Финалист)";
         document.getElementById('pName-2').innerText = "Сергей (Финалист)";
         activePlayer = 0;
-        setupRound(gameDatabase.finale);
-        document.getElementById('turnStatus').innerText = "ФИНАЛ! Ваш первый ход. Вращайте барабан!";
+        startRound(getUnusedQuestion(), "ФИНАЛ: МЫШЕЧНЫЙ КОРСЕТ");
+        document.getElementById('turnStatus').innerText = "ФИНАЛ! Ваш ход. Вращайте барабан!";
         document.getElementById('spinBtn').disabled = false;
     }
 
@@ -910,43 +922,68 @@
         closeModal('superOfferModal');
         gameState = "SUPER_GAME";
         activePlayer = 0;
-        setupRound(gameDatabase.superGame);
-        
+        startRound(getUnusedQuestion(), "СУПЕРИГРА: БИОМЕХАНИКА");
+
         document.getElementById('pChip-1').style.display = "none";
         document.getElementById('pChip-2').style.display = "none";
         document.getElementById('spinBtn').style.display = "none";
-        
+
         isSuperPickPhase = true;
         superPicksLeft = 4;
-        document.getElementById('turnStatus').innerText = "СУПЕРИГРА! Выберите 4 буквы на клавиатуре (например, 3 согласных и 1 гласную).";
-        waitingLetter = true;
+        document.getElementById('turnStatus').innerText = "СУПЕРИГРА! Выберите 4 буквы на клавиатуре (3 согласных и 1 гласную).";
+    }
+
+    function handleSuperPick(char) {
+        const btn = document.getElementById('key-' + char);
+        if (btn.disabled) return;
+        btn.disabled = true;
+
+        for (let i = 0; i < word.length; i++) {
+            if (word[i] === char) revealed[i] = true;
+        }
+        renderBoard();
+        superPicksLeft--;
+
+        if (superPicksLeft > 0) {
+            document.getElementById('turnStatus').innerText = `Осталось назвать букв: ${superPicksLeft}.`;
+        } else {
+            isSuperPickPhase = false;
+            document.getElementById('turnStatus').innerText = "Буквы открыты! Назовите оставшиеся буквы по одной или угадайте слово.";
+            waitingLetter = true;
+        }
     }
 
     function declineSuperGame() {
         closeModal('superOfferModal');
-        openFinalWinModal(false);
+        finishGameWithWin(false);
     }
 
-    function openFinalWinModal(isSuper) {
+    function finishGameWithWin(isSuperWin) {
+        document.getElementById('winTermExplanation').innerHTML = activeQuestion.explanation;
         const title = document.getElementById('winTitle');
         const desc = document.getElementById('winDesc');
         const vkBtn = document.getElementById('vkClaimBtn');
 
-        if (isSuper) {
+        if (isSuperWin) {
             title.innerText = "ТРИУМФ В СУПЕРИГРЕ!";
-            desc.innerHTML = `Вы разгадали главное слово <b>«${word}»</b> и набрали <b>${scores[0]} очков</b>!<br>Вам начислен максимальный абонемент студии «РЕСУРС».`;
+            desc.innerHTML = `Вы разгадали главный термин <b>«${word}»</b> и набрали <b>${scores[0]} очков</b>! Вам присвоен максимальный статус студии «РЕСУРС».`;
         } else {
-            title.innerText = "Победа в финале!";
-            desc.innerHTML = `Вы победитель финала с результатом <b>${scores[0]} очков</b>! Заберите свой фитнес-бонус за 100 рублей.`;
+            title.innerText = "Победа в Финале!";
+            desc.innerHTML = `Вы победитель финала! Термин <b>«${word}»</b> принес вам <b>${scores[0]} очков</b>! Заберите свой фитнес-бонус за 100 рублей.`;
         }
 
-        const msg = `Вера, здравствуйте! Я победила в Поле Чудес на сайте РЕСУРС, набрала ${scores[0]} очков в туре («${word}»)! Хочу получить подарок за 100 рублей.`;
+        const msg = `Вера, здравствуйте! Я победила в Поле Чудес на сайте РЕСУРС, набрала ${scores[0]} очков (слово «${word}»)! Хочу забрать подарок за 100 рублей.`;
         vkBtn.href = `https://vk.com/im?sel=-221142875&message=${encodeURIComponent(msg)}`;
 
         openModal('finalWinModal', 'yandex_rtb_modal_win');
     }
 
-    // ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ МОДАЛОК С РСЯ
+    function startNewFullGame() {
+        closeModal('finalWinModal');
+        initGame();
+    }
+
+    // ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ МОДАЛОК
     function openModal(modalId, rtbContainerId) {
         document.getElementById(modalId).style.display = 'flex';
         if (rtbContainerId) {
@@ -966,18 +1003,20 @@
     function openRulesModal() {
         openModal('rulesModal', 'yandex_rtb_modal_rules');
     }
+
     function closeRulesModal() {
         closeModal('rulesModal');
     }
 
-    // ТЕМА ОФОРМЛЕНИЯ
-    function toggleTheme() {
+    function toggleThemeInstant() {
         const root = document.documentElement;
-        const cur = root.getAttribute('data-theme') || 'dark';
-        const next = cur === 'dark' ? 'light' : 'dark';
+        const current = root.getAttribute('data-theme') || 'dark';
+        const next = current === 'dark' ? 'light' : 'dark';
         root.setAttribute('data-theme', next);
         localStorage.setItem('resurs_pole_theme', next);
         localStorage.setItem('theme', next);
+        if (next === 'light') root.classList.add('light-theme');
+        else root.classList.remove('light-theme');
         updateThemeButtons(next);
         drawWheel();
     }
@@ -991,25 +1030,12 @@
     }
 
     window.addEventListener('DOMContentLoaded', () => {
-        updateThemeButtons(document.documentElement.getAttribute('data-theme') || 'dark');
+        const saved = localStorage.getItem('resurs_pole_theme') || localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', saved);
+        if (saved === 'light') document.documentElement.classList.add('light-theme');
+        updateThemeButtons(saved);
         initGame();
     });
-</script>
-
-<!-- СКВОЗНАЯ РЕКЛАМА FLOOR AD -->
-<script>
-window.yaContextCb.push(() => {
-    Ya.Context.AdvManager.render({
-        "blockId": "R-A-19181219-6",
-        "type": "floorAd",
-        "platform": "touch"
-    });
-    Ya.Context.AdvManager.render({
-        "blockId": "R-A-19181219-7",
-        "type": "floorAd",
-        "platform": "desktop"
-    });
-});
 </script>
 
 </body>
