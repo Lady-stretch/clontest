@@ -3,20 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Поле Чудес: Фитнес-Шоу | РЕСУРС</title>
-    
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
     <!-- Инициализация темы без мерцания -->
     <script>
-        const savedTheme = localStorage.getItem('theme') || 'dark';
+        const savedTheme = localStorage.getItem('resurs_pole_theme') || localStorage.getItem('theme') || 'dark';
         document.documentElement.setAttribute('data-theme', savedTheme);
-        if (savedTheme === 'light') { document.documentElement.classList.add('light-theme'); }
     </script>
+
+    <!-- Счетчики аналитики: Яндекс.Метрика и Top.Mail.Ru -->
+    <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108177329', 'ym');
+    ym(108177329, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+
+    var _tmr = window._tmr || (window._tmr = []);
+    _tmr.push({id: "3755240", type: "pageView", start: (new Date()).getTime()});
+    (function (d, w, id) {
+        if (d.getElementById(id)) return;
+        var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
+        ts.src = "https://top-fwz1.mail.ru/js/code.js";
+        var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
+        if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
+    })(document, window, "tmr-code");
+    </script>
+    <noscript>
+        <div>
+            <img src="https://mc.yandex.ru/watch/108177329" style="position:absolute; left:-9999px;" alt="" />
+            <img src="https://top-fwz1.mail.ru/counter?id=3755240;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" />
+        </div>
+    </noscript>
 
     <!-- РСЯ Context -->
     <script>window.yaContextCb=window.yaContextCb||[]</script>
     <script src="https://yandex.ru/ads/system/context.js" async></script>
 
+    <title>Поле Чудес: Интеллектуальное Фитнес-Шоу | Студия РЕСУРС</title>
+    <meta name="description" content="Интерактивная игра Поле Чудес по биомеханике, анатомии и фитнесу. Вращайте барабан, разгадывайте научные термины, выигрывайте призы и скидки на абонементы в Сыктывкаре.">
+    <meta name="keywords" content="поле чудес фитнес, викторина биомеханика, выиграть абонемент сыктывкар, студия ресурс игра, анатомический тест">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://resurs-stretch.ru/pole-chudes.html">
+
+    <!-- Фавикон и шрифты -->
+    <link rel="icon" type="image/png" href="logo_header_final.png">
+    <link rel="apple-touch-icon" href="logo_header_final.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
 
     <style>
@@ -30,6 +68,10 @@
             --text-main: #F5F4F9;
             --text-muted: #9693A6;
             --border-color: rgba(108, 62, 184, 0.22);
+            --header-bg: rgba(10, 9, 15, 0.88);
+            --video-opacity: 0.35;
+            --shadow: rgba(0, 0, 0, 0.6);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             --success: #10B981;
             --danger: #EF4444;
             --gold: #E5A93C;
@@ -45,702 +87,929 @@
             --text-main: #14121E;
             --text-muted: #666375;
             --border-color: rgba(91, 52, 148, 0.16);
+            --header-bg: rgba(248, 247, 252, 0.9);
+            --video-opacity: 0.25;
+            --shadow: rgba(0, 0, 0, 0.06);
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; }
-        body {
+        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
+        html { scroll-behavior: smooth; }
+
+        body, html {
+            width: 100%;
+            min-height: 100%;
             font-family: 'Manrope', sans-serif;
             background: var(--bg-color);
             color: var(--text-main);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 15px;
-        }
-
-        header {
-            width: 100%;
-            max-width: 950px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding: 12px 20px;
-            background: var(--surface-color);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-        }
-
-        .logo { font-weight: 800; font-size: 16px; text-transform: uppercase; letter-spacing: 1px; }
-        .logo span { color: var(--accent-color); }
-
-        .btn-rule {
-            background: var(--accent-subtle);
-            border: 1px solid var(--accent-color);
-            color: var(--text-main);
-            padding: 8px 14px;
-            border-radius: 8px;
-            font-weight: 700;
-            font-size: 11px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .btn-rule:hover { background: var(--accent-color); color: #FFF; }
-
-        .game-container {
-            max-width: 950px;
-            width: 100%;
-            background: var(--surface-color);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 25px;
-            text-align: center;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-        }
-
-        /* Табло игроков */
-        .score-board {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-        .player-card {
-            background: var(--bg-color);
-            border: 1px solid var(--border-color);
-            padding: 12px;
-            border-radius: 12px;
-            font-size: 13px;
-            transition: 0.3s;
-        }
-        .player-card.active { border-color: var(--gold); background: rgba(229, 169, 60, 0.1); transform: scale(1.02); }
-        .player-score { font-size: 20px; font-weight: 800; color: var(--gold); margin-top: 4px; }
-
-        .question-box {
-            background: var(--bg-color);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 14px 20px;
-            margin-bottom: 20px;
-        }
-        .question-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent-color); font-weight: 800; margin-bottom: 5px; }
-        .question-text { font-size: 16px; font-weight: 600; color: var(--text-main); }
-
-        /* Табло со словом */
-        .word-board {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin: 20px 0;
-            flex-wrap: wrap;
-        }
-        .letter-box {
-            width: 44px;
-            height: 52px;
-            background: var(--bg-color);
-            border: 2px solid var(--border-color);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--gold);
-            transition: 0.3s;
-        }
-        .letter-box.revealed { background: var(--accent-subtle); border-color: var(--accent-color); }
-
-        /* Визуальный барабан */
-        .wheel-wrapper {
+            overflow-x: hidden !important;
             position: relative;
-            width: 260px;
-            height: 260px;
-            margin: 15px auto;
+            -webkit-font-smoothing: antialiased;
         }
-        .wheel-pointer {
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 0;
-            border-left: 14px solid transparent;
-            border-right: 14px solid transparent;
-            border-top: 24px solid var(--gold);
-            z-index: 10;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+
+        /* ФОНОВОЕ ВИДЕО */
+        .video-fixed-bg { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; overflow: hidden; pointer-events: none; }
+        .video-fixed-bg video { width: 100%; height: 100%; object-fit: cover; opacity: var(--video-opacity); transition: opacity 0.5s ease; }
+        .video-fixed-overlay { position: absolute; inset: 0; background: rgba(10, 9, 15, 0.55); pointer-events: none; }
+
+        /* ДВУХЭТАЖНАЯ ШАПКА */
+        header {
+            position: sticky; top: 0; width: 100%; padding: 14px 5%;
+            z-index: 2000; background: var(--header-bg);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .header-top {
+            display: flex; justify-content: space-between; align-items: center; width: 100%;
+            max-width: 1200px; margin: 0 auto;
+        }
+
+        .logo-wrap { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+        .logo-wrap img { height: 34px; width: 34px; border-radius: 6px; }
+        .brand-name { font-size: 18px; letter-spacing: 1px; text-transform: uppercase; font-weight: 800; color: var(--text-main); }
+        .brand-name span { color: var(--accent-color); }
+
+        .desktop-actions { display: flex; align-items: center; gap: 12px; }
+
+        .theme-toggle-btn {
+            padding: 8px 14px; height: 36px; font-size: 10px; font-weight: 800; letter-spacing: 1px;
+            display: inline-flex; align-items: center; justify-content: center;
+            border-radius: 6px; border: 1px solid var(--border-color); background: var(--surface-color);
+            cursor: pointer; transition: var(--transition); color: var(--text-main); text-transform: uppercase;
+        }
+        .theme-toggle-btn:hover { border-color: var(--accent-color); color: var(--accent-color); }
+
+        .btn-rule-nav {
+            padding: 8px 16px; height: 36px; font-size: 11px; font-weight: 800; text-transform: uppercase;
+            border-radius: 6px; border: 1px solid var(--accent-color); background: var(--accent-subtle);
+            color: var(--text-main); cursor: pointer; transition: var(--transition);
+        }
+        .btn-rule-nav:hover { background: var(--accent-color); color: #FFF; }
+
+        /* ВТОРОЙ ЭТАЖ ДЛЯ СМАРТФОНОВ */
+        .mobile-thumb-bar {
+            display: none; width: 100%; margin-top: 10px; padding-top: 10px;
+            border-top: 1px solid var(--border-color); gap: 10px;
+        }
+        .mobile-thumb-bar .theme-toggle-btn { flex: 1; height: 42px; }
+        .mobile-thumb-bar .btn-rule-nav { flex: 2; height: 42px; display: flex; align-items: center; justify-content: center; }
+
+        @media (max-width: 900px) {
+            .desktop-actions { display: none; }
+            .mobile-thumb-bar { display: flex; }
+        }
+
+        /* BENTO LAYOUT */
+        .main-layout {
+            max-width: 1200px; width: 100%; margin: 30px auto 50px;
+            padding: 0 24px; position: relative; z-index: 10;
+        }
+
+        .bento-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: start; width: 100%;
+        }
+        .bento-card {
+            background: var(--surface-color); border: 1px solid var(--border-color);
+            border-radius: 16px; padding: 30px; position: relative; overflow: hidden;
+            transition: var(--transition); box-shadow: 0 15px 35px var(--shadow);
+            min-width: 0;
+        }
+        .bento-card:hover { border-color: var(--accent-color); }
+        .span-2 { grid-column: span 2; }
+        .span-3 { grid-column: span 3; }
+
+        .badge-tag {
+            color: var(--accent-color); font-size: 11px; font-weight: 800; text-transform: uppercase;
+            letter-spacing: 2px; margin-bottom: 12px; display: inline-block; background: var(--accent-subtle);
+            padding: 4px 10px; border-radius: 4px; border: 1px solid var(--border-color);
+        }
+
+        /* ТАБЛО ИГРОКОВ */
+        .players-bar {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 24px;
+        }
+        .player-chip {
+            background: var(--bg-color); border: 1px solid var(--border-color);
+            padding: 12px; border-radius: 12px; text-align: center; transition: var(--transition);
+        }
+        .player-chip.active {
+            border-color: var(--gold); background: rgba(229, 169, 60, 0.12); transform: scale(1.02);
+            box-shadow: 0 0 15px rgba(229, 169, 60, 0.25);
+        }
+        .player-name { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
+        .player-score { font-size: 22px; font-weight: 800; color: var(--gold); margin-top: 4px; }
+
+        /* ВОПРОС И ТАБЛО */
+        .question-card {
+            background: var(--bg-color); border: 1px solid var(--border-color);
+            border-radius: 12px; padding: 18px 24px; margin-bottom: 20px; text-align: center;
+        }
+        .question-tour-title { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-color); margin-bottom: 6px; }
+        .question-desc { font-size: 16px; font-weight: 600; color: var(--text-main); line-height: 1.5; }
+
+        .word-board {
+            display: flex; justify-content: center; gap: 8px; margin: 20px 0; flex-wrap: wrap;
+        }
+        .letter-cell {
+            width: 44px; height: 54px; background: var(--bg-color);
+            border: 2px solid var(--border-color); border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Cormorant Garamond', serif; font-size: 30px;
+            font-weight: 700; color: var(--gold); transition: var(--transition);
+        }
+        .letter-cell.opened {
+            background: var(--accent-subtle); border-color: var(--accent-color); color: #FFF;
+        }
+
+        /* 16-СЕКТОРНЫЙ БАРАБАН */
+        .wheel-box {
+            position: relative; width: 320px; height: 320px; margin: 15px auto 20px;
+        }
+        .wheel-arrow {
+            position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+            width: 0; height: 0; border-left: 14px solid transparent; border-right: 14px solid transparent;
+            border-top: 26px solid var(--gold); z-index: 100; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.7));
         }
         #wheelCanvas {
-            width: 260px;
-            height: 260px;
-            border-radius: 50%;
+            width: 320px; height: 320px; border-radius: 50%;
             border: 6px solid var(--surface-hover);
-            box-shadow: 0 0 20px rgba(108, 62, 184, 0.3);
-            transition: transform 3.5s cubic-bezier(0.15, 0.9, 0.25, 1);
+            box-shadow: 0 0 35px rgba(108, 62, 184, 0.4); display: block;
         }
 
-        .wheel-status {
-            font-size: 14px;
-            font-weight: 700;
-            margin: 12px 0;
-            color: var(--gold);
-            min-height: 22px;
+        .spin-action-btn {
+            width: 100%; max-width: 320px; padding: 16px; background: var(--accent-color);
+            color: #FFF; border: none; border-radius: 10px; font-weight: 800; font-size: 13px;
+            text-transform: uppercase; letter-spacing: 1.5px; cursor: pointer; transition: var(--transition);
+            box-shadow: 0 10px 25px rgba(108, 62, 184, 0.4); margin: 0 auto; display: block;
+        }
+        .spin-action-btn:hover:not(:disabled) { background: var(--accent-hover); transform: translateY(-2px); }
+        .spin-action-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
+
+        .turn-status-text {
+            font-size: 15px; font-weight: 700; color: var(--gold); min-height: 24px;
+            margin: 15px 0 10px; text-align: center;
         }
 
-        .btn-spin {
-            background: var(--accent-color);
-            color: #FFF;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 10px;
-            font-size: 13px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: 0.3s;
+        /* КЛАВИАТУРА */
+        .keyboard-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(32px, 1fr));
+            gap: 6px; max-width: 750px; margin: 20px auto 0;
         }
-        .btn-spin:hover:not(:disabled) { background: var(--accent-hover); transform: translateY(-2px); }
-        .btn-spin:disabled { opacity: 0.4; cursor: not-allowed; }
-
-        /* Клавиатура */
-        .keyboard {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(32px, 1fr));
-            gap: 6px;
-            max-width: 650px;
-            margin: 20px auto 0;
-        }
-        .key-btn {
-            background: var(--bg-color);
-            border: 1px solid var(--border-color);
-            color: var(--text-main);
-            padding: 10px 0;
-            border-radius: 6px;
-            font-weight: 700;
-            font-size: 13px;
-            cursor: pointer;
+        .char-btn {
+            background: var(--bg-color); border: 1px solid var(--border-color); color: var(--text-main);
+            padding: 10px 0; border-radius: 6px; font-weight: 700; font-size: 13px; cursor: pointer;
             transition: 0.2s;
         }
-        .key-btn:hover:not(:disabled) { background: var(--accent-color); color: #FFF; }
-        .key-btn:disabled { opacity: 0.25; cursor: not-allowed; border-color: transparent; }
+        .char-btn:hover:not(:disabled) { background: var(--accent-color); color: #FFF; }
+        .char-btn:disabled { opacity: 0.2; cursor: not-allowed; border-color: transparent; }
 
-        /* Компактные модальные окна */
+        /* АККУРАТНЫЕ МОДАЛЬНЫЕ ОКНА */
         .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.78);
-            backdrop-filter: blur(8px);
-            display: none; align-items: center; justify-content: center;
-            z-index: 3000; padding: 15px;
+            position: fixed; inset: 0; background: rgba(10, 9, 15, 0.88);
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            z-index: 5000; display: none; align-items: center; justify-content: center; padding: 16px;
         }
-        .modal-box {
-            background: var(--surface-color);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 22px;
-            max-width: 440px;
-            width: 100%;
-            max-height: 85vh;
-            overflow-y: auto;
-            text-align: center;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.7);
+        .modal-card {
+            background: var(--surface-color); border: 1px solid var(--border-color);
+            border-radius: 16px; padding: 26px; max-width: 480px; width: 100%;
+            max-height: 88vh; overflow-y: auto; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.8);
         }
-        .modal-title { font-family: 'Cormorant Garamond', serif; font-size: 26px; color: var(--gold); margin-bottom: 10px; font-weight: 700; }
-        .modal-desc { font-size: 13.5px; margin-bottom: 18px; line-height: 1.5; color: var(--text-muted); }
-        
-        .modal-btns { display: flex; gap: 10px; justify-content: center; margin-bottom: 15px; flex-wrap: wrap; }
-        .btn-modal { padding: 10px 18px; border-radius: 8px; font-weight: 800; font-size: 11px; text-transform: uppercase; cursor: pointer; border: none; }
-        .btn-confirm { background: var(--accent-color); color: #FFF; }
-        .btn-confirm:hover { background: var(--accent-hover); }
-        .btn-cancel { background: var(--surface-hover); color: var(--text-main); border: 1px solid var(--border-color); }
+        .modal-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 26px; color: var(--gold); margin-bottom: 10px; }
+        .modal-card p { font-size: 14px; color: var(--text-muted); line-height: 1.6; margin-bottom: 18px; }
 
-        /* Фиксированная рамка РСЯ в модалке */
-        .rsya-modal-frame {
-            margin-top: 15px;
-            background: var(--bg-color);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            padding: 10px;
-            min-height: 180px;
-            max-height: 200px;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .modal-btn-row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+        .m-btn {
+            padding: 12px 22px; border-radius: 8px; font-size: 12px; font-weight: 800;
+            text-transform: uppercase; letter-spacing: 0.5px; border: none; cursor: pointer; transition: 0.2s;
+        }
+        .m-btn-primary { background: var(--accent-color); color: #FFF; }
+        .m-btn-primary:hover { background: var(--accent-hover); }
+        .m-btn-secondary { background: var(--surface-hover); color: var(--text-main); border: 1px solid var(--border-color); }
+
+        /* КОМПАКТНЫЙ БЛОК РСЯ ВНУТРИ МОДАЛОК */
+        .modal-rsya-box {
+            margin-top: 15px; border-radius: 10px; border: 1px solid var(--border-color);
+            background: var(--bg-color); min-height: 190px; max-height: 220px; overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
         }
 
-        .btn-vk-purple {
-            background: linear-gradient(135deg, #6C3EB8, #48257B);
-            color: #FFF;
-            text-decoration: none;
-            display: inline-block;
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-size: 12px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+        .vk-btn-win {
+            background: #0077FF !important; color: #FFF !important; text-decoration: none;
+            display: inline-flex; align-items: center; justify-content: center; width: 100%;
+            padding: 15px; border-radius: 8px; font-weight: 800; font-size: 13px; text-transform: uppercase;
+            letter-spacing: 0.5px; box-shadow: 0 8px 20px rgba(0, 119, 255, 0.4); margin-bottom: 10px;
         }
 
-        @media (max-width: 600px) {
-            .game-container { padding: 15px; }
-            .letter-box { width: 34px; height: 42px; font-size: 20px; }
-            .wheel-wrapper { width: 220px; height: 220px; }
-            #wheelCanvas { width: 220px; height: 220px; }
+        footer { margin-top: 60px; padding: 45px 0; border-top: 1px solid var(--border-color); text-align: center; background: var(--surface-color); }
+        .footer-text { font-size: 11px; color: var(--text-muted); line-height: 1.6; max-width: 850px; margin: 0 auto; }
+
+        @media (max-width: 968px) {
+            .bento-grid { grid-template-columns: 1fr; }
+            .span-2, .span-3 { grid-column: span 1; }
+            .wheel-box { width: 270px; height: 270px; }
+            #wheelCanvas { width: 270px; height: 270px; }
+            .letter-cell { width: 36px; height: 44px; font-size: 22px; }
         }
     </style>
 </head>
 <body>
 
+<!-- ФОНОВОЕ ВИДЕО -->
+<div class="video-fixed-bg">
+    <video muted autoplay loop playsinline preload="auto" id="bgVideo">
+        <source src="hero-video.mp4?v=20260809" type="video/mp4">
+    </video>
+    <div class="video-fixed-overlay"></div>
+</div>
+
+<!-- ШАПКА -->
 <header>
-    <div class="logo">Поле Чудес <span>РЕСУРС</span></div>
-    <button class="btn-rule" onclick="openRulesModal()">Правила игры</button>
+    <div class="header-top">
+        <div class="logo-wrap" onclick="window.location.href='index.html'">
+            <img src="logo_header_final.png" alt="РЕСУРС">
+            <div class="brand-name">РЕСУРС<span>.ШОУ</span></div>
+        </div>
+        <div class="desktop-actions">
+            <button class="btn-rule-nav" onclick="openRulesModal()">Правила игры</button>
+            <button id="themeToggle" class="theme-toggle-btn" onclick="toggleTheme()">ТЕМА: ТЕМНАЯ</button>
+            <a href="club.html" class="theme-toggle-btn" style="text-decoration: none;">Онлайн-клуб</a>
+        </div>
+    </div>
+    <div class="mobile-thumb-bar">
+        <button class="btn-rule-nav" onclick="openRulesModal()">ПРАВИЛА</button>
+        <button id="themeToggleMobile" class="theme-toggle-btn" onclick="toggleTheme()">ТЕМА</button>
+    </div>
 </header>
 
-<div class="game-container">
-    <div class="score-board">
-        <div class="player-card active" id="player-0">
-            <div>Вы (Игрок 1)</div>
-            <div class="player-score" id="score-0">0</div>
+<main class="main-layout">
+    <div class="bento-grid">
+        
+        <!-- ЛЕВАЯ КАРТОЧКА: БАРАБАН И СТАТУС -->
+        <div class="bento-card">
+            <span class="badge-tag">Интерактивный сектор</span>
+            <div class="turn-status-text" id="turnStatus">Ваш ход! Вращайте барабан.</div>
+            
+            <div class="wheel-box">
+                <div class="wheel-arrow"></div>
+                <canvas id="wheelCanvas" width="320" height="320"></canvas>
+            </div>
+
+            <button id="spinBtn" class="spin-action-btn" onclick="userSpin()">Крутить барабан</button>
         </div>
-        <div class="player-card" id="player-1">
-            <div>Соперник 1</div>
-            <div class="player-score" id="score-1">0</div>
+
+        <!-- ЦЕНТРАЛЬНАЯ КАРТОЧКА: ТАБЛО ИГРОКОВ, ВОПРОС И БУКВЫ -->
+        <div class="bento-card span-2">
+            <div class="players-bar">
+                <div class="player-chip active" id="pChip-0">
+                    <div class="player-name">Вы (Игрок 1)</div>
+                    <div class="player-score" id="pScore-0">0</div>
+                </div>
+                <div class="player-chip" id="pChip-1">
+                    <div class="player-name" id="pName-1">Ольга (Бот)</div>
+                    <div class="player-score" id="pScore-1">0</div>
+                </div>
+                <div class="player-chip" id="pChip-2">
+                    <div class="player-name" id="pName-2">Михаил (Бот)</div>
+                    <div class="player-score" id="pScore-2">0</div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-tour-title" id="tourTitle">1 ТУР: АНАТОМИЧЕСКИЙ ТЕРМИН</div>
+                <div class="question-desc" id="questionDesc">Загрузка задания...</div>
+            </div>
+
+            <!-- Табло слова -->
+            <div class="word-board" id="wordBoard"></div>
+
+            <!-- Клавиатура -->
+            <div class="keyboard-grid" id="keyboardGrid"></div>
         </div>
-        <div class="player-card" id="player-2">
-            <div>Соперник 2</div>
-            <div class="player-score" id="score-2">0</div>
+
+        <!-- НИЖНИЙ БЛОК РСЯ -->
+        <div class="bento-card span-3" style="background: var(--surface-color); padding: 15px; min-height: 250px; display: flex; align-items: center; justify-content: center;">
+            <div id="yandex_rtb_main_under" style="width: 100%;"></div>
+            <script>
+                window.yaContextCb.push(() => {
+                    Ya.Context.AdvManager.render({
+                        "blockId": "R-A-19181219-4",
+                        "renderTo": "yandex_rtb_main_under"
+                    });
+                });
+            </script>
         </div>
+
     </div>
+</main>
 
-    <div class="question-box">
-        <div class="question-label" id="tour-label">1 ТУР: ВОПРОС</div>
-        <div class="question-text" id="question-text">Загрузка задания...</div>
-    </div>
-
-    <!-- Табло слова -->
-    <div class="word-board" id="word-board"></div>
-
-    <!-- Барабан со стрелкой -->
-    <div class="wheel-section">
-        <div class="wheel-wrapper">
-            <div class="wheel-pointer"></div>
-            <canvas id="wheelCanvas" width="260" height="260"></canvas>
+<!-- МОДАЛКА: СЕКТОР ПРИЗ -->
+<div class="modal-overlay" id="prizeModal">
+    <div class="modal-card">
+        <h3>Сектор «ПРИЗ» на барабане!</h3>
+        <p>Вы можете забрать гарантированные 150 бонусных очков или рискнуть ради скрытого подарка от студии «РЕСУРС»!</p>
+        <div class="modal-btn-row">
+            <button class="m-btn m-btn-secondary" onclick="resolvePrizeChoice(false)">Забрать 150 очков</button>
+            <button class="m-btn m-btn-primary" onclick="resolvePrizeChoice(true)">Рискнуть (Секретный приз)</button>
         </div>
-        <div class="wheel-status" id="wheel-status">Ваш ход! Вращайте барабан.</div>
-        <button class="btn-spin" id="spin-btn" onclick="spinWheel()">Крутить барабан</button>
-    </div>
-
-    <!-- Буквенная клавиатура -->
-    <div class="keyboard" id="keyboard"></div>
-</div>
-
-<!-- Модалка Приза -->
-<div class="modal-overlay" id="prize-modal">
-    <div class="modal-box">
-        <div class="modal-title">Сектор ПРИЗ!</div>
-        <div class="modal-desc">Вы можете гарантированно забрать 150 очков или рискнуть ради подарка от студии «РЕСУРС»!</div>
-        <div class="modal-btns">
-            <button class="btn-modal btn-cancel" onclick="resolvePrize(false)">Забрать очки (+150)</button>
-            <button class="btn-modal btn-confirm" onclick="resolvePrize(true)">Взять Приз</button>
-        </div>
-        <div class="rsya-modal-frame">
-            <div id="yandex_rtb_prize"></div>
-        </div>
-    </div>
-</div>
-
-<!-- Модалка Шкатулок -->
-<div class="modal-overlay" id="boxes-modal">
-    <div class="modal-box">
-        <div class="modal-title">Две Шкатулки</div>
-        <div class="modal-desc">В одной из шкатулок спрятан бонус до 500 очков, вторая пустая. Какую откроете?</div>
-        <div class="modal-btns">
-            <button class="btn-modal btn-confirm" onclick="chooseBox(0)">Левая шкатулка</button>
-            <button class="btn-modal btn-confirm" onclick="chooseBox(1)">Правая шкатулка</button>
-        </div>
-    </div>
-</div>
-
-<!-- Модалка Правил -->
-<div class="modal-overlay" id="rules-modal">
-    <div class="modal-box">
-        <div class="modal-title">Правила игры</div>
-        <div class="modal-desc" style="text-align: left;">
-            • Крутите барабан, чтобы получить очки (от 50 до 200) или специальный сектор.<br>
-            • <b>Сектор «+»</b> позволяет открыть любую спрятанную букву на выбор.<br>
-            • <b>Сектор «Приз»</b>: выбор между очками и подарком студии.<br>
-            • <b>«2 Шкатулки»</b>: угадайте шкатулку с бонусом до 500 очков.<br>
-            • Угадавший слово проходит в Финал и может забрать подарок в VK!
-        </div>
-        <button class="btn-modal btn-confirm" onclick="closeRulesModal()">Закрыть правила</button>
-        <div class="rsya-modal-frame">
-            <div id="yandex_rtb_rules"></div>
+        <div class="modal-rsya-box">
+            <div id="yandex_rtb_modal_prize" style="width: 100%;"></div>
         </div>
     </div>
 </div>
 
-<!-- Модалка Победы -->
-<div class="modal-overlay" id="win-modal">
-    <div class="modal-box">
-        <div class="modal-title">Поздравляем с победой!</div>
-        <div class="modal-desc" id="win-modal-desc">Вы разгадали слово и заработали тест-драйв в онлайн-клуб или студию «РЕСУРС»!</div>
-        <div style="margin-bottom: 12px;">
-            <a href="#" id="vk-win-btn" class="btn-vk-purple" target="_blank">Написать Вере в ВК за призом</a>
+<!-- МОДАЛКА: ДВЕ ШКАТУЛКИ -->
+<div class="modal-overlay" id="boxModal">
+    <div class="modal-card">
+        <h3>Две Шкатулки</h3>
+        <p>В одной из шкатулок спрятан бонус от 100 до 500 очков. Вторая пуста. Выберите одну из шкатулок:</p>
+        <div class="modal-btn-row">
+            <button class="m-btn m-btn-primary" onclick="resolveBoxChoice(0)">Левая шкатулка</button>
+            <button class="m-btn m-btn-primary" onclick="resolveBoxChoice(1)">Правая шкатулка</button>
         </div>
-        <button class="btn-modal btn-cancel" onclick="location.reload()">Сыграть заново</button>
+        <div class="modal-rsya-box">
+            <div id="yandex_rtb_modal_box" style="width: 100%;"></div>
+        </div>
     </div>
 </div>
+
+<!-- МОДАЛКА: ПРАВИЛА ИГРЫ -->
+<div class="modal-overlay" id="rulesModal">
+    <div class="modal-card" style="max-width: 520px;">
+        <h3>Правила «Поля Чудес»</h3>
+        <p style="text-align: left; font-size: 13px;">
+            1. <b>1 Тур</b>: игра с двумя соперниками за право выйти в Финал.<br>
+            2. <b>Финал</b>: усложненное биомеханическое слово.<br>
+            3. <b>Суперигра</b>: при победе в финале вам предложат назвать 3 согласные и 1 гласную букву и дать ответ за 60 секунд.<br>
+            4. <b>Сектор «+»</b> открывает любую выбранную букву.<br>
+            5. В шкатулках спрятано до 500 бонусных очков.
+        </p>
+        <button class="m-btn m-btn-primary" onclick="closeRulesModal()">Понятно, в игру!</button>
+        <div class="modal-rsya-box">
+            <div id="yandex_rtb_modal_rules" style="width: 100%;"></div>
+        </div>
+    </div>
+</div>
+
+<!-- МОДАЛКА: ПЕРЕХОД В ФИНАЛ -->
+<div class="modal-overlay" id="toFinaleModal">
+    <div class="modal-card">
+        <h3>Браво! Вы победили в 1 туре!</h3>
+        <p>Вы разгадали первое слово и выходите в <b>ФИНАЛ</b> с новыми, более сильными соперниками!</p>
+        <button class="m-btn m-btn-primary" onclick="startFinaleRound()">Перейти в Финал</button>
+        <div class="modal-rsya-box">
+            <div id="yandex_rtb_modal_finale" style="width: 100%;"></div>
+        </div>
+    </div>
+</div>
+
+<!-- МОДАЛКА: ПРЕДЛОЖЕНИЕ СУПЕРИГРЫ -->
+<div class="modal-overlay" id="superOfferModal">
+    <div class="modal-card">
+        <h3>Вы абсолютный победитель Финала!</h3>
+        <p>Вы набрали рекордное количество очков! Готовы рискнуть всем в <b>СУПЕРИГРЕ</b> ради главного абонемента студии «РЕСУРС»?</p>
+        <div class="modal-btn-row">
+            <button class="m-btn m-btn-secondary" onclick="declineSuperGame()">Забрать выигрыш</button>
+            <button class="m-btn m-btn-primary" onclick="acceptSuperGame()">Играть в Суперигру!</button>
+        </div>
+        <div class="modal-rsya-box">
+            <div id="yandex_rtb_modal_super_offer" style="width: 100%;"></div>
+        </div>
+    </div>
+</div>
+
+<!-- МОДАЛКА: ФИНАЛ / ПОБЕДА / ЗАБРАТЬ ПРИЗ В ВК -->
+<div class="modal-overlay" id="finalWinModal">
+    <div class="modal-card">
+        <h3 id="winTitle">Грандиозная победа!</h3>
+        <p id="winDesc">Вы блестяще справились со всеми терминами биомеханики и выиграли главный приз студии «РЕСУРС»!</p>
+        <a href="#" id="vkClaimBtn" class="vk-btn-win" target="_blank">Написать Вере в ВК за призом</a>
+        <button class="m-btn m-btn-secondary" style="width: 100%;" onclick="location.reload()">Сыграть заново</button>
+        <div class="modal-rsya-box">
+            <div id="yandex_rtb_modal_win" style="width: 100%;"></div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+        <p style="font-size: 13px; font-weight: 800; color: var(--text-main); margin-bottom: 6px;">
+            © 2026 РЕСУРС | Студия фитнеса, растяжки и движения. Сыктывкар, ул. Коммунистическая, 67.
+        </p>
+        <p class="footer-text">
+            ИП Худяков Николай Сергеевич • ИНН 111801576622. Интерактивная развивающая викторина по биомеханике движения. Все призы и скидки действительны по правилам студии.
+        </p>
+    </div>
+</footer>
 
 <script>
-    // Набор секторов барабана
-    const sectors = [
-        { label: "100", value: 100, color: "#6C3EB8" },
-        { label: "50", value: 50, color: "#1A1727" },
-        { label: "ПРИЗ", value: "PRIZE", color: "#E5A93C" },
-        { label: "150", value: 150, color: "#5B3494" },
-        { label: "БАНКРОТ", value: "BANKRUPT", color: "#DC2626" },
-        { label: "200", value: 200, color: "#10B981" },
-        { label: "+", value: "PLUS", color: "#8352D6" },
-        { label: "ШКАТУЛКА", value: "BOXES", color: "#BA68C8" }
+    // 16 СЕКТОРОВ БАРАБАНА С ОЧКАМИ 30, 40, 50, 75, 100, 150, 200 И СПЕЦСЕКТОРАМИ
+    const wheelSectors = [
+        { label: "100", type: "score", value: 100, color: "#6C3EB8" },
+        { label: "30", type: "score", value: 30, color: "#1E1833" },
+        { label: "ПРИЗ", type: "prize", value: 0, color: "#E5A93C" },
+        { label: "50", type: "score", value: 50, color: "#2B1E4A" },
+        { label: "40", type: "score", value: 40, color: "#1A1727" },
+        { label: "БАНКРОТ", type: "bankrupt", value: 0, color: "#DC2626" },
+        { label: "150", type: "score", value: 150, color: "#5B3494" },
+        { label: "75", type: "score", value: 75, color: "#25183E" },
+        { label: "+", type: "plus", value: 0, color: "#8352D6" },
+        { label: "200", type: "score", value: 200, color: "#10B981" },
+        { label: "30", type: "score", value: 30, color: "#1A1727" },
+        { label: "ШКАТУЛКА", type: "box", value: 0, color: "#BA68C8" },
+        { label: "100", type: "score", value: 100, color: "#6C3EB8" },
+        { label: "40", type: "score", value: 40, color: "#2B1E4A" },
+        { label: "×2", type: "mult", value: 2, color: "#B38639" },
+        { label: "50", type: "score", value: 50, color: "#1E1833" }
     ];
 
-    const questions = [
-        { word: "ПИЛАТЕС", q: "Умная система тренировок для глубоких мышц кора и осанки." },
-        { word: "ДИАСТАЗ", q: "Расхождение прямых мышц живота по белой линии после родов." },
-        { word: "ФАСЦИЯ", q: "Соединительнотканная оболочка, покрывающая мышцы и передающая натяжение." }
-    ];
+    // СЛОЖНЫЕ ТЕРМИНЫ
+    const gameDatabase = {
+        tour1: {
+            title: "1 ТУР: ГЛУБОКАЯ БИОМЕХАНИКА",
+            word: "ПРОПРИОЦЕПЦИЯ",
+            desc: "Глубокое мышечно-суставное чувство положения собственного тела и его сегментов в пространстве без участия зрения."
+        },
+        finale: {
+            title: "ФИНАЛ: МЫШЕЧНЫЙ КОРСЕТ",
+            word: "ПЛАТИЗМА",
+            desc: "Широкая подкожная мышца шеи, натяжение которой напрямую определяет четкость овала лица и отсутствие второго подбородка."
+        },
+        superGame: {
+            title: "СУПЕРИГРА: ГИДРАВЛИКА ТЕЛА",
+            word: "ДИАФРАГМА",
+            desc: "Главный непарный куполообразный дыхательный орган, служащий верхним гидравлическим насосом для брюшной полости и лимфотока."
+        }
+    };
 
-    let currentQ = questions[0];
-    let word = currentQ.word;
-    let revealed = Array(word.length).fill(false);
-    
+    let gameState = "TOUR_1"; // TOUR_1, FINALE, SUPER_GAME
+    let activeQuestion = gameDatabase.tour1;
+    let word = activeQuestion.word;
+    let revealed = [];
     let scores = [0, 0, 0];
-    let activePlayer = 0; // 0 - юзер, 1 и 2 - боты
-    let currentSpin = null;
-    let waitingForLetter = false;
-    let isSpinning = false;
-    let currentRotation = 0;
+    let activePlayer = 0; // 0: Вы, 1: Бот 1, 2: Бот 2
 
+    let currentSpin = null;
+    let isSpinning = false;
+    let waitingLetter = false;
+    let isSuperPickPhase = false;
+    let superPicksLeft = 4; // 3 согласных + 1 гласная
+
+    let currentAngle = 0;
     const alphabet = "АБВГДЕЖЗИКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
 
     function initGame() {
-        document.getElementById('question-text').innerText = currentQ.q;
+        scores = [0, 0, 0];
+        activePlayer = 0;
+        setupRound(gameDatabase.tour1);
         drawWheel();
-        renderBoard();
         renderKeyboard();
-        updateScores();
     }
 
-    // Отрисовка барабана на Canvas
+    function setupRound(qData) {
+        activeQuestion = qData;
+        word = qData.word;
+        revealed = Array(word.length).fill(false);
+        document.getElementById('tourTitle').innerText = qData.title;
+        document.getElementById('questionDesc').innerText = qData.desc;
+        renderBoard();
+        resetKeyboardState();
+        updateUI();
+    }
+
     function drawWheel() {
         const canvas = document.getElementById('wheelCanvas');
         const ctx = canvas.getContext('2d');
-        const numSectors = sectors.length;
-        const arc = (2 * Math.PI) / numSectors;
-        const radius = canvas.width / 2;
+        const count = wheelSectors.length;
+        const arc = (2 * Math.PI) / count;
+        const r = canvas.width / 2;
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        sectors.forEach((s, i) => {
-            const angle = i * arc;
+        wheelSectors.forEach((sec, i) => {
+            const angle = currentAngle + i * arc;
             ctx.beginPath();
-            ctx.fillStyle = s.color;
-            ctx.moveTo(radius, radius);
-            ctx.arc(radius, radius, radius, angle, angle + arc);
-            ctx.lineTo(radius, radius);
+            ctx.fillStyle = sec.color;
+            ctx.moveTo(r, r);
+            ctx.arc(r, r, r - 4, angle, angle + arc);
+            ctx.lineTo(r, r);
             ctx.fill();
+            ctx.strokeStyle = "rgba(10, 9, 15, 0.4)";
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
 
-            // Текст внутри сектора
+            // Текст сектора
             ctx.save();
-            ctx.translate(radius, radius);
+            ctx.translate(r, r);
             ctx.rotate(angle + arc / 2);
             ctx.textAlign = "right";
-            ctx.fillStyle = "#FFF";
-            ctx.font = "bold 13px Manrope, sans-serif";
-            ctx.fillText(s.label, radius - 20, 5);
+            ctx.fillStyle = "#FFFFFF";
+            ctx.font = "800 11px Manrope";
+            ctx.fillText(sec.label, r - 16, 4);
             ctx.restore();
         });
 
-        // Центральная заглушка
+        // Центр колеса
         ctx.beginPath();
-        ctx.arc(radius, radius, 25, 0, 2 * Math.PI);
+        ctx.arc(r, r, 26, 0, Math.PI * 2);
         ctx.fillStyle = "#12101B";
         ctx.fill();
-        ctx.strokeStyle = "rgba(229, 169, 60, 0.6)";
+        ctx.strokeStyle = "#E5A93C";
         ctx.lineWidth = 3;
         ctx.stroke();
     }
 
     function renderBoard() {
-        const board = document.getElementById('word-board');
+        const board = document.getElementById('wordBoard');
         board.innerHTML = '';
         for (let i = 0; i < word.length; i++) {
-            const box = document.createElement('div');
-            box.className = 'letter-box ' + (revealed[i] ? 'revealed' : '');
-            box.innerText = revealed[i] ? word[i] : '';
-            board.appendChild(box);
+            const cell = document.createElement('div');
+            cell.className = 'letter-cell ' + (revealed[i] ? 'opened' : '');
+            cell.innerText = revealed[i] ? word[i] : '';
+            board.appendChild(cell);
         }
     }
 
     function renderKeyboard() {
-        const kb = document.getElementById('keyboard');
+        const kb = document.getElementById('keyboardGrid');
         kb.innerHTML = '';
         for (let char of alphabet) {
             const btn = document.createElement('button');
-            btn.className = 'key-btn';
+            btn.className = 'char-btn';
             btn.innerText = char;
             btn.id = 'key-' + char;
-            btn.onclick = () => handleLetterGuess(char);
+            btn.onclick = () => onLetterSelected(char);
             kb.appendChild(btn);
         }
     }
 
-    function updateScores() {
+    function resetKeyboardState() {
+        document.querySelectorAll('.char-btn').forEach(btn => btn.disabled = false);
+    }
+
+    function updateUI() {
         for (let i = 0; i < 3; i++) {
-            document.getElementById('score-' + i).innerText = scores[i];
-            document.getElementById('player-' + i).className = 'player-card ' + (activePlayer === i ? 'active' : '');
+            document.getElementById('pScore-' + i).innerText = scores[i];
+            const chip = document.getElementById('pChip-' + i);
+            if (activePlayer === i) chip.classList.add('active');
+            else chip.classList.remove('active');
         }
     }
 
-    // Вращение барабана
-    function spinWheel() {
-        if (isSpinning || waitingForLetter) return;
-        isSpinning = true;
-        document.getElementById('spin-btn').disabled = true;
-
-        const status = document.getElementById('wheel-status');
-        status.innerText = activePlayer === 0 ? "Барабан вращается..." : `Соперник ${activePlayer} крутит барабан...`;
-
-        // Случайный сектор
-        const sectorIndex = Math.floor(Math.random() * sectors.length);
-        const arcDegrees = 360 / sectors.length;
-
-        // Расчет угла остановки под верхнюю стрелку (270 градусов)
-        const targetAngle = (360 - (sectorIndex * arcDegrees + arcDegrees / 2) + 270) % 360;
-        const extraSpins = 360 * 5; // 5 полных оборотов
-        currentRotation += extraSpins + (targetAngle - (currentRotation % 360));
-
-        const canvas = document.getElementById('wheelCanvas');
-        canvas.style.transform = `rotate(${currentRotation}deg)`;
-
-        setTimeout(() => {
-            isSpinning = false;
-            currentSpin = sectors[sectorIndex];
-            handleSectorResult(currentSpin);
-        }, 3600);
+    // ВРАЩЕНИЕ БАРАБАНА (ДЛИТЕЛЬНОСТЬ 5.5 СЕКУНД)
+    function userSpin() {
+        if (isSpinning || waitingLetter || activePlayer !== 0) return;
+        executeSpin();
     }
 
-    function handleSectorResult(sector) {
-        const status = document.getElementById('wheel-status');
+    function executeSpin() {
+        isSpinning = true;
+        document.getElementById('spinBtn').disabled = true;
+        const status = document.getElementById('turnStatus');
+        status.innerText = activePlayer === 0 ? "Барабан вращается..." : `Соперник ${activePlayer} раскручивает барабан...`;
 
-        if (sector.value === "BANKRUPT") {
+        const chosenIndex = Math.floor(Math.random() * wheelSectors.length);
+        const arc = (2 * Math.PI) / wheelSectors.length;
+        
+        // Стрелка смотрит сверху (угол 3*PI/2)
+        const targetSectorCenter = (wheelSectors.length - chosenIndex) * arc - arc / 2 + (3 * Math.PI / 2);
+        const extraRounds = Math.PI * 2 * (7 + Math.floor(Math.random() * 3));
+        const finalAngle = currentAngle + extraRounds + (targetSectorCenter - (currentAngle % (Math.PI * 2)));
+
+        const startTime = performance.now();
+        const duration = 5500; // 5.5 секунд плавного хода
+        const startAngle = currentAngle;
+
+        function animateWheel(now) {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            // Плавное кубическое замедление
+            const easeOut = 1 - Math.pow(1 - progress, 3);
+            currentAngle = startAngle + (finalAngle - startAngle) * easeOut;
+            drawWheel();
+
+            if (progress < 1) {
+                requestAnimationFrame(animateWheel);
+            } else {
+                isSpinning = false;
+                currentSpin = wheelSectors[chosenIndex];
+                evaluateSector(currentSpin);
+            }
+        }
+        requestAnimationFrame(animateWheel);
+    }
+
+    function evaluateSector(sector) {
+        const status = document.getElementById('turnStatus');
+
+        if (sector.type === "bankrupt") {
             scores[activePlayer] = 0;
-            updateScores();
-            status.innerText = "Сектор БАНКРОТ! Все очки игрока сгорели.";
-            setTimeout(nextTurn, 1800);
+            updateUI();
+            status.innerText = "Сектор БАНКРОТ! Все накопленные очки сгорели!";
+            setTimeout(passTurn, 2200);
             return;
         }
 
-        if (sector.value === "PRIZE") {
+        if (sector.type === "prize") {
             if (activePlayer === 0) {
-                document.getElementById('prize-modal').style.display = 'flex';
-                window.yaContextCb.push(() => {
-                    Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-23", "renderTo": "yandex_rtb_prize" });
-                });
+                openModal('prizeModal', 'yandex_rtb_modal_prize');
             } else {
-                // Бот выбирает очки
                 scores[activePlayer] += 150;
-                updateScores();
-                status.innerText = `Соперник ${activePlayer} выбрал забрать 150 очков!`;
-                setTimeout(nextTurn, 1800);
+                updateUI();
+                status.innerText = `Соперник ${activePlayer} решил забрать 150 очков!`;
+                setTimeout(passTurn, 2000);
             }
             return;
         }
 
-        if (sector.value === "BOXES") {
+        if (sector.type === "box") {
             if (activePlayer === 0) {
-                document.getElementById('boxes-modal').style.display = 'flex';
+                openModal('boxModal', 'yandex_rtb_modal_box');
             } else {
-                // Бот случайно угадывает
                 if (Math.random() > 0.5) {
-                    scores[activePlayer] += 250;
-                    updateScores();
-                    status.innerText = `Соперник ${activePlayer} угадал шкатулку: +250 очков!`;
+                    scores[activePlayer] += 300;
+                    updateUI();
+                    status.innerText = `Соперник ${activePlayer} открыл шкатулку с бонусом: +300 очков!`;
                 } else {
                     status.innerText = `Соперник ${activePlayer} открыл пустую шкатулку.`;
                 }
-                setTimeout(nextTurn, 1800);
+                // Ход не сгорает при открытии шкатулки!
+                status.innerText += " Ход сохраняется, крутите барабан!";
+                setTimeout(() => { executeSpin(); }, 2000);
             }
             return;
         }
 
-        if (sector.value === "PLUS") {
-            status.innerText = activePlayer === 0 
-                ? "Сектор «+»! Выберите букву, и она откроется гарантированно." 
-                : `Сектор «+» у Соперника ${activePlayer}!`;
-            waitingForLetter = true;
-            if (activePlayer !== 0) setTimeout(botPickLetter, 1500);
+        if (sector.type === "plus") {
+            status.innerText = activePlayer === 0
+                ? "Сектор «+»! Выберите ЛЮБУЮ букву — она откроется гарантированно!"
+                : `Сектор «+» у Соперника ${activePlayer}. Он выбирает букву...`;
+            waitingLetter = true;
+            if (activePlayer !== 0) setTimeout(botPickLetter, 1600);
             return;
         }
 
-        // Выпали числовые очки (50, 100, 150, 200)
-        status.innerText = activePlayer === 0 
-            ? `Сектор ${sector.value} очков! Назовите букву на клавиатуре.` 
-            : `Выпало ${sector.value} очков. Соперник ${activePlayer} называет букву...`;
-            
-        waitingForLetter = true;
+        if (sector.type === "mult") {
+            scores[activePlayer] *= 2;
+            if (scores[activePlayer] === 0) scores[activePlayer] = 100;
+            updateUI();
+            status.innerText = "Сектор «×2»! Очки удвоены! Назовите букву.";
+            waitingLetter = true;
+            if (activePlayer !== 0) setTimeout(botPickLetter, 1600);
+            return;
+        }
+
+        // Обычные очки
+        status.innerText = activePlayer === 0
+            ? `Сектор: ${sector.value} очков! Выберите букву на клавиатуре.`
+            : `Сектор: ${sector.value} очков. Соперник ${activePlayer} думает...`;
+        waitingLetter = true;
 
         if (activePlayer !== 0) {
             setTimeout(botPickLetter, 1800);
         }
     }
 
-    function handleLetterGuess(char) {
-        if (!waitingForLetter) return;
+    function onLetterSelected(char) {
+        if (!waitingLetter) return;
 
         const keyBtn = document.getElementById('key-' + char);
         if (keyBtn) keyBtn.disabled = true;
 
-        let foundCount = 0;
+        let openedCount = 0;
         for (let i = 0; i < word.length; i++) {
             if (word[i] === char && !revealed[i]) {
                 revealed[i] = true;
-                foundCount++;
+                openedCount++;
             }
         }
-
         renderBoard();
 
-        const status = document.getElementById('wheel-status');
-        const pointsEarned = typeof currentSpin.value === 'number' ? currentSpin.value : 100;
+        const status = document.getElementById('turnStatus');
+        const pts = (currentSpin && currentSpin.type === "score") ? currentSpin.value : 100;
 
-        if (foundCount > 0) {
-            scores[activePlayer] += pointsEarned * foundCount;
-            updateScores();
-            status.innerText = `Есть буква «${char}»! (+${pointsEarned * foundCount} очков). Ход сохраняется!`;
+        if (openedCount > 0) {
+            scores[activePlayer] += pts * openedCount;
+            updateUI();
+            status.innerText = `Есть буква «${char}»! (+${pts * openedCount} очков). Ход сохраняется!`;
 
             if (revealed.every(r => r)) {
-                setTimeout(handleWin, 1000);
+                setTimeout(handleRoundCompletion, 1200);
                 return;
             }
 
-            waitingForLetter = false;
+            waitingLetter = false;
             if (activePlayer === 0) {
-                document.getElementById('spin-btn').disabled = false;
+                document.getElementById('spinBtn').disabled = false;
             } else {
-                setTimeout(spinWheel, 1800);
+                setTimeout(executeSpin, 2000);
             }
         } else {
-            status.innerText = `Буквы «${char}» нет в слове! Переход хода.`;
-            waitingForLetter = false;
-            setTimeout(nextTurn, 1600);
+            status.innerText = `Буквы «${char}» в слове нет! Переход хода.`;
+            waitingLetter = false;
+            setTimeout(passTurn, 1600);
         }
     }
 
-    // Переход хода без зависаний
-    function nextTurn() {
+    function passTurn() {
         activePlayer = (activePlayer + 1) % 3;
-        updateScores();
-        waitingForLetter = false;
-
-        const status = document.getElementById('wheel-status');
+        updateUI();
+        waitingLetter = false;
+        const status = document.getElementById('turnStatus');
 
         if (activePlayer === 0) {
             status.innerText = "Ваш ход! Вращайте барабан.";
-            document.getElementById('spin-btn').disabled = false;
+            document.getElementById('spinBtn').disabled = false;
         } else {
-            status.innerText = `Ход Соперника ${activePlayer}. Он крутит барабан...`;
-            document.getElementById('spin-btn').disabled = true;
-            setTimeout(spinWheel, 1600);
+            status.innerText = `Ход Соперника ${activePlayer}...`;
+            document.getElementById('spinBtn').disabled = true;
+            setTimeout(executeSpin, 1600);
         }
     }
 
-    // Бот называет оставшуюся букву
     function botPickLetter() {
-        if (activePlayer === 0 || !waitingForLetter) return;
-
-        // Бот выбирает случайную букву, которая еще не была нажата
-        const availableKeys = Array.from(document.querySelectorAll('.key-btn')).filter(btn => !btn.disabled);
-        if (availableKeys.length > 0) {
-            // С шансом 40% бот называет правильную букву из слова, если она есть
-            const unrevealedLetters = word.split('').filter((c, idx) => !revealed[idx]);
-            let pickedChar = '';
-
-            if (Math.random() < 0.4 && unrevealedLetters.length > 0) {
-                pickedChar = unrevealedLetters[0];
+        if (activePlayer === 0 || !waitingLetter) return;
+        const freeKeys = Array.from(document.querySelectorAll('.char-btn')).filter(b => !b.disabled);
+        if (freeKeys.length > 0) {
+            const hiddenChars = word.split('').filter((c, idx) => !revealed[idx]);
+            let picked = '';
+            // 45% шанс угадать
+            if (Math.random() < 0.45 && hiddenChars.length > 0) {
+                picked = hiddenChars[0];
             } else {
-                pickedChar = availableKeys[Math.floor(Math.random() * availableKeys.length)].innerText;
+                picked = freeKeys[Math.floor(Math.random() * freeKeys.length)].innerText;
             }
-
-            handleLetterGuess(pickedChar);
+            onLetterSelected(picked);
         }
     }
 
-    // Разрешение модалки приза
-    function resolvePrize(takePrize) {
-        document.getElementById('prize-modal').style.display = 'none';
-        const status = document.getElementById('wheel-status');
-
+    // МОДАЛКИ: ПРИЗ И ШКАТУЛКИ
+    function resolvePrizeChoice(takePrize) {
+        closeModal('prizeModal');
+        const status = document.getElementById('turnStatus');
         if (takePrize) {
-            status.innerText = "Вы выбрали СУПЕР-ПРИЗ студии! Ход переходит к следующему игроку.";
+            scores[activePlayer] += 250;
+            status.innerText = "Вы рискнули и выиграли сертификат на 250 очков и МФР-урок!";
         } else {
             scores[activePlayer] += 150;
-            updateScores();
-            status.innerText = "Вы забрали гарантированные 150 очков!";
+            status.innerText = "Вы гарантированно забрали 150 очков.";
         }
-        setTimeout(nextTurn, 1600);
+        updateUI();
+        status.innerText += " Вращайте барабан снова!";
+        document.getElementById('spinBtn').disabled = false;
     }
 
-    // Разрешение шкатулок (не больше 500 очков)
-    function chooseBox(boxIdx) {
-        document.getElementById('boxes-modal').style.display = 'none';
-        const luckyBox = Math.random() > 0.5 ? 1 : 0;
-        const status = document.getElementById('wheel-status');
-
-        if (boxIdx === luckyBox) {
-            const bonus = Math.floor(Math.random() * 250) + 150; // от 150 до 400 очков
+    function resolveBoxChoice(idx) {
+        closeModal('boxModal');
+        const status = document.getElementById('turnStatus');
+        const lucky = Math.random() > 0.5 ? 1 : 0;
+        if (idx === lucky) {
+            const bonus = Math.floor(Math.random() * 300) + 150; // до 450 очков
             scores[activePlayer] += bonus;
-            updateScores();
-            status.innerText = `Бинго! В шкатулке оказалось +${bonus} очков!`;
+            updateUI();
+            status.innerText = `Попадание! В шкатулке +${bonus} очков!`;
         } else {
-            status.innerText = "Увы! Шкатулка пуста.";
+            status.innerText = "Шкатулка оказалась пустой, но ход остается у вас!";
         }
-        setTimeout(nextTurn, 1600);
+        // Ход не сгорает
+        document.getElementById('spinBtn').disabled = false;
     }
 
-    function handleWin() {
-        const winnerName = activePlayer === 0 ? "Вы (Игрок 1)" : `Соперник ${activePlayer}`;
-        const winModal = document.getElementById('win-modal');
-        const desc = document.getElementById('win-modal-desc');
+    // ПЕРЕХОД ПО ТУРАМ
+    function handleRoundCompletion() {
+        if (gameState === "TOUR_1") {
+            if (activePlayer === 0) {
+                openModal('toFinaleModal', 'yandex_rtb_modal_finale');
+            } else {
+                alert(`Соперник ${activePlayer} отгадал слово! Попробуйте снова.`);
+                location.reload();
+            }
+        } else if (gameState === "FINALE") {
+            if (activePlayer === 0) {
+                openModal('superOfferModal', 'yandex_rtb_modal_super_offer');
+            } else {
+                alert(`Финал выиграл Соперник ${activePlayer}. Вы можете потренироваться еще раз!`);
+                location.reload();
+            }
+        } else if (gameState === "SUPER_GAME") {
+            openFinalWinModal(true);
+        }
+    }
 
-        if (activePlayer === 0) {
-            desc.innerHTML = `Поздравляем! Вы полностью открыли слово <b>«${word}»</b> и победили в туре!<br>Заберите персональный бонус от студии «РЕСУРС» по кнопке ниже.`;
-            const msg = `Вера, здравствуйте! Я победила в игре «Поле Чудес» на сайте РЕСУРС, угадала слово «${word}» и набрала ${scores[0]} очков! Хочу забрать свой подарок за 100 рублей.`;
-            document.getElementById('vk-win-btn').href = `https://vk.com/im?sel=-221142875&message=${encodeURIComponent(msg)}`;
-            document.getElementById('vk-win-btn').style.display = "inline-block";
+    function startFinaleRound() {
+        closeModal('toFinaleModal');
+        gameState = "FINALE";
+        document.getElementById('pName-1').innerText = "Анна (Финалист)";
+        document.getElementById('pName-2').innerText = "Сергей (Финалист)";
+        activePlayer = 0;
+        setupRound(gameDatabase.finale);
+        document.getElementById('turnStatus').innerText = "ФИНАЛ! Ваш первый ход. Вращайте барабан!";
+        document.getElementById('spinBtn').disabled = false;
+    }
+
+    function acceptSuperGame() {
+        closeModal('superOfferModal');
+        gameState = "SUPER_GAME";
+        activePlayer = 0;
+        setupRound(gameDatabase.superGame);
+        
+        document.getElementById('pChip-1').style.display = "none";
+        document.getElementById('pChip-2').style.display = "none";
+        document.getElementById('spinBtn').style.display = "none";
+        
+        isSuperPickPhase = true;
+        superPicksLeft = 4;
+        document.getElementById('turnStatus').innerText = "СУПЕРИГРА! Выберите 4 буквы на клавиатуре (например, 3 согласных и 1 гласную).";
+        waitingLetter = true;
+    }
+
+    function declineSuperGame() {
+        closeModal('superOfferModal');
+        openFinalWinModal(false);
+    }
+
+    function openFinalWinModal(isSuper) {
+        const title = document.getElementById('winTitle');
+        const desc = document.getElementById('winDesc');
+        const vkBtn = document.getElementById('vkClaimBtn');
+
+        if (isSuper) {
+            title.innerText = "ТРИУМФ В СУПЕРИГРЕ!";
+            desc.innerHTML = `Вы разгадали главное слово <b>«${word}»</b> и набрали <b>${scores[0]} очков</b>!<br>Вам начислен максимальный абонемент студии «РЕСУРС».`;
         } else {
-            desc.innerHTML = `Победил ${winnerName}, разгадав слово <b>«${word}»</b>. Попробуйте еще раз!`;
-            document.getElementById('vk-win-btn').style.display = "none";
+            title.innerText = "Победа в финале!";
+            desc.innerHTML = `Вы победитель финала с результатом <b>${scores[0]} очков</b>! Заберите свой фитнес-бонус за 100 рублей.`;
         }
 
-        winModal.style.display = "flex";
+        const msg = `Вера, здравствуйте! Я победила в Поле Чудес на сайте РЕСУРС, набрала ${scores[0]} очков в туре («${word}»)! Хочу получить подарок за 100 рублей.`;
+        vkBtn.href = `https://vk.com/im?sel=-221142875&message=${encodeURIComponent(msg)}`;
+
+        openModal('finalWinModal', 'yandex_rtb_modal_win');
+    }
+
+    // ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ МОДАЛОК С РСЯ
+    function openModal(modalId, rtbContainerId) {
+        document.getElementById(modalId).style.display = 'flex';
+        if (rtbContainerId) {
+            window.yaContextCb.push(() => {
+                Ya.Context.AdvManager.render({
+                    "blockId": "R-A-19181219-23",
+                    "renderTo": rtbContainerId
+                });
+            });
+        }
+    }
+
+    function closeModal(modalId) {
+        document.getElementById(modalId).style.display = 'none';
     }
 
     function openRulesModal() {
-        document.getElementById('rules-modal').style.display = 'flex';
-        window.yaContextCb.push(() => {
-            Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-23", "renderTo": "yandex_rtb_rules" });
-        });
+        openModal('rulesModal', 'yandex_rtb_modal_rules');
     }
     function closeRulesModal() {
-        document.getElementById('rules-modal').style.display = 'none';
+        closeModal('rulesModal');
     }
 
-    window.onload = initGame;
+    // ТЕМА ОФОРМЛЕНИЯ
+    function toggleTheme() {
+        const root = document.documentElement;
+        const cur = root.getAttribute('data-theme') || 'dark';
+        const next = cur === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('resurs_pole_theme', next);
+        localStorage.setItem('theme', next);
+        updateThemeButtons(next);
+        drawWheel();
+    }
+
+    function updateThemeButtons(t) {
+        const text = t === 'dark' ? 'ТЕМА: ТЕМНАЯ' : 'ТЕМА: СВЕТЛАЯ';
+        const dBtn = document.getElementById('themeToggle');
+        const mBtn = document.getElementById('themeToggleMobile');
+        if (dBtn) dBtn.innerText = text;
+        if (mBtn) mBtn.innerText = text;
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        updateThemeButtons(document.documentElement.getAttribute('data-theme') || 'dark');
+        initGame();
+    });
+</script>
+
+<!-- СКВОЗНАЯ РЕКЛАМА FLOOR AD -->
+<script>
+window.yaContextCb.push(() => {
+    Ya.Context.AdvManager.render({
+        "blockId": "R-A-19181219-6",
+        "type": "floorAd",
+        "platform": "touch"
+    });
+    Ya.Context.AdvManager.render({
+        "blockId": "R-A-19181219-7",
+        "type": "floorAd",
+        "platform": "desktop"
+    });
+});
 </script>
 
 </body>
