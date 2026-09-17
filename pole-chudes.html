@@ -507,10 +507,10 @@
         <h3 id="winTitle">Грандиозная победа!</h3>
         <div class="term-explanation-box" id="winTermExplanation"></div>
         <p id="winDesc">Вы зафиксировали свой выигрыш!</p>
-        <div class="warning-rule-box">
-            Напоминание: полученный выигрыш нельзя объединять с бонусами в приложении или подарками Колеса удачи. Выбирается только один бонус.
+        <div class="warning-rule-box" id="winHintBox" style="text-align: center; font-weight: 700; color: var(--gold);">
+            👆 Нажмите кнопку ниже, чат откроется автоматически — просто нажмите «Отправить» готовое сообщение!
         </div>
-        <a href="#" id="vkClaimBtn" class="vk-btn-win" target="_blank">Написать Вере в ВК за выигрышем</a>
+        <a href="#" id="vkClaimBtn" class="vk-btn-win" target="_blank">Написать Вере в ВК (нажмите «Отправить»)</a>
         <button class="m-btn m-btn-secondary" style="width: 100%;" onclick="location.reload()">Завершить сессию</button>
         <div class="modal-rsya-thin"><div id="yandex_rtb_modal_win" style="width: 100%; height: 90px;"></div></div>
     </div>
@@ -1307,8 +1307,9 @@
         document.getElementById('winTitle').innerText = "ВЫ ВЫИГРАЛИ ПРИЗ!";
         document.getElementById('winDesc').innerHTML = `Вы остановили игру и забрали приз: <b>«${prizeText}»</b>!<br>Баллы для скидки: <b>${scores[0]} ₽</b>. Следующая игра откроется в следующем месяце.`;
 
-        const msg = `Вера, здравствуйте! Я сыграла в Поле Чудес на сайте РЕСУРС и забрала сектор ПРИЗ: «${prizeText}»! Мои баллы скидки: ${scores[0]} руб. Напоминаю, что бонусы не суммируются с приложением. Запишите меня!`;
+        const msg = "Я выиграл в поле чудес";
         document.getElementById('vkClaimBtn').href = `https://vk.com/im?sel=-221142875&ref=pole_prize&message=${encodeURIComponent(msg)}`;
+        document.getElementById('vkClaimBtn').innerText = "Написать Вере в ВК (нажмите «Отправить»)";
 
         openModal('finalWinModal', 'yandex_rtb_modal_win');
     }
@@ -1325,16 +1326,16 @@
         if (isSuperWin) {
             title.innerText = "ТРИУМФ В СУПЕРИГРЕ!";
             desc.innerHTML = `Вы разгадали главное слово <b>«${word}»</b>!<br>Ваш СУПЕР-ПРИЗ: <b>Скидка 45% к любому абонементу</b> + скидка <b>${discountPoints} ₽</b> в Личном кабинете!`;
-            const msg = `Вера, здравствуйте! Я победила в СУПЕРИГРЕ «Поле Чудес» на сайте РЕСУРС! Слово: «${word}». Мой супер-приз: Скидка 45% на любой абонемент + ${discountPoints} баллов скидки. Другие бонусы не применяю, жду активации!`;
+            const msg = "Я выиграл в поле чудес";
             vkBtn.href = `https://vk.com/im?sel=-221142875&ref=pole_super&message=${encodeURIComponent(msg)}`;
         } else {
             title.innerText = "Победа в Финале!";
             desc.innerHTML = `Вы победитель финала! Разгаданное слово <b>«${word}»</b> принесло вам <b>${discountPoints} баллов скидки</b> к абонементу!`;
-            const msg = `Вера, здравствуйте! Я победила в финале Поля Чудес на сайте РЕСУРС, угадала слово «${word}» и набрала ${discountPoints} баллов скидки! Хочу использовать выигрыш (без суммирования с приложением).`;
-            // Передаем точное количество баллов в ссылку для Веры
+            const msg = "Я выиграл в поле чудес";
             vkBtn.href = `https://vk.com/im?sel=-221142875&ref=pole_pts_${discountPoints}&message=${encodeURIComponent(msg)}`;
         }
 
+        vkBtn.innerText = "Написать Вере в ВК (нажмите «Отправить»)";
         openModal('finalWinModal', 'yandex_rtb_modal_win');
     }
 
