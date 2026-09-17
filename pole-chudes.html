@@ -19,8 +19,8 @@
     <script src="https://yandex.ru/ads/system/context.js" async></script>
 
     <title>Поле Чудес: Интеллектуальное Фитнес-Шоу | Студия РЕСУРС</title>
-    <meta name="description" content="Интерактивная развивающая викторина по биомеханике, анатомии и умному фитнесу. Вращайте барабан, называйте слова целиком и выигрывайте абонементы студии РЕСУРС.">
-    <meta name="keywords" content="поле чудес фитнес, викторина биомеханика, назвать слово поле чудес, студия ресурс игра, анатомический тест">
+    <meta name="description" content="Интерактивная развивающая викторина о теле, здоровье, привычках и правильном движении. Назовите слово и выиграйте скидку 45% на абонемент студии РЕСУРС.">
+    <meta name="keywords" content="поле чудес фитнес, викторина здоровье, студия ресурс игра, растяжка сыктывкар">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://resurs-stretch.ru/pole-chudes.html">
 
@@ -78,18 +78,13 @@
         html { scroll-behavior: smooth; }
 
         body, html {
-            width: 100%;
-            min-height: 100%;
+            width: 100%; min-height: 100%;
             font-family: 'Manrope', sans-serif;
-            background: var(--bg-color);
-            color: var(--text-main);
-            overflow-x: hidden !important;
-            position: relative;
-            -webkit-font-smoothing: antialiased;
-            line-height: 1.6;
+            background: var(--bg-color); color: var(--text-main);
+            overflow-x: hidden !important; position: relative;
+            -webkit-font-smoothing: antialiased; line-height: 1.6;
         }
 
-        /* ДВУХЭТАЖНАЯ ШАПКА */
         header {
             position: sticky; top: 0; width: 100%; padding: 14px 5%;
             z-index: 2000; background: var(--header-bg);
@@ -184,7 +179,6 @@
         .player-name { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
         .player-score { font-size: 22px; font-weight: 800; color: var(--gold); margin-top: 4px; }
 
-        /* ЗАЩИТА ОТ КОПИРОВАНИЯ И ГУГЛЕНИЯ */
         .question-card {
             background: var(--bg-color); border: 1px solid var(--border-color);
             border-radius: 14px; padding: 18px 24px; margin-bottom: 20px;
@@ -263,7 +257,6 @@
         .char-btn:hover:not(:disabled) { background: var(--accent-color); color: #FFF; }
         .char-btn:disabled { opacity: 0.2; cursor: not-allowed; border-color: transparent; }
 
-        /* МОДАЛЬНЫЕ ОКНА */
         .modal-overlay {
             position: fixed; inset: 0; background: rgba(10, 9, 15, 0.9);
             backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
@@ -334,16 +327,10 @@
         footer { margin-top: 60px; padding: 40px 0; border-top: 1px solid var(--border-color); text-align: center; background: var(--surface-color); }
         .footer-text { font-size: 11px; color: var(--text-muted); line-height: 1.6; max-width: 850px; margin: 0 auto; }
 
-        /* ЗНАК КОПИРАЙТА ДЛЯ ТРОЙНОГО КЛИКА АДМИНИСТРАТОРА */
         .admin-copy-symbol {
-            cursor: pointer;
-            user-select: none;
-            padding: 0 4px;
-            transition: color 0.2s ease;
+            cursor: pointer; user-select: none; padding: 0 4px; transition: color 0.2s ease;
         }
-        .admin-copy-symbol:hover {
-            color: var(--gold);
-        }
+        .admin-copy-symbol:hover { color: var(--gold); }
 
         @media (max-width: 600px) {
             .letter-cell { width: 34px; height: 44px; font-size: 22px; }
@@ -354,7 +341,6 @@
 </head>
 <body>
 
-<!-- ДВУХЭТАЖНАЯ ШАПКА -->
 <header>
     <div class="header-top">
         <div class="logo-wrap" onclick="window.location.href='index.html'">
@@ -396,7 +382,6 @@
             </div>
         </div>
 
-        <!-- Вопрос защищен от выделения и правого клика мыши -->
         <div class="question-card" oncontextmenu="return false;" oncopy="return false;">
             <div class="question-tour-title" id="tourTitle">1 ТУР: АНАТОМИЧЕСКИЙ ТЕРМИН</div>
             <div class="question-desc" id="questionDesc">Загрузка задания...</div>
@@ -416,155 +401,118 @@
     </div>
 </main>
 
-<!-- 1. МОДАЛКА БАРАБАНА (РСЯ 90PX) -->
+<!-- МОДАЛКИ С РСЯ 90PX -->
 <div class="modal-overlay" id="wheelModal">
     <div class="modal-card">
         <h3>Вращайте барабан!</h3>
         <p id="wheelModalStatus">Нажмите кнопку пуска для выбора сектора</p>
-        
         <div class="wheel-box">
             <div class="wheel-arrow"></div>
             <canvas id="wheelCanvas" width="250" height="250"></canvas>
         </div>
-
         <button id="spinCanvasBtn" class="m-btn m-btn-primary" style="width: 100%; max-width: 250px; margin: 0 auto;" onclick="startWheelRotation()">Пуск барабана</button>
-        
-        <div class="modal-rsya-thin">
-            <div id="yandex_rtb_modal_wheel" style="width: 100%; height: 90px;"></div>
-        </div>
+        <div class="modal-rsya-thin"><div id="yandex_rtb_modal_wheel" style="width: 100%; height: 90px;"></div></div>
     </div>
 </div>
 
-<!-- 2. МОДАЛКА: НАЗВАТЬ СЛОВО ЦЕЛИКОМ (РСЯ 90PX) -->
 <div class="modal-overlay" id="guessWordModal">
     <div class="modal-card">
         <h3>Назвать слово целиком</h3>
         <p><b>Внимание!</b> Если вы ошибетесь хотя бы в одной букве — раунд проигран и сгорает 1 месячная попытка!</p>
         <input type="text" id="fullWordInput" class="input-word-field" placeholder="ВВЕДИТЕ СЛОВО" maxlength="25">
         <div class="modal-btn-row">
-            <button class="m-btn m-btn-secondary" onclick="closeModal('guessWordModal')">Вернуться к игре</button>
-            <button class="m-btn m-btn-primary" onclick="submitFullWord()">Подтвердить слово</button>
+            <button class="m-btn m-btn-secondary" onclick="closeModal('guessWordModal')">Вернуться</button>
+            <button class="m-btn m-btn-primary" onclick="submitFullWord()">Подтвердить</button>
         </div>
-        <div class="modal-rsya-thin">
-            <div id="yandex_rtb_modal_guess" style="width: 100%; height: 90px;"></div>
-        </div>
+        <div class="modal-rsya-thin"><div id="yandex_rtb_modal_guess" style="width: 100%; height: 90px;"></div></div>
     </div>
 </div>
 
-<!-- 3. МОДАЛКА: СЕКТОР ПРИЗ (РСЯ 90PX) -->
 <div class="modal-overlay" id="prizeModal">
     <div class="modal-card">
         <h3>Сектор «ПРИЗ» на барабане!</h3>
-        <p>Вы можете забрать баллы и крутить дальше, либо <b>забрать один из ценных подарков студии и завершить игру с победой</b>!</p>
-        <div class="warning-rule-box">
-            Условие: полученный приз или баллы не суммируются с бонусами приложения и выигрышами Колеса удачи. Применяется только один бонус на выбор.
-        </div>
+        <p>Заберите баллы или <b>заберите ценный подарок студии и завершите игру победой</b>!</p>
+        <div class="warning-rule-box">Условие: полученный приз не суммируется с бонусами приложения и промокодами Колеса удачи. Выбирается только один бонус на выбор.</div>
         <div class="modal-btn-row">
             <button class="m-btn m-btn-secondary" onclick="resolvePrizeChoice(false)">Забрать баллы</button>
             <button class="m-btn m-btn-primary" onclick="resolvePrizeChoice(true)">Забрать ПРИЗ (Финиш)</button>
         </div>
-        <div class="modal-rsya-thin">
-            <div id="yandex_rtb_modal_prize" style="width: 100%; height: 90px;"></div>
-        </div>
+        <div class="modal-rsya-thin"><div id="yandex_rtb_modal_prize" style="width: 100%; height: 90px;"></div></div>
     </div>
 </div>
 
-<!-- 4. МОДАЛКА: ДВЕ ШКАТУЛКИ (РСЯ 90PX) -->
 <div class="modal-overlay" id="boxModal">
     <div class="modal-card">
         <h3>Две Шкатулки в студию!</h3>
-        <p>В одной из шкатулок спрятан круглый денежный бонус от 100 до 500 очков. Вторая пуста. Ваш ход сохраняется!</p>
+        <p>В одной шкатулке бонус от 100 до 500 очков. Вторая пуста. Ход сохраняется!</p>
         <div class="modal-btn-row">
             <button class="m-btn m-btn-primary" onclick="resolveBoxChoice(0)">Левая шкатулка</button>
             <button class="m-btn m-btn-primary" onclick="resolveBoxChoice(1)">Правая шкатулка</button>
         </div>
-        <div class="modal-rsya-thin">
-            <div id="yandex_rtb_modal_box" style="width: 100%; height: 90px;"></div>
-        </div>
+        <div class="modal-rsya-thin"><div id="yandex_rtb_modal_box" style="width: 100%; height: 90px;"></div></div>
     </div>
 </div>
 
-<!-- 5. МОДАЛКА: ПРАВИЛА ИГРЫ (РСЯ 90PX) -->
 <div class="modal-overlay" id="rulesModal">
     <div class="modal-card" style="max-width: 500px;">
         <h3>Правила «Поля Чудес»</h3>
         <div style="text-align: left; font-size: 13px; line-height: 1.6; color: var(--text-muted); margin-bottom: 12px;">
-            • Всего доступно <b>5 попыток в месяц</b>. При выигрыше приза следующая игра открывается через месяц.<br>
+            • Доступно <b>5 попыток в месяц</b>.<br>
             • <b>3 угаданные буквы подряд</b>: две шкатулки в студию с бонусом до 500 очков!<br>
-            • <b>Сектор «БАНКРОТ»</b>: сжигает накопленные баллы и передает ход.<br>
-            • <b>Сектор «0» (Переход хода)</b>: передает ход сопернику без потери очков.<br>
-            • <b>Сектор «+»</b>: на табло замигают ячейки — <b>нажмите прямо на закрытую букву</b>, и она откроется!<br>
-            • <b>Супер-приз</b>: абонемент на <b>4 занятия на 1 месяц</b> в студию «РЕСУРС»!<br>
-            • <b>Поражение</b>: ошибка при вводе слова или поражение в Суперигре аннулирует накопленные баллы и сжигает попытку.
+            • <b>Сектор «БАНКРОТ»</b>: сжигает баллы и передает ход сопернику.<br>
+            • <b>Сектор «0» (Переход хода)</b>: ход переходит дальше без потери очков.<br>
+            • <b>Сектор «+»</b>: нажмите прямо на закрытую ячейку на табло, чтобы открыть букву.<br>
+            • <b>Главный супер-приз</b>: <b>Скидка 45% к любому абонементу студии «РЕСУРС»</b>!
         </div>
-        <div class="warning-rule-box">
-            <b>Важно:</b> Выигранные баллы и подарки не суммируются с бонусами в мобильном приложении или промокодами Колеса удачи. Вы можете использовать только один бонус на выбор.
-        </div>
+        <div class="warning-rule-box"><b>Важно:</b> Выигрыши не суммируются с бонусами приложения и промокодами Колеса удачи. Применяется один бонус на выбор.</div>
         <button class="m-btn m-btn-primary" onclick="closeRulesModal()">Понятно, в игру!</button>
-        <div class="modal-rsya-thin">
-            <div id="yandex_rtb_modal_rules" style="width: 100%; height: 90px;"></div>
-        </div>
+        <div class="modal-rsya-thin"><div id="yandex_rtb_modal_rules" style="width: 100%; height: 90px;"></div></div>
     </div>
 </div>
 
-<!-- 6. МОДАЛКА: ПЕРЕХОД В ФИНАЛ (РСЯ 90PX) -->
 <div class="modal-overlay" id="toFinaleModal">
     <div class="modal-card">
-        <h3>Браво! Вы победили в 1 туре!</h3>
+        <h3>Браво! Победа в 1 туре!</h3>
         <div class="term-explanation-box" id="tour1TermExplanation"></div>
-        <p>Вы разгадали термин и переходите в <b>ФИНАЛ</b>, где соперники играют на порядок сильнее!</p>
-        <button class="m-btn m-btn-primary" onclick="startFinaleRound()">Перейти в Финал</button>
-        <div class="modal-rsya-thin">
-            <div id="yandex_rtb_modal_finale" style="width: 100%; height: 90px;"></div>
-        </div>
+        <p>Переходим в <b>ФИНАЛ</b>, где соперники играют значительно сильнее!</p>
+        <button class="m-btn m-btn-primary" onclick="startFinaleRound()">В Финал</button>
+        <div class="modal-rsya-thin"><div id="yandex_rtb_modal_finale" style="width: 100%; height: 90px;"></div></div>
     </div>
 </div>
 
-<!-- 7. МОДАЛКА: ПРЕДЛОЖЕНИЕ СУПЕРИГРЫ (РСЯ 90PX) -->
 <div class="modal-overlay" id="superOfferModal">
     <div class="modal-card">
-        <h3>Вы абсолютный победитель Финала!</h3>
+        <h3>Победитель Финала!</h3>
         <div class="term-explanation-box" id="finaleTermExplanation"></div>
-        <p>На кону главный СУПЕР-ПРИЗ: <b>Абонемент на 4 занятия на месяц</b>!<br><b style="color: var(--danger);">Риск:</b> если не отгадаете супер-слово, сгорают все накопленные баллы!</p>
-        <div class="warning-rule-box">
-            Приз не суммируется с другими акциями и бонусами мобильного приложения.
-        </div>
+        <p>На кону главный супер-приз: <b>Скидка 45% к любому абонементу</b>!<br><b style="color: var(--danger);">Риск:</b> если не отгадаете супер-слово, накопленные баллы сгорают!</p>
         <div class="modal-btn-row">
             <button class="m-btn m-btn-secondary" onclick="declineSuperGame()">Забрать свои баллы</button>
-            <button class="m-btn m-btn-primary" onclick="acceptSuperGame()">Рискнуть в Суперигре!</button>
+            <button class="m-btn m-btn-primary" onclick="acceptSuperGame()">Суперигра!</button>
         </div>
-        <div class="modal-rsya-thin">
-            <div id="yandex_rtb_modal_super_offer" style="width: 100%; height: 90px;"></div>
-        </div>
+        <div class="modal-rsya-thin"><div id="yandex_rtb_modal_super_offer" style="width: 100%; height: 90px;"></div></div>
     </div>
 </div>
 
-<!-- 8. МОДАЛКА ПОРАЖЕНИЯ (РСЯ 90PX) -->
 <div class="modal-overlay" id="loseModal">
     <div class="modal-card">
         <h3 style="color: var(--danger);">Игра проиграна!</h3>
-        <p id="loseReasonText">Слово названо неверно. Раунд завершен, минус 1 попытка.</p>
+        <p id="loseReasonText">Раунд завершен, минус 1 попытка.</p>
         <button class="m-btn m-btn-secondary" style="width: 100%;" onclick="location.reload()">Попробовать снова</button>
-        <div class="modal-rsya-thin">
-            <div id="yandex_rtb_modal_lose" style="width: 100%; height: 90px;"></div>
-        </div>
+        <div class="modal-rsya-thin"><div id="yandex_rtb_modal_lose" style="width: 100%; height: 90px;"></div></div>
     </div>
 </div>
 
-<!-- 9. МОДАЛКА ПОБЕДЫ / ЗАБРАТЬ ПРИЗ В ВК (РСЯ 90PX) -->
 <div class="modal-overlay" id="finalWinModal">
     <div class="modal-card">
         <h3 id="winTitle">Грандиозная победа!</h3>
         <div class="term-explanation-box" id="winTermExplanation"></div>
         <p id="winDesc">Вы зафиксировали свой выигрыш!</p>
         <div class="warning-rule-box">
-            Напоминание: данный бонус нельзя объединять с баллами в приложении или промокодами Колеса удачи. Выбирается только один бонус.
+            Напоминание: полученный выигрыш нельзя объединять с бонусами в приложении или подарками Колеса удачи. Выбирается только один бонус.
         </div>
         <a href="#" id="vkClaimBtn" class="vk-btn-win" target="_blank">Написать Вере в ВК за выигрышем</a>
         <button class="m-btn m-btn-secondary" style="width: 100%;" onclick="location.reload()">Завершить сессию</button>
-        <div class="modal-rsya-thin">
-            <div id="yandex_rtb_modal_win" style="width: 100%; height: 90px;"></div>
-        </div>
+        <div class="modal-rsya-thin"><div id="yandex_rtb_modal_win" style="width: 100%; height: 90px;"></div></div>
     </div>
 </div>
 
@@ -573,17 +521,13 @@
         <p style="font-size: 13px; font-weight: 800; color: var(--text-main); margin-bottom: 6px;">
             <span class="admin-copy-symbol" id="adminCopyrightReset">©</span> 2026 РЕСУРС | Студия фитнеса, растяжки и движения. Сыктывкар, ул. Коммунистическая, 67.
         </p>
-        <p class="footer-text">
-            ИП Худяков Николай Сергеевич • ИНН 111801576622. Интерактивная развивающая викторина по биомеханике движения.
-        </p>
+        <p class="footer-text">ИП Худяков Николай Сергеевич • ИНН 111801576622. Интерактивная развивающая викторина.</p>
     </div>
 </footer>
 
 <script>
-    // Лимит баллов "под капотом"
     const MAX_SCORE_LIMIT = 1600;
 
-    // 16 СЕКТОРОВ БАРАБАНА (БАНКРОТ И ПЕРЕХОД ХОДА 0)
     const wheelSectors = [
         { label: "100", type: "score", value: 100, color: "#6C3EB8" },
         { label: "30", type: "score", value: 30, color: "#1E1833" },
@@ -613,57 +557,107 @@
         "500 бонусов в ЛК на покупку абонемента в приложении"
     ];
 
-    // Банк сложных терминов
+    // РАСШИРЕННЫЙ БАНК ТЕРМИНОВ: ФИЛОСОФИЯ ТЕЛА, ПРИВЫЧКИ, ПРЕОДОЛЕНИЕ СЛАБОСТИ И ДВИЖЕНИЕ
     const questionsPool = [
         {
+            word: "РЕГУЛЯРНОСТЬ",
+            desc: "Главный секрет результата: то, что побеждает лень, генетику и превращает тренировки в естественную потребность.",
+            explanation: "<b>Регулярность</b> — основа любых изменений. Даже две тренировки в неделю, но каждую неделю, дают телу больше, чем ежедневный надрыв раз в месяц."
+        },
+        {
+            word: "СОСТОЯНИЕ",
+            desc: "Истинная цель умного фитнеса: то внутреннее ощущение энергии и ясности, ради которого выходят из зала.",
+            explanation: "<b>Состояние</b> — главная ценность движения. Мы тренируемся не ради усталости, а чтобы жить без боли, просыпаться легко и чувствовать уверенность в себе."
+        },
+        {
+            word: "ДОВЕРИЕ",
+            desc: "Основа безопасной практики: готовность отпустить контроль и позволить тренеру вести ваше тело без страха.",
+            explanation: "<b>Доверие</b> на тренировке позволяет расслабить глубокие спазмированные зоны. Когда ум спокоен, мышцы отвечают гибкостью без боли."
+        },
+        {
+            word: "ДЫХАНИЕ",
+            desc: "Природный мост между телом и психикой, правильный ритм которого снимает мышечный зажим за секунды.",
+            explanation: "<b>Осознанное дыхание</b> включает парасимпатическую нервную систему, нормализует давление и помогает телу углубить вытяжение."
+        },
+        {
+            word: "ЛЕГКОСТЬ",
+            desc: "Чувство свободы в суставах и пояснице после тренировки, когда гравитация больше не давит на плечи.",
+            explanation: "<b>Легкость</b> приходит тогда, когда с позвоночника снято компрессионное напряжение, а глубокие мышцы включились в правильную осанку."
+        },
+        {
+            word: "СМЕЛОСТЬ",
+            desc: "Качество, необходимое новичку, чтобы перешагнуть порог зала вопреки внутреннему голосу «я не смогу».",
+            explanation: "<b>Смелость</b> сделать первый шаг меняет привычный сценарий жизни. Страх рассеивается в первые пять минут грамотной и бережной разминки."
+        },
+        {
+            word: "ВОЗРАЖЕНИЕ",
+            desc: "Внутренняя отговорка разума: «нет времени», «болят колени», «начну с понедельника», маскирующая страх перемен.",
+            explanation: "<b>Возражение</b> рождается из сомнений. Но тело не обманешь: чем дольше мы откладываем движение, тем сложнее возвращать базовую подвижность."
+        },
+        {
+            word: "ЖЕЛАНИЕ",
+            desc: "Первоначальный внутренний импульс изменить отражение в зеркале, победить усталость и полюбить свое тело.",
+            explanation: "<b>Истинное желание</b> рождает действие. Когда вы понимаете, зачем вам тренировки, время и возможности находятся сами."
+        },
+        {
+            word: "ФИГУРА",
+            desc: "Естественное следствие здоровой биомеханики: красивые пропорции без изнурительных голодовок.",
+            explanation: "<b>Красивая фигура</b> строится на балансе тонуса и вытяжения. Правильно выстроенная осанка визуально убирает живот и удлиняет силуэт."
+        },
+        {
+            word: "ЗДОРОВЬЕ",
+            desc: "Самый дорогой ресурс человека, который нельзя купить в аптеке, но можно восстановить на коврике.",
+            explanation: "<b>Здоровье</b> — это свобода движений без скованности, нормальное кровообращение и крепкий сон, которые дает умный фитнес."
+        },
+        {
+            word: "СЛАБОСТЬ",
+            desc: "Сигнал тела о дефиците ресурса, который преодолевается не насилием, а бережным постепенным укреплением.",
+            explanation: "<b>Слабость</b> — это не приговор, а точка роста. Понимание своих уязвимых зон позволяет тренеру составить безопасный маршрут развития."
+        },
+        {
+            word: "ФИЗКУЛЬТУРА",
+            desc: "Культура уважения к своему телу через физическое движение, заложенная на всю жизнь.",
+            explanation: "<b>Физическая культура</b> — это гигиена опорно-двигательного аппарата, столь же необходимая каждому человеку, как чистка зубов."
+        },
+        {
+            word: "МЕДИТАЦИЯ",
+            desc: "Умение остановить внутренний диалог и полностью сконцентрироваться на ощущениях в работающей мышце.",
+            explanation: "<b>Медитация в движении</b> — это глубокая нейромышечная связь, которая превращает обычную растяжку в мощную разгрузку психики."
+        },
+        {
+            word: "ДИСЦИПЛИНА",
+            desc: "Умение выбрать то, чего вы хотите больше всего, вместо того, чего вам хочется прямо сейчас на диване.",
+            explanation: "<b>Дисциплина</b> берет верх там, где гаснет кратковременная мотивация. Именно она приводит резидентов к телу мечты."
+        },
+        {
+            word: "ПРОФЕССИОНАЛ",
+            desc: "Наставник с высшим спортивным образованием, который видит асимметрию тела до того, как появится боль.",
+            explanation: "<b>Профессиональный тренер</b> ставит во главу угла безопасность суставов и анатомическую логику каждого упражнения."
+        },
+        {
             word: "ПРОПРИОЦЕПЦИЯ",
-            desc: "Внутренний биологический сенсор: чувство положения тела и натяжения связок без участия глаз.",
-            explanation: "<b>Проприоцепция</b> — способность нервной системы считывать натяжение связок и сухожилий, обеспечивая идеальный баланс и защиту суставов от травм."
+            desc: "Глубокое шестое чувство тела: способность мозга знать точное положение суставов с закрытыми глазами.",
+            explanation: "<b>Проприоцепция</b> тренируется на балансах и пилатесе, защищая связки от бытовых вывихов и травм."
         },
         {
             word: "ПЛАТИЗМА",
-            desc: "Широкий мышечный воротник спереди шеи, спазм которого тянет овал лица вниз.",
-            explanation: "<b>Платизма</b> — тонкая подкожная мышца шеи. При сутулости она укорачивается, утягивая ткани лица вниз и формируя брыли и второй подбородок."
+            desc: "Тонкий мышечный воротник спереди шеи, укорочение которого из-за телефона утягивает овал лица вниз.",
+            explanation: "<b>Платизма</b> расправляется через раскрытие грудного отдела и правильную статику шеи на стретчинге."
         },
         {
             word: "ДИАФРАГМА",
-            desc: "Главный дыхательный купол тела, служащий поршнем и лимфатическим насосом для живота.",
-            explanation: "<b>Диафрагма</b> — куполообразная мышца. На каждом полноценном вдохе она мягко массирует внутренние органы и стимулирует лимфоток."
-        },
-        {
-            word: "ИШЕМИЯ",
-            desc: "Локальный дефицит притока крови в зажатом мышечном волокне, порождающий триггерные боли.",
-            explanation: "<b>Ишемия</b> возникает, когда статическая перегрузка сдавливает капилляры. Мышца перестает получать кислород и отвечает ноющей болью."
-        },
-        {
-            word: "ДИАСТАЗ",
-            desc: "Истончение и расхождение соединительной белой полосы между половинками пресса после родов.",
-            explanation: "<b>Диастаз</b> — растяжение соединительной ткани белой линии живота. Корректируется включением глубокой поперечной мышцы."
+            desc: "Главный дыхательный купол организма, служащий естественным гидравлическим насосом для лимфы.",
+            explanation: "<b>Диафрагмальное дыхание</b> массирует внутренние органы, снимает отечность живота и нормализует внутрибрюшное давление."
         },
         {
             word: "ФАСЦИЯ",
-            desc: "Непрерывный трехмерный соединительный футляр, склеивание которого сковывает суставы.",
-            explanation: "<b>Фасция</b> окутывает каждый мышечный пучок. При недостатке движения фасции склеиваются, ограничивая гибкость и вызывая скованность."
-        },
-        {
-            word: "СИНОВИЯ",
-            desc: "Природная маслянистая смазка внутри суставной сумки, защищающая хрящи от сухого трения.",
-            explanation: "<b>Синовиальная жидкость</b> вырабатывается во время мягкого суставного движения, защищая хрящи от сухого трения и хруста."
+            desc: "Непрерывная сеть соединительной ткани, окутывающая все мышцы: при застое она склеивается и сковывает тело.",
+            explanation: "<b>Фасциальная ткань</b> оживает при мягком прокатывании на МФР-роллах и функциональной растяжке."
         },
         {
             word: "АРТИКУЛЯЦИЯ",
-            desc: "Позвонково-волновая подвижность позвоночника: плавный наклон сегмент за сегментом.",
-            explanation: "<b>Артикуляция позвоночника</b> — основа гибкой спины. Возвращает эластичность каждому отдельному межпозвоночному диску."
-        },
-        {
-            word: "ГИПОКСИЯ",
-            desc: "Кислородное голодание околоклеточных тканей при нарушении нормального лимфотока.",
-            explanation: "<b>Гипоксия</b> блокирует естественный липолиз. В застойных отечных тканях с дефицитом кислорода жиросжигание невозможно."
-        },
-        {
-            word: "КОРТИЗОЛ",
-            desc: "Стрессовый гормон, переизбыток которого вызывает задержку натрия и маскирует похудение отеками.",
-            explanation: "<b>Кортизол</b> при переутомлении провоцирует задержку воды, маскируя результаты тренировок под стойкий отек тела."
+            desc: "Способность позвоночника двигаться плавной волной, сгибаясь сегмент за сегментом, позвонок за позвонком.",
+            explanation: "<b>Артикуляция позвоночника</b> в пилатесе возвращает гибкость межпозвоночным дискам и избавляет от скованности."
         }
     ];
 
@@ -775,7 +769,7 @@
         consecutiveGuesses = 0;
         updateComboUI();
         gameState = "TOUR_1";
-        startRound(getUnusedQuestion(), "1 ТУР: АНАТОМИЧЕСКИЙ ТЕРМИН");
+        startRound(getUnusedQuestion(), "1 ТУР: ФИЛОСОФИЯ ТЕЛА И ДВИЖЕНИЯ");
         drawWheel();
         renderKeyboard();
     }
@@ -1255,7 +1249,7 @@
         document.getElementById('pName-1').innerText = "Анна (Финал)";
         document.getElementById('pName-2').innerText = "Сергей (Финал)";
         activePlayer = 0;
-        startRound(getUnusedQuestion(), "ФИНАЛ: МЫШЕЧНЫЙ КОРСЕТ И СУСТАВЫ");
+        startRound(getUnusedQuestion(), "ФИНАЛ: ПРЕОДОЛЕНИЕ И РЕЗУЛЬТАТ");
         document.getElementById('turnStatus').innerText = "ФИНАЛ! Вращайте барабан или назовите слово!";
         document.getElementById('openWheelBtn').disabled = false;
         document.getElementById('openGuessBtn').disabled = false;
@@ -1271,7 +1265,7 @@
         closeModal('superOfferModal');
         gameState = "SUPER_GAME";
         activePlayer = 0;
-        startRound(getUnusedQuestion(), "СУПЕРИГРА: БИОХАКИНГ ТЕЛА");
+        startRound(getUnusedQuestion(), "СУПЕРИГРА: МАСТЕРСТВО И ОСОЗНАННОСТЬ");
 
         document.getElementById('pChip-1').style.display = "none";
         document.getElementById('pChip-2').style.display = "none";
@@ -1331,13 +1325,13 @@
 
         if (isSuperWin) {
             title.innerText = "ТРИУМФ В СУПЕРИГРЕ!";
-            desc.innerHTML = `Вы разгадали главный термин <b>«${word}»</b>!<br>Ваш СУПЕР-ПРИЗ: <b>Абонемент на 4 занятия на месяц</b> + скидка <b>${discountPoints} ₽</b> в Личном кабинете!`;
-            const msg = `Вера, здравствуйте! Я победила в СУПЕРИГРЕ «Поле Чудес» на сайте РЕСУРС! Слово: «${word}». Мой супер-приз: Абонемент на 4 занятия на месяц + ${discountPoints} баллов скидки. Другие бонусы не применяю, жду активации!`;
+            desc.innerHTML = `Вы разгадали главное слово <b>«${word}»</b>!<br>Ваш СУПЕР-ПРИЗ: <b>Скидка 45% к любому абонементу</b> + скидка <b>${discountPoints} ₽</b> в Личном кабинете!`;
+            const msg = `Вера, здравствуйте! Я победила в СУПЕРИГРЕ «Поле Чудес» на сайте РЕСУРС! Слово: «${word}». Мой супер-приз: Скидка 45% на любой абонемент + ${discountPoints} баллов скидки. Другие бонусы не применяю, жду активации!`;
             vkBtn.href = `https://vk.com/im?sel=-221142875&ref=pole_super&message=${encodeURIComponent(msg)}`;
         } else {
             title.innerText = "Победа в Финале!";
-            desc.innerHTML = `Вы победитель финала! Разгаданный термин <b>«${word}»</b> принес вам <b>${discountPoints} баллов скидки</b> к абонементу!`;
-            const msg = `Вера, здравствуйте! Я победила в финале Поля Чудес на сайте РЕСУРС, угадала термин «${word}» и набрала ${discountPoints} баллов скидки! Хочу использовать выигрыш (без суммирования с приложением).`;
+            desc.innerHTML = `Вы победитель финала! Разгаданное слово <b>«${word}»</b> принесло вам <b>${discountPoints} баллов скидки</b> к абонементу!`;
+            const msg = `Вера, здравствуйте! Я победила в финале Поля Чудес на сайте РЕСУРС, угадала слово «${word}» и набрала ${discountPoints} баллов скидки! Хочу использовать выигрыш (без суммирования с приложением).`;
             vkBtn.href = `https://vk.com/im?sel=-221142875&ref=pole_final&message=${encodeURIComponent(msg)}`;
         }
 
@@ -1348,7 +1342,7 @@
         if (navigator.share) {
             navigator.share({
                 title: 'Поле Чудес в студии РЕСУРС',
-                text: 'Разгадай биомеханический термин и выиграй абонемент на 4 занятия в студию движения РЕСУРС!',
+                text: 'Разгадай интеллектуальную загадку о теле и выиграй скидку 45% на абонемент в студию движения РЕСУРС!',
                 url: window.location.href
             }).catch(() => {});
         } else {
