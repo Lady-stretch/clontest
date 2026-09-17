@@ -157,12 +157,6 @@
             border-radius: 20px; border: 1px solid rgba(229, 169, 60, 0.3);
             text-transform: uppercase; letter-spacing: 0.5px;
         }
-        .score-limit-badge {
-            font-size: 12px; font-weight: 800; color: var(--accent-color);
-            background: var(--accent-subtle); padding: 6px 14px;
-            border-radius: 20px; border: 1px solid var(--border-color);
-            text-transform: uppercase; letter-spacing: 0.5px;
-        }
         .btn-share-friend {
             background: var(--surface-hover); border: 1px solid var(--border-color);
             color: var(--text-main); padding: 6px 14px; border-radius: 20px;
@@ -184,9 +178,11 @@
         .player-name { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
         .player-score { font-size: 22px; font-weight: 800; color: var(--gold); margin-top: 4px; }
 
+        /* ЗАЩИТА ОТ КОПИРОВАНИЯ И ГУГЛЕНИЯ */
         .question-card {
             background: var(--bg-color); border: 1px solid var(--border-color);
             border-radius: 14px; padding: 18px 24px; margin-bottom: 20px;
+            user-select: none; -webkit-user-select: none;
         }
         .question-tour-title { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-color); margin-bottom: 6px; }
         .question-desc { font-size: 15.5px; font-weight: 600; color: var(--text-main); line-height: 1.5; }
@@ -364,7 +360,6 @@
     <div class="game-card">
         <div class="top-meta-bar">
             <span class="attempts-badge" id="attemptsBadge">Попытки: 5 из 5</span>
-            <span class="score-limit-badge">Макс. скидка: 1 600 ₽</span>
             <button class="btn-share-friend" onclick="shareWithFriend()">🔗 Поделиться с подругой</button>
         </div>
 
@@ -383,7 +378,8 @@
             </div>
         </div>
 
-        <div class="question-card">
+        <!-- Карточка вопроса с защитой от копирования -->
+        <div class="question-card" oncontextmenu="return false;" oncopy="return false;">
             <div class="question-tour-title" id="tourTitle">1 ТУР: АНАТОМИЧЕСКИЙ ТЕРМИН</div>
             <div class="question-desc" id="questionDesc">Загрузка задания...</div>
         </div>
@@ -441,12 +437,12 @@
 <div class="modal-overlay" id="prizeModal">
     <div class="modal-card">
         <h3>Сектор «ПРИЗ» на барабане!</h3>
-        <p>Вы можете забрать 150 очков и крутить дальше, либо <b>забрать один из ценных подарков студии и завершить игру с победой</b>!</p>
+        <p>Вы можете забрать баллы и крутить дальше, либо <b>забрать один из ценных подарков студии и завершить игру с победой</b>!</p>
         <div class="warning-rule-box">
             Условие: полученный приз или баллы не суммируются с бонусами приложения и выигрышами Колеса удачи. Применяется только один бонус на выбор.
         </div>
         <div class="modal-btn-row">
-            <button class="m-btn m-btn-secondary" onclick="resolvePrizeChoice(false)">Забрать 150 очков</button>
+            <button class="m-btn m-btn-secondary" onclick="resolvePrizeChoice(false)">Забрать баллы</button>
             <button class="m-btn m-btn-primary" onclick="resolvePrizeChoice(true)">Забрать ПРИЗ (Финиш)</button>
         </div>
         <div class="modal-rsya-thin">
@@ -476,7 +472,7 @@
         <h3>Правила «Поля Чудес»</h3>
         <div style="text-align: left; font-size: 13px; line-height: 1.6; color: var(--text-muted); margin-bottom: 12px;">
             • Всего доступно <b>5 попыток в месяц</b>. При выигрыше приза следующая игра открывается через месяц.<br>
-            • Максимальный выигрыш баллов — <b>до 1 600 баллов</b> (эквивалент скидки в рублях).<br>
+            • Набирайте баллы за каждую угаданную букву для получения персональной скидки.<br>
             • <b>Сектор «+»</b>: на табло замигают ячейки — <b>нажмите прямо на закрытую букву</b>, и она откроется!<br>
             • <b>Супер-приз</b>: абонемент на <b>4 занятия на 1 месяц</b> в студию «РЕСУРС»!<br>
             • <b>Поражение</b>: ошибка при вводе слова или поражение в Суперигре аннулирует накопленные баллы и сжигает попытку.
@@ -514,7 +510,7 @@
             Приз не суммируется с другими акциями и бонусами мобильного приложения.
         </div>
         <div class="modal-btn-row">
-            <button class="m-btn m-btn-secondary" onclick="declineSuperGame()">Забрать свои баллы (до 1 600 ₽)</button>
+            <button class="m-btn m-btn-secondary" onclick="declineSuperGame()">Забрать свои баллы</button>
             <button class="m-btn m-btn-primary" onclick="acceptSuperGame()">Рискнуть в Суперигре!</button>
         </div>
         <div class="modal-rsya-thin">
@@ -564,10 +560,10 @@
 </footer>
 
 <script>
-    // МАКСИМАЛЬНЫЙ ЛИМИТ ВЫИГРЫША БАЛЛОВ (СТРОГО ДО 1600 БАЛЛОВ)
+    // Лимит баллов "под капотом"
     const MAX_SCORE_LIMIT = 1600;
 
-    // 16 СЕКТОРОВ БАРАБАНА (ЧЕСТНЫЕ ЧИСЛОВЫЕ НОМИНАЛЫ, СЕКТОР ×2 УБРАН)
+    // 16 секторов барабана
     const wheelSectors = [
         { label: "100", type: "score", value: 100, color: "#6C3EB8" },
         { label: "30", type: "score", value: 30, color: "#1E1833" },
@@ -587,7 +583,6 @@
         { label: "40", type: "score", value: 40, color: "#1E1833" }
     ];
 
-    // УТВЕРЖДЕННЫЕ ПРИЗЫ СТУДИИ «РЕСУРС»
     const studioPrizes = [
         "Скидка 30% на 8 занятий (3920 ₽ вместо 5600 ₽)",
         "+3 занятия к любому абонементу",
@@ -598,46 +593,46 @@
         "500 бонусов в ЛК на покупку абонемента в приложении"
     ];
 
-    // БАНК ЭКСПЕРТНЫХ НАУЧНЫХ ТЕРМИНОВ
+    // Банк сложных терминов с авторскими формулировками (сложно нагуглить дословно)
     const questionsPool = [
         {
             word: "ПРОПРИОЦЕПЦИЯ",
-            desc: "Глубокое мышечно-суставное чувство положения собственного тела и его частей в пространстве.",
-            explanation: "<b>Проприоцепция</b> — способность нервной системы считывать натяжение связок и сухожилий, обеспечивая устойчивый баланс и защиту суставов от травм."
+            desc: "Внутренний биологический сенсор: чувство положения тела и натяжения связок без участия глаз.",
+            explanation: "<b>Проприоцепция</b> — способность нервной системы считывать натяжение связок и сухожилий, обеспечивая идеальный баланс и защиту суставов от травм."
         },
         {
             word: "ПЛАТИЗМА",
-            desc: "Широкая подкожная мышца шеи, натяжение которой напрямую определяет четкость овала лица.",
-            explanation: "<b>Платизма</b> — поверхностная мышца шеи. При сутулости она укорачивается, утягивая ткани лица вниз и формируя брыли и второй подбородок."
+            desc: "Широкий мышечный воротник спереди шеи, спазм которого тянет овал лица вниз.",
+            explanation: "<b>Платизма</b> — тонкая подкожная мышца шеи. При сутулости она укорачивается, утягивая ткани лица вниз и формируя брыли и второй подбородок."
         },
         {
             word: "ДИАФРАГМА",
-            desc: "Главный дыхательный орган, служащий верхним гидравлическим насосом для брюшной полости.",
+            desc: "Главный дыхательный купол тела, служащий поршнем и лимфатическим насосом для живота.",
             explanation: "<b>Диафрагма</b> — куполообразная мышца. На каждом полноценном вдохе она мягко массирует внутренние органы и стимулирует лимфоток."
         },
         {
             word: "ИШЕМИЯ",
-            desc: "Дефицит местного капиллярного кровообращения в спазмированном мышечном волокне.",
+            desc: "Локальный дефицит притока крови в зажатом мышечном волокне, порождающий триггерные боли.",
             explanation: "<b>Ишемия</b> возникает, когда статическая перегрузка сдавливает капилляры. Мышца перестает получать кислород и отвечает ноющей болью."
         },
         {
             word: "ДИАСТАЗ",
-            desc: "Анатомическое расхождение прямых мышц живота по сухожильной белой линии после родов.",
+            desc: "Истончение и расхождение соединительной белой полосы между половинками пресса после родов.",
             explanation: "<b>Диастаз</b> — растяжение соединительной ткани белой линии живота. Корректируется включением глубокой поперечной мышцы."
         },
         {
             word: "ФАСЦИЯ",
-            desc: "Трехмерная паутина соединительной ткани, непрерывно пронизывающая и связывающая все тело.",
+            desc: "Непрерывный трехмерный соединительный футляр, склеивание которого сковывает суставы.",
             explanation: "<b>Фасция</b> окутывает каждый мышечный пучок. При недостатке движения фасции склеиваются, ограничивая гибкость и вызывая скованность."
         },
         {
             word: "СИНОВИЯ",
-            desc: "Вязкая эластичная жидкость внутри суставной сумки, смазывающая хрящевые поверхности.",
+            desc: "Природная маслянистая смазка внутри суставной сумки, защищающая хрящи от сухого трения.",
             explanation: "<b>Синовиальная жидкость</b> вырабатывается во время мягкого суставного движения, защищая хрящи от сухого трения и хруста."
         },
         {
             word: "АРТИКУЛЯЦИЯ",
-            desc: "Способность позвоночника двигаться плавно и сегментарно, позвонок за позвонком.",
+            desc: "Позвонково-волновая подвижность позвоночника: плавный наклон сегмент за сегментом.",
             explanation: "<b>Артикуляция позвоночника</b> — основа гибкой спины. Возвращает эластичность каждому отдельному межпозвоночному диску."
         },
         {
@@ -647,7 +642,7 @@
         },
         {
             word: "КОРТИЗОЛ",
-            desc: "Гормон стресса, хронический избыток которого вызывает задержку натрия и скрытые отеки.",
+            desc: "Стрессовый гормон, переизбыток которого вызывает задержку натрия и маскирует похудение отеками.",
             explanation: "<b>Кортизол</b> при переутомлении провоцирует задержку воды, маскируя результаты тренировок под стойкий отек тела."
         }
     ];
@@ -658,7 +653,7 @@
     let word = "";
     let revealed = [];
     let scores = [0, 0, 0];
-    let activePlayer = 0; // 0 - Вы, 1 - Бот 1, 2 - Бот 2
+    let activePlayer = 0;
 
     let currentSpin = null;
     let isSpinning = false;
@@ -727,7 +722,6 @@
         document.querySelectorAll('.char-btn').forEach(b => b.disabled = true);
     }
 
-    // НАЧИСЛЕНИЕ С ЖЕСТКИМ ПОТОЛКОМ ДО 1600 ОЧКОВ
     function addPlayerScoreSafe(pointsToAdd) {
         scores[0] = Math.min(scores[0] + pointsToAdd, MAX_SCORE_LIMIT);
         updateUI();
@@ -959,7 +953,7 @@
             return;
         }
 
-        // Числовые сектора (30, 40, 50, 75, 100, 150, 200)
+        // Числовые сектора
         status.innerText = activePlayer === 0
             ? `Выпало: ${sector.value} очков! Выберите букву на клавиатуре.`
             : `Сектор: ${sector.value} очков. Соперник ${activePlayer} думает...`;
@@ -1025,7 +1019,7 @@
             document.getElementById('turnStatus').innerText = "БРАВО! Вы угадали слово целиком!";
             setTimeout(handleRoundWin, 1000);
         } else {
-            handleStrictLoss(`Вы назвали слово «${guessed}», но правильный ответ: «${word}». Слово не угадано — раунд проигран!`);
+            handleStrictLoss(`Вы назвали слово «${guessed}», но правильный ответ: «${word}». Раунд проигран!`);
         }
     }
 
@@ -1162,11 +1156,10 @@
         const status = document.getElementById('turnStatus');
         const lucky = Math.random() > 0.5 ? 1 : 0;
         if (idx === lucky) {
-            // Круглые ровные бонусы
             const roundBonuses = [100, 200, 300, 400, 500];
             const bonus = roundBonuses[Math.floor(Math.random() * roundBonuses.length)];
             addPlayerScoreSafe(bonus);
-            status.innerText = `Точно! В шкатулке оказалось +${bonus} очков (макс. лимит: ${MAX_SCORE_LIMIT})!`;
+            status.innerText = `Точно! В шкатулке оказалось +${bonus} очков!`;
         } else {
             status.innerText = "Шкатулка оказалась пустой, но ход остается у вас!";
         }
@@ -1258,7 +1251,7 @@
         markGameWon();
         document.getElementById('winTermExplanation').innerHTML = activeQuestion.explanation;
         document.getElementById('winTitle').innerText = "ВЫ ВЫИГРАЛИ ПРИЗ!";
-        document.getElementById('winDesc').innerHTML = `Вы остановили игру и забрали приз: <b>«${prizeText}»</b>!<br>Баллы для скидки: <b>${scores[0]} ₽</b> (макс. ${MAX_SCORE_LIMIT} ₽). Следующая игра откроется в следующем месяце.`;
+        document.getElementById('winDesc').innerHTML = `Вы остановили игру и забрали приз: <b>«${prizeText}»</b>!<br>Следующая игра откроется в следующем месяце.`;
 
         const msg = `Вера, здравствуйте! Я сыграла в Поле Чудес на сайте РЕСУРС и забрала сектор ПРИЗ: «${prizeText}»! Мои баллы скидки: ${scores[0]} руб. Напоминаю, что бонусы не суммируются с приложением. Запишите меня!`;
         document.getElementById('vkClaimBtn').href = `https://vk.com/im?sel=-221142875&message=${encodeURIComponent(msg)}`;
@@ -1282,7 +1275,7 @@
             vkBtn.href = `https://vk.com/im?sel=-221142875&message=${encodeURIComponent(msg)}`;
         } else {
             title.innerText = "Победа в Финале!";
-            desc.innerHTML = `Вы победитель финала! Разгаданный термин <b>«${word}»</b> принес вам <b>${discountPoints} баллов скидки</b> (макс. ${MAX_SCORE_LIMIT} ₽) к абонементу!`;
+            desc.innerHTML = `Вы победитель финала! Разгаданный термин <b>«${word}»</b> принес вам <b>${discountPoints} баллов скидки</b> к абонементу!`;
             const msg = `Вера, здравствуйте! Я победила в финале Поля Чудес на сайте РЕСУРС, угадала термин «${word}» и набрала ${discountPoints} баллов скидки! Хочу использовать выигрыш (без суммирования с приложением).`;
             vkBtn.href = `https://vk.com/im?sel=-221142875&message=${encodeURIComponent(msg)}`;
         }
@@ -1294,7 +1287,7 @@
         if (navigator.share) {
             navigator.share({
                 title: 'Поле Чудес в студии РЕСУРС',
-                text: 'Разгадай биомеханический термин, набери до 1600 баллов скидки и выиграй абонемент на 4 занятия в студию движения РЕСУРС!',
+                text: 'Разгадай биомеханический термин и выиграй абонемент на 4 занятия в студию движения РЕСУРС!',
                 url: window.location.href
             }).catch(() => {});
         } else {
