@@ -38,16 +38,21 @@
             --surface-hover: #1A1727;
             --accent-color: #6C3EB8;
             --accent-hover: #8352D6;
-            --accent-subtle: rgba(108, 62, 184, 0.15);
+            --accent-subtle: rgba(108, 62, 184, 0.2);
             --text-main: #F5F4F9;
             --text-muted: #9693A6;
-            --border-color: rgba(108, 62, 184, 0.22);
-            --header-bg: rgba(10, 9, 15, 0.88);
+            --border-color: rgba(108, 62, 184, 0.35);
+            --header-bg: rgba(10, 9, 15, 0.92);
             --shadow: rgba(0, 0, 0, 0.6);
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             --success: #10B981;
             --danger: #EF4444;
             --gold: #E5A93C;
+
+            --cell-bg: #161324;
+            --cell-border: rgba(229, 169, 60, 0.5);
+            --cell-text: #FFD580;
+            --cell-opened-bg: rgba(108, 62, 184, 0.35);
         }
 
         [data-theme="light"] {
@@ -56,12 +61,17 @@
             --surface-hover: #F1EDF9;
             --accent-color: #5B3494;
             --accent-hover: #48257B;
-            --accent-subtle: rgba(91, 52, 148, 0.08);
+            --accent-subtle: rgba(91, 52, 148, 0.1);
             --text-main: #14121E;
             --text-muted: #666375;
-            --border-color: rgba(91, 52, 148, 0.16);
-            --header-bg: rgba(248, 247, 252, 0.9);
-            --shadow: rgba(0, 0, 0, 0.06);
+            --border-color: rgba(91, 52, 148, 0.25);
+            --header-bg: rgba(248, 247, 252, 0.95);
+            --shadow: rgba(0, 0, 0, 0.08);
+
+            --cell-bg: #FFFFFF;
+            --cell-border: #5B3494;
+            --cell-text: #14121E;
+            --cell-opened-bg: rgba(91, 52, 148, 0.15);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
@@ -126,7 +136,6 @@
             .mobile-thumb-bar { display: flex; }
         }
 
-        /* ОСНОВНОЙ МАКЕТ */
         .main-layout {
             max-width: 1000px; width: 100%; margin: 25px auto 50px;
             padding: 0 20px; position: relative; z-index: 10;
@@ -138,7 +147,6 @@
             box-shadow: 0 15px 35px var(--shadow); text-align: center;
         }
 
-        /* ВЕРХНЯЯ СТРОКА СТАТУСА И ЛИМИТОВ */
         .top-meta-bar {
             display: flex; justify-content: space-between; align-items: center;
             flex-wrap: wrap; gap: 10px; margin-bottom: 20px;
@@ -149,6 +157,12 @@
             border-radius: 20px; border: 1px solid rgba(229, 169, 60, 0.3);
             text-transform: uppercase; letter-spacing: 0.5px;
         }
+        .score-limit-badge {
+            font-size: 12px; font-weight: 800; color: var(--accent-color);
+            background: var(--accent-subtle); padding: 6px 14px;
+            border-radius: 20px; border: 1px solid var(--border-color);
+            text-transform: uppercase; letter-spacing: 0.5px;
+        }
         .btn-share-friend {
             background: var(--surface-hover); border: 1px solid var(--border-color);
             color: var(--text-main); padding: 6px 14px; border-radius: 20px;
@@ -156,7 +170,6 @@
         }
         .btn-share-friend:hover { border-color: var(--accent-color); color: var(--accent-color); }
 
-        /* ТАБЛО ИГРОКОВ */
         .players-bar {
             display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 20px;
         }
@@ -171,7 +184,6 @@
         .player-name { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
         .player-score { font-size: 22px; font-weight: 800; color: var(--gold); margin-top: 4px; }
 
-        /* ВОПРОС */
         .question-card {
             background: var(--bg-color); border: 1px solid var(--border-color);
             border-radius: 14px; padding: 18px 24px; margin-bottom: 20px;
@@ -179,30 +191,35 @@
         .question-tour-title { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-color); margin-bottom: 6px; }
         .question-desc { font-size: 15.5px; font-weight: 600; color: var(--text-main); line-height: 1.5; }
 
-        /* ТАБЛО СЛОВА */
         .word-board {
             display: flex; justify-content: center; gap: 8px; margin: 20px 0; flex-wrap: wrap;
         }
         .letter-cell {
-            width: 44px; height: 54px; background: var(--bg-color);
-            border: 2px solid var(--border-color); border-radius: 8px;
+            width: 46px; height: 56px;
+            background: var(--cell-bg);
+            border: 2px solid var(--cell-border);
+            border-radius: 8px;
             display: flex; align-items: center; justify-content: center;
-            font-family: 'Cormorant Garamond', serif; font-size: 30px;
-            font-weight: 700; color: var(--gold); transition: var(--transition);
+            font-family: 'Cormorant Garamond', serif; font-size: 32px;
+            font-weight: 800; color: var(--cell-text);
+            box-shadow: inset 0 2px 6px rgba(0,0,0,0.2), 0 4px 10px var(--shadow);
+            transition: var(--transition);
         }
         .letter-cell.opened {
-            background: var(--accent-subtle); border-color: var(--accent-color); color: #FFF;
+            background: var(--cell-opened-bg);
+            border-color: var(--accent-color);
+            color: var(--cell-text);
         }
         .letter-cell.selectable {
-            cursor: pointer; border-color: var(--gold);
+            cursor: pointer;
+            border-color: var(--gold) !important;
             animation: pulseCell 1.1s infinite alternate;
         }
         @keyframes pulseCell {
-            from { transform: scale(1); box-shadow: 0 0 5px rgba(229, 169, 60, 0.4); }
-            to { transform: scale(1.08); box-shadow: 0 0 16px rgba(229, 169, 60, 0.9); }
+            from { transform: scale(1); box-shadow: 0 0 6px rgba(229, 169, 60, 0.4); }
+            to { transform: scale(1.08); box-shadow: 0 0 18px rgba(229, 169, 60, 0.95); }
         }
 
-        /* КНОПКИ ДЕЙСТВИЯ МЕЖДУ СЛОВОМ И БУКВАМИ */
         .action-controls-row {
             margin: 20px 0; display: flex; flex-direction: column; align-items: center; gap: 12px;
         }
@@ -220,7 +237,7 @@
         .btn-action-main:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
 
         .btn-action-word {
-            background: var(--surface-hover); color: var(--gold); border: 1px solid var(--gold);
+            background: var(--surface-hover); color: var(--gold); border: 2px solid var(--gold);
             padding: 15px 32px; border-radius: 10px; font-size: 13px; font-weight: 800;
             text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: var(--transition);
             flex: 1; max-width: 260px;
@@ -232,7 +249,6 @@
             font-size: 14.5px; font-weight: 700; color: var(--gold); min-height: 24px; text-align: center;
         }
 
-        /* КЛАВИАТУРА */
         .keyboard-grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(32px, 1fr));
             gap: 6px; max-width: 750px; margin: 15px auto 0;
@@ -261,7 +277,7 @@
 
         .input-word-field {
             width: 100%; padding: 14px; background: var(--bg-color); border: 2px solid var(--accent-color);
-            border-radius: 8px; color: #FFF; font-size: 18px; font-weight: 800; text-align: center;
+            border-radius: 8px; color: var(--text-main); font-size: 18px; font-weight: 800; text-align: center;
             text-transform: uppercase; letter-spacing: 2px; margin-bottom: 14px;
         }
 
@@ -269,6 +285,12 @@
             background: var(--accent-subtle); border: 1px dashed var(--accent-color);
             border-radius: 8px; padding: 14px; margin: 14px 0; text-align: left;
             font-size: 13px; line-height: 1.6; color: var(--text-main);
+        }
+
+        .warning-rule-box {
+            background: rgba(229, 169, 60, 0.08); border: 1px solid rgba(229, 169, 60, 0.3);
+            border-radius: 8px; padding: 10px 14px; margin: 10px 0 15px; text-align: left;
+            font-size: 12px; color: var(--gold); line-height: 1.5;
         }
 
         .modal-btn-row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 14px; }
@@ -280,14 +302,12 @@
         .m-btn-primary:hover { background: var(--accent-hover); }
         .m-btn-secondary { background: var(--surface-hover); color: var(--text-main); border: 1px solid var(--border-color); }
 
-        /* УЗКИЙ БЛОК РСЯ РОВНО 90PX ВО ВСЕХ МОДАЛКАХ */
         .modal-rsya-thin {
             margin-top: 14px; border-radius: 8px; border: 1px solid var(--border-color);
             background: var(--bg-color); height: 90px; max-height: 90px; overflow: hidden;
             display: flex; align-items: center; justify-content: center; width: 100%;
         }
 
-        /* 16-СЕКТОРНЫЙ БАРАБАН ВНУТРИ МОДАЛКИ */
         .wheel-box {
             position: relative; width: 250px; height: 250px; margin: 10px auto 14px;
         }
@@ -342,13 +362,12 @@
 
 <main class="main-layout">
     <div class="game-card">
-        <!-- Верхний статус лимитов и шеринг -->
         <div class="top-meta-bar">
-            <span class="attempts-badge" id="attemptsBadge">Попытки в этом месяце: 5 из 5</span>
+            <span class="attempts-badge" id="attemptsBadge">Попытки: 5 из 5</span>
+            <span class="score-limit-badge">Макс. скидка: 1 600 ₽</span>
             <button class="btn-share-friend" onclick="shareWithFriend()">🔗 Поделиться с подругой</button>
         </div>
 
-        <!-- Табло игроков -->
         <div class="players-bar">
             <div class="player-chip active" id="pChip-0">
                 <div class="player-name">Вы (Игрок 1)</div>
@@ -364,16 +383,13 @@
             </div>
         </div>
 
-        <!-- Вопрос -->
         <div class="question-card">
             <div class="question-tour-title" id="tourTitle">1 ТУР: АНАТОМИЧЕСКИЙ ТЕРМИН</div>
             <div class="question-desc" id="questionDesc">Загрузка задания...</div>
         </div>
 
-        <!-- Табло слова -->
         <div class="word-board" id="wordBoard"></div>
 
-        <!-- КНОПКИ: КРУТИТЬ БАРАБАН И НАЗВАТЬ СЛОВО -->
         <div class="action-controls-row">
             <div class="turn-status-text" id="turnStatus">Ваш ход! Вращайте барабан или назовите слово целиком.</div>
             <div class="buttons-group">
@@ -382,12 +398,11 @@
             </div>
         </div>
 
-        <!-- Клавиатура букв -->
         <div class="keyboard-grid" id="keyboardGrid"></div>
     </div>
 </main>
 
-<!-- 1. МОДАЛКА БАРАБАНА (С РСЯ 90PX) -->
+<!-- 1. МОДАЛКА БАРАБАНА (РСЯ 90PX) -->
 <div class="modal-overlay" id="wheelModal">
     <div class="modal-card">
         <h3>Вращайте барабан!</h3>
@@ -406,14 +421,14 @@
     </div>
 </div>
 
-<!-- 2. МОДАЛКА: НАЗВАТЬ СЛОВО ЦЕЛИКОМ (С РСЯ 90PX) -->
+<!-- 2. МОДАЛКА: НАЗВАТЬ СЛОВО ЦЕЛИКОМ (РСЯ 90PX) -->
 <div class="modal-overlay" id="guessWordModal">
     <div class="modal-card">
         <h3>Назвать слово целиком</h3>
-        <p>Если вы уверены в термине — введите его. В случае ошибки ход перейдет к сопернику!</p>
+        <p><b>Внимание!</b> Если вы ошибетесь хотя бы в одной букве — раунд проигран и сгорает 1 месячная попытка!</p>
         <input type="text" id="fullWordInput" class="input-word-field" placeholder="ВВЕДИТЕ СЛОВО" maxlength="25">
         <div class="modal-btn-row">
-            <button class="m-btn m-btn-secondary" onclick="closeModal('guessWordModal')">Отмена</button>
+            <button class="m-btn m-btn-secondary" onclick="closeModal('guessWordModal')">Вернуться к игре</button>
             <button class="m-btn m-btn-primary" onclick="submitFullWord()">Подтвердить слово</button>
         </div>
         <div class="modal-rsya-thin">
@@ -422,11 +437,14 @@
     </div>
 </div>
 
-<!-- 3. МОДАЛКА: СЕКТОР ПРИЗ (С РСЯ 90PX) -->
+<!-- 3. МОДАЛКА: СЕКТОР ПРИЗ (РСЯ 90PX) -->
 <div class="modal-overlay" id="prizeModal">
     <div class="modal-card">
         <h3>Сектор «ПРИЗ» на барабане!</h3>
-        <p>Вы можете забрать гарантированные 150 очков и продолжить игру, либо <b>выбрать ПРИЗ и завершить игру с победой</b>!</p>
+        <p>Вы можете забрать 150 очков и крутить дальше, либо <b>забрать один из ценных подарков студии и завершить игру с победой</b>!</p>
+        <div class="warning-rule-box">
+            Условие: полученный приз или баллы не суммируются с бонусами приложения и выигрышами Колеса удачи. Применяется только один бонус на выбор.
+        </div>
         <div class="modal-btn-row">
             <button class="m-btn m-btn-secondary" onclick="resolvePrizeChoice(false)">Забрать 150 очков</button>
             <button class="m-btn m-btn-primary" onclick="resolvePrizeChoice(true)">Забрать ПРИЗ (Финиш)</button>
@@ -437,11 +455,11 @@
     </div>
 </div>
 
-<!-- 4. МОДАЛКА: ДВЕ ШКАТУЛКИ (С РСЯ 90PX) -->
+<!-- 4. МОДАЛКА: ДВЕ ШКАТУЛКИ (РСЯ 90PX) -->
 <div class="modal-overlay" id="boxModal">
     <div class="modal-card">
         <h3>Две Шкатулки</h3>
-        <p>В одной из шкатулок спрятан бонус до 500 очков. Вторая пуста. Ход в любом случае останется у вас!</p>
+        <p>В одной из шкатулок спрятан бонус от 100 до 500 очков. Вторая пуста. Ход остается у вас!</p>
         <div class="modal-btn-row">
             <button class="m-btn m-btn-primary" onclick="resolveBoxChoice(0)">Левая шкатулка</button>
             <button class="m-btn m-btn-primary" onclick="resolveBoxChoice(1)">Правая шкатулка</button>
@@ -452,16 +470,20 @@
     </div>
 </div>
 
-<!-- 5. МОДАЛКА: ПРАВИЛА ИГРЫ (С РСЯ 90PX) -->
+<!-- 5. МОДАЛКА: ПРАВИЛА ИГРЫ (РСЯ 90PX) -->
 <div class="modal-overlay" id="rulesModal">
     <div class="modal-card" style="max-width: 500px;">
         <h3>Правила «Поля Чудес»</h3>
-        <p style="text-align: left; font-size: 13px;">
-            1. Доступно <b>5 попыток в месяц</b>. При выигрыше приза следующая игра открывается через месяц.<br>
-            2. <b>Кнопка «Назвать слово»</b> позволяет ввести термин целиком в любой момент своего хода.<br>
-            3. <b>Сектор «+»</b>: на табло начинают мерцать закрытые ячейки — <b>нажмите прямо на любую закрытую букву на табло</b>, и она откроется!<br>
-            4. <b>Суперигра</b>: в зависимости от длины слова открывается 3, 4 или 5 любых букв!
-        </p>
+        <div style="text-align: left; font-size: 13px; line-height: 1.6; color: var(--text-muted); margin-bottom: 12px;">
+            • Всего доступно <b>5 попыток в месяц</b>. При выигрыше приза следующая игра открывается через месяц.<br>
+            • Максимальный выигрыш баллов — <b>до 1 600 баллов</b> (эквивалент скидки в рублях).<br>
+            • <b>Сектор «+»</b>: на табло замигают ячейки — <b>нажмите прямо на закрытую букву</b>, и она откроется!<br>
+            • <b>Супер-приз</b>: абонемент на <b>4 занятия на 1 месяц</b> в студию «РЕСУРС»!<br>
+            • <b>Поражение</b>: ошибка при вводе слова или поражение в Суперигре аннулирует накопленные баллы и сжигает попытку.
+        </div>
+        <div class="warning-rule-box">
+            <b>Важно:</b> Выигранные баллы и подарки не суммируются с бонусами в мобильном приложении или промокодами Колеса удачи. Вы можете использовать только один бонус на выбор.
+        </div>
         <button class="m-btn m-btn-primary" onclick="closeRulesModal()">Понятно, в игру!</button>
         <div class="modal-rsya-thin">
             <div id="yandex_rtb_modal_rules" style="width: 100%; height: 90px;"></div>
@@ -469,12 +491,12 @@
     </div>
 </div>
 
-<!-- 6. МОДАЛКА: ПЕРЕХОД В ФИНАЛ (С РСЯ 90PX) -->
+<!-- 6. МОДАЛКА: ПЕРЕХОД В ФИНАЛ (РСЯ 90PX) -->
 <div class="modal-overlay" id="toFinaleModal">
     <div class="modal-card">
         <h3>Браво! Вы победили в 1 туре!</h3>
         <div class="term-explanation-box" id="tour1TermExplanation"></div>
-        <p>Вы успешно разгадали термин и переходите в <b>ФИНАЛ</b> с новыми соперниками!</p>
+        <p>Вы разгадали термин и переходите в <b>ФИНАЛ</b>, где соперники играют на порядок сильнее!</p>
         <button class="m-btn m-btn-primary" onclick="startFinaleRound()">Перейти в Финал</button>
         <div class="modal-rsya-thin">
             <div id="yandex_rtb_modal_finale" style="width: 100%; height: 90px;"></div>
@@ -482,15 +504,18 @@
     </div>
 </div>
 
-<!-- 7. МОДАЛКА: ПРЕДЛОЖЕНИЕ СУПЕРИГРЫ (С РСЯ 90PX) -->
+<!-- 7. МОДАЛКА: ПРЕДЛОЖЕНИЕ СУПЕРИГРЫ (РСЯ 90PX) -->
 <div class="modal-overlay" id="superOfferModal">
     <div class="modal-card">
         <h3>Вы абсолютный победитель Финала!</h3>
         <div class="term-explanation-box" id="finaleTermExplanation"></div>
-        <p>Вы набрали рекордные очки! Рискнете в <b>СУПЕРИГРЕ</b> ради супер-приза студии?</p>
+        <p>На кону главный СУПЕР-ПРИЗ: <b>Абонемент на 4 занятия на месяц</b>!<br><b style="color: var(--danger);">Риск:</b> если не отгадаете супер-слово, сгорают все накопленные баллы!</p>
+        <div class="warning-rule-box">
+            Приз не суммируется с другими акциями и бонусами мобильного приложения.
+        </div>
         <div class="modal-btn-row">
-            <button class="m-btn m-btn-secondary" onclick="declineSuperGame()">Забрать выигрыш</button>
-            <button class="m-btn m-btn-primary" onclick="acceptSuperGame()">Играть в Суперигру!</button>
+            <button class="m-btn m-btn-secondary" onclick="declineSuperGame()">Забрать свои баллы (до 1 600 ₽)</button>
+            <button class="m-btn m-btn-primary" onclick="acceptSuperGame()">Рискнуть в Суперигре!</button>
         </div>
         <div class="modal-rsya-thin">
             <div id="yandex_rtb_modal_super_offer" style="width: 100%; height: 90px;"></div>
@@ -498,14 +523,29 @@
     </div>
 </div>
 
-<!-- 8. МОДАЛКА: ФИНАЛЬНАЯ ПОБЕДА / ЗАБРАТЬ ПРИЗ В ВК (С РСЯ 90PX) -->
+<!-- 8. МОДАЛКА ПОРАЖЕНИЯ (РСЯ 90PX) -->
+<div class="modal-overlay" id="loseModal">
+    <div class="modal-card">
+        <h3 style="color: var(--danger);">Игра проиграна!</h3>
+        <p id="loseReasonText">Слово названо неверно. Раунд завершен, минус 1 попытка.</p>
+        <button class="m-btn m-btn-secondary" style="width: 100%;" onclick="location.reload()">Попробовать снова</button>
+        <div class="modal-rsya-thin">
+            <div id="yandex_rtb_modal_lose" style="width: 100%; height: 90px;"></div>
+        </div>
+    </div>
+</div>
+
+<!-- 9. МОДАЛКА ПОБЕДЫ / ЗАБРАТЬ ПРИЗ В ВК (РСЯ 90PX) -->
 <div class="modal-overlay" id="finalWinModal">
     <div class="modal-card">
         <h3 id="winTitle">Грандиозная победа!</h3>
         <div class="term-explanation-box" id="winTermExplanation"></div>
-        <p id="winDesc">Вы блестяще справились с терминами биомеханики и выиграли подарок студии «РЕСУРС»!</p>
-        <a href="#" id="vkClaimBtn" class="vk-btn-win" target="_blank">Написать Вере в ВК за призом</a>
-        <button class="m-btn m-btn-secondary" style="width: 100%;" onclick="location.reload()">Завершить игру</button>
+        <p id="winDesc">Вы зафиксировали свой выигрыш!</p>
+        <div class="warning-rule-box">
+            Напоминание: данный бонус нельзя объединять с баллами в приложении или промокодами Колеса удачи. Выбирается только один бонус.
+        </div>
+        <a href="#" id="vkClaimBtn" class="vk-btn-win" target="_blank">Написать Вере в ВК за выигрышем</a>
+        <button class="m-btn m-btn-secondary" style="width: 100%;" onclick="location.reload()">Завершить сессию</button>
         <div class="modal-rsya-thin">
             <div id="yandex_rtb_modal_win" style="width: 100%; height: 90px;"></div>
         </div>
@@ -524,7 +564,10 @@
 </footer>
 
 <script>
-    // 16 СЕКТОРОВ БАРАБАНА
+    // МАКСИМАЛЬНЫЙ ЛИМИТ ВЫИГРЫША БАЛЛОВ (СТРОГО ДО 1600 БАЛЛОВ)
+    const MAX_SCORE_LIMIT = 1600;
+
+    // 16 СЕКТОРОВ БАРАБАНА (ЧЕСТНЫЕ ЧИСЛОВЫЕ НОМИНАЛЫ, СЕКТОР ×2 УБРАН)
     const wheelSectors = [
         { label: "100", type: "score", value: 100, color: "#6C3EB8" },
         { label: "30", type: "score", value: 30, color: "#1E1833" },
@@ -539,9 +582,9 @@
         { label: "30", type: "score", value: 30, color: "#1A1727" },
         { label: "ШКАТУЛКА", type: "box", value: 0, color: "#BA68C8" },
         { label: "100", type: "score", value: 100, color: "#6C3EB8" },
-        { label: "40", type: "score", value: 40, color: "#2B1E4A" },
-        { label: "×2", type: "mult", value: 2, color: "#B38639" },
-        { label: "50", type: "score", value: 50, color: "#1E1833" }
+        { label: "50", type: "score", value: 50, color: "#2B1E4A" },
+        { label: "150", type: "score", value: 150, color: "#B38639" },
+        { label: "40", type: "score", value: 40, color: "#1E1833" }
     ];
 
     // УТВЕРЖДЕННЫЕ ПРИЗЫ СТУДИИ «РЕСУРС»
@@ -555,12 +598,12 @@
         "500 бонусов в ЛК на покупку абонемента в приложении"
     ];
 
-    // БАНК ЭКСПЕРТНЫХ НАУЧНЫХ ТЕРМИНОВ БЕЗ ПОВТОРОВ
+    // БАНК ЭКСПЕРТНЫХ НАУЧНЫХ ТЕРМИНОВ
     const questionsPool = [
         {
             word: "ПРОПРИОЦЕПЦИЯ",
             desc: "Глубокое мышечно-суставное чувство положения собственного тела и его частей в пространстве.",
-            explanation: "<b>Проприоцепция</b> — способность нервной системы считывать натяжение связок и сухожилий, обеспечивая устойчивый баланс и защиту суставов."
+            explanation: "<b>Проприоцепция</b> — способность нервной системы считывать натяжение связок и сухожилий, обеспечивая устойчивый баланс и защиту суставов от травм."
         },
         {
             word: "ПЛАТИЗМА",
@@ -627,7 +670,10 @@
     let currentAngle = 0;
     const alphabet = "АБВГДЕЖЗИКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
 
-    // ЛОГИКА 5 ПОПЫТОК В МЕСЯЦ
+    function getBotIntelligenceChance() {
+        return gameState === "FINALE" ? 0.55 : 0.35;
+    }
+
     function getCurrentMonthKey() {
         const now = new Date();
         return `${now.getFullYear()}-${now.getMonth() + 1}`;
@@ -637,7 +683,6 @@
         const currentMonth = getCurrentMonthKey();
         const savedMonth = localStorage.getItem('resurs_pole_month');
         
-        // Новый календарный месяц - сбрасываем лимиты
         if (savedMonth !== currentMonth) {
             localStorage.setItem('resurs_pole_month', currentMonth);
             localStorage.setItem('resurs_pole_attempts', '5');
@@ -648,15 +693,15 @@
         const attempts = parseInt(localStorage.getItem('resurs_pole_attempts') || '5', 10);
         
         const badge = document.getElementById('attemptsBadge');
-        if (badge) badge.innerText = `Попытки в этом месяце: ${attempts} из 5`;
+        if (badge) badge.innerText = `Попытки: ${attempts} из 5`;
 
         if (isWon) {
-            blockGame("Вы уже выиграли подарок в этом месяце! Следующая игра откроется в следующем месяце.");
+            blockGame("Вы уже забрали выигрыш в этом месяце! Новая игра откроется в следующем месяце.");
             return false;
         }
 
         if (attempts <= 0) {
-            blockGame("Все 5 попыток в этом месяце использованы! Приходите в следующем месяце.");
+            blockGame("Все 5 попыток в этом месяце исчерпаны! Приходите в следующем месяце.");
             return false;
         }
 
@@ -668,7 +713,7 @@
         attempts = Math.max(0, attempts - 1);
         localStorage.setItem('resurs_pole_attempts', attempts.toString());
         const badge = document.getElementById('attemptsBadge');
-        if (badge) badge.innerText = `Попытки в этом месяце: ${attempts} из 5`;
+        if (badge) badge.innerText = `Попытки: ${attempts} из 5`;
     }
 
     function markGameWon() {
@@ -680,6 +725,12 @@
         document.getElementById('openWheelBtn').disabled = true;
         document.getElementById('openGuessBtn').disabled = true;
         document.querySelectorAll('.char-btn').forEach(b => b.disabled = true);
+    }
+
+    // НАЧИСЛЕНИЕ С ЖЕСТКИМ ПОТОЛКОМ ДО 1600 ОЧКОВ
+    function addPlayerScoreSafe(pointsToAdd) {
+        scores[0] = Math.min(scores[0] + pointsToAdd, MAX_SCORE_LIMIT);
+        updateUI();
     }
 
     function getUnusedQuestion() {
@@ -804,7 +855,6 @@
         }
     }
 
-    // ВЫЗОВ МОДАЛКИ БАРАБАНА
     function openWheelModal() {
         if (isSpinning || waitingLetter || activePlayer !== 0 || isPlusSelectionPhase) return;
         document.getElementById('wheelModalStatus').innerText = "Нажмите «Пуск барабана»!";
@@ -863,7 +913,7 @@
         if (sector.type === "bankrupt") {
             scores[activePlayer] = 0;
             updateUI();
-            status.innerText = "Сектор БАНКРОТ! Очки обнулены.";
+            status.innerText = "Сектор БАНКРОТ! Все баллы игрока сгорели.";
             setTimeout(passTurn, 2000);
             return;
         }
@@ -887,7 +937,7 @@
                 if (Math.random() > 0.5) {
                     scores[activePlayer] += 300;
                     updateUI();
-                    status.innerText = `Соперник ${activePlayer} открыл шкатулку: +300 очков!`;
+                    status.innerText = `Соперник ${activePlayer} угадал шкатулку: +300 очков!`;
                 } else {
                     status.innerText = `Соперник ${activePlayer} открыл пустую шкатулку.`;
                 }
@@ -897,7 +947,6 @@
             return;
         }
 
-        // СЕКТОР + : ТАП ПО ЛЮБОЙ БУКВЕ НА ТАБЛО
         if (sector.type === "plus") {
             if (activePlayer === 0) {
                 isPlusSelectionPhase = true;
@@ -910,17 +959,7 @@
             return;
         }
 
-        if (sector.type === "mult") {
-            scores[activePlayer] *= 2;
-            if (scores[activePlayer] === 0) scores[activePlayer] = 100;
-            updateUI();
-            status.innerText = "Сектор «×2»! Очки удвоены! Назовите букву на клавиатуре.";
-            waitingLetter = true;
-            if (activePlayer !== 0) setTimeout(botPickLetter, 1600);
-            return;
-        }
-
-        // Числовые очки (30, 40, 50, 75, 100, 150, 200)
+        // Числовые сектора (30, 40, 50, 75, 100, 150, 200)
         status.innerText = activePlayer === 0
             ? `Выпало: ${sector.value} очков! Выберите букву на клавиатуре.`
             : `Сектор: ${sector.value} очков. Соперник ${activePlayer} думает...`;
@@ -931,7 +970,6 @@
         }
     }
 
-    // ТАП ПО ЗАКРЫТОЙ ЯЧЕЙКЕ НА ТАБЛО
     function onCellTapPlus(index) {
         if (!isPlusSelectionPhase || activePlayer !== 0) return;
         isPlusSelectionPhase = false;
@@ -949,8 +987,7 @@
         if (key) key.disabled = true;
 
         renderBoard();
-        scores[0] += 100 * count;
-        updateUI();
+        addPlayerScoreSafe(100 * count);
 
         const status = document.getElementById('turnStatus');
         status.innerText = `Сектор «+» открыл букву «${targetChar}»! Ход продолжается.`;
@@ -964,7 +1001,6 @@
         document.getElementById('openGuessBtn').disabled = false;
     }
 
-    // НАЗВАТЬ СЛОВО ЦЕЛИКОМ (МОДАЛКА)
     function openGuessWordModal() {
         if (isSpinning || activePlayer !== 0) return;
         document.getElementById('fullWordInput').value = '';
@@ -977,23 +1013,19 @@
         const target = word.toUpperCase().replace(/Ё/g, 'Е');
 
         closeModal('guessWordModal');
-        const status = document.getElementById('turnStatus');
 
         if (guessed === target) {
-            // Открываем все оставшиеся буквы
             let unopenedCount = 0;
             for (let i = 0; i < word.length; i++) {
                 if (!revealed[i]) unopenedCount++;
                 revealed[i] = true;
             }
-            scores[0] += unopenedCount * 150 + 300;
+            addPlayerScoreSafe(unopenedCount * 100 + 200);
             renderBoard();
-            updateUI();
-            status.innerText = "БРАВО! Вы угадали слово целиком!";
+            document.getElementById('turnStatus').innerText = "БРАВО! Вы угадали слово целиком!";
             setTimeout(handleRoundWin, 1000);
         } else {
-            status.innerText = `Слово «${guessed}» неверно! Переход хода.`;
-            setTimeout(passTurn, 1800);
+            handleStrictLoss(`Вы назвали слово «${guessed}», но правильный ответ: «${word}». Слово не угадано — раунд проигран!`);
         }
     }
 
@@ -1021,8 +1053,12 @@
         const pts = (currentSpin && currentSpin.type === "score") ? currentSpin.value : 100;
 
         if (openedCount > 0) {
-            scores[activePlayer] += pts * openedCount;
-            updateUI();
+            if (activePlayer === 0) {
+                addPlayerScoreSafe(pts * openedCount);
+            } else {
+                scores[activePlayer] += pts * openedCount;
+                updateUI();
+            }
             status.innerText = `Есть буква «${char}»! (+${pts * openedCount} очков). Ваш ход продолжается!`;
 
             if (revealed.every(r => r)) {
@@ -1071,7 +1107,8 @@
         if (freeKeys.length > 0) {
             const hiddenChars = word.split('').filter((c, idx) => !revealed[idx]);
             let picked = '';
-            if (Math.random() < 0.45 && hiddenChars.length > 0) {
+            const chance = getBotIntelligenceChance();
+            if (Math.random() < chance && hiddenChars.length > 0) {
                 picked = hiddenChars[0];
             } else {
                 picked = freeKeys[Math.floor(Math.random() * freeKeys.length)].innerText;
@@ -1105,18 +1142,16 @@
         }
     }
 
-    // СЕКТОР ПРИЗ: ПРИ ВЫБОРЕ ПРИЗА ИГРА СРАЗУ ЗАВЕРШАЕТСЯ
     function resolvePrizeChoice(takePrize) {
         closeModal('prizeModal');
         if (takePrize) {
-            // Выбираем случайный утвержденный приз студии
             const randomPrize = studioPrizes[Math.floor(Math.random() * studioPrizes.length)];
             finishGameWithPrizeChoice(randomPrize);
         } else {
-            scores[activePlayer] += 150;
-            updateUI();
+            if (activePlayer === 0) addPlayerScoreSafe(150);
+            else { scores[activePlayer] += 150; updateUI(); }
             const status = document.getElementById('turnStatus');
-            status.innerText = "Вы забрали гарантированные 150 очков. Вращайте барабан!";
+            status.innerText = "Вы забрали 150 очков. Вращайте барабан!";
             document.getElementById('openWheelBtn').disabled = false;
             document.getElementById('openGuessBtn').disabled = false;
         }
@@ -1127,10 +1162,11 @@
         const status = document.getElementById('turnStatus');
         const lucky = Math.random() > 0.5 ? 1 : 0;
         if (idx === lucky) {
-            const bonus = Math.floor(Math.random() * 300) + 150;
-            scores[activePlayer] += bonus;
-            updateUI();
-            status.innerText = `Точно! В шкатулке оказалось +${bonus} очков!`;
+            // Круглые ровные бонусы
+            const roundBonuses = [100, 200, 300, 400, 500];
+            const bonus = roundBonuses[Math.floor(Math.random() * roundBonuses.length)];
+            addPlayerScoreSafe(bonus);
+            status.innerText = `Точно! В шкатулке оказалось +${bonus} очков (макс. лимит: ${MAX_SCORE_LIMIT})!`;
         } else {
             status.innerText = "Шкатулка оказалась пустой, но ход остается у вас!";
         }
@@ -1138,7 +1174,11 @@
         document.getElementById('openGuessBtn').disabled = false;
     }
 
-    // ПОБЕДА В ТУРЕ
+    function handleStrictLoss(reasonText) {
+        document.getElementById('loseReasonText').innerText = reasonText;
+        openModal('loseModal', 'yandex_rtb_modal_lose');
+    }
+
     function handleRoundWin() {
         if (activePlayer === 0) {
             if (gameState === "TOUR_1") {
@@ -1151,8 +1191,7 @@
                 finishGameWithWin(true);
             }
         } else {
-            alert(`Слово «${word}» отгадал Соперник ${activePlayer}! Попробуйте сыграть заново.`);
-            location.reload();
+            handleStrictLoss(`Слово «${word}» отгадал Соперник ${activePlayer}. Вы не смогли пройти дальше.`);
         }
     }
 
@@ -1163,16 +1202,15 @@
         document.getElementById('pName-2').innerText = "Сергей (Финал)";
         activePlayer = 0;
         startRound(getUnusedQuestion(), "ФИНАЛ: МЫШЕЧНЫЙ КОРСЕТ И СУСТАВЫ");
-        document.getElementById('turnStatus').innerText = "ФИНАЛ! Ваш ход. Крутите барабан или назовите слово!";
+        document.getElementById('turnStatus').innerText = "ФИНАЛ! Вращайте барабан или назовите слово!";
         document.getElementById('openWheelBtn').disabled = false;
         document.getElementById('openGuessBtn').disabled = false;
     }
 
-    // СУПЕРИГРА: АДАПТИВНОЕ ЧИСЛО БУКВ
     function calculateSuperPicks(len) {
-        if (len >= 10) return 5; // Длинное слово: 5 букв
-        if (len >= 7) return 4;  // Среднее слово: 4 буквы
-        return 3;                // Короткое слово: 3 буквы
+        if (len >= 10) return 5;
+        if (len >= 7) return 4;
+        return 3;
     }
 
     function acceptSuperGame() {
@@ -1187,7 +1225,7 @@
 
         superPicksLeft = calculateSuperPicks(word.length);
         isSuperPickPhase = true;
-        document.getElementById('turnStatus').innerText = `СУПЕРИГРА! Выберите любые ${superPicksLeft} букв на клавиатуре!`;
+        document.getElementById('turnStatus').innerText = `СУПЕРИГРА! Выберите любые ${superPicksLeft} буквы на клавиатуре.`;
     }
 
     function handleSuperPick(char) {
@@ -1205,7 +1243,7 @@
             document.getElementById('turnStatus').innerText = `Осталось выбрать букв: ${superPicksLeft}.`;
         } else {
             isSuperPickPhase = false;
-            document.getElementById('turnStatus').innerText = "Буквы открыты! Назовите слово целиком или угадайте по буквам.";
+            document.getElementById('turnStatus').innerText = "Буквы открыты! Назовите оставшиеся буквы или введите слово целиком.";
             waitingLetter = true;
             document.getElementById('openGuessBtn').disabled = false;
         }
@@ -1220,9 +1258,9 @@
         markGameWon();
         document.getElementById('winTermExplanation').innerHTML = activeQuestion.explanation;
         document.getElementById('winTitle').innerText = "ВЫ ВЫИГРАЛИ ПРИЗ!";
-        document.getElementById('winDesc').innerHTML = `Вы остановили игру и забрали приз: <b>«${prizeText}»</b>!<br>Следующая игра будет доступна в следующем месяце.`;
+        document.getElementById('winDesc').innerHTML = `Вы остановили игру и забрали приз: <b>«${prizeText}»</b>!<br>Баллы для скидки: <b>${scores[0]} ₽</b> (макс. ${MAX_SCORE_LIMIT} ₽). Следующая игра откроется в следующем месяце.`;
 
-        const msg = `Вера, здравствуйте! Я сыграла в Поле Чудес в клубе РЕСУРС и забрала сектор ПРИЗ: «${prizeText}»! Запишите меня.`;
+        const msg = `Вера, здравствуйте! Я сыграла в Поле Чудес на сайте РЕСУРС и забрала сектор ПРИЗ: «${prizeText}»! Мои баллы скидки: ${scores[0]} руб. Напоминаю, что бонусы не суммируются с приложением. Запишите меня!`;
         document.getElementById('vkClaimBtn').href = `https://vk.com/im?sel=-221142875&message=${encodeURIComponent(msg)}`;
 
         openModal('finalWinModal', 'yandex_rtb_modal_win');
@@ -1235,16 +1273,19 @@
         const desc = document.getElementById('winDesc');
         const vkBtn = document.getElementById('vkClaimBtn');
 
+        const discountPoints = scores[0];
+
         if (isSuperWin) {
             title.innerText = "ТРИУМФ В СУПЕРИГРЕ!";
-            desc.innerHTML = `Вы разгадали главный термин <b>«${word}»</b> и набрали <b>${scores[0]} очков</b>!<br>Вам присвоен максимальный резидентский статус студии «РЕСУРС».`;
+            desc.innerHTML = `Вы разгадали главный термин <b>«${word}»</b>!<br>Ваш СУПЕР-ПРИЗ: <b>Абонемент на 4 занятия на месяц</b> + скидка <b>${discountPoints} ₽</b> в Личном кабинете!`;
+            const msg = `Вера, здравствуйте! Я победила в СУПЕРИГРЕ «Поле Чудес» на сайте РЕСУРС! Слово: «${word}». Мой супер-приз: Абонемент на 4 занятия на месяц + ${discountPoints} баллов скидки. Другие бонусы не применяю, жду активации!`;
+            vkBtn.href = `https://vk.com/im?sel=-221142875&message=${encodeURIComponent(msg)}`;
         } else {
             title.innerText = "Победа в Финале!";
-            desc.innerHTML = `Вы победитель финала! Разгаданный термин <b>«${word}»</b> принес вам <b>${scores[0]} очков</b>! Заберите свой фитнес-бонус за 100 рублей.`;
+            desc.innerHTML = `Вы победитель финала! Разгаданный термин <b>«${word}»</b> принес вам <b>${discountPoints} баллов скидки</b> (макс. ${MAX_SCORE_LIMIT} ₽) к абонементу!`;
+            const msg = `Вера, здравствуйте! Я победила в финале Поля Чудес на сайте РЕСУРС, угадала термин «${word}» и набрала ${discountPoints} баллов скидки! Хочу использовать выигрыш (без суммирования с приложением).`;
+            vkBtn.href = `https://vk.com/im?sel=-221142875&message=${encodeURIComponent(msg)}`;
         }
-
-        const msg = `Вера, здравствуйте! Я победила в Поле Чудес на сайте РЕСУРС, угадала термин «${word}» и набрала ${scores[0]} очков! Хочу забрать подарок за 100 рублей.`;
-        vkBtn.href = `https://vk.com/im?sel=-221142875&message=${encodeURIComponent(msg)}`;
 
         openModal('finalWinModal', 'yandex_rtb_modal_win');
     }
@@ -1253,7 +1294,7 @@
         if (navigator.share) {
             navigator.share({
                 title: 'Поле Чудес в студии РЕСУРС',
-                text: 'Разгадай биомеханический термин, покрути барабан и выиграй абонемент в студию движения РЕСУРС!',
+                text: 'Разгадай биомеханический термин, набери до 1600 баллов скидки и выиграй абонемент на 4 занятия в студию движения РЕСУРС!',
                 url: window.location.href
             }).catch(() => {});
         } else {
@@ -1262,7 +1303,6 @@
         }
     }
 
-    // ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ МОДАЛОК
     function openModal(modalId, rtbContainerId) {
         const modal = document.getElementById(modalId);
         if (modal) modal.style.display = 'flex';
@@ -1284,7 +1324,6 @@
     function openRulesModal() { openModal('rulesModal', 'yandex_rtb_modal_rules'); }
     function closeRulesModal() { closeModal('rulesModal'); }
 
-    // ТЕМА
     function toggleThemeInstant() {
         const root = document.documentElement;
         const cur = root.getAttribute('data-theme') || 'dark';
