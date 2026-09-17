@@ -328,6 +328,20 @@
         footer { margin-top: 60px; padding: 40px 0; border-top: 1px solid var(--border-color); text-align: center; background: var(--surface-color); }
         .footer-text { font-size: 11px; color: var(--text-muted); line-height: 1.6; max-width: 850px; margin: 0 auto; }
 
+        /* НЕПРИМЕТНАЯ КНОПКА СБРОСА ДЛЯ АДМИНА (ТРЕБУЕТ 3 КЛИКА) */
+        .admin-secret-dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+            margin-left: 6px;
+            vertical-align: middle;
+            transition: background 0.3s ease;
+        }
+        .admin-secret-dot:hover { background: rgba(229, 169, 60, 0.25); }
+
         @media (max-width: 600px) {
             .letter-cell { width: 34px; height: 44px; font-size: 22px; }
             .game-card { padding: 20px 14px; }
@@ -378,7 +392,7 @@
             </div>
         </div>
 
-        <!-- Карточка вопроса с защитой от копирования -->
+        <!-- Вопрос защищен от выделения и правого клика мыши -->
         <div class="question-card" oncontextmenu="return false;" oncopy="return false;">
             <div class="question-tour-title" id="tourTitle">1 ТУР: АНАТОМИЧЕСКИЙ ТЕРМИН</div>
             <div class="question-desc" id="questionDesc">Загрузка задания...</div>
@@ -473,6 +487,7 @@
         <div style="text-align: left; font-size: 13px; line-height: 1.6; color: var(--text-muted); margin-bottom: 12px;">
             • Всего доступно <b>5 попыток в месяц</b>. При выигрыше приза следующая игра открывается через месяц.<br>
             • Набирайте баллы за каждую угаданную букву для получения персональной скидки.<br>
+            • <b>Сектор «0» (Переход хода)</b>: передает ход сопернику без сгорания очков.<br>
             • <b>Сектор «+»</b>: на табло замигают ячейки — <b>нажмите прямо на закрытую букву</b>, и она откроется!<br>
             • <b>Супер-приз</b>: абонемент на <b>4 занятия на 1 месяц</b> в студию «РЕСУРС»!<br>
             • <b>Поражение</b>: ошибка при вводе слова или поражение в Суперигре аннулирует накопленные баллы и сжигает попытку.
@@ -552,6 +567,8 @@
     <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
         <p style="font-size: 13px; font-weight: 800; color: var(--text-main); margin-bottom: 6px;">
             © 2026 РЕСУРС | Студия фитнеса, растяжки и движения. Сыктывкар, ул. Коммунистическая, 67.
+            <!-- Неприметная кнопка тройного клика для сброса попыток администратором -->
+            <span class="admin-secret-dot" id="adminSecretTrigger" title=""></span>
         </p>
         <p class="footer-text">
             ИП Худяков Николай Сергеевич • ИНН 111801576622. Интерактивная развивающая викторина по биомеханике движения.
@@ -563,13 +580,13 @@
     // Лимит баллов "под капотом"
     const MAX_SCORE_LIMIT = 1600;
 
-    // 16 секторов барабана
+    // 16 СЕКТОРОВ БАРАБАНА (ДОБАВЛЕН СЕКТОР "0" - ПЕРЕХОД ХОДА БЕЗ СГОРАНИЯ ОЧКОВ)
     const wheelSectors = [
         { label: "100", type: "score", value: 100, color: "#6C3EB8" },
         { label: "30", type: "score", value: 30, color: "#1E1833" },
         { label: "ПРИЗ", type: "prize", value: 0, color: "#E5A93C" },
         { label: "50", type: "score", value: 50, color: "#2B1E4A" },
-        { label: "40", type: "score", value: 40, color: "#1A1727" },
+        { label: "0", type: "zero", value: 0, color: "#4A4656" }, // Переход хода
         { label: "БАНКРОТ", type: "bankrupt", value: 0, color: "#DC2626" },
         { label: "150", type: "score", value: 150, color: "#5B3494" },
         { label: "75", type: "score", value: 75, color: "#25183E" },
@@ -593,7 +610,7 @@
         "500 бонусов в ЛК на покупку абонемента в приложении"
     ];
 
-    // Банк сложных терминов с авторскими формулировками (сложно нагуглить дословно)
+    // Банк сложных терминов
     const questionsPool = [
         {
             word: "ПРОПРИОЦЕПЦИЯ",
@@ -661,6 +678,9 @@
     let isPlusSelectionPhase = false;
     let isSuperPickPhase = false;
     let superPicksLeft = 0;
+
+    // Честный индекс шкатулки: 0 - левая, 1 - правая (фиксируется перед показом)
+    let secretLuckyBoxIndex = 0;
 
     let currentAngle = 0;
     const alphabet = "АБВГДЕЖЗИКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
@@ -912,6 +932,13 @@
             return;
         }
 
+        // СЕКТОР 0 (ПЕРЕХОД ХОДА БЕЗ СГОРАНИЯ БАЛЛОВ)
+        if (sector.type === "zero") {
+            status.innerText = "Сектор 0 (Переход хода)! Ваши баллы сохранены, ход переходит к сопернику.";
+            setTimeout(passTurn, 2000);
+            return;
+        }
+
         if (sector.type === "prize") {
             if (activePlayer === 0) {
                 openModal('prizeModal', 'yandex_rtb_modal_prize');
@@ -925,6 +952,9 @@
         }
 
         if (sector.type === "box") {
+            // Честная генерация положения шкатулки строго 50 на 50
+            secretLuckyBoxIndex = Math.random() < 0.5 ? 0 : 1;
+
             if (activePlayer === 0) {
                 openModal('boxModal', 'yandex_rtb_modal_box');
             } else {
@@ -1151,17 +1181,18 @@
         }
     }
 
-    function resolveBoxChoice(idx) {
+    // ЧЕСТНЫЙ ВЫБОР ШКАТУЛКИ: СРАВНЕНИЕ С ЗАРАНЕЕ СГЕНЕРИРОВАННЫМ ИНДЕКСОМ
+    function resolveBoxChoice(chosenBoxIndex) {
         closeModal('boxModal');
         const status = document.getElementById('turnStatus');
-        const lucky = Math.random() > 0.5 ? 1 : 0;
-        if (idx === lucky) {
+        
+        if (chosenBoxIndex === secretLuckyBoxIndex) {
             const roundBonuses = [100, 200, 300, 400, 500];
             const bonus = roundBonuses[Math.floor(Math.random() * roundBonuses.length)];
             addPlayerScoreSafe(bonus);
-            status.innerText = `Точно! В шкатулке оказалось +${bonus} очков!`;
+            status.innerText = `Точно! В выбранной шкатулке оказалось +${bonus} очков!`;
         } else {
-            status.innerText = "Шкатулка оказалась пустой, но ход остается у вас!";
+            status.innerText = "Шкатулка оказалась пустой, но ваш ход сохраняется!";
         }
         document.getElementById('openWheelBtn').disabled = false;
         document.getElementById('openGuessBtn').disabled = false;
@@ -1251,7 +1282,7 @@
         markGameWon();
         document.getElementById('winTermExplanation').innerHTML = activeQuestion.explanation;
         document.getElementById('winTitle').innerText = "ВЫ ВЫИГРАЛИ ПРИЗ!";
-        document.getElementById('winDesc').innerHTML = `Вы остановили игру и забрали приз: <b>«${prizeText}»</b>!<br>Следующая игра откроется в следующем месяце.`;
+        document.getElementById('winDesc').innerHTML = `Вы остановили игру и забрали приз: <b>«${prizeText}»</b>!<br>Баллы для скидки: <b>${scores[0]} ₽</b>. Следующая игра откроется в следующем месяце.`;
 
         const msg = `Вера, здравствуйте! Я сыграла в Поле Чудес на сайте РЕСУРС и забрала сектор ПРИЗ: «${prizeText}»! Мои баллы скидки: ${scores[0]} руб. Напоминаю, что бонусы не суммируются с приложением. Запишите меня!`;
         document.getElementById('vkClaimBtn').href = `https://vk.com/im?sel=-221142875&message=${encodeURIComponent(msg)}`;
@@ -1338,12 +1369,37 @@
         if (mBtn) mBtn.innerText = text;
     }
 
-    window.addEventListener('DOMContentLoaded', () => {
+    // ТРОЙНОЙ КЛИК В ПОДВАЛЕ ДЛЯ СБРОСА ПОПЫТОК АДМИНОМ
+    let adminClickCount = 0;
+    let adminClickTimer = null;
+
+    document.addEventListener('DOMContentLoaded', () => {
         const saved = localStorage.getItem('resurs_pole_theme') || localStorage.getItem('theme') || 'dark';
         document.documentElement.setAttribute('data-theme', saved);
         if (saved === 'light') document.documentElement.classList.add('light-theme');
         updateThemeButtons(saved);
         initGame();
+
+        const secretDot = document.getElementById('adminSecretTrigger');
+        if (secretDot) {
+            secretDot.addEventListener('click', () => {
+                adminClickCount++;
+                clearTimeout(adminClickTimer);
+
+                if (adminClickCount >= 3) {
+                    localStorage.removeItem('resurs_pole_attempts');
+                    localStorage.removeItem('resurs_pole_won');
+                    localStorage.removeItem('resurs_pole_month');
+                    alert("Режим администратора: Попытки и победы успешно сброшены!");
+                    adminClickCount = 0;
+                    location.reload();
+                } else {
+                    adminClickTimer = setTimeout(() => {
+                        adminClickCount = 0;
+                    }, 1500);
+                }
+            });
+        }
     });
 </script>
 </body>
