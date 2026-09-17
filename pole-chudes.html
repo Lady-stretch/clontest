@@ -19,8 +19,8 @@
     <script src="https://yandex.ru/ads/system/context.js" async></script>
 
     <title>Поле Чудес: Интеллектуальное Фитнес-Шоу | Студия РЕСУРС</title>
-    <meta name="description" content="Интерактивная развивающая викторина по биомеханике, анатомии и фитнесу. Вращайте барабан, разгадывайте научные термины, открывайте модалки и получайте бонусы студии РЕСУРС.">
-    <meta name="keywords" content="поле чудес фитнес, викторина биомеханика, выиграть абонемент сыктывкар, студия ресурс игра, анатомический тест">
+    <meta name="description" content="Интерактивная развивающая викторина по биомеханике, анатомии и фитнесу. Крутите барабан, открывайте буквы тапом и выигрывайте бонусы студии РЕСУРС.">
+    <meta name="keywords" content="поле чудес фитнес, викторина биомеханика, барабан модалка, студия ресурс игра, анатомический тест">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://resurs-stretch.ru/pole-chudes.html">
 
@@ -114,7 +114,6 @@
         }
         .btn-rule-nav:hover { background: var(--accent-color); color: #FFF; }
 
-        /* ВТОРОЙ ЭТАЖ ДЛЯ СМАРТФОНОВ */
         .mobile-thumb-bar {
             display: none; width: 100%; margin-top: 10px; padding-top: 10px;
             border-top: 1px solid var(--border-color); gap: 10px;
@@ -127,34 +126,21 @@
             .mobile-thumb-bar { display: flex; }
         }
 
-        /* BENTO LAYOUT */
+        /* ОСНОВНОЙ BENTO МАКЕТ */
         .main-layout {
-            max-width: 1200px; width: 100%; margin: 30px auto 50px;
-            padding: 0 24px; position: relative; z-index: 10;
+            max-width: 1000px; width: 100%; margin: 30px auto 50px;
+            padding: 0 20px; position: relative; z-index: 10;
         }
 
-        .bento-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: start; width: 100%;
-        }
-        .bento-card {
+        .game-card {
             background: var(--surface-color); border: 1px solid var(--border-color);
-            border-radius: 16px; padding: 30px; position: relative; overflow: hidden;
-            transition: var(--transition); box-shadow: 0 15px 35px var(--shadow);
-            min-width: 0;
-        }
-        .bento-card:hover { border-color: var(--accent-color); }
-        .span-2 { grid-column: span 2; }
-        .span-3 { grid-column: span 3; }
-
-        .badge-tag {
-            color: var(--accent-color); font-size: 11px; font-weight: 800; text-transform: uppercase;
-            letter-spacing: 2px; margin-bottom: 12px; display: inline-block; background: var(--accent-subtle);
-            padding: 4px 10px; border-radius: 4px; border: 1px solid var(--border-color);
+            border-radius: 20px; padding: 35px; position: relative;
+            box-shadow: 0 15px 35px var(--shadow); text-align: center;
         }
 
         /* ТАБЛО ИГРОКОВ */
         .players-bar {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 24px;
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 25px;
         }
         .player-chip {
             background: var(--bg-color); border: 1px solid var(--border-color);
@@ -167,19 +153,20 @@
         .player-name { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
         .player-score { font-size: 22px; font-weight: 800; color: var(--gold); margin-top: 4px; }
 
-        /* ВОПРОС И ТАБЛО */
+        /* ВОПРОС */
         .question-card {
             background: var(--bg-color); border: 1px solid var(--border-color);
-            border-radius: 12px; padding: 18px 24px; margin-bottom: 20px; text-align: center;
+            border-radius: 14px; padding: 18px 24px; margin-bottom: 24px;
         }
         .question-tour-title { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-color); margin-bottom: 6px; }
         .question-desc { font-size: 16px; font-weight: 600; color: var(--text-main); line-height: 1.5; }
 
+        /* ТАБЛО СЛОВА */
         .word-board {
-            display: flex; justify-content: center; gap: 8px; margin: 20px 0; flex-wrap: wrap;
+            display: flex; justify-content: center; gap: 8px; margin: 25px 0; flex-wrap: wrap;
         }
         .letter-cell {
-            width: 44px; height: 54px; background: var(--bg-color);
+            width: 46px; height: 56px; background: var(--bg-color);
             border: 2px solid var(--border-color); border-radius: 8px;
             display: flex; align-items: center; justify-content: center;
             font-family: 'Cormorant Garamond', serif; font-size: 30px;
@@ -188,40 +175,43 @@
         .letter-cell.opened {
             background: var(--accent-subtle); border-color: var(--accent-color); color: #FFF;
         }
-
-        /* 16-СЕКТОРНЫЙ БАРАБАН */
-        .wheel-box {
-            position: relative; width: 320px; height: 320px; margin: 15px auto 20px;
+        /* Пульсация для тапа по сектору + */
+        .letter-cell.selectable {
+            cursor: pointer;
+            border-color: var(--gold);
+            animation: pulseCell 1.2s infinite alternate;
         }
-        .wheel-arrow {
-            position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
-            width: 0; height: 0; border-left: 14px solid transparent; border-right: 14px solid transparent;
-            border-top: 26px solid var(--gold); z-index: 100; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.7));
-        }
-        #wheelCanvas {
-            width: 320px; height: 320px; border-radius: 50%;
-            border: 6px solid var(--surface-hover);
-            box-shadow: 0 0 35px rgba(108, 62, 184, 0.4); display: block;
+        @keyframes pulseCell {
+            from { transform: scale(1); box-shadow: 0 0 5px rgba(229, 169, 60, 0.4); }
+            to { transform: scale(1.08); box-shadow: 0 0 16px rgba(229, 169, 60, 0.9); }
         }
 
-        .spin-action-btn {
-            width: 100%; max-width: 320px; padding: 16px; background: var(--accent-color);
-            color: #FFF; border: none; border-radius: 10px; font-weight: 800; font-size: 13px;
-            text-transform: uppercase; letter-spacing: 1.5px; cursor: pointer; transition: var(--transition);
-            box-shadow: 0 10px 25px rgba(108, 62, 184, 0.4); margin: 0 auto; display: block;
+        /* КНОПКА КРУТИТЬ БАРАБАН МЕЖДУ СЛОВОМ И БУКВАМИ */
+        .action-spin-center {
+            margin: 25px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
         }
-        .spin-action-btn:hover:not(:disabled) { background: var(--accent-hover); transform: translateY(-2px); }
-        .spin-action-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
+        .btn-call-wheel {
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-hover));
+            color: #FFF; border: none; padding: 18px 45px; border-radius: 12px;
+            font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px;
+            cursor: pointer; transition: var(--transition);
+            box-shadow: 0 10px 25px rgba(108, 62, 184, 0.4);
+        }
+        .btn-call-wheel:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 15px 30px rgba(108, 62, 184, 0.6); }
+        .btn-call-wheel:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
 
         .turn-status-text {
             font-size: 15px; font-weight: 700; color: var(--gold); min-height: 24px;
-            margin: 15px 0 10px; text-align: center;
         }
 
         /* КЛАВИАТУРА */
         .keyboard-grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(32px, 1fr));
-            gap: 6px; max-width: 750px; margin: 20px auto 0;
+            gap: 6px; max-width: 750px; margin: 15px auto 0;
         }
         .char-btn {
             background: var(--bg-color); border: 1px solid var(--border-color); color: var(--text-main);
@@ -231,7 +221,7 @@
         .char-btn:hover:not(:disabled) { background: var(--accent-color); color: #FFF; }
         .char-btn:disabled { opacity: 0.2; cursor: not-allowed; border-color: transparent; }
 
-        /* АККУРАТНЫЕ МОДАЛЬНЫЕ ОКНА */
+        /* МОДАЛЬНЫЕ ОКНА */
         .modal-overlay {
             position: fixed; inset: 0; background: rgba(10, 9, 15, 0.88);
             backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
@@ -239,19 +229,19 @@
         }
         .modal-card {
             background: var(--surface-color); border: 1px solid var(--border-color);
-            border-radius: 16px; padding: 26px; max-width: 480px; width: 100%;
+            border-radius: 16px; padding: 24px; max-width: 480px; width: 100%;
             max-height: 88vh; overflow-y: auto; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.8);
         }
         .modal-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 26px; color: var(--gold); margin-bottom: 10px; }
-        .modal-card p { font-size: 14px; color: var(--text-muted); line-height: 1.6; margin-bottom: 18px; }
+        .modal-card p { font-size: 14px; color: var(--text-muted); line-height: 1.6; margin-bottom: 16px; }
 
         .term-explanation-box {
             background: var(--accent-subtle); border: 1px dashed var(--accent-color);
-            border-radius: 8px; padding: 14px; margin: 15px 0; text-align: left;
+            border-radius: 8px; padding: 14px; margin: 14px 0; text-align: left;
             font-size: 13.5px; line-height: 1.6; color: var(--text-main);
         }
 
-        .modal-btn-row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+        .modal-btn-row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 14px; }
         .m-btn {
             padding: 12px 22px; border-radius: 8px; font-size: 12px; font-weight: 800;
             text-transform: uppercase; letter-spacing: 0.5px; border: none; cursor: pointer; transition: 0.2s;
@@ -260,11 +250,26 @@
         .m-btn-primary:hover { background: var(--accent-hover); }
         .m-btn-secondary { background: var(--surface-hover); color: var(--text-main); border: 1px solid var(--border-color); }
 
-        /* КОМПАКТНЫЙ БЛОК РСЯ ВНУТРИ МОДАЛОК */
-        .modal-rsya-box {
-            margin-top: 15px; border-radius: 10px; border: 1px solid var(--border-color);
-            background: var(--bg-color); min-height: 190px; max-height: 220px; overflow: hidden;
-            display: flex; align-items: center; justify-content: center;
+        /* УЗЕНЬКИЙ БЛОК РСЯ РОВНО 90 PX */
+        .modal-rsya-thin {
+            margin-top: 14px; border-radius: 8px; border: 1px solid var(--border-color);
+            background: var(--bg-color); height: 90px; max-height: 90px; overflow: hidden;
+            display: flex; align-items: center; justify-content: center; width: 100%;
+        }
+
+        /* 16-СЕКТОРНЫЙ БАРАБАН ВНУТРИ МОДАЛКИ */
+        .wheel-box {
+            position: relative; width: 260px; height: 260px; margin: 10px auto 16px;
+        }
+        .wheel-arrow {
+            position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+            width: 0; height: 0; border-left: 14px solid transparent; border-right: 14px solid transparent;
+            border-top: 24px solid var(--gold); z-index: 100; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.7));
+        }
+        #wheelCanvas {
+            width: 260px; height: 260px; border-radius: 50%;
+            border: 5px solid var(--surface-hover);
+            box-shadow: 0 0 25px rgba(108, 62, 184, 0.4); display: block;
         }
 
         .vk-btn-win {
@@ -274,15 +279,14 @@
             letter-spacing: 0.5px; box-shadow: 0 8px 20px rgba(0, 119, 255, 0.4); margin-bottom: 10px;
         }
 
-        footer { margin-top: 60px; padding: 45px 0; border-top: 1px solid var(--border-color); text-align: center; background: var(--surface-color); }
+        footer { margin-top: 60px; padding: 40px 0; border-top: 1px solid var(--border-color); text-align: center; background: var(--surface-color); }
         .footer-text { font-size: 11px; color: var(--text-muted); line-height: 1.6; max-width: 850px; margin: 0 auto; }
 
-        @media (max-width: 968px) {
-            .bento-grid { grid-template-columns: 1fr; }
-            .span-2, .span-3 { grid-column: span 1; }
-            .wheel-box { width: 270px; height: 270px; }
-            #wheelCanvas { width: 270px; height: 270px; }
-            .letter-cell { width: 36px; height: 44px; font-size: 22px; }
+        @media (max-width: 600px) {
+            .letter-cell { width: 34px; height: 44px; font-size: 22px; }
+            .game-card { padding: 20px 14px; }
+            .wheel-box { width: 220px; height: 220px; }
+            #wheelCanvas { width: 220px; height: 220px; }
         }
     </style>
 </head>
@@ -308,52 +312,62 @@
 </header>
 
 <main class="main-layout">
-    <div class="bento-grid">
-        
-        <!-- ЛЕВАЯ КАРТОЧКА: БАРАБАН И СТАТУС -->
-        <div class="bento-card">
-            <span class="badge-tag">Интерактивный сектор</span>
-            <div class="turn-status-text" id="turnStatus">Ваш ход! Вращайте барабан.</div>
-            
-            <div class="wheel-box">
-                <div class="wheel-arrow"></div>
-                <canvas id="wheelCanvas" width="320" height="320"></canvas>
+    <div class="game-card">
+        <!-- Табло игроков -->
+        <div class="players-bar">
+            <div class="player-chip active" id="pChip-0">
+                <div class="player-name">Вы (Игрок 1)</div>
+                <div class="player-score" id="pScore-0">0</div>
             </div>
-
-            <button id="spinBtn" class="spin-action-btn" onclick="userSpin()">Крутить барабан</button>
+            <div class="player-chip" id="pChip-1">
+                <div class="player-name" id="pName-1">Ольга (Бот)</div>
+                <div class="player-score" id="pScore-1">0</div>
+            </div>
+            <div class="player-chip" id="pChip-2">
+                <div class="player-name" id="pName-2">Михаил (Бот)</div>
+                <div class="player-score" id="pScore-2">0</div>
+            </div>
         </div>
 
-        <!-- ЦЕНТРАЛЬНАЯ КАРТОЧКА: ТАБЛО ИГРОКОВ, ВОПРОС И БУКВЫ -->
-        <div class="bento-card span-2">
-            <div class="players-bar">
-                <div class="player-chip active" id="pChip-0">
-                    <div class="player-name">Вы (Игрок 1)</div>
-                    <div class="player-score" id="pScore-0">0</div>
-                </div>
-                <div class="player-chip" id="pChip-1">
-                    <div class="player-name" id="pName-1">Ольга (Бот)</div>
-                    <div class="player-score" id="pScore-1">0</div>
-                </div>
-                <div class="player-chip" id="pChip-2">
-                    <div class="player-name" id="pName-2">Михаил (Бот)</div>
-                    <div class="player-score" id="pScore-2">0</div>
-                </div>
-            </div>
-
-            <div class="question-card">
-                <div class="question-tour-title" id="tourTitle">1 ТУР: АНАТОМИЧЕСКИЙ ТЕРМИН</div>
-                <div class="question-desc" id="questionDesc">Загрузка задания...</div>
-            </div>
-
-            <!-- Табло слова -->
-            <div class="word-board" id="wordBoard"></div>
-
-            <!-- Клавиатура -->
-            <div class="keyboard-grid" id="keyboardGrid"></div>
+        <!-- Вопрос -->
+        <div class="question-card">
+            <div class="question-tour-title" id="tourTitle">1 ТУР: АНАТОМИЧЕСКИЙ ТЕРМИН</div>
+            <div class="question-desc" id="questionDesc">Загрузка задания...</div>
         </div>
 
+        <!-- Табло слова -->
+        <div class="word-board" id="wordBoard"></div>
+
+        <!-- КНОПКА ЗАПУСКА БАРАБАНА В МОДАЛКЕ -->
+        <div class="action-spin-center">
+            <div class="turn-status-text" id="turnStatus">Ваш ход! Нажмите «Крутить барабан».</div>
+            <button id="openWheelBtn" class="btn-call-wheel" onclick="openWheelModal()">Крутить барабан</button>
+        </div>
+
+        <!-- Клавиатура букв -->
+        <div class="keyboard-grid" id="keyboardGrid"></div>
     </div>
 </main>
+
+<!-- МОДАЛЬНОЕ ОКНО С БАРАБАНОМ И РСЯ 90PX -->
+<div class="modal-overlay" id="wheelModal">
+    <div class="modal-card">
+        <h3>Вращайте барабан!</h3>
+        <p id="wheelModalStatus">Нажмите кнопку, чтобы запустить вращение сектора</p>
+        
+        <div class="wheel-box">
+            <div class="wheel-arrow"></div>
+            <canvas id="wheelCanvas" width="260" height="260"></canvas>
+        </div>
+
+        <button id="spinCanvasBtn" class="m-btn m-btn-primary" style="width: 100%; max-width: 260px; margin: 0 auto;" onclick="startWheelRotation()">Пуск барабана</button>
+        
+        <!-- УЗЕНЬКАЯ РЕКЛАМА РСЯ РОВНО 90PX -->
+        <div class="modal-rsya-thin">
+            <div id="yandex_rtb_modal_wheel" style="width: 100%; height: 90px;"></div>
+        </div>
+    </div>
+</div>
 
 <!-- МОДАЛКА: СЕКТОР ПРИЗ -->
 <div class="modal-overlay" id="prizeModal">
@@ -364,8 +378,8 @@
             <button class="m-btn m-btn-secondary" onclick="resolvePrizeChoice(false)">Забрать 150 очков</button>
             <button class="m-btn m-btn-primary" onclick="resolvePrizeChoice(true)">Рискнуть (Секретный приз)</button>
         </div>
-        <div class="modal-rsya-box">
-            <div id="yandex_rtb_modal_prize" style="width: 100%;"></div>
+        <div class="modal-rsya-thin">
+            <div id="yandex_rtb_modal_prize" style="width: 100%; height: 90px;"></div>
         </div>
     </div>
 </div>
@@ -379,26 +393,25 @@
             <button class="m-btn m-btn-primary" onclick="resolveBoxChoice(0)">Левая шкатулка</button>
             <button class="m-btn m-btn-primary" onclick="resolveBoxChoice(1)">Правая шкатулка</button>
         </div>
-        <div class="modal-rsya-box">
-            <div id="yandex_rtb_modal_box" style="width: 100%;"></div>
+        <div class="modal-rsya-thin">
+            <div id="yandex_rtb_modal_box" style="width: 100%; height: 90px;"></div>
         </div>
     </div>
 </div>
 
 <!-- МОДАЛКА: ПРАВИЛА ИГРЫ -->
 <div class="modal-overlay" id="rulesModal">
-    <div class="modal-card" style="max-width: 520px;">
+    <div class="modal-card" style="max-width: 500px;">
         <h3>Правила «Поля Чудес»</h3>
         <p style="text-align: left; font-size: 13px;">
-            1. <b>1 Тур</b>: игра с двумя соперниками за право выйти в Финал.<br>
-            2. <b>Финал</b>: усложненный биомеханический термин с новыми соперниками.<br>
-            3. <b>Суперигра</b>: шанс назвать 3 согласные и 1 гласную букву и выиграть главный приз!<br>
-            4. <b>Сектор «+»</b> открывает любую выбранную букву.<br>
-            5. В шкатулках спрятано до 500 бонусных очков.
+            1. Нажмите <b>«Крутить барабан»</b> для вызова рулетки.<br>
+            2. Секторы от 30 до 200 очков приносят баллы за угаданные буквы.<br>
+            3. <b>Сектор «+»</b>: на табло замигают закрытые ячейки — <b>нажмите прямо на любую закрытую букву на табло</b>, и она откроется!<br>
+            4. Победитель 1 тура проходит в Финал, а затем в Суперигру!
         </p>
         <button class="m-btn m-btn-primary" onclick="closeRulesModal()">Понятно, в игру!</button>
-        <div class="modal-rsya-box">
-            <div id="yandex_rtb_modal_rules" style="width: 100%;"></div>
+        <div class="modal-rsya-thin">
+            <div id="yandex_rtb_modal_rules" style="width: 100%; height: 90px;"></div>
         </div>
     </div>
 </div>
@@ -408,10 +421,10 @@
     <div class="modal-card">
         <h3>Браво! Вы победили в 1 туре!</h3>
         <div class="term-explanation-box" id="tour1TermExplanation"></div>
-        <p>Вы успешно разгадали термин и переходите в <b>ФИНАЛ</b> с новыми, сильными соперниками!</p>
+        <p>Вы успешно разгадали термин и переходите в <b>ФИНАЛ</b> с новыми соперниками!</p>
         <button class="m-btn m-btn-primary" onclick="startFinaleRound()">Перейти в Финал</button>
-        <div class="modal-rsya-box">
-            <div id="yandex_rtb_modal_finale" style="width: 100%;"></div>
+        <div class="modal-rsya-thin">
+            <div id="yandex_rtb_modal_finale" style="width: 100%; height: 90px;"></div>
         </div>
     </div>
 </div>
@@ -421,13 +434,13 @@
     <div class="modal-card">
         <h3>Вы абсолютный победитель Финала!</h3>
         <div class="term-explanation-box" id="finaleTermExplanation"></div>
-        <p>Вы набрали рекордное количество очков! Готовы рискнуть в <b>СУПЕРИГРЕ</b> ради главного подарка студии «РЕСУРС»?</p>
+        <p>Вы набрали рекордные очки! Рискнете в <b>СУПЕРИГРЕ</b> ради супер-приза студии?</p>
         <div class="modal-btn-row">
-            <button class="m-btn m-btn-secondary" onclick="declineSuperGame()">Забрать выигрыш</button>
+            <button class="m-btn m-btn-secondary" onclick="declineSuperGame()">Забрать очки</button>
             <button class="m-btn m-btn-primary" onclick="acceptSuperGame()">Играть в Суперигру!</button>
         </div>
-        <div class="modal-rsya-box">
-            <div id="yandex_rtb_modal_super_offer" style="width: 100%;"></div>
+        <div class="modal-rsya-thin">
+            <div id="yandex_rtb_modal_super_offer" style="width: 100%; height: 90px;"></div>
         </div>
     </div>
 </div>
@@ -437,11 +450,11 @@
     <div class="modal-card">
         <h3 id="winTitle">Грандиозная победа!</h3>
         <div class="term-explanation-box" id="winTermExplanation"></div>
-        <p id="winDesc">Вы блестяще справились с терминами биомеханики и выиграли абонемент от студии «РЕСУРС»!</p>
+        <p id="winDesc">Вы блестяще справились с терминами биомеханики и выиграли подарок студии «РЕСУРС»!</p>
         <a href="#" id="vkClaimBtn" class="vk-btn-win" target="_blank">Написать Вере в ВК за призом</a>
         <button class="m-btn m-btn-secondary" style="width: 100%;" onclick="startNewFullGame()">Сыграть заново (новые слова)</button>
-        <div class="modal-rsya-box">
-            <div id="yandex_rtb_modal_win" style="width: 100%;"></div>
+        <div class="modal-rsya-thin">
+            <div id="yandex_rtb_modal_win" style="width: 100%; height: 90px;"></div>
         </div>
     </div>
 </div>
@@ -458,7 +471,7 @@
 </footer>
 
 <script>
-    // 16 СЕКТОРОВ БАРАБАНА (ОЧКИ 30, 40, 50, 75, 100, 150, 200 + СПЕЦСЕКТОРА)
+    // 16 СЕКТОРОВ БАРАБАНА С ОЧКАМИ
     const wheelSectors = [
         { label: "100", type: "score", value: 100, color: "#6C3EB8" },
         { label: "30", type: "score", value: 30, color: "#1E1833" },
@@ -478,17 +491,17 @@
         { label: "50", type: "score", value: 50, color: "#1E1833" }
     ];
 
-    // БОЛЬШАЯ БАЗА ЭКСПЕРТНЫХ ТЕРМИНОВ ПО БИОМЕХАНИКЕ
+    // БАНК СЛОЖНЫХ НАУЧНЫХ ТЕРМИНОВ БЕЗ ПОВТОРОВ
     const questionsPool = [
         {
             word: "ПРОПРИОЦЕПЦИЯ",
             desc: "Глубокое мышечно-суставное чувство положения собственного тела и его частей в пространстве.",
-            explanation: "<b>Проприоцепция</b> — способность мозга ежесекундно считывать натяжение связок и сухожилий, обеспечивая устойчивый баланс и защиту суставов от травм."
+            explanation: "<b>Проприоцепция</b> — способность нервной системы ежесекундно считывать натяжение связок и сухожилий, обеспечивая идеальный баланс и предотвращая травмы суставов."
         },
         {
             word: "ПЛАТИЗМА",
             desc: "Широкая подкожная мышца шеи, натяжение которой напрямую определяет четкость овала лица.",
-            explanation: "<b>Платизма</b> — поверхностная мышца шеи. При сутулости она укорачивается, стягивая ткани лица вниз и формируя брыли и второй подбородок."
+            explanation: "<b>Платизма</b> — поверхностная мышца шеи. При сутулости она укорачивается, утягивая ткани лица вниз и формируя брыли и второй подбородок."
         },
         {
             word: "ДИАФРАГМА",
@@ -529,20 +542,10 @@
             word: "КОРТИЗОЛ",
             desc: "Гормон стресса, хронический избыток которого вызывает задержку натрия и скрытые отеки.",
             explanation: "<b>Кортизол</b> при сильной усталости или изнурительных диетах провоцирует задержку воды, маскируя результаты тренировок под стойкий отек."
-        },
-        {
-            word: "ЛОБНЫЙ",
-            desc: "Шейно-грудной переход и зона прикрепления затылочных фасций к теменному апоневрозу.",
-            explanation: "<b>Субмастоидный релиз</b> затылочной зоны снимает многолетние зажимы с апоневроза черепа и купирует головные боли напряжения."
-        },
-        {
-            word: "ЛИПОЛИЗ",
-            desc: "Биохимический процесс расщепления триглицеридов внутри жировых клеток на жирные кислоты.",
-            explanation: "<b>Липолиз</b> запускается только в тканях с хорошим капиллярным кровотоком и активным притоком кислорода, освобожденных от отека."
         }
     ];
 
-    let playedWords = []; // Исключение повторов слов
+    let playedWords = [];
     let gameState = "TOUR_1"; // TOUR_1 -> FINALE -> SUPER_GAME
     let activeQuestion = null;
     let word = "";
@@ -553,17 +556,17 @@
     let currentSpin = null;
     let isSpinning = false;
     let waitingLetter = false;
+    let isPlusSelectionPhase = false; // Фаза тапа по любой букве при секторе +
     let isSuperPickPhase = false;
-    let superPicksLeft = 4; // 3 согласных + 1 гласная
+    let superPicksLeft = 4;
 
     let currentAngle = 0;
     const alphabet = "АБВГДЕЖЗИКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
-    const vowels = "АЕЁИОУЫЭЮЯ";
 
     function getUnusedQuestion() {
         const available = questionsPool.filter(q => !playedWords.includes(q.word));
         if (available.length === 0) {
-            playedWords = []; // Сброс при исчерпании пула
+            playedWords = [];
             return questionsPool[Math.floor(Math.random() * questionsPool.length)];
         }
         const picked = available[Math.floor(Math.random() * available.length)];
@@ -584,6 +587,8 @@
         activeQuestion = qData;
         word = qData.word;
         revealed = Array(word.length).fill(false);
+        isPlusSelectionPhase = false;
+        waitingLetter = false;
         document.getElementById('tourTitle').innerText = tourTitleText;
         document.getElementById('questionDesc').innerText = qData.desc;
         renderBoard();
@@ -617,14 +622,14 @@
             ctx.rotate(angle + arc / 2);
             ctx.textAlign = "right";
             ctx.fillStyle = "#FFFFFF";
-            ctx.font = "800 11px Manrope";
-            ctx.fillText(sec.label, r - 16, 4);
+            ctx.font = "800 10px Manrope";
+            ctx.fillText(sec.label, r - 14, 4);
             ctx.restore();
         });
 
         // Центр колеса
         ctx.beginPath();
-        ctx.arc(r, r, 26, 0, Math.PI * 2);
+        ctx.arc(r, r, 22, 0, Math.PI * 2);
         ctx.fillStyle = "#12101B";
         ctx.fill();
         ctx.strokeStyle = "#E5A93C";
@@ -637,8 +642,17 @@
         board.innerHTML = '';
         for (let i = 0; i < word.length; i++) {
             const cell = document.createElement('div');
-            cell.className = 'letter-cell ' + (revealed[i] ? 'opened' : '');
-            cell.innerText = revealed[i] ? word[i] : '';
+            const isOpened = revealed[i];
+            cell.className = 'letter-cell ' + (isOpened ? 'opened' : '');
+            
+            // Если включен сектор +, закрытые буквы можно нажать
+            if (!isOpened && isPlusSelectionPhase && activePlayer === 0) {
+                cell.classList.add('selectable');
+                cell.title = "Нажмите, чтобы открыть эту букву!";
+                cell.onclick = () => onCellTapPlus(i);
+            }
+
+            cell.innerText = isOpened ? word[i] : '';
             board.appendChild(cell);
         }
     }
@@ -669,27 +683,35 @@
         }
     }
 
-    // ВРАЩЕНИЕ БАРАБАНА (ПЛАВНЫЙ СТРОГИЙ ХОД 5.5 СЕК)
-    function userSpin() {
-        if (isSpinning || waitingLetter || activePlayer !== 0) return;
+    // ВЫЗОВ МОДАЛКИ С БАРАБАНОМ
+    function openWheelModal() {
+        if (isSpinning || waitingLetter || activePlayer !== 0 || isPlusSelectionPhase) return;
+        document.getElementById('wheelModalStatus').innerText = "Нажмите «Пуск барабана»!";
+        document.getElementById('spinCanvasBtn').disabled = false;
+        openModal('wheelModal', 'yandex_rtb_modal_wheel');
+        drawWheel();
+    }
+
+    function startWheelRotation() {
+        if (isSpinning) return;
         executeSpin();
     }
 
     function executeSpin() {
         isSpinning = true;
-        document.getElementById('spinBtn').disabled = true;
-        const status = document.getElementById('turnStatus');
-        status.innerText = activePlayer === 0 ? "Барабан вращается..." : `Соперник ${activePlayer} крутит барабан...`;
+        document.getElementById('spinCanvasBtn').disabled = true;
+        document.getElementById('openWheelBtn').disabled = true;
 
         const chosenIndex = Math.floor(Math.random() * wheelSectors.length);
         const arc = (2 * Math.PI) / wheelSectors.length;
-
+        
+        // Стрелка смотрит сверху (угол 3*PI/2)
         const targetSectorCenter = (wheelSectors.length - chosenIndex) * arc - arc / 2 + (3 * Math.PI / 2);
-        const extraRounds = Math.PI * 2 * (7 + Math.floor(Math.random() * 3));
+        const extraRounds = Math.PI * 2 * (6 + Math.floor(Math.random() * 3));
         const finalAngle = currentAngle + extraRounds + (targetSectorCenter - (currentAngle % (Math.PI * 2)));
 
         const startTime = performance.now();
-        const duration = 5500;
+        const duration = 5000;
         const startAngle = currentAngle;
 
         function animateWheel(now) {
@@ -704,7 +726,10 @@
             } else {
                 isSpinning = false;
                 currentSpin = wheelSectors[chosenIndex];
-                evaluateSector(currentSpin);
+                setTimeout(() => {
+                    closeModal('wheelModal');
+                    evaluateSector(currentSpin);
+                }, 800);
             }
         }
         requestAnimationFrame(animateWheel);
@@ -740,7 +765,7 @@
                 if (Math.random() > 0.5) {
                     scores[activePlayer] += 300;
                     updateUI();
-                    status.innerText = `Соперник ${activePlayer} открыл шкатулку с бонусом: +300 очков!`;
+                    status.innerText = `Соперник ${activePlayer} открыл шкатулку: +300 очков!`;
                 } else {
                     status.innerText = `Соперник ${activePlayer} открыл пустую шкатулку.`;
                 }
@@ -750,12 +775,16 @@
             return;
         }
 
+        // СЕКТОР + : ОТКРЫТИЕ ЛЮБОЙ БУКВЫ ТАПОМ ПО КАРТОЧКЕ
         if (sector.type === "plus") {
-            status.innerText = activePlayer === 0
-                ? "Сектор «+»! Выберите ЛЮБУЮ букву — она откроется гарантированно!"
-                : `Сектор «+» у Соперника ${activePlayer}. Он выбирает букву...`;
-            waitingLetter = true;
-            if (activePlayer !== 0) setTimeout(botPickLetter, 1600);
+            if (activePlayer === 0) {
+                isPlusSelectionPhase = true;
+                status.innerText = "Сектор «+»! НАЖМИТЕ ПРЯМО НА ЛЮБУЮ ЗАКРЫТУЮ БУКВУ НА ТАБЛО!";
+                renderBoard(); // Подсвечиваем ячейки пульсацией
+            } else {
+                status.innerText = `Сектор «+» у Соперника ${activePlayer}. Он открывает букву...`;
+                setTimeout(botPickPlusLetter, 1600);
+            }
             return;
         }
 
@@ -763,15 +792,15 @@
             scores[activePlayer] *= 2;
             if (scores[activePlayer] === 0) scores[activePlayer] = 100;
             updateUI();
-            status.innerText = "Сектор «×2»! Очки удвоены! Назовите букву.";
+            status.innerText = "Сектор «×2»! Очки удвоены! Назовите букву на клавиатуре.";
             waitingLetter = true;
             if (activePlayer !== 0) setTimeout(botPickLetter, 1600);
             return;
         }
 
-        // Обычные очки (30, 40, 50, 75, 100, 150, 200)
+        // Обычные очки
         status.innerText = activePlayer === 0
-            ? `Сектор: ${sector.value} очков! Назовите букву на клавиатуре.`
+            ? `Выпало: ${sector.value} очков! Выберите букву на клавиатуре.`
             : `Сектор: ${sector.value} очков. Соперник ${activePlayer} думает...`;
         waitingLetter = true;
 
@@ -780,10 +809,43 @@
         }
     }
 
+    // ТАП ПО ЯЧЕЙКЕ НА ТАБЛО ДЛЯ СЕКТОРА «+»
+    function onCellTapPlus(index) {
+        if (!isPlusSelectionPhase || activePlayer !== 0) return;
+        isPlusSelectionPhase = false;
+        
+        const targetChar = word[index];
+        // Открываем все такие буквы в слове
+        let count = 0;
+        for (let i = 0; i < word.length; i++) {
+            if (word[i] === targetChar) {
+                revealed[i] = true;
+                count++;
+            }
+        }
+        
+        // Отключаем букву на клавиатуре
+        const key = document.getElementById('key-' + targetChar);
+        if (key) key.disabled = true;
+
+        renderBoard();
+        scores[0] += 100 * count;
+        updateUI();
+
+        const status = document.getElementById('turnStatus');
+        status.innerText = `Сектор «+» открыл букву «${targetChar}»! Вращайте барабан дальше.`;
+
+        if (revealed.every(r => r)) {
+            setTimeout(handleRoundWin, 1000);
+            return;
+        }
+
+        document.getElementById('openWheelBtn').disabled = false;
+    }
+
     function onLetterSelected(char) {
         if (!waitingLetter && !isSuperPickPhase) return;
 
-        // Режим выбора букв в Суперигре
         if (isSuperPickPhase) {
             handleSuperPick(char);
             return;
@@ -807,7 +869,7 @@
         if (openedCount > 0) {
             scores[activePlayer] += pts * openedCount;
             updateUI();
-            status.innerText = `Есть буква «${char}»! (+${pts * openedCount} очков). Вращайте барабан!`;
+            status.innerText = `Есть буква «${char}»! (+${pts * openedCount} очков). Ваш ход продолжается!`;
 
             if (revealed.every(r => r)) {
                 setTimeout(handleRoundWin, 1000);
@@ -816,7 +878,7 @@
 
             waitingLetter = false;
             if (activePlayer === 0) {
-                document.getElementById('spinBtn').disabled = false;
+                document.getElementById('openWheelBtn').disabled = false;
             } else {
                 setTimeout(executeSpin, 2000);
             }
@@ -831,14 +893,17 @@
         activePlayer = (activePlayer + 1) % 3;
         updateUI();
         waitingLetter = false;
+        isPlusSelectionPhase = false;
+        renderBoard();
+        
         const status = document.getElementById('turnStatus');
 
         if (activePlayer === 0) {
-            status.innerText = "Ваш ход! Вращайте барабан.";
-            document.getElementById('spinBtn').disabled = false;
+            status.innerText = "Ваш ход! Нажмите «Крутить барабан».";
+            document.getElementById('openWheelBtn').disabled = false;
         } else {
             status.innerText = `Ход Соперника ${activePlayer}...`;
-            document.getElementById('spinBtn').disabled = true;
+            document.getElementById('openWheelBtn').disabled = true;
             setTimeout(executeSpin, 1600);
         }
     }
@@ -849,7 +914,6 @@
         if (freeKeys.length > 0) {
             const hiddenChars = word.split('').filter((c, idx) => !revealed[idx]);
             let picked = '';
-            // Шанс угадать 45%
             if (Math.random() < 0.45 && hiddenChars.length > 0) {
                 picked = hiddenChars[0];
             } else {
@@ -859,19 +923,45 @@
         }
     }
 
+    function botPickPlusLetter() {
+        const unrevealedIdxs = [];
+        for (let i = 0; i < word.length; i++) {
+            if (!revealed[i]) unrevealedIdxs.push(i);
+        }
+        if (unrevealedIdxs.length > 0) {
+            const pickIdx = unrevealedIdxs[0];
+            const targetChar = word[pickIdx];
+            for (let i = 0; i < word.length; i++) {
+                if (word[i] === targetChar) revealed[i] = true;
+            }
+            const key = document.getElementById('key-' + targetChar);
+            if (key) key.disabled = true;
+            renderBoard();
+            scores[activePlayer] += 100;
+            updateUI();
+            
+            if (revealed.every(r => r)) {
+                setTimeout(handleRoundWin, 1000);
+                return;
+            }
+            setTimeout(executeSpin, 1800);
+        }
+    }
+
+    // МОДАЛКИ: ПРИЗ И ШКАТУЛКИ
     function resolvePrizeChoice(takePrize) {
         closeModal('prizeModal');
         const status = document.getElementById('turnStatus');
         if (takePrize) {
             scores[activePlayer] += 250;
-            status.innerText = "Вы рискнули и выиграли сертификат на 250 очков и МФР-урок!";
+            status.innerText = "Вы рискнули и выиграли 250 бонусных очков!";
         } else {
             scores[activePlayer] += 150;
             status.innerText = "Вы гарантированно забрали 150 очков.";
         }
         updateUI();
         status.innerText += " Вращайте барабан снова!";
-        document.getElementById('spinBtn').disabled = false;
+        document.getElementById('openWheelBtn').disabled = false;
     }
 
     function resolveBoxChoice(idx) {
@@ -882,14 +972,14 @@
             const bonus = Math.floor(Math.random() * 300) + 150;
             scores[activePlayer] += bonus;
             updateUI();
-            status.innerText = `Попадание! В шкатулке +${bonus} очков!`;
+            status.innerText = `Точно! В шкатулке оказалось +${bonus} очков!`;
         } else {
             status.innerText = "Шкатулка оказалась пустой, но ход остается у вас!";
         }
-        document.getElementById('spinBtn').disabled = false;
+        document.getElementById('openWheelBtn').disabled = false;
     }
 
-    // ПОБЕДА В ТУРЕ
+    // ЗАВЕРШЕНИЕ РАУНДОВ С ВЫВОДОМ ОПИСАНИЯ
     function handleRoundWin() {
         if (activePlayer === 0) {
             if (gameState === "TOUR_1") {
@@ -902,7 +992,7 @@
                 finishGameWithWin(true);
             }
         } else {
-            alert(`Слово отгадал Соперник ${activePlayer}! Попробуйте сыграть заново.`);
+            alert(`Слово «${word}» отгадал Соперник ${activePlayer}! Сыграйте заново.`);
             location.reload();
         }
     }
@@ -910,23 +1000,23 @@
     function startFinaleRound() {
         closeModal('toFinaleModal');
         gameState = "FINALE";
-        document.getElementById('pName-1').innerText = "Анна (Финалист)";
-        document.getElementById('pName-2').innerText = "Сергей (Финалист)";
+        document.getElementById('pName-1').innerText = "Анна (Финал)";
+        document.getElementById('pName-2').innerText = "Сергей (Финал)";
         activePlayer = 0;
-        startRound(getUnusedQuestion(), "ФИНАЛ: МЫШЕЧНЫЙ КОРСЕТ");
-        document.getElementById('turnStatus').innerText = "ФИНАЛ! Ваш ход. Вращайте барабан!";
-        document.getElementById('spinBtn').disabled = false;
+        startRound(getUnusedQuestion(), "ФИНАЛ: МЫШЕЧНЫЙ КОРСЕТ И СУСТАВЫ");
+        document.getElementById('turnStatus').innerText = "ФИНАЛ! Ваш ход. Нажмите «Крутить барабан»!";
+        document.getElementById('openWheelBtn').disabled = false;
     }
 
     function acceptSuperGame() {
         closeModal('superOfferModal');
         gameState = "SUPER_GAME";
         activePlayer = 0;
-        startRound(getUnusedQuestion(), "СУПЕРИГРА: БИОМЕХАНИКА");
+        startRound(getUnusedQuestion(), "СУПЕРИГРА: БИОХАКИНГ ТЕЛА");
 
         document.getElementById('pChip-1').style.display = "none";
         document.getElementById('pChip-2').style.display = "none";
-        document.getElementById('spinBtn').style.display = "none";
+        document.getElementById('openWheelBtn').style.display = "none";
 
         isSuperPickPhase = true;
         superPicksLeft = 4;
@@ -945,10 +1035,10 @@
         superPicksLeft--;
 
         if (superPicksLeft > 0) {
-            document.getElementById('turnStatus').innerText = `Осталось назвать букв: ${superPicksLeft}.`;
+            document.getElementById('turnStatus').innerText = `Осталось выбрать букв: ${superPicksLeft}.`;
         } else {
             isSuperPickPhase = false;
-            document.getElementById('turnStatus').innerText = "Буквы открыты! Назовите оставшиеся буквы по одной или угадайте слово.";
+            document.getElementById('turnStatus').innerText = "Буквы открыты! Назовите оставшиеся буквы по очереди, чтобы победить!";
             waitingLetter = true;
         }
     }
@@ -966,13 +1056,13 @@
 
         if (isSuperWin) {
             title.innerText = "ТРИУМФ В СУПЕРИГРЕ!";
-            desc.innerHTML = `Вы разгадали главный термин <b>«${word}»</b> и набрали <b>${scores[0]} очков</b>! Вам присвоен максимальный статус студии «РЕСУРС».`;
+            desc.innerHTML = `Вы разгадали главный термин <b>«${word}»</b> и набрали <b>${scores[0]} очков</b>!<br>Вам присвоен высший резидентский статус студии «РЕСУРС».`;
         } else {
             title.innerText = "Победа в Финале!";
-            desc.innerHTML = `Вы победитель финала! Термин <b>«${word}»</b> принес вам <b>${scores[0]} очков</b>! Заберите свой фитнес-бонус за 100 рублей.`;
+            desc.innerHTML = `Вы победитель финала! Разгаданный термин <b>«${word}»</b> принес вам <b>${scores[0]} очков</b>! Заберите свой подарок за 100 рублей.`;
         }
 
-        const msg = `Вера, здравствуйте! Я победила в Поле Чудес на сайте РЕСУРС, набрала ${scores[0]} очков (слово «${word}»)! Хочу забрать подарок за 100 рублей.`;
+        const msg = `Вера, здравствуйте! Я победила в Поле Чудес на сайте РЕСУРС, угадала термин «${word}» и набрала ${scores[0]} очков! Хочу забрать приз за 100 рублей.`;
         vkBtn.href = `https://vk.com/im?sel=-221142875&message=${encodeURIComponent(msg)}`;
 
         openModal('finalWinModal', 'yandex_rtb_modal_win');
@@ -980,6 +1070,9 @@
 
     function startNewFullGame() {
         closeModal('finalWinModal');
+        document.getElementById('pChip-1').style.display = "block";
+        document.getElementById('pChip-2').style.display = "block";
+        document.getElementById('openWheelBtn').style.display = "block";
         initGame();
     }
 
@@ -1000,18 +1093,14 @@
         document.getElementById(modalId).style.display = 'none';
     }
 
-    function openRulesModal() {
-        openModal('rulesModal', 'yandex_rtb_modal_rules');
-    }
+    function openRulesModal() { openModal('rulesModal', 'yandex_rtb_modal_rules'); }
+    function closeRulesModal() { closeModal('rulesModal'); }
 
-    function closeRulesModal() {
-        closeModal('rulesModal');
-    }
-
+    // ТЕМА
     function toggleThemeInstant() {
         const root = document.documentElement;
-        const current = root.getAttribute('data-theme') || 'dark';
-        const next = current === 'dark' ? 'light' : 'dark';
+        const cur = root.getAttribute('data-theme') || 'dark';
+        const next = cur === 'dark' ? 'light' : 'dark';
         root.setAttribute('data-theme', next);
         localStorage.setItem('resurs_pole_theme', next);
         localStorage.setItem('theme', next);
@@ -1037,6 +1126,5 @@
         initGame();
     });
 </script>
-
 </body>
 </html>
