@@ -157,6 +157,12 @@
             border-radius: 20px; border: 1px solid rgba(229, 169, 60, 0.3);
             text-transform: uppercase; letter-spacing: 0.5px;
         }
+        .combo-badge {
+            font-size: 11.5px; font-weight: 800; color: var(--accent-color);
+            background: var(--accent-subtle); padding: 6px 14px;
+            border-radius: 20px; border: 1px solid var(--border-color);
+            text-transform: uppercase; letter-spacing: 0.5px;
+        }
         .btn-share-friend {
             background: var(--surface-hover); border: 1px solid var(--border-color);
             color: var(--text-main); padding: 6px 14px; border-radius: 20px;
@@ -328,19 +334,16 @@
         footer { margin-top: 60px; padding: 40px 0; border-top: 1px solid var(--border-color); text-align: center; background: var(--surface-color); }
         .footer-text { font-size: 11px; color: var(--text-muted); line-height: 1.6; max-width: 850px; margin: 0 auto; }
 
-        /* НЕПРИМЕТНАЯ КНОПКА СБРОСА ДЛЯ АДМИНА (ТРЕБУЕТ 3 КЛИКА) */
-        .admin-secret-dot {
-            display: inline-block;
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.05);
+        /* ЗНАК КОПИРАЙТА ДЛЯ ТРОЙНОГО КЛИКА АДМИНИСТРАТОРА */
+        .admin-copy-symbol {
             cursor: pointer;
-            margin-left: 6px;
-            vertical-align: middle;
-            transition: background 0.3s ease;
+            user-select: none;
+            padding: 0 4px;
+            transition: color 0.2s ease;
         }
-        .admin-secret-dot:hover { background: rgba(229, 169, 60, 0.25); }
+        .admin-copy-symbol:hover {
+            color: var(--gold);
+        }
 
         @media (max-width: 600px) {
             .letter-cell { width: 34px; height: 44px; font-size: 22px; }
@@ -374,6 +377,7 @@
     <div class="game-card">
         <div class="top-meta-bar">
             <span class="attempts-badge" id="attemptsBadge">Попытки: 5 из 5</span>
+            <span class="combo-badge" id="comboBadge">Угадано подряд: 0 / 3</span>
             <button class="btn-share-friend" onclick="shareWithFriend()">🔗 Поделиться с подругой</button>
         </div>
 
@@ -468,8 +472,8 @@
 <!-- 4. МОДАЛКА: ДВЕ ШКАТУЛКИ (РСЯ 90PX) -->
 <div class="modal-overlay" id="boxModal">
     <div class="modal-card">
-        <h3>Две Шкатулки</h3>
-        <p>В одной из шкатулок спрятан бонус от 100 до 500 очков. Вторая пуста. Ход остается у вас!</p>
+        <h3>Две Шкатулки в студию!</h3>
+        <p>В одной из шкатулок спрятан круглый денежный бонус от 100 до 500 очков. Вторая пуста. Ваш ход сохраняется!</p>
         <div class="modal-btn-row">
             <button class="m-btn m-btn-primary" onclick="resolveBoxChoice(0)">Левая шкатулка</button>
             <button class="m-btn m-btn-primary" onclick="resolveBoxChoice(1)">Правая шкатулка</button>
@@ -486,8 +490,9 @@
         <h3>Правила «Поля Чудес»</h3>
         <div style="text-align: left; font-size: 13px; line-height: 1.6; color: var(--text-muted); margin-bottom: 12px;">
             • Всего доступно <b>5 попыток в месяц</b>. При выигрыше приза следующая игра открывается через месяц.<br>
-            • Набирайте баллы за каждую угаданную букву для получения персональной скидки.<br>
-            • <b>Сектор «0» (Переход хода)</b>: передает ход сопернику без сгорания очков.<br>
+            • <b>3 угаданные буквы подряд</b>: две шкатулки в студию с бонусом до 500 очков!<br>
+            • <b>Сектор «БАНКРОТ»</b>: сжигает накопленные баллы и передает ход.<br>
+            • <b>Сектор «0» (Переход хода)</b>: передает ход сопернику без потери очков.<br>
             • <b>Сектор «+»</b>: на табло замигают ячейки — <b>нажмите прямо на закрытую букву</b>, и она откроется!<br>
             • <b>Супер-приз</b>: абонемент на <b>4 занятия на 1 месяц</b> в студию «РЕСУРС»!<br>
             • <b>Поражение</b>: ошибка при вводе слова или поражение в Суперигре аннулирует накопленные баллы и сжигает попытку.
@@ -566,9 +571,7 @@
 <footer>
     <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
         <p style="font-size: 13px; font-weight: 800; color: var(--text-main); margin-bottom: 6px;">
-            © 2026 РЕСУРС | Студия фитнеса, растяжки и движения. Сыктывкар, ул. Коммунистическая, 67.
-            <!-- Неприметная кнопка тройного клика для сброса попыток администратором -->
-            <span class="admin-secret-dot" id="adminSecretTrigger" title=""></span>
+            <span class="admin-copy-symbol" id="adminCopyrightReset">©</span> 2026 РЕСУРС | Студия фитнеса, растяжки и движения. Сыктывкар, ул. Коммунистическая, 67.
         </p>
         <p class="footer-text">
             ИП Худяков Николай Сергеевич • ИНН 111801576622. Интерактивная развивающая викторина по биомеханике движения.
@@ -580,14 +583,14 @@
     // Лимит баллов "под капотом"
     const MAX_SCORE_LIMIT = 1600;
 
-    // 16 СЕКТОРОВ БАРАБАНА (ДОБАВЛЕН СЕКТОР "0" - ПЕРЕХОД ХОДА БЕЗ СГОРАНИЯ ОЧКОВ)
+    // 16 СЕКТОРОВ БАРАБАНА (БАНКРОТ И ПЕРЕХОД ХОДА 0)
     const wheelSectors = [
         { label: "100", type: "score", value: 100, color: "#6C3EB8" },
         { label: "30", type: "score", value: 30, color: "#1E1833" },
         { label: "ПРИЗ", type: "prize", value: 0, color: "#E5A93C" },
         { label: "50", type: "score", value: 50, color: "#2B1E4A" },
         { label: "0", type: "zero", value: 0, color: "#4A4656" }, // Переход хода
-        { label: "БАНКРОТ", type: "bankrupt", value: 0, color: "#DC2626" },
+        { label: "БАНКРОТ", type: "bankrupt", value: 0, color: "#DC2626" }, // Банкрот обнуляет счет
         { label: "150", type: "score", value: 150, color: "#5B3494" },
         { label: "75", type: "score", value: 75, color: "#25183E" },
         { label: "+", type: "plus", value: 0, color: "#8352D6" },
@@ -679,7 +682,10 @@
     let isSuperPickPhase = false;
     let superPicksLeft = 0;
 
-    // Честный индекс шкатулки: 0 - левая, 1 - правая (фиксируется перед показом)
+    // Счетчик подряд угаданных букв для шкатулок (3 подряд = шкатулки)
+    let consecutiveGuesses = 0;
+
+    // Честный индекс шкатулки: 0 - левая, 1 - правая
     let secretLuckyBoxIndex = 0;
 
     let currentAngle = 0;
@@ -747,6 +753,11 @@
         updateUI();
     }
 
+    function updateComboUI() {
+        const badge = document.getElementById('comboBadge');
+        if (badge) badge.innerText = `Угадано подряд: ${consecutiveGuesses} / 3`;
+    }
+
     function getUnusedQuestion() {
         const available = questionsPool.filter(q => !playedWords.includes(q.word));
         if (available.length === 0) {
@@ -764,6 +775,8 @@
 
         scores = [0, 0, 0];
         activePlayer = 0;
+        consecutiveGuesses = 0;
+        updateComboUI();
         gameState = "TOUR_1";
         startRound(getUnusedQuestion(), "1 ТУР: АНАТОМИЧЕСКИЙ ТЕРМИН");
         drawWheel();
@@ -776,6 +789,8 @@
         revealed = Array(word.length).fill(false);
         isPlusSelectionPhase = false;
         waitingLetter = false;
+        consecutiveGuesses = 0;
+        updateComboUI();
         document.getElementById('tourTitle').innerText = tourTitleText;
         document.getElementById('questionDesc').innerText = qData.desc;
         renderBoard();
@@ -924,9 +939,12 @@
     function evaluateSector(sector) {
         const status = document.getElementById('turnStatus');
 
+        // СЕКТОР БАНКРОТ: ОБНУЛЯЕТ БАЛЛЫ И ПЕРЕДАЕТ ХОД
         if (sector.type === "bankrupt") {
             scores[activePlayer] = 0;
             updateUI();
+            consecutiveGuesses = 0;
+            updateComboUI();
             status.innerText = "Сектор БАНКРОТ! Все баллы игрока сгорели.";
             setTimeout(passTurn, 2000);
             return;
@@ -934,7 +952,9 @@
 
         // СЕКТОР 0 (ПЕРЕХОД ХОДА БЕЗ СГОРАНИЯ БАЛЛОВ)
         if (sector.type === "zero") {
-            status.innerText = "Сектор 0 (Переход хода)! Ваши баллы сохранены, ход переходит к сопернику.";
+            consecutiveGuesses = 0;
+            updateComboUI();
+            status.innerText = "Сектор 0 (Переход хода)! Баллы сохранены, ход переходит дальше.";
             setTimeout(passTurn, 2000);
             return;
         }
@@ -952,22 +972,7 @@
         }
 
         if (sector.type === "box") {
-            // Честная генерация положения шкатулки строго 50 на 50
-            secretLuckyBoxIndex = Math.random() < 0.5 ? 0 : 1;
-
-            if (activePlayer === 0) {
-                openModal('boxModal', 'yandex_rtb_modal_box');
-            } else {
-                if (Math.random() > 0.5) {
-                    scores[activePlayer] += 300;
-                    updateUI();
-                    status.innerText = `Соперник ${activePlayer} угадал шкатулку: +300 очков!`;
-                } else {
-                    status.innerText = `Соперник ${activePlayer} открыл пустую шкатулку.`;
-                }
-                status.innerText += " Ход сохраняется!";
-                setTimeout(() => { executeSpin(); }, 2000);
-            }
+            triggerBoxesModal();
             return;
         }
 
@@ -994,6 +999,24 @@
         }
     }
 
+    function triggerBoxesModal() {
+        // Честная случайная генерация расположения приза: 0 - левая, 1 - правая
+        secretLuckyBoxIndex = Math.random() < 0.5 ? 0 : 1;
+
+        if (activePlayer === 0) {
+            openModal('boxModal', 'yandex_rtb_modal_box');
+        } else {
+            if (Math.random() > 0.5) {
+                scores[activePlayer] += 300;
+                updateUI();
+                document.getElementById('turnStatus').innerText = `Соперник ${activePlayer} угадал шкатулку: +300 очков!`;
+            } else {
+                document.getElementById('turnStatus').innerText = `Соперник ${activePlayer} открыл пустую шкатулку.`;
+            }
+            setTimeout(() => { executeSpin(); }, 2000);
+        }
+    }
+
     function onCellTapPlus(index) {
         if (!isPlusSelectionPhase || activePlayer !== 0) return;
         isPlusSelectionPhase = false;
@@ -1013,6 +1036,7 @@
         renderBoard();
         addPlayerScoreSafe(100 * count);
 
+        // Открытие по сектору + не сбрасывает счетчик комбо
         const status = document.getElementById('turnStatus');
         status.innerText = `Сектор «+» открыл букву «${targetChar}»! Ход продолжается.`;
 
@@ -1079,10 +1103,22 @@
         if (openedCount > 0) {
             if (activePlayer === 0) {
                 addPlayerScoreSafe(pts * openedCount);
+                // 3 ПОДРЯД УГАДАННЫЕ БУКВЫ = ШКАТУЛКИ В СТУДИЮ
+                consecutiveGuesses++;
+                updateComboUI();
+
+                if (consecutiveGuesses === 3) {
+                    consecutiveGuesses = 0;
+                    updateComboUI();
+                    status.innerText = `Бинго! 3 угаданные буквы подряд! ДВЕ ШКАТУЛКИ В СТУДИЮ!`;
+                    setTimeout(() => { triggerBoxesModal(); }, 1400);
+                    return;
+                }
             } else {
                 scores[activePlayer] += pts * openedCount;
                 updateUI();
             }
+
             status.innerText = `Есть буква «${char}»! (+${pts * openedCount} очков). Ваш ход продолжается!`;
 
             if (revealed.every(r => r)) {
@@ -1100,6 +1136,8 @@
         } else {
             status.innerText = `Буквы «${char}» нет! Переход хода.`;
             waitingLetter = false;
+            consecutiveGuesses = 0;
+            updateComboUI();
             setTimeout(passTurn, 1600);
         }
     }
@@ -1109,6 +1147,8 @@
         updateUI();
         waitingLetter = false;
         isPlusSelectionPhase = false;
+        consecutiveGuesses = 0;
+        updateComboUI();
         renderBoard();
         
         const status = document.getElementById('turnStatus');
@@ -1181,7 +1221,7 @@
         }
     }
 
-    // ЧЕСТНЫЙ ВЫБОР ШКАТУЛКИ: СРАВНЕНИЕ С ЗАРАНЕЕ СГЕНЕРИРОВАННЫМ ИНДЕКСОМ
+    // ЧЕСТНЫЙ ВЫБОР ШКАТУЛКИ: РОВНЫЕ ЧИСЛА 100, 200, 300, 400, 500
     function resolveBoxChoice(chosenBoxIndex) {
         closeModal('boxModal');
         const status = document.getElementById('turnStatus');
@@ -1355,8 +1395,6 @@
         root.setAttribute('data-theme', next);
         localStorage.setItem('resurs_pole_theme', next);
         localStorage.setItem('theme', next);
-        if (next === 'light') root.classList.add('light-theme');
-        else root.classList.remove('light-theme');
         updateThemeButtons(next);
         drawWheel();
     }
@@ -1369,7 +1407,7 @@
         if (mBtn) mBtn.innerText = text;
     }
 
-    // ТРОЙНОЙ КЛИК В ПОДВАЛЕ ДЛЯ СБРОСА ПОПЫТОК АДМИНОМ
+    // СБРОС ПОПЫТОК ДЛЯ АДМИНИСТРАТОРА (3 КЛИКА НА ЗНАК © В ТЕМПЕ «РАЗ, ДВА, ТРИ»)
     let adminClickCount = 0;
     let adminClickTimer = null;
 
@@ -1380,9 +1418,10 @@
         updateThemeButtons(saved);
         initGame();
 
-        const secretDot = document.getElementById('adminSecretTrigger');
-        if (secretDot) {
-            secretDot.addEventListener('click', () => {
+        // 3 средних клика по знаку © в подвале
+        const copySymbol = document.getElementById('adminCopyrightReset');
+        if (copySymbol) {
+            copySymbol.addEventListener('click', () => {
                 adminClickCount++;
                 clearTimeout(adminClickTimer);
 
@@ -1396,7 +1435,7 @@
                 } else {
                     adminClickTimer = setTimeout(() => {
                         adminClickCount = 0;
-                    }, 1500);
+                    }, 2500); // 2.5 секунды на 3 спокойных клика «раз, два, три»
                 }
             });
         }
