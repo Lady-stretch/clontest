@@ -557,7 +557,6 @@
         "500 бонусов в ЛК на покупку абонемента в приложении"
     ];
 
-    // РАСШИРЕННЫЙ БАНК ТЕРМИНОВ: ФИЛОСОФИЯ ТЕЛА, ПРИВЫЧКИ, ПРЕОДОЛЕНИЕ СЛАБОСТИ И ДВИЖЕНИЕ
     const questionsPool = [
         {
             word: "РЕГУЛЯРНОСТЬ",
@@ -1332,7 +1331,8 @@
             title.innerText = "Победа в Финале!";
             desc.innerHTML = `Вы победитель финала! Разгаданное слово <b>«${word}»</b> принесло вам <b>${discountPoints} баллов скидки</b> к абонементу!`;
             const msg = `Вера, здравствуйте! Я победила в финале Поля Чудес на сайте РЕСУРС, угадала слово «${word}» и набрала ${discountPoints} баллов скидки! Хочу использовать выигрыш (без суммирования с приложением).`;
-            vkBtn.href = `https://vk.com/im?sel=-221142875&ref=pole_final&message=${encodeURIComponent(msg)}`;
+            // Передаем точное количество баллов в ссылку для Веры
+            vkBtn.href = `https://vk.com/im?sel=-221142875&ref=pole_pts_${discountPoints}&message=${encodeURIComponent(msg)}`;
         }
 
         openModal('finalWinModal', 'yandex_rtb_modal_win');
@@ -1393,7 +1393,6 @@
         if (mBtn) mBtn.innerText = text;
     }
 
-    // ТРОЙНОЙ КЛИК ПО ЗНАКУ © ДЛЯ АДМИНИСТРАТОРА
     let adminClickCount = 0;
     let adminClickTimer = null;
 
