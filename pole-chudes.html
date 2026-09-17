@@ -14,6 +14,9 @@
         if (savedTheme === 'light') { document.documentElement.classList.add('light-theme'); }
     </script>
 
+    <!-- Официальный VK ID SDK -->
+    <script src="https://unpkg.com/@vkid/sdk@<3.0.0/dist-sdk/umd/index.js"></script>
+
     <!-- РСЯ Context -->
     <script>window.yaContextCb=window.yaContextCb||[]</script>
     <script src="https://yandex.ru/ads/system/context.js" async></script>
@@ -151,6 +154,11 @@
             display: flex; justify-content: space-between; align-items: center;
             flex-wrap: wrap; gap: 10px; margin-bottom: 20px;
         }
+        .user-auth-badge {
+            font-size: 12px; font-weight: 800; color: #FFF;
+            background: #0077FF; padding: 6px 14px;
+            border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px;
+        }
         .attempts-badge {
             font-size: 12px; font-weight: 800; color: var(--gold);
             background: rgba(229, 169, 60, 0.1); padding: 6px 14px;
@@ -184,7 +192,6 @@
         .player-name { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
         .player-score { font-size: 22px; font-weight: 800; color: var(--gold); margin-top: 4px; }
 
-        /* ЗАЩИТА ОТ КОПИРОВАНИЯ И ГУГЛЕНИЯ */
         .question-card {
             background: var(--bg-color); border: 1px solid var(--border-color);
             border-radius: 14px; padding: 18px 24px; margin-bottom: 20px;
@@ -334,7 +341,6 @@
         footer { margin-top: 60px; padding: 40px 0; border-top: 1px solid var(--border-color); text-align: center; background: var(--surface-color); }
         .footer-text { font-size: 11px; color: var(--text-muted); line-height: 1.6; max-width: 850px; margin: 0 auto; }
 
-        /* ЗНАК КОПИРАЙТА ДЛЯ ТРОЙНОГО КЛИКА АДМИНИСТРАТОРА */
         .admin-copy-symbol {
             cursor: pointer;
             user-select: none;
@@ -376,6 +382,7 @@
 <main class="main-layout">
     <div class="game-card">
         <div class="top-meta-bar">
+            <span class="user-auth-badge" id="userAuthBadge">Вход через VK ID</span>
             <span class="attempts-badge" id="attemptsBadge">Попытки: 5 из 5</span>
             <span class="combo-badge" id="comboBadge">Угадано подряд: 0 / 3</span>
             <button class="btn-share-friend" onclick="shareWithFriend()">🔗 Поделиться с подругой</button>
@@ -383,7 +390,7 @@
 
         <div class="players-bar">
             <div class="player-chip active" id="pChip-0">
-                <div class="player-name">Вы (Игрок 1)</div>
+                <div class="player-name" id="playerNameDisplay">Вы (Игрок 1)</div>
                 <div class="player-score" id="pScore-0">0</div>
             </div>
             <div class="player-chip" id="pChip-1">
@@ -396,7 +403,6 @@
             </div>
         </div>
 
-        <!-- Вопрос защищен от выделения и правого клика мыши -->
         <div class="question-card" oncontextmenu="return false;" oncopy="return false;">
             <div class="question-tour-title" id="tourTitle">1 ТУР: АНАТОМИЧЕСКИЙ ТЕРМИН</div>
             <div class="question-desc" id="questionDesc">Загрузка задания...</div>
@@ -405,16 +411,26 @@
         <div class="word-board" id="wordBoard"></div>
 
         <div class="action-controls-row">
-            <div class="turn-status-text" id="turnStatus">Ваш ход! Вращайте барабан или назовите слово целиком.</div>
+            <div class="turn-status-text" id="turnStatus">Авторизуйтесь для начала игры.</div>
             <div class="buttons-group">
-                <button id="openWheelBtn" class="btn-action-main" onclick="openWheelModal()">Крутить барабан</button>
-                <button id="openGuessBtn" class="btn-action-word" onclick="openGuessWordModal()">Назвать слово</button>
+                <button id="openWheelBtn" class="btn-action-main" onclick="openWheelModal()" disabled>Крутить барабан</button>
+                <button id="openGuessBtn" class="btn-action-word" onclick="openGuessWordModal()" disabled>Назвать слово</button>
             </div>
         </div>
 
         <div class="keyboard-grid" id="keyboardGrid"></div>
     </div>
 </main>
+
+<!-- МОДАЛКА ОФИЦИАЛЬНОЙ АВТОРИЗАЦИИ VK ID -->
+<div class="modal-overlay" id="authModal" style="display: flex;">
+    <div class="modal-card">
+        <h3>Вход в игру</h3>
+        <p>Авторизуйтесь через официальный VK ID, чтобы сохранить свои попытки и привязать выигранный абонемент к профилю:</p>
+        <div id="VkIdSdkOneTap" style="margin: 20px auto; min-height: 50px; display: flex; justify-content: center;"></div>
+        <p style="font-size: 11px; color: var(--text-muted);">Нажимая вход, вы соглашаетесь на участие в ежемесячной викторине студии «РЕСУРС».</p>
+    </div>
+</div>
 
 <!-- 1. МОДАЛКА БАРАБАНА (РСЯ 90PX) -->
 <div class="modal-overlay" id="wheelModal">
@@ -580,17 +596,20 @@
 </footer>
 
 <script>
-    // Лимит баллов "под капотом"
+    // URL ВАШЕГО БЭКЕНДА (ЯНДЕКС ФУНКЦИЯ)
+    const BACKEND_API_URL = "https://functions.yandexcloud.net/d4ecn5ag33dcdd2deivd"; // Укажите ID вашей функции монолита
+
+    // Максимальный предел баллов "под капотом"
     const MAX_SCORE_LIMIT = 1600;
 
-    // 16 СЕКТОРОВ БАРАБАНА (БАНКРОТ И ПЕРЕХОД ХОДА 0)
+    // 16 секторов барабана
     const wheelSectors = [
         { label: "100", type: "score", value: 100, color: "#6C3EB8" },
         { label: "30", type: "score", value: 30, color: "#1E1833" },
         { label: "ПРИЗ", type: "prize", value: 0, color: "#E5A93C" },
         { label: "50", type: "score", value: 50, color: "#2B1E4A" },
-        { label: "0", type: "zero", value: 0, color: "#4A4656" }, // Переход хода
-        { label: "БАНКРОТ", type: "bankrupt", value: 0, color: "#DC2626" }, // Банкрот обнуляет счет
+        { label: "0", type: "zero", value: 0, color: "#4A4656" },
+        { label: "БАНКРОТ", type: "bankrupt", value: 0, color: "#DC2626" },
         { label: "150", type: "score", value: 150, color: "#5B3494" },
         { label: "75", type: "score", value: 75, color: "#25183E" },
         { label: "+", type: "plus", value: 0, color: "#8352D6" },
@@ -613,7 +632,6 @@
         "500 бонусов в ЛК на покупку абонемента в приложении"
     ];
 
-    // Банк сложных терминов
     const questionsPool = [
         {
             word: "ПРОПРИОЦЕПЦИЯ",
@@ -667,6 +685,7 @@
         }
     ];
 
+    let currentUserProfile = null;
     let playedWords = [];
     let gameState = "TOUR_1";
     let activeQuestion = null;
@@ -681,64 +700,127 @@
     let isPlusSelectionPhase = false;
     let isSuperPickPhase = false;
     let superPicksLeft = 0;
-
-    // Счетчик подряд угаданных букв для шкатулок (3 подряд = шкатулки)
     let consecutiveGuesses = 0;
-
-    // Честный индекс шкатулки: 0 - левая, 1 - правая
     let secretLuckyBoxIndex = 0;
 
     let currentAngle = 0;
     const alphabet = "АБВГДЕЖЗИКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
 
+    // =========================================================================
+    // --- ИНИЦИАЛИЗАЦИЯ ОФИЦИАЛЬНОГО VK ID SDK ---
+    // =========================================================================
+    function initVkIdAuth() {
+        if ('VKIDSDK' in window) {
+            const VKID = window.VKIDSDK;
+            VKID.Config.init({
+                app: 51900000, // Укажите App ID вашего приложения VK
+                redirectUrl: 'https://resurs-stretch.ru/pole-chudes.html',
+                responseMode: VKID.ConfigResponseMode.Callback,
+                source: VKID.ConfigSource.LOWCODE,
+            });
+
+            const oneTap = new VKID.OneTap();
+            const container = document.getElementById('VkIdSdkOneTap');
+
+            if (container) {
+                oneTap.render({
+                    container: container,
+                    showAlternativeLogin: true
+                })
+                .on(VKID.WidgetEvents.ERROR, (error) => {
+                    console.error("VK ID Auth Error", error);
+                })
+                .on(VKID.OneTapInternalEvents.LOGIN_SUCCESS, function (payload) {
+                    const code = payload.code;
+                    VKID.Auth.exchangeCode(code, payload.device_id)
+                        .then((userData) => {
+                            handleAuthSuccess(userData);
+                        })
+                        .catch((err) => {
+                            // Резервная быстрая авторизация по данным профиля
+                            handleAuthFallback(payload);
+                        });
+                });
+            }
+        }
+    }
+
+    function handleAuthSuccess(userData) {
+        currentUserProfile = {
+            vk_id: userData.user_id || userData.id,
+            first_name: userData.first_name || "Гость",
+            last_name: userData.last_name || "",
+            phone: userData.phone || ""
+        };
+        saveAndStartGame();
+    }
+
+    function handleAuthFallback(payload) {
+        currentUserProfile = {
+            vk_id: payload.user_id || "resurs_user",
+            first_name: "Резидент",
+            last_name: "",
+            phone: ""
+        };
+        saveAndStartGame();
+    }
+
+    async function saveAndStartGame() {
+        closeModal('authModal');
+        const badge = document.getElementById('userAuthBadge');
+        if (badge) badge.innerText = `${currentUserProfile.first_name} (VK ID)`;
+        document.getElementById('playerNameDisplay').innerText = currentUserProfile.first_name;
+
+        // Проверка лимитов на бэкенде
+        try {
+            const response = await fetch(BACKEND_API_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: jsonStringify({
+                    action: "pole_check",
+                    vk_id: currentUserProfile.vk_id,
+                    phone: currentUserProfile.phone,
+                    first_name: currentUserProfile.first_name,
+                    last_name: currentUserProfile.last_name
+                })
+            });
+            const resData = await response.json();
+
+            if (resData.status === "ok") {
+                document.getElementById('attemptsBadge').innerText = `Попытки: ${resData.attempts_left} из 5`;
+                if (!resData.can_play) {
+                    blockGame(resData.is_won ? "Вы уже выиграли подарок в этом месяце! Ждем вас в следующем месяце." : "Все 5 попыток в этом месяце использованы!");
+                    return;
+                }
+            }
+        } catch (e) {
+            console.log("Локальный режим проверки");
+        }
+
+        // Списание 1 попытки на сервере
+        try {
+            await fetch(BACKEND_API_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: jsonStringify({
+                    action: "pole_consume_attempt",
+                    vk_id: currentUserProfile.vk_id,
+                    phone: currentUserProfile.phone
+                })
+            });
+        } catch (e) {}
+
+        document.getElementById('openWheelBtn').disabled = false;
+        document.getElementById('openGuessBtn').disabled = false;
+        initGame();
+    }
+
+    function jsonStringify(obj) {
+        return JSON.stringify(obj);
+    }
+
     function getBotIntelligenceChance() {
         return gameState === "FINALE" ? 0.55 : 0.35;
-    }
-
-    function getCurrentMonthKey() {
-        const now = new Date();
-        return `${now.getFullYear()}-${now.getMonth() + 1}`;
-    }
-
-    function checkMonthlyLimit() {
-        const currentMonth = getCurrentMonthKey();
-        const savedMonth = localStorage.getItem('resurs_pole_month');
-        
-        if (savedMonth !== currentMonth) {
-            localStorage.setItem('resurs_pole_month', currentMonth);
-            localStorage.setItem('resurs_pole_attempts', '5');
-            localStorage.removeItem('resurs_pole_won');
-        }
-
-        const isWon = localStorage.getItem('resurs_pole_won') === 'true';
-        const attempts = parseInt(localStorage.getItem('resurs_pole_attempts') || '5', 10);
-        
-        const badge = document.getElementById('attemptsBadge');
-        if (badge) badge.innerText = `Попытки: ${attempts} из 5`;
-
-        if (isWon) {
-            blockGame("Вы уже забрали выигрыш в этом месяце! Новая игра откроется в следующем месяце.");
-            return false;
-        }
-
-        if (attempts <= 0) {
-            blockGame("Все 5 попыток в этом месяце исчерпаны! Приходите в следующем месяце.");
-            return false;
-        }
-
-        return true;
-    }
-
-    function consumeAttempt() {
-        let attempts = parseInt(localStorage.getItem('resurs_pole_attempts') || '5', 10);
-        attempts = Math.max(0, attempts - 1);
-        localStorage.setItem('resurs_pole_attempts', attempts.toString());
-        const badge = document.getElementById('attemptsBadge');
-        if (badge) badge.innerText = `Попытки: ${attempts} из 5`;
-    }
-
-    function markGameWon() {
-        localStorage.setItem('resurs_pole_won', 'true');
     }
 
     function blockGame(message) {
@@ -770,9 +852,6 @@
     }
 
     function initGame() {
-        if (!checkMonthlyLimit()) return;
-        consumeAttempt();
-
         scores = [0, 0, 0];
         activePlayer = 0;
         consecutiveGuesses = 0;
@@ -796,6 +875,7 @@
         renderBoard();
         resetKeyboardState();
         updateUI();
+        document.getElementById('turnStatus').innerText = "Ваш ход! Вращайте барабан или назовите слово целиком.";
     }
 
     function drawWheel() {
@@ -939,7 +1019,6 @@
     function evaluateSector(sector) {
         const status = document.getElementById('turnStatus');
 
-        // СЕКТОР БАНКРОТ: ОБНУЛЯЕТ БАЛЛЫ И ПЕРЕДАЕТ ХОД
         if (sector.type === "bankrupt") {
             scores[activePlayer] = 0;
             updateUI();
@@ -950,7 +1029,6 @@
             return;
         }
 
-        // СЕКТОР 0 (ПЕРЕХОД ХОДА БЕЗ СГОРАНИЯ БАЛЛОВ)
         if (sector.type === "zero") {
             consecutiveGuesses = 0;
             updateComboUI();
@@ -988,7 +1066,6 @@
             return;
         }
 
-        // Числовые сектора
         status.innerText = activePlayer === 0
             ? `Выпало: ${sector.value} очков! Выберите букву на клавиатуре.`
             : `Сектор: ${sector.value} очков. Соперник ${activePlayer} думает...`;
@@ -1000,7 +1077,6 @@
     }
 
     function triggerBoxesModal() {
-        // Честная случайная генерация расположения приза: 0 - левая, 1 - правая
         secretLuckyBoxIndex = Math.random() < 0.5 ? 0 : 1;
 
         if (activePlayer === 0) {
@@ -1036,7 +1112,6 @@
         renderBoard();
         addPlayerScoreSafe(100 * count);
 
-        // Открытие по сектору + не сбрасывает счетчик комбо
         const status = document.getElementById('turnStatus');
         status.innerText = `Сектор «+» открыл букву «${targetChar}»! Ход продолжается.`;
 
@@ -1103,7 +1178,6 @@
         if (openedCount > 0) {
             if (activePlayer === 0) {
                 addPlayerScoreSafe(pts * openedCount);
-                // 3 ПОДРЯД УГАДАННЫЕ БУКВЫ = ШКАТУЛКИ В СТУДИЮ
                 consecutiveGuesses++;
                 updateComboUI();
 
@@ -1221,7 +1295,6 @@
         }
     }
 
-    // ЧЕСТНЫЙ ВЫБОР ШКАТУЛКИ: РОВНЫЕ ЧИСЛА 100, 200, 300, 400, 500
     function resolveBoxChoice(chosenBoxIndex) {
         closeModal('boxModal');
         const status = document.getElementById('turnStatus');
@@ -1318,37 +1391,76 @@
         finishGameWithWin(false);
     }
 
-    function finishGameWithPrizeChoice(prizeText) {
-        markGameWon();
+    async function finishGameWithPrizeChoice(prizeText) {
         document.getElementById('winTermExplanation').innerHTML = activeQuestion.explanation;
         document.getElementById('winTitle').innerText = "ВЫ ВЫИГРАЛИ ПРИЗ!";
         document.getElementById('winDesc').innerHTML = `Вы остановили игру и забрали приз: <b>«${prizeText}»</b>!<br>Баллы для скидки: <b>${scores[0]} ₽</b>. Следующая игра откроется в следующем месяце.`;
 
+        // Отправка на бэкенд
+        if (currentUserProfile) {
+            try {
+                await fetch(BACKEND_API_URL, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: jsonStringify({
+                        action: "pole_claim_prize",
+                        vk_id: currentUserProfile.vk_id,
+                        phone: currentUserProfile.phone,
+                        first_name: currentUserProfile.first_name,
+                        last_name: currentUserProfile.last_name,
+                        prize_name: prizeText,
+                        points: scores[0],
+                        word: word
+                    })
+                });
+            } catch (e) {}
+        }
+
         const msg = `Вера, здравствуйте! Я сыграла в Поле Чудес на сайте РЕСУРС и забрала сектор ПРИЗ: «${prizeText}»! Мои баллы скидки: ${scores[0]} руб. Напоминаю, что бонусы не суммируются с приложением. Запишите меня!`;
-        document.getElementById('vkClaimBtn').href = `https://vk.com/im?sel=-221142875&message=${encodeURIComponent(msg)}`;
+        document.getElementById('vkClaimBtn').href = `https://vk.com/im?sel=-221142875&ref=pole_prize&message=${encodeURIComponent(msg)}`;
 
         openModal('finalWinModal', 'yandex_rtb_modal_win');
     }
 
-    function finishGameWithWin(isSuperWin) {
-        markGameWon();
+    async function finishGameWithWin(isSuperWin) {
         document.getElementById('winTermExplanation').innerHTML = activeQuestion.explanation;
         const title = document.getElementById('winTitle');
         const desc = document.getElementById('winDesc');
         const vkBtn = document.getElementById('vkClaimBtn');
 
         const discountPoints = scores[0];
+        const prizeTitle = isSuperWin ? "Абонемент на 4 занятия на месяц" : "Финалист (Скидка к абонементу)";
+
+        // Отправка на бэкенд
+        if (currentUserProfile) {
+            try {
+                await fetch(BACKEND_API_URL, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: jsonStringify({
+                        action: "pole_claim_prize",
+                        vk_id: currentUserProfile.vk_id,
+                        phone: currentUserProfile.phone,
+                        first_name: currentUserProfile.first_name,
+                        last_name: currentUserProfile.last_name,
+                        prize_name: prizeTitle,
+                        points: discountPoints,
+                        word: word
+                    })
+                });
+            } catch (e) {}
+        }
 
         if (isSuperWin) {
             title.innerText = "ТРИУМФ В СУПЕРИГРЕ!";
             desc.innerHTML = `Вы разгадали главный термин <b>«${word}»</b>!<br>Ваш СУПЕР-ПРИЗ: <b>Абонемент на 4 занятия на месяц</b> + скидка <b>${discountPoints} ₽</b> в Личном кабинете!`;
             const msg = `Вера, здравствуйте! Я победила в СУПЕРИГРЕ «Поле Чудес» на сайте РЕСУРС! Слово: «${word}». Мой супер-приз: Абонемент на 4 занятия на месяц + ${discountPoints} баллов скидки. Другие бонусы не применяю, жду активации!`;
-            vkBtn.href = `https://vk.com/im?sel=-221142875&message=${encodeURIComponent(msg)}`;
+            vkBtn.href = `https://vk.com/im?sel=-221142875&ref=pole_super&message=${encodeURIComponent(msg)}`;
         } else {
             title.innerText = "Победа в Финале!";
             desc.innerHTML = `Вы победитель финала! Разгаданный термин <b>«${word}»</b> принес вам <b>${discountPoints} баллов скидки</b> к абонементу!`;
             const msg = `Вера, здравствуйте! Я победила в финале Поля Чудес на сайте РЕСУРС, угадала термин «${word}» и набрала ${discountPoints} баллов скидки! Хочу использовать выигрыш (без суммирования с приложением).`;
-            vkBtn.href = `https://vk.com/im?sel=-221142875&message=${encodeURIComponent(msg)}`;
+            vkBtn.href = `https://vk.com/im?sel=-221142875&ref=pole_final&message=${encodeURIComponent(msg)}`;
         }
 
         openModal('finalWinModal', 'yandex_rtb_modal_win');
@@ -1395,6 +1507,8 @@
         root.setAttribute('data-theme', next);
         localStorage.setItem('resurs_pole_theme', next);
         localStorage.setItem('theme', next);
+        if (next === 'light') root.classList.add('light-theme');
+        else root.classList.remove('light-theme');
         updateThemeButtons(next);
         drawWheel();
     }
@@ -1407,7 +1521,7 @@
         if (mBtn) mBtn.innerText = text;
     }
 
-    // СБРОС ПОПЫТОК ДЛЯ АДМИНИСТРАТОРА (3 КЛИКА НА ЗНАК © В ТЕМПЕ «РАЗ, ДВА, ТРИ»)
+    // ТРОЙНОЙ КЛИК ПО ЗНАКУ © ДЛЯ АДМИНИСТРАТОРА
     let adminClickCount = 0;
     let adminClickTimer = null;
 
@@ -1416,9 +1530,10 @@
         document.documentElement.setAttribute('data-theme', saved);
         if (saved === 'light') document.documentElement.classList.add('light-theme');
         updateThemeButtons(saved);
-        initGame();
 
-        // 3 средних клика по знаку © в подвале
+        // Инициализация виджета VK ID
+        initVkIdAuth();
+
         const copySymbol = document.getElementById('adminCopyrightReset');
         if (copySymbol) {
             copySymbol.addEventListener('click', () => {
@@ -1429,13 +1544,13 @@
                     localStorage.removeItem('resurs_pole_attempts');
                     localStorage.removeItem('resurs_pole_won');
                     localStorage.removeItem('resurs_pole_month');
-                    alert("Режим администратора: Попытки и победы успешно сброшены!");
+                    alert("Режим администратора: Память попыток сброшена!");
                     adminClickCount = 0;
                     location.reload();
                 } else {
                     adminClickTimer = setTimeout(() => {
                         adminClickCount = 0;
-                    }, 2500); // 2.5 секунды на 3 спокойных клика «раз, два, три»
+                    }, 2500);
                 }
             });
         }
