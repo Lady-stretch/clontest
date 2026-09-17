@@ -698,7 +698,6 @@
             desc: "Способность позвоночника двигаться плавной волной, сгибаясь сегмент за сегментом, позвонок за позвонком.",
             explanation: "<b>Артикуляция позвоночника</b> в пилатесе возвращает гибкость межпозвоночным дискам и избавляет от скованности."
         },
-        // --- 10 НОВЫХ ТЕРМИНОВ ---
         {
             word: "БИОМЕХАНИКА",
             desc: "Наука о законах движения живого тела, знание которой защищает суставы и связки от износа на каждой тренировке.",
@@ -1094,16 +1093,15 @@
         }
     }
 
+    // СЕКТОР «+»: открывает букву БЕЗ начисления лишних баллов
     function onCellTapPlus(index) {
         if (!isPlusSelectionPhase || activePlayer !== 0) return;
         isPlusSelectionPhase = false;
         
         const targetChar = word[index];
-        let count = 0;
         for (let i = 0; i < word.length; i++) {
             if (word[i] === targetChar) {
                 revealed[i] = true;
-                count++;
             }
         }
         
@@ -1111,7 +1109,6 @@
         if (key) key.disabled = true;
 
         renderBoard();
-        addPlayerScoreSafe(100 * count);
 
         const status = document.getElementById('turnStatus');
         status.innerText = `Сектор «+» открыл букву «${targetChar}»! Ход продолжается.`;
@@ -1131,6 +1128,7 @@
         openModal('guessWordModal', 'yandex_rtb_modal_guess');
     }
 
+    // НАЗВАТЬ СЛОВО ЦЕЛИКОМ: угадано слово БЕЗ добавления лишних баллов
     function submitFullWord() {
         const input = document.getElementById('fullWordInput');
         const guessed = input.value.trim().toUpperCase().replace(/Ё/g, 'Е');
@@ -1139,12 +1137,9 @@
         closeModal('guessWordModal');
 
         if (guessed === target) {
-            let unopenedCount = 0;
             for (let i = 0; i < word.length; i++) {
-                if (!revealed[i]) unopenedCount++;
                 revealed[i] = true;
             }
-            addPlayerScoreSafe(unopenedCount * 100 + 200);
             renderBoard();
             document.getElementById('turnStatus').innerText = "БРАВО! Вы угадали слово целиком!";
             setTimeout(handleRoundWin, 1000);
@@ -1174,7 +1169,7 @@
         renderBoard();
 
         const status = document.getElementById('turnStatus');
-        const pts = (currentSpin && currentSpin.type === "score") ? currentSpin.value : 100;
+        const pts = (currentSpin && currentSpin.type === "score") ? currentSpin.value : 0;
 
         if (openedCount > 0) {
             if (activePlayer === 0) {
@@ -1270,7 +1265,6 @@
             const key = document.getElementById('key-' + targetChar);
             if (key) key.disabled = true;
             renderBoard();
-            scores[activePlayer] += 100;
             updateUI();
             
             if (revealed.every(r => r)) {
@@ -1351,11 +1345,18 @@
         return 3;
     }
 
+    // ПЕРЕХОД В СУПЕРИГРУ: сохраняем заработанные очки, чтобы они не занулились
     function acceptSuperGame() {
         closeModal('superOfferModal');
         gameState = "SUPER_GAME";
         activePlayer = 0;
+
+        const savedPlayerScore = scores[0];
+
         startRound(getUnusedQuestion(), "СУПЕРИГРА: МАСТЕРСТВО И ОСОЗНАННОСТЬ");
+
+        scores[0] = savedPlayerScore;
+        updateUI();
 
         document.getElementById('pChip-1').style.display = "none";
         document.getElementById('pChip-2').style.display = "none";
@@ -1412,17 +1413,16 @@
         const desc = document.getElementById('winDesc');
         const vkBtn = document.getElementById('vkClaimBtn');
 
-        const discountPoints = scores[0];
+        const discountPoints = Math.max(0, Math.min(scores[0] || 0, MAX_SCORE_LIMIT));
+        const msg = "Я выиграл в поле чудес";
 
         if (isSuperWin) {
             title.innerText = "ТРИУМФ В СУПЕРИГРЕ!";
-            desc.innerHTML = `Вы разгадали главное слово <b>«${word}»</b>!<br>Ваш СУПЕР-ПРИЗ: <b>Скидка 35% к любому абонементу</b> + <b>${discountPoints} баллов</b> на баланс!`;
-            const msg = "Я выиграл в поле чудес";
-            vkBtn.href = `https://vk.com/im?sel=-221142875&ref=pole_super&message=${encodeURIComponent(msg)}`;
+            desc.innerHTML = `Вы разгадали главное слово <b>«${word}»</b>!<br>Ваш СУПЕР-ПРИЗ: <b>Скидка 35% к любому абонементу</b> + списание <b>${discountPoints} баллов</b>!`;
+            vkBtn.href = `https://vk.com/im?sel=-221142875&ref=pole_super_${discountPoints}&message=${encodeURIComponent(msg)}`;
         } else {
             title.innerText = "Победа в Финале!";
             desc.innerHTML = `Вы победитель финала! Разгаданное слово <b>«${word}»</b> принесло вам <b>${discountPoints} баллов скидки</b> к абонементу!`;
-            const msg = "Я выиграл в поле чудес";
             vkBtn.href = `https://vk.com/im?sel=-221142875&ref=pole_pts_${discountPoints}&message=${encodeURIComponent(msg)}`;
         }
 
