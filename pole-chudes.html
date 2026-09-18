@@ -58,7 +58,7 @@
     <script src="https://yandex.ru/ads/system/context.js" async></script>
 
     <title>Поле Чудес: Интеллектуальное Фитнес-Шоу | Студия РЕСУРС</title>
-    <meta name="description" content="Интерактивная развивающая викторина о теле, здоровье, привычках и правильном движении. Назовите слово и выиграйте скидку 35% и баллы на абонемент студии РЕСУРС.">
+    <meta name="description" content="Интерактивная развивающая викторина о теле, здоровье, привычках и правильном движении. Назовите слово и выиграйте скидки и призы на абонемент студии РЕСУРС.">
     <meta name="keywords" content="поле чудес фитнес, викторина здоровье, студия ресурс игра, растяжка сыктывкар">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://resurs-stretch.ru/pole-chudes.html">
@@ -470,7 +470,7 @@
 <div class="modal-overlay" id="prizeModal">
     <div class="modal-card">
         <h3>Сектор «ПРИЗ» на барабане!</h3>
-        <p>Заберите баллы или <b>заберите ценный подарок студии и завершите игру победой</b>!</p>
+        <p>Заберите баллы или <b>заберите ценный приз (Скидка 25% + 2 недели продления) и завершите игру победой</b>!</p>
         <div class="warning-rule-box">Условие: полученный приз не суммируется с бонусами приложения и промокодами Колеса удачи. Выбирается только один бонус на выбор.</div>
         <div class="modal-btn-row">
             <button class="m-btn m-btn-secondary" onclick="resolvePrizeChoice(false)">Забрать баллы</button>
@@ -501,7 +501,8 @@
             • <b>Сектор «БАНКРОТ»</b>: сжигает баллы и передает ход сопернику.<br>
             • <b>Сектор «0» (Переход хода)</b>: ход переходит дальше без потери очков.<br>
             • <b>Сектор «+»</b>: нажмите прямо на закрытую ячейку на табло, чтобы открыть букву.<br>
-            • <b>Главный супер-приз</b>: <b>Скидка 35% + накопленные баллы</b> к любому абонементу студии «РЕСУРС»!
+            • <b>Сектор «ПРИЗ»</b>: дает <b>Скидку 25% на любой абонемент + 2 недели продления</b>!<br>
+            • <b>Главный супер-приз</b>: конвертация всех баллов в <b>Скидку 30% на любой абонемент</b>!
         </div>
         <div class="warning-rule-box"><b>Важно:</b> Выигрыши не суммируются с бонусами приложения и промокодами Колеса удачи. Применяется один бонус на выбор.</div>
         <button class="m-btn m-btn-primary" onclick="closeRulesModal()">Понятно, в игру!</button>
@@ -523,10 +524,10 @@
     <div class="modal-card">
         <h3>Победитель Финала!</h3>
         <div class="term-explanation-box" id="finaleTermExplanation"></div>
-        <p>На кону главный супер-приз: <b>Скидка 35% + все ваши баллы</b> к абонементу!<br><b style="color: var(--danger);">Риск:</b> если не отгадаете супер-слово, накопленные баллы сгорают!</p>
+        <p>На кону главный супер-приз: конвертация всех баллов в <b>Скидку 30% на любой абонемент</b>!<br><b style="color: var(--danger);">Риск:</b> если не отгадаете супер-слово, накопленные баллы сгорают!</p>
         <div class="modal-btn-row">
-            <button class="m-btn m-btn-secondary" onclick="declineSuperGame()">Забрать свои баллы</button>
-            <button class="m-btn m-btn-primary" onclick="acceptSuperGame()">Суперигра!</button>
+            <button class="m-btn m-btn-secondary" onclick="declineSuperGame()">Забрать свои баллы (Скидка в ₽)</button>
+            <button class="m-btn m-btn-primary" onclick="acceptSuperGame()">Суперигра (-30%)!</button>
         </div>
         <div class="modal-rsya-thin"><div id="yandex_rtb_modal_super_offer" style="width: 100%; height: 90px;"></div></div>
     </div>
@@ -547,7 +548,7 @@
         <div class="term-explanation-box" id="winTermExplanation"></div>
         <p id="winDesc">Вы зафиксировали свой выигрыш!</p>
         <div class="warning-rule-box" id="winHintBox" style="text-align: center; font-weight: 700; color: var(--gold);">
-            👆 Нажмите кнопку ниже, чат откроется автоматически — просто нажмите «Отправить» готовое сообщение!
+            👆 Нажмите кнопку ниже, перейдите в чат ВК и напишите: ПРИЗ (бот сразу выдаст ваши призы)!
         </div>
         <a href="#" id="vkClaimBtn" class="vk-btn-win" target="_blank">Написать Вере в ВК (нажмите «Отправить»)</a>
         <button class="m-btn m-btn-secondary" style="width: 100%;" onclick="location.reload()">Завершить сессию</button>
@@ -586,17 +587,7 @@
         { label: "40", type: "score", value: 40, color: "#1E1833" }
     ];
 
-    const studioPrizes = [
-        "Скидка 30% на 8 занятий (3920 ₽ вместо 5600 ₽)",
-        "+3 занятия к любому абонементу",
-        "1 занятие в подарок",
-        "+2 недели к сроку действия абонемента",
-        "1000 бонусов в ЛК на покупку абонемента в приложении",
-        "Скидка 35% на 16 занятий",
-        "500 бонусов в ЛК на покупку абонемента в приложении"
-    ];
-
-    // РАСШИРЕННЫЙ БАНК ТЕРМИНОВ (30 СЛОВ): ФИЛОСОФИЯ ТЕЛА, ПРИВЫЧКИ, БИОМЕХАНИКА И ЗДОРОВЬЕ
+    // БАНК ТЕРМИНОВ (30 СЛОВ)
     const questionsPool = [
         {
             word: "РЕГУЛЯРНОСТЬ",
@@ -1093,7 +1084,6 @@
         }
     }
 
-    // СЕКТОР «+»: открывает букву БЕЗ начисления лишних баллов
     function onCellTapPlus(index) {
         if (!isPlusSelectionPhase || activePlayer !== 0) return;
         isPlusSelectionPhase = false;
@@ -1128,7 +1118,6 @@
         openModal('guessWordModal', 'yandex_rtb_modal_guess');
     }
 
-    // НАЗВАТЬ СЛОВО ЦЕЛИКОМ: угадано слово БЕЗ добавления лишних баллов
     function submitFullWord() {
         const input = document.getElementById('fullWordInput');
         const guessed = input.value.trim().toUpperCase().replace(/Ё/g, 'Е');
@@ -1278,8 +1267,7 @@
     function resolvePrizeChoice(takePrize) {
         closeModal('prizeModal');
         if (takePrize) {
-            const randomPrize = studioPrizes[Math.floor(Math.random() * studioPrizes.length)];
-            finishGameWithPrizeChoice(randomPrize);
+            finishGameWithPrizeChoice();
         } else {
             if (activePlayer === 0) addPlayerScoreSafe(150);
             else { scores[activePlayer] += 150; updateUI(); }
@@ -1345,7 +1333,6 @@
         return 3;
     }
 
-    // ПЕРЕХОД В СУПЕРИГРУ: сохраняем заработанные очки, чтобы они не занулились
     function acceptSuperGame() {
         closeModal('superOfferModal');
         gameState = "SUPER_GAME";
@@ -1367,6 +1354,7 @@
         document.getElementById('turnStatus').innerText = `СУПЕРИГРА! Выберите любые ${superPicksLeft} буквы на клавиатуре.`;
     }
 
+    // ВЫБОР БУКВ В СУПЕРИГРЕ: после исчерпания лимита буквы блокируются навсегда!
     function handleSuperPick(char) {
         const btn = document.getElementById('key-' + char);
         if (btn.disabled) return;
@@ -1382,8 +1370,10 @@
             document.getElementById('turnStatus').innerText = `Осталось выбрать букв: ${superPicksLeft}.`;
         } else {
             isSuperPickPhase = false;
-            document.getElementById('turnStatus').innerText = "Буквы открыты! Назовите оставшиеся буквы или введите слово целиком.";
-            waitingLetter = true;
+            waitingLetter = false;
+            // Блокируем абсолютно все оставшиеся буквы на клавиатуре!
+            document.querySelectorAll('.char-btn').forEach(b => b.disabled = true);
+            document.getElementById('turnStatus').innerText = "Буквы открыты! Нажмите кнопку «Назвать слово» и введите слово целиком!";
             document.getElementById('openGuessBtn').disabled = false;
         }
     }
@@ -1393,13 +1383,14 @@
         finishGameWithWin(false);
     }
 
-    function finishGameWithPrizeChoice(prizeText) {
+    // СЕКТОР ПРИЗ: Скидка 25% + 2 недели продления
+    function finishGameWithPrizeChoice() {
         markGameWon();
         document.getElementById('winTermExplanation').innerHTML = activeQuestion.explanation;
-        document.getElementById('winTitle').innerText = "ВЫ ВЫИГРАЛИ ПРИЗ!";
-        document.getElementById('winDesc').innerHTML = `Вы остановили игру и забрали приз: <b>«${prizeText}»</b>!<br>Баллы для скидки: <b>${scores[0]} ₽</b>. Следующая игра откроется в следующем месяце.`;
+        document.getElementById('winTitle').innerText = "ВЫ ВЫИГРАЛИ СЕКТОР ПРИЗ!";
+        document.getElementById('winDesc').innerHTML = `Вы забрали приз: <b>Скидка 25% на абонемент + 2 недели продления</b>!<br>Следующая игра откроется в следующем месяце.`;
 
-        const msg = "Я выиграл в поле чудес";
+        const msg = "ПРИЗ";
         document.getElementById('vkClaimBtn').href = `https://vk.com/im?sel=-221142875&ref=pole_prize&message=${encodeURIComponent(msg)}`;
         document.getElementById('vkClaimBtn').innerText = "Написать Вере в ВК (нажмите «Отправить»)";
 
@@ -1414,12 +1405,12 @@
         const vkBtn = document.getElementById('vkClaimBtn');
 
         const discountPoints = Math.max(0, Math.min(scores[0] || 0, MAX_SCORE_LIMIT));
-        const msg = "Я выиграл в поле чудес";
+        const msg = "ПРИЗ";
 
         if (isSuperWin) {
             title.innerText = "ТРИУМФ В СУПЕРИГРЕ!";
-            desc.innerHTML = `Вы разгадали главное слово <b>«${word}»</b>!<br>Ваш СУПЕР-ПРИЗ: <b>Скидка 35% к любому абонементу</b> + списание <b>${discountPoints} баллов</b>!`;
-            vkBtn.href = `https://vk.com/im?sel=-221142875&ref=pole_super_${discountPoints}&message=${encodeURIComponent(msg)}`;
+            desc.innerHTML = `Вы разгадали главное слово <b>«${word}»</b>!<br>Ваш СУПЕР-ПРИЗ: все ваши баллы переведены в <b>Скидку 30% на любой абонемент студии</b>!`;
+            vkBtn.href = `https://vk.com/im?sel=-221142875&ref=pole_super&message=${encodeURIComponent(msg)}`;
         } else {
             title.innerText = "Победа в Финале!";
             desc.innerHTML = `Вы победитель финала! Разгаданное слово <b>«${word}»</b> принесло вам <b>${discountPoints} баллов скидки</b> к абонементу!`;
@@ -1434,7 +1425,7 @@
         if (navigator.share) {
             navigator.share({
                 title: 'Поле Чудес в студии РЕСУРС',
-                text: 'Разгадай интеллектуальную загадку о теле и выиграй скидку 35% и баллы на абонемент в студию движения РЕСУРС!',
+                text: 'Разгадай интеллектуальную загадку о теле и выиграй скидки на абонемент в студию движения РЕСУРС!',
                 url: window.location.href
             }).catch(() => {});
         } else {
