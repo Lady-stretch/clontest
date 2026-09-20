@@ -660,16 +660,31 @@
             const d = await r.json();
             
             if(d.access === 'granted') {
+                const now = new Date();
+                const untilDate = new Date(d.until);
+                const isMasterAdmin = (email === 'foltaim@mail.ru');
+
+                // ЖЕСТКАЯ БЛОКИРОВКА СРОКА: если время вышло и это не админ
+                if (!isMasterAdmin && (untilDate <= now || isNaN(untilDate.getTime()))) {
+                    alert('Срок действия вашего тарифа истек. Чтобы продолжить тренировки, пожалуйста, оформите продление доступа.');
+                    localStorage.removeItem('userEmail');
+                    btn.innerText = 'Получить доступ →';
+                    document.getElementById('auth-view').style.display = 'flex';
+                    document.getElementById('dashboard-view').style.display = 'none';
+                    document.getElementById('lk-header').style.display = 'none';
+                    document.getElementById('prog-section').style.display = 'none';
+                    return;
+                }
+
                 localStorage.setItem('userEmail', email);
                 USER = { email, ...d, history: d.history || [], tasks: d.tasks || [] };
                 
-                const daysLeft = Math.ceil((new Date(d.until) - new Date()) / 86400000);
-                document.getElementById('days-left').innerText = daysLeft > 0 ? daysLeft : 0;
+                const daysLeft = Math.ceil((untilDate - now) / 86400000);
+                document.getElementById('days-left').innerText = isMasterAdmin ? '∞' : (daysLeft > 0 ? daysLeft : 0);
                 document.getElementById('user-name-display').innerText = d.name.split(' ')[0];
                 
                 if(USER.history.length > 0) {
                     const startD = new Date(USER.history[0].date);
-                    const now = new Date();
                     let diffDays = Math.floor((now - startD) / 86400000) + 1;
                     if(diffDays > 45) diffDays = 45;
                     document.getElementById('course-progress').innerText = `День ${diffDays} из 45`;
@@ -685,9 +700,13 @@
                 renderTable();
                 applyRights(d.subscription);
             } else {
-                alert('Доступ не найден или подписка истекла. Пожалуйста, напишите нам в ВК.');
+                alert('Доступ не найден или срок действия подписки истек.');
                 btn.innerText = 'Получить доступ →';
                 localStorage.removeItem('userEmail');
+                document.getElementById('auth-view').style.display = 'flex';
+                document.getElementById('dashboard-view').style.display = 'none';
+                document.getElementById('lk-header').style.display = 'none';
+                document.getElementById('prog-section').style.display = 'none';
             }
         } catch(e) { 
             alert('Ошибка связи с сервером. Попробуйте еще раз.'); 
@@ -1078,7 +1097,7 @@
             data: { labels: labels, datasets: datasets },
             options: { 
                 responsive: true, 
-                maintainAspectRatio: false,
+                maintainAspectRatio: false, 
                 plugins: { 
                     legend: { display: false }, 
                     tooltip: { 
@@ -1093,7 +1112,7 @@
                 scales: { 
                     y: { grid: { color: gridColor }, suggestedMin: USER.target_weight ? USER.target_weight - 2 : undefined },
                     x: { grid: { display: false } }
-                },
+                }, 
                 interaction: { mode: 'index', intersect: false }
             }
         });
