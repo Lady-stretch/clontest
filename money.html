@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
+    <!-- Инициализация темы без мерцания -->
+    <script>
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+
+    <!-- Счетчики аналитики: Яндекс.Метрика и Top.Mail.Ru -->
+    <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108177329', 'ym');
+    ym(108177329, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+
+    var _tmr = window._tmr || (window._tmr = []);
+    _tmr.push({id: "3755240", type: "pageView", start: (new Date()).getTime()});
+    (function (d, w, id) {
+        if (d.getElementById(id)) return;
+        var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
+        ts.src = "https://top-fwz1.mail.ru/js/code.js";
+        var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
+        if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
+    })(document, window, "tmr-code");
+    </script>
+    <noscript>
+        <div>
+            <img src="https://mc.yandex.ru/watch/108177329" style="position:absolute; left:-9999px;" alt="" />
+            <img src="https://top-fwz1.mail.ru/counter?id=3755240;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" />
+        </div>
+    </noscript>
+
+    <!-- СЕО МЕТА-ТЕГИ -->
+    <title>Индекс Денежной Лени | Ленивый генератор идей РЕСУРС</title>
+    <meta name="description" content="Узнай свой денежный потенциал на сегодня, получи ленивый диагноз и секретную антикризисную схему в два клика. Без работы и спорта!">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://resurs-stretch.ru/money.html">
+
+    <!-- Фавикон и шрифты -->
+    <link rel="icon" type="image/png" href="logo_header_final.png">
+    <link rel="apple-touch-icon" href="logo_header_final.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/imask"></script>
+
+    <style>
+        :root {
+            --bg-color: #0A090F;
+            --surface-color: #12101B;
+            --surface-hover: #1A1727;
+            --accent-color: #6C3EB8;
+            --accent-hover: #8352D6;
+            --accent-subtle: rgba(108, 62, 184, 0.15);
+            --text-main: #F5F4F9;
+            --text-muted: #9693A6;
+            --border-color: rgba(108, 62, 184, 0.22);
+            --header-bg: rgba(10, 9, 15, 0.88);
+            --shadow: rgba(0, 0, 0, 0.6);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="light"] {
+            --bg-color: #F8F7FC;
+            --surface-color: #FFFFFF;
+            --surface-hover: #F1EDF9;
+            --accent-color: #5B3494;
+            --accent-hover: #48257B;
+            --accent-subtle: rgba(91, 52, 148, 0.08);
+            --text-main: #14121E;
+            --text-muted: #666375;
+            --border-color: rgba(91, 52, 148, 0.16);
+            --header-bg: rgba(248, 247, 252, 0.9);
+            --shadow: rgba(0, 0, 0, 0.05);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
+        html { scroll-behavior: smooth; }
+        
+        html, body {
+            overflow-x: hidden !important;
+            max-width: 100%;
+            width: 100%;
+            position: relative;
+        }
+
+        body { 
+            background: var(--bg-color); 
+            color: var(--text-main);
+            font-family: 'Manrope', sans-serif; 
+            line-height: 1.6;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            transition: background-color 0.3s ease, color 0.3s ease;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 { font-weight: 800; letter-spacing: -0.5px; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        ul { list-style: none; }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 14px 28px;
+            border: 1px solid var(--accent-color);
+            color: #FFF;
+            background: var(--accent-color);
+            text-transform: uppercase; font-size: 11px; letter-spacing: 1px;
+            cursor: pointer; transition: var(--transition);
+            font-weight: 800;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+        .btn:hover {
+            background: var(--accent-hover);
+            border-color: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        .section-tag {
+            color: var(--accent-color);
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            display: inline-block;
+            background: var(--accent-subtle);
+            padding: 4px 12px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+        }
+
+        /* HEADER */
+        header {
+            position: sticky; top: 0; width: 100%; padding: 14px 5%;
+            z-index: 2000;
+            background: var(--header-bg); 
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); 
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .header-top {
+            display: flex; justify-content: space-between; align-items: center; width: 100%;
+        }
+
+        .logo-wrap {
+            display: flex; align-items: center; gap: 10px;
+        }
+        .logo-wrap img { height: 34px; width: 34px; border-radius: 6px; }
+        .brand-name { font-size: 18px; letter-spacing: 1px; text-transform: uppercase; font-weight: 800; }
+        .brand-name span { color: var(--accent-color); }
+
+        .desktop-actions {
+            display: flex; align-items: center; gap: 12px;
+        }
+
+        .back-link {
+            font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+            color: var(--text-muted); display: inline-flex; align-items: center; gap: 6px;
+        }
+        .back-link:hover { color: var(--accent-color); }
+
+        .theme-toggle-btn {
+            padding: 8px 14px; height: 36px; font-size: 10px; font-weight: 800; letter-spacing: 1px;
+            display: inline-flex; align-items: center; justify-content: center;
+            border-radius: 6px; border: 1px solid var(--border-color); background: var(--surface-color);
+            cursor: pointer; transition: var(--transition); color: var(--text-main); text-transform: uppercase;
+        }
+        .theme-toggle-btn:hover { border-color: var(--accent-color); color: var(--accent-color); }
+
+        /* ВТОРОЙ ЭТАЖ ДЛЯ МОБИЛЬНЫХ */
+        .mobile-thumb-bar {
+            display: none;
+            width: 100%;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border-color);
+            gap: 10px;
+        }
+        .mobile-thumb-bar .theme-toggle-btn { flex: 1; height: 42px; }
+        .mobile-thumb-bar .btn-mobile-action { 
+            flex: 2; height: 42px; display: flex; align-items: center; justify-content: center;
+            background: var(--accent-color); color: #FFF; border-radius: 6px; font-size: 11px;
+            font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; text-decoration: none;
+        }
+
+        @media (max-width: 900px) {
+            .desktop-actions { display: none; }
+            .mobile-thumb-bar { display: flex; }
+        }
+
+        /* ИНТЕРАКТИВНЫЙ АТТРАКЦИОН */
+        .generator-box {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 20px 40px var(--shadow);
+            text-align: center;
+        }
+
+        .generator-box h1 {
+            font-size: clamp(24px, 4vw, 36px);
+            margin-bottom: 12px;
+        }
+        .generator-box h1 span { color: var(--accent-color); }
+        .generator-box p {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        @media(max-width: 600px) { .options-grid { grid-template-columns: 1fr; } }
+
+        .option-card {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            padding: 16px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 700;
+            font-size: 14px;
+        }
+        .option-card:hover, .option-card.selected {
+            border-color: var(--accent-color);
+            background: var(--accent-subtle);
+            color: var(--accent-color);
+        }
+
+        /* БЛОК РЕЗУЛЬТАТА */
+        #result-area {
+            display: none;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+            text-align: left;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .diagnosis-card {
+            background: var(--bg-color);
+            border: 1px solid var(--accent-color);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+        .diagnosis-card h3 {
+            color: var(--accent-color);
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+        .diagnosis-card p {
+            color: var(--text-main);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .locked-card {
+            background: linear-gradient(135deg, var(--surface-hover), var(--bg-color));
+            border: 1px dashed var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .locked-card h4 {
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        .locked-card p {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        /* РСЯ БЛОК (Рекламная сеть Яндекса) */
+        .rsya-banner-box {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        .rsya-placeholder {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        footer {
+            padding: 40px 0; border-top: 1px solid var(--border-color); text-align: center; background: var(--surface-color);
+        }
+        .footer-sub { font-size: 11px; color: var(--text-muted); line-height: 1.8; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+<!-- ШАПКА -->
+<header id="header">
+    <div class="header-top container" style="max-width:1000px; padding:0;">
+        <div class="logo-wrap">
+            <a href="index.html" class="logo-wrap">
+                <img src="logo_header_final.png" alt="Логотип РЕСУРС">
+                <div class="brand-name">РЕСУРС<span>.ДЕНЬГИ</span></div>
+            </a>
+        </div>
+
+        <div class="desktop-actions">
+            <a href="index.html" class="back-link">← На главную РЕСУРС</a>
+            <button id="themeToggleBtn" class="theme-toggle-btn" onclick="toggleThemeInstant()">ТЕМА: ТЕМНАЯ</button>
+        </div>
+    </div>
+
+    <!-- ВТОРОЙ ЭТАЖ ДЛЯ МОБИЛЬНЫХ -->
+    <div class="mobile-thumb-bar">
+        <button id="themeToggleMobile" class="theme-toggle-btn" onclick="toggleThemeInstant()">ТЕМА: ТЕМНАЯ</button>
+        <a href="index.html" class="btn-mobile-action">НА ГЛАВНУЮ</a>
+    </div>
+</header>
+
+<main class="container">
+    
+    <!-- ИНТЕРАКТИВНЫЙ ГЕНЕРАТОР -->
+    <section class="generator-box">
+        <span class="section-tag">ИИ-Автомат 24/7</span>
+        <h1>Индекс Денежной Лени <span>2026</span></h1>
+        <p>Выбери свое состояние прямо сейчас — умный гибридный движок мгновенно рассчитает твой денежный диагноз и выдаст ленивое решение.</p>
+
+        <div style="text-align: left; margin-bottom: 10px; font-size: 12px; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Шаг 1. Какое у тебя сегодня настроение?</div>
+        <div class="options-grid" id="mood-options">
+            <div class="option-card" onclick="selectOption(this, 'mood', 'Лень даже думать, хочу лежать')">🛌 Лень даже думать, хочу лежать</div>
+            <div class="option-card" onclick="selectOption(this, 'mood', 'Денег надо срочно, но напрягаться нельзя')">💸 Денег надо срочно, но напрягаться нельзя</div>
+            <div class="option-card" onclick="selectOption:func(this, 'mood', 'Бесит всё, хочу легких денег')">⚡ Бесит всё, хочу легких денег</div>
+            <div class="option-card" onclick="selectOption(this, 'mood', 'Просто по приколу зашел')">😎 Просто по приколу зашел</div>
+        </div>
+
+        <div style="text-align: left; margin-bottom: 10px; font-size: 12px; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Шаг 2. Сколько нужно прямо сейчас?</div>
+        <div class="options-grid" id="amount-options">
+            <div class="option-card" onclick="selectOption(this, 'amount', 'На пачку чипсов и кофе (500 ₽)')">☕ На кофе и чипсы (500 ₽)</div>
+            <div class="option-card" onclick="selectOption(this, 'amount', 'На вечер пятницы (5 000 ₽)')">🍕 На вечер пятницы (5 000 ₽)</div>
+            <div class="option-card" onclick="selectOption(this, 'amount', 'Чтобы закрыть базовый тупняк (50 000 ₽)')">🚀 На базовый тупняк (50 000 ₽)</div>
+            <div class="option-card" onclick="selectOption(this, 'amount', 'Миллион долларов сразу')">🌴 Миллион долларов сразу</div>
+        </div>
+
+        <button class="btn" style="width: 100%; padding: 16px; font-size: 13px;" onclick="generateDiagnosis()">Узнать свой финансовый диагноз ➔</button>
+
+        <!-- ОБЛАСТЬ ВЫДАЧИ РЕЗУЛЬТАТА -->
+        <div id="result-area">
+            <div class="diagnosis-card">
+                <span class="section-tag" style="margin-bottom: 6px;">Результат анализа ИИ</span>
+                <h3 id="diag-title">Диагноз: Спящий финансовый стратег</h3>
+                <p id="diag-text">Твой уровень лени сегодня зашкаливает, но мозг генерирует гениальные идеи на уровне диванной аналитики. Риск потратить силы равен нулю.</p>
+            </div>
+
+            <!-- РСЯ БЛОК ДЛЯ ТЕХ, КТО НЕ ПЛАТИТ -->
+            <div class="rsya-banner-box">
+                <div class="rsya-placeholder">Реклама • Рекламная сеть Яндекса</div>
+                <div style="font-size: 13px; color: var(--text-muted); padding: 15px;">
+                    [ Здесь автоматически отображается релевантный баннер РСЯ для монетизации бесплатного трафика ]
+                </div>
+            </div>
+
+            <div class="locked-card">
+                <span class="section-tag" style="margin-bottom: 6px;">Секретный уровень</span>
+                <h4>Открыть готовый ленивый план активации кэша</h4>
+                <p>Получи точный алгоритм действий без вложений и найма сотрудников за 1 минуту.</p>
+                <button class="btn" onclick="alert('Эмуляция оплаты 49 ₽ через СБП прошла успешно! Доступ открыт.')">Разблокировать за 49 ₽</button>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- ПОДВАЛ -->
+<footer>
+    <div class="container">
+        <div class="brand-name" style="margin-bottom: 8px;">РЕСУРС<span>.ДЕНЬГИ</span></div>
+        <p style="font-size: 13px; font-weight: 700; color: var(--text-main);">
+            Автоматические цифровые утилиты для жизни без лишних заморочек
+        </p>
+        <p class="footer-sub">
+            ИП Худяков Николай Сергеевич • ИНН 111801576622 • ОГРН 323110000009152 • Тел.: <a href="tel:+79087155557" style="color:var(--accent-color); font-weight:700;">+7 (908) 715-55-57</a><br>
+            <a href="privacy.html" style="text-decoration:underline; color:inherit;">Политика конфиденциальности</a> | <a href="offer.html" style="text-decoration:underline; color:inherit;">Договор оферты</a>
+        </p>
+    </div>
+</footer>
+
+<!-- СКРИПТЫ -->
+<script>
+    // Переключение темы
+    function toggleThemeInstant() {
+        const root = document.documentElement;
+        const current = root.getAttribute('data-theme') || 'dark';
+        const next = current === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        updateThemeButtons(next);
+    }
+
+    function updateThemeButtons(theme) {
+        const text = theme === 'dark' ? 'ТЕМА: ТЕМНАЯ' : 'ТЕМА: СВЕТЛАЯ';
+        const btnDesktop = document.getElementById('themeToggleBtn');
+        const btnMobile = document.getElementById('themeToggleMobile');
+        if (btnDesktop) btnDesktop.innerText = text;
+        if (btnMobile) btnMobile.innerText = text;
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        updateThemeButtons(savedTheme);
+    });
+
+    // Логика выбора вариантов
+    let selectedData = { mood: '', amount: '' };
+
+    function selectOption(element, category, value) {
+        const parent = element.parentElement;
+        parent.querySelectorAll('.option-card').forEach(card => card.classList.remove('selected'));
+        element.classList.add('selected');
+        selectedData[category] = value;
+    }
+
+    // База убойных комбинаций (0 затрат на ИИ-токены, мгновенная выдача)
+    const templates = [
+        {
+            title: "Диагноз: Профессиональный ждун чуда",
+            text: "С такими запросами Вселенная тебе должна не деньги, а как минимум отпуск на Мальдивах за терпение. Твой уровень лени блокирует любые денежные потоки, кроме ночных мечтаний о миллионах."
+        },
+        {
+            title: "Диагноз: Диванный инвестор в себя",
+            text: "Ты хочешь всё и сразу, желательно лежа под пледом с чашкой чая. Финансовая карма говорит: пора продать то, чем ты не пользуешься на Авито, по нашей ленивой инструкции."
+        },
+        {
+            title: "Диагноз: Энергосберегающий гений",
+            text: "Твой организм инстинктивно защищает тебя от работы. Это мудро. Но чтобы капало по 49 рублей пока ты спишь, нужна цифровая ловушка для импульсов."
+        }
+    ];
+
+    function generateDiagnosis() {
+        if (!selectedData.mood || !selectedData.amount) {
+            alert('Пожалуйста, выбери настроение и сумму на шагах выше!');
+            return;
+        }
+
+        // Выбираем случайный убойный шаблон из базы за 0 секунд и 0 рублей
+        const randomTemplate = templates[Math.floor(Math.random() * templates.length)];
+        
+        document.getElementById('diag-title').innerText = randomTemplate.title;
+        document.getElementById('diag-text').innerText = `Выбор: «${selectedData.mood}» при запросе «${selectedData.amount}». ${randomTemplate.text}`;
+
+        const resultArea = document.getElementById('result-area');
+        resultArea.style.display = 'block';
+        resultArea.scrollIntoView({ behavior: 'smooth' });
+    }
+</script>
+</body>
+</html>
