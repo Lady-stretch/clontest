@@ -1388,9 +1388,8 @@
         document.getElementById('winTitle').innerText = "ВЫ ВЫИГРАЛИ СЕКТОР ПРИЗ!";
         document.getElementById('winDesc').innerHTML = `Вы забрали приз: <b>Скидка 25% на абонемент + 2 недели продления</b>!<br>Следующая игра откроется в следующем месяце.`;
 
-        // Используем параметр text= вместо message= — текст вставится в поле ввода автоматически!
-        const autoText = "СЕКТОР ПРИЗ";
-        document.getElementById('vkClaimBtn').href = `https://vk.me/resurs_stretch?ref=pole_prize&text=${encodeURIComponent(autoText)}`;
+        const msg = "ПРИЗ СЕКТОР";
+        document.getElementById('vkClaimBtn').href = `https://vk.com/im?sel=-221142875&ref=pole_prize&message=${encodeURIComponent(msg)}`;
         document.getElementById('vkClaimBtn').innerText = "Написать Вере в ВК (нажмите «Отправить»)";
 
         openModal('finalWinModal', 'yandex_rtb_modal_win');
@@ -1408,15 +1407,13 @@
         if (isSuperWin) {
             title.innerText = "ТРИУМФ В СУПЕРИГРЕ!";
             desc.innerHTML = `Вы разгадали главное слово <b>«${word}»</b>!<br>Ваш СУПЕР-ПРИЗ: все ваши баллы переведены в <b>Скидку 30% на любой абонемент студии</b>!`;
-            const autoText = "СУПЕРИГРА 30";
-            vkBtn.href = `https://vk.me/resurs_stretch?ref=pole_super&text=${encodeURIComponent(autoText)}`;
+            const msg = "ПРИЗ СУПЕР";
+            vkBtn.href = `https://vk.com/im?sel=-221142875&ref=pole_super&message=${encodeURIComponent(msg)}`;
         } else {
             title.innerText = "Победа в Финале!";
             desc.innerHTML = `Вы победитель финала! Разгаданное слово <b>«${word}»</b> принесло вам <b>${discountPoints} баллов скидки</b> к абонементу!`;
-            
-            // ВАЖНО: В текставтозаполнении пишем "БАЛЛЫ [число]", чтобы бот точно понял
-            const autoText = `БАЛЛЫ ${discountPoints}`;
-            vkBtn.href = `https://vk.me/resurs_stretch?ref=pole_pts_${discountPoints}&text=${encodeURIComponent(autoText)}`;
+            const msg = `ПРИЗ БАЛЛЫ ${discountPoints}`;
+            vkBtn.href = `https://vk.com/im?sel=-221142875&ref=pole_pts_${discountPoints}&message=${encodeURIComponent(msg)}`;
         }
 
         vkBtn.innerText = "Написать Вере в ВК (нажмите «Отправить»)";
