@@ -30,7 +30,7 @@
         var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
         ts.src = "https://top-fwz1.mail.ru/js/code.js";
         var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
-        if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
+        if (w.opera == "[object Opera]") { d.appendEventListener("DOMContentLoaded", f, false); } else { f(); }
     })(document, window, "tmr-code");
     </script>
     <noscript>
@@ -41,9 +41,9 @@
     </noscript>
 
     <!-- СЕО МЕТА-ТЕГИ И СЕМАНТИЧЕСКОЕ ЯДРО -->
-    <title>Индекс Денежной Лени | Как заработать деньги прямо сейчас и найти быстрые идеи в Сыктывкаре и РФ</title>
-    <meta name="description" content="Узнай свой денежный потенциал на сегодня, получи ленивый диагноз и секретную антикризисную схему в два клика. Как заработать без вложений, подработка на дому, идеи для ленивых.">
-    <meta name="keywords" content="как заработать в сыктывкаре без опыта, где быстро найти деньги сыктывкар, как заработать деньги прямо сейчас без вложений, где срочно взять денег если лень работать, идеи как заработать дома с телефона, легкий заработок для ленивых">
+    <title>Индекс Денежной Лени | Финя Консультант — как заработать деньги в Сыктывкаре и РФ</title>
+    <meta name="description" content="Узнай свой денежный потенциал на сегодня, получи ленивый диагноз от Фини Консультанта и секретную схему за 49 рублей. Легкий заработок и идеи для ленивых.">
+    <meta name="keywords" content="как заработать в сыктывкаре без опыта, где быстро найти деньги сыктывкар, как заработать деньги прямо сейчас без вложений, финя консультант, идеи как заработать дома с телефона, легкий заработок для ленивых">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://resurs-stretch.ru/money.html">
 
@@ -54,8 +54,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <script src="https://unpkg.com/imask"></script>
-
     <!-- СКРИПТЫ ЯНДЕКС РЕКЛАМЫ (РСЯ) -->
     <script>window.yaContextCb=window.yaContextCb||[]</script>
     <script src="https://yandex.ru/ads/system/context.js" async></script>
@@ -310,6 +308,24 @@
             margin-bottom: 20px;
         }
 
+        /* ИИ-ЧАТ ВИДЖЕТ (ФИНЯ КОНСУЛЬТАНТ) */
+        #finya-button {
+            position: fixed; bottom: 25px; right: 25px; width: 54px; height: 54px;
+            background: var(--accent-color); border: none; border-radius: 50%;
+            cursor: pointer; box-shadow: 0 10px 25px rgba(108, 62, 184, 0.4);
+            z-index: 9999; display: flex; align-items: center; justify-content: center; font-size: 22px; color: #FFF;
+        }
+        #finya-chat {
+            display: none; position: fixed; bottom: 90px; right: 25px; width: 360px;
+            height: 500px; max-height: 80vh; background: var(--surface-color);
+            border: 1px solid var(--border-color); border-radius: 12px; z-index: 10000;
+            flex-direction: column; overflow: hidden; box-shadow: 0 20px 50px var(--shadow);
+        }
+        #finya-chat.chat-active { display: flex; }
+        .msg { padding: 10px 14px; border-radius: 8px; margin: 6px 12px; font-size: 13px; line-height: 1.4; max-width: 82%; }
+        .msg-assistant { background: var(--surface-hover); color: var(--text-main); align-self: flex-start; }
+        .msg-user { background: var(--accent-color); color: #FFF; align-self: flex-end; }
+
         footer {
             padding: 40px 0; border-top: 1px solid var(--border-color); text-align: center; background: var(--surface-color);
         }
@@ -345,9 +361,9 @@
     
     <!-- ИНТЕРАКТИВНЫЙ ГЕНЕРАТОР -->
     <section class="generator-box">
-        <span class="section-tag">ИИ-Автомат 24/7</span>
+        <span class="section-tag">Финя Автомат 24/7</span>
         <h1>Индекс Денежной Лени <span>2026</span></h1>
-        <p>Выбери свое состояние прямо сейчас — умный гибридный движок мгновенно рассчитает твой денежный диагноз и выдаст ленивое решение.</p>
+        <p>Выбери свое состояние прямо сейчас — наш умный гибридный движок мгновенно рассчитает твой денежный диагноз.</p>
 
         <div style="text-align: left; margin-bottom: 10px; font-size: 12px; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Шаг 1. Какое у тебя сегодня настроение?</div>
         <div class="options-grid" id="mood-options">
@@ -365,14 +381,14 @@
             <div class="option-card" onclick="selectOption(this, 'amount', 'Миллион долларов сразу')">🌴 Миллион долларов сразу</div>
         </div>
 
-        <button class="btn" style="width: 100%; padding: 16px; font-size: 13px;" onclick="generateDiagnosis()">Узнать свой финансовый диагноз ➔</button>
+        <button class="btn" style="width: 100%; padding: 16px; font-size: 13px;" onclick="generateDiagnosis()">Узнать свой финансовый диагноз от Фини ➔</button>
 
         <!-- ОБЛАСТЬ ВЫДАЧИ РЕЗУЛЬТАТА -->
         <div id="result-area">
             <div class="diagnosis-card">
-                <span class="section-tag" style="margin-bottom: 6px;">Результат анализа ИИ</span>
+                <span class="section-tag" style="margin-bottom: 6px;">Вердикт Фини Консультанта</span>
                 <h3 id="diag-title">Диагноз: Спящий финансовый стратег</h3>
-                <p id="diag-text">Твой уровень лени сегодня зашкаливает, но мозг генерирует гениальные идеи на уровне диванной аналитики. Риск потратить силы равен нулю.</p>
+                <p id="diag-text">Твой уровень лени сегодня зашкаливает, но мозг генерирует гениальные идеи на уровне диванной аналитики.</p>
             </div>
 
             <!-- РСЯ БЛОК 22 (ЛЕНТА / FEED) -->
@@ -391,14 +407,35 @@
 
             <div class="locked-card">
                 <span class="section-tag" style="margin-bottom: 6px;">Секретный уровень</span>
-                <h4>Открыть готовый ленивый план активации кэша</h4>
-                <p>Получи точный алгоритм действий без вложений и найма сотрудников за 1 минуту.</p>
-                <button class="btn" onclick="alert('Эмуляция оплаты 49 ₽ через СБП прошла успешно! Доступ открыт.')">Разблокировать за 49 ₽</button>
+                <h4>Включить схему пассивного потока по 49 ₽</h4>
+                <p>Финя подготовил точный ленивый алгоритм активации кэша без найма людей и лишних движений.</p>
+                <button class="btn" onclick="alert('Эмуляция оплаты 49 ₽ через СБП прошла успешно! План Фини разблокирован.')">Получить план от Фини за 49 ₽</button>
             </div>
         </div>
     </section>
 
 </main>
+
+<!-- ИИ-АССИСТЕНТ ФИНЯ КОНСУЛЬТАНТ -->
+<div id="finya-widget">
+    <button id="finya-button" onclick="toggleFinyaChat()" title="Чат с Финей">💬</button>
+
+    <div id="finya-chat"> 
+        <div style="background: var(--accent-color); padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; color: #FFF;">
+            <span style="letter-spacing: 1px; font-size: 12px; font-weight: 800;">ФИНЯ • ИИ КОНСУЛЬТАНТ</span>
+            <span onclick="toggleFinyaChat()" style="cursor: pointer; font-size: 20px; line-height: 1;">&times;</span>
+        </div>
+
+        <div id="finya-messages" style="flex: 1; overflow-y: auto; display: flex; flex-direction: column; padding: 10px 0;">
+            <div class="msg msg-assistant">Привет! Я Финя — твой цифровой помощник. Хочешь узнать, как сделать так, чтобы капало по 49 рублей, пока ты отдыхаешь? Спроси меня! 😉</div>
+        </div>
+
+        <div style="padding: 12px; background: var(--bg-color); border-top: 1px solid var(--border-color); display: flex; gap: 8px;">
+            <input type="text" id="finya-input" placeholder="Спроси Финю..." style="flex-grow: 1; background: var(--surface-color); border: 1px solid var(--border-color); border-radius: 6px; padding: 8px 12px; color: var(--text-main); font-size: 13px; outline: none;">
+            <button onclick="sendFinyaMessage()" style="background: var(--accent-color); border: none; width: 38px; height: 38px; border-radius: 6px; cursor: pointer; color: #FFF; font-size: 16px;">➤</button>
+        </div>
+    </div>
+</div>
 
 <!-- РСЯ БЛОК 26 (OVERLAY ДЛЯ МОБИЛЬНЫХ ТАЧ-УСТРОЙСТВ) -->
 <script>
@@ -462,7 +499,7 @@ window.yaContextCb.push(() => {
         updateThemeButtons(savedTheme);
     });
 
-    // Логика выбора вариантов
+    // Логика выбора вариантов генератора
     let selectedData = { mood: '', amount: '' };
 
     function selectOption(element, category, value) {
@@ -475,16 +512,16 @@ window.yaContextCb.push(() => {
     // База убойных комбинаций (0 затрат на ИИ-токены, мгновенная выдача)
     const templates = [
         {
-            title: "Диагноз: Профессиональный ждун чуда",
-            text: "С такими запросами Вселенная тебе должна не деньги, а как минимум отпуск на Мальдивах за терпение. Твой уровень лени блокирует любые денежные потоки, кроме ночных мечтаний о миллионах."
+            title: "Вердикт Фини: Профессиональный ждун чуда",
+            text: "С такими запросами Вселенная тебе должна не деньги, а как минимум отпуск на Мальдивах за терпение. Твой уровень лени блокирует любые денежные потоки, но Финя знает пару ленивых трюков."
         },
         {
-            title: "Диагноз: Диванный инвестор в себя",
-            text: "Ты хочешь всё и сразу, желательно лежа под пледом с чашкой чая. Финансовая карма говорит: пора продать то, чем ты не пользуешься на Авито, по нашей ленивой инструкции."
+            title: "Вердикт Фини: Диванный инвестор в себя",
+            text: "Ты хочешь всё и сразу, желательно лежа под пледом с чашкой чая. Финансовая карма от Фини говорит: пора настроить микро-утилиту, чтобы капало по 49 рублей на автопилоте."
         },
         {
-            title: "Диагноз: Энергосберегающий гений",
-            text: "Твой организм инстинктивно защищает тебя от работы. Это мудро. Но чтобы капало по 49 рублей пока ты спишь, нужна цифровая ловушка для импульсов."
+            title: "Вердикт Фини: Энергосберегающий гений",
+            text: "Твой организм инстинктивно защищает тебя от работы. Это мудро. Но чтобы капало по 49 рублей пока ты спишь, нужна правильная цифровая настройка."
         }
     ];
 
@@ -494,7 +531,6 @@ window.yaContextCb.push(() => {
             return;
         }
 
-        // Выбираем случайный убойный шаблон из базы за 0 секунд и 0 рублей
         const randomTemplate = templates[Math.floor(Math.random() * templates.length)];
         
         document.getElementById('diag-title').innerText = randomTemplate.title;
@@ -504,6 +540,52 @@ window.yaContextCb.push(() => {
         resultArea.style.display = 'block';
         resultArea.scrollIntoView({ behavior: 'smooth' });
     }
+
+    // ЛОГИКА ИИ-ЧАТА ФИНИ КОНСУЛЬТАНТА
+    function toggleFinyaChat() {
+        document.getElementById('finya-chat').classList.toggle('chat-active');
+        if (document.getElementById('finya-chat').classList.contains('chat-active')) {
+            document.getElementById('finya-input').focus();
+        }
+    }
+
+    function renderFinyaMsg(text, type) {
+        const div = document.createElement('div');
+        div.className = `msg msg-${type}`;
+        div.textContent = text;
+        const container = document.getElementById("finya-messages");
+        container.appendChild(div);
+        container.scrollTop = container.scrollHeight;
+    }
+
+    function sendFinyaMessage() {
+        const inp = document.getElementById('finya-input');
+        const text = inp.value.trim();
+        if (!text) return;
+
+        renderFinyaMsg(text, 'user');
+        inp.value = "";
+
+        // Умные автоматические ответы Фини без лишних затрат
+        setTimeout(() => {
+            let reply = "Отличный вопрос! Чтобы капало по 49 рублей ежедневно без твоих усилий, нужно запустить наш ленивый генератор идей выше и забрать секретный план. 😉";
+            const lower = text.toLowerCase();
+            
+            if (lower.includes('привет') || lower.includes('здаров')) {
+                reply = "Привет! Я Финя. Готов помочь тебе заработать, не вставая с любимого дивана.";
+            } else if (lower.includes('49') || lower.includes('рубл')) {
+                reply = "Да-да, те самые 49 рублей! Микро-чек, который люди отдают не задумываясь, а на автомате получается солидная сумма.";
+            } else if (lower.includes('сыктывкар')) {
+                reply = "В Сыктывкаре погода переменчивая, а вот пассивный доход по 49 рублей с сайта работает стабильно в любую бурю!";
+            }
+
+            renderFinyaMsg(reply, 'assistant');
+        }, 600);
+    }
+
+    document.getElementById('finya-input').onkeypress = (e) => { 
+        if(e.key === 'Enter') sendFinyaMessage(); 
+    };
 </script>
 </body>
 </html>
