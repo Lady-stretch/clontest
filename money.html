@@ -30,7 +30,7 @@
         var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
         ts.src = "https://top-fwz1.mail.ru/js/code.js";
         var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
-        if (w.opera == "[object Opera]") { d.appendEventListener("DOMContentLoaded", f, false); } else { f(); }
+        if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
     })(document, window, "tmr-code");
     </script>
     <noscript>
@@ -256,7 +256,7 @@
             color: var(--accent-color);
         }
 
-        /* БЛОК РЕЗУЛЬТАТА */
+        /* БЛОК РЕЗУЛЬТАТА (БЕЗ РЕКЛАМЫ ВНУТРИ) */
         #result-area {
             display: none;
             margin-top: 30px;
@@ -383,26 +383,12 @@
 
         <button class="btn" style="width: 100%; padding: 16px; font-size: 13px;" onclick="generateDiagnosis()">Узнать свой финансовый диагноз от Фини ➔</button>
 
-        <!-- ОБЛАСТЬ ВЫДАЧИ РЕЗУЛЬТАТА -->
+        <!-- ОБЛАСТЬ ВЫДАЧИ РЕЗУЛЬТАТА (ЧИСТО И КОНВЕРСИОННО) -->
         <div id="result-area">
             <div class="diagnosis-card">
                 <span class="section-tag" style="margin-bottom: 6px;">Вердикт Фини Консультанта</span>
                 <h3 id="diag-title">Диагноз: Спящий финансовый стратег</h3>
                 <p id="diag-text">Твой уровень лени сегодня зашкаливает, но мозг генерирует гениальные идеи на уровне диванной аналитики.</p>
-            </div>
-
-            <!-- РСЯ БЛОК 22 (ЛЕНТА / FEED) -->
-            <div style="margin: 30px 0; padding: 15px; background: var(--surface-hover); border-radius: 12px; text-align: center;">
-                <div id="yandex_rtb_R-A-19181219-22"></div>
-                <script>
-                window.yaContextCb.push(() => {
-                    Ya.Context.AdvManager.render({
-                        "blockId": "R-A-19181219-22",
-                        "renderTo": "yandex_rtb_R-A-19181219-22",
-                        "type": "feed"
-                    })
-                })
-                </script>
             </div>
 
             <div class="locked-card">
@@ -413,6 +399,20 @@
             </div>
         </div>
     </section>
+
+    <!-- РСЯ БЛОК 22 (ЛЕНТА / FEED) АККУРАТНО ВНИЗУ ПОД ГЕНЕРАТОРОМ -->
+    <div style="margin: 40px 0; padding: 20px; background: var(--surface-color); border: 1px solid var(--border-color); border-radius: 16px; text-align: center;">
+        <div id="yandex_rtb_R-A-19181219-22"></div>
+        <script>
+        window.yaContextCb.push(() => {
+            Ya.Context.AdvManager.render({
+                "blockId": "R-A-19181219-22",
+                "renderTo": "yandex_rtb_R-A-19181219-22",
+                "type": "feed"
+            })
+        })
+        </script>
+    </div>
 
 </main>
 
@@ -566,7 +566,6 @@ window.yaContextCb.push(() => {
         renderFinyaMsg(text, 'user');
         inp.value = "";
 
-        // Умные автоматические ответы Фини без лишних затрат
         setTimeout(() => {
             let reply = "Отличный вопрос! Чтобы капало по 49 рублей ежедневно без твоих усилий, нужно запустить наш ленивый генератор идей выше и забрать секретный план. 😉";
             const lower = text.toLowerCase();
