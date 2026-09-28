@@ -548,7 +548,7 @@
         <div class="term-explanation-box" id="winTermExplanation"></div>
         <p id="winDesc">Вы зафиксировали свой выигрыш!</p>
         <div class="warning-rule-box" id="winHintBox" style="text-align: center; font-weight: 700; color: var(--gold);">
-            👆 Нажмите кнопку ниже, перейдите в чат ВК и напишите: ПРИЗ (бот сразу выдаст ваши призы)!
+            👆 Нажмите кнопку ниже и отправьте сформированное сообщение в чат!
         </div>
         <a href="#" id="vkClaimBtn" class="vk-btn-win" target="_blank">Написать Вере в ВК (нажмите «Отправить»)</a>
         <button class="m-btn m-btn-secondary" style="width: 100%;" onclick="location.reload()">Завершить сессию</button>
@@ -1354,7 +1354,6 @@
         document.getElementById('turnStatus').innerText = `СУПЕРИГРА! Выберите любые ${superPicksLeft} буквы на клавиатуре.`;
     }
 
-    // ВЫБОР БУКВ В СУПЕРИГРЕ: после исчерпания лимита буквы блокируются навсегда!
     function handleSuperPick(char) {
         const btn = document.getElementById('key-' + char);
         if (btn.disabled) return;
@@ -1371,7 +1370,6 @@
         } else {
             isSuperPickPhase = false;
             waitingLetter = false;
-            // Блокируем абсолютно все оставшиеся буквы на клавиатуре!
             document.querySelectorAll('.char-btn').forEach(b => b.disabled = true);
             document.getElementById('turnStatus').innerText = "Буквы открыты! Нажмите кнопку «Назвать слово» и введите слово целиком!";
             document.getElementById('openGuessBtn').disabled = false;
@@ -1390,7 +1388,7 @@
         document.getElementById('winTitle').innerText = "ВЫ ВЫИГРАЛИ СЕКТОР ПРИЗ!";
         document.getElementById('winDesc').innerHTML = `Вы забрали приз: <b>Скидка 25% на абонемент + 2 недели продления</b>!<br>Следующая игра откроется в следующем месяце.`;
 
-        const msg = "ПРИЗ";
+        const msg = "ПРИЗ СЕКТОР";
         document.getElementById('vkClaimBtn').href = `https://vk.com/im?sel=-221142875&ref=pole_prize&message=${encodeURIComponent(msg)}`;
         document.getElementById('vkClaimBtn').innerText = "Написать Вере в ВК (нажмите «Отправить»)";
 
@@ -1405,15 +1403,16 @@
         const vkBtn = document.getElementById('vkClaimBtn');
 
         const discountPoints = Math.max(0, Math.min(scores[0] || 0, MAX_SCORE_LIMIT));
-        const msg = "ПРИЗ";
 
         if (isSuperWin) {
             title.innerText = "ТРИУМФ В СУПЕРИГРЕ!";
             desc.innerHTML = `Вы разгадали главное слово <b>«${word}»</b>!<br>Ваш СУПЕР-ПРИЗ: все ваши баллы переведены в <b>Скидку 30% на любой абонемент студии</b>!`;
+            const msg = "ПРИЗ СУПЕР";
             vkBtn.href = `https://vk.com/im?sel=-221142875&ref=pole_super&message=${encodeURIComponent(msg)}`;
         } else {
             title.innerText = "Победа в Финале!";
             desc.innerHTML = `Вы победитель финала! Разгаданное слово <b>«${word}»</b> принесло вам <b>${discountPoints} баллов скидки</b> к абонементу!`;
+            const msg = `ПРИЗ БАЛЛЫ ${discountPoints}`;
             vkBtn.href = `https://vk.com/im?sel=-221142875&ref=pole_pts_${discountPoints}&message=${encodeURIComponent(msg)}`;
         }
 
