@@ -40,9 +40,10 @@
         </div>
     </noscript>
 
-    <!-- СЕО МЕТА-ТЕГИ -->
-    <title>Индекс Денежной Лени | Ленивый генератор идей РЕСУРС</title>
-    <meta name="description" content="Узнай свой денежный потенциал на сегодня, получи ленивый диагноз и секретную антикризисную схему в два клика. Без работы и спорта!">
+    <!-- СЕО МЕТА-ТЕГИ И СЕМАНТИЧЕСКОЕ ЯДРО -->
+    <title>Индекс Денежной Лени | Как заработать деньги прямо сейчас и найти быстрые идеи в Сыктывкаре и РФ</title>
+    <meta name="description" content="Узнай свой денежный потенциал на сегодня, получи ленивый диагноз и секретную антикризисную схему в два клика. Как заработать без вложений, подработка на дому, идеи для ленивых.">
+    <meta name="keywords" content="как заработать в сыктывкаре без опыта, где быстро найти деньги сыктывкар, как заработать деньги прямо сейчас без вложений, где срочно взять денег если лень работать, идеи как заработать дома с телефона, легкий заработок для ленивых">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://resurs-stretch.ru/money.html">
 
@@ -54,6 +55,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <script src="https://unpkg.com/imask"></script>
+
+    <!-- СКРИПТЫ ЯНДЕКС РЕКЛАМЫ (РСЯ) -->
+    <script>window.yaContextCb=window.yaContextCb||[]</script>
+    <script src="https://yandex.ru/ads/system/context.js" async></script>
 
     <style>
         :root {
@@ -305,23 +310,6 @@
             margin-bottom: 20px;
         }
 
-        /* РСЯ БЛОК (Рекламная сеть Яндекса) */
-        .rsya-banner-box {
-            background: var(--surface-color);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 20px;
-            margin: 40px 0;
-            text-align: center;
-        }
-        .rsya-placeholder {
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-muted);
-            margin-bottom: 8px;
-        }
-
         footer {
             padding: 40px 0; border-top: 1px solid var(--border-color); text-align: center; background: var(--surface-color);
         }
@@ -365,7 +353,7 @@
         <div class="options-grid" id="mood-options">
             <div class="option-card" onclick="selectOption(this, 'mood', 'Лень даже думать, хочу лежать')">🛌 Лень даже думать, хочу лежать</div>
             <div class="option-card" onclick="selectOption(this, 'mood', 'Денег надо срочно, но напрягаться нельзя')">💸 Денег надо срочно, но напрягаться нельзя</div>
-            <div class="option-card" onclick="selectOption:func(this, 'mood', 'Бесит всё, хочу легких денег')">⚡ Бесит всё, хочу легких денег</div>
+            <div class="option-card" onclick="selectOption(this, 'mood', 'Бесит всё, хочу легких денег')">⚡ Бесит всё, хочу легких денег</div>
             <div class="option-card" onclick="selectOption(this, 'mood', 'Просто по приколу зашел')">😎 Просто по приколу зашел</div>
         </div>
 
@@ -387,12 +375,18 @@
                 <p id="diag-text">Твой уровень лени сегодня зашкаливает, но мозг генерирует гениальные идеи на уровне диванной аналитики. Риск потратить силы равен нулю.</p>
             </div>
 
-            <!-- РСЯ БЛОК ДЛЯ ТЕХ, КТО НЕ ПЛАТИТ -->
-            <div class="rsya-banner-box">
-                <div class="rsya-placeholder">Реклама • Рекламная сеть Яндекса</div>
-                <div style="font-size: 13px; color: var(--text-muted); padding: 15px;">
-                    [ Здесь автоматически отображается релевантный баннер РСЯ для монетизации бесплатного трафика ]
-                </div>
+            <!-- РСЯ БЛОК 22 (ЛЕНТА / FEED) -->
+            <div style="margin: 30px 0; padding: 15px; background: var(--surface-hover); border-radius: 12px; text-align: center;">
+                <div id="yandex_rtb_R-A-19181219-22"></div>
+                <script>
+                window.yaContextCb.push(() => {
+                    Ya.Context.AdvManager.render({
+                        "blockId": "R-A-19181219-22",
+                        "renderTo": "yandex_rtb_R-A-19181219-22",
+                        "type": "feed"
+                    })
+                })
+                </script>
             </div>
 
             <div class="locked-card">
@@ -406,12 +400,34 @@
 
 </main>
 
+<!-- РСЯ БЛОК 26 (OVERLAY ДЛЯ МОБИЛЬНЫХ ТАЧ-УСТРОЙСТВ) -->
+<script>
+window.yaContextCb.push(() => {
+    Ya.Context.AdvManager.render({
+        "blockId": "R-A-19181219-26",
+        "type": "overlay",
+        "platform": "touch"
+    })
+})
+</script>
+
+<!-- РСЯ БЛОК 17 (FLOORAD ДЛЯ ДЕСКТОПОВ) -->
+<script>
+window.yaContextCb.push(() => {
+    Ya.Context.AdvManager.render({
+        "blockId": "R-A-19181219-17",
+        "type": "floorAd",
+        "platform": "desktop"
+    })
+})
+</script>
+
 <!-- ПОДВАЛ -->
 <footer>
     <div class="container">
         <div class="brand-name" style="margin-bottom: 8px;">РЕСУРС<span>.ДЕНЬГИ</span></div>
         <p style="font-size: 13px; font-weight: 700; color: var(--text-main);">
-            Автоматические цифровые утилиты для жизни без лишних заморочек
+            Автоматические цифровые утилиты для жизни без лишних заморочек в Сыктывкаре и России
         </p>
         <p class="footer-sub">
             ИП Худяков Николай Сергеевич • ИНН 111801576622 • ОГРН 323110000009152 • Тел.: <a href="tel:+79087155557" style="color:var(--accent-color); font-weight:700;">+7 (908) 715-55-57</a><br>
