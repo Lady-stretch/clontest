@@ -45,19 +45,25 @@
     <script src="https://yandex.ru/ads/system/context.js" async></script>
     <script>
         window.yaContextCb.push(() => {
-            // Мобильный оверлей
+            // 1. Мобильный оверлей
             Ya.Context.AdvManager.render({
                 "blockId": "R-A-19181219-26",
                 "type": "overlay",
                 "platform": "touch"
             });
-            // Полноэкранный блок для десктопа
+            // 2. Мобильный прижимной нижний блок (Floor Ad для touch)
+            Ya.Context.AdvManager.render({
+                "blockId": "R-A-19181219-6",
+                "type": "floorAd",
+                "platform": "touch"
+            });
+            // 3. Полноэкранный блок для десктопа
             Ya.Context.AdvManager.render({
                 "blockId": "R-A-19181219-25",
                 "type": "fullscreen",
                 "platform": "desktop"
             });
-            // Прилипающий нижний блок (Floor Ad) для десктопа
+            // 4. Прилипающий нижний блок (Floor Ad) для десктопа
             Ya.Context.AdvManager.render({
                 "blockId": "R-A-19181219-7",
                 "type": "floorAd",
