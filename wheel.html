@@ -28,7 +28,7 @@
     <meta property="og:image" content="https://resurs-stretch.ru/logo_header_final.png">
     <meta property="og:locale" content="ru_RU">
 
-    <!-- Микроразметка Schema.org: HealthAndBeautyBusiness + SpecialAnnouncement (Акции) -->
+    <!-- Микроразметка Schema.org -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -89,7 +89,7 @@
     </noscript>
 
     <!-- Рекламная сеть Яндекса (РСЯ) -->
-    <script>window.yaContextCb=window.yaContextCb||[]</script>
+    <script>window.yaContextCb = window.yaContextCb || [];</script>
     <script src="https://yandex.ru/ads/system/context.js" async></script>
 
     <!-- Шрифты и фавикон -->
@@ -324,15 +324,15 @@
 <header>
     <div class="header-top">
         <div class="logo-wrap" onclick="window.location.href='index.html'">
-            <img src="logo_header_final.png" alt="Логотип РЕСУРС">
+            <img src="logo_header_final.png" alt="РЕСУРС">
             <div class="brand-name">РЕСУРС<span>.УДАЧА</span></div>
         </div>
 
         <div class="desktop-actions">
             <a href="index.html" class="back-link">← На главную</a>
             <button id="themeToggle" class="theme-toggle-btn" onclick="toggleTheme()">ТЕМА: ТЕМНАЯ</button>
-            <div id="secretReset" style="cursor: pointer; display: flex; align-items: center;" title="Двойной клик: сбросить память попыток (админ)">
-                <img src="logo_header_final.png" alt="Сброс" style="height: 32px; width: 32px; border-radius: 6px;">
+            <div id="secretReset" class="logo-wrap" title="Двойной клик: сбросить память попыток (админ)">
+                <img src="logo_header_final.png" alt="Сброс">
             </div>
         </div>
     </div>
@@ -497,9 +497,9 @@
     
     const prizes = [
         { text1: "70%", text2: "РАЗОВОЕ", code: "SINGLE70", full: "Скидка 70% на разовое занятие", desc: "Разовый визит в студию РЕСУРС всего за 210 ₽ вместо 700 ₽!" },
-        { text1: "-30%", text2: "АБОНЕМЕНТ", code: "ABON30", full: "Скидка 30% на абонемент", desc: "Крупная разовая скидка на пакет из 8, 16 или 24 тренировок!" },
+        { text1: "-30%", text2: "АБОНЕМЕНТ", code: "ABON30", full: "Скидка 30% на абонемент", desc: "Крупная разовая скидка на любой выбранный пакет из 8, 16 или 24 тренировок!" },
         { text1: "8 ЗАН.", text2: "3200 ₽", code: "EIGHT3200", full: "8 занятий за 3200 ₽ (на месяц)", desc: "Месяц бережного фитнеса: Пилатес, МФР, Здоровая спина или активные группы." },
-        { text1: "16 ЗАН.", text2: "5900 ₽", code: "SIXTEEN5900", full: "16 занятий за 5900 ₽", desc: "Грандиозный и максимальный дисконт на системное здоровье спины." },
+        { text1: "16 ЗАН.", text2: "5900 ₽", code: "SIXTEEN5900", full: "16 занятий за 5900 ₽", desc: "Грандиозный и максимальный дисконт на долгосрочное поддержание здоровья и восстановление осанки." },
         { text1: "ТЕСТ-ДРАЙВ", text2: "990 ₽", code: "TD990", full: "Тест-драйв: 4 занятия / 990 ₽", desc: "Легендарный стартовый сет из 4 тренировок на целый месяц!" }
     ];
 
@@ -598,7 +598,7 @@
     draw();
 </script>
 
-<!-- КАНАЛЫ РСЯ FLOOR AD -->
+<!-- РСЯ БЛОКИ -->
 <script>
 window.yaContextCb.push(() => {
     Ya.Context.AdvManager.render({
