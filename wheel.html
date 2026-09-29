@@ -91,6 +91,13 @@
     <!-- Рекламная сеть Яндекса (РСЯ) -->
     <script>window.yaContextCb = window.yaContextCb || [];</script>
     <script src="https://yandex.ru/ads/system/context.js" async></script>
+    <script>
+        window.yaContextCb.push(() => {
+            Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-26", "type": "overlay", "platform": "touch" });
+            Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-25", "type": "fullscreen", "platform": "desktop" });
+            Ya.Context.AdvManager.render({ "blockId": "R-A-19181219-7", "type": "floorAd", "platform": "desktop" });
+        });
+    </script>
 
     <!-- Шрифты и фавикон -->
     <link rel="icon" type="image/png" href="logo_header_final.png">
@@ -320,7 +327,7 @@
 </head>
 <body>
 
-<!-- ДВУХЭТАЖНАЯ ФИРМЕННАЯ ШАПКА -->
+<!-- ФИРМЕННАЯ ДВУХЭТАЖНАЯ ШАПКА БЕЗ ПРАВОГО ЛОГОТИПА -->
 <header>
     <div class="header-top">
         <div class="logo-wrap" onclick="window.location.href='index.html'">
@@ -331,15 +338,12 @@
         <div class="desktop-actions">
             <a href="index.html" class="back-link">← На главную</a>
             <button id="themeToggle" class="theme-toggle-btn" onclick="toggleTheme()">ТЕМА: ТЕМНАЯ</button>
-            <div id="secretReset" class="logo-wrap" title="Двойной клик: сбросить память попыток (админ)">
-                <img src="logo_header_final.png" alt="Сброс">
-            </div>
         </div>
     </div>
 
     <!-- ВТОРОЙ ЭТАЖ ДЛЯ СМАРТФОНОВ (ЗОНА БОЛЬШОГО ПАЛЬЦА) -->
     <div class="mobile-thumb-bar">
-        <button id="themeToggleMobile" class="theme-toggle-btn" onclick="toggleTheme()">ТЕМА: ТЕМНАЯ</button>
+        <button id="themeToggleMobile" class="theme-toggle-btn" onclick="toggleTheme()">ТЕМА</button>
         <a href="index.html" class="btn-mobile-action">← НА ГЛАВНУЮ</a>
     </div>
 </header>
@@ -429,11 +433,11 @@
     </div>
 </div>
 
-<!-- ПОДВАЛ -->
+<!-- ПОДВАЛ С ТРОЙНЫМ ТАПОМ ДЛЯ СБРОСА ПОПЫТОК -->
 <footer>
     <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
         <p style="font-size: 13px; font-weight: 800; color: var(--text-main); margin-bottom: 6px;">
-            © 2026 РЕСУРС | Студия фитнеса, растяжки и движения. Сыктывкар, ул. Коммунистическая, 67.
+            © <span id="secretReset" title="Тройной тап: сбросить попытки" style="cursor: pointer; display: inline-block;">2026</span> РЕСУРС | Студия фитнеса, растяжки и движения. Сыктывкар, ул. Коммунистическая, 67.
         </p>
         <p style="font-size: 11px; color: var(--text-muted); max-width: 850px; margin: 0 auto; line-height: 1.6;">
             ИП Худяков Николай Сергеевич • ОГРН 323110000009152 • ИНН 111801576622 • Тел.: +7 (908) 715-55-57. Интерактивный розыгрыш и акции носят ознакомительный маркетинговый характер для новых резидентов. Предложение не является публичной офертой.
@@ -452,7 +456,7 @@
         localStorage.setItem('resurs_wheel_theme', next);
         localStorage.setItem('theme', next);
         updateBtnText(next);
-        draw(); // перерисовка колеса под контраст темы
+        draw();
     }
 
     function updateBtnText(t) {
@@ -484,11 +488,22 @@
     function playBg() { video.play().catch(() => { document.addEventListener('click', () => video.play(), {once:true}); }); }
     playBg();
 
-    // Секретный сброс попыток Николаю Сергеевичу
-    document.getElementById('secretReset').addEventListener('dblclick', () => {
-        localStorage.removeItem('resurs_wheel_attempts');
-        alert("Память попыток сброшена. Николай Сергеевич, удачного тестирования!");
-        location.reload();
+    // СЕКРЕТНЫЙ СБРОС ПОПЫТОК ПО ТРОЙНОМУ ТАПУ (РАБОТАЕТ КАК НА ПК, ТАК И НА СМАРФОНАХ)
+    let tapCount = 0;
+    let tapTimer = null;
+    document.getElementById('secretReset').addEventListener('click', () => {
+        tapCount++;
+        clearTimeout(tapTimer);
+        if (tapCount >= 3) {
+            localStorage.removeItem('resurs_wheel_attempts');
+            alert("Память попыток сброшена! Успешного тестирования.");
+            location.reload();
+            tapCount = 0;
+        } else {
+            tapTimer = setTimeout(() => {
+                tapCount = 0;
+            }, 800);
+        }
     });
 
     // АРХИТЕКТУРА И ОТРИСОВКА КОЛЕСА
