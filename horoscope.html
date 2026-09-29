@@ -46,11 +46,11 @@
         </div>
     </noscript>
 
-    <!-- Рекламная сеть Яндекса -->
-    <script>window.yaContextCb=window.yaContextCb||[]</script>
+    <!-- Рекламная сеть Яндекса (РСЯ) -->
+    <script>window.yaContextCb = window.yaContextCb || [];</script>
     <script src="https://yandex.ru/ads/system/context.js" async></script>
 
-    <!-- МОБИЛЬНЫЙ ОВЕРЛЕЙ РСЯ (Overlay) -->
+    <!-- 1. МОБИЛЬНЫЙ ОВЕРЛЕЙ (Overlay) -->
     <script>
     window.yaContextCb.push(() => {
         Ya.Context.AdvManager.render({
@@ -61,7 +61,7 @@
     });
     </script>
 
-    <!-- ПОЛНОЭКРАННЫЙ РСЯ НА ВХОДЕ (Fullscreen) -->
+    <!-- 2. ПОЛНОЭКРАННЫЙ РСЯ НА ВХОДЕ (Fullscreen touch) -->
     <script>
     window.yaContextCb.push(() => {
         Ya.Context.AdvManager.render({
@@ -72,7 +72,18 @@
     });
     </script>
 
-    <!-- НИЖНИЙ ПРИЖИМНОЙ FLOORAD ДЛЯ ДЕСКТОПА -->
+    <!-- 3. НИЖНИЙ ПРИЖИМНОЙ БЛОК ДЛЯ МОБИЛЬНЫХ (FloorAd touch) -->
+    <script>
+    window.yaContextCb.push(() => {
+        Ya.Context.AdvManager.render({
+            "blockId": "R-A-19181219-6",
+            "type": "floorAd",
+            "platform": "touch"
+        });
+    });
+    </script>
+
+    <!-- 4. НИЖНИЙ ПРИЖИМНОЙ БЛОК ДЛЯ ДЕСКТОПА (FloorAd desktop) -->
     <script>
     window.yaContextCb.push(() => {
         Ya.Context.AdvManager.render({
@@ -483,7 +494,7 @@
         <b>Официальное юридическое уведомление:</b> Сервис носит ознакомительный и досуговый характер. Ответы генерируются искусственным интеллектом, не являются медицинской диагностикой или психотерапией. При наличии клинических симптомов обратитесь к профильному специалисту.
     </div>
 
-    <!-- SEO FAQ НА 20 ВОПРОСОВ (БАННЕРА МЕЖДУ ЧАТОМ И FAQ НЕТ) -->
+    <!-- SEO FAQ НА 20 ВОПРОСОВ -->
     <div class="faq-section">
         <div style="text-align: center; margin-bottom: 16px;">
             <span class="section-tag">База знаний и ответы</span>
@@ -615,7 +626,6 @@
         addVeraMessage('Диалог обновлен. Напишите свой вопрос или дату рождения.');
     }
 
-    // КЛИК ПО BENTO-КАРТОЧКЕ: ПЕРЕНОС ТЕКСТА В ЧАТ И ПЛАВНЫЙ СКРОЛЛ
     function askFromCard(queryText) {
         const chatSection = document.getElementById('chatAnchor');
         chatSection.scrollIntoView({ behavior: 'smooth' });
