@@ -40,6 +40,32 @@
         </div>
     </noscript>
 
+    <!-- ПОДКЛЮЧЕНИЕ СЕТИ ЯНДЕКС РЕКЛАМЫ (РСЯ) -->
+    <script>window.yaContextCb = window.yaContextCb || [];</script>
+    <script src="https://yandex.ru/ads/system/context.js" async></script>
+    <script>
+        window.yaContextCb.push(() => {
+            // Мобильный оверлей
+            Ya.Context.AdvManager.render({
+                "blockId": "R-A-19181219-26",
+                "type": "overlay",
+                "platform": "touch"
+            });
+            // Полноэкранный блок для десктопа
+            Ya.Context.AdvManager.render({
+                "blockId": "R-A-19181219-25",
+                "type": "fullscreen",
+                "platform": "desktop"
+            });
+            // Прилипающий нижний блок (Floor Ad) для десктопа
+            Ya.Context.AdvManager.render({
+                "blockId": "R-A-19181219-7",
+                "type": "floorAd",
+                "platform": "desktop"
+            });
+        });
+    </script>
+
     <!-- СЕО МЕТА-ТЕГИ -->
     <title>Опрос резидентов и бонус | Студия растяжки и движения РЕСУРС Сыктывкар</title>
     <meta name="description" content="Пройдите опрос резидентов фитнес-студии РЕСУРС в Сыктывкаре на ул. Коммунистическая, 67. Помогите улучшить сервис растяжки и пилатеса, и получите гарантированный бонус на тренировки.">
