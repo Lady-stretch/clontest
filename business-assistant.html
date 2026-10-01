@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     
-    <title>РЕСУРС.AI | Универсальная платформа нейросетей и ИИ-ассистентов</title>
-    <meta name="description" content="Генерация текстов, постов, стихов, анимация фото, создание видео и музыки с помощью передовых нейросетей. Платформа для творчества и бизнеса.">
+    <title>РЕСУРС.AI | Нейро-офис и агрегатор нейросетей</title>
+    <meta name="description" content="Генерация текста, постов, стихов, анимация фото, создание графики, видео и музыки в одном ИИ-офисе РЕСУРС.AI.">
     
     <link rel="icon" type="image/png" href="logo_header_final.png">
     <link rel="apple-touch-icon" href="logo_header_final.png">
@@ -95,11 +95,12 @@
         .theme-toggle-btn:hover { border-color: var(--accent-color); color: var(--accent-color); }
 
         .token-badge {
-            display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px;
+            display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px;
             background: var(--accent-subtle); border: 1px solid var(--border-color);
             border-radius: 6px; font-size: 11px; font-weight: 800; color: var(--accent-color);
-            cursor: pointer;
+            cursor: pointer; transition: var(--transition);
         }
+        .token-badge:hover { border-color: var(--accent-color); }
 
         .page-wrapper {
             max-width: 1200px; width: 100%; margin: 0 auto; padding: 35px 24px 80px; position: relative; z-index: 10;
@@ -117,30 +118,7 @@
         .hero-title-box h1 span { color: var(--accent-color); }
         .hero-title-box p { color: var(--text-muted); font-size: 14.5px; line-height: 1.6; max-width: 760px; margin: 0 auto; }
 
-        /* ТАРИФЫ И ПОПОЛНЕНИЕ ТОКЕНОВ */
-        .pricing-section { margin-bottom: 40px; }
-        .pricing-grid {
-            display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-top: 18px;
-        }
-        @media(max-width: 1024px) { .pricing-grid { grid-template-columns: repeat(3, 1fr); } }
-        @media(max-width: 600px) { .pricing-grid { grid-template-columns: 1fr; } }
-
-        .price-card {
-            background: var(--surface-color); border: 1px solid var(--border-color);
-            border-radius: 14px; padding: 20px; text-align: center; cursor: pointer;
-            transition: var(--transition); display: flex; flex-direction: column; justify-content: space-between;
-        }
-        .price-card:hover { border-color: var(--accent-color); transform: translateY(-3px); }
-        .price-amount { font-size: 20px; font-weight: 800; color: var(--text-main); margin-bottom: 6px; }
-        .price-tokens { font-size: 12px; color: var(--accent-color); font-weight: 700; margin-bottom: 14px; }
-        .buy-btn {
-            padding: 10px; background: var(--accent-color); color: #FFF; border: none;
-            border-radius: 6px; font-size: 11px; font-weight: 800; text-transform: uppercase; cursor: pointer;
-            transition: var(--transition); width: 100%;
-        }
-        .buy-btn:hover { background: var(--accent-hover); }
-
-        /* BENTO СЕТКА ДЛЯ ТВОРЧЕСТВА И БИЗНЕСА */
+        /* BENTO СЕТКА АССИСТЕНТОВ */
         .bento-features-grid {
             display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 40px;
         }
@@ -231,7 +209,6 @@
             flex: 1; padding: 13px 16px; background: var(--surface-color); border: 1px solid var(--border-color);
             color: var(--text-main); border-radius: 8px; font-family: inherit; font-size: 14px;
         }
-        .chat-input-area input:focus { border-color: var(--accent-color); }
         .chat-send-btn {
             width: 46px; height: 46px; border-radius: 8px; border: none; background: var(--accent-color);
             color: #FFF; font-size: 17px; cursor: pointer; display: flex; align-items: center;
@@ -239,15 +216,19 @@
         }
         .chat-send-btn:hover { background: var(--accent-hover); }
 
-        /* МОДАЛЬНОЕ ОКНО АВТОРИЗАЦИИ (ВК / Яндекс ID + ДР + Телефон + Email) */
+        /* МОДАЛЬНЫЕ ОКНА (АВТОРИЗАЦИЯ, ЛК, ПОПОЛНЕНИЕ) */
         .modal-overlay {
             position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 9999;
-            display: flex; align-items: center; justify-content: center; padding: 20px;
+            display: none; align-items: center; justify-content: center; padding: 20px;
         }
         .modal-box {
             background: var(--surface-color); border: 1px solid var(--border-color);
             border-radius: 16px; padding: 30px; max-width: 440px; width: 100%; text-align: center;
-            box-shadow: 0 20px 50px var(--shadow);
+            box-shadow: 0 20px 50px var(--shadow); position: relative;
+        }
+        .close-modal {
+            position: absolute; top: 14px; right: 18px; background: none; border: none;
+            color: var(--text-muted); font-size: 20px; cursor: pointer; font-weight: 800;
         }
         .auth-btn {
             display: block; width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 8px;
@@ -256,11 +237,20 @@
         }
         .auth-btn:hover { border-color: var(--accent-color); }
         .auth-btn.primary { background: var(--accent-color); color: #FFF; border: none; }
+        .auth-btn.primary:hover { background: var(--accent-hover); }
         
         .form-input {
             width: 100%; padding: 11px 14px; margin-bottom: 10px; background: var(--bg-color);
             border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-main); font-family: inherit; font-size: 13px;
         }
+
+        .quick-amounts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px; }
+        .quick-btn {
+            padding: 10px; background: var(--bg-color); border: 1px solid var(--border-color);
+            border-radius: 8px; color: var(--text-main); font-weight: 700; font-size: 13px; cursor: pointer;
+            transition: var(--transition);
+        }
+        .quick-btn:hover { border-color: var(--accent-color); color: var(--accent-color); }
 
         footer {
             padding: 40px 0 30px; border-top: 1px solid var(--border-color); text-align: center;
@@ -276,24 +266,54 @@
 <!-- МОДАЛЬНОЕ ОКНО АВТОРИЗАЦИИ И СБОРА ДАННЫХ -->
 <div id="authModal" class="modal-overlay">
     <div class="modal-box">
+        <button class="close-modal" onclick="closeModals()">✕</button>
         <h2 style="margin-bottom: 8px;">Вход в РЕСУРС.AI</h2>
-        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 18px;">Авторизуйтесь через соцсети и укажите данные для персонализации</p>
+        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 18px;">Авторизуйтесь через соцсети и укажите контактные данные</p>
         
         <button class="auth-btn primary" onclick="loginWithProvider('Яндекс ID')">🟡 Войти через Яндекс ID</button>
         <button class="auth-btn" onclick="loginWithProvider('VK ID')">🔵 Войти через VK ID</button>
         
         <div style="margin: 15px 0 10px; border-top: 1px solid var(--border-color); padding-top: 12px; text-align: left;">
-            <label style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 4px;">Номер телефона (для чеков ЮKassa):</label>
+            <label style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 4px;">Телефон:</label>
             <input type="tel" id="userPhone" class="form-input" placeholder="+7 (900) 000-00-00">
             
-            <label style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 4px;">Электронная почта (Email):</label>
+            <label style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 4px;">Email:</label>
             <input type="email" id="userEmail" class="form-input" placeholder="mail@example.com">
 
             <label style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 4px;">Дата рождения:</label>
             <input type="date" id="userBirth" class="form-input">
         </div>
 
-        <button class="auth-btn primary" style="margin-top: 10px;" onclick="completeRegistration()">Сохранить и продолжить</button>
+        <button class="auth-btn primary" style="margin-top: 10px;" onclick="completeRegistration()">Продолжить</button>
+    </div>
+</div>
+
+<!-- МОДАЛЬНОЕ ОКНО: ЛИЧНЫЙ КАБИНЕТ И ПОПОЛНЕНИЕ (В ЛЮБОЙ СУММЕ) -->
+<div id="lkModal" class="modal-overlay">
+    <div class="modal-box">
+        <button class="close-modal" onclick="closeModals()">✕</button>
+        <h2 style="margin-bottom: 6px;">Личный кабинет</h2>
+        <p id="lkUserEmail" style="font-size: 12px; color: var(--text-muted); margin-bottom: 20px;">email@example.com</p>
+        
+        <div style="background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 12px; padding: 18px; margin-bottom: 20px;">
+            <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px;">Ваш баланс</div>
+            <div style="font-size: 28px; font-weight: 800; color: var(--accent-color);">⭐ <span id="lkTokenCount">30</span> токенов</div>
+        </div>
+
+        <div style="text-align: left; margin-bottom: 14px;">
+            <label style="font-size: 12px; font-weight: 700; color: var(--text-main); display: block; margin-bottom: 6px;">Пополнить баланс на сумму (₽):</label>
+            <div class="quick-amounts">
+                <button class="quick-btn" onclick="setCustomAmount(120)">120 ₽</button>
+                <button class="quick-btn" onclick="setCustomAmount(300)">300 ₽</button>
+                <button class="quick-btn" onclick="setCustomAmount(1000)">1 000 ₽</button>
+                <button class="quick-btn" onclick="setCustomAmount(3000)">3 000 ₽</button>
+                <button class="quick-btn" onclick="setCustomAmount(5000)">5 000 ₽</button>
+                <button class="quick-btn" onclick="setCustomAmount(15000)">15 000 ₽</button>
+            </div>
+            <input type="number" id="customAmountInput" class="form-input" placeholder="Или введите свою сумму, например 120" value="300" min="50">
+        </div>
+
+        <button class="auth-btn primary" onclick="payCustomAmount()">Пополнить баланс</button>
     </div>
 </div>
 
@@ -304,7 +324,7 @@
         </div>
 
         <div class="desktop-actions">
-            <div class="token-badge" onclick="scrollToPricing()">⭐ Баланс: <span id="tokenCount">30</span> токенов</div>
+            <div class="token-badge" onclick="openLkModal()">⭐ <span id="tokenCount">30</span> токенов</div>
             <button class="theme-toggle-btn" onclick="toggleThemeInstant()">ТЕМА: ТЕМНАЯ</button>
             <button class="theme-toggle-btn" id="userProfileBtn" style="border-color:var(--accent-color); color:var(--accent-color);" onclick="openAuthModal()">Войти</button>
         </div>
@@ -316,54 +336,7 @@
     <div class="hero-title-box">
         <span class="section-tag">Нейросети для творчества и бизнеса</span>
         <h1>Ваш персональный <span>ИИ-Ассистент</span></h1>
-        <p>Создавайте контент, пишите стихи и посты, оживляйте фото (анимация котиков и людей), генерируйте видео и музыку в один клик.</p>
-    </div>
-
-    <!-- ТАРИФЫ И ПОПОЛНЕНИЕ ТОКЕНОВ (ЮKassa) -->
-    <div class="pricing-section" id="pricingSection">
-        <div style="text-align: center; margin-bottom: 10px;">
-            <span class="section-tag">Пакеты токенов</span>
-            <h2>Пополнение баланса (Оплата через ЮKassa)</h2>
-        </div>
-        <div class="pricing-grid">
-            <div class="price-card" onclick="initiateYooKassa(1000, 100)">
-                <div>
-                    <div class="price-amount">1 000 ₽</div>
-                    <div class="price-tokens">100 токенов</div>
-                </div>
-                <button class="buy-btn">Купить</button>
-            </div>
-            <div class="price-card" onclick="initiateYooKassa(3000, 350)" style="border-color: var(--accent-color);">
-                <div>
-                    <div style="font-size:9px; font-weight:800; color:var(--accent-color); text-transform:uppercase; margin-bottom:4px;">Хит продаж</div>
-                    <div class="price-amount">3 000 ₽</div>
-                    <div class="price-tokens">350 токенов</div>
-                </div>
-                <button class="buy-btn">Купить</button>
-            </div>
-            <div class="price-card" onclick="initiateYooKassa(5000, 650)">
-                <div>
-                    <div class="price-amount">5 000 ₽</div>
-                    <div class="price-tokens">650 токенов</div>
-                </div>
-                <button class="buy-btn">Купить</button>
-            </div>
-            <div class="price-card" onclick="initiateYooKassa(10000, 1500)">
-                <div>
-                    <div class="price-amount">10 000 ₽</div>
-                    <div class="price-tokens">1 500 токенов</div>
-                </div>
-                <button class="buy-btn">Купить</button>
-            </div>
-            <div class="price-card" onclick="initiateYooKassa(15000, 2500)">
-                <div>
-                    <div style="font-size:9px; font-weight:800; color:#4ade80; text-transform:uppercase; margin-bottom:4px;">Максимум</div>
-                    <div class="price-amount">15 000 ₽</div>
-                    <div class="price-tokens">2 500 токенов</div>
-                </div>
-                <button class="buy-btn">Купить</button>
-            </div>
-        </div>
+        <p>Создавайте контент, пишите стихи и посты, оживляйте фото, генерируйте видео и музыку в один клик.</p>
     </div>
 
     <!-- BENTO СЕТКА АССИСТЕНТОВ -->
@@ -472,13 +445,20 @@
             Платформа монетизации искусственного интеллекта
         </p>
         <p class="footer-sub">
-            Интеграция с ЮKassa, авторизация через Яндекс ID и VK ID<br>
-            Автоматическое списание токенов и моментальные генерации
+            Авторизация через Яндекс ID и VK ID • Моментальное пополнение баланса<br>
+            Автоматическое списание токенов и генерации в реальном времени
         </p>
     </div>
 </footer>
 
 <script>
+    let userState = {
+        isLoggedIn: false,
+        name: "Гость",
+        email: "guest@resurs.ai",
+        tokens: 30
+    };
+
     function toggleThemeInstant() {
         const root = document.documentElement;
         const current = root.getAttribute('data-theme') || 'dark';
@@ -498,10 +478,39 @@
         const savedTheme = localStorage.getItem('theme') || 'dark';
         document.documentElement.setAttribute('data-theme', savedTheme);
         updateThemeBtnText(savedTheme);
+        updateUI();
     });
 
+    function updateUI() {
+        document.getElementById('tokenCount').innerText = userState.tokens;
+        document.getElementById('lkTokenCount').innerText = userState.tokens;
+        document.getElementById('lkUserEmail').innerText = userState.email;
+        if(userState.isLoggedIn) {
+            document.getElementById('userProfileBtn').innerText = userState.name;
+        } else {
+            document.getElementById('userProfileBtn').innerText = 'Войти';
+        }
+    }
+
     function openAuthModal() {
-        document.getElementById('authModal').style.display = 'flex';
+        if(userState.isLoggedIn) {
+            openLkModal();
+        } else {
+            document.getElementById('authModal').style.display = 'flex';
+        }
+    }
+
+    function openLkModal() {
+        if(!userState.isLoggedIn) {
+            openAuthModal();
+            return;
+        }
+        document.getElementById('lkModal').style.display = 'flex';
+    }
+
+    function closeModals() {
+        document.getElementById('authModal').style.display = 'none';
+        document.getElementById('lkModal').style.display = 'none';
     }
 
     function loginWithProvider(provider) {
@@ -512,24 +521,32 @@
         const phone = document.getElementById('userPhone').value;
         const email = document.getElementById('userEmail').value;
         if(!phone || !email) {
-            alert('Пожалуйста, укажите телефон и email для работы сервиса и чеков ЮKassa.');
+            alert('Пожалуйста, укажите телефон и email.');
             return;
         }
-        document.getElementById('authModal').style.display = 'none';
-        document.getElementById('userProfileBtn').innerText = 'Личный кабинет';
-        alert('Регистрация и авторизация успешна! Баланс пополнен на приветственные токены.');
+        userState.isLoggedIn = true;
+        userState.email = email;
+        userState.name = "Николай";
+        userState.tokens += 20; // Приветственные токены
+        closeModals();
+        updateUI();
+        alert('Успешный вход! Вам начислены приветственные токены.');
     }
 
-    function scrollToPricing() {
-        document.getElementById('pricingSection').scrollIntoView({ behavior: 'smooth' });
+    function setCustomAmount(amount) {
+        document.getElementById('customAmountInput').value = amount;
     }
 
-    function initiateYooKassa(amount, tokens) {
-        let confirmed = confirm(`Перейти к оплате пакета на ${amount} ₽ (${tokens} токенов) через ЮKassa?`);
+    function payCustomAmount() {
+        const amt = parseInt(document.getElementById('customAmountInput').value) || 120;
+        let confirmed = confirm(`Пополнить баланс на ${amt} ₽?`);
         if (confirmed) {
-            alert(`[ЮKassa API] Запрос на оплату ${amount} ₽ сформирован. После успешного платежа через вебхук токены мгновенно зачислятся на баланс.`);
-            let current = parseInt(document.getElementById('tokenCount').innerText);
-            document.getElementById('tokenCount').innerText = current + tokens;
+            // Расчет токенов (например, 1 рубль = 0.3 токена или фиксированно)
+            let addedTokens = Math.round(amt * 0.35);
+            userState.tokens += addedTokens;
+            updateUI();
+            closeModals();
+            alert(`Оплата на ${amt} ₽ прошла успешно! Баланс пополнен на ${addedTokens} токенов.`);
         }
     }
 
@@ -597,6 +614,15 @@
         const text = input.value.trim();
         if (!text) return;
 
+        if (userState.tokens < 2) {
+            alert('Недостаточно токенов на балансе! Пожалуйста, пополните баланс в личном кабинете.');
+            openLkModal();
+            return;
+        }
+
+        userState.tokens -= 1;
+        updateUI();
+
         addUserMessage(text);
         input.value = '';
 
@@ -605,7 +631,7 @@
 
         setTimeout(() => {
             typing.style.display = 'none';
-            let response = `✨ **Результат генерации:**\n• Запрос: "${text}"\n• Статус: Успешно обработано нейросетью.\n• Списано токенов согласно тарифу. Можете скачать результат или продолжить общение!`;
+            let response = `✨ **Результат генерации:**\n• Запрос: "${text}"\n• Статус: Успешно обработано нейросетью.\n• Списан 1 токен. Остаток на балансе: ${userState.tokens} токенов.`;
             addAssistantMessage(response);
         }, 1400);
     }
