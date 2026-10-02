@@ -599,12 +599,13 @@
                 document.getElementById('prizeName').innerText = win.full;
                 document.getElementById('prizeInfo').innerText = win.desc;
                 
-                // Прямой переход в диалог ВК с сообществом РЕСУРС
-                document.getElementById('vkBtn').href = `https://vk.ru/im?sel=-221142875&ref=wheel_${win.code}`;
+                // Переход в чат ВК
+                const vkBtn = document.getElementById('vkBtn');
+                vkBtn.href = `https://vk.ru/im?sel=-221142875&ref=wheel_${win.code}`;
                 
-                document.getElementById('vkBtn').onclick = function() {
+                // Закрываем окно при клике без reload(), чтобы не блокировать открытие чата
+                vkBtn.onclick = function() {
                     document.getElementById('winModal').style.display = 'none';
-                    location.reload();
                 };
                 
                 setTimeout(() => { document.getElementById('winModal').style.display = 'flex'; }, 500);
