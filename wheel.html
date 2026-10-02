@@ -423,7 +423,7 @@
         
         <div class="instruction-box">
             <p style="font-size: 11px; color: #FF4D4F; text-transform: uppercase; font-weight: 800; margin-bottom: 6px; letter-spacing: 0.5px;">⚠️ Внимание! Выигрыш нужно забрать сразу:</p>
-            <p style="font-size: 13px; color: var(--text-main); line-height: 1.5;">Нажмите кнопку ниже, перейдите в чат ВК и обязательно отправьте сообщение:<br><strong style="color: var(--accent-color); font-size: 14px;">«ЗАБРАТЬ ВЫИГРЫШ»</strong><br><span style="font-size: 12px; color: var(--text-muted); display: block; margin-top: 4px;">Если не перейти сразу в диалог и не написать эту фразу, ваше спецпредложение не сохранится и аннулируется.</span></p>
+            <p style="font-size: 13px; color: var(--text-main); line-height: 1.5;">Нажмите кнопку ниже, перейдите в чат ВК и отправьте сообщение:<br><strong style="color: var(--accent-color); font-size: 14px;">«ЗАБРАТЬ ВЫИГРЫШ»</strong><br><span style="font-size: 12px; color: var(--text-muted); display: block; margin-top: 4px;">Если не перейти сразу в диалог и не написать эту фразу, ваше спецпредложение не сохранится и аннулируется.</span></p>
         </div>
 
         <a href="#" id="vkBtn" class="vk-link" target="_blank">
@@ -599,11 +599,11 @@
                 document.getElementById('prizeName').innerText = win.full;
                 document.getElementById('prizeInfo').innerText = win.desc;
                 
-                // Переход в чат ВК
+                // Родная проверенная ссылка ВКонтакте
                 const vkBtn = document.getElementById('vkBtn');
-                vkBtn.href = `https://vk.ru/im?sel=-221142875&ref=wheel_${win.code}`;
+                vkBtn.href = `https://vk.me/public221142875?ref=wheel_${win.code}`;
                 
-                // Закрываем окно при клике без reload(), чтобы не блокировать открытие чата
+                // Закрываем окно при клике без перезагрузки
                 vkBtn.onclick = function() {
                     document.getElementById('winModal').style.display = 'none';
                 };
