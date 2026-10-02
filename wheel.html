@@ -437,7 +437,7 @@
 <footer>
     <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
         <p style="font-size: 13px; font-weight: 800; color: var(--text-main); margin-bottom: 6px;">
-            © 2026 <span id="secretReset" title="Тройной тап: сбросить попытки" style="cursor: pointer; display: inline-block; color: var(--accent-color);">РЕСУРС</span> | Студия фитнеса, растяжки и движения. Сыктывкар, ул. Коммунистическая, 67.
+            © <span id="secretReset" title="Тройной тап: сбросить попытки" style="cursor: pointer; display: inline-block;">2026</span> РЕСУРС | Студия фитнеса, растяжки и движения. Сыктывкар, ул. Коммунистическая, 67.
         </p>
         <p style="font-size: 11px; color: var(--text-muted); max-width: 850px; margin: 0 auto; line-height: 1.6;">
             ИП Худяков Николай Сергеевич • ОГРН 323110000009152 • ИНН 111801576622 • Тел.: +7 (908) 715-55-57. Интерактивный розыгрыш и акции носят ознакомительный маркетинговый характер для новых резидентов. Предложение не является публичной офертой.
@@ -488,27 +488,23 @@
     function playBg() { video.play().catch(() => { document.addEventListener('click', () => video.play(), {once:true}); }); }
     playBg();
 
-    // СЕКРЕТНЫЙ СБРОС ПОПЫТОК ПО ТРОЙНОМУ ТАПУ (НА СЛОВО "РЕСУРС" В ФУТЕРЕ)
+    // СЕКРЕТНЫЙ СБРОС ПОПЫТОК ПО ТРОЙНОМУ ТАПУ (РАБОТАЕТ КАК НА ПК, ТАК И НА СМАРФОНАХ)
     let tapCount = 0;
     let tapTimer = null;
-    const resetEl = document.getElementById('secretReset');
-    if (resetEl) {
-        resetEl.addEventListener('click', (e) => {
-            e.preventDefault();
-            tapCount++;
-            clearTimeout(tapTimer);
-            if (tapCount >= 3) {
-                localStorage.removeItem('resurs_wheel_attempts');
-                alert("Память попыток сброшена! Успешного тестирования.");
-                location.reload();
+    document.getElementById('secretReset').addEventListener('click', () => {
+        tapCount++;
+        clearTimeout(tapTimer);
+        if (tapCount >= 3) {
+            localStorage.removeItem('resurs_wheel_attempts');
+            alert("Память попыток сброшена! Успешного тестирования.");
+            location.reload();
+            tapCount = 0;
+        } else {
+            tapTimer = setTimeout(() => {
                 tapCount = 0;
-            } else {
-                tapTimer = setTimeout(() => {
-                    tapCount = 0;
-                }, 1000);
-            }
-        });
-    }
+            }, 800);
+        }
+    });
 
     // АРХИТЕКТУРА И ОТРИСОВКА КОЛЕСА
     const canvas = document.getElementById('wheelCanvas');
@@ -603,8 +599,8 @@
                 document.getElementById('prizeName').innerText = win.full;
                 document.getElementById('prizeInfo').innerText = win.desc;
                 
-                // Универсальная ссылка для ПК и мобильных (напрямую в диалог сообщества ВК с реферальной меткой)
-                document.getElementById('vkBtn').href = `https://vk.com/gim221142875?ref=wheel_${win.code}`;
+                // Прямой переход в диалог ВК с сообществом РЕСУРС
+                document.getElementById('vkBtn').href = `https://vk.ru/im?sel=-221142875&ref=wheel_${win.code}`;
                 
                 document.getElementById('vkBtn').onclick = function() {
                     document.getElementById('winModal').style.display = 'none';
