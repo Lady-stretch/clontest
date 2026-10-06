@@ -1471,7 +1471,7 @@
                     <li>8 занятий по 50 минут</li>
                     <li>Срок действия — 2 месяца</li>
                 </ul>
-                <button class="birthday-buy-btn" type="button" onclick="openModal('Абонемент 8 занятий · День рождения РЕСУРСА', 4360)">Купить за 4 360 ₽</button>
+                <button class="birthday-buy-btn" type="button" onclick="buyBirthdayPackage('Абонемент 8 занятий · День рождения РЕСУРСА', 4360)">Купить за 4 360 ₽</button>
             </article>
 
             <article class="birthday-offer-card featured">
@@ -1486,7 +1486,7 @@
                     <li>16 занятий по 50 минут</li>
                     <li>Срок действия — 3 месяца</li>
                 </ul>
-                <button class="birthday-buy-btn" type="button" onclick="openModal('Абонемент 16 занятий · День рождения РЕСУРСА', 8360)">Купить за 8 360 ₽</button>
+                <button class="birthday-buy-btn" type="button" onclick="buyBirthdayPackage('Абонемент 16 занятий · День рождения РЕСУРСА', 8360)">Купить за 8 360 ₽</button>
             </article>
 
             <article class="birthday-offer-card">
@@ -1501,7 +1501,7 @@
                     <li>24 занятия по 50 минут</li>
                     <li>Срок действия — 4 месяца</li>
                 </ul>
-                <button class="birthday-buy-btn" type="button" onclick="openModal('Абонемент 24 занятия · День рождения РЕСУРСА', 12080)">Купить за 12 080 ₽</button>
+                <button class="birthday-buy-btn" type="button" onclick="buyBirthdayPackage('Абонемент 24 занятия · День рождения РЕСУРСА', 12080)">Купить за 12 080 ₽</button>
             </article>
         </div>
 
@@ -1716,6 +1716,13 @@
         if (!modal) return;
         modal.style.display = 'none';
         document.body.style.overflow = 'auto';
+    }
+
+    // Покупка праздничного абонемента: сначала закрываем окно с тарифами,
+    // затем открываем форму покупки поверх него, чтобы модалки никогда не накладывались.
+    function buyBirthdayPackage(packageName, price) {
+        closeBirthdayModal();
+        setTimeout(() => openModal(packageName, price), 80);
     }
 
     function updateBirthdayPromo() {
