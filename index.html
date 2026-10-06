@@ -422,6 +422,17 @@
         .dir-list li { margin-bottom: 6px; padding-left: 16px; position: relative; }
         .dir-list li::before { content: '—'; position: absolute; left: 0; color: var(--accent-purple); }
 
+        /* Светлая тема: текст карточек направлений должен быть читаемым */
+        [data-theme="light"] .dir-item .dir-title,
+        [data-theme="light"] .dir-item .dir-list,
+        [data-theme="light"] .dir-item .dir-list li {
+            color: var(--text-main) !important;
+            text-shadow: 0 1px 2px rgba(255,255,255,0.65);
+        }
+        [data-theme="light"] .dir-item .dir-list li::before {
+            color: var(--accent-purple) !important;
+        }
+
         .schedule-section { padding: 70px 5% 90px; text-align: center; border-top: 1px solid var(--elem-border); }
 
         /* BENTO */
