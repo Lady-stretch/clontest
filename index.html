@@ -523,6 +523,15 @@
     
 
 
+        /* ВРЕМЕННЫЙ POPUP ДНЯ РОЖДЕНИЯ */
+        .birthday-entry-popup{display:none;position:fixed;right:24px;bottom:24px;z-index:5000;width:min(390px,calc(100vw - 32px));padding:22px 22px 20px;border:1px solid var(--accent-purple);border-radius:16px;background:var(--surface-color);box-shadow:0 24px 70px rgba(0,0,0,.32);animation:birthdayPopupIn .35s ease both}
+        .birthday-entry-popup::before{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(circle at 15% 0%,var(--accent-subtle),transparent 52%)}
+        .birthday-entry-popup>*{position:relative;z-index:1}.birthday-entry-popup-close{position:absolute;top:8px;right:10px;width:30px;height:30px;border:0;background:transparent;color:var(--text-dim);font-size:25px;line-height:1;cursor:pointer}
+        .birthday-entry-kicker{color:var(--accent-purple);font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:7px}.birthday-entry-popup h3{margin:0 28px 7px 0;font-size:23px;line-height:1.12}.birthday-entry-popup p{margin:0 0 15px;color:var(--text-dim);font-size:12px;line-height:1.55}
+        .birthday-entry-countdown{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:0 0 16px}.birthday-entry-time{padding:8px 4px 7px;border-radius:8px;background:var(--surface-hover);text-align:center;border:1px solid var(--elem-border)}.birthday-entry-time b{display:block;color:var(--accent-purple);font-size:17px;line-height:1;margin-bottom:4px}.birthday-entry-time span{color:var(--text-dim);font-size:7px;text-transform:uppercase;letter-spacing:.8px}
+        .birthday-entry-actions{display:flex;align-items:center;gap:10px}.birthday-entry-actions .btn{flex:1;text-align:center;padding:11px 13px;font-size:10px}.birthday-entry-note{font-size:9px!important;margin:9px 0 0!important;text-align:center}@keyframes birthdayPopupIn{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+        @media(max-width:600px){.birthday-entry-popup{right:12px;bottom:12px;width:calc(100vw - 24px);padding:19px 17px 16px}.birthday-entry-popup h3{font-size:21px}.birthday-entry-actions .btn{font-size:9px}}
+
         /* ВРЕМЕННЫЙ БАННЕР ДНЯ РОЖДЕНИЯ */
         .birthday-promo-bar {
             position: relative;
@@ -902,6 +911,22 @@
 </div>
 
 <!-- ВРЕМЕННЫЙ БАННЕР КО ДНЮ РОЖДЕНИЯ: ИСЧЕЗАЕТ ПОСЛЕ 11.10.2026 23:59 -->
+<!-- ВРЕМЕННОЕ ВСПЛЫВАЮЩЕЕ ОКНО ДНЯ РОЖДЕНИЯ -->
+<div class="birthday-entry-popup" id="birthday-entry-popup" role="dialog" aria-modal="false" aria-labelledby="birthdayEntryTitle">
+    <button class="birthday-entry-popup-close" type="button" onclick="closeBirthdayEntryPopup()" aria-label="Закрыть">&times;</button>
+    <div class="birthday-entry-kicker">РЕСУРСУ · 6 ЛЕТ · ДО 11 ОКТЯБРЯ</div>
+    <h3 id="birthdayEntryTitle">Неделя праздничных цен 🎉</h3>
+    <p>Празднуем 6-летие РЕСУРСА. Специальные цены на абонементы действуют только до 11 октября.</p>
+    <div class="birthday-entry-countdown" aria-label="Обратный отсчёт до окончания акции">
+        <div class="birthday-entry-time"><b id="popup-birthday-days">00</b><span>дней</span></div>
+        <div class="birthday-entry-time"><b id="popup-birthday-hours">00</b><span>часов</span></div>
+        <div class="birthday-entry-time"><b id="popup-birthday-minutes">00</b><span>минут</span></div>
+        <div class="birthday-entry-time"><b id="popup-birthday-seconds">00</b><span>секунд</span></div>
+    </div>
+    <div class="birthday-entry-actions"><button class="btn" type="button" onclick="goToBirthdaySection()">К Дню рождения →</button></div>
+    <p class="birthday-entry-note">Закрыть можно крестиком. После обновления страницы окно появится снова.</p>
+</div>
+
 <div id="birthday-promo-bar" class="birthday-promo-bar" aria-label="День рождения РЕСУРСА">
     <div class="birthday-promo-inner">
         <div class="birthday-promo-copy">
@@ -1012,7 +1037,7 @@
                 <div class="birthday-price"><span>24 занятия</span><span><s style="opacity:.5;">13 080 ₽</s> → <b>12 080 ₽</b></span></div>
 
                 <div class="birthday-links">
-                    <a class="btn" href="future-packages.html">Все абонементы</a>
+                    <button class="btn" type="button" onclick="openBirthdayModal()">Праздничные абонементы →</button>
                     <a class="btn-lens" href="https://qr.nspk.ru/AS2A006F0RCJU7V991SBLV4AACJGFT2P?type=01&bank=100000000004&crc=A93E" target="_blank" rel="noopener">Оплатить по СБП</a>
                 </div>
                 <p class="birthday-note">
@@ -1572,6 +1597,7 @@
         document.documentElement.setAttribute('data-theme', savedTheme);
         updateThemeButtons(savedTheme);
         initBirthdayPromo();
+        initBirthdayEntryPopup();
 
         // Восстанавливаем историю ИИ-чата после обновления страницы
         if (Array.isArray(chatHistory) && chatHistory.length) {
@@ -1679,6 +1705,11 @@
         modal.style.display = 'flex';
         document.body.style.overflow = 'hidden';
     }
+
+    function closeBirthdayEntryPopup(){const popup=document.getElementById('birthday-entry-popup');if(popup)popup.style.display='none';}
+    function goToBirthdaySection(){closeBirthdayEntryPopup();const section=document.getElementById('birthday');if(section)section.scrollIntoView({behavior:'smooth',block:'start'});}
+    function updateBirthdayEntryPopup(){const popup=document.getElementById('birthday-entry-popup');const distance=birthdayPromoEnd-Date.now();if(distance<=0){if(popup)popup.remove();return;}const values={'popup-birthday-days':Math.floor(distance/(1000*60*60*24)),'popup-birthday-hours':Math.floor(distance%(1000*60*60*24)/(1000*60*60)),'popup-birthday-minutes':Math.floor(distance%(1000*60*60)/(1000*60)),'popup-birthday-seconds':Math.floor(distance%(1000*60)/1000)};Object.entries(values).forEach(([id,value])=>{const el=document.getElementById(id);if(el)el.innerText=String(value).padStart(2,'0');});}
+    function initBirthdayEntryPopup(){const popup=document.getElementById('birthday-entry-popup');if(!popup||Date.now()>=birthdayPromoEnd)return;updateBirthdayEntryPopup();popup.style.display='block';setInterval(updateBirthdayEntryPopup,1000);}
 
     function closeBirthdayModal() {
         const modal = document.getElementById('birthdayModal');
@@ -1792,6 +1823,7 @@
 
     document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape') {
+            closeBirthdayEntryPopup();
             closeBirthdayModal();
             closeModal();
             closeCrmModal();
